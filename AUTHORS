@@ -37,3 +37,6 @@ Contributors:
 
     Anton Horpynich <anton@vingeo.com>
         - Ukrainian translatation and revision of Russian translation
+
+    Claudio Fontana <claudio@gnu.org>
+        - GNU Gama build system compatible with GNU policies

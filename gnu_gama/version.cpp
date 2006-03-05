@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: version.cpp,v 1.96 2006/03/02 13:44:33 cepek Exp $
+ *  $Id: version.cpp,v 1.98 2006/03/05 13:42:04 cepek Exp $
  */
 
 
@@ -28,7 +28,7 @@
 
 namespace GNU_gama {
 
-const char* GNU_gama_version  = "1.9.00c";
+const char* GNU_gama_version  = "1.9.01a";
 
 const char* GNU_gama_compiler =
               #if   defined (__GNUC__)
@@ -62,8 +62,18 @@ const char* GNU_gama_compiler =
 
 =============================================================================
 
+1.9.01 2006-xxxxx
 
-1.9.00 2006-xx-xx
+    - Claudio Fontana: new complete build system, compatible with GNU
+      policies (as described in the GNU coding standards, and
+      technically also discussed in the autoconf, make and automake
+      manuals).
+
+      also added script scripts/autogen.sh
+
+
+
+1.9.00 2006-03-03
 
      #####################################################################
      #                                                                   #
