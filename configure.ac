@@ -46,5 +46,6 @@ AC_OUTPUT([Makefile
            gama-g3/Makefile
            gama-local/Makefile
            scripts/Makefile          
+           doc/Makefile
           ])
 
