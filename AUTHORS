@@ -10,7 +10,7 @@ Developers:
         - support for iso-885902 and windows-1250 encoding for Expat
           parser
 
-    Jan Pytel <pytel@gama.fsv.cvut.cz>
+    Jan Pytel <jan.pytel@fsv.cvut.cz>
         - linearization of slope observation types and GUI Rocinante
           (now distributed separately from sourceforge.net)
    
