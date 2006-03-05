@@ -43,6 +43,8 @@ AC_CHECK_FUNCS([memmove memset munmap pow sqrt])
 
 AC_OUTPUT([Makefile 
            lib/Makefile
+           gama-g3/Makefile
+           gama-local/Makefile
            scripts/Makefile          
           ])
 
