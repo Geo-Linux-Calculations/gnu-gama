@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<entries>
+
+<e id="T_GaMa_Adjustment_of_geodetic_network"   
+   en="Adjustment of local geodetic network" />
+
+<e id="T_GaMa_version"
+   en="version: " />
+
+<e id="T_GaMa_exception_1"
+   en="Error during creation of InfoSit object" />
+
+<e id="T_GaMa_exception_2a"
+   en="GNU Gama - error on reading XML input configuration file!" />
+
+<e id="T_GaMa_exception_2b"
+   en="On line number " />
+
+<e id="T_GaMa_No_points_available"
+   en="No points available" />
+
+<e id="T_GaMa_No_observations_available"
+   en="No observations available" />
+
+<e id="T_GaMa_No_network_points_defined"
+   en="No network points defined" />
+
+<e id="T_GaMa_No_unknowns_defined"
+   en="No unknowns have been defined" />
+
+<e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
+   en="Observations with outlying absolute terms removed" />
+
+<e id="T_GaMa_adjustment_iteration"
+   en=" - adjustment iteration" />
+
+<e id="T_GaMa_Approximate_coordinates_replaced"
+   en="Approximate coordinates of computed points replaced by adjusted" />
+
+<e id="T_GaMa_solution_ended_with_error"
+   en="GNU Gama - solution ended with error!" />
+
+<e id="T_GaMa_internal_program_error"
+   en="GNU Gama - internal program error!" />
+  
+<e id="T_GaMa_network_not_connected"
+   en="Warning: network is not connected" />
+  
+</entries>   
+
+
+
+
+
