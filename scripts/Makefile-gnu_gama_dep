@@ -1,5 +1,0 @@
-#
-CXXFLAGS += -pipe -O2
-
-gnu_gama_dep: gnu_gama_dep.cpp Makefile-gnu_gama_dep
-	$(CXX) $(CXXFLAGS) -o gnu_gama_dep gnu_gama_dep.cpp
