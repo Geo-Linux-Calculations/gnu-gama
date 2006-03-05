@@ -1,3 +1,3 @@
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = scripts 
-EXTRA_DIST = autogen.sh
+SUBDIRS = lib
+EXTRA_DIST = scripts/autogen.sh
