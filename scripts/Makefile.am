@@ -1,8 +1,7 @@
-AM_CXXFLAGS = -I..
-#AM_CFLAGS = -I/home/cepek/GNU/gama
+noinst_PROGRAMS   = slovnikar ellipsoids_xml
 
-noinst_PROGRAMS = slovnikar
-slovnikar_SOURCES = slovnikar.cpp encoding.cpp
+slovnikar_SOURCES = slovnikar.cpp
+slovnikar_LDADD   = $(top_srcdir)/lib/libgama.a
 
-
-
+ellipsoids_xml_SOURCES = ellipsoids_xml.cpp
+ellipsoids_xml_LDADD   = $(top_srcdir)/lib/libgama.a
