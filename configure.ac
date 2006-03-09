@@ -5,7 +5,7 @@ AC_PREREQ(2.59)
 AC_INIT([gama], [1.9.01], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
-AC_CONFIG_AUX_DIR([aux])
+AC_CONFIG_AUX_DIR([scripts/aux])
 
 AM_INIT_AUTOMAKE
 
@@ -23,6 +23,8 @@ AC_CHECK_LIB([expat], [main])
 
 # Checks for header files.
 AC_HEADER_STDC
+AC_CHECK_HEADER(expat.h, , [AC_MSG_ERROR(
+                [Couldn't find expat.h...try installing libexpat-dev] )])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STAT
