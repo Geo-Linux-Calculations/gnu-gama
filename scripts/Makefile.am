@@ -1,3 +1,5 @@
+EXTRA_DIST = autogen.sh
+
 noinst_PROGRAMS   = slovnikar ellipsoids_xml
 
 slovnikar_SOURCES = slovnikar.cpp
