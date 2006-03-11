@@ -19,3 +19,21 @@ gama_TEXINFOS =           \
    xyz2blh.texi
 
 #gama_TEXINFOS = gpl.texi
+
+EXTRA_DIST =                    \
+   gama-local-adj-ellipse-g.eps \
+   gama-local-adj-ellipse-g.pdf	\
+   gama-local-adj-ellipse-g.png	\
+   gama-local-adj-ellipse-g.txt	\
+   gama-xml-input-example.eps	\
+   gama-xml-input-example.pdf	\
+   gama-xml-input-example.png	\
+   gama-xml-input-example.txt	\
+   obsdata-fig.eps		\
+   obsdata-fig.pdf		\
+   obsdata-fig.png		\
+   obsdata-fig.txt		\
+   xyz2blh-fig.eps		\
+   xyz2blh-fig.pdf		\
+   xyz2blh-fig.png		\
+   xyz2blh-fig.txt              
