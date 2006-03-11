@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: version.cpp,v 1.99 2006/03/11 18:36:22 cepek Exp $
+ *  $Id: version.cpp,v 1.100 2006/03/11 18:37:42 cepek Exp $
  */
 
 
@@ -62,5 +62,5 @@ namespace GNU_gama {
  * expat version 1.1.  In such a case scripts for compiling GNU Gama
  * and linking the program gama-local expect Expat 1.1 library to be
  * in the same directory as GNU Gama
+ */
 
-=============================================================================
