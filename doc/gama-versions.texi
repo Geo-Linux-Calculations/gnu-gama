@@ -1,4 +1,4 @@
-@comment $Id: gama-versions.texi,v 1.9 2005/08/24 14:45:13 cepek Exp $
+@comment $Id: gama-versions.texi,v 1.10 2006/03/11 14:55:36 cepek Exp $
 
 GNU Gama is a project dedicated to adjustment of @emph{geodetic
 networks}. It was formerly inspired by Fortran system Geodet/PC (1990)
@@ -45,7 +45,7 @@ separatedly, for more information see
          @center @uref{http://roci.sourceforge.net/}
 
 @noindent Compiled executables of program @code{roci-local} corresponding 
-to stable version @value{STABLEV} for Linux and Win32 can be downloaded from
+to stable version @value{GAMA_DOC_STABLEV} for Linux and Win32 can be downloaded from
 
          @center @uref{http://sourceforge.net/projects/roci/}
 

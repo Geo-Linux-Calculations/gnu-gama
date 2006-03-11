@@ -1,11 +1,11 @@
 The latest GNU Gama stable version can be found on in the subdirectory
 @code{/gnu/gama/} on your favourite
 @uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or from the CVS as
-the branch @code{@value{STABLEV}}.  See our project page at
+the branch @code{@value{GAMA_DOC_STABLEV}}.  See our project page at
 @uref{http://savannah.gnu.org/projects/gama/, savannah} for more
 information.  
 
-Development branch version @code{@value{VERSION}} is available from
+Development branch version @code{@value{GAMA_DOC_VERSION}} is available from
 the CVS on the main trunk or from the alpha GNU FTP server
 @uref{ftp://alpha.gnu.org/gnu/gama/}.  Archive of previous versions
 (both stable and unstable) is available at
@@ -24,10 +24,10 @@ cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama co gama
 
 @example
 cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama 
-         co -r @value{STABLEV} gama
+         co -r @value{GAMA_DOC_STABLEV} gama
 @end example
 
-@noindent for the stable branch @code{@value{STABLEV}}.
+@noindent for the stable branch @code{@value{GAMA_DOC_STABLEV}}.
 
 To download from CVS only the matrix/vector C++ template library
 @code{matvec} run
