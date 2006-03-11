@@ -1,53 +1,160 @@
-noinst_LIBRARIES  = libgama.a
-libgama_a_SOURCES = \
-   $(top_srcdir)/gnu_gama/adj/adj.cpp \
+libgama_src = \
    $(top_srcdir)/gnu_gama/e3.cpp \
+   $(top_srcdir)/gnu_gama/e3.h \
    $(top_srcdir)/gnu_gama/ellipsoid.cpp \
+   $(top_srcdir)/gnu_gama/ellipsoid.h \
    $(top_srcdir)/gnu_gama/ellipsoids.cpp \
-   $(top_srcdir)/gnu_gama/latlong.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_model.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_model_init.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_model_revision.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_model_linearization.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_model_write_xml_adjustment_results.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_point.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_cluster.cpp \
-   $(top_srcdir)/gnu_gama/g3/g3_write_observation_xml.cpp \
+   $(top_srcdir)/gnu_gama/ellipsoids.h \
+   $(top_srcdir)/gnu_gama/exception.h \
    $(top_srcdir)/gnu_gama/gon2deg.cpp \
+   $(top_srcdir)/gnu_gama/gon2deg.h \
+   $(top_srcdir)/gnu_gama/intfloat.h \
+   $(top_srcdir)/gnu_gama/latlong.cpp \
+   $(top_srcdir)/gnu_gama/latlong.h \
+   $(top_srcdir)/gnu_gama/list.h \
+   $(top_srcdir)/gnu_gama/model.h \
+   $(top_srcdir)/gnu_gama/obsdata.h \
    $(top_srcdir)/gnu_gama/outstream.cpp \
+   $(top_srcdir)/gnu_gama/outstream.h \
+   $(top_srcdir)/gnu_gama/pointbase.h \
+   $(top_srcdir)/gnu_gama/radian.h \
    $(top_srcdir)/gnu_gama/rand.cpp \
+   $(top_srcdir)/gnu_gama/rand.h \
    $(top_srcdir)/gnu_gama/statan.cpp \
+   $(top_srcdir)/gnu_gama/statan.h \
    $(top_srcdir)/gnu_gama/version.cpp \
+   $(top_srcdir)/gnu_gama/version.h \
+   $(top_srcdir)/gnu_gama/xml_expat.h \
+   $(top_srcdir)/gnu_gama/adj/adj_base.h \
+   $(top_srcdir)/gnu_gama/adj/adj_chol.h \
+   $(top_srcdir)/gnu_gama/adj/adj_chol_implementation.h \
+   $(top_srcdir)/gnu_gama/adj/adj.cpp \
+   $(top_srcdir)/gnu_gama/adj/adj_gso.h \
+   $(top_srcdir)/gnu_gama/adj/adj.h \
+   $(top_srcdir)/gnu_gama/adj/adj_svd.h \
+   $(top_srcdir)/gnu_gama/g3/g3_cluster.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_cluster.h \
+   $(top_srcdir)/gnu_gama/g3/g3_model.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_model.h \
+   $(top_srcdir)/gnu_gama/g3/g3_model_init.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_model_linearization.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_model_revision.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_model_write_xml_adjustment_results.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_observation.h \
+   $(top_srcdir)/gnu_gama/g3/g3_parameter.h \
+   $(top_srcdir)/gnu_gama/g3/g3_point.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_point.h \
+   $(top_srcdir)/gnu_gama/g3/g3_write_observation_xml.cpp \
+   $(top_srcdir)/gnu_gama/g3/g3_write_observation_xml.h \
+   $(top_srcdir)/gnu_gama/sparse/intlist.h \
+   $(top_srcdir)/gnu_gama/sparse/sbdiagonal.h \
+   $(top_srcdir)/gnu_gama/sparse/smatrix_graph_connected.h \
+   $(top_srcdir)/gnu_gama/sparse/smatrix_graph.h \
+   $(top_srcdir)/gnu_gama/sparse/smatrix.h \
+   $(top_srcdir)/gnu_gama/sparse/svector.h \
    $(top_srcdir)/gnu_gama/xml/baseparser.cpp \
+   $(top_srcdir)/gnu_gama/xml/baseparser.h \
    $(top_srcdir)/gnu_gama/xml/dataobject.cpp \
-   $(top_srcdir)/gnu_gama/xml/dataparser.cpp \
+   $(top_srcdir)/gnu_gama/xml/dataobject.h \
    $(top_srcdir)/gnu_gama/xml/dataparser_adj.cpp \
+   $(top_srcdir)/gnu_gama/xml/dataparser.cpp \
    $(top_srcdir)/gnu_gama/xml/dataparser_g3.cpp \
-   $(top_srcdir)/gnu_gama/xml/encoding.cpp \
-   $(top_srcdir)/gnu_gama/xml/encoding_unknown_handler.cpp \
+   $(top_srcdir)/gnu_gama/xml/dataparser.h \
    $(top_srcdir)/gnu_gama/xml/encoding_cp1251.cpp \
+   $(top_srcdir)/gnu_gama/xml/encoding.cpp \
+   $(top_srcdir)/gnu_gama/xml/encoding.h \
+   $(top_srcdir)/gnu_gama/xml/encoding_unknown_handler.cpp \
    $(top_srcdir)/gnu_gama/xml/localnetwork.cpp \
+   $(top_srcdir)/gnu_gama/xml/localnetwork.h \
+   $(top_srcdir)/gamalib/angobs.h \
+   $(top_srcdir)/gamalib/bpoint.h \
    $(top_srcdir)/gamalib/c/api/capi_exception.cpp \
+   $(top_srcdir)/gamalib/c/api/capi_exception.h \
    $(top_srcdir)/gamalib/c/api/capi_gkfparser.cpp \
+   $(top_srcdir)/gamalib/c/api/capi_gkfparser.h \
    $(top_srcdir)/gamalib/c/api/capi_locnet.cpp \
+   $(top_srcdir)/gamalib/c/api/capi_locnet.h \
    $(top_srcdir)/gamalib/c/api/capi_output_file.cpp \
+   $(top_srcdir)/gamalib/c/api/capi_output_file.h \
+   $(top_srcdir)/gamalib/c/api/capi_private_exception.h \
+   $(top_srcdir)/gamalib/c_api.h \
+   $(top_srcdir)/gamalib/cluster.h \
+   $(top_srcdir)/gamalib/exception.h \
+   $(top_srcdir)/gamalib/float.h \
+   $(top_srcdir)/gamalib/itstream.h \
    $(top_srcdir)/gamalib/language.cpp \
-   $(top_srcdir)/gamalib/local/acord.cpp \
+   $(top_srcdir)/gamalib/language.h \
+   $(top_srcdir)/gamalib/linearization.h \
    $(top_srcdir)/gamalib/local/acord/approx_heights.cpp \
+   $(top_srcdir)/gamalib/local/acord/approx_heights.h \
    $(top_srcdir)/gamalib/local/acord/approx_vectors.cpp \
+   $(top_srcdir)/gamalib/local/acord/approx_vectors.h \
+   $(top_srcdir)/gamalib/local/acord.cpp \
+   $(top_srcdir)/gamalib/local/acord.h \
    $(top_srcdir)/gamalib/local/acord/reduce_observations.cpp \
+   $(top_srcdir)/gamalib/local/acord/reduce_observations.h \
    $(top_srcdir)/gamalib/local/acord/reduce_to_ellipsoid.cpp \
+   $(top_srcdir)/gamalib/local/acord/reduce_to_ellipsoid.h \
+   $(top_srcdir)/gamalib/local/gamadata.h \
+   $(top_srcdir)/gamalib/local/lcoords.h \
+   $(top_srcdir)/gamalib/local/linearization/angle.h \
+   $(top_srcdir)/gamalib/local/linearization/direction.h \
+   $(top_srcdir)/gamalib/local/linearization/distance.h \
+   $(top_srcdir)/gamalib/local/linearization.h \
+   $(top_srcdir)/gamalib/local/linearization/hdiff.h \
+   $(top_srcdir)/gamalib/local/linearization/sdistance.h \
+   $(top_srcdir)/gamalib/local/linearization/xyzdiff.h \
+   $(top_srcdir)/gamalib/local/linearization/xyz.h \
+   $(top_srcdir)/gamalib/local/linearization/zangle.h \
+   $(top_srcdir)/gamalib/local/lpoint.h \
    $(top_srcdir)/gamalib/local/median/g2d_cogo.cpp \
+   $(top_srcdir)/gamalib/local/median/g2d_cogo.h \
    $(top_srcdir)/gamalib/local/median/g2d_coordinates.cpp \
+   $(top_srcdir)/gamalib/local/median/g2d_coordinates.h \
+   $(top_srcdir)/gamalib/local/median/g2d_exception.h \
    $(top_srcdir)/gamalib/local/median/g2d_helper.cpp \
+   $(top_srcdir)/gamalib/local/median/g2d_helper.h \
    $(top_srcdir)/gamalib/local/median/g2d_point.cpp \
+   $(top_srcdir)/gamalib/local/median/g2d_point.h \
+   $(top_srcdir)/gamalib/local/network_chol.h \
    $(top_srcdir)/gamalib/local/network.cpp \
+   $(top_srcdir)/gamalib/local/network_gso.h \
+   $(top_srcdir)/gamalib/local/network.h \
+   $(top_srcdir)/gamalib/local/network_svd.h \
    $(top_srcdir)/gamalib/local/observation_local.cpp \
    $(top_srcdir)/gamalib/local/orientation.cpp \
+   $(top_srcdir)/gamalib/local/orientation.h \
+   $(top_srcdir)/gamalib/local/pobs/bearing.h \
    $(top_srcdir)/gamalib/local/pobs/format.cpp \
+   $(top_srcdir)/gamalib/local/pobs/format.h \
    $(top_srcdir)/gamalib/local/pobs/write.cpp \
+   $(top_srcdir)/gamalib/local/results/text/adjusted_observations.h \
+   $(top_srcdir)/gamalib/local/results/text/adjusted_unknowns.h \
+   $(top_srcdir)/gamalib/local/results/text/approximate_coordinates.h \
+   $(top_srcdir)/gamalib/local/results/text/error_ellipses.h \
+   $(top_srcdir)/gamalib/local/results/text/fixed_points.h \
+   $(top_srcdir)/gamalib/local/results/text/general_parameters.h \
+   $(top_srcdir)/gamalib/local/results/text/network_description.h \
+   $(top_srcdir)/gamalib/local/results/text/outlying_abs_terms.h \
+   $(top_srcdir)/gamalib/local/results/text/reduced_observations.h \
+   $(top_srcdir)/gamalib/local/results/text/reduced_observations_to_ellipsoid.h \
+   $(top_srcdir)/gamalib/local/results/text/residuals_observations.h \
+   $(top_srcdir)/gamalib/local/results/text/test_linearization.h \
    $(top_srcdir)/gamalib/local/results/text/underline.cpp \
+   $(top_srcdir)/gamalib/local/results/text/underline.h \
+   $(top_srcdir)/gamalib/local/revision/angle.h \
+   $(top_srcdir)/gamalib/local/revision/direction.h \
+   $(top_srcdir)/gamalib/local/revision/distance.h \
+   $(top_srcdir)/gamalib/local/revision.h \
+   $(top_srcdir)/gamalib/local/revision/hdiff.h \
+   $(top_srcdir)/gamalib/local/revision/sdistance.h \
+   $(top_srcdir)/gamalib/local/revision/xyzdiff.h \
+   $(top_srcdir)/gamalib/local/revision/xyz.h \
+   $(top_srcdir)/gamalib/local/revision/zangle.h \
+   $(top_srcdir)/gamalib/matvec.h \
+   $(top_srcdir)/gamalib/medianf.h \
    $(top_srcdir)/gamalib/observation.cpp \
+   $(top_srcdir)/gamalib/observation.h \
    $(top_srcdir)/gamalib/observation/write/angle.cpp \
    $(top_srcdir)/gamalib/observation/write/direction.cpp \
    $(top_srcdir)/gamalib/observation/write/distance.cpp \
@@ -57,5 +164,83 @@ libgama_a_SOURCES = \
    $(top_srcdir)/gamalib/observation/write/xyzdiff.cpp \
    $(top_srcdir)/gamalib/observation/write/zangle.cpp \
    $(top_srcdir)/gamalib/pointid.cpp \
+   $(top_srcdir)/gamalib/pointid.h \
+   $(top_srcdir)/gamalib/readsabw.h \
+   $(top_srcdir)/gamalib/revision.h \
    $(top_srcdir)/gamalib/skipcomm.cpp \
-   $(top_srcdir)/gamalib/xml/gkfparser.cpp
+   $(top_srcdir)/gamalib/skipcomm.h \
+   $(top_srcdir)/gamalib/xml/gkfparser.cpp \
+   $(top_srcdir)/gamalib/xml/gkfparser.h 
+
+matvec_src = \
+   $(top_srcdir)/matvec/array.h \
+   $(top_srcdir)/matvec/bandmat.h \
+   $(top_srcdir)/matvec/choldec.h \
+   $(top_srcdir)/matvec/covmat.h \
+   $(top_srcdir)/matvec/gso.h \
+   $(top_srcdir)/matvec/hilbert.h \
+   $(top_srcdir)/matvec/inderr.h \
+   $(top_srcdir)/matvec/jacobian.h \
+   $(top_srcdir)/matvec/matbase.h \
+   $(top_srcdir)/matvec/mat.h \
+   $(top_srcdir)/matvec/matvecbase.h \
+   $(top_srcdir)/matvec/matvec.h \
+   $(top_srcdir)/matvec/memrep.h \
+   $(top_srcdir)/matvec/pinv.h \
+   $(top_srcdir)/matvec/sortvec.h \
+   $(top_srcdir)/matvec/svd.h \
+   $(top_srcdir)/matvec/symmat.h \
+   $(top_srcdir)/matvec/transmat.h \
+   $(top_srcdir)/matvec/transvec.h \
+   $(top_srcdir)/matvec/vecbase.h \
+   $(top_srcdir)/matvec/vec.h
+
+matvec_extra = \
+   $(top_srcdir)/matvec/COPYING \
+   $(top_srcdir)/matvec/README \
+   $(top_srcdir)/matvec/imtql1.for.gz \
+   $(top_srcdir)/matvec/svd.for.gz
+
+expat_src = \
+   $(top_srcdir)/expat/xmltok/xmltok.c \
+   $(top_srcdir)/expat/xmltok/xmlrole.c \
+   $(top_srcdir)/expat/xmlwf/codepage.c \
+   $(top_srcdir)/expat/xmlparse/xmlparse.c \
+   $(top_srcdir)/expat/xmlparse/hashtable.c 
+
+expat_extra = \
+   $(top_srcdir)/expat/Makefile \
+   $(top_srcdir)/expat/xmlwf/filemap.h \
+   $(top_srcdir)/expat/xmlwf/xmlwf.c \
+   $(top_srcdir)/expat/xmlwf/xmltchar.h \
+   $(top_srcdir)/expat/xmlwf/codepage.h \
+   $(top_srcdir)/expat/xmlwf/win32filemap.c \
+   $(top_srcdir)/expat/xmlwf/unixfilemap.c \
+   $(top_srcdir)/expat/xmlwf/xmlfile.c \
+   $(top_srcdir)/expat/xmlwf/xmlfile.h \
+   $(top_srcdir)/expat/xmlwf/readfilemap.c \
+   $(top_srcdir)/expat/README \
+   $(top_srcdir)/expat/gennmtab/gennmtab.c \
+   $(top_srcdir)/expat/sample/elements.c \
+   $(top_srcdir)/expat/xmltok/latin1tab.h \
+   $(top_srcdir)/expat/xmltok/asciitab.h \
+   $(top_srcdir)/expat/xmltok/xmltok_ns.c \
+   $(top_srcdir)/expat/xmltok/iasciitab.h \
+   $(top_srcdir)/expat/xmltok/dllmain.c \
+   $(top_srcdir)/expat/xmltok/xmldef.h \
+   $(top_srcdir)/expat/xmltok/xmltok.h \
+   $(top_srcdir)/expat/xmltok/utf8tab.h \
+   $(top_srcdir)/expat/xmltok/xmltok_impl.c \
+   $(top_srcdir)/expat/xmltok/xmltok_impl.h \
+   $(top_srcdir)/expat/xmltok/xmlrole.h \
+   $(top_srcdir)/expat/xmltok/nametab.h \
+   $(top_srcdir)/expat/expat.html \
+   $(top_srcdir)/expat/xmlparse/hashtable.h \
+   $(top_srcdir)/expat/xmlparse/xmlparse.h 
+
+
+noinst_LIBRARIES  = libgama.a
+libgama_a_SOURCES = $(libgama_src) $(matvec_src)
+
+EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
+
