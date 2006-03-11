@@ -1,12 +1,12 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.16 2006/03/11 14:55:36 cepek Exp $
+@comment $Id: gama.texi,v 1.17 2006/03/11 17:44:39 cepek Exp $
 
 @comment Part 1 : Header
 
 @c %**start of header
 @setfilename gama.info
 @include     version.texi
-@settitle    GNU Gama @value{GAMA_DOC_VERSION}
+@settitle    GNU Gama @value{VERSION}
 @setchapternewpage odd
 @syncodeindex vr cp
 @syncodeindex fn cp
@@ -22,7 +22,7 @@
 @comment Part 2: Summary Description and Copyright
 
 @ifinfo
-This is a working documentation version of GNU Gama @value{GAMA_DOC_VERSION}
+This is a working documentation version of GNU Gama @value{VERSION}
 unstable development branch.
 
 Copyright @copyright{} 2003 Ales Cepek.
@@ -40,9 +40,9 @@ Free Documentation License''.
 @comment Part 3: Titlepage and Copyright
 
 @titlepage
-@title GNU Gama @value{GAMA_DOC_VERSION}
+@title GNU Gama @value{VERSION}
 @subtitle Adjustment of geodetic networks
-@subtitle Edition @value{GAMA_DOC_EDITION} (@value{GAMA_DOC_UPDATED})
+@subtitle Edition @value{EDITION} (@value{UPDATED})
 @author   Ale@v{s} @v{C}epek
 
 @c The following two commands start the copyright page.
@@ -65,7 +65,7 @@ Free Documentation License''.
 
 @ifnottex
 @node Top
-@top GNU Gama @value{GAMA_DOC_VERSION}
+@top GNU Gama @value{VERSION}
 @end ifnottex
 
 @menu
