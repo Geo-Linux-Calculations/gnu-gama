@@ -20,33 +20,78 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.1 2005/12/05 19:01:45 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.2 2006/03/29 18:42:09 cepek Exp $
  */
-
-#include <gnu_gama/sparse/smatrix.h>
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
 #define GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
 
+#include <gnu_gama/sparse/smatrix.h>
+#include <gnu_gama/sparse/intlist.h>
+#include <set>
 
 namespace GNU_gama {
 
-  template <typename Float=double>
+  template <typename Float=double, typename Index=std::size_t>
   class SparseMatrixGraph 
   {
   public:
     
-    SparseMatrixGraph(const SparseMatrix<Float>* const m) : sparse(m) {}
+    SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const m)
+      : sparse(m), 
+        xadj(m->columns() + 2),
+        nods(m->columns())
+    {
+      std::set<std::pair<Index, Index> >  edges;
+      
+      {
+        Index *i, *e, *j;
+        for (Index k=1; k<=sparse->rows(); k++)
+          for(i=sparse->ibegin(k), e=sparse->iend(k), j; i!=e; i++)
+            for (j=i+1; j!=e; j++)
+              if (*i != *j)
+                {
+                  edges.insert(std::pair<Index, Index>(*i, *j));
+                  edges.insert(std::pair<Index, Index>(*j, *i));
+                }
+      }
+      
+      adjncy.reset(edges.size());
+      amem = adjncy.begin();
+      
+      typename std::set<std::pair<Index, Index> >::const_iterator 
+        i=edges.begin(), e=edges.end();
+      
+      for (Index count=0, index=1; index<=nods; index++)
+        {
+          xadj(index) = count;
+          while (i!=e && index == i->first) 
+            {
+              adjncy(count++) = i->second;
+              ++i;
+            }
+          xadj(index+1) = count;
+        }
+    }
+    
+    typedef const Index* const_iterator;
 
-
-    bool connected() const;
+    Index           nodes()        const  { return nods;             } 
+    const_iterator  begin(Index i) const  { return amem + xadj(i);   }
+    const_iterator  end  (Index i) const  { return amem + xadj(i+1); }
+    bool            connected()    const;
 
   private:
     
-    const SparseMatrix<Float>* const sparse;
+    const SparseMatrix<Float, Index>* const sparse;
 
+    IntegerList<Index>  adjncy, xadj;   // 1 based indexes
+    const Index         nods; 
+    const Index*        amem;
   };
+
 }
+
 
 #include <gnu_gama/sparse/smatrix_graph_connected.h>
 

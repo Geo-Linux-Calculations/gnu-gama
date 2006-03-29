@@ -7,6 +7,8 @@
 
       also added script scripts/autogen.sh
 
+    - new implementation of graph connectivity
+
 
 
 1.9.00 2006-03-03

@@ -20,52 +20,43 @@
 */
 
 /*
- *  $Id: smatrix_graph_connected.h,v 1.3 2006/03/02 13:41:21 cepek Exp $
+ *  $Id: smatrix_graph_connected.h,v 1.4 2006/03/29 18:42:09 cepek Exp $
  */
 
+#include <stack>
 
-#include <matvec/matvec.h>
-
-template <typename Float>
-bool GNU_gama::SparseMatrixGraph<Float>::connected() const
+template <typename Float, typename Index>
+bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
 {
-  const Index cols = sparse->columns();
-  const Index rows = sparse->rows();
-
-  if (cols == 0 || rows == 0) return true;
-
-  Vec<int> col(cols);
-  Vec<int> row(rows);
-
-  col.set_zero();
-  for (Index i=1; i<=rows; i++) row(i) = i;
-
-  col(1) = 1;     // there is always at least one unknown parameter
-
-  bool  updated;
-  Index r, row_count = rows;
-  do {
-    updated = false;
+  IntegerList<Index> tag(nods+1);      // for all nodes i, tag(i)=0   
+  for (typename 
+         IntegerList<Index>::iterator i=tag.begin(), e=tag.end(); i!=e; ++i)
+    {
+      *i=0;
+    }
     
-    r = 0;
-    while (++r <= row_count)
-      {
-        const Index* s = sparse->ibegin(row(r));
-        const Index* e = sparse->iend(row(r));
+  std::stack<Index>  stack;
 
-        for (const Index* i=s; i!=e; i++)
-          if (col(*i))
-          {
-            for (const Index* i=s; i!=e; i++)  col(*i) = 1;
-            
-            updated = true;
-            row(r--) = row(row_count--);
-            break;
-          }
-      } 
+  stack.push(1);                       // start with node 1 
+  tag(1) = 1;
+  Index unreachable = nods - 1;        // number of unreached nodes
 
-  } while (updated);
+  while (!stack.empty())               // order of O(nodes+edges)
+    {
+      Index x = stack.top();           // pop a node
+      stack.pop();
 
-
-  return row_count == 0;
+      for (const_iterator b=begin(x), e=end(x); b!=e; ++b)
+        {                              
+          Index y = *b;                // for all neighbors y of node x
+          if (tag(y) == 0)
+            {
+              tag(y) = 1;              // add y to connected component
+              unreachable--;
+              stack.push(y);
+            }
+        }
+    }
+  
+  return unreachable == 0;
 }

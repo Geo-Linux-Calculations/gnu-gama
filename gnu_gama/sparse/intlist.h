@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: intlist.h,v 1.6 2005/07/27 15:17:57 cepek Exp $
+ *  $Id: intlist.h,v 1.7 2006/03/29 18:42:09 cepek Exp $
  */
 
 #ifndef GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
@@ -76,7 +76,8 @@ template <typename Index=std::size_t>
     iterator end()   { return e; } 
     const_iterator begin() const { return m; }
     const_iterator end()   const { return e; } 
-    
+    Index  operator()(Index i) const { return m[i]; }
+    Index& operator()(Index i)       { return m[i]; }
   };
  
 }   // namespace GNU_gama
