@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: intlist.h,v 1.7 2006/03/29 18:42:09 cepek Exp $
+ *  $Id: intlist.h,v 1.8 2006/03/30 08:52:55 cepek Exp $
  */
 
 #ifndef GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
@@ -45,6 +45,7 @@ template <typename Index=std::size_t>
     IntegerList() : m(0), e(0)
     {
     }
+
     IntegerList(Index n)
     {
       m = new Index[n];
@@ -63,6 +64,7 @@ template <typename Index=std::size_t>
       delete[] m;
       m = e = 0;
     }
+
     void reset(Index n)
     {
       delete[] m;
@@ -70,12 +72,24 @@ template <typename Index=std::size_t>
       e = m + n;
     }
 
-    typedef Index* iterator;
+    void set_all(Index f)
+    {
+      iterator b = m;
+      while (b != e)  *b++ = f;
+    }
+    
+    void set_zero() { set_all(Index()); }
+
+
+    typedef Index*       iterator;
     typedef const Index* const_iterator;
+
     iterator begin() { return m; }
     iterator end()   { return e; } 
+
     const_iterator begin() const { return m; }
     const_iterator end()   const { return e; } 
+
     Index  operator()(Index i) const { return m[i]; }
     Index& operator()(Index i)       { return m[i]; }
   };

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph_connected.h,v 1.4 2006/03/29 18:42:09 cepek Exp $
+ *  $Id: smatrix_graph_connected.h,v 1.5 2006/03/30 08:52:55 cepek Exp $
  */
 
 #include <stack>
@@ -29,11 +29,7 @@ template <typename Float, typename Index>
 bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
 {
   IntegerList<Index> tag(nods+1);      // for all nodes i, tag(i)=0   
-  for (typename 
-         IntegerList<Index>::iterator i=tag.begin(), e=tag.end(); i!=e; ++i)
-    {
-      *i=0;
-    }
+  tag.set_zero();
     
   std::stack<Index>  stack;
 
