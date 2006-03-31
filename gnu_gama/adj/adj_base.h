@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.7 2005/06/04 21:02:04 cepek Exp $
+ *  $Id: adj_base.h,v 1.8 2006/03/31 16:27:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
@@ -41,26 +41,13 @@ class AdjBase {
 public:
   AdjBase() {}
   AdjBase(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
-    : pA(&A), pb(&b), pw(0), is_solved(false) {}
-  AdjBase(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b,
-          const Vec<Float, Exc>& w)
-    : pA(&A), pb(&b), pw(&w), is_solved(false) {}
+    : pA(&A), pb(&b), is_solved(false) {}
   virtual ~AdjBase() {}
 
   virtual void reset(const Mat<Float, Exc>& A, 
              const Vec<Float, Exc>& b) {
     pA = &A;
     pb = &b;
-    pw = 0;
-    is_solved = false;
-  }
-  virtual void reset(const Mat<Float, Exc>& A, 
-             const Vec<Float, Exc>& b,
-             const Vec<Float, Exc>& w)
-  {
-    pA = &A;
-    pb = &b;
-    pw = &w;
     is_solved = false;
   }
 
@@ -96,7 +83,6 @@ protected:
 
   const Mat<Float, Exc>* pA;
   const Vec<Float, Exc>* pb;
-  const Vec<Float, Exc>* pw;
   Vec<Float, Exc> x;
   Vec<Float, Exc> r;
   // Vec<Float, Exc> sqrt_w;

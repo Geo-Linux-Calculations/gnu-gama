@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.5 2005/06/04 21:02:04 cepek Exp $
+ *  $Id: adj_svd.h,v 1.6 2006/03/31 16:27:31 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
@@ -35,26 +35,16 @@ template <typename Float, typename Exc>
 class AdjSVD : virtual public AdjBase<Float, Exc> {
 
   SVD<Float, Exc> svd;
-  Vec<Float, Exc> sqrt_w;
 
 public:
   AdjSVD() {}
   AdjSVD(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     : AdjBase<Float, Exc>(A, b) {}
-  AdjSVD(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b,
-         const Vec<Float, Exc>& w) : AdjBase<Float, Exc>(A, b, w) {}
   
   void reset(const Mat<Float, Exc>& A, 
              const Vec<Float, Exc>& b)
     {
       AdjBase<Float, Exc>::reset(A, b);
-      svd.reset(A);
-    }
-  void reset(const Mat<Float, Exc>& A, 
-             const Vec<Float, Exc>& b,
-             const Vec<Float, Exc>& w)
-    {
-      AdjBase<Float, Exc>::reset(A, b, w);
       svd.reset(A);
     }
   
@@ -76,12 +66,12 @@ public:
   Float q_bb(Index i, Index j)
     {
       if (!this->is_solved) solve_me();
-      return svd.q_bb(i, j) / (this->sqrt_w(i) * this->sqrt_w(j));
+      return svd.q_bb(i, j);
     }
   Float q_bx(Index i, Index j)
     {
       if (!this->is_solved) solve_me();
-      return svd.q_bx(i, j) / this->sqrt_w(i);
+      return svd.q_bx(i, j);
     }
   
   void min_x()   {  svd.min_x(); }
@@ -105,24 +95,9 @@ void AdjSVD<Float, Exc>::solve_me()
 
    if (this->is_solved) return;
 
-   this->sqrt_w.reset(this->pb->dim());
-   if (this->pw)
-   { 
-      for (Index n = 1; n <= this->sqrt_w.dim(); n++)
-         this->sqrt_w(n) = sqrt((*this->pw)(n));
-      svd.reset(*this->pA, this->sqrt_w);                 // protected ==> public
-      Vec<Float, Exc> pbw = *this->pb;
-      for (Index i = 1; i <= this->pb->dim(); i++)
-         pbw(i) *= this->sqrt_w(i);
-      svd.solve(pbw, this->x);
-   }
-   else
-   {
-      svd.reset(*this->pA);
-      for (Index n = 1; n <= this->sqrt_w.dim(); n++)
-         this->sqrt_w(n) = 1;
-      svd.solve(*this->pb, this->x);
-   }
+   svd.reset(*this->pA);
+   svd.solve(*this->pb, this->x);
+
    this->r  = *this->pA * this->x;
    this->r -= *this->pb;
 

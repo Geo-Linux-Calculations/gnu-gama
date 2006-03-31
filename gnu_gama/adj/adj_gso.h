@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_gso.h,v 1.7 2005/09/30 11:52:02 cepek Exp $
+ *  $Id: adj_gso.h,v 1.8 2006/03/31 16:27:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
@@ -40,19 +40,11 @@ public:
   AdjGSO() {}
   AdjGSO(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     : AdjBase<Float, Exc>(A, b) {}
-  AdjGSO(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b,
-         const Vec<Float, Exc>& w) : AdjBase<Float, Exc>(A, b, w) {}
   
   void reset(const Mat<Float, Exc>& A, 
              const Vec<Float, Exc>& b)
     {
       AdjBase<Float, Exc>::reset(A, b);
-    }
-  void reset(const Mat<Float, Exc>& A, 
-             const Vec<Float, Exc>& b,
-             const Vec<Float, Exc>& w)
-    {
-      AdjBase<Float, Exc>::reset(A, b, w);
     }
   
   const Vec<Float, Exc>& solve(Vec<Float, Exc>& x)
@@ -84,7 +76,6 @@ private:
 
    Mat<Float, Exc> A_;
    GSO<Float, Exc> gso;
-   Vec<Float, Exc> sqrt_w;
 
    void init_gso_();
 };
@@ -101,26 +92,14 @@ void AdjGSO<Float, Exc>::solve_me()
   const Index N = this->pA->cols();
   
   A_.reset(M+N, N+1);
-  this->sqrt_w.reset(M);
-
-  if (this->pw)
-    {
-      using namespace std;
-      const Vec<Float, Exc>& w_ = *this->pw;
-      for (Index i=1; i<=M; i++) this->sqrt_w(i) = sqrt(w_(i));
-    }
-  else
-    {
-      for (Index i=1; i<=M; i++) this->sqrt_w(i) = 1;
-    }
 
   const Mat<Float, Exc>& A1 = *this->pA;
   const Vec<Float, Exc>& b1 = *this->pb;
 
   for (Index i=1; i<=M; i++)
     {
-      A_(i, N+1) = -b1(i)*this->sqrt_w(i);
-      for (Index j=1; j<=N; j++) A_(i, j) = A1(i, j)*this->sqrt_w(i);
+      A_(i, N+1) = -b1(i);
+      for (Index j=1; j<=N; j++) A_(i, j) = A1(i, j);
     }
 
   for (Index i=1; i<=N; i++) 
@@ -137,7 +116,7 @@ void AdjGSO<Float, Exc>::solve_me()
 
   this->r.reset(M);
   for (Index j=1; j<=M; j++)
-    this->r(j) = A_(j, N+1)/this->sqrt_w(j);
+    this->r(j) = A_(j, N+1);
   
   this->is_solved = true; 
 }
@@ -167,7 +146,7 @@ Float AdjGSO<Float, Exc>::q_bb(Index i, Index j)
     Float s = 0;                        
     for (Index k=1; k<=N; k++) 
       s += A_(i,k)*A_(j,k);              // cov b_i b_j
-    return s/this->sqrt_w(i)/this->sqrt_w(j);
+    return s;
   }
 
 
@@ -182,11 +161,11 @@ Float AdjGSO<Float, Exc>::q_bx(Index i, Index j)
     Float s = 0;                        
     for (Index k=1; k<=N; k++) 
       s += A_(i,k)*A_(j,k);              // cov b_i x_j
-    return s/this->sqrt_w(i);
+    return s;
   }
 
 
-}   // GaMaLib
+}   // GNU_gama
 
 #endif
 

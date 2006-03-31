@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: adj_chol_implementation.h,v 1.23 2005/06/24 12:50:16 cepek Exp $
+ * $Id: adj_chol_implementation.h,v 1.24 2006/03/31 16:27:31 cepek Exp $
  */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_implementation__h
@@ -213,11 +213,6 @@ namespace GNU_gama {
   AdjCholDec<Float, Exc>::solve_me()
   {
     if (this->is_solved) return;
-
-    if (this->pw)
-      throw Exc(Exception::NotImplemented, 
-                "AdjCholDec::reset(Mat<>, Vec<>, Vec<>) NOT implemented");
-
 
     // project equations Ax = b 
 
