@@ -9,6 +9,9 @@
 
     - new implementation of graph connectivity
 
+    - removed obsolate constructors in adjustmen classes in directory 
+      gnu_gama/adj/adj_*.h for formerly defined for diagonal weights
+
 
 
 1.9.00 2006-03-03
