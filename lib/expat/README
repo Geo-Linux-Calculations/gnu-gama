@@ -1,0 +1,13 @@
+##########################################################################
+#                                                                        #
+#  This is not part of the GNU GaMa program, but is used with GNU GaMa.  #
+#                                                                        #
+##########################################################################
+
+Expat is copyrighted by James Clark, read @file{expat.html} for detailed
+information.  
+
+Expat XML parser sources version 1.1 (without the expat binaries and
+*.dsw and *.dsp files) are distributed with GNU GaMa package as a
+convenience for GNU GaMa users.
+
