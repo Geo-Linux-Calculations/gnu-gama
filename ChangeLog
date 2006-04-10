@@ -1,4 +1,10 @@
-1.9.01 2006-xxxxx
+1.8.01 2006-04-15
+	
+     #####################################################################
+     #                                                                   #
+     #  stable version 1.8  (branch gama-1-8-00 at cvs.sv.gnu.org)       #
+     #                                                                   #
+     #####################################################################
 
     - Claudio Fontana: new complete build system, compatible with GNU
       policies (as described in the GNU coding standards, and
@@ -6,6 +12,12 @@
       manuals).
 
       also added script scripts/autogen.sh
+
+    - new structure of source directories by Claudio Fontana. Directories
+      expat, gamalib, gnu_gama and matvec moved to a common source
+      subdirectory lib. 
+
+    - fixed a bug in texinfo to produce DVI format correctly
 
     - new implementation of graph connectivity
 
