@@ -17,20 +17,21 @@ with extension@code{.txt} is used.  If run without arguments
 
 $ ./gama-local 
 
-Adjustment of local geodetic network        version: 1.7.14 / GNU g++
+Adjustment of local geodetic network        version: 1.8.01 / GNU g++
 ************************************
 http://www.gnu.org/software/gama/
 
-Usage: gama-local [options] xml_input_file.gkf  [ output. ]
+Usage: gama-local [options]  input.xml  [ output. ]
 
 Options:
 
 --algorithm  svd | gso | cholesky
---language   en | ca | cz | du | fi | hu | ru
+--language   en | ca | cz | du | fi | fr | hu | ru | ua
 --encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251
 --angles     400 | 360
 --latitude   <latitude>
 --ellipsoid  <ellipsoid name>
+--xmlout     adjustment_results.xml
 --version
 --help
 @end example
