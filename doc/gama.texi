@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.17 2006/03/11 17:44:39 cepek Exp $
+@comment $Id: gama.texi,v 1.18 2006/04/10 12:19:58 cepek Exp $
 
 @comment Part 1 : Header
 
@@ -70,8 +70,8 @@ Free Documentation License''.
 
 @menu
 * Introduction::                
-* XML input data format for @code{gama-local}::  
-* Network adjustment with @code{gama-local}::  
+* XML input data format for gama-local::   XML input data format for @code{gama-local}
+* Network adjustment with gama-local::     Network adjustment with @code{gama-local}  
 * Data structures and algorithms::  
 
 * Copying This Manual::         The GNU Free Documentation License.
@@ -89,8 +89,8 @@ Free Documentation License''.
 @menu
 * Download::
 * Install::
-* Program @code{gama-local}::   
-* Program @code{gama-g3}::   
+* Program gama-local::   Program @code{gama-local}
+* Program gama-g3::      Program @code{gama-g3}
 * Contributors::                
 * Reporting bugs::              
 @end menu
@@ -108,13 +108,13 @@ Free Documentation License''.
 @include gama-install.texi
 
 
-@node    Program @code{gama-local}
+@node    Program gama-local
 @section Program @code{gama-local}
 @cindex  @code{gama-local}
 @include gama-local.texi
 
 
-@node    Program @code{gama-g3}
+@node    Program gama-g3
 @section Program @code{gama-g3}
 @cindex  @code{gama-g3}
 @include gama-g3.texi
@@ -192,11 +192,11 @@ directly to @uref{mailto:cepek@@gnu.org, Ales Cepek}.
 @c ----------------------------------------------------------------------
 
 
-@node    XML input data format for @code{gama-local}
+@node    XML input data format for gama-local
 @chapter XML input data format for @code{gama-local}
 @include gama-xml-input.texi
 
-@node    Network adjustment with @code{gama-local}
+@node    Network adjustment with gama-local
 @chapter Network adjustment with @code{gama-local}
 @include gama-local-adj.texi
 

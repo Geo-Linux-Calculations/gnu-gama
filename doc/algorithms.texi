@@ -1,10 +1,10 @@
-@comment $Id: algorithms.texi,v 1.3 2003/10/31 18:23:16 cepek Exp $
+@comment $Id: algorithms.texi,v 1.4 2006/04/10 12:19:58 cepek Exp $
 
 @menu
 * Observation data and points::            
 * Supported ellipsoids::        
 * Transformation from spatial to geographical coordinates::  
-* Class @code{g3;;Model}::
+* Class g3 Model::               Class @code{g3::Model}
 @end menu
 
 @node    Observation data and points
@@ -19,6 +19,6 @@
 @section Transformation from spatial to geographical coordinates
 @include xyz2blh.texi
 
-@node    Class @code{g3;;Model}
+@node    Class g3 Model
 @section Class @code{g3::Model}
 @include class-g3-model.texi

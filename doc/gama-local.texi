@@ -6,15 +6,11 @@ tools and with Microsoft Visual C++ compiler; support for Windows
 platform is currently limited to maintaing compatibility with the two
 mentioned compilers).
 
-@c ??? @code{gama-local} fails with TeX ???
-@c
-Program @code{gama-local} reads input data in XML format 
-@ifnottex
-(@ref{XML input data format for @code{gama-local}}) 
-@end ifnottex
-and prints adjustment
-results into ASCII text file. If output file name is not given, input
-file name with extension@code{.txt} is used.  If run without arguments
+
+Program @code{gama-local} reads input data in XML format (@ref{XML
+input data format for gama-local}) and prints adjustment results into
+ASCII text file. If output file name is not given, input file name
+with extension@code{.txt} is used.  If run without arguments
 @code{gama-local} prints a short help
 
 @example
