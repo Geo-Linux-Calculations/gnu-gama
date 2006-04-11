@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.2 2006/04/11 18:48:49 cepek Exp $
  */
 
 
@@ -330,7 +330,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
         }
       if (bz)
         {
-          const double z = (p.x()+X(p.index_z())/1000);
+          const double z = (p.z()+X(p.index_z())/1000);
           tagsp(out, "z", z);
         }
       out << "</point>\n";
@@ -372,7 +372,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
             {
               cz = "Z";
             }
-          const double z = p.x();
+          const double z = p.z();
           tagsp(out, cz, z);
         }
       out << "</point>\n";
@@ -416,7 +416,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
             {
               cz = "Z";
             }
-          const double z = (p.x()+X(p.index_z())/1000);
+          const double z = (p.z()+X(p.index_z())/1000);
           tagsp(out, cz, z);
           ind[++dim] = p.index_z();
         }

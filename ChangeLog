@@ -1,4 +1,35 @@
-1.8.01 2006-04-15
+1.9.01 2006-04-11
+
+     #####################################################################
+     #                                                                   #
+     #  unstable version 1.9 (main trunk at CVS savannah.gnu.org)        #
+     #                                                                   #
+     #####################################################################
+
+
+    - a bug reported by Antonn Horpynich <anton@vingeo.com>
+
+      cvs diff localnetwork.cpp
+      Index: localnetwork.cpp
+      ===================================================================
+      RCS file: /sources/gama/gama/lib/gnu_gama/xml/localnetwork.cpp,v
+      retrieving revision 1.1
+      diff -r1.1 localnetwork.cpp
+      333c333
+      <           const double z = (p.x()+X(p.index_z())/1000);
+      ---
+      >           const double z = (p.z()+X(p.index_z())/1000);
+      375c375
+      <           const double z = p.x();
+      ---
+      >           const double z = p.z();
+      419c419
+      <           const double z = (p.x()+X(p.index_z())/1000);
+      ---
+      >           const double z = (p.z()+X(p.index_z())/1000);
+
+	
+1.8.01 2006-04-10
 	
      #####################################################################
      #                                                                   #
