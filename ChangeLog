@@ -6,7 +6,12 @@
      #                                                                   #
      #####################################################################
 
-
+    - directory scripts/aux used by build system had to be renamed to
+      scripts/config.aux because 'aux' is a reserved file name under
+      Windows and Gama couldn't be build under Cygwin. CVS repository
+      had to be fixed as well. CVS branch gama-1-8 was mowed to this
+      point.
+      
     - a bug reported by Antonn Horpynich <anton@vingeo.com>
 
       cvs diff localnetwork.cpp
