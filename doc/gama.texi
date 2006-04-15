@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.18 2006/04/10 12:19:58 cepek Exp $
+@comment $Id: gama.texi,v 1.19 2006/04/15 12:27:14 cepek Exp $
 
 @comment Part 1 : Header
 
@@ -130,47 +130,8 @@ to GNU Gama project:
 @c
 Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
-Diego Berge, Boris Pihtin and Stephane Kaloustian.
-
-
-@c @itemize @bullet
-@c @item
-@c Ales Cepek @code{<cepek@@gnu.org>} (Dept. of Mapping and
-@c Cartography, CTU in Prague)
-@c 
-@c @item
-@c Jiri Vesely @code{<vesely@@gama.fsv.cvut.cz>} (CTU in Prague)
-@c 
-@c @item
-@c Petr Doubrava @code{<petr@@gepro.cz>} (Gepro a.s.)
-@c 
-@c @item
-@c Jan Pytel @code{<pytel@@gama.fsv.cvut.cz>} (CTU in Prague)
-@c 
-@c @item
-@c Chuck Ghilani (Surveying Program Chair, Penn State Wilkes-Barre)
-@c 
-@c @item 
-@c Dan Haggman and Mauri Vaisanen (Helsinki University of Technology)
-@c 
-@c @item 
-@c John Dedrum (Dutch translation for @code{gama-local})
-@c 
-@c @item 
-@c Zoltan Faludi (Hungarian translation for @code{gama-local})
-@c 
-@c @item 
-@c Diego Berge (Catalan translation for @code{gama-local})
-@c 
-@c @item 
-@c Boris Pihtin @code{<cyb@@bendera.md>}(Russian translation for
-@c              @code{gama-local})
-@c 
-@c @item 
-@c Stephane Kaloustian @code{<stephane.kaloustian@laposte.ne>}
-@c (French translation for @code{gama-local})
-@c 
-@c @end itemize
+Diego Berge, Boris Pihtin, Stephane Kaloustian, Anton Horpynich and
+Claudio Fontana.
 
 
 @node     Reporting bugs
