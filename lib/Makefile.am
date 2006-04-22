@@ -66,6 +66,8 @@ libgama_src = \
    gnu_gama/xml/encoding_unknown_handler.cpp \
    gnu_gama/xml/localnetwork.cpp \
    gnu_gama/xml/localnetwork.h \
+   gnu_gama/xml/localnetwork_adjustment_results.cpp \
+   gnu_gama/xml/localnetwork_adjustment_results.h \
    gamalib/angobs.h \
    gamalib/bpoint.h \
    gamalib/c/api/capi_exception.cpp \
