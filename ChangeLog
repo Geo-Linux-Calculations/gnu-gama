@@ -6,6 +6,40 @@
      #                                                                   #
      #####################################################################
 
+    - fixed includes of dataobject.h in gkfparser.h and baseparser.h
+	
+      Index: lib/gamalib/xml/gkfparser.h
+      ===================================================================
+      RCS file: /sources/gama/gama/lib/gamalib/xml/gkfparser.h,v
+      retrieving revision 1.1
+      diff -u -r1.1 gkfparser.h
+      --- lib/gamalib/xml/gkfparser.h	9 Apr 2006 16:40:25 -0000	1.1
+      +++ lib/gamalib/xml/gkfparser.h	22 Apr 2006 13:18:57 -0000
+      @@ -27,6 +27,7 @@
+       #define GaMaLib_GKF__XML__parser__h_
+       
+       #include <gnu_gama/xml/baseparser.h>
+      +#include <gnu_gama/xml/dataobject.h>
+       #include <gamalib/local/gamadata.h>
+       
+       
+      Index: lib/gnu_gama/xml/baseparser.h
+      ===================================================================
+      RCS file: /sources/gama/gama/lib/gnu_gama/xml/baseparser.h,v
+      retrieving revision 1.1
+      diff -u -r1.1 baseparser.h
+      --- lib/gnu_gama/xml/baseparser.h	9 Apr 2006 16:40:25 -0000	1.1
+      +++ lib/gnu_gama/xml/baseparser.h	22 Apr 2006 13:18:57 -0000
+      @@ -30,7 +30,6 @@
+       // BaseParser is just a simple C++ wrapper for XML parser expat
+       
+       #include <gnu_gama/xml_expat.h>
+      -#include <gnu_gama/xml/dataobject.h>
+       #include <gnu_gama/intfloat.h>
+       #include <string>
+       #include <list>
+
+	
     - directory scripts/aux used by build system had to be renamed to
       scripts/config.aux because 'aux' is a reserved file name under
       Windows and Gama couldn't be build under Cygwin. CVS repository
