@@ -6,6 +6,47 @@
      #                                                                   #
      #####################################################################
 
+    - fixed bug in dataparser.cpp / dataparser.h (bad upper limit in tables)
+      
+      Index: lib/gnu_gama/xml/dataparser.cpp
+      ===================================================================
+      RCS file: /sources/gama/gama/lib/gnu_gama/xml/dataparser.cpp,v
+      retrieving revision 1.1
+      diff -u -r1.1 dataparser.cpp
+      --- lib/gnu_gama/xml/dataparser.cpp	9 Apr 2006 16:40:25 -0000	1.1
+      +++ lib/gnu_gama/xml/dataparser.cpp	23 Apr 2006 15:28:01 -0000
+      @@ -71,7 +71,7 @@
+       
+         for (int s=s_error; s<=s_stop; s++)
+           {
+      -      for (int t=0; t<=t_unknown; t++)
+      +      for (int t=0; t<=t_unused; t++)
+               {
+                 next[s][t] = s_error;
+                 stag[s][t] = &DataParser::parser_error;
+      Index: lib/gnu_gama/xml/dataparser.h
+      ===================================================================
+      RCS file: /sources/gama/gama/lib/gnu_gama/xml/dataparser.h,v
+      retrieving revision 1.1
+      diff -u -r1.1 dataparser.h
+      --- lib/gnu_gama/xml/dataparser.h	9 Apr 2006 16:40:25 -0000	1.1
+      +++ lib/gnu_gama/xml/dataparser.h	23 Apr 2006 15:28:02 -0000
+      @@ -353,11 +353,11 @@
+             typedef int (DataParser::*Data)(const char *name, int len);
+             typedef int (DataParser::*Etag)(const char *name);
+       
+      -      Stag stag[s_stop+1][t_unknown+1];
+      +      Stag stag[s_stop+1][t_unused+1];
+             Data data[s_stop+1];                 
+             Etag etag[s_stop+1];
+       
+      -      int next [s_stop+1][t_unknown+1];
+      +      int next [s_stop+1][t_unused+1];
+             int after[s_stop+1]; 
+       
+             int gama_data               (const char *name, const char **atts);
+
+	
     - fixed includes of dataobject.h in gkfparser.h and baseparser.h
 	
       Index: lib/gamalib/xml/gkfparser.h

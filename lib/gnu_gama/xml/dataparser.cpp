@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.2 2006/04/23 15:36:21 cepek Exp $
  */
 
 
@@ -71,7 +71,7 @@ DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
 
   for (int s=s_error; s<=s_stop; s++)
     {
-      for (int t=0; t<=t_unknown; t++)
+      for (int t=0; t<=t_unused; t++)
         {
           next[s][t] = s_error;
           stag[s][t] = &DataParser::parser_error;

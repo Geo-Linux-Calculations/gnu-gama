@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: dataparser.h,v 1.2 2006/04/23 15:36:21 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -353,11 +353,11 @@ namespace GNU_gama {
       typedef int (DataParser::*Data)(const char *name, int len);
       typedef int (DataParser::*Etag)(const char *name);
 
-      Stag stag[s_stop+1][t_unknown+1];
+      Stag stag[s_stop+1][t_unused+1];
       Data data[s_stop+1];                 
       Etag etag[s_stop+1];
 
-      int next [s_stop+1][t_unknown+1];
+      int next [s_stop+1][t_unused+1];
       int after[s_stop+1]; 
 
       int gama_data               (const char *name, const char **atts);
