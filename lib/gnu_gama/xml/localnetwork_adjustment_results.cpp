@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.2 2006/05/08 18:58:44 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.3 2006/05/14 11:06:24 cepek Exp $
  */
 
 
@@ -993,9 +993,8 @@ void LocalNetworkAdjustmentResults::Parser::fixed(bool start)
 {
   if (start)
     {
-      tmp_point.clear();
-      pointlist   = &adj->fixed_points;
-      point_has_x = point_has_y = point_has_z = false;
+      pointlist = &adj->fixed_points;
+      tmp_point_adjusted = false;
 
       stack.push(&Parser::fixed);
       set_state(s_fixed);
@@ -1011,9 +1010,8 @@ void LocalNetworkAdjustmentResults::Parser::approximate(bool start)
 {
   if (start)
     {
-      pointlist   = &adj->approximate_points;
-      tmp_point   = Point();
-      point_has_x = point_has_y = point_has_z = false;
+      pointlist = &adj->approximate_points;
+      tmp_point_adjusted = false;
 
       stack.push(&Parser::approximate);
       set_state(s_approximate);
@@ -1029,9 +1027,9 @@ void LocalNetworkAdjustmentResults::Parser::adjusted(bool start)
 {
   if (start)
     {
-      pointlist   = &adj->adjusted_points;
-      tmp_point   = Point();
-      point_has_x = point_has_y = point_has_z = false;
+      pointlist = &adj->adjusted_points;
+      tmp_point_adjusted = true;
+      tmp_adj_index = 0; 
 
       stack.push(&Parser::adjusted);
       set_state(s_adjusted);
@@ -1047,6 +1045,7 @@ void LocalNetworkAdjustmentResults::Parser::point(bool start)
 {
   if (start)
     {
+      tmp_point.clear();
       point_has_x = point_has_y = point_has_z = false;
       point_con_x = point_con_y = point_con_z = false;  // constrained x,y,z
       
@@ -1065,6 +1064,19 @@ void LocalNetworkAdjustmentResults::Parser::point(bool start)
       tmp_point.hz  = point_has_z;
       tmp_point.cxy = point_con_x && point_con_y;
       tmp_point.cz  = point_con_z;
+
+      if (tmp_point_adjusted)
+        {
+          if (tmp_point.hxy)
+            {
+              tmp_point.indx = ++tmp_adj_index;
+              tmp_point.indy = ++tmp_adj_index;
+            }
+          if (tmp_point.hz)
+            {
+              tmp_point.indz = ++tmp_adj_index;
+            }
+        }
 
       pointlist->push_back(tmp_point);
 
@@ -1161,8 +1173,9 @@ void LocalNetworkAdjustmentResults::Parser::orientation(bool start)
     {
       if (state != s_ors_adj_end) error("missing tag <approx> or <adj>");
       
-      tmp_orientation.id  = tmp_id;
-       adj->orientations.push_back(tmp_orientation);
+      tmp_orientation.id = tmp_id;
+      tmp_orientation.index = ++tmp_adj_index;
+      adj->orientations.push_back(tmp_orientation);
       
       set_state(s_orientation_end);
     }

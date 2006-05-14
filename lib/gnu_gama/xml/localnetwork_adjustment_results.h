@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.h,v 1.2 2006/05/08 18:58:44 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.h,v 1.3 2006/05/14 11:06:24 cepek Exp $
  */
 
 #ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
@@ -110,11 +110,17 @@ namespace GNU_gama
     {
       std::string id;              
       double x, y, z;
+ 
+      bool   hxy, hz;             // point has   x, y, z
+      bool   cxy, cz;             // constrained x, y, z
+      int    indx, indy, indz;    // adjustment indexes
       
-      bool   hxy, hz;      // point has   x, y, z
-      bool   cxy, cz;      // constrained x, y, z
-      
-      void clear() { x=y=z=0; hxy=hz=cxy=cz=false; }
+      void clear() 
+      { 
+        x=y=z=0; 
+        hxy=hz=cxy=cz=false; 
+        indx=indy=indz=0;
+      }
     };
     
     typedef std::vector<Point> PointList;
@@ -125,6 +131,7 @@ namespace GNU_gama
       std::string id;
       double      approx;
       double      adj;
+      int         index;          // adjustment index
     };
 
     typedef std::vector<Orientation> OrientationList;
@@ -505,11 +512,13 @@ namespace GNU_gama
       const char ** attributes;
       int   coordinates_summary_stage;
 
+      int                tmp_adj_index;
       std::string        tmp_id;
       Point              tmp_point;
       PointList         *pointlist;
       bool               point_has_x, point_has_y, point_has_z;
       bool               point_con_x, point_con_y, point_con_z;
+      bool               tmp_point_adjusted;
       Orientation        tmp_orientation;
       int                tmp_dim;
       int                tmp_band;
