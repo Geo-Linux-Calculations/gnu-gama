@@ -6,6 +6,9 @@
      #                                                                   #
      #####################################################################
 
+    - added first draft of XML parser of gama-local adjustment results,
+      class GNU_gama::LocalNetworkAdjustmentResults
+	
     - fixed bug in dataparser.cpp / dataparser.h (bad upper limit in tables)
       
       Index: lib/gnu_gama/xml/dataparser.cpp
