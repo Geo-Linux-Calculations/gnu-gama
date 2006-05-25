@@ -6,6 +6,10 @@
      #                                                                   #
      #####################################################################
 
+
+    - documentation of gama-local: added formulas for reductions of
+      horizontal and vertical angles
+	
     - added first draft of XML parser of gama-local adjustment results,
       class GNU_gama::LocalNetworkAdjustmentResults
 	

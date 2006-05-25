@@ -63,3 +63,136 @@ encoding to iso-8859-2 (latin-2), iso-8859-2-flat (latin-2 without
 diacritics), cp-1250 (MS-EE encoding) cp-12251 (Russian encoding).
 
 Option @code{--angles} selects angular units to be used in output.
+
+Options @code{--latitude} and/or @code{--ellipsoid} are used when
+observed vertical and/or zenith angles need to be transfromed into the
+projection plane. If none of theese two options is explicitly used, no
+corrections are added to horizontal and/or zenith angles. If only one
+of these options is used, then implicit value for @code{--latitude} is
+45 degrees (50 gons) and implicit ellipsoid is WGS84. 
+Mathematical formulas for the corrections is given in the following
+section.
+
+
+@menu
+* Reductions of horizontal and zenith angles::
+@end menu
+
+@node       Reductions of horizontal and zenith angles
+@subsection Reductions of horizontal and zenith angles
+@cindex     reductions, horizontal and zenith angles
+
+
+For evaluating of reductions of horizontal and zenith angles, 
+@code{gama-local} computes a helper point @math{P_1} in the center of
+the network. Horizontal and zenith angles observed at point @math{P_2}
+are transformed to the projection plane perpendicular to the normal
+@math{z_1} of the helper point @math{P_1}. Coordinates @math{(x_2,
+y_2)} of point @math{P_2} are conserved, but its normal @math{z_2} is
+rotated by the central angle @math{2\gamma_{12}} to be parallel with
+@math{z_1}.
+
+@ifnottex
+Formulas for reductions of horizontal and zenith angles are given only
+in the printed version.
+@end ifnottex
+
+@iftex
+For observations from point @math{P_2} to point @math{P_3} we denote the zenith
+angle @math{z^{m}_{23}} and horizontal direction @math{\sigma^{m}_{23}}.
+Now, transformed zenith angle @math{z_{23}} and horizontal direction
+@math{\sigma_{23}} can be expressed as
+@tex
+$$
+ \cos z_{23} = \cos z^m_{23}  \cos 2\gamma_{12} +
+ \sin z^m_{23} \cos (180^\circ - \sigma^m_{23})\sin \gamma_{12},
+$$
+$$
+ \sin (180^\circ - \sigma^m_{23}) \cot \sigma_{23} = -\cos (180^\circ -
+ \sigma^m_{23}) \cos 2\gamma_{12} + \cot z^m_{23}  \sin 2\gamma_{12}
+$$
+@end tex
+@c
+and after arrangement
+@tex
+$$
+    \cos z_{23} = \cos z^m_{23} \cos 2\gamma_{12} - \sin z^m_{23} \cos
+    \sigma^m_{23}\sin \gamma_{12},
+$$
+$$
+    \cot \sigma_{23} = \cot \sigma^m_{23} \cos 2\gamma_{12} +
+    {\cot z^m_{23} \sin 2\gamma_{12} \over \sin \sigma^m_{23}}
+$$
+@end tex
+
+@noindent
+These formulas can be simplified for small networks, roughly up to the
+size of 6 kilometers, where
+@c
+@tex
+$$
+   \cos 2\gamma_{12} \approx 1 \qquad {\rm and } \qquad
+ \sin 2\gamma_{12} \approx 
+ {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}.
+$$
+@end tex
+
+@noindent
+and
+@tex
+$$
+%  \label{eq:sftrupr1}
+   \cos z_{23} = \cos z^m_{23}  - \sin z^m_{23} \cos \sigma^m_{23}
+   {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}, 
+$$
+$$
+%  \label{eq:sftrupr2}
+   \cot \sigma_{23} = \cot \sigma^m_{23} +  
+   {1\over{\sin^2 \sigma^m_{23}}} \cot z^m_{23}\sin \sigma^m_{23}
+   {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}.
+$$
+@end tex
+
+@noindent
+Comparing theese expresions  with first members of Taylor series  
+@tex
+$$ 
+   f(x) \approx f(x^0) +  {{{ \rm d}f(x^0)}\over{{\rm d}x}}
+$$
+@end tex
+of functions @math{@cos z_{23}} and @math{@cot @sigma_{23}} for
+@math{z_{23} = z^m_{23} + \triangle z_{23}} and
+@math{ \sigma_{23} = @sigma^m_{23} + @triangle @sigma_{23} }
+@c 
+@tex
+$$
+%   \label{eq:taylorcos}
+   \cos z_{23} = \cos z^m_{23}  - \sin z^m_{23} 
+   {{\triangle z^{\prime\prime}_{23}}\over{\varrho^{\prime\prime}}}
+$$
+$$
+   \cot \sigma_{23} = \cot \sigma^m_{23} -
+   {{1}\over{\sin^2 \sigma^m_{23}}} 
+   {{\sigma^{\prime\prime}_{23}}\over{\varrho^{\prime\prime}}},
+$$
+@end tex
+@c
+it holds that  
+@math{z_{23} = @cos z^m_{23} + @triangle z^{@prime@prime}_{23}} and
+@math{@sigma_{23} = cos @sigma^m_{23} + @triangle @sigma^{@prime@prime}_{23}}.
+
+
+
+Equations for reductions of horizontal and zenith angles now can be
+expressed as
+@tex
+$$
+  z_{23} = \cos z^m_{23} + 2\gamma^{\prime\prime}_{12} \cos \sigma^{m}_{23}
+$$
+$$
+  \sigma_{23} = \sigma^m_{23} - 2\gamma^{\prime\prime}_{12} \cot z^m_{23}
+  \sin \sigma^m_{23}.
+$$
+@end tex
+
+@end iftex
