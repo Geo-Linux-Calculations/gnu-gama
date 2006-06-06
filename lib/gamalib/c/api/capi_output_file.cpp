@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: capi_output_file.cpp,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: capi_output_file.cpp,v 1.2 2006/06/06 17:31:51 cepek Exp $
  */
 
 #include <gnu_gama/outstream.h>
@@ -199,7 +199,7 @@ extern "C" {
         LocalNetwork*  ln = capiof->IS;
         std::ofstream* of = capiof->out;
 
-        GNU_gama::OutStream output(*of);
+        GNU_gama::OutStream output(of);
         return GeneralParameters(ln, output);
       }
     catch(const GaMaLib::Exception& e)

@@ -7,6 +7,9 @@
      #####################################################################
 
 
+    - new output parameters (--text and --xml); possible redirection
+      to standard output ("-").
+	
     - documentation of gama-local: added formulas for reductions of
       horizontal and vertical angles
 	

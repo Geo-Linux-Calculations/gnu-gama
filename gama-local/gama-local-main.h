@@ -1,4 +1,4 @@
-/*  
+/*
     GNU Gama C++ library
     Copyright (C) 1999, 2002, 2003  Ales Cepek <cepek@gnu.org>
 
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.1 2006/03/05 12:01:52 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.2 2006/06/06 17:31:51 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -40,12 +40,6 @@
 #include <gamalib/local/network_gso.h>
 #include <gamalib/local/network_chol.h>
 #include <gamalib/local/acord.h>
-
-/* functions for printing of formatted output text were moved to new
- * location. it is planned for future versions to produce adjustment
- * results in XML (functions in directory local/results/xml) and
- * current text functions shell be rewritten to process the XML data
- * as their input */
 
 #include <gamalib/local/results/text/approximate_coordinates.h>
 #include <gamalib/local/results/text/network_description.h>
@@ -87,7 +81,9 @@ int help()
        << "--angles     400 | 360\n"  
        << "--latitude   <latitude>\n"
        << "--ellipsoid  <ellipsoid name>\n"
-       << "--xmlout     adjustment_results.xml\n"
+       << "--text       adjustment_results.txt\n"
+       << "--xml        adjustment_results.xml\n"
+    /* << "--obs        observation_equations.txt (obsolete format)\n" */
        << "--version\n"
        << "--help\n";
   cerr << endl;
@@ -111,7 +107,7 @@ int GaMa_Main(int argc, char **argv)
   using namespace std;
   using namespace GaMaLib;
   
-  string description, /*xml_output,*/ file_stx, file_txt, file_opr;
+  string description;
   const char* c;
   const char* argv_1 = 0;
   const char* argv_2 = 0;
@@ -121,7 +117,9 @@ int GaMa_Main(int argc, char **argv)
   const char* argv_angles = 0;
   const char* argv_ellipsoid = 0;
   const char* argv_latitude = 0;
+  const char* argv_txtout = 0;
   const char* argv_xmlout = 0;
+  const char* argv_obsout = 0;
 
   bool correction_to_ellipsoid = false;
   GNU_gama::Ellipsoid el;
@@ -159,7 +157,9 @@ int GaMa_Main(int argc, char **argv)
       else if (name == "angles"    ) argv_angles = c;
       else if (name == "ellipsoid" ) argv_ellipsoid = c;
       else if (name == "latitude"  ) argv_latitude = c;
-      else if (name == "xmlout"    ) argv_xmlout = c;
+      else if (name == "text"      ) argv_txtout = c;
+      else if (name == "xml"       ) argv_xmlout = c;
+      else if (name == "obs"       ) argv_obsout = c;
       else
           return help();
     }
@@ -169,7 +169,7 @@ int GaMa_Main(int argc, char **argv)
     set_gama_language(en);
   else
     {
-      if (!strcmp("en", argv_lang)) set_gama_language(en);
+      if      (!strcmp("en", argv_lang)) set_gama_language(en);
       else if (!strcmp("ca", argv_lang)) set_gama_language(ca);
       else if (!strcmp("cs", argv_lang)) set_gama_language(cz);
       else if (!strcmp("cz", argv_lang)) set_gama_language(cz);
@@ -183,8 +183,21 @@ int GaMa_Main(int argc, char **argv)
     }
 
   LocalNetwork* IS;
+  ostream* output = 0;
+
   ofstream fcout;
-  GNU_gama::OutStream cout(fcout);
+  if (argv_txtout) 
+    if (!strcmp(argv_txtout, "-"))
+      {
+        output = &std::cout;
+      } 
+    else
+      {
+        fcout.open(argv_txtout);  
+        output = &fcout;
+      }
+
+  GNU_gama::OutStream cout(output);
   
   if (argv_enc)
     {
@@ -263,36 +276,10 @@ int GaMa_Main(int argc, char **argv)
     
     ifstream soubor(argv_1);
     
-    //# removed in version 1.3.24
-    //# #########################
-    //#
-    //# /* GKFparser does not allow anything before tag <?xml version="1.0" ?> 
-    //#  * neither after the end of XML document.  In email version of
-    //#  * gama it is useful to skip the email header and automatically
-    //#  * added signatures etc and I have added the following loop in
-    //#  * which they are "cut off". Thus GaMa would accept even formally
-    //#  * invalid XML documents, ie gkf files.
-    //#  */
-    //# 
-    //# char c;
-    //# while ((soubor >> c) && (c != '<' || soubor.peek() != '?'))
-    //#   ;
-    //# soubor.putback(c);
-    
     {
       GKFparser gkf(IS->PD, IS->OD);
       try 
         {
-          //# // when </gama-xml> is found, anything that follows is ignored
-          //# int i, k, n;  
-          //# /* 
-          //#  * ??? while (konec == 0 && getline(soubor, radek)) ???
-          //#  *
-          //#  * input is processed by lines (to find the closing tag) but
-          //#  * function getline is not well implemented in bcc32 (it
-          //#  * returns '\0' byte as an active character in radek); thus
-          //#  * it is read here unefectively by characters.
-          //#  */
           char c;
           int  n, konec = 0;
           string radek;
@@ -308,25 +295,6 @@ int GaMa_Main(int argc, char **argv)
                 }
               if (!soubor) konec = 1;
               
-              //# for (i=10; i<n; i++)
-              //#   {
-              //#     k = i;
-              //#     if (radek[k--] != '>') continue;
-              //#     if (radek[k--] != 'l') continue;
-              //#     if (radek[k--] != 'm') continue;
-              //#     if (radek[k--] != 'x') continue;
-              //#     if (radek[k--] != '-') continue;
-              //#     if (radek[k--] != 'a') continue;
-              //#     if (radek[k--] != 'm') continue;
-              //#     if (radek[k--] != 'a') continue;
-              //#     if (radek[k--] != 'g') continue;
-              //#     if (radek[k--] != '/') continue;
-              //#     if (radek[k--] != '<') continue;
-              //#     n = i+1;
-              //#     konec = 1;
-              //#     break;
-              //#   }
-              
               gkf.xml_parse(radek.c_str(), n, konec);
             }
           while (!konec);
@@ -335,7 +303,6 @@ int GaMa_Main(int argc, char **argv)
           IS->conf_pr    (gkf.konf_pr);
           IS->tol_abs    (gkf.tol_abs);
 
-          // added in 1.7.09
           IS->update_constrained_coordinates(gkf.update_constr);
  
           if (gkf.typ_m0_apriorni)
@@ -344,8 +311,6 @@ int GaMa_Main(int argc, char **argv)
             IS->set_m_0_aposteriori();
           
           description = gkf.description;
-
-          // added in 1.8.01
           IS->epoch = gkf.epoch;
         }
       catch (...) 
@@ -353,32 +318,6 @@ int GaMa_Main(int argc, char **argv)
           throw;         // should be added later ???
         }
     }
-    
-    if (argv_2)
-      {
-        string jmeno(argv_2);
-        
-        if (*jmeno.rbegin() == '.')
-          {
-            file_txt = jmeno + "txt";
-            file_stx = jmeno + "stx";
-            file_opr = jmeno + "opr";
-            
-            // xml_output = jmeno + "xml";
-          }
-        else
-          {
-            file_txt = jmeno;
-            file_stx = "";
-            file_opr = "";
-          }
-      }
-    
-    if (file_txt == "")  file_txt = string(argv_1) 
-                          + "-" + string(GNU_gama::GNU_gama_version)
-                          + "-" + string(IS->algorithm());
-
-    fcout.open(file_txt.c_str());
     
   }
   catch (const GaMaLib::ParserException& v) {
@@ -487,31 +426,34 @@ int GaMa_Main(int argc, char **argv)
             ErrorEllipses        (IS, cout);
             AdjustedObservations (IS, cout);
             ResidualsObservations(IS, cout);
-
+        
           }
         
-        if (file_opr != "")
+        if (argv_obsout)
           {
-            ofstream opr(file_opr.c_str());
+            ofstream opr(argv_obsout);
             IS->project_equations(opr);
           }
         
-        // if (xml_output != "")
-        //   {
-        //     ofstream xml(xml_output.c_str());
-        //     
-        //     XML_adjusted_coordinates(IS, xml, true);
-        //   }
+        // implicit output
+        if (!argv_txtout && !argv_xmlout) argv_xmlout = "-";
 
         if (argv_xmlout)
           {
-            ofstream file(argv_xmlout);
-
             GNU_gama::LocalNetworkXML xml(IS);
             xml.description = description;
-            xml.write(file);
+
+            if (!strcmp(argv_xmlout, "-"))
+              {
+                xml.write(std::cout);
+              }
+            else
+              {
+                ofstream file(argv_xmlout);
+                xml.write(file);
+            }
           }
-                
+        
       }
     
     delete IS; 

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: outstream.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: outstream.h,v 1.2 2006/06/06 17:31:51 cepek Exp $
  */
 
 #include <iostream>
@@ -38,37 +38,40 @@ namespace GNU_gama {
     
     enum { utf_8, iso_8859_2, iso_8859_2_flat, cp_1250, cp_1251 }; 
     
-    OutStream(std::ostream& str);
+    OutStream(std::ostream* str);
     
     OutStream& operator << (const char* c)
       {
-        ostr << recode(c);
+        if (str) *str << recode(c);
         return *this;
       }
     OutStream& operator << (const std::string& s)
       {
-        ostr << recode(s.c_str());
+        if (str) *str << recode(s.c_str());
         return *this;
       }
     
     template<typename T> OutStream& operator << (const T& t)
       {
-        ostr << t;
+        if (str) *str << t;
         return *this;
       }
     
-    std::ostream& std_stream() { return ostr; }
+    std::ostream* std_stream() { return str; }
     
-    void setf (std::ios_base::fmtflags t, std::ios_base::fmtflags v) { ostr.setf(t, v); }
-    void width     (int t)  { ostr.width(t);     }
-    void precision (int t)  { ostr.precision(t); }
-    void flush     ()       { ostr.flush();      }
+    void setf (std::ios_base::fmtflags t, std::ios_base::fmtflags v) 
+    { 
+      if (str) str->setf(t, v); 
+    }
+    void width     (int t)  { if (str) str->width(t);     }
+    void precision (int t)  { if (str) str->precision(t); }
+    void flush     ()       { if (str) str->flush();      }
     
     void set_encoding(int e) { encoding = e; }
     
   private:
     
-    std::ostream& ostr;
+    std::ostream* str;
     int           encoding;
     std::string   text;
     

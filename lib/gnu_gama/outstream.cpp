@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: outstream.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: outstream.cpp,v 1.2 2006/06/06 17:31:51 cepek Exp $
  */
 
 
@@ -149,7 +149,7 @@ namespace {
 
 using namespace GNU_gama;
 
-OutStream::OutStream(std::ostream& str) : ostr(str), encoding(utf_8)
+OutStream::OutStream(std::ostream* s) : str(s), encoding(utf_8)
 {
   if (ascii_table[1] == 0) init_ascii(ascii_table);
 }

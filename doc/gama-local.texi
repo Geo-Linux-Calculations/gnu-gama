@@ -17,7 +17,7 @@ with extension@code{.txt} is used.  If run without arguments
 
 $ ./gama-local 
 
-Adjustment of local geodetic network        version: 1.8.01 / GNU g++
+Adjustment of local geodetic network        version: 1.9.01 / GNU g++
 ************************************
 http://www.gnu.org/software/gama/
 
@@ -31,7 +31,8 @@ Options:
 --angles     400 | 360
 --latitude   <latitude>
 --ellipsoid  <ellipsoid name>
---xmlout     adjustment_results.xml
+--text       adjustment_results.txt
+--xml        adjustment_results.xml
 --version
 --help
 @end example
@@ -72,6 +73,11 @@ of these options is used, then implicit value for @code{--latitude} is
 45 degrees (50 gons) and implicit ellipsoid is WGS84. 
 Mathematical formulas for the corrections is given in the following
 section.
+
+Adjustment results (@code{--text} and @code{--xml}) can be redirected
+to standard output if instead of a file name is used "-" string. If no
+output is given, XML adjustment format is implicitly send to standard
+output.
 
 
 @menu
