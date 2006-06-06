@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: observation.h,v 1.2 2006/06/06 17:31:51 cepek Exp $
+ *  $Id: observation.h,v 1.3 2006/06/06 17:45:39 cepek Exp $
  */
 
 #ifndef GaMaLib_Bod_Mer_Mereni_H
@@ -109,12 +109,6 @@ namespace GaMaLib {
         }
 
       virtual void write(std::ostream&, bool print_at) const = 0;
-      
-      void write(std::ostream* ptr, bool print_at) const
-      {
-        if (ptr) write(*ptr, print_at);
-      }
-
       
       void write(std::ostream* ptr, bool print_at) const
       {
