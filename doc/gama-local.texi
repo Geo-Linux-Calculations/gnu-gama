@@ -21,7 +21,7 @@ Adjustment of local geodetic network        version: 1.9.01 / GNU g++
 ************************************
 http://www.gnu.org/software/gama/
 
-Usage: gama-local [options]  input.xml  [ output. ]
+Usage: gama-local  input.xml  [options]
 
 Options:
 

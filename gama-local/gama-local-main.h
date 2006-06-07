@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.2 2006/06/06 17:31:51 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.3 2006/06/07 07:02:20 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -69,9 +69,8 @@ int help()
        << "************************************\n"
        << "http://www.gnu.org/software/gama/\n\n"
        << "Usage: " << /*argv[0]*/"gama-local" 
-       << " [options]"
        << "  input.xml "
-       << " [ output. ]\n\n";
+       << " [options]\n\n";
   cerr << "Options:\n"
        << "\n";
   cerr << "--algorithm  svd | gso | cholesky\n" 
@@ -110,7 +109,7 @@ int GaMa_Main(int argc, char **argv)
   string description;
   const char* c;
   const char* argv_1 = 0;
-  const char* argv_2 = 0;
+  // const char* argv_2 = 0;    *** version 1.9.01 ***
   const char* argv_algo = 0;
   const char* argv_lang = 0;
   const char* argv_enc  = 0;
@@ -134,10 +133,10 @@ int GaMa_Main(int argc, char **argv)
               argv_1 = c;
               continue;
             }
-          if (!argv_2) {
-              argv_2 = c;
-              continue;
-          }
+          // if (!argv_2) {     *** only one parameter and options ***
+          //     argv_2 = c;    *** since version 1.9.01           ***
+          //     continue;
+          // }
           return help();
         }
 
