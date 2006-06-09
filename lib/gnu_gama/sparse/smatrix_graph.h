@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.2 2006/06/09 10:54:28 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -78,10 +78,11 @@ namespace GNU_gama {
     
     typedef const Index* const_iterator;
 
-    Index           nodes()        const  { return nods;             } 
-    const_iterator  begin(Index i) const  { return amem + xadj(i);   }
-    const_iterator  end  (Index i) const  { return amem + xadj(i+1); }
-    bool            connected()    const;
+    Index           nodes ()        const  { return nods;                } 
+    Index           degree(Index i) const  { return xadj(i+1) - xadj(i); }
+    const_iterator  begin (Index i) const  { return amem + xadj(i);      }
+    const_iterator  end   (Index i) const  { return amem + xadj(i+1);    }
+    bool            connected()     const;
 
   private:
     
