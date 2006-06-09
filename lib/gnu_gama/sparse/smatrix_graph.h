@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.2 2006/06/09 10:54:28 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.3 2006/06/09 15:20:50 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -33,15 +33,51 @@
 
 namespace GNU_gama {
 
-  template <typename Float=double, typename Index=std::size_t>
-  class SparseMatrixGraph 
+
+  template <typename Index=std::size_t>
+  class Adjacency
   {
   public:
     
-    SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const m)
-      : sparse( m ), 
-        xadj  ( std::max(m->columns()+2, Index(3)) ),
-        nods  ( m->columns() )
+    Adjacency()
+    {
+    }
+    Adjacency(Index nodes)
+      : xadj( std::max(nodes+2, Index(3)) ),  nods(nodes)
+    {
+    }
+    Adjacency(Index nodes, Index edges)
+      : adjncy(edges), xadj( std::max(nodes+2, Index(3)) ),  nods(nodes)
+    {
+    }
+
+
+    IntegerList<Index>  adjncy, xadj;   // 1 based indexes
+    Index               nods; 
+
+    typedef const Index* const_iterator;
+
+    Index          nodes ()        const { return nods;                       }
+    Index          degree(Index i) const { return xadj(i+1) - xadj(i);        }
+    const_iterator begin (Index i) const { return adjncy.begin() + xadj(i);   }
+    const_iterator end   (Index i) const { return adjncy.begin() + xadj(i+1); }
+
+
+  private:
+
+    Adjacency(const Adjacency&);
+    void operator=(const Adjacency&);
+  };
+
+
+
+  template <typename Float=double, typename Index=std::size_t>
+  class SparseMatrixGraph
+  {
+  public:
+    
+    SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const sparse)
+      : adst(sparse->columns())
     {
       std::set<std::pair<Index, Index> >  edges;
       
@@ -57,40 +93,35 @@ namespace GNU_gama {
                 }
       }
       
-      adjncy.reset(edges.size());
-      amem = adjncy.begin();
+      adst.adjncy.reset(edges.size());
       
       typename std::set<std::pair<Index, Index> >::const_iterator 
         i=edges.begin(), e=edges.end();
       
-      xadj(1) = xadj(2) = 0;      // needed by empty graphs
-      for (Index count=0, index=1; index<=nods; index++)
+      adst.xadj(1) = adst.xadj(2) = 0;      // needed by empty graphs
+      for (Index count=0, index=1; index<=adst.nods; index++)
         {
-          xadj(index) = count;
+          adst.xadj(index) = count;
           while (i!=e && index == i->first) 
             {
-              adjncy(count++) = i->second;
+              adst.adjncy(count++) = i->second;
               ++i;
             }
-          xadj(index+1) = count;
+          adst.xadj(index+1) = count;
         }
     }
     
     typedef const Index* const_iterator;
 
-    Index           nodes ()        const  { return nods;                } 
-    Index           degree(Index i) const  { return xadj(i+1) - xadj(i); }
-    const_iterator  begin (Index i) const  { return amem + xadj(i);      }
-    const_iterator  end   (Index i) const  { return amem + xadj(i+1);    }
-    bool            connected()     const;
+    Index          nodes ()        const { return adst.nodes();   }
+    const_iterator begin (Index i) const { return adst.begin(i);  }
+    const_iterator end   (Index i) const { return adst.end(i);    }
+    Index          degree(Index i) const { return adst.degree(i); }
+    bool           connected()     const;
 
   private:
-    
-    const SparseMatrix<Float, Index>* const sparse;
 
-    IntegerList<Index>  adjncy, xadj;   // 1 based indexes
-    const Index         nods; 
-    const Index*        amem;
+    Adjacency<Index> adst;        // adjacency structure
   };
 
 }
