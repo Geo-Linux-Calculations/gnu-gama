@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.5 2006/06/10 12:31:42 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.6 2006/06/10 15:42:20 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -53,7 +53,6 @@ namespace GNU_gama {
 
 
     IntegerList<Index>  adjncy, xadj;   // 1 based indexes
-    Index               nods; 
 
     typedef const Index* const_iterator;
 
@@ -62,8 +61,11 @@ namespace GNU_gama {
     const_iterator begin (Index i) const { return adjncy.begin() + xadj(i);   }
     const_iterator end   (Index i) const { return adjncy.begin() + xadj(i+1); }
 
+    void set_nodes(Index n) { nods = n; }
 
   private:
+
+    Index  nods; 
 
     Adjacency(const Adjacency&);
     void operator=(const Adjacency&);
@@ -72,12 +74,12 @@ namespace GNU_gama {
 
 
   template <typename Float=double, typename Index=std::size_t>
-  class SparseMatrixGraph
+  class SparseMatrixGraph : public Adjacency<Index>
   {
   public:
     
     SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const sparse)
-      : adst(sparse->columns())
+      : Adjacency<Index>(sparse->columns())
     {
       std::set<std::pair<Index, Index> >  edges;
       
@@ -93,35 +95,28 @@ namespace GNU_gama {
                 }
       }
       
-      adst.adjncy.reset(edges.size());
+      this->adjncy.reset(edges.size());
       
       typename std::set<std::pair<Index, Index> >::const_iterator 
         i=edges.begin(), e=edges.end();
       
-      adst.xadj(1) = adst.xadj(2) = 0;      // needed by empty graphs
-      for (Index count=0, index=1; index<=adst.nods; index++)
+      this->xadj(1) = this->xadj(2) = 0;      // needed by empty graphs
+      for (Index count=0, index=1; index<=this->nodes(); index++)
         {
-          adst.xadj(index) = count;
+          this->xadj(index) = count;
           while (i!=e && index == i->first) 
             {
-              adst.adjncy(count++) = i->second;
+              this->adjncy(count++) = i->second;
               ++i;
             }
-          adst.xadj(index+1) = count;
+          this->xadj(index+1) = count;
         }
     }
     
     typedef const Index* const_iterator;
 
-    Index          nodes ()        const { return adst.nodes();   }
-    const_iterator begin (Index i) const { return adst.begin(i);  }
-    const_iterator end   (Index i) const { return adst.end(i);    }
-    Index          degree(Index i) const { return adst.degree(i); }
     bool           connected()     const;
 
-  private:
-
-    Adjacency<Index> adst;        // adjacency structure
   };
 
 }

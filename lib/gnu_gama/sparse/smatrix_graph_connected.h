@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph_connected.h,v 1.4 2006/06/10 12:31:42 cepek Exp $
+ *  $Id: smatrix_graph_connected.h,v 1.5 2006/06/10 15:42:20 cepek Exp $
  */
 
 #include <stack>
@@ -28,14 +28,14 @@
 template <typename Float, typename Index>
 bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
 {
-  IntegerList<Index> tag(adst.nods+1);      // for all nodes i, tag(i)=0   
+  IntegerList<Index> tag(this->nodes()+1);      // for all nodes i, tag(i)=0   
   tag.set_zero();
     
   std::stack<Index>  stack;
 
   stack.push(1);                       // start with node 1 
   tag(1) = 1;
-  Index unreachable = adst.nods - 1;  // number of unreached nodes
+  Index unreachable = this->nodes() - 1;  // number of unreached nodes
 
   while (!stack.empty())               // order of O(nodes+edges)
     {
