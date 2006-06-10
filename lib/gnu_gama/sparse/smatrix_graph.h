@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.3 2006/06/09 15:20:50 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.4 2006/06/10 12:19:36 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -71,11 +71,12 @@ namespace GNU_gama {
 
 
 
-  template <typename Float=double, typename Index=std::size_t>
+  template <typename Index=std::size_t>
   class SparseMatrixGraph
   {
   public:
-    
+  
+    template <typename Float>
     SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const sparse)
       : adst(sparse->columns())
     {

@@ -20,13 +20,13 @@
 */
 
 /*
- *  $Id: smatrix_graph_connected.h,v 1.2 2006/06/09 15:20:50 cepek Exp $
+ *  $Id: smatrix_graph_connected.h,v 1.3 2006/06/10 12:19:36 cepek Exp $
  */
 
 #include <stack>
 
-template <typename Float, typename Index>
-bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
+template <typename Index>
+bool GNU_gama::SparseMatrixGraph<Index>::connected() const
 {
   IntegerList<Index> tag(adst.nods+1);      // for all nodes i, tag(i)=0   
   tag.set_zero();
