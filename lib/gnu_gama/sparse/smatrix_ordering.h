@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_ordering.h,v 1.3 2006/06/11 16:14:31 cepek Exp $
+ *  $Id: smatrix_ordering.h,v 1.4 2006/06/11 19:18:37 cepek Exp $
  */
 
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
@@ -212,7 +212,8 @@ namespace GNU_gama {
 
     void inverse_permutaion()
     {
-      for (Index i=1; i<=perm.dim(); i++)
+      const Index N = this->nodes();
+      for (Index i=1; i<=N; i++)
         {
           invp(perm(i)) = i;
         }
