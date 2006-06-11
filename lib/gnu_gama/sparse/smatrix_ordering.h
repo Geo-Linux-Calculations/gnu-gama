@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_ordering.h,v 1.1 2006/06/10 17:35:41 cepek Exp $
+ *  $Id: smatrix_ordering.h,v 1.2 2006/06/11 12:09:48 cepek Exp $
  */
 
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
@@ -249,7 +249,7 @@ namespace GNU_gama {
       this->perm(1) = r;
       this->invp(r) = 0;
 
-      for (Index i=1; count<N; i++)
+      for (Index i=1; count<N && i<N; i++)
         {
           // add all unnumbered neighbors, sorted in increasing order
           // of degree
@@ -281,6 +281,14 @@ namespace GNU_gama {
             }
         }
 
+      if (count < N)                  // disconnected graph,  should be fixed 
+        for (Index i=1; i<=N; i++)    // (process connected component)
+          if (this->invp(i))
+            {
+              this->perm(++count) = i;
+              this->invp(i) = 0;
+            }
+
       // reverse ordering
       for (Index j=N, i=1; i<j; i++, j--)
         {
@@ -292,11 +300,3 @@ namespace GNU_gama {
 }
 
 #endif
-
-
-
-
-
-
-
-
