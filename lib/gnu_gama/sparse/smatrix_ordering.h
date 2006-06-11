@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_ordering.h,v 1.2 2006/06/11 12:09:48 cepek Exp $
+ *  $Id: smatrix_ordering.h,v 1.3 2006/06/11 16:14:31 cepek Exp $
  */
 
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
@@ -239,7 +239,6 @@ namespace GNU_gama {
       const Index N = graph->nodes();
       for (Index i=1; i<=N; i++)
         {
-          this->perm(i) = i;
           this->invp(i) = 1;
         }
 
