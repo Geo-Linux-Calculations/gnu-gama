@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: sbdiagonal.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: sbdiagonal.h,v 1.2 2006/06/17 09:15:21 cepek Exp $
  */
 
 #ifndef GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
@@ -153,17 +153,17 @@ template <typename Float=double, typename Index=std::size_t>
         for (row=1; row<=N; row++)
           {
             if ((pivot = *B) < tol) 
-              return block;                // not positive-definite
+              return block;                  // not positive-definite
 
-            k = min(W, N-row);             // number of of-diagonal elements
-            p = B+k;                       // next row address -1
+            k = std::min(W, N-row);          // number of of-diagonal elements
+            p = B+k;                         // next row address -1
             for (n=1; n<=k; n++)
               {
                 q = B[n]/pivot;
                 for (l=n; l<=k; l++) p[l] -= q*B[l];
-                p += min(W, N-row-n);
+                p += std::min(W, N-row-n);
               }
-            *B++ = pivot = sqrt(pivot);    // scaling pivot row 
+            *B++ = pivot = std::sqrt(pivot); // scaling pivot row 
             for (; k; k--) *B++ /= pivot;
           }
 
