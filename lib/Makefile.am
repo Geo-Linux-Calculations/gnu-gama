@@ -29,9 +29,11 @@ libgama_src = \
    gnu_gama/adj/adj_chol.h \
    gnu_gama/adj/adj_chol_implementation.h \
    gnu_gama/adj/adj.cpp \
-   gnu_gama/adj/adj_gso.h \
    gnu_gama/adj/adj.h \
+   gnu_gama/adj/adj_gso.h \
    gnu_gama/adj/adj_svd.h \
+   gnu_gama/adj/envelope.h \
+   gnu_gama/adj/homogenization.h \
    gnu_gama/g3/g3_cluster.cpp \
    gnu_gama/g3/g3_cluster.h \
    gnu_gama/g3/g3_model.cpp \
