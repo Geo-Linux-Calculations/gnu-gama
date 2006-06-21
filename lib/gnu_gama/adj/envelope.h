@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.2 2006/06/19 19:48:32 cepek Exp $
+ *  $Id: envelope.h,v 1.3 2006/06/21 18:55:07 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -50,9 +50,13 @@ namespace GNU_gama {
       set(cov); 
     }
 
-    void set(const BlockDiagonal<Float, Index>& cov);
- 
     Index dim() const { return dim_; }
+
+    void lower_solve(Index start, Float* rhs) const;
+    void diagonal_solve(Index start, Float* rhs) const;
+    void upper_solve(Index start, Float* rhs) const;
+    void set(const BlockDiagonal<Float, Index>& cov);
+    void write_xml(std::ostream&) const;
 
   private:
 
@@ -70,6 +74,69 @@ namespace GNU_gama {
   };
 
 
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::lower_solve(Index start, Float* rhs) const
+  {
+    Float   s;
+    Float*  x;
+    const Float*  b;
+    const Float*  e;
+
+    rhs++;
+    b = xenv[start+1];
+    for (Index row=start+1; row<=dim_; row++)
+      {
+        s = 0;
+        e = xenv[row+1];
+
+        x = rhs - (e-b);
+        while (b != e)
+          {
+            s += *x++ * *b++;
+          }
+        *rhs++ -= s;
+
+        b = e;
+      }
+  }
+
+  
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::diagonal_solve(Index start, Float* rhs) const
+  {
+    Float* d = diag + start - 1;     // 1 based indexes
+    while (start++ < dim_)
+      {
+        *rhs++ /= *d++;
+      }
+  }
+
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::upper_solve(Index stop, Float* rhs) const
+  {
+    Float* col;
+    const Float* b;
+    const Float* e;
+
+    rhs += dim_ - stop;
+    for (Index row=dim_; row>=stop; row--)
+      {
+        b = xenv[row];
+        e = xenv[row+1];
+
+        const Float x = *rhs;
+        col = rhs - (e-b);
+        while (b != e)
+          {
+            *col++ -= x * *b++;
+          }
+       
+        rhs--;
+      }
+  }
+
   
   template <typename Float, typename Index>
   void Envelope<Float, Index>::set(const BlockDiagonal<Float, Index>& cov)
@@ -78,39 +145,64 @@ namespace GNU_gama {
     dim_ = cov.dim();
     if (dim_ == 0) return;
 
+
     diag = new Float[dim_];
     xenv = new Float*[dim_+2];    // 1 based indexes
     Index env_size = 0;
-    for (Index i=1; i<=cov.blocks(); i++)
+    for (Index block=1; block<=cov.blocks(); block++)
       {
-        const Index dim  = cov.dim(i);
-        const Index band = cov.width(i);
+        const Index dim  = cov.dim  (block);
+        const Index band = cov.width(block);
 
         env_size += (dim + -1 + dim - band)*band/2;
       }
     if (env_size) env = new Float[env_size];
 
+
     Float* d = diag;
     Float* e = env;
-    for (Index i=1; i<=cov.blocks(); i++)
+    for (Index row=1, block=1; block<=cov.blocks(); block++)
       {
-        const Index dim  = cov.dim(i);
-        const Index band = cov.width(i);
+        const Index dim  = cov.dim  (block);
+        const Index band = cov.width(block);
+        const Float* b   = cov.begin(block);
 
-        const Float* b = cov.begin(i);
-        Index n = (dim + -1 + dim - band)*band/2;
+        for (Index r=1; r<=dim; r++)
+          {            
+            Index c = r > band ? r-band : 1;
+            xenv[row] = e;
+            while (c++ < r)
+              {
+                *e++ = *b++;
+              }
+            xenv[++row] = e;
 
-        *d++ = *b++;
-        while (n) 
-          {
-            *e++ = *b++;
-            n--;
+            *d++ = *b++;
           }
       }
-
-
   }
 
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::write_xml(std::ostream& cout) const
+  {
+    cout << "<envelope> " << "<dim>" << dim_ << "</dim>\n\n";
+
+    Float* d = diag;
+    for (Index i=1; i<=dim_; i++)
+      {
+        Float* b = xenv[i];
+        Float* e = xenv[i+1];
+        while (b != e)
+          {
+            cout << "<env>" << *b++ << "</env> ";
+          }
+
+        cout << "<diag>" << *d++ << "</diag>\n";
+      }
+
+    cout << "\n</envelope>\n";
+  }
 
 }  // namespace GNU_gama
 
