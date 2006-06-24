@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.3 2006/06/21 18:55:07 cepek Exp $
+ *  $Id: envelope.h,v 1.4 2006/06/24 11:58:10 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -28,6 +28,7 @@
 
 
 #include <gnu_gama/sparse/sbdiagonal.h>
+#include <matvec/symmat.h>
 
 
 namespace GNU_gama {
@@ -52,11 +53,16 @@ namespace GNU_gama {
 
     Index dim() const { return dim_; }
 
-    void lower_solve(Index start, Float* rhs) const;
-    void diagonal_solve(Index start, Float* rhs) const;
-    void upper_solve(Index start, Float* rhs) const;
+    void cholDec(Float tol=1e-14);
+    void lowerSolve   (Index start, Index stop, Float* rhs) const;
+    void diagonalSolve(Index start, Index stop, Float* rhs) const;
+    void upperSolve   (Index start, Index stop, Float* rhs) const;
     void set(const BlockDiagonal<Float, Index>& cov);
     void write_xml(std::ostream&) const;
+
+    Float  diagonal(Index i) const { return diag[--i]; }
+    Float* begin   (Index i) const { return xenv[i];   }
+    Float* end     (Index i) const { return xenv[i+1]; }
 
   private:
 
@@ -76,7 +82,41 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index>
-  void Envelope<Float, Index>::lower_solve(Index start, Float* rhs) const
+  void Envelope<Float, Index>::cholDec(Float tol)
+  {
+    for (Index row=2; row<=dim_; row++)
+      {
+        /*
+          submatrix decomposition:
+          ------------------------
+          
+          ( L 0 ) ( D 0 ) (L' u') = ( LDL'     LDu'  )
+          ( u 1 ) ( 0 d ) (0  1 )   ( uDL'  uDu' + d )
+         
+         */
+
+        Float* b = begin(row);
+        Float* e = end(row);
+
+        const Index start = row - (e-b);          // position of first row of L in Envelope
+        const Index stop  = row - 1;              //             last  row of L
+
+        lowerSolve   (start, stop, begin(row));   // L(Dx) = LDu'
+        diagonalSolve(start, stop, begin(row));   // Dx = Du'
+
+        Float* d = diag + (start - 1);            // 1 based indexes
+        Float  s = 0;
+        while (b != e)
+          {
+            s += *b * *b++ * *d++;
+          }
+        *d -= s;                                  // d = diag - uDu'
+      }
+  }
+
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::lowerSolve(Index start, Index stop, Float* rhs) const
   {
     Float   s;
     Float*  x;
@@ -85,7 +125,7 @@ namespace GNU_gama {
 
     rhs++;
     b = xenv[start+1];
-    for (Index row=start+1; row<=dim_; row++)
+    for (Index row=start+1; row<=stop; row++)
       {
         s = 0;
         e = xenv[row+1];
@@ -98,15 +138,15 @@ namespace GNU_gama {
         *rhs++ -= s;
 
         b = e;
-      }
+      }    
   }
 
   
   template <typename Float, typename Index>
-  void Envelope<Float, Index>::diagonal_solve(Index start, Float* rhs) const
+  void Envelope<Float, Index>::diagonalSolve(Index start, Index stop, Float* rhs) const
   {
     Float* d = diag + start - 1;     // 1 based indexes
-    while (start++ < dim_)
+    while (start++ <= stop)
       {
         *rhs++ /= *d++;
       }
@@ -114,14 +154,14 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index>
-  void Envelope<Float, Index>::upper_solve(Index stop, Float* rhs) const
+  void Envelope<Float, Index>::upperSolve(Index start, Index stop, Float* rhs) const
   {
     Float* col;
     const Float* b;
     const Float* e;
 
     rhs += dim_ - stop;
-    for (Index row=dim_; row>=stop; row--)
+    for (Index row=stop; row>=start; row--)
       {
         b = xenv[row];
         e = xenv[row+1];
@@ -202,6 +242,30 @@ namespace GNU_gama {
       }
 
     cout << "\n</envelope>\n";
+  }
+
+
+  template <typename Float, typename Index>
+  SymMat<Float> toSymMat(const Envelope<Float, Index>& env)
+  {
+    SymMat<Float> smat(env.dim());
+    smat.set_zero();
+
+    for (Index i=1; i<=env.dim(); i++)
+      {
+        smat(i,i) = env.diagonal(i);
+
+        Float* b = env.begin(i);
+        Float* e = env.end(i);
+        Index  c = i - (e-b);
+        while (b != e)
+          {
+            smat(i, c++) = *b++;
+          }
+      }
+
+
+    return smat;
   }
 
 }  // namespace GNU_gama
