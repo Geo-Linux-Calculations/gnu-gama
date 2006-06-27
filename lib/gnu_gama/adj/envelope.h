@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.4 2006/06/24 11:58:10 cepek Exp $
+ *  $Id: envelope.h,v 1.5 2006/06/27 19:19:14 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -105,7 +105,7 @@ namespace GNU_gama {
         diagonalSolve(start, stop, begin(row));   // Dx = Du'
 
         Float* d = diag + (start - 1);            // 1 based indexes
-        Float  s = 0;
+        Float  s = Float();
         while (b != e)
           {
             s += *b * *b++ * *d++;
@@ -127,7 +127,7 @@ namespace GNU_gama {
     b = xenv[start+1];
     for (Index row=start+1; row<=stop; row++)
       {
-        s = 0;
+        s = Float();
         e = xenv[row+1];
 
         x = rhs - (e-b);
