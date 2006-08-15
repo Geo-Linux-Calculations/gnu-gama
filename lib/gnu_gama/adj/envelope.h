@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.5 2006/06/27 19:19:14 cepek Exp $
+ *  $Id: envelope.h,v 1.6 2006/08/15 20:06:26 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -42,13 +42,27 @@ namespace GNU_gama {
     Envelope() : dim_(0), diag(0), env(0), xenv(0) 
     {
     }
-    ~Envelope() 
-    { 
-      clear(); 
+    Envelope(const Envelope& envelope) : dim_(0), diag(0), env(0), xenv(0)
+    {
+      copy(envelope);
     }
     Envelope(const BlockDiagonal<Float, Index>& cov) 
     { 
       set(cov); 
+    }
+    ~Envelope() 
+    { 
+      clear(); 
+    }
+    Envelope& operator=(const Envelope& envelope)
+    {
+      if (this != &envelope)
+        {
+          clear();
+          copy(envelope);
+        }
+
+      return *this;
     }
 
     Index dim() const { return dim_; }
@@ -77,6 +91,8 @@ namespace GNU_gama {
       delete[] env;
       delete[] xenv;
     }
+
+    void copy(const Envelope&);
   };
 
 
@@ -266,6 +282,39 @@ namespace GNU_gama {
 
 
     return smat;
+  }
+
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::copy(const Envelope<Float, Index>& envelope)
+  {
+    // diag = env = xenv = 0; ... set before calling copy() 
+
+    dim_ = envelope.dim();
+    if (dim_ == 0) return;
+
+    diag = new Float[dim_];
+    xenv = new Float*[dim_+2];    // 1 based indexes
+    Index env_size = envelope.xenv[dim_+1] - envelope.xenv[1];
+    if (env_size) env = new Float[env_size];
+
+    Float* t = env;
+    Float* d = diag;
+    const Float* cd = envelope.diag;
+    for (Index i=1; i<=dim_; i++)
+      { 
+        *d++ = *cd++;
+
+        // pointers to off-diagonal elements
+        const Index bw = envelope.xenv[i+1] - envelope.xenv[i];
+        xenv[i] = t;
+        t += bw;
+      }
+    xenv[dim_+1] = t;
+
+    Float* e = env;
+    const Float* ce = envelope.env;
+    for (Index i=1; i<=env_size; i++) *e++ = *ce++;
   }
 
 }  // namespace GNU_gama
