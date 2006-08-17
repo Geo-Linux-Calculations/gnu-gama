@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: choldec.h,v 1.1 2006/04/09 16:12:01 cepek Exp $
+ *  $Id: choldec.h,v 1.2 2006/08/17 10:03:39 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -50,6 +50,7 @@ class CholDec {
 public:
 
   CholDec(Float t=1e-8) : tol_(t) {}
+  virtual ~CholDec() {}
 
   Float  cholTol() const  { return tol_; }
   Float  cholTol(Float t) { tol_ = t; return tol_; } 
