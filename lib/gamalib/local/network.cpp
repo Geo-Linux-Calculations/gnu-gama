@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: network.cpp,v 1.2 2006/08/22 18:30:41 cepek Exp $
  */
 
 #include <fstream>
@@ -859,7 +859,7 @@ void LocalNetwork::vyrovnani_()
   if (sum_points()      == 0)
     throw GaMaLib::Exception(T_GaMa_No_points_available);
 
-  GNU_gama::AdjBase<Double, GaMaLib::MatVecException>::solve();
+  GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException>::solve();
 
   tst_vyrovnani_ = true;
 
@@ -910,7 +910,7 @@ void LocalNetwork::vyrovnani_()
   }
 
   { /* ----------------------------------------------------------------- */
-    r = GNU_gama::AdjBase<Double, GaMaLib::MatVecException>::residuals();
+    r = GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException>::residuals();
     suma_pvv_ = 0;
 
     Double tmp;

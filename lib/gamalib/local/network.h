@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: network.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -44,7 +44,7 @@ namespace GaMaLib
 {
   
   class LocalNetwork 
-    : virtual GNU_gama::AdjBase<Double, GaMaLib::MatVecException> 
+    : virtual GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException> 
     {
       typedef std::vector<GaMaLib::Observation*>  RevisedObsList;
       
@@ -156,7 +156,7 @@ namespace GaMaLib
       const Vec& solve() 
         { 
           vyrovnani_(); 
-          return GNU_gama::AdjBase<Double, GaMaLib::MatVecException>::solve(); 
+          return GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException>::solve(); 
         }
       const Vec& residuals() 
         { 

@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: adj_chol.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ * $Id: adj_chol.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
  */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_gnu_gama_adj_chol__h
@@ -37,7 +37,7 @@ namespace GNU_gama {
   template <typename Float=double,  
             typename Exc=Exception::matvec> 
   class AdjCholDec 
-    : virtual public AdjBase<Float, Exc>
+    : virtual public AdjBaseFull<Float, Exc>
   {
   public:
     

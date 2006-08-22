@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.2 2006/08/22 17:15:40 cepek Exp $
+ *  $Id: adj_svd.h,v 1.3 2006/08/22 18:30:41 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
@@ -33,32 +33,32 @@
 namespace GNU_gama {
   
 template <typename Float, typename Exc>
-class AdjSVD : virtual public AdjBase<Float, Exc> {
+class AdjSVD : virtual public AdjBaseFull<Float, Exc> {
 
   SVD<Float, Exc> svd;
 
 public:
   AdjSVD() {}
   AdjSVD(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
-    : AdjBase<Float, Exc>(A, b) {}
+    : AdjBaseFull<Float, Exc>(A, b) {}
   
   void reset(const Mat<Float, Exc>& A, 
              const Vec<Float, Exc>& b)
     {
-      AdjBase<Float, Exc>::reset(A, b);
+      AdjBaseFull<Float, Exc>::reset(A, b);
       svd.reset(A);
     }
   
   const Vec<Float, Exc>& solve(Vec<Float, Exc>& x)
     {
-      return x = AdjBase<Float, Exc>::solve();
+      return x = AdjBaseFull<Float, Exc>::solve();
     }
-  const Vec<Float, Exc>& solve() { return AdjBase<Float, Exc>::solve(); }
+  const Vec<Float, Exc>& solve() { return AdjBaseFull<Float, Exc>::solve(); }
   
   Index defect() { return svd.nullity(); }
   bool  lindep(Index i) { return svd.lindep(i); }
   
-  void  q_xx(Mat<Float, Exc>& C) { AdjBase<Float, Exc>::q_xx(C); }
+  void  q_xx(Mat<Float, Exc>& C) { AdjBaseFull<Float, Exc>::q_xx(C); }
   Float q_xx(Index i, Index j)
     {
       if(!this->is_solved) solve_me();

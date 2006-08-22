@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: adj.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
  */
 
 #include <matvec/covmat.h>
@@ -70,7 +70,7 @@ namespace GNU_gama {
   private:
     
     const AdjInputData *data;
-    AdjBase<double, Exception::matvec> *least_squares;
+    AdjBaseFull<double, Exception::matvec> *least_squares;
 
     bool      solved;
     algorithm algorithm_;

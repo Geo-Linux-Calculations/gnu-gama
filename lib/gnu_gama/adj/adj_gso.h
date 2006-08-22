@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_gso.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: adj_gso.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
@@ -33,33 +33,33 @@
 namespace GNU_gama {
   
 template <typename Float, typename Exc>
-class AdjGSO : public virtual AdjBase<Float, Exc> {
+class AdjGSO : public virtual AdjBaseFull<Float, Exc> {
 
 public:
 
   AdjGSO() {}
   AdjGSO(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
-    : AdjBase<Float, Exc>(A, b) {}
+    : AdjBaseFull<Float, Exc>(A, b) {}
   
   void reset(const Mat<Float, Exc>& A, 
              const Vec<Float, Exc>& b)
     {
-      AdjBase<Float, Exc>::reset(A, b);
+      AdjBaseFull<Float, Exc>::reset(A, b);
     }
   
   const Vec<Float, Exc>& solve(Vec<Float, Exc>& x)
     {
-      return x = AdjBase<Float, Exc>::solve();
+      return x = AdjBaseFull<Float, Exc>::solve();
     }
   const Vec<Float, Exc>& solve() 
     { 
-      return AdjBase<Float, Exc>::solve(); 
+      return AdjBaseFull<Float, Exc>::solve(); 
     }
   
   Index defect() { return gso.defect(); }
   bool  lindep(Index i) { return gso.lindep(i); }
   
-  void  q_xx(Mat<Float, Exc>& C) { AdjBase<Float, Exc>::q_xx(C); }
+  void  q_xx(Mat<Float, Exc>& C) { AdjBaseFull<Float, Exc>::q_xx(C); }
   Float q_xx(Index i, Index j);
   Float q_bb(Index i, Index j);
   Float q_bx(Index i, Index j);
