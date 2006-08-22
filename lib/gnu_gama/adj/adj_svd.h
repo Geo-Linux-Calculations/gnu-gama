@@ -20,13 +20,14 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: adj_svd.h,v 1.2 2006/08/22 17:15:40 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
 #define GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
 
 #include <gnu_gama/adj/adj_base.h>
+#include <matvec/svd.h>
 #include <cmath>
 
 namespace GNU_gama {
