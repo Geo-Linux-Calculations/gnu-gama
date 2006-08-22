@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: model.h,v 1.2 2006/08/22 16:07:48 cepek Exp $
+ *  $Id: model.h,v 1.3 2006/08/22 16:34:46 cepek Exp $
  */
 
 #ifndef GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
@@ -82,7 +82,7 @@ namespace GNU_gama {
   template <typename Observation> class Visitor
   {
   public:
-    virtual ~Visitior() {}
+    virtual ~Visitor() {}
     virtual void visit(Observation* observation) = 0;
   };
     
