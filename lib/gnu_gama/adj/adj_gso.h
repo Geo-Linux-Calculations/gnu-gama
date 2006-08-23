@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_gso.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
+ *  $Id: adj_gso.h,v 1.3 2006/08/23 10:56:32 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
@@ -59,7 +59,6 @@ public:
   Index defect() { return gso.defect(); }
   bool  lindep(Index i) { return gso.lindep(i); }
   
-  void  q_xx(Mat<Float, Exc>& C) { AdjBaseFull<Float, Exc>::q_xx(C); }
   Float q_xx(Index i, Index j);
   Float q_bb(Index i, Index j);
   Float q_bx(Index i, Index j);

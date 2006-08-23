@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.3 2006/08/22 18:30:41 cepek Exp $
+ *  $Id: adj_svd.h,v 1.4 2006/08/23 10:56:32 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
@@ -58,7 +58,6 @@ public:
   Index defect() { return svd.nullity(); }
   bool  lindep(Index i) { return svd.lindep(i); }
   
-  void  q_xx(Mat<Float, Exc>& C) { AdjBaseFull<Float, Exc>::q_xx(C); }
   Float q_xx(Index i, Index j)
     {
       if(!this->is_solved) solve_me();
