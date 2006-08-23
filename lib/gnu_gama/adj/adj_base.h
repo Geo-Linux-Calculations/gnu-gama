@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.4 2006/08/23 10:26:25 cepek Exp $
+ *  $Id: adj_base.h,v 1.5 2006/08/23 10:44:53 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -117,6 +117,21 @@ namespace GNU_gama {
       pA = &A;
       pb = &b;
       this->is_solved = false;
+    }
+
+    void q_xx(Mat<Float, Exc>& cxx)
+    {
+      if (!is_solved) solve_me();
+      
+      const Index x_dim = x.dim();
+      if (cxx.rows() != x_dim || cxx.cols() != x_dim)
+        cxx.reset(x_dim, x_dim);
+      
+      for (Index i = 1; i <= x_dim; i++) {
+        cxx(i,i) = q_xx(i, i);
+        for (Index j = i+1; j <= x_dim; j++)
+          cxx(i,j) = cxx(j,i) = q_xx(i, j);
+      }
     }
     
   protected:
