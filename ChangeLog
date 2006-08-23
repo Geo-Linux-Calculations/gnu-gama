@@ -6,7 +6,10 @@
      #                                                                   #
      #####################################################################
 
-
+    - base adjustment class AdjBase was split into two class AdjBase
+      and class AdjBaseFull : public AdjBase (for implementations of
+      solutions witw full dense matrices); added a new class AdjBaseSparse.
+	
     - new output parameters (--text and --xml); possible redirection
       to standard output ("-").
 	
