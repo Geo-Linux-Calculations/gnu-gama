@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.3 2006/08/23 08:57:02 cepek Exp $
+ *  $Id: adj_base.h,v 1.4 2006/08/23 10:26:25 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -108,11 +108,11 @@ namespace GNU_gama {
       : pA(&A), pb(&b)
     {
     }
-    ~AdjBaseFull() 
+    virtual ~AdjBaseFull() 
     {
     }
 
-    void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b) 
+    virtual void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b) 
     {
       pA = &A;
       pb = &b;
