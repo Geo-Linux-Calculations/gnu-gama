@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
+ *  $Id: adj_base.h,v 1.3 2006/08/23 08:57:02 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -35,78 +35,97 @@
 namespace GNU_gama {
 
 
-template <typename Float, typename Exc>
-class AdjBaseFull {
+  template <typename Float, typename Exc>
+  class AdjBase {
+    
+  public:
 
-public:
-  AdjBaseFull() {}
-  AdjBaseFull(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
-    : pA(&A), pb(&b), is_solved(false) {}
-  virtual ~AdjBaseFull() {}
-
-  virtual void reset(const Mat<Float, Exc>& A, 
-             const Vec<Float, Exc>& b) {
-    pA = &A;
-    pb = &b;
-    is_solved = false;
-  }
-
-  const Vec<Float, Exc>& solve(Vec<Float, Exc>& x) 
-    { 
-      solve_me(); return x = AdjBaseFull::x; 
+    AdjBase() : is_solved(false)
+    {
     }
-  const Vec<Float, Exc>& solve() { solve_me(); return x; }
-  const Vec<Float, Exc>& residuals(Vec<Float, Exc>& res) 
-    { 
-      solve_me(); return res = r; 
+    virtual ~AdjBase() 
+    {
     }
-  const Vec<Float, Exc>& residuals() { solve_me(); return r; }
+    
+    const Vec<Float, Exc>& solve(Vec<Float, Exc>& rhs) 
+    { 
+      solve_me(); 
+      rhs = x; 
+      return x;
 
-  virtual Index defect() = 0;
+    }
+    const Vec<Float, Exc>& solve() 
+    { 
+      solve_me(); 
+      return x; 
+    }
+    const Vec<Float, Exc>& residuals(Vec<Float, Exc>& res) 
+    { 
+      solve_me(); 
+      res = r; 
+      return r;
+    }
+    const Vec<Float, Exc>& residuals() 
+    { 
+      solve_me(); 
+      return r; 
+    }
+    
+    virtual Index defect() = 0;
+    
+    virtual Float q_xx(Index, Index) = 0; // w. coeff. (xi,xj)
+    virtual Float q_bb(Index, Index) = 0; //           (bi,bj)
+    virtual Float q_bx(Index, Index) = 0; //           (bi,xj)
+    
+    virtual bool lindep(Index) = 0;       // linearly dependent column/unknown
+    virtual void min_x() = 0;
+    virtual void min_x(Index, Index[]) = 0;
+    
+    virtual Float cond() { return 0; }    // 0 if not available
+    
+  protected:
+    
+    // solve_me() must compute vectors x, r  and set is_solved=true
+    virtual void solve_me() = 0;
+    
+    Vec<Float, Exc> x;
+    Vec<Float, Exc> r;
+    bool is_solved;
+    
+  };
 
 
-  virtual void  q_xx(Mat<Float, Exc>&);        // weight coefficients 
-  virtual Float q_xx(Index, Index) = 0; // w. coeff. (xi,xj)
-  virtual Float q_bb(Index, Index) = 0; //           (bi,bj)
-  virtual Float q_bx(Index, Index) = 0; //           (bi,xj)
+  
+  template <typename Float, typename Exc>
+  class AdjBaseFull : public AdjBase<Float, Exc> 
+  {    
+  public:
 
-  virtual bool lindep(Index) = 0; // linearly dependent column/unknown
-  virtual void min_x() = 0;
-  virtual void min_x(Index, Index[]) = 0;
+    AdjBaseFull() : pA(0), pb(0)
+    {
+    }
+    AdjBaseFull(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
+      : pA(&A), pb(&b)
+    {
+    }
+    ~AdjBaseFull() 
+    {
+    }
 
-  virtual Float cond() { return 0; }  // condition number (0 if not available)
-
-protected:
-
-  // solve_me() must compute vectors x, r  and set is_solved=true
-  virtual void solve_me() = 0;
-
-  const Mat<Float, Exc>* pA;
-  const Vec<Float, Exc>* pb;
-  Vec<Float, Exc> x;
-  Vec<Float, Exc> r;
-  // Vec<Float, Exc> sqrt_w;
-  bool is_solved;
-
-};
-
-// ................................................................
-
-template <typename Float, typename Exc>
-void AdjBaseFull<Float, Exc>::q_xx(Mat<Float, Exc>& cxx)
-{
-  if (!is_solved) solve_me();
-
-  const Index x_dim = x.dim();
-  if (cxx.rows() != x_dim || cxx.cols() != x_dim)
-    cxx.reset(x_dim, x_dim);
-
-  for (Index i = 1; i <= x_dim; i++) {
-    cxx(i,i) = q_xx(i, i);
-    for (Index j = i+1; j <= x_dim; j++)
-      cxx(i,j) = cxx(j,i) = q_xx(i, j);
-  }
-}
+    void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b) 
+    {
+      pA = &A;
+      pb = &b;
+      this->is_solved = false;
+    }
+    
+  protected:
+    
+    const Mat<Float, Exc>* pA;
+    const Vec<Float, Exc>* pb;
+    
+  };
+  
 
 }
 #endif
