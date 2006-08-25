@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_gso.h,v 1.3 2006/08/23 10:56:32 cepek Exp $
+ *  $Id: adj_gso.h,v 1.4 2006/08/25 15:52:35 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
@@ -33,7 +33,7 @@
 namespace GNU_gama {
   
 template <typename Float, typename Exc>
-class AdjGSO : public virtual AdjBaseFull<Float, Exc> {
+class AdjGSO : public AdjBaseFull<Float, Exc> {
 
 public:
 
@@ -47,15 +47,6 @@ public:
       AdjBaseFull<Float, Exc>::reset(A, b);
     }
   
-  const Vec<Float, Exc>& solve(Vec<Float, Exc>& x)
-    {
-      return x = AdjBaseFull<Float, Exc>::solve();
-    }
-  const Vec<Float, Exc>& solve() 
-    { 
-      return AdjBaseFull<Float, Exc>::solve(); 
-    }
-  
   Index defect() { return gso.defect(); }
   bool  lindep(Index i) { return gso.lindep(i); }
   
@@ -66,10 +57,7 @@ public:
   void min_x() { gso.min_x(); }
   void min_x(Index n, Index x[]) { gso.min_x(n, x); }
   
-  
-protected:
-  
-  void solve_me();
+  void solve();
    
 private:
 
@@ -83,7 +71,7 @@ private:
 
 
 template <typename Float, typename Exc>
-void AdjGSO<Float, Exc>::solve_me()
+void AdjGSO<Float, Exc>::solve()
 {
   if (this->is_solved) return;
 
@@ -124,7 +112,7 @@ void AdjGSO<Float, Exc>::solve_me()
 template <typename Float, typename Exc>
 Float AdjGSO<Float, Exc>::q_xx(Index i, Index j)
   {
-    if(!this->is_solved) solve_me();
+    if(!this->is_solved) solve();
     const Index M = this->pA->rows();
     const Index N = this->pA->cols();
     i += M;
@@ -139,7 +127,7 @@ Float AdjGSO<Float, Exc>::q_xx(Index i, Index j)
 template <typename Float, typename Exc>
 Float AdjGSO<Float, Exc>::q_bb(Index i, Index j)
   {
-    if(!this->is_solved) solve_me();
+    if(!this->is_solved) solve();
 
     const Index N = this->pA->cols();
     Float s = 0;                        
@@ -152,7 +140,7 @@ Float AdjGSO<Float, Exc>::q_bb(Index i, Index j)
 template <typename Float, typename Exc>
 Float AdjGSO<Float, Exc>::q_bx(Index i, Index j)
   {
-    if(!this->is_solved) solve_me();
+    if(!this->is_solved) solve();
 
     const Index M = this->pA->rows();
     const Index N = this->pA->cols();

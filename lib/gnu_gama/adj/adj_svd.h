@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.4 2006/08/23 10:56:32 cepek Exp $
+ *  $Id: adj_svd.h,v 1.5 2006/08/25 15:52:35 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
@@ -33,7 +33,7 @@
 namespace GNU_gama {
   
 template <typename Float, typename Exc>
-class AdjSVD : virtual public AdjBaseFull<Float, Exc> {
+class AdjSVD : public AdjBaseFull<Float, Exc> {
 
   SVD<Float, Exc> svd;
 
@@ -42,35 +42,28 @@ public:
   AdjSVD(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     : AdjBaseFull<Float, Exc>(A, b) {}
   
-  void reset(const Mat<Float, Exc>& A, 
-             const Vec<Float, Exc>& b)
+  void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     {
       AdjBaseFull<Float, Exc>::reset(A, b);
       svd.reset(A);
     }
-  
-  const Vec<Float, Exc>& solve(Vec<Float, Exc>& x)
-    {
-      return x = AdjBaseFull<Float, Exc>::solve();
-    }
-  const Vec<Float, Exc>& solve() { return AdjBaseFull<Float, Exc>::solve(); }
   
   Index defect() { return svd.nullity(); }
   bool  lindep(Index i) { return svd.lindep(i); }
   
   Float q_xx(Index i, Index j)
     {
-      if(!this->is_solved) solve_me();
+      if(!this->is_solved) solve();
       return svd.q_xx(i, j);
     }
   Float q_bb(Index i, Index j)
     {
-      if (!this->is_solved) solve_me();
+      if (!this->is_solved) solve();
       return svd.q_bb(i, j);
     }
   Float q_bx(Index i, Index j)
     {
-      if (!this->is_solved) solve_me();
+      if (!this->is_solved) solve();
       return svd.q_bx(i, j);
     }
   
@@ -78,17 +71,14 @@ public:
   void min_x(Index n, Index x[]) { svd.min_x(n, x); }
 
   Float cond();
-  
-protected:
-  
-   void solve_me();
+  void solve();
    
 };
 
 // ...................................................................
 
 template <typename Float, typename Exc>
-void AdjSVD<Float, Exc>::solve_me()
+void AdjSVD<Float, Exc>::solve()
 {
    using namespace GNU_gama; 
    using namespace std;

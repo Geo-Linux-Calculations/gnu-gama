@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.2 2006/08/22 18:30:41 cepek Exp $
+ *  $Id: network.cpp,v 1.3 2006/08/25 15:52:35 cepek Exp $
  */
 
 #include <fstream>
@@ -53,6 +53,8 @@ LocalNetwork::LocalNetwork()
     tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(0),
     gons_(true)
 {
+  least_squares = 0;
+
   epoch = 0.0;
   Asp = 0;
 }
@@ -313,7 +315,13 @@ void LocalNetwork::project_equations()
       return;  
     }
 
-  reset(A, b);
+  if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
+    full->reset(A, b);
+  else
+    {
+      std::cerr << "\n### network.cpp : unknown algorithm ###\n\n";
+      std::exit(0);
+    }
 
   //--ofstream opr("A_scaled.bin", ios_base::trunc); 
   //--int m=A.rows();
@@ -350,7 +358,7 @@ void LocalNetwork::project_equations()
               min_x_[n++] = p.index_z();
             }
         }
-      min_x(min_n_, min_x_);
+      least_squares->min_x(min_n_, min_x_);
     }
   
   tst_rov_opr_ = true;
@@ -695,7 +703,7 @@ int LocalNetwork::null_space()
           }
     } 
   
-  return defect();
+  return least_squares->defect();
 }
 
 
@@ -707,9 +715,9 @@ void LocalNetwork::std_error_ellipse(const PointID& cb,
   const LocalPoint& bod = PD[cb];
   int iy = bod.index_y();
   int ix = bod.index_x();
-  Double cyy = q_xx(iy,iy);
-  Double cyx = q_xx(iy,ix);
-  Double cxx = q_xx(ix,ix); 
+  Double cyy = least_squares->q_xx(iy,iy);
+  Double cyx = least_squares->q_xx(iy,ix);
+  Double cxx = least_squares->q_xx(ix,ix); 
   Double c = sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
   b = (cyy+cxx-c)/2;
   if (b < 0) b = 0;
@@ -730,6 +738,8 @@ void LocalNetwork::std_error_ellipse(const PointID& cb,
 
 void LocalNetwork::refine_approx()
 {
+  const Vec& x = least_squares->unknowns();
+
   for (int i=1; i<=sum_unknowns(); i++)
     if (unknown_type(i) == 'X')
       {
@@ -748,7 +758,8 @@ void LocalNetwork::refine_approx()
     else if (unknown_type(i) == 'R')
       {
         StandPoint* standpoint = unknown_standpoint(i);
-        Double ori = ( standpoint->orientation() )*R2G + x(i)/10000;
+        Double ori = 
+          ( standpoint->orientation() )*R2G + x(i)/10000;
         standpoint->set_orientation( ori*G2R );
       }
 
@@ -859,7 +870,7 @@ void LocalNetwork::vyrovnani_()
   if (sum_points()      == 0)
     throw GaMaLib::Exception(T_GaMa_No_points_available);
 
-  GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException>::solve();
+  least_squares->solve();
 
   tst_vyrovnani_ = true;
 
@@ -874,9 +885,9 @@ void LocalNetwork::vyrovnani_()
         if (!P.free_xy() && !P.free_z()) continue;
 
         Double tx=0, ty=0, tz=0;
-        if (int ix = P.index_x()) tx = m_0_apr_ * sqrt( q_xx(ix,ix) );
-        if (int iy = P.index_y()) ty = m_0_apr_ * sqrt( q_xx(iy,iy) );
-        if (int iz = P.index_z()) tz = m_0_apr_ * sqrt( q_xx(iz,iz) );
+        if (int ix = P.index_x()) tx = m_0_apr_ * sqrt( least_squares->q_xx(ix,ix) );
+        if (int iy = P.index_y()) ty = m_0_apr_ * sqrt( least_squares->q_xx(iy,iy) );
+        if (int iz = P.index_z()) tz = m_0_apr_ * sqrt( least_squares->q_xx(iz,iz) );
 
         bool bxy = (tx > 1e4) || (ty > 1e4);
         bool bz  = (tz > 1e4);
@@ -910,7 +921,7 @@ void LocalNetwork::vyrovnani_()
   }
 
   { /* ----------------------------------------------------------------- */
-    r = GNU_gama::AdjBaseFull<Double, GaMaLib::MatVecException>::residuals();
+    r = least_squares->residuals();
     suma_pvv_ = 0;
 
     Double tmp;
@@ -972,8 +983,8 @@ void LocalNetwork::vyrovnani_()
                      i!= cluster.observation_list.end(); ++i)
                 if ((*i)->active())
                   { 
-                    // sigma_L = m0() * sqrt(q_bb(n,n)) / weight_l
-                    sigma_L(n) = MM * sqrt(q_bb(n,n)) * (*i)->stdDev();
+                    // sigma_L = m0() * sqrt(least_squares->q_bb(n,n)) / weight_l
+                    sigma_L(n) = MM * sqrt(least_squares->q_bb(n,n)) * (*i)->stdDev();
                     n++;
                   }
             }
@@ -990,7 +1001,7 @@ void LocalNetwork::vyrovnani_()
       {
         // F.Charamza: Geodet/PC p. 171
         // 1.1.56 Double  qv = (1.0 - q_bb(i, i))/w(i); 
-        Double  qv = (1.0 - q_bb(i, i))/ weight_obs(i); 
+        Double  qv = (1.0 - least_squares->q_bb(i, i))/ weight_obs(i); 
         vahkopr(i) = (qv >= 0) ? qv : 0;       // removing noise 
       }
   }

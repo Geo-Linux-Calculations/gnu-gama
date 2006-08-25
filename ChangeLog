@@ -6,6 +6,10 @@
      #                                                                   #
      #####################################################################
 
+    - adjustment class LocalNetwork was split from AdjBase
+      hierarchy. LocalNetwork now has a pointer to AdjBase* (algorithm) so
+      now, there is no need for virtual inheritance.
+
     - base adjustment class AdjBase was split into two class AdjBase
       and class AdjBaseFull : public AdjBase (for implementations of
       solutions witw full dense matrices); added a new class AdjBaseSparse.

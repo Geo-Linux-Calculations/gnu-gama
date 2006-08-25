@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: adj.cpp,v 1.2 2006/08/25 15:52:35 cepek Exp $
  */
 
 #include <gnu_gama/adj/adj.h>
@@ -358,7 +358,7 @@ void Adj::init_least_squares()
 
   least_squares->reset(A_dot, b_dot);
 
-  x_   = least_squares->solve();
+  x_   = least_squares->unknowns();
 
   const Vec<>& v = least_squares->residuals();
   rtr_ = trans(v)*v;

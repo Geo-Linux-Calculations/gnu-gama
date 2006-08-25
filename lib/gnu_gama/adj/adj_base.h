@@ -20,17 +20,13 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.7 2006/08/23 10:54:38 cepek Exp $
+ *  $Id: adj_base.h,v 1.8 2006/08/25 15:52:35 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
 
-#include <gamalib/exception.h>
-#include <gamalib/float.h>
-#include <matvec/svd.h>
-#include <matvec/covmat.h>
-
+#include <matvec/matvec.h>
 
 namespace GNU_gama {
 
@@ -47,27 +43,24 @@ namespace GNU_gama {
     {
     }
     
-    const Vec<Float, Exc>& solve(Vec<Float, Exc>& rhs) 
+    void unknowns(Vec<Float, Exc>& parameters) 
     { 
-      solve_me(); 
-      rhs = x; 
-      return x;
-
+      if (!is_solved) solve(); 
+      parameters = x; 
     }
-    const Vec<Float, Exc>& solve() 
+    const Vec<Float, Exc>& unknowns() 
     { 
-      solve_me(); 
+      if (!is_solved) solve(); 
       return x; 
     }
-    const Vec<Float, Exc>& residuals(Vec<Float, Exc>& res) 
+    void residuals(Vec<Float, Exc>& res) 
     { 
-      solve_me(); 
+      if (!is_solved) solve(); 
       res = r; 
-      return r;
     }
     const Vec<Float, Exc>& residuals() 
     { 
-      solve_me(); 
+      if (!is_solved) solve(); 
       return r; 
     }
     
@@ -83,10 +76,10 @@ namespace GNU_gama {
     
     virtual Float cond() { return 0; }    // 0 if not available
     
-  protected:
+    // solve() must compute vectors x, r  and set is_solved=true
+    virtual void solve() = 0;
     
-    // solve_me() must compute vectors x, r  and set is_solved=true
-    virtual void solve_me() = 0;
+  protected:
     
     Vec<Float, Exc> x;
     Vec<Float, Exc> r;

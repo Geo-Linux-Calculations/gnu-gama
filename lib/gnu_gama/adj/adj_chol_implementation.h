@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: adj_chol_implementation.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ * $Id: adj_chol_implementation.h,v 1.2 2006/08/25 15:52:35 cepek Exp $
  */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_implementation__h
@@ -45,7 +45,7 @@ namespace GNU_gama {
   Float 
   AdjCholDec<Float, Exc>::q_xx(Index i, Index j)
   {
-    if (!this->is_solved) solve_me();
+    if (!this->is_solved) solve();
 
     if (nullity == 0)  return Q0(i,j);
 
@@ -66,7 +66,7 @@ namespace GNU_gama {
   Float 
   AdjCholDec<Float, Exc>::q_bb(Index i, Index j)
   {
-    if (!this->is_solved) solve_me();
+    if (!this->is_solved) solve();
 
     const Mat<Float, Exc>& A = *this->pA;
     Vec<Float, Exc> aq(N);
@@ -143,7 +143,7 @@ namespace GNU_gama {
   bool 
   AdjCholDec<Float, Exc>::lindep(Index n)
   {
-    this->solve_me();
+    this->solve();
     return nullity && invp(n) > N0;
   }
 
@@ -210,7 +210,7 @@ namespace GNU_gama {
 
   template <typename Float, typename Exc> 
   void 
-  AdjCholDec<Float, Exc>::solve_me()
+  AdjCholDec<Float, Exc>::solve()
   {
     if (this->is_solved) return;
 
@@ -508,7 +508,7 @@ namespace GNU_gama {
                 this->x = x0;
                 this->is_solved = true;
                 throw Exc(Exception::BadRegularization,
-                        "AdjCholDec::solve_me() --- bad regularization"); 
+                        "AdjCholDec::solve() --- bad regularization"); 
               }
             Index ipvt  = 0;
             for (Index i=column+1; i<=nullity; i++)

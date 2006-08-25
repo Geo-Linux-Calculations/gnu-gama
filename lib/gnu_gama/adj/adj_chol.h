@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: adj_chol.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
+ * $Id: adj_chol.h,v 1.3 2006/08/25 15:52:35 cepek Exp $
  */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_gnu_gama_adj_chol__h
@@ -36,15 +36,13 @@ namespace GNU_gama {
 
   template <typename Float=double,  
             typename Exc=Exception::matvec> 
-  class AdjCholDec 
-    : virtual public AdjBaseFull<Float, Exc>
+  class AdjCholDec : public AdjBaseFull<Float, Exc>
   {
   public:
     
     AdjCholDec()  { init();          }
     ~AdjCholDec() { delete[] minx_i; }
-    
-    
+
     Index defect  ();
     Float q_xx    (Index, Index);
     Float q_bb    (Index, Index);
@@ -52,10 +50,7 @@ namespace GNU_gama {
     bool  lindep  (Index);
     void  min_x   ();
     void  min_x   (Index, Index[]);
-
-  protected:
-
-    void  solve_me();
+    void  solve   ();
     
   private:
     
