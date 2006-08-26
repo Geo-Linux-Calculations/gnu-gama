@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
 <entries>
 
-<!-- $Id: review.fr.lang,v 1.2 2005/09/19 18:11:00 cepek Exp $ -->
+<!-- $Id: review.fr.lang,v 1.3 2006/08/26 17:19:11 cepek Exp $ -->
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \nchanging sign of all Y coordinates"
@@ -95,8 +95,8 @@
    EN="Coordinates"
    fr="Coordonnées" />
 
-<e id="T_GaMa_gpar1_levelling_diffs"
-   EN="Levelling differences"
+<e id="T_GaMa_gpar1_leveling_diffs"
+   EN="Leveling differences"
    fr="Dénivelées" />
 
 <e id="T_GaMa_gpar1_z_angles"

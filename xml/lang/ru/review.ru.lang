@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
 
-<!-- $Id: review.ru.lang,v 1.14 2006/03/02 13:42:49 cepek Exp $ -->
+<!-- $Id: review.ru.lang,v 1.15 2006/08/26 17:19:11 cepek Exp $ -->
 <entries>
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
@@ -95,8 +95,8 @@
    EN="Coordinates"
    ru="Координаты" />
 
-<e id="T_GaMa_gpar1_levelling_diffs"
-   EN="Levelling differences"
+<e id="T_GaMa_gpar1_leveling_diffs"
+   EN="Leveling differences"
    ru="Превышение" />
 
 <e id="T_GaMa_gpar1_z_angles"

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<entries>
+
+<!-- $Id: review.lang,v 1.1 2006/08/26 17:19:11 cepek Exp $ -->
+
+<e id="T_GaMa_inconsistent_coordinates_and_angles"
+   en="Inconsistent coordinates and angles: \nchanging internally sign of all Y coordinates" />
+
+<e id="T_GaMa_point"
+   en="point" />
+
+<e id="T_GaMa_standpoint"
+   en="standpoint" />
+
+<e id="T_GaMa_target"
+   en="target" />
+
+<e id="T_GaMa_network_description"
+   en="Network description" />
+
+<e id="T_GaMa_General_solution_parameters"
+   en="General parameters of the adjustment" />
+
+<e id="T_GaMa_gpar1_coordinates"
+   en="Coordinates" />
+
+<e id="T_GaMa_gpar1_adjusted_coordinates"
+   en="Adjusted" />
+
+<e id="T_GaMa_gpar1_constrained_coordinates"
+   en="Constrained  * " />
+
+<e id="T_GaMa_gpar1_fixed_coordinates"
+   en="Fixed" />
+
+<e id="T_GaMa_gpar1_total"
+   en="Total" />
+
+<e id="T_GaMa_gpar1_computed_points"
+   en="Total of adjusted points" />
+
+<e id="T_GaMa_gpar2_constrained_points"
+   en="Constrained points" />
+
+<e id="T_GaMa_gpar1_fixed_points"
+   en="Number of fixed points" />
+
+<e id="T_GaMa_gpar1_computed_heights"
+   en="Number of computed heights" />
+
+<e id="T_GaMa_gpar2_constrained_heights"
+   en="Constrained heights" />
+
+<e id="T_GaMa_gpar1_fixed_heights"
+   en="Number of fixed heights" />
+
+<e id="T_GaMa_gpar1_points_total"
+   en="Total of points" />
+
+<e id="T_GaMa_gpar1_directions"
+   en="Number of directions" />
+
+<e id="T_GaMa_gpar2_bearings"
+   en="Number of bearings" />
+
+<e id="T_GaMa_gpar1_angles"
+   en="Number of angles" />
+
+<e id="T_GaMa_gpar1_distances"
+   en="Number of distances" />
+
+<e id="T_GaMa_gpar1_observed_coords"
+   en="Coordinates" />
+
+<e id="T_GaMa_gpar1_leveling_diffs"
+   en="Leveling differences" />
+
+<e id="T_GaMa_gpar1_z_angles"
+   en="Zenith angles" />
+
+<e id="T_GaMa_gpar1_s_dists"
+   en="Slope distances" />
+
+<e id="T_GaMa_gpar1_obs_total"
+   en="Total of observations" />
+
+<e id="T_GaMa_gpar1_equations"
+   en="Number of project equations" />
+
+<e id="T_GaMa_gpar2_number_of_unknowns"
+   en="Number of unknowns" />
+
+<e id="T_GaMa_gpar1_redundancy"
+   en="Degrees of freedom" />
+
+<e id="T_GaMa_gpar2_network_defect"
+   en="Network defect" />
+
+<e id="T_GaMa_not_enough_constrained_points"
+   en="Not enough constrained points defined" />
+
+<e id="T_GaMa_Free_network"
+   en="Free network" />
+
+<e id="T_GaMa_Free_network_defect_is"
+   en="Free network defect is " />
+
+<e id="T_GaMa_Given_network_configuration_can_not_be_adjusted"
+   en="Given network configuration can not be adjusted" />
+
+<e id="T_GaMa_detected_singular_variables"
+   en="The following unknowns have been detected as linearly dependent" />
+
+<e id="T_GaMa_index_type_point"
+   en="  index type point" />
+
+<e id="T_GaMa_m0_apriori"
+   en="m0  apriori    " />
+
+<e id="T_GaMa_m0_empirical"
+   en="m0\' aposteriori" />
+
+<e id="T_GaMa_During_statistical_analysis_we_work"
+   en="During statistical analysis we work" />
+
+<e id="T_GaMa_statan_with_empirical_standard_deviation"
+   en="- with aposteriori standard deviation " />
+
+<e id="T_GaMa_statan_with_apriori_standard_deviation"
+   en="- with apriori standard deviation " />
+
+<e id="T_GaMa_statan_with_confidence_level"
+   en="- with confidence level " />
+
+<e id="T_GaMa_Ratio_empirical_to_apriori"
+   en="Ratio m0\' aposteriori / m0 apriori: " />
+
+<e id="T_GaMa_interval"
+   en="interval" />
+
+<e id="T_GaMa_interval_contains"
+   en="contains value m0\'/m0" />
+
+<e id="T_GaMa_interval_doesnt_contain"
+   en="does not contain value m0\'/m0"  />
+
+<e id="T_GaMa_m0_distances"
+   en="m0\'/m0 (distances): " />
+
+<e id="T_GaMa_m0_directions"
+   en="m0\'/m0 (directions): " />
+
+<e id="T_GaMa_m0_angles"
+   en="m0\'/m0 (angles): " />
+
+<e id="T_GaMa_m0_dirs_angs"
+   en="m0\'/m0 (directions/angles): " />
+
+<e id="T_GaMa_Maximal_decrease_of_m0"
+   en="Maximal decrease of m0\'\'/m0 on elimination of one observation: " />
+
+<e id="T_GaMa_Maximal_normalized_residual"
+   en="Maximal normalized residual " />
+
+<e id="T_GaMa_genpar_Maximal_studentized_residual"
+   en="Maximal studentized residual " />
+
+<e id="T_GaMa_genpar_exceeds"
+   en=" exceeds" />
+
+<e id="T_GaMa_genpar_doesnt_exceed"
+   en=" does not exceed" />
+
+<e id="T_GaMa_genpar_critical_value"
+   en=" critical value " />
+
+<e id="T_GaMa_genpar_on_significance_level"
+   en="on significance level " />
+
+<e id="T_GaMa_genpar_for_observation_ind"
+   en=" % for observation #" />
+
+<e id="T_GaMa_Review_of_fixed_points"
+   en="Fixed points" />
+
+<e id="T_GaMa_point"
+   en="point" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_coordidantes"
+   en="Adjusted coordinates" />
+
+<e id="T_GaMa_adjunk_mean_position_error_maximal"
+   en="Maximal mean position error is " />
+
+<e id="T_GaMa_adjunk_mean_position_error_on_point"
+   en=" mm on point " />
+
+<e id="T_GaMa_adjunk_mean_position_error_average"
+   en="Average mean position error is " />
+
+<e id="T_GaMa_adjunk_header1"
+   en="    approximate  correction  adjusted    std.dev conf.i.\n" />
+
+<e id="T_GaMa_adjunk_header2"
+   en="====== value ====== [m] ====== value ========== [mm] ===\n\n" />
+
+<e id="T_GaMa_adjunk_constrained"
+   en="constrained" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_bearings"
+   en="Adjusted orientation unknowns" />
+
+<e id="T_GaMa_adjunk_header3"
+   en="   approximate  correction  adjusted   std.dev conf.i.\n" />
+
+<e id="T_GaMa_adjunk_header4"
+   en="==== value [g] ==== [g] === value [g] ======= [cc] ===\n\n" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_heights"
+   en="Adjusted heights" />
+
+<e id="T_GaMa_adjunk_header5"
+   en="     approximate  correction  adjusted    std.dev conf.i.\n" />
+
+<e id="T_GaMa_adjunk_header6"
+   en="======= value ====== [m] ====== value ========== [mm] ===\n\n" />
+
+<e id="T_GaMa_tstlin_header_value"
+   en="======= value " />
+
+<e id="T_GaMa_tstlin_Test_of_linearization_error"
+   en="Test of linearization error" />
+
+<e id="T_GaMa_tstlin_Differences"
+   en="Diffs in adj. observations from residuals and from adjusted coordinates" />
+
+<e id="T_GaMa_tstlin_obs_r_diff"
+   en="      observed     r        difference" />
+
+<e id="T_GaMa_tstlin_header1"
+   en="====== value == [mm|cc] == [cc] == [mm] =\n\n" />
+
+<e id="T_GaMa_distance"
+   en=" dist. " />
+
+<e id="T_GaMa_direction"
+   en=" dir.  " />
+
+<e id="T_GaMa_angle"
+   en=" angle " />
+
+<e id="T_GaMa_s_distance"
+   en=" slope " />
+
+<e id="T_GaMa_z_angle"
+   en=" zenit " />
+   
+<e id="T_GaMa_x"
+   en=" x     " />
+
+<e id="T_GaMa_y"
+   en=" y     " />
+
+<e id="T_GaMa_z"
+   en=" z     " />
+
+<e id="T_GaMa_levell"
+   en=" h dif " />
+
+<e id="T_GaMa_xdiff"
+   en=" x dif " />
+
+<e id="T_GaMa_ydiff"
+   en=" y dif " />
+
+<e id="T_GaMa_zdiff"
+   en=" z dif " />
+
+<e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
+   en="Mean errors and parameters of error ellipses" />
+
+<e id="T_GaMa_errell_header1"
+   en="    mp      mxy      mean error ellipse  conf.err. ellipse   g\n" />
+
+<e id="T_GaMa_errell_header2"
+   en="== [mm] == [mm] ==== a [mm] b  alpha[g] ==== a' [mm] b' ========" />
+
+<e id="T_GaMa_adjobs_Adjusted_observations"
+   en="Adjusted observations" />
+
+<e id="T_GaMa_adjobs_observed"
+   en="observed" />
+
+<e id="T_GaMa_adjobs_adjusted"
+   en="adjusted" />
+
+<e id="T_GaMa_adjobs_header1"
+   en=" std.dev conf.i.\n" />
+
+<e id="T_GaMa_adjobs_value"
+   en="== value " />
+
+<e id="T_GaMa_resobs_Review_of_residuals_analysis_obs"
+   en="Residuals and analysis of observations" />
+
+<e id="T_GaMa_resobs_Outlying_observations"
+   en="Outlying observations" />
+
+<e id="T_GaMa_resobs_header1"
+   en="        f[%]        v    |v'|     e-obs.  e-adj.\n" />
+
+<!-- removed in 1.7.09 : e id="T_GaMa_resobs_header2"
+   en="======== [mm|cc] =========== [mm|cc] ===\n\n" / -->
+
+<e id="T_GaMa_resobs_no_control"
+   en=" u" />
+
+<e id="T_GaMa_resobs_weak_control"
+   en=" w" />
+
+<e id="T_GaMa_resobs_mc_max_critical"
+   en=" mc" />
+
+<e id="T_GaMa_resobs_mc_max"
+   en=" m " />
+
+<e id="T_GaMa_resobs_mc_critical"
+   en=" c " />
+
+<e id="T_GaMa_resobs_normality_test"
+   en="Test of normality of homogenised residuals" />
+
+<e id="T_GaMa_resobs_condition_number"
+   en="Condition number        : " />
+
+<e id="T_GaMa_reduced_Review_of_reduced_observations"
+   en="Reduced observations" />
+
+<e id="T_GaMa_reduced_observed"
+   en="observed" />
+
+<e id="T_GaMa_reduced_reduced" 
+   en="reduced" />
+
+<e id="T_GaMa_reduced_header1"
+   en="  diff dh\n" />
+
+<e id="T_GaMa_reduced_value"
+   en="== value " />
+   
+<e id="T_GaMa_approx_Review_of_approximate_coordinates"
+   en="Approximate coordinates" />
+
+<e id="T_GaMa_approx_observations"
+   en="observations: " />
+
+<e id="T_GaMa_approx_header1"
+   en="coordinates   " />
+
+<e id="T_GaMa_approx_given_coordinates"
+   en="given       : " />
+
+<e id="T_GaMa_approx_computed_coordinates"
+   en="computed    : " />
+
+<e id="T_GaMa_approx_total"
+   en="total       : " />
+
+<e id="T_GaMa_approx_separator"
+   en="---------------------------------------------" />
+
+<e id="T_GaMa_missing_coordinates"
+   en="Missing coordinates" />
+
+<e id="T_GaMa_abstrm_Review_of_outlying_abs_terms"
+   en="Outlying absolute terms in project equations" />
+
+<e id="T_GaMa_abstrm_header1"
+   en="           observed     absolute\n" />
+
+<e id="T_GaMa_abstrm_header2"
+   en="== value ===== term ==\n\n" />
+
+<e id="T_GaMa_reduced_Review_of_reduced_observations_to_ellipsoid"
+   en="Reduced observations to ellipsoid" />
+
+<e id="T_GaMa_reduced_to_ellipsoid_header1"
+   en="  diff\n" />
+
+</entries>
+
+
+
+
+
+
+
+

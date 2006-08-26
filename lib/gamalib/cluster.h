@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: cluster.h,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: cluster.h,v 1.2 2006/08/26 17:19:11 cepek Exp $
  */
 
 #ifndef GaMaLib_Cluster_of_observations__h
@@ -96,7 +96,7 @@ namespace GaMaLib {
   };
 
 
-  // height differences (levelling)
+  // height differences (leveling)
 
   class HeightDifferences : public GNU_gama::Cluster<Observation> {
   public:

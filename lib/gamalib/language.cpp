@@ -150,7 +150,7 @@ const char* T_GaMa_gpar1_equations = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_fixed_coordinates = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_fixed_heights = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_fixed_points = T_language_cpp_internal_error;
-const char* T_GaMa_gpar1_levelling_diffs = T_language_cpp_internal_error;
+const char* T_GaMa_gpar1_leveling_diffs = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_obs_total = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_observed_coords = T_language_cpp_internal_error;
 const char* T_GaMa_gpar1_points_total = T_language_cpp_internal_error;
@@ -386,7 +386,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Fixed";
 	T_GaMa_gpar1_fixed_heights="Number of fixed heights";
 	T_GaMa_gpar1_fixed_points="Number of fixed points";
-	T_GaMa_gpar1_levelling_diffs="Leveling differences";
+	T_GaMa_gpar1_leveling_diffs="Leveling differences";
 	T_GaMa_gpar1_obs_total="Total of observations";
 	T_GaMa_gpar1_observed_coords="Coordinates";
 	T_GaMa_gpar1_points_total="Total of points";
@@ -618,7 +618,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Fixes";
 	T_GaMa_gpar1_fixed_heights="Alçades fixes";
 	T_GaMa_gpar1_fixed_points="Punts fixes";
-	T_GaMa_gpar1_levelling_diffs="Diferències d'alçada";
+	T_GaMa_gpar1_leveling_diffs="Diferències d'alçada";
 	T_GaMa_gpar1_obs_total="Total d'observacions";
 	T_GaMa_gpar1_observed_coords="Coordenades";
 	T_GaMa_gpar1_points_total="Total de punts";
@@ -850,7 +850,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Pevné";
 	T_GaMa_gpar1_fixed_heights="Počet daných výšek";
 	T_GaMa_gpar1_fixed_points="Počet pevných bodů";
-	T_GaMa_gpar1_levelling_diffs="Nivelační převýšení";
+	T_GaMa_gpar1_leveling_diffs="Nivelační převýšení";
 	T_GaMa_gpar1_obs_total="Celkem pozorování";
 	T_GaMa_gpar1_observed_coords="Souřadnice";
 	T_GaMa_gpar1_points_total="Bodů celkem";
@@ -1082,7 +1082,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Vast";
 	T_GaMa_gpar1_fixed_heights="Aantal vaste hoogtes";
 	T_GaMa_gpar1_fixed_points="Aantal vaste punten";
-	T_GaMa_gpar1_levelling_diffs="Hoogte verschillen";
+	T_GaMa_gpar1_leveling_diffs="Hoogte verschillen";
 	T_GaMa_gpar1_obs_total="Totaal aantal observaties";
 	T_GaMa_gpar1_observed_coords="Coördinaten";
 	T_GaMa_gpar1_points_total="Totaal aantal punten";
@@ -1314,7 +1314,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Kiinnitetty";
 	T_GaMa_gpar1_fixed_heights="Kiinnitettyjen korkeuksien lukumäärä";
 	T_GaMa_gpar1_fixed_points="Kiinnitettyjen pisteiden lukumäärä";
-	T_GaMa_gpar1_levelling_diffs="Vaaitut korkeuserot";
+	T_GaMa_gpar1_leveling_diffs="Vaaitut korkeuserot";
 	T_GaMa_gpar1_obs_total="Havaintojen kokonaislukumäärä";
 	T_GaMa_gpar1_observed_coords="Koordinaatit";
 	T_GaMa_gpar1_points_total="Pisteitä yhteensä";
@@ -1546,7 +1546,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Fixées";
 	T_GaMa_gpar1_fixed_heights="Nombre de hauteurs fixées";
 	T_GaMa_gpar1_fixed_points="Nombre de points fixés";
-	T_GaMa_gpar1_levelling_diffs="Dénivelées";
+	T_GaMa_gpar1_leveling_diffs="Dénivelées";
 	T_GaMa_gpar1_obs_total="Total des observations";
 	T_GaMa_gpar1_observed_coords="Coordonnées";
 	T_GaMa_gpar1_points_total="Total des points";
@@ -1778,7 +1778,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Fix";
 	T_GaMa_gpar1_fixed_heights="Fix magasságok";
 	T_GaMa_gpar1_fixed_points="Fix pontok";
-	T_GaMa_gpar1_levelling_diffs="Magasság különbségek";
+	T_GaMa_gpar1_leveling_diffs="Magasság különbségek";
 	T_GaMa_gpar1_obs_total="Összes mérés";
 	T_GaMa_gpar1_observed_coords="Koordináták";
 	T_GaMa_gpar1_points_total="Összes pont";
@@ -2010,7 +2010,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Жестких";
 	T_GaMa_gpar1_fixed_heights="Количество жестких высот";
 	T_GaMa_gpar1_fixed_points="Количество жестких точек";
-	T_GaMa_gpar1_levelling_diffs="Превышение";
+	T_GaMa_gpar1_leveling_diffs="Превышение";
 	T_GaMa_gpar1_obs_total="Итого наблюдений";
 	T_GaMa_gpar1_observed_coords="Координаты";
 	T_GaMa_gpar1_points_total="Итого точек";
@@ -2242,7 +2242,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_gpar1_fixed_coordinates="Жорстких";
 	T_GaMa_gpar1_fixed_heights="Кількість жорстких висот";
 	T_GaMa_gpar1_fixed_points="Кількість жорстких тчк";
-	T_GaMa_gpar1_levelling_diffs="Перевищення          ";
+	T_GaMa_gpar1_leveling_diffs="Перевищення          ";
 	T_GaMa_gpar1_obs_total="Всього вимірів       ";
 	T_GaMa_gpar1_observed_coords="Координати ";
 	T_GaMa_gpar1_points_total="Всього точок   ";

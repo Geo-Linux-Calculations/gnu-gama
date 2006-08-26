@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<entries>
+
+<!-- $Id: gamalib.lang,v 1.1 2006/08/26 17:19:11 cepek Exp $ -->
+
+<!--
+   ./gamalib/xml/gkfparser.lang
+   ./gamalib/gamalib.lang
+   ./gamalib/local/pobs/pobs.lang
+   ./gamalib/local/results/text/review.lang
+   ./gamalib/local/rmpoints.lang
+   ./gamalib/local/network.lang
+   ./gamaprog/linux/gama-local/gama-local.lang
+-->     
+
+<e id="T_IE_internal_error"
+   en="internal error" />
+
+<e id="T_GaMa_from_equals_to"
+   en="station and target are identical" />
+
+</entries>   
+
+
+
+
+
+

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: general_parameters.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: general_parameters.h,v 1.2 2006/08/26 17:19:11 cepek Exp $
  */
 
 #ifndef GaMa_GaMaProg_Zakladni_Parametry_h_
@@ -175,7 +175,7 @@ bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
     n = strlen(T_GaMa_gpar1_angles);           if (n > w1) w1 = n;
     n = strlen(T_GaMa_gpar1_distances);        if (n > w1) w1 = n;
     n = strlen(T_GaMa_gpar1_observed_coords);  if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_levelling_diffs);  if (n > w1) w1 = n;
+    n = strlen(T_GaMa_gpar1_leveling_diffs);  if (n > w1) w1 = n;
     n = strlen(T_GaMa_gpar1_z_angles);         if (n > w1) w1 = n;
     n = strlen(T_GaMa_gpar1_s_dists);          if (n > w1) w1 = n;
     n = strlen(T_GaMa_gpar1_obs_total);        if (n > w1) w1 = n;
@@ -237,7 +237,7 @@ bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
     }
   if (pocnivp && (pocnivp != IS->sum_observations()))
     {
-      out << set_width(T_GaMa_gpar1_levelling_diffs, w1) << ":"
+      out << set_width(T_GaMa_gpar1_leveling_diffs, w1) << ":"
           << setw(6) << pocnivp << '\n';
     }
   if (poczeni)

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<entries>
+
+<e id="T_POBS_computation_of_bearing_for_identical_points"
+   en="Computation of bearing for identical points" />
+
+<e id="T_POBS_bad_data"
+   en="bad data" />
+
+<e id="T_POBS_zero_or_negative_distance"
+   en="zero or negative distance" />
+
+<e id="T_POBS_zero_or_negative_slope_distance"
+   en="zero or negative slope distance" />
+
+<e id="T_POBS_zero_or_negative_zenith_angle"
+   en="zero or negative zenith angle" />
+
+</entries>

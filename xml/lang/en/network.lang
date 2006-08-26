@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<entries>
+
+<e id="T_LN_undefined_confidence_level"
+   en="undefined confidence level" />
+
+<e id="T_LN_undefined_type_of_actual_sigma"
+   en="Type of actual sigma is not defined (apriori / aposteriori)" />
+
+</entries>

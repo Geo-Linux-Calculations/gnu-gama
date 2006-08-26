@@ -150,7 +150,7 @@ extern const char* T_GaMa_gpar1_equations;
 extern const char* T_GaMa_gpar1_fixed_coordinates;
 extern const char* T_GaMa_gpar1_fixed_heights;
 extern const char* T_GaMa_gpar1_fixed_points;
-extern const char* T_GaMa_gpar1_levelling_diffs;
+extern const char* T_GaMa_gpar1_leveling_diffs;
 extern const char* T_GaMa_gpar1_obs_total;
 extern const char* T_GaMa_gpar1_observed_coords;
 extern const char* T_GaMa_gpar1_points_total;
