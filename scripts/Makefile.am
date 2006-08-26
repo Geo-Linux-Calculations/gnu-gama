@@ -1,4 +1,4 @@
-EXTRA_DIST = autogen.sh
+EXTRA_DIST = autogen.sh build-dictionaries build-ellipsoids
 
 noinst_PROGRAMS   = slovnikar ellipsoids_xml
 

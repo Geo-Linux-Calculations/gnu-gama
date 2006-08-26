@@ -1,7 +1,7 @@
 #
 # builds dictionaris for GaMaLib
 # 
-# $Id: build-dictionaries,v 1.8 2006/03/02 13:44:33 cepek Exp $
+# $Id: build-dictionaries,v 1.9 2006/08/26 16:02:43 cepek Exp $
 
 
 if pwd | grep /scripts$; then cd ..; fi
@@ -10,17 +10,12 @@ echo
 echo "Building dictionaries"
 echo
 
-make
-(cd scripts ; make -f Makefile-slovnikar)
+cd lib/gamalib
 
-# cd gamalib
-# 
-# FILES1=$(find ../gamalib  | grep \.lang$ | grep -v \# | grep -v \~ ) 
-# FILES2=$(find ../gamaprog | grep \.lang$ | grep -v \# | grep -v \~ ) 
-# FILES3=$(find ../xml      | grep \.lang$ | grep -v \# | grep -v \~ ) 
-# 
-# echo input files: $FILES1 $FILES2 $FILES3
-# echo $FILES1 $FILES2 $FILES3 | ../scripts/slovnikar
+FILES=$(find ../.. -name *.lang)
+
+echo input files: $FILES
+echo $FILES | ../../scripts/slovnikar
 
 
 # ------------------------------------------------------------------------
