@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.2 2006/04/11 18:48:49 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.3 2006/08/26 13:23:30 cepek Exp $
  */
 
 
@@ -74,7 +74,7 @@ void LocalNetworkXML::write(std::ostream& out) const
       out.setf(ios_base::fixed, ios_base::floatfield);
       out.precision(7);
       out << "   epoch=\""<< netinfo->epoch << "\"\n";
-      
+
       out << "   axes-xy=\""; 
       switch (netinfo->PD.local_coordinate_system)
         {
@@ -86,6 +86,7 @@ void LocalNetworkXML::write(std::ostream& out) const
         case  32: out << "sw"; break;
         case  64: out << "es"; break;
         case 128: out << "wn"; break;
+        default : break;
         }
       out << "\"\n";
 
@@ -465,7 +466,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
   out << "\n<orientation-shifts>\n";
 
   const GaMaLib::Vec& X = netinfo->solve();
-  const double scale    = netinfo->gons() ? 1.0 : 0.324;
+  //const double scale    = netinfo->gons() ? 1.0 : 0.324;
   const int    y_sign   = Consistent(netinfo->PD) ? +1 : -1;
   //const double kki      = netinfo->conf_int_coef();
   const int    unknowns = netinfo->sum_unknowns();
@@ -525,7 +526,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
    for (int i=1; i<=pocmer; i++)
      {
        Observation* pm = netinfo->ptr_obs(i);
-       bool isangle    = false;
+       // bool isangle    = false;
 
        Angle* u = 0;
        bool xyz = false;
@@ -553,7 +554,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
            if (m >= 400) m -= 400;
            ostr << " <adj>" <<  m << "</adj>";
          }
-       else if (u = dynamic_cast<Angle*>(pm))
+       else if ( (u = dynamic_cast<Angle*>(pm)) )
          {
            out << "<" << (tag="angle") << ">";
            ostr.precision(6);

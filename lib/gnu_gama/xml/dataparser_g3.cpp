@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: dataparser_g3.cpp,v 1.2 2006/08/26 13:23:30 cepek Exp $
  */
 
 
@@ -785,7 +785,7 @@ int DataParser::g3_obs(const char *name)
       obs_dim += (*i)->dimension();
     }
 
-  if (obs_dim != g3->scale.size()) 
+  if (obs_dim != int(g3->scale.size())) 
     return error("### INTERNAL ERROR IN "
                  "int DataParser::g3_obs(const char *name)");
 

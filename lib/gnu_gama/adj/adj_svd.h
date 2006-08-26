@@ -1,6 +1,6 @@
 /*  
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.5 2006/08/25 15:52:35 cepek Exp $
+ *  $Id: adj_svd.h,v 1.6 2006/08/26 13:23:30 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h

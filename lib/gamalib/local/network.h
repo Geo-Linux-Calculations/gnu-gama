@@ -1,6 +1,6 @@
 /*  
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 1999, 2006  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.3 2006/08/25 15:52:35 cepek Exp $
+ *  $Id: network.h,v 1.4 2006/08/26 13:23:30 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -196,7 +196,6 @@ namespace GaMaLib
     virtual Double cond() = 0;
     virtual bool lindep(Index i) = 0;
     virtual const char* const algorithm() const = 0;
-    virtual void network_data(LocalNetwork*) {}
     
     void refine_approx();
     

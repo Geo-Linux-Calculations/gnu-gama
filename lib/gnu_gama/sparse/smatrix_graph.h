@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.6 2006/06/10 15:42:20 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.7 2006/08/26 13:23:30 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -86,7 +86,7 @@ namespace GNU_gama {
       {
         Index *i, *e, *j;
         for (Index k=1; k<=sparse->rows(); k++)
-          for(i=sparse->ibegin(k), e=sparse->iend(k), j; i!=e; i++)
+          for(i=sparse->ibegin(k), e=sparse->iend(k); i!=e; i++)
             for (j=i+1; j!=e; j++)
               if (*i != *j)
                 {

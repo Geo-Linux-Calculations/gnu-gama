@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.2 2006/08/26 13:23:30 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -137,7 +137,7 @@ void Model::write_xml_rejected_observations(std::ostream& out)
       
       robs.observation->accept(&visitor);
       out << "        ";
-      for (Index i=0; i<robs.observation->dimension(); i++)
+      for (int i=0; i<robs.observation->dimension(); i++)
         out << "<flt>" << robs.data[i] << "</flt> ";     
 
       out << "\n</"  << tag << ">\n";
@@ -274,7 +274,7 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
   Index  cluster_index = obs->cluster_index + obs_dim_index;
   double obs_stdev     = obs->cluster->stdDev(cluster_index);
 
-  double res_stdev     = -1;
+  // double res_stdev     = -1;
 
   index += obs_dim_index;
   double adj_stdev     = sqrt( cov_bb(index, index) );

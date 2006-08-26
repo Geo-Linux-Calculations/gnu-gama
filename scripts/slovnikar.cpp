@@ -20,7 +20,7 @@
  * available.  Attribute EN is ignored on input and serves as a kind
  * of comment.
  * 
- * $Id: slovnikar.cpp,v 1.13 2005/12/14 23:13:46 cepek Exp $
+ * $Id: slovnikar.cpp,v 1.14 2006/08/26 13:23:30 cepek Exp $
  *
  * ------------------------------------------------------------------------ */
 
@@ -29,9 +29,13 @@
   
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.08";
+         const char* version = "1.09";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.09  2006-08-26
+ *
+ *       - fixed code to avoid some minor warnings
  *
  * 1.08  2005-12-15
  *
@@ -96,7 +100,7 @@
  * ---------------------------------------------------------------------------
  *   
  *   Geodesy and Mapping C++ Library (GaMaLib)
- *   Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
+ *   Copyright (C) 2000, 2006  Ales Cepek <cepek@fsv.cvut.cz>
  *
  *   This file is part of the GaMaLib C++ Library.
  *   
@@ -239,6 +243,7 @@ void endElement(void *userData, const char * /*cname*/)
     {
     case ENTRIES: parser->state = END;     break;
     case ENTRY  : parser->state = ENTRIES; break;
+    default     : break;
     }
 }
 
@@ -270,7 +275,6 @@ Parser::Parser(string fn)
   
   ifstream inp(filename.c_str());
   if (!inp) cerr << "cannot open file " << filename << endl;
-  char   c;
   while (getline(inp, text))
     {
       text += "\n";

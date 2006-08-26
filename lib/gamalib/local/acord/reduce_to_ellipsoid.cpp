@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: reduce_to_ellipsoid.cpp,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: reduce_to_ellipsoid.cpp,v 1.2 2006/08/26 13:23:30 cepek Exp $
  */
 
 #include <gamalib/local/acord/reduce_to_ellipsoid.h>
@@ -172,7 +172,7 @@ bool ReduceToEllipsoid::reduce_direction_to_ellipsoid(Direction* obs)
         if ( !o->active() )
             continue;
         
-        if ( Z_Angle* z = dynamic_cast<Z_Angle*>(o) )
+        if (/* Z_Angle* z =*/ dynamic_cast<Z_Angle*>(o) )
         {
             PointID from = o->from();
             PointID to   = o->to();

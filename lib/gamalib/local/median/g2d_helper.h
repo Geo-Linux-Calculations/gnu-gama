@@ -21,7 +21,7 @@
 */
 
 /*
- *  $Id: g2d_helper.h,v 1.1 2006/04/09 16:40:24 cepek Exp $
+ *  $Id: g2d_helper.h,v 1.2 2006/08/26 13:23:30 cepek Exp $
  */
 
 /*********************************************************************
@@ -97,10 +97,10 @@ namespace GaMaLib {
 
   inline Observation_types ObservationType(const Observation* m)
     {
-      if( const Distance  *d = dynamic_cast<const Distance* >(m) ) 
+      if(/* const Distance  *d =*/ dynamic_cast<const Distance* >(m) ) 
 	return is_Distance;
       
-      if( const Direction *s = dynamic_cast<const Direction*>(m) ) 
+      if(/* const Direction *s =*/ dynamic_cast<const Direction*>(m) ) 
         return is_Direction;
 	
       return is_Angle;

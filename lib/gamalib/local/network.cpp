@@ -1,6 +1,6 @@
 /*  
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 1999, 2006  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.3 2006/08/25 15:52:35 cepek Exp $
+ *  $Id: network.cpp,v 1.4 2006/08/26 13:23:30 cepek Exp $
  */
 
 #include <fstream>
@@ -306,7 +306,6 @@ void LocalNetwork::project_equations()
   }   // for ...
   
   prepareProjectEquations();  // [A, b] scaled by chol. dec. of weight matrix 
-  network_data(this);         // supply data for derived reset(A,b) if needed
 
   if (singular_coords(A))
     {
@@ -681,7 +680,7 @@ int LocalNetwork::null_space()
     {
       if (vs.error != GNU_gama::Exception::BadRegularization) throw;
       
-      for (Index i=1; i<=sum_unknowns(); i++)
+      for (int i=1; i<=sum_unknowns(); i++)
         if (lindep(i))
           {
             const char    type = unknown_type(i);

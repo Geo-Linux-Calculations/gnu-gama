@@ -2,13 +2,17 @@
  * input file into ellipsoids.[h|cpp|html|texi] output.
  * ==========================================================================
  * 
- * $Id: ellipsoids_xml.cpp,v 1.14 2005/09/04 13:26:19 cepek Exp $
+ * $Id: ellipsoids_xml.cpp,v 1.15 2006/08/26 13:23:30 cepek Exp $
  *
  * ------------------------------------------------------------------------ */
 
-const char* version = "0.05";
+const char* version = "0.06";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 0.06  2006-08-26
+ * 
+ *       - fixed code to avoid some minor warnings
  *
  * 0.05  2005-09-04
  *
@@ -36,7 +40,7 @@ const char* version = "0.05";
  * ---------------------------------------------------------------------------
  *   
  *  GNU Gama -- Adjustment of geodetic networks
- *  Copyright (C) 2002  Ales Cepek <cepek@fsv.cvut.cz>
+ *  Copyright (C) 2002, 2006  Ales Cepek <cepek@fsv.cvut.cz>
  *
  *  This file is part of the GNU Gama.
  *  
@@ -210,6 +214,7 @@ void endElement(void *userData, const char * /*cname*/)
                      parser->additem(parser->item_data);
                                                  break;
     case ELLIPSOID : parser->state = ELLIPSOIDS; break;
+    default        : break;
     }
 }
 
@@ -250,7 +255,6 @@ Parser::Parser(const char* fn)
   state = START;
   
   ifstream inp(fn);
-  char   c;
   while (getline(inp, text))
     {
       text += "\n";

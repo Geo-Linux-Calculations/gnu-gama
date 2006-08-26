@@ -1,6 +1,6 @@
 /*  
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: outstream.cpp,v 1.2 2006/06/06 17:31:51 cepek Exp $
+ *  $Id: outstream.cpp,v 1.3 2006/08/26 13:23:30 cepek Exp $
  */
 
 
@@ -170,7 +170,7 @@ const char* OutStream::recode(const char* s)
     case iso_8859_2_flat: 
       utf8_iso_8859_2((char*)text.c_str());
       p = (unsigned char*)text.c_str();
-      while(*p) *p = ascii_table[*p++];
+      while(*p) { *p = ascii_table[*p]; p++; }
       break;
     case cp_1250: 
       utf8_cp1250((char*)text.c_str());
