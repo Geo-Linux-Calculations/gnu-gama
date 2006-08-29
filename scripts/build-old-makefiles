@@ -1,7 +1,7 @@
 #
 # builds dictionaris for GaMaLib
 # 
-# $Id: build-old-makefiles,v 1.1 2006/08/29 09:57:17 cepek Exp $
+# $Id: build-old-makefiles,v 1.2 2006/08/29 11:57:27 cepek Exp $
 
 CXX=g++
 
@@ -33,7 +33,7 @@ echo
 VER=$(awk '/AC_INIT/{print $2}'  configure.ac | sed s/\\[//g | sed s/\\],//)
 echo "#define VERSION \""$VER\"  > lib/config.h-$1
 
-find lib -name *.cpp | \
+find lib -name *.cpp | sed s/lib\\/// | \
 $DEP lib        "$1" > lib/Makefile-lib-$1
 $DEP expat      "$1" > lib/Makefile-expat-$1
 $DEP gama-local "$1" > lib/Makefile-gama-local-$1
