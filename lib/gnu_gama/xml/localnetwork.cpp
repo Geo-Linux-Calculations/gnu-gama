@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.3 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.4 2006/08/29 10:06:52 cepek Exp $
  */
 
 
@@ -460,8 +460,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
 
 
 void  LocalNetworkXML::orientation_shifts(std::ostream& out,
-                                          std::vector<Index>& ind,
-                                          Index& dim) const
+                                          std::vector<GNU_gama::Index>& ind,
+                                          GNU_gama::Index& dim) const
 {
   out << "\n<orientation-shifts>\n";
 
