@@ -10,5 +10,5 @@ ellipsoids_xml_SOURCES = ellipsoids_xml.cpp
 ellipsoids_xml_LDADD   = $(top_builddir)/lib/libgama.a
 ellipsoids_xml_CPPFLAGS = -I $(top_srcdir)/lib
 
-gnu_gama_dep_SOURCES = gnu_gama_dep
+gnu_gama_dep_SOURCES = gnu_gama_dep.cpp
 
