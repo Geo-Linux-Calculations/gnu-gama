@@ -1,0 +1,55 @@
+#
+# builds dictionaris for GaMaLib
+# 
+# $Id: build-old-makefiles,v 1.1 2006/08/29 09:57:17 cepek Exp $
+
+CXX=g++
+
+if test "$1" != "gnu" -a "$1" != "win32-borland" -a "$1" != "win32-msvc"; 
+then
+        echo;
+        echo "usage: "
+        echo;
+        echo "cd working-directory";
+        echo "$0 gnu | win32-borland | win32-msvc";
+        echo;
+        exit;
+fi
+
+if pwd | grep /scripts$; then cd ..; fi
+
+DEP=scripts/gnu_gama_dep
+
+if ! test -f $DEP;
+then
+        echo $CXX -o $DEP $DEP.cpp        
+        $CXX -o $DEP $DEP.cpp
+fi
+
+echo
+echo "Building makefiles"
+echo
+
+VER=$(awk '/AC_INIT/{print $2}'  configure.ac | sed s/\\[//g | sed s/\\],//)
+echo "#define VERSION \""$VER\"  > lib/config.h-$1
+
+find lib -name *.cpp | \
+$DEP lib        "$1" > lib/Makefile-lib-$1
+$DEP expat      "$1" > lib/Makefile-expat-$1
+$DEP gama-local "$1" > lib/Makefile-gama-local-$1
+$DEP gama-g3    "$1" > lib/Makefile-gama-g3-$1
+
+echo all: > lib/Makefile-all-$1
+echo -e "\tmake -f Makefile-lib-$1"        >> lib/Makefile-all-$1
+echo -e "\tmake -f Makefile-expat-$1"      >> lib/Makefile-all-$1
+echo -e "\tmake -f Makefile-gama-local-$1" >> lib/Makefile-all-$1
+echo -e "\tmake -f Makefile-gama-g3-$1"    >> lib/Makefile-all-$1
+
+# ------------------------------------------------------------------------
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 /*  
     GNU Gama -- program 'gnu_gama_dep' for genering project makefiles
-    Copyright (C) 2003  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2003, 2006  Ales Cepek <cepek@fgnu.org>
 
     This file is part of the GNU Gama C++ library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gnu_gama_dep.cpp,v 1.11 2005/09/12 15:58:13 cepek Exp $
+ *  $Id: gnu_gama_dep.cpp,v 1.12 2006/08/29 09:57:17 cepek Exp $
  */
 
 #include <iostream>
@@ -29,10 +29,12 @@
 #include <string>
 #include <set>
 
-const char* version = "1.04";
+const char* version = "2.00";
 
 /**************************************************************************
  * 
+ * 2.00  - updated for the new structure of directories as used with 
+ *         new Gama build based on GNU autotools
  * 1.04  - added directory <matvec/ ... > for building dependencies
  * 1.03  - updated parameters for MS Visual C++ 2005
  * 1.02  - brief messages (compiler + filename) when building libgama 
@@ -71,7 +73,7 @@ enum Platforms { t_gnu,
 
 const char* platform_pars[] = {
 
-  "#CC        = gcc\n"
+  "#CC        = gcc\n"                        // lib
   "ifeq ($(findstring gcc,$(CC)),gcc)\n"
   "CFLAGS    += -pipe\n"
   "endif\n"
@@ -80,7 +82,7 @@ const char* platform_pars[] = {
   "ifeq ($(findstring g++,$(CXX)),g++)\n"
   "CXXFLAGS  += -pipe\n"
   "endif\n"
-  "CXXFLAGS  += -I../../..\n"
+  "CXXFLAGS  += -I.\n"
   "OBJ        = o\n"
   "LIBR       = @ar -r libgama.a\n"
   "RANLIB     = ranlib libgama.a\n"
@@ -93,16 +95,16 @@ const char* platform_pars[] = {
   "P_GAMA_G3  = gama-g3\n"
   ,
 
-  "#CC        = gcc\n"
+  "#CC        = gcc\n"                        // expat
   "ifeq ($(findstring gcc,$(CC)),gcc)\n"
   "CFLAGS    += -pipe\n"
   "endif\n"
-  "CFLAGS    += \n"
+  "CFLAGS    += -I.\n"
   "#CXX       = g++\n"
   "ifeq ($(findstring g++,$(CXX)),g++)\n"
   "CXXFLAGS  += -pipe\n"
   "endif\n"
-  "CXXFLAGS  += -DGNU_gama_expat_1_1 -I../../..\n"
+  "CXXFLAGS  += -DGNU_gama_expat_1_1 -I.\n"
   "OBJ        = o\n"
   "LIBR       = @ar -r libgama.a\n"
   "RANLIB     = ranlib libgama.a\n"
@@ -115,10 +117,10 @@ const char* platform_pars[] = {
   "P_GAMA_G3  = gama-g3\n"
   ,
 
-  "CC         = bcc32\n"
+  "CC         = bcc32\n"                      // gama-local      
   "CFLAGS     = -A -Od -w-8008 -w-8065 -w-8066 -w-8057\n"
   "CXX        = bcc32\n"
-  "CXXFLAGS   = -DGNU_gama_expat_1_1 -I../../.. -w-8026 -w-8027 -w-8004 -tWR\n"
+  "CXXFLAGS   = -DGNU_gama_expat_1_1 -I. -w-8026 -w-8027 -w-8004 -tWR\n"
   "OBJ        = obj\n"
   "LIBR       = tlib /P4096 libgama.lib +\n"
   "RANLIB     = rem\n"
@@ -131,10 +133,10 @@ const char* platform_pars[] = {
   "P_GAMA_G3  = gama-g3.exe\n"
   ,
 
-  "CC         = cl\n"
+  "CC         = cl\n"                         // gama-g3
   "CFLAGS     =\n"
   "CXX        = cl\n"
-  "CXXFLAGS   = -DGNU_gama_expat_1_1 -I../../.. /nologo /W1 /EHsc /O2 /D \"WIN32\" \\\n"
+  "CXXFLAGS   = -DGNU_gama_expat_1_1 -I. /nologo /W1 /EHsc /O2 /D \"WIN32\" \\\n"
   "             /D \"NDEBUG\" /D \"_MBCS\" /D \"_LIB\" /Zp1 /MT /GR\n"
   "OBJ        = obj\n"
   "LIBR       = rem link -lib libgama.lib\n"
@@ -263,12 +265,12 @@ int main(int argc, char* argv[])
         HELP = true;
     }
 
-  ifstream cin("scripts/gnu_gama_files");
-  if (!cin)
-    {
-      cerr << "\n\ncannot open file 'scripts/gnu_gama_files'";
-      HELP = true;
-    }
+  // ifstream cin("scripts/gnu_gama_files");
+  // if (!cin)
+  //   {
+  //     cerr << "\n\ncannot open file 'scripts/gnu_gama_files'";
+  //     HELP = true;
+  //   }
   
   if (HELP)
     {
@@ -294,7 +296,7 @@ int main(int argc, char* argv[])
     << "#\n"
     << "# ------------------------------------------------------------------\n"
     <<  "#\n\n"
-    << "SRC=../../../\n"
+    << "SRC=\n"
     << "OBJDIR=\n\n";
 
 
@@ -309,8 +311,8 @@ int main(int argc, char* argv[])
         "$(LIBS) ../lib/$(LIBGAMA)\n\n"
         ;
 
-      path = "gamaprog/linux/gama-g3/";
-      string file = "gama-g3.cpp";
+      path = "./lib/";
+      string file = "gama-g3/gama-g3.cpp";
 
       set<string> dep;
       string name;
@@ -322,14 +324,14 @@ int main(int argc, char* argv[])
 
       add_dep(file, dep);
 
-      cout << "gama-g3.$(OBJ) : ../../linux/gama-g3/" << name;
+      cout << "gama-g3.$(OBJ) : ../gama-g3/" << name;
       for (set<string>::const_iterator i=dep.begin(); i!=dep.end(); ++i)
         cout << " $(SRC)" << *i;  
       cout << endl;
       
       cout << 
         "\t$(CXX) $(CXXFLAGS) -I. "
-        "-c ../../linux/gama-g3/gama-g3.cpp\n\n";
+        "-c ../gama-g3/gama-g3.cpp\n\n";
 
       return 0;
     }
@@ -346,8 +348,8 @@ int main(int argc, char* argv[])
         "$(LIBS) ../lib/$(LIBGAMA)\n\n"
         ;
 
-      path = "gamaprog/linux/gama-local/";
-      string file = "gama-local-main.h";
+      path = "./lib/";
+      string file = "gama-local/gama-local-main.h";
 
       set<string> dep;
       string name;
@@ -359,14 +361,14 @@ int main(int argc, char* argv[])
 
       add_dep(file, dep);
 
-      cout << "gama-local.$(OBJ) : ../../linux/gama-local/" << name;
+      cout << "gama-local.$(OBJ) : ../gama-local/" << name;
       for (set<string>::const_iterator i=dep.begin(); i!=dep.end(); ++i)
         cout << " $(SRC)" << *i;  
       cout << endl;
       
       cout << 
         "\t$(CXX) $(CXXFLAGS) -I. "
-        "-c ../../linux/gama-local/gama-local.cpp\n\n";
+        "-c ../gama-local/gama-local.cpp\n\n";
 
       return 0;
     }
@@ -385,29 +387,29 @@ int main(int argc, char* argv[])
         "ALL : " << co << "$(LIBGAMA)\n\n"
         
         "$(OBJDIR)xmltok.$(OBJ) : $(SRC)expat/xmltok/xmltok.c\n"
-	"\t$(CC) $(CFLAGS) -O2 -I../../../expat/xmltok "
-        "-I../../../expat/xmlparse -DXML_NS -c $(SRC)expat/xmltok/xmltok.c\n"
+	"\t$(CC) $(CFLAGS) -O2 -I./expat/xmltok "
+        "-I./expat/xmlparse -DXML_NS -c $(SRC)expat/xmltok/xmltok.c\n"
 	"\t$(LIBR) xmltok.$(OBJ)\n\n"
         
         "$(OBJDIR)xmlrole.$(OBJ) : $(SRC)expat/xmltok/xmlrole.c\n"
-	"\t$(CC) $(CFLAGS) -O2 -I../../../expat/xmltok "
-        "-I../../../expat/xmlparse -DXML_NS -c $(SRC)expat/xmltok/xmlrole.c\n"
+	"\t$(CC) $(CFLAGS) -O2 -I./expat/xmltok "
+        "-I./expat/xmlparse -DXML_NS -c $(SRC)expat/xmltok/xmlrole.c\n"
 	"\t$(LIBR) xmlrole.$(OBJ)\n\n"
         
         "$(OBJDIR)codepage.$(OBJ) : $(SRC)expat/xmlwf/codepage.c\n"
-	"\t$(CC) $(CFLAGS) -O2 -I../../../expat/xmltok "
-        "-I../../../expat/xmlparse -DXML_NS -c $(SRC)expat/xmlwf/codepage.c\n"
+	"\t$(CC) $(CFLAGS) -O2 -I./expat/xmltok "
+        "-I./expat/xmlparse -DXML_NS -c $(SRC)expat/xmlwf/codepage.c\n"
 	"\t$(LIBR) codepage.$(OBJ)\n\n"
         
         "$(OBJDIR)xmlparse.$(OBJ) : $(SRC)expat/xmlparse/xmlparse.c\n"
-        "\t$(CC) $(CFLAGS) -O2 -I../../../expat/xmltok "
-        "-I../../../expat/xmlparse -DXML_NS -c "
+        "\t$(CC) $(CFLAGS) -O2 -I./expat/xmltok "
+        "-I./expat/xmlparse -DXML_NS -c "
         "$(SRC)expat/xmlparse/xmlparse.c\n"
 	"\t$(LIBR) xmlparse.$(OBJ)\n\n"
         
         "$(OBJDIR)hashtable.$(OBJ) : $(SRC)expat/xmlparse/hashtable.c\n"
-	"\t$(CC) $(CFLAGS) -O2 -I../../../expat/xmltok "
-        "-I../../../expat/xmlparse -DXML_NS -c "
+	"\t$(CC) $(CFLAGS) -O2 -I./expat/xmltok "
+        "-I./expat/xmlparse -DXML_NS -c "
         "$(SRC)expat/xmlparse/hashtable.c\n"
 	"\t$(LIBR) hashtable.$(OBJ)\n\n"
         
@@ -427,7 +429,7 @@ int main(int argc, char* argv[])
 
   string all_objects;
 
-  path = "./";
+  path = "./lib/";
 
   string file, line;
   while(getline(cin, line))
