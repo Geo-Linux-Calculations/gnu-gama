@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.10 2006/08/30 13:52:09 cepek Exp $
+ *  $Id: adj_base.h,v 1.11 2006/08/30 18:38:25 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -31,33 +31,33 @@
 namespace GNU_gama {
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Vector>
   class AdjBase {
 
   public:
 
     virtual ~AdjBase() {}
  
-    virtual const Vec<Float, Exc>& unknowns()  = 0;   // unknown parameters
-    virtual const Vec<Float, Exc>& residuals() = 0;   // adjusted residuals
-    virtual Index defect()                     = 0;
+    virtual const Vector& unknowns()   = 0;   // unknown parameters
+    virtual const Vector& residuals()  = 0;   // adjusted residuals
+    virtual Index defect()             = 0;
  
-    virtual Float q_xx(Index, Index)           = 0;   // w. coeff. (xi,xj)
-    virtual Float q_bb(Index, Index)           = 0;   //           (bi,bj)
-    virtual Float q_bx(Index, Index)           = 0;   //           (bi,xj)
-                                              
-    virtual bool lindep(Index)                 = 0;   // lin. dep. column
-    virtual void min_x()                       = 0;
-    virtual void min_x(Index, Index[])         = 0;
+    virtual Float q_xx(Index, Index)   = 0;   // weight coefficient (xi,xj)
+    virtual Float q_bb(Index, Index)   = 0;   //                    (bi,bj)
+    virtual Float q_bx(Index, Index)   = 0;   //                    (bi,xj)
+                                       
+    virtual bool lindep(Index)         = 0;   // linearly dependent column
+    virtual void min_x()               = 0;   // all x used in regularization
+    virtual void min_x(Index, Index[]) = 0;   // subset of x for regularization
 
-    virtual Float cond() { return 0; }                // 0 if not available
+    virtual Float cond() { return Float(); }  // 0 if not available
 
   };
 
 
 
   template <typename Float, typename Exc>
-  class AdjBaseFull : public AdjBase<Float, Exc> 
+  class AdjBaseFull : public AdjBase<Float, Index, Vec<Float, Exc> >
   {    
   public:
 

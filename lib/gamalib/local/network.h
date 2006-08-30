@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.4 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: network.h,v 1.5 2006/08/30 18:38:25 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -45,8 +45,8 @@ namespace GaMaLib
   
   class LocalNetwork 
   {
-    typedef std::vector<GaMaLib::Observation*>  RevisedObsList;
-    typedef GNU_gama::AdjBase<Double, MatVecException> AdjBase;
+    typedef std::vector<GaMaLib::Observation*>             RevisedObsList;
+    typedef GNU_gama::AdjBase<Double, Index, Vec>          AdjBase;
     typedef GNU_gama::AdjBaseFull<Double, MatVecException> AdjBaseFull;
         
     AdjBase* least_squares;
