@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.4 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: network.cpp,v 1.5 2006/08/30 13:52:09 cepek Exp $
  */
 
 #include <fstream>
@@ -869,7 +869,7 @@ void LocalNetwork::vyrovnani_()
   if (sum_points()      == 0)
     throw GaMaLib::Exception(T_GaMa_No_points_available);
 
-  least_squares->solve();
+  /* least_squares->solve(); ... removed in 1.9.01a */
 
   tst_vyrovnani_ = true;
 

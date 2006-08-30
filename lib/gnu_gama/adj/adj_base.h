@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.9 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: adj_base.h,v 1.10 2006/08/30 13:52:09 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -33,74 +33,43 @@ namespace GNU_gama {
 
   template <typename Float, typename Exc>
   class AdjBase {
-    
+
   public:
 
-    AdjBase() : is_solved(false)
-    {
-    }
-    virtual ~AdjBase() 
-    {
-    }
-    
-    void unknowns(Vec<Float, Exc>& parameters) 
-    { 
-      if (!is_solved) solve(); 
-      parameters = x; 
-    }
-    const Vec<Float, Exc>& unknowns() 
-    { 
-      if (!is_solved) solve(); 
-      return x; 
-    }
-    void residuals(Vec<Float, Exc>& res) 
-    { 
-      if (!is_solved) solve(); 
-      res = r; 
-    }
-    const Vec<Float, Exc>& residuals() 
-    { 
-      if (!is_solved) solve(); 
-      return r; 
-    }
-    
-    virtual Index defect() = 0;
-    
-    virtual Float q_xx(Index, Index) = 0; // w. coeff. (xi,xj)
-    virtual Float q_bb(Index, Index) = 0; //           (bi,bj)
-    virtual Float q_bx(Index, Index) = 0; //           (bi,xj)
-    
-    virtual bool lindep(Index) = 0;       // linearly dependent column/unknown
-    virtual void min_x() = 0;
-    virtual void min_x(Index, Index[]) = 0;
-    
-    virtual Float cond() { return 0; }    // 0 if not available
-    
-    // solve() must compute vectors x, r  and set is_solved=true
-    virtual void solve() = 0;
-    
-  protected:
-    
-    Vec<Float, Exc> x;
-    Vec<Float, Exc> r;
-    bool is_solved;
-    
+    virtual ~AdjBase() {}
+ 
+    virtual const Vec<Float, Exc>& unknowns()  = 0;   // unknown parameters
+    virtual const Vec<Float, Exc>& residuals() = 0;   // adjusted residuals
+    virtual Index defect()                     = 0;
+ 
+    virtual Float q_xx(Index, Index)           = 0;   // w. coeff. (xi,xj)
+    virtual Float q_bb(Index, Index)           = 0;   //           (bi,bj)
+    virtual Float q_bx(Index, Index)           = 0;   //           (bi,xj)
+                                              
+    virtual bool lindep(Index)                 = 0;   // lin. dep. column
+    virtual void min_x()                       = 0;
+    virtual void min_x(Index, Index[])         = 0;
+
+    virtual Float cond() { return 0; }                // 0 if not available
+
   };
 
 
-  
+
   template <typename Float, typename Exc>
   class AdjBaseFull : public AdjBase<Float, Exc> 
   {    
   public:
 
-    AdjBaseFull() : pA(0), pb(0)
+    AdjBaseFull() : pA(0), pb(0), is_solved(false)
     {
     }
+
     AdjBaseFull(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
       : pA(&A), pb(&b)
     {
     }
+
     virtual ~AdjBaseFull() 
     {
     }
@@ -112,11 +81,31 @@ namespace GNU_gama {
       this->is_solved = false;
     }
 
-  protected:
+    const Vec<Float, Exc>& unknowns() 
+    { 
+      if (!is_solved) solve(); 
+      return x; 
+    }
+
+    const Vec<Float, Exc>& residuals() 
+    { 
+      if (!is_solved) solve(); 
+      return r; 
+    }
     
+    // solve() must compute vectors x, r  and set is_solved=true
+    virtual void solve() = 0;
+
+
+  protected:
+
     const Mat<Float, Exc>* pA;
     const Vec<Float, Exc>* pb;
-    
+
+    Vec<Float, Exc> x;
+    Vec<Float, Exc> r;
+    bool is_solved;
+
   };
   
 
