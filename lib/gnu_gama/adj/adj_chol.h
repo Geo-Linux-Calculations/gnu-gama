@@ -20,14 +20,14 @@
 */
 
 /*
- * $Id: adj_chol.h,v 1.5 2006/08/31 12:55:15 cepek Exp $
+ * $Id: adj_chol.h,v 1.6 2006/08/31 16:07:33 cepek Exp $
  */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_gnu_gama_adj_chol__h
 #define GNU_gama_adjustment_cholesky_decomposition_gnu_gama_adj_chol__h
 
 #include <gnu_gama/exception.h>
-#include <gnu_gama/adj/adj_full.h>
+#include <gnu_gama/adj/adj_basefull.h>
 #include <gnu_gama/sparse/intlist.h>
 #include <matvec/inderr.h>
 #include <matvec/symmat.h>
