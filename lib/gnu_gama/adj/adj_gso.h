@@ -20,14 +20,14 @@
 */
 
 /*
- *  $Id: adj_gso.h,v 1.5 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: adj_gso.h,v 1.6 2006/08/31 12:55:15 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 
 #include <matvec/gso.h>
-#include <gnu_gama/adj/adj_base.h>
+#include <gnu_gama/adj/adj_full.h>
 #include <cmath>
 
 namespace GNU_gama {
