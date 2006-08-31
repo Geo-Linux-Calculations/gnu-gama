@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_basesparse.h,v 1.1 2006/08/31 13:29:10 cepek Exp $
+ *  $Id: adj_basesparse.h,v 1.2 2006/08/31 17:11:33 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseSparse_h
@@ -31,17 +31,17 @@
 namespace GNU_gama {
 
 
-  template <typename Float, typename Exc>
-  class AdjBaseSparse : public AdjBase<Float, Index, Vec<Float, Exc> >
+  template <typename Float, typename Index, typename Vector, 
+            typename AdjInputData>
+  class AdjBaseSparse : public AdjBase<Float, Index, Vector>
   {    
   public:
 
-    AdjBaseSparse() : pA(0), pb(0), is_solved(false)
+    AdjBaseSparse() : input(0), stage(0) 
     {
     }
 
-    AdjBaseSparse(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
-      : pA(&A), pb(&b), is_solved(false)
+    AdjBaseSparse(const AdjInputData& data) : input(&data), stage(0)
     {
     }
 
@@ -49,34 +49,16 @@ namespace GNU_gama {
     {
     }
 
-    virtual void reset() 
+    virtual void reset(const AdjInputData& data) 
     {
+      input = &data;
+      stage = 0;
     }
-
-    const Vec<Float, Exc>& unknowns() 
-    { 
-      if (!is_solved) solve(); 
-      return x; 
-    }
-
-    const Vec<Float, Exc>& residuals() 
-    { 
-      if (!is_solved) solve(); 
-      return r; 
-    }
-    
-    // solve() must compute vectors x, r  and set is_solved=true
-    virtual void solve() = 0;
-
 
   protected:
 
-    const Mat<Float, Exc>* pA;
-    const Vec<Float, Exc>* pb;
-
-    Vec<Float, Exc> x;
-    Vec<Float, Exc> r;
-    bool is_solved;
+    const AdjInputData* input;
+    int                 stage;
 
   };
   

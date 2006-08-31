@@ -1,6 +1,6 @@
 /*  
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2004, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.12 2006/08/31 12:48:08 cepek Exp $
+ *  $Id: adj_base.h,v 1.13 2006/08/31 17:11:33 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
@@ -54,5 +54,6 @@ namespace GNU_gama {
   };
 
 }
+
 #endif
 
