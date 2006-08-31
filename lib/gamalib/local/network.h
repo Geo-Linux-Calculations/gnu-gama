@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.6 2006/08/31 12:57:15 cepek Exp $
+ *  $Id: network.h,v 1.7 2006/08/31 13:29:10 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -34,8 +34,8 @@
 #include <iomanip>
 #include <list>
 #include <gamalib/local/gamadata.h>
-#include <gnu_gama/adj/adj_full.h>
-#include <gnu_gama/adj/adj_sparse.h>
+#include <gnu_gama/adj/adj_basefull.h>
+#include <gnu_gama/adj/adj_basesparse.h>
 #include <gamalib/cluster.h>
 #include <gamalib/local/revision.h>
 #include <gnu_gama/sparse/smatrix.h>

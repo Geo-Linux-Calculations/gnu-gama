@@ -20,11 +20,11 @@
 */
 
 /*
- *  $Id: adj_sparse.h,v 1.1 2006/08/31 12:48:08 cepek Exp $
+ *  $Id: adj_basefull.h,v 1.1 2006/08/31 13:29:10 cepek Exp $
  */
 
-#ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseSparse_h
-#define GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseSparse_h
+#ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
+#define GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
 
 #include <gnu_gama/adj/adj_base.h>
 
@@ -32,25 +32,28 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Exc>
-  class AdjBaseSparse : public AdjBase<Float, Index, Vec<Float, Exc> >
+  class AdjBaseFull : public AdjBase<Float, Index, Vec<Float, Exc> >
   {    
   public:
 
-    AdjBaseSparse() : pA(0), pb(0), is_solved(false)
+    AdjBaseFull() : pA(0), pb(0), is_solved(false)
     {
     }
 
-    AdjBaseSparse(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
+    AdjBaseFull(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
       : pA(&A), pb(&b), is_solved(false)
     {
     }
 
-    virtual ~AdjBaseSparse() 
+    virtual ~AdjBaseFull() 
     {
     }
 
-    virtual void reset() 
+    virtual void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b) 
     {
+      pA = &A;
+      pb = &b;
+      is_solved = false;
     }
 
     const Vec<Float, Exc>& unknowns() 
