@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.3 2006/06/07 07:02:20 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.4 2006/09/01 10:27:47 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -39,6 +39,7 @@
 #include <gamalib/local/network_svd.h>
 #include <gamalib/local/network_gso.h>
 #include <gamalib/local/network_chol.h>
+#include <gamalib/local/network_env.h>
 #include <gamalib/local/acord.h>
 
 #include <gamalib/local/results/text/approximate_coordinates.h>
@@ -73,7 +74,7 @@ int help()
        << " [options]\n\n";
   cerr << "Options:\n"
        << "\n";
-  cerr << "--algorithm  svd | gso | cholesky\n" 
+  cerr << "--algorithm  svd | gso | cholesky | envelope\n" 
        << "--language   en | ca | cz | du | fi | fr | hu | ru | ua \n"
        << "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 "
        << "| cp-1251\n"
@@ -229,6 +230,7 @@ int GaMa_Main(int argc, char **argv)
         if (     !strcmp("svd",      argv_algo)) IS = new LocalNetwork_svd;
         else if (!strcmp("gso",      argv_algo)) IS = new LocalNetwork_gso;
         else if (!strcmp("cholesky", argv_algo)) IS = new LocalNetwork_chol;
+        else if (!strcmp("envelope", argv_algo)) IS = new LocalNetwork_env;
         else return help();
       }
 
