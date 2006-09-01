@@ -30,6 +30,8 @@ libgama_src = \
    gnu_gama/adj/adj_basesparse.h \
    gnu_gama/adj/adj_chol.h \
    gnu_gama/adj/adj_chol_implementation.h \
+   gnu_gama/adj/adj_envelope.h \
+   gnu_gama/adj/adj_envelope_implementation.h \
    gnu_gama/adj/adj.cpp \
    gnu_gama/adj/adj.h \
    gnu_gama/adj/adj_gso.h \
