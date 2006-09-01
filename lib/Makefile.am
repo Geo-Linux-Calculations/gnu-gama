@@ -125,6 +125,7 @@ libgama_src = \
    gamalib/local/median/g2d_point.cpp \
    gamalib/local/median/g2d_point.h \
    gamalib/local/network_chol.h \
+   gamalib/local/network_env.h \
    gamalib/local/network.cpp \
    gamalib/local/network_gso.h \
    gamalib/local/network.h \
