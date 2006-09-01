@@ -26,6 +26,8 @@ libgama_src = \
    gnu_gama/version.h \
    gnu_gama/xml_expat.h \
    gnu_gama/adj/adj_base.h \
+   gnu_gama/adj/adj_basefull.h \
+   gnu_gama/adj/adj_basesparse.h \
    gnu_gama/adj/adj_chol.h \
    gnu_gama/adj/adj_chol_implementation.h \
    gnu_gama/adj/adj.cpp \
