@@ -1,6 +1,6 @@
 /*  
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002, 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2003, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: sbdiagonal.h,v 1.3 2006/08/16 10:54:06 cepek Exp $
+ *  $Id: sbdiagonal.h,v 1.4 2006/09/03 15:11:55 cepek Exp $
  */
 
 #ifndef GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
@@ -31,11 +31,9 @@
 #include <algorithm>
 #include <cmath>
 
-
 namespace GNU_gama {
 
-template <typename Float=double, typename Index=std::size_t> 
-
+  template <typename Float=double, typename Index=std::size_t> 
   class BlockDiagonal {    // symmetric block diagonal matrix
     
     Index   blocks_;       // number of diagonal blocks
@@ -68,7 +66,7 @@ template <typename Float=double, typename Index=std::size_t>
       begin_[1] = nonz_;
     }
 
-    public:
+  public:
 
     BlockDiagonal()
     {
@@ -174,7 +172,62 @@ template <typename Float=double, typename Index=std::size_t>
     }
 
   };
+
+
  
+  template <typename Float=double, typename Index=std::size_t> 
+  class UpperBlockDiagonal {     // upper triangular block diagonal matrix
+  public:
+
+    UpperBlockDiagonal(const BlockDiagonal<Float, Index> *bd);
+    ~UpperBlockDiagonal()   { delete[] row;               }
+
+    Index dim()       const { return blockd->dim();       }
+    Index nonzeroes() const { return blockd->nonzeroes(); }
+
+    const Float* begin(Index i) const { return row[ i ];  }
+    const Float* end  (Index i) const { return row[i+1];  }
+
+  private:
+
+    const BlockDiagonal<Float, Index> *blockd;
+    const Float **row;
+    
+    UpperBlockDiagonal(const UpperBlockDiagonal&);
+    UpperBlockDiagonal& operator=(UpperBlockDiagonal&);
+  };
+
+
+  template <typename Float, typename Index> 
+  UpperBlockDiagonal<Float, Index>::UpperBlockDiagonal(const BlockDiagonal<Float, Index> *bd)
+    : blockd(bd), row(0)
+  {
+    const Index N = bd->dim();
+    if (N == 0) return;
+
+    row = new const Float*[N+2];   // 1 based indexes plus extra pointer for last row
+    row[0] = 0;
+
+    for (Index r=0, b=1; b<=bd->blocks(); b++)
+      {
+        const Index  dim   = bd->dim  (b);
+        const Index  width = bd->width(b);
+        const Float* mem   = bd->begin(b);
+
+        for (Index row_width, i=1; i<=dim; i++)
+          {
+            row_width = width + 1;
+            if (i+row_width > dim) row_width = dim - i + 1; 
+
+            row[++r] = mem;
+            mem     += row_width;
+            row[r+1] = mem;
+          }
+      }
+  }
+
+  
+
 }   // namespace GNU_gama
 
 #endif
@@ -225,6 +278,25 @@ int main()
   BlockDiagonal<>* m2 = m1->replicate();
   m2->cholDec();
   write(cout, m2);
+
+  cout << "\n---  Upper Triangular Block Diagonal Matrix  ---------------\n\n";
+      
+  UpperBlockDiagonal<> upper(m1);
+
+  cout << "dimension = " << upper.dim() << endl
+       << "nonzeroes = " << upper.nonzeroes() << "\n\n";
+
+  for (unsigned i=1; i<=upper.dim(); i++)
+    {
+      cout << i << " : ";
+      const double* b = upper.begin(i);
+      const double* e = upper.end(i);
+      while (b!=e)
+        {
+          cout << *b++ << " ";
+        }
+      cout << endl;
+    }
 
   delete m1;
   delete m2;
