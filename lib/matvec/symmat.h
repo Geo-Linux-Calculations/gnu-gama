@@ -1,6 +1,6 @@
 /*  
     C++ Matrix/Vector templates (GNU Gama / matvec 0.9.25)
-    Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: symmat.h,v 1.1 2006/04/09 16:12:01 cepek Exp $
+ *  $Id: symmat.h,v 1.2 2006/09/09 17:55:26 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -44,7 +44,7 @@ public:
   typedef typename MatBase<Float, Exc>::iterator       iterator;
   typedef typename MatBase<Float, Exc>::const_iterator const_iterator;
 
-  SymMat(Index d=0) : MatBase<Float, Exc>(d, d, d*(d+1)/2), 
+  explicit SymMat(Index d=0) : MatBase<Float, Exc>(d, d, d*(d+1)/2), 
     dim_(d), idf_(0) {}
   SymMat(Index r, Index c) : MatBase<Float, Exc>(r, c, r*(r+1)/2), 
     dim_(r), idf_(0)
@@ -118,6 +118,11 @@ public:
      SymMat T(dim()); 
      sub(M, T);
      return T;
+  }
+
+  typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
+  {
+    return list_init(x);
   }
 
 };       // template <Float, Exc> class SymMat;
