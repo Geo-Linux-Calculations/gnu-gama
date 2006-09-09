@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.2 2006/09/09 07:40:05 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.3 2006/09/09 09:46:02 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -28,6 +28,12 @@
 
 #include <gnu_gama/adj/adj_envelope.h>
 #include <gnu_gama/adj/homogenization.h>
+
+namespace 
+{
+  static GaMaLib::Vec b;
+  static GaMaLib::Mat A;
+}
 
 namespace GNU_gama {
 
@@ -47,10 +53,10 @@ namespace GNU_gama {
       Index M = mat->rows();
       Index N = mat->columns();
     
-      static GaMaLib::Vec b(M);        // MUSI BYT STATIC !!!!!
+      b.reset(M);
       for (Index i=1; i<=M; i++) b(i) = rhs(i);
       
-      static GaMaLib::Mat A(M, N);     // MUSI BYT STATIC !!!!!
+      A.reset(M, N);
       A.set_zero();
       for (Index i=1; i<=M; i++)
         {
