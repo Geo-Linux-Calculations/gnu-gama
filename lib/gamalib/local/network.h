@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.7 2006/08/31 13:29:10 cepek Exp $
+ *  $Id: network.h,v 1.8 2006/09/09 07:40:05 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -39,18 +39,21 @@
 #include <gamalib/cluster.h>
 #include <gamalib/local/revision.h>
 #include <gnu_gama/sparse/smatrix.h>
-
+#include <gnu_gama/adj/adj.h>
 
 namespace GaMaLib 
 {
   
   class LocalNetwork 
   {
-    typedef std::vector<GaMaLib::Observation*>             RevisedObsList;
-    typedef GNU_gama::AdjBase<Double, Index, Vec>          AdjBase;
-    typedef GNU_gama::AdjBaseFull<Double, MatVecException> AdjBaseFull;
+    typedef std::vector<GaMaLib::Observation*>               RevisedObsList;
+    typedef GNU_gama::AdjBase<Double, Index, Vec>            AdjBase;
+    typedef GNU_gama::AdjBaseFull<Double, MatVecException>   AdjBaseFull;
+    typedef GNU_gama::AdjBaseSparse<Double, Index, Vec,
+                                    GNU_gama::AdjInputData>  AdjBaseSparse;
         
-    AdjBase* least_squares;
+    AdjBase                *least_squares;
+    GNU_gama::AdjInputData  input;
 
   public:  
       
@@ -320,7 +323,7 @@ namespace GaMaLib
     
     Mat A;
     Vec b;
-    Vec rhs_;
+    Vec rhs_;             // right-hand side
     Vec r;
     Vec sigma_L;          // standard deviation of adjusted observation
     Vec vahkopr;          // weight coefficient of residuals

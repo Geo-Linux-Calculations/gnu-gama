@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.6 2006/08/15 20:06:26 cepek Exp $
+ *  $Id: envelope.h,v 1.7 2006/09/09 07:40:05 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -42,11 +42,11 @@ namespace GNU_gama {
     Envelope() : dim_(0), diag(0), env(0), xenv(0) 
     {
     }
-    Envelope(const Envelope& envelope) : dim_(0), diag(0), env(0), xenv(0)
+    Envelope(const Envelope& envelope) : diag(0), env(0), xenv(0)
     {
       copy(envelope);
     }
-    Envelope(const BlockDiagonal<Float, Index>& cov) 
+    Envelope(const BlockDiagonal<Float, Index>& cov) : diag(0), env(0), xenv(0)
     { 
       set(cov); 
     }

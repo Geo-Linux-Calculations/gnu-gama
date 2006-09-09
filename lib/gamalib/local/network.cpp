@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.5 2006/08/30 13:52:09 cepek Exp $
+ *  $Id: network.cpp,v 1.6 2006/09/09 07:40:05 cepek Exp $
  */
 
 #include <fstream>
@@ -315,11 +315,59 @@ void LocalNetwork::project_equations()
     }
 
   if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
-    full->reset(A, b);
+    {
+      full->reset(A, b);
+    }
+  else if (AdjBaseSparse* sparse = dynamic_cast<AdjBaseSparse*>(least_squares))
+    {
+      /*********************************/
+      /*  reset AdjInputData structure */
+      /*********************************/
+
+      // design matrix
+
+      input.set_mat(Asp);
+      Asp = 0;
+      
+      // ---  cofactors  --------------------------------------------------
+
+      Index count = 0;   // number of diagonal blocks
+      Index msize = 0;   // memory size 
+
+      for (ClusterList::const_iterator 
+             cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
+        if (const Index N = (*cluster)->activeObs())
+        {
+          Index W = (*cluster)->covariance_matrix.bandWidth();
+          count++;
+          msize += 1+(N+N-W)*(W+1)/2;   // += number of band matrix elements
+        }
+
+      GNU_gama::BlockDiagonal<> *bd = new GNU_gama::BlockDiagonal<>(count, msize);
+
+      for (ClusterList::const_iterator 
+             cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
+        if (const Index N = (*cluster)->activeObs())
+        {
+          CovMat C = (*cluster)->activeCov();
+          C /= (m_0_apr_*m_0_apr_);        // covariances ==> cofactors
+          bd->add_block(N, C.bandWidth(), C.begin());
+        }
+
+      input.set_cov(bd);
+      bd = 0;
+      
+      // ---  right-hand side  --------------------------------------------
+
+      GNU_gama::Vec<> bb(b.dim());
+      for (Index i=1; i<=b.dim(); i++) bb(i) = rhs_(i);
+      input.set_rhs(bb);     // right-hand side before homogenization
+
+      sparse->reset(&input);
+    }
   else
     {
-      std::cerr << "\n### network.cpp : unknown algorithm ###\n\n";
-      std::exit(0);
+      throw GaMaLib::Exception("### network.cpp : unknown algorithm ###");
     }
 
   //--ofstream opr("A_scaled.bin", ios_base::trunc); 
