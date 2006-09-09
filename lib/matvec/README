@@ -1,3 +1,8 @@
+0.9.26 2006-09-09
+
+       - list initialisation for SymMat<>
+
+
 0.9.25 2005-03-26
 
        - namespace gMatVec replaced by new name GNU_gama
