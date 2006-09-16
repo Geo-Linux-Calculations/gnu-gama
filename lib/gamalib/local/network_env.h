@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network_env.h,v 1.1 2006/09/01 10:14:14 cepek Exp $
+ *  $Id: network_env.h,v 1.2 2006/09/16 10:20:39 cepek Exp $
  */
 
 
@@ -34,7 +34,7 @@ namespace GaMaLib
 {
   class LocalNetwork_env : public LocalNetwork
     {
-      typedef GNU_gama::AdjEnvelope<Double, GaMaLib::MatVecException> OLS_env;
+      typedef GNU_gama::AdjEnvelope<Double, Index, GaMaLib::MatVecException> OLS_env;
       OLS_env* ols_env;
 
     public:

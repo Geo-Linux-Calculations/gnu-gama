@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_ordering.h,v 1.4 2006/06/11 19:18:37 cepek Exp $
+ *  $Id: smatrix_ordering.h,v 1.5 2006/09/16 10:20:39 cepek Exp $
  */
 
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
@@ -74,7 +74,7 @@ namespace GNU_gama {
         {
           // all masked neighbors of nodes in the current level
 
-          Index width = 0, windex = index;
+          Index width = 0;
           Index ii=adst.xadj(level);
           Index ee=adst.xadj(level+1);
           while (ii != ee)
@@ -228,6 +228,9 @@ namespace GNU_gama {
   {
   public:
     
+    ReverseCuthillMcKee()
+    {
+    }
     ReverseCuthillMcKee(const Adjacency<Index>* graph)
     {
       this->reset(graph);

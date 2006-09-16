@@ -20,13 +20,15 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.7 2006/09/09 07:40:05 cepek Exp $
+ *  $Id: envelope.h,v 1.8 2006/09/16 10:20:39 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 #define GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 
 
+#include <gnu_gama/sparse/smatrix_graph.h>
+#include <gnu_gama/sparse/smatrix_ordering.h>
 #include <gnu_gama/sparse/sbdiagonal.h>
 #include <matvec/symmat.h>
 
@@ -45,6 +47,13 @@ namespace GNU_gama {
     Envelope(const Envelope& envelope) : diag(0), env(0), xenv(0)
     {
       copy(envelope);
+    }
+    Envelope(const SparseMatrix         <Float, Index>* sm,
+             const SparseMatrixGraph    <Float, Index>* graph,
+             const SparseMatrixOrdering <Index>*        ordering)
+      : diag(0), env(0), xenv(0)
+    {
+      set(sm, graph, ordering);
     }
     Envelope(const BlockDiagonal<Float, Index>& cov) : diag(0), env(0), xenv(0)
     { 
@@ -68,9 +77,13 @@ namespace GNU_gama {
     Index dim() const { return dim_; }
 
     void cholDec(Float tol=1e-14);
+    void solve (Float* rhs, Index dimension) const;
     void lowerSolve   (Index start, Index stop, Float* rhs) const;
     void diagonalSolve(Index start, Index stop, Float* rhs) const;
     void upperSolve   (Index start, Index stop, Float* rhs) const;
+    void set(const SparseMatrix         <Float, Index>* sm,
+             const SparseMatrixGraph    <Float, Index>* graph,
+             const SparseMatrixOrdering <Index>*        ordering);
     void set(const BlockDiagonal<Float, Index>& cov);
     void write_xml(std::ostream&) const;
 
@@ -81,15 +94,15 @@ namespace GNU_gama {
   private:
 
     Index   dim_;
-    Float*  diag;
-    Float*  env;
+    Float*  diag;   // diagonal elements
+    Float*  env;    // of-diagonal elements
     Float** xenv;
 
     void clear()
     {
-      delete[] diag;
-      delete[] env;
-      delete[] xenv;
+      delete[] diag;   diag = 0;
+      delete[] env;    env  = 0;
+      delete[] xenv;   xenv = 0;
     }
 
     void copy(const Envelope&);
@@ -114,8 +127,8 @@ namespace GNU_gama {
         Float* b = begin(row);
         Float* e = end(row);
 
-        const Index start = row - (e-b);          // position of first row of L in Envelope
-        const Index stop  = row - 1;              //             last  row of L
+        const Index start = row - (e-b);          // first row of L in Envelope
+        const Index stop  = row - 1;              //       last  row of L
 
         lowerSolve   (start, stop, begin(row));   // L(Dx) = LDu'
         diagonalSolve(start, stop, begin(row));   // Dx = Du'
@@ -124,10 +137,25 @@ namespace GNU_gama {
         Float  s = Float();
         while (b != e)
           {
-            s += *b * *b++ * *d++;
+            s += *b * *b * *d++;
+            b++;
           }
         *d -= s;                                  // d = diag - uDu'
+
+        if (std::abs(*d) < tol)
+          {
+            *d = Float();                        // linearly dependend unknown
+          }
       }
+  }
+
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::solve(Float* rhs, Index dimension) const
+  {
+    lowerSolve   (1, dimension, rhs);
+    diagonalSolve(1, dimension, rhs);
+    upperSolve   (1, dimension, rhs);
   }
 
 
@@ -135,37 +163,38 @@ namespace GNU_gama {
   void Envelope<Float, Index>::lowerSolve(Index start, Index stop, Float* rhs) const
   {
     Float   s;
-    Float*  x;
+    const Float*  x;
     const Float*  b;
     const Float*  e;
+    const Float*  rhs0 = rhs;
 
     rhs++;
-    b = xenv[start+1];
     for (Index row=start+1; row<=stop; row++)
       {
-        s = Float();
-        e = xenv[row+1];
-
-        x = rhs - (e-b);
-        while (b != e)
-          {
-            s += *x++ * *b++;
-          }
-        *rhs++ -= s;
-
-        b = e;
-      }    
+         b = xenv[row];
+         e = xenv[row+1];
+         x = rhs;
+         s = Float();
+         while (b != e && x != rhs0)  s += *--x * *--e;
+         *rhs++ -= s;
+      }
   }
 
   
   template <typename Float, typename Index>
   void Envelope<Float, Index>::diagonalSolve(Index start, Index stop, Float* rhs) const
   {
-    Float* d = diag + start - 1;     // 1 based indexes
+    const Float* d = diag + start - 1;     // 1 based indexes
     while (start++ <= stop)
-      {
-        *rhs++ /= *d++;
-      }
+      if (*d)
+        {
+          *rhs++ /= *d++;
+        }
+      else
+        {
+          *rhs++ = Float();
+          d++;
+        }
   }
 
 
@@ -175,18 +204,26 @@ namespace GNU_gama {
     Float* col;
     const Float* b;
     const Float* e;
+    const Float* d = diag + start - 1;     // 1 based indexes
 
-    rhs += dim_ - stop;
+    rhs += stop - 1;
     for (Index row=stop; row>=start; row--)
       {
-        b = xenv[row];
-        e = xenv[row+1];
-
-        const Float x = *rhs;
-        col = rhs - (e-b);
-        while (b != e)
+        if (*d++)
           {
-            *col++ -= x * *b++;
+            b = xenv[row];
+            e = xenv[row+1];
+            
+            const Float x = *rhs;
+            col = rhs - (e-b);
+            while (b != e)
+              {
+                *col++ -= x * *b++;
+              }
+          }
+        else
+          {
+            *rhs = Float();                // linearly dependent column
           }
        
         rhs--;
@@ -315,6 +352,97 @@ namespace GNU_gama {
     Float* e = env;
     const Float* ce = envelope.env;
     for (Index i=1; i<=env_size; i++) *e++ = *ce++;
+  }
+
+
+  template <typename Float, typename Index>
+  void Envelope<Float, Index>::set(const SparseMatrix<Float, Index>* sm,
+                                   const SparseMatrixGraph<Float, Index>* graph,
+                                   const SparseMatrixOrdering<Index>* ordering)
+  {
+    clear();
+    dim_ = sm->columns();
+    if (dim_ == 0) return;
+
+    diag = new Float[dim_];
+    xenv = new Float*[dim_+2];    // 1 based indexes
+
+    Index* min_neighbour = new Index[dim_+1];
+    for (Index i=1; i<=dim_; i++) min_neighbour[i] = i;
+    for (Index node=1; node<=graph->nodes(); node++)
+      {
+        // original number of the node
+        const Index i = ordering->perm(node);
+
+        // scan all neighbours
+        typedef typename SparseMatrixGraph<Float, Index>::const_iterator const_iterator;
+        const_iterator b = graph->begin(i);
+        const_iterator e = graph->end(i);
+        while (b != e)
+          {
+            const Index c = ordering->invp(*b++);
+            if (min_neighbour[node] > c)
+              min_neighbour[node] =  c;
+          }
+      }
+
+    Index  env_size = 0;
+    for (Index i=1; i<=dim_; i++)
+      {
+        env_size +=  i - min_neighbour[i];
+      }
+    if (env_size) env = new Float[env_size];
+    Float* e = env; 
+    for (Index i=1; i<=dim_; i++)
+      {
+        xenv[i] = e;
+        e += i - min_neighbour[i];
+        xenv[i+1] = e;
+      }
+    delete[] min_neighbour;
+    
+
+    for (Index i=0; i<dim_; i++) diag[i] = 0;
+    for (Index i=0; i<env_size; i++) env[i] = 0;
+
+    Float* a = new Float[dim_];  // nonzeroe row elements
+    Index* c = new Index[dim_];  //              indexes
+
+    for (Index r=1; r<=sm->rows(); r++)
+      {
+        Index count = 0;
+        Float* b = sm->begin(r);
+        Float* e = sm->end(r);
+        Index* n = sm->ibegin(r);
+        while (b != e)
+          {
+            a[count] = *b++;
+            c[count] = ordering->invp(*n++);            
+            count++;
+          }
+
+        for (Index i=0; i<count; i++)
+          {
+            const Index ia = c[i];
+            const Float fa = a[i];
+            diag[ia-1] += fa*fa;
+
+            for (Index j=i+1; j<count; j++)
+              {
+                const Index ib = c[j];
+                const Float fb = a[j];
+                
+                const Index row = std::max(ia, ib);
+                const Index col = std::min(ia, ib);
+                 
+                Float* element = end(row) - (row - col);
+                *element += fa*fb;
+              }
+          }
+      }
+
+    delete[] a;
+    delete[] c;
   }
 
 }  // namespace GNU_gama
