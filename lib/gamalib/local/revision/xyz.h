@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: xyz.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: xyz.h,v 1.2 2006/09/16 13:26:17 cepek Exp $
  */
 
 #include <gamalib/local/revision.h>
@@ -63,7 +63,7 @@ bool LocalRevision::z(const Z* obs) const
 
   PointData::const_iterator s = PD.find(obs->from());
   if (s == PD.end()) return false;
-  if (!(*s).second.active_xy()) return false;
+  if (!(*s).second.active_z()) return false;
   if (!(*s).second.test_z()) return false;
 
   return true;

@@ -1,3 +1,27 @@
+    - fixed bug in gama-local in revision of observed heights
+
+Index: lib/gamalib/local/revision/xyz.h
+===================================================================
+RCS file: /sources/gama/gama/lib/gamalib/local/revision/xyz.h,v
+retrieving revision 1.1
+diff -u -6 -r1.1 xyz.h
+--- lib/gamalib/local/revision/xyz.h	9 Apr 2006 16:40:25 -0000	1.1
++++ lib/gamalib/local/revision/xyz.h	16 Sep 2006 13:19:43 -0000
+@@ -60,13 +60,13 @@
+ bool LocalRevision::z(const Z* obs) const
+ {
+   if (!obs->active()) return false;
+ 
+   PointData::const_iterator s = PD.find(obs->from());
+   if (s == PD.end()) return false;
+-  if (!(*s).second.active_xy()) return false;
++  if (!(*s).second.active_z()) return false;
+   if (!(*s).second.test_z()) return false;
+ 
+   return true;
+ }
+ 
+
 1.9.01 2006-08-26
 
      #####################################################################
