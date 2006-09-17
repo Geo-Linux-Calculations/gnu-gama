@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_ordering.h,v 1.5 2006/09/16 10:20:39 cepek Exp $
+ *  $Id: smatrix_ordering.h,v 1.6 2006/09/17 16:08:38 cepek Exp $
  */
 
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
@@ -72,7 +72,7 @@ namespace GNU_gama {
       
       while (index != mnodes)
         {
-          // all masked neighbors of nodes in the current level
+          // all masked neighbours of nodes in the current level
 
           Index width = 0;
           Index ii=adst.xadj(level);
@@ -95,19 +95,8 @@ namespace GNU_gama {
               ii++;
             }
 
-          if (width == 0)
-            {
-              // graph is disconnected ... using the first node from mask
-
-              for (Index node=1; node<=nodes; node++)
-                if (mask(node))
-                  {
-                    mask(node) = 0;
-                    adst.adjncy(index + width++) = node;
-                    break;
-                  }
-            }
-
+          if (width == 0) break;
+          
           level++;
           adst.xadj(level) = index;
           index += width;
@@ -129,11 +118,11 @@ namespace GNU_gama {
   {
   public:
 
-    PseudoPeripheralNode() : starting_node(Index(1)) {}
+    PseudoPeripheralNode() : starting_node(1) {}
 
     Index operator()(const Adjacency<Index>* graph)
     {
-      if (graph->nodes() == Index(0)) return Index(0);
+      if (graph->nodes() == 0)  return 0;
 
       RootedLevelStructure<Index> rls;
       Index rlevel, t, r = starting_node;
@@ -243,55 +232,56 @@ namespace GNU_gama {
       const Index N = graph->nodes();
       for (Index i=1; i<=N; i++)
         {
-          this->invp(i) = 1;
+          this->invp(i) = 1;   // in this function, invp is used as a mask
         }
 
-      Index count = 1;
-      PseudoPeripheralNode<Index> ppn;
-      const Index r = ppn(graph);
-      this->perm(1) = r;
-      this->invp(r) = 0;
-
-      for (Index i=1; count<N && i<N; i++)
+      Index count = 0;         // ordered nodes
+      while (count < N) 
         {
-          // add all unnumbered neighbors, sorted in increasing order
-          // of degree
-
-          typedef std::pair<Index, Index>  Pair;
-          typedef std::vector<Pair>        Vector;
-          Vector  tmp;
-
-          const Index x = this->perm(i);
-          typename Adjacency<Index>::const_iterator b=graph->begin(x);
-          typename Adjacency<Index>::const_iterator e=graph->end  (x);
-          while (b != e)
+          PseudoPeripheralNode<Index> ppn;
+          for (Index i=1; i<=N; i++)
+            if (this->invp(i))
+              {
+                ppn.set_starting_node(i);              
+                break;
+              }
+          const Index r = ppn(graph);
+          this->perm(++count) = r;
+          this->invp(r) = 0;
+          
+          for (Index i=1; i<=count; i++)
             {
-              const Index n = *b;
-              if (this->invp(n))
+              // add all unnumbered neighbours, sorted in increasing order
+              // of degree
+              
+              typedef std::pair<Index, Index>  Pair;
+              typedef std::vector<Pair>        Vector;
+              Vector  tmp;
+              
+              const Index x = this->perm(i);
+              typename Adjacency<Index>::const_iterator b=graph->begin(x);
+              typename Adjacency<Index>::const_iterator e=graph->end  (x);
+              while (b != e)
                 {
-                  tmp.push_back(Pair(graph->degree(n), n));
-                  this->invp(n) = 0;
+                  const Index n = *b;
+                  if (this->invp(n))
+                    {
+                      tmp.push_back(Pair(graph->degree(n), n));
+                      this->invp(n) = 0;
+                    }
+                  b++;
                 }
-              b++;
-            }
-
-          std::sort(tmp.begin(), tmp.end());
-   
-          for (typename Vector::const_iterator 
-                 i=tmp.begin(), e=tmp.end(); i!=e; ++i)
-            {
-              this->perm(++count) = (*i).second;
+              
+              std::sort(tmp.begin(), tmp.end());
+              
+              for (typename Vector::const_iterator 
+                     i=tmp.begin(), e=tmp.end(); i!=e; ++i)
+                {
+                  this->perm(++count) = (*i).second;
+                }
             }
         }
-
-      if (count < N)                  // disconnected graph,  should be fixed 
-        for (Index i=1; i<=N; i++)    // (process connected component)
-          if (this->invp(i))
-            {
-              this->perm(++count) = i;
-              this->invp(i) = 0;
-            }
-
+      
       // reverse ordering
       for (Index j=N, i=1; i<j; i++, j--)
         {
