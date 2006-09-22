@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.3 2006/09/16 10:20:39 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.4 2006/09/22 15:45:31 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -31,6 +31,7 @@
 #include <gnu_gama/adj/adj_chol.h>
 #include <gnu_gama/adj/envelope.h>
 #include <gnu_gama/sparse/smatrix_ordering.h>
+#include <gnu_gama/adj/homogenization.h>
 
 namespace GNU_gama {
 
@@ -46,38 +47,41 @@ namespace GNU_gama {
     AdjEnvelope() : chol(new AdjCholDec<Float, Exc>) {}
     ~AdjEnvelope() { delete chol; }
 
-    typedef GNU_gama::Vec<Float, Exc> Vector;
-
-    virtual const Vector& unknowns()       { solve(); return chol->unknowns();  } 
-    virtual const Vector& residuals()      { return chol->residuals(); }
-    virtual Index defect()                 { return chol->defect();    }
+    virtual const GNU_gama::Vec<Float, Exc>& unknowns();
+    virtual const GNU_gama::Vec<Float, Exc>& residuals();
+    virtual Float sum_of_squares();
+    virtual Index defect();
  
-    virtual Float q_xx(Index i, Index j)   { return chol->q_xx(i,j);   }
-    virtual Float q_bb(Index i, Index j)   { return chol->q_bb(i,j);   }  
-    virtual Float q_bx(Index i, Index j)   { return chol->q_bx(i,j);   }  
+    virtual Float q_xx(Index i, Index j);
+    virtual Float q_bb(Index i, Index j);
+    virtual Float q_bx(Index i, Index j);
                                                                       
-    virtual bool lindep(Index i)           { return chol->lindep(i);   }
-    virtual void min_x()                   { return chol->min_x();     }
-    virtual void min_x(Index n, Index m[]) { chol->min_x(n, m);        }
+    virtual bool lindep(Index i);
+    virtual void min_x();
+    virtual void min_x(Index n, Index m[]);
 
-    void solve() { solve_x0(); chol->solve(); }
+    void solve();
 
     virtual void reset(const AdjInputData *data);
 
   private:
 
-    AdjCholDec<Float, Exc>*  chol;
+    AdjCholDec<Float, Exc>*          chol;  // #########################   
 
-    ReverseCuthillMcKee<Index>  ordering;
-    Envelope<Float, Index>      envelope;
-    Vec<Float, Exc>             x0;        // particular solution
+    ReverseCuthillMcKee<Index>   ordering;
+    Homogenization<Float, Index>      hom;
+    Envelope<Float, Index>       envelope;
+    GNU_gama::Vec<Float, Exc>          x0;        // particular solution
+    GNU_gama::Vec<Float, Exc>       resid;        // residuals
+    Float                         squares;        // sum of squares
 
-    Vec<Float, Exc>             tmpvec;   
+    GNU_gama::Vec<Float, Exc>     tmpvec;   
 
     enum { 
       stage_init,      // implicitly set by Adj_BaseSparse constuctor
       stage_ordering,  // permutation vector
-      stage_x0         // particular solution (dependent unknown set to 0)
+      stage_x0,        // particular solution (dependent unknown set to 0)
+      stage_residuals  // residuals r = Ax - b
     };
 
     void solve_ordering();

@@ -20,14 +20,13 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.4 2006/09/16 10:20:39 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.5 2006/09/22 15:45:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
 #define GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
 
 #include <gnu_gama/adj/adj_envelope.h>
-#include <gnu_gama/adj/homogenization.h>
 
 namespace 
 {
@@ -73,8 +72,6 @@ namespace GNU_gama {
         }
       
       chol->reset(A, b);
-
-      std::cout << "MatVec = " << inv(trans(A)*A)*(trans(A)*b);
     }
   }
 
@@ -84,35 +81,14 @@ namespace GNU_gama {
   {
     if (this->stage >= stage_ordering) return;
 
-    Homogenization    <Float, Index>   hom(this->input);
+    hom.reset(this->input);
     const SparseMatrix<Float, Index>*  mat = hom.mat();
     const Vec         <Float>&         rhs = hom.rhs();
     SparseMatrixGraph <Float, Index>   graph(mat);
 
     ordering.reset(&graph);
 
-    // std::cout<<"\n****  rusim ordering .... pracuji v puvodni soustave\n";
-    // for (Index i=1; i<=ordering.nodes(); i++)
-    //   {
-    //     ordering.perm(i) = i;
-    //     ordering.invp(i) = i;
-    //   }
-    // std::cout<<"****************************************************\n\n";
-    // std::cout << "\nPERM = ";
-    // for (Index i=1; i<=ordering.nodes(); i++)
-    //   {
-    //     std::cout << ordering.perm(i) << " ";
-    //   }
-    // std::cout << "\n";
-    // std::cout << "INVP = ";
-    // for (Index i=1; i<=ordering.nodes(); i++)
-    //   {
-    //     std::cout << ordering.invp(i) << " ";
-    //   }
-    // std::cout << "\n";
-
-    const Index N = mat->columns();
-    
+    const Index N = mat->columns();    
     tmpvec.reset(N);
     tmpvec.set_zero();
     
@@ -131,8 +107,6 @@ namespace GNU_gama {
             tmpvec(c) +=  a * rhs(r);              
           }
       }
-
-    std::cout << "\nRRHHSS = " << trans(tmpvec);
     
     envelope.set(mat, &graph, &ordering);   
 
@@ -146,49 +120,11 @@ namespace GNU_gama {
     if (this->stage >= stage_x0) return;
     solve_ordering();
 
-    std::cout << "\npred choleskym : ";  envelope.write_xml(std::cout);
-
-    /* !! */  Mat<> N(envelope.dim(), envelope.dim());
-    /* !! */  N.set_zero();
-    /* !! */  for (Index i=1; i<=envelope.dim(); i++)
-    /* !! */    {
-    /* !! */      N(i,i) = envelope.diagonal(i);
-    /* !! */      double* b = envelope.begin(i);
-    /* !! */      double* e = envelope.end(i);
-    /* !! */      for (Index j=i-(e-b); j<i; j++)
-    /* !! */        {
-    /* !! */          N(i,j) = N(j,i) = *b++;
-    /* !! */        }
-    /* !! */    }
-    /* !! */  std::cout << N;
+    // Cholesky decomposition L*D*L'
 
     envelope.cholDec();
-    std::cout << "\npo choleskym   : ";  envelope.write_xml(std::cout);
 
-    /* !! */  Mat<> L(envelope.dim(), envelope.dim());
-    /* !! */  Mat<> D(envelope.dim(), envelope.dim());
-    /* !! */  L.set_zero();
-    /* !! */  D.set_zero();
-    /* !! */  for (Index i=1; i<=envelope.dim(); i++)
-    /* !! */    {
-    /* !! */      D(i,i) = envelope.diagonal(i);
-    /* !! */      L(i,i) = 1;
-    /* !! */      double* b = envelope.begin(i);
-    /* !! */      double* e = envelope.end(i);
-    /* !! */      for (Index j=i-(e-b); j<i; j++)
-    /* !! */        {
-    /* !! */          L(i,j) = *b++;
-    /* !! */        }
-    /* !! */    }
-    /* !! */  std::cout << D << L;
-    /* !! */  Mat<> ERROR = N - L*D*trans(L);
-    /* !! */  std::cout << ERROR;
-    /* !! */  double error = 0;
-    /* !! */  for (Index i=1; i<=ERROR.rows(); i++)
-    /* !! */    for (Index j=1; j<=ERROR.cols(); j++) 
-    /* !! */      error = std::max(error, std::abs(ERROR(i,j)));
-    /* !! */  std::cout << "\nCHOLESKY ERROR = " 
-    /* !! */            << error << std::endl << std::endl;
+    // particular solution x0
 
     envelope.solve(tmpvec.begin(), tmpvec.dim());
 
@@ -199,12 +135,142 @@ namespace GNU_gama {
       }
     tmpvec.reset();
 
-    std::cout << "\nVYSLEDKY Z ENVELOPE = " << x0;
-    std::cout << "------------------------- ******\n";
+    // sum of squares of weighted residuals
+
+    const SparseMatrix<Float, Index>*  mat = hom.mat();
+    const Vec         <Float>&         rhs = hom.rhs();
+    squares = 0;
+    for (Index i=1; i<=mat->rows(); i++)
+      {        
+        Float *b = mat->begin(i);
+        Float *e = mat->end(i);
+        Index *n = mat->ibegin(i);
+        Float  s = Float();
+        while(b != e) 
+          {
+            s += *b++ * x0(*n++);
+          }
+
+        const Float t = s - rhs(i);
+        squares += t*t;
+      }
+    hom.reset();
 
     this->stage = stage_x0;
   }
-    
+
+
+  template <typename Float, typename Index, typename Exc> 
+  const GNU_gama::Vec<Float, Exc>& 
+  AdjEnvelope<Float, Index, Exc>::unknowns()
+  {
+    solve();
+    if (defect() == 0) return x0;   // !!!!!!!!!!!!!!
+
+    return chol->unknowns();
+  }    
+
+
+  template <typename Float, typename Index, typename Exc> 
+  const GNU_gama::Vec<Float, Exc>& 
+  AdjEnvelope<Float, Index, Exc>::residuals()
+  {
+    if (this->stage >= stage_residuals) return resid;
+    if (this->stage < stage_x0) solve_x0();
+
+    const SparseMatrix<Float, Index>* mat = this->input->mat();
+    const Vec<>&                      rhs = this->input->rhs();
+    const Index N = rhs.dim();
+    resid.reset(N);
+
+    for (Index i=1; i<=N; i++)        // residuals = Ax - rhs
+      {
+        Float *b = mat->begin(i);
+        Float *e = mat->end(i);
+        Index *n = mat->ibegin(i);
+        Float  s = Float();
+        while(b != e) 
+          {
+            s += *b++ * x0(*n++);
+          }
+
+        resid(i) = s - rhs(i);
+      }
+
+    this->stage = stage_residuals; 
+    return resid;
+  }    
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::sum_of_squares()
+  {
+    if (this->stage < stage_x0) solve_x0();
+
+    return squares;
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Index AdjEnvelope<Float, Index, Exc>::defect()
+  {
+    if (this->stage < stage_x0) solve_x0();
+
+    return envelope.defect();
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::q_xx(Index i, Index j)
+  {
+    return chol->q_xx(i,j);
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::q_bb(Index i, Index j)
+  {
+    return chol->q_bb(i,j);
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::q_bx(Index i, Index j)
+  {
+    return chol->q_bx(i,j);
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  bool AdjEnvelope<Float, Index, Exc>::lindep(Index i)
+  {
+    if (this->stage < stage_x0) solve_x0();
+
+    return chol->lindep(i);  // envelope zlobi v bug-1.3.25-zpk.gkf
+    //return (envelope.diagonal(i) == Float());
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  void AdjEnvelope<Float, Index, Exc>::min_x()
+  {
+    chol->min_x();
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  void AdjEnvelope<Float, Index, Exc>::min_x(Index n, Index m[])
+  {
+    chol->min_x(n, m);
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  void AdjEnvelope<Float, Index, Exc>::solve()
+  {
+    solve_x0(); 
+    chol->solve(); 
+  }
 }
 
 #endif

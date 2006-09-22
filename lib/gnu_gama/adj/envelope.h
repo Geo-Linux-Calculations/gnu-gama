@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.8 2006/09/16 10:20:39 cepek Exp $
+ *  $Id: envelope.h,v 1.9 2006/09/22 15:45:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
@@ -41,7 +41,7 @@ namespace GNU_gama {
   {
   public:
 
-    Envelope() : dim_(0), diag(0), env(0), xenv(0) 
+    Envelope() : dim_(0), defect_(0), diag(0), env(0), xenv(0) 
     {
     }
     Envelope(const Envelope& envelope) : diag(0), env(0), xenv(0)
@@ -74,9 +74,10 @@ namespace GNU_gama {
       return *this;
     }
 
-    Index dim() const { return dim_; }
+    Index dim()    const { return dim_;    }
+    Index defect() const { return defect_; }
 
-    void cholDec(Float tol=1e-14);
+    void cholDec(Float tol=Float());
     void solve (Float* rhs, Index dimension) const;
     void lowerSolve   (Index start, Index stop, Float* rhs) const;
     void diagonalSolve(Index start, Index stop, Float* rhs) const;
@@ -94,12 +95,15 @@ namespace GNU_gama {
   private:
 
     Index   dim_;
+    Index   defect_;
     Float*  diag;   // diagonal elements
     Float*  env;    // of-diagonal elements
     Float** xenv;
 
     void clear()
     {
+      defect_ = 0;
+
       delete[] diag;   diag = 0;
       delete[] env;    env  = 0;
       delete[] xenv;   xenv = 0;
@@ -113,6 +117,12 @@ namespace GNU_gama {
   template <typename Float, typename Index>
   void Envelope<Float, Index>::cholDec(Float tol)
   {
+    if (tol <= Float())
+      {
+        tol = std::sqrt( std::numeric_limits<Float>::epsilon() );
+      }
+    defect_ = 0;
+
     for (Index row=2; row<=dim_; row++)
       {
         /*
@@ -144,7 +154,8 @@ namespace GNU_gama {
 
         if (std::abs(*d) < tol)
           {
-            *d = Float();                        // linearly dependend unknown
+            *d = Float();                         // linearly dependend unknown
+            defect_++;
           }
       }
   }
@@ -204,28 +215,20 @@ namespace GNU_gama {
     Float* col;
     const Float* b;
     const Float* e;
-    const Float* d = diag + start - 1;     // 1 based indexes
 
     rhs += stop - 1;
     for (Index row=stop; row>=start; row--)
       {
-        if (*d++)
+        b = xenv[row];
+        e = xenv[row+1];
+        
+        const Float x = *rhs;
+        col = rhs - (e-b);
+        while (b != e)
           {
-            b = xenv[row];
-            e = xenv[row+1];
-            
-            const Float x = *rhs;
-            col = rhs - (e-b);
-            while (b != e)
-              {
-                *col++ -= x * *b++;
-              }
+            *col++ -= x * *b++;
           }
-        else
-          {
-            *rhs = Float();                // linearly dependent column
-          }
-       
+        
         rhs--;
       }
   }

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.6 2006/09/09 07:40:05 cepek Exp $
+ *  $Id: network.cpp,v 1.7 2006/09/22 15:45:31 cepek Exp $
  */
 
 #include <fstream>
@@ -45,6 +45,10 @@ using namespace GaMaLib;
 typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
 typedef GNU_gama::Cluster<Observation>                  Cluster;
 
+namespace 
+{
+  const char* UNKNOWN_ALGORITHM="### network.cpp : unknown algorithm ###";
+}
 
 LocalNetwork::LocalNetwork()        
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
@@ -367,7 +371,7 @@ void LocalNetwork::project_equations()
     }
   else
     {
-      throw GaMaLib::Exception("### network.cpp : unknown algorithm ###");
+      throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
     }
 
   //--ofstream opr("A_scaled.bin", ios_base::trunc); 
@@ -967,8 +971,10 @@ void LocalNetwork::vyrovnani_()
       }
   }
 
+  if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
   { /* ----------------------------------------------------------------- */
-    r = least_squares->residuals();
+    // r = least_squares->residuals();
+    r = full->residuals();
     suma_pvv_ = 0;
 
     Double tmp;
@@ -1006,6 +1012,16 @@ void LocalNetwork::vyrovnani_()
           ind_0 += N;
         }
   }
+  else if (AdjBaseSparse* sparse = dynamic_cast<AdjBaseSparse*>(least_squares))
+    {
+      r = sparse->residuals();
+      suma_pvv_ = sparse->sum_of_squares();
+    }
+  else
+    {
+      throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
+    }
+  
 
   { /* ----------------------------------------------------------------- */
     sigma_L.reset(pocmer_);

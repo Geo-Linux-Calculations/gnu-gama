@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_basefull.h,v 1.1 2006/08/31 13:29:10 cepek Exp $
+ *  $Id: adj_basefull.h,v 1.2 2006/09/22 15:45:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h
@@ -66,6 +66,12 @@ namespace GNU_gama {
     { 
       if (!is_solved) solve(); 
       return r; 
+    }
+
+    Float sum_of_squares()
+    {
+      const Vec<Float, Exc>& res = residuals();
+      return res.dot(res);
     }
     
     // solve() must compute vectors x, r  and set is_solved=true

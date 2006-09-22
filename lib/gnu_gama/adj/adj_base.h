@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.13 2006/08/31 17:11:33 cepek Exp $
+ *  $Id: adj_base.h,v 1.14 2006/09/22 15:45:31 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
@@ -39,6 +39,7 @@ namespace GNU_gama {
  
     virtual const Vector& unknowns()   = 0;   // unknown parameters
     virtual const Vector& residuals()  = 0;   // adjusted residuals
+    virtual Float sum_of_squares()     = 0;
     virtual Index defect()             = 0;
  
     virtual Float q_xx(Index, Index)   = 0;   // weight coefficient (xi,xj)
