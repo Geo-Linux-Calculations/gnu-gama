@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.4 2006/09/22 15:45:31 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.5 2006/09/23 20:23:24 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -71,11 +71,16 @@ namespace GNU_gama {
     ReverseCuthillMcKee<Index>   ordering;
     Homogenization<Float, Index>      hom;
     Envelope<Float, Index>       envelope;
+    
+    Index                    observations;
+    Index                      parameters;
+    const SparseMatrix<>*   design_matrix;        
     GNU_gama::Vec<Float, Exc>          x0;        // particular solution
     GNU_gama::Vec<Float, Exc>       resid;        // residuals
     Float                         squares;        // sum of squares
 
     GNU_gama::Vec<Float, Exc>     tmpvec;   
+    GNU_gama::Vec<Float, Exc>     tmpres;         // used in q_bb
 
     enum { 
       stage_init,      // implicitly set by Adj_BaseSparse constuctor
@@ -83,6 +88,8 @@ namespace GNU_gama {
       stage_x0,        // particular solution (dependent unknown set to 0)
       stage_residuals  // residuals r = Ax - b
     };
+
+    bool q_bb_init;
 
     void solve_ordering();
     void solve_x0();

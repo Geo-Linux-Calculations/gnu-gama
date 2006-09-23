@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.5 2006/09/22 15:45:31 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.6 2006/09/23 20:23:24 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -39,8 +39,13 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   void AdjEnvelope<Float, Index, Exc>::reset(const AdjInputData *data) 
   {
+    observations  = data->mat()->rows();
+    parameters    = data->mat()->columns();
+    q_bb_init     = true;
+
     this->input = data;
     this->stage = 0;
+
 
     // ######  LADENI  ##########################################
 
@@ -48,6 +53,7 @@ namespace GNU_gama {
 
     const SparseMatrix<>* mat = hom.mat();
     const Vec<Float>&     rhs = hom.rhs();
+
     {
       Index M = mat->rows();
       Index N = mat->columns();
@@ -82,21 +88,21 @@ namespace GNU_gama {
     if (this->stage >= stage_ordering) return;
 
     hom.reset(this->input);
-    const SparseMatrix<Float, Index>*  mat = hom.mat();
-    const Vec         <Float>&         rhs = hom.rhs();
-    SparseMatrixGraph <Float, Index>   graph(mat);
+    design_matrix = hom.mat();
 
+    SparseMatrixGraph <Float, Index> graph(design_matrix);
     ordering.reset(&graph);
 
-    const Index N = mat->columns();    
+    const Vec<Float>& rhs = hom.rhs();
+    const Index N = design_matrix->columns();    
     tmpvec.reset(N);
     tmpvec.set_zero();
     
-    for (Index r=1; r<=mat->rows(); r++)
+    for (Index r=1; r<=design_matrix->rows(); r++)
       {
-        const Float* b=mat->begin (r);
-        const Float* e=mat->end   (r);
-        const Index* n=mat->ibegin(r);
+        const Float* b=design_matrix->begin (r);
+        const Float* e=design_matrix->end   (r);
+        const Index* n=design_matrix->ibegin(r);
         
         while (b != e)
           {
@@ -108,7 +114,7 @@ namespace GNU_gama {
           }
       }
     
-    envelope.set(mat, &graph, &ordering);   
+    envelope.set(design_matrix, &graph, &ordering);   
 
     this->stage = stage_ordering;
   }
@@ -154,7 +160,7 @@ namespace GNU_gama {
         const Float t = s - rhs(i);
         squares += t*t;
       }
-    hom.reset();
+    // ???? hom.reset(); ????
 
     this->stage = stage_x0;
   }
@@ -230,7 +236,36 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   Float AdjEnvelope<Float, Index, Exc>::q_bb(Index i, Index j)
   {
-    return chol->q_bb(i,j);
+    if (q_bb_init) 
+    {
+      if (this->stage < stage_x0) solve_x0();
+      tmpres.reset(parameters);
+      q_bb_init = false;
+    }
+
+    // if (i > j) std::swap(i,j);
+    
+    tmpres.set_zero();
+    Float* b = design_matrix->begin (j);
+    Float* e = design_matrix->end   (j);
+    Index* n = design_matrix->ibegin(j);
+    while (b != e)
+      {
+        tmpres(ordering.invp(*n++)) = *b++;
+      }
+    
+    envelope.solve(tmpres.begin(), parameters);
+    
+    b = design_matrix->begin (i);
+    e = design_matrix->end   (i);
+    n = design_matrix->ibegin(i);
+    Float s = Float();
+    while (b != e)
+      {
+        s += *b++ * tmpres(ordering.invp(*n++));
+      }
+
+    return s;
   }
 
 
