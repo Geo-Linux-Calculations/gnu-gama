@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.5 2006/09/23 20:23:24 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.6 2006/09/26 18:02:09 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -78,21 +78,26 @@ namespace GNU_gama {
     GNU_gama::Vec<Float, Exc>          x0;        // particular solution
     GNU_gama::Vec<Float, Exc>       resid;        // residuals
     Float                         squares;        // sum of squares
+    Envelope<Float, Index>             q0;        // weight coefficients for x0
 
     GNU_gama::Vec<Float, Exc>     tmpvec;   
     GNU_gama::Vec<Float, Exc>     tmpres;         // used in q_bb
 
-    enum { 
-      stage_init,      // implicitly set by Adj_BaseSparse constuctor
-      stage_ordering,  // permutation vector
-      stage_x0,        // particular solution (dependent unknown set to 0)
-      stage_residuals  // residuals r = Ax - b
+    enum Stage { 
+      stage_init,       // implicitly set by Adj_BaseSparse constuctor
+      stage_ordering,   // permutation vector
+      stage_x0,         // particular solution (dependent unknown set to 0)
+      stage_q0
     };
 
-    bool q_bb_init;
+    bool init_q_bb;         // weight coefficieants of adjusted observations
+    bool init_residuals;    // residuals r = Ax - b
+    bool init_q0;           // weight coefficients of particular solution x0
 
+    void set_stage(Stage s);
     void solve_ordering();
     void solve_x0();
+    void solve_q0();
   };
 
 }  // namespace GNU_gama
