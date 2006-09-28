@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.6 2006/09/26 18:02:09 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.7 2006/09/28 18:20:14 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -44,8 +44,8 @@ namespace GNU_gama {
   {
   public:
 
-    AdjEnvelope() : chol(new AdjCholDec<Float, Exc>) {}
-    ~AdjEnvelope() { delete chol; }
+    AdjEnvelope() : chol(new AdjCholDec<Float, Exc>), min_x_list(0) {}
+    ~AdjEnvelope() { delete chol; delete[] min_x_list; }
 
     virtual const GNU_gama::Vec<Float, Exc>& unknowns();
     virtual const GNU_gama::Vec<Float, Exc>& residuals();
@@ -76,6 +76,8 @@ namespace GNU_gama {
     Index                      parameters;
     const SparseMatrix<>*   design_matrix;        
     GNU_gama::Vec<Float, Exc>          x0;        // particular solution
+    GNU_gama::Vec<Float, Exc>           x;        // unique or regularized solution
+    //GNU_gama::Mat<Float, Exc>           G;
     GNU_gama::Vec<Float, Exc>       resid;        // residuals
     Float                         squares;        // sum of squares
     Envelope<Float, Index>             q0;        // weight coefficients for x0
@@ -93,11 +95,20 @@ namespace GNU_gama {
     bool init_q_bb;         // weight coefficieants of adjusted observations
     bool init_residuals;    // residuals r = Ax - b
     bool init_q0;           // weight coefficients of particular solution x0
+    bool init_x;            // unique or regularized solution
 
     void set_stage(Stage s);
     void solve_ordering();
     void solve_x0();
+    void solve_x();
     void solve_q0();
+
+    Index nullity;
+    Mat<Float, Exc> G;
+    Float dot(Index i, Index j) const;
+
+    Index* min_x_list;
+    Index  min_x_size;
   };
 
 }  // namespace GNU_gama

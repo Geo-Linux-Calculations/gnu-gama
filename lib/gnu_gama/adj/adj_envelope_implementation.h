@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.7 2006/09/26 18:02:09 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.8 2006/09/28 18:20:15 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -59,7 +59,7 @@ namespace GNU_gama {
     
       b.reset(M);
       for (Index i=1; i<=M; i++) b(i) = rhs(i);
-      
+
       A.reset(M, N);
       A.set_zero();
       for (Index i=1; i<=M; i++)
@@ -92,6 +92,7 @@ namespace GNU_gama {
       case stage_x0:
         init_residuals = true;
         init_q0        = true;
+        init_x         = true;
       case stage_q0:
         init_q_bb      = true;
         ;
@@ -111,6 +112,9 @@ namespace GNU_gama {
 
     SparseMatrixGraph <Float, Index> graph(design_matrix);
     ordering.reset(&graph);
+    // std::cout << "zruseno precislovani!\n";
+    // for (int i=1; i<=design_matrix->columns(); i++)
+    //   ordering.perm(i) = ordering.invp(i) = i;
 
     const Vec<Float>& rhs = hom.rhs();
     const Index N = design_matrix->columns();    
@@ -188,10 +192,9 @@ namespace GNU_gama {
   const GNU_gama::Vec<Float, Exc>& 
   AdjEnvelope<Float, Index, Exc>::unknowns()
   {
-    solve();
-    if (defect() == 0) return x0;   // !!!!!!!!!!!!!!
+    if (init_x) solve_x();
 
-    return chol->unknowns();
+    return x;
   }    
 
 
@@ -339,7 +342,11 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   void AdjEnvelope<Float, Index, Exc>::min_x()
   {
+    delete[] min_x_list;
+    min_x_list = 0;
     chol->min_x();
+
+    init_x = true;
   }
 
 
@@ -347,13 +354,20 @@ namespace GNU_gama {
   void AdjEnvelope<Float, Index, Exc>::min_x(Index n, Index m[])
   {
     chol->min_x(n, m);
+    delete[] min_x_list;
+    min_x_size = n;
+    min_x_list = new Index[min_x_size];
+    for (Index i=0; i<min_x_size; i++)
+      min_x_list[i] = m[i];
+
+    init_x = true;
   }
 
 
   template <typename Float, typename Index, typename Exc> 
   void AdjEnvelope<Float, Index, Exc>::solve()
   {
-    solve_x0(); 
+    solve_x(); 
     chol->solve(); 
   }
 
@@ -369,6 +383,102 @@ namespace GNU_gama {
 
         init_q0 = false;
         set_stage(stage_q0);
+      }
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::dot(Index i, Index j) const
+  {
+    Float s = Float();
+    for (Index n=0; n<min_x_size; n++)
+      {
+        const Index k = ordering.invp(min_x_list[n]);
+        s += G(k,i)*G(k,j);
+      }
+    return s;
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  void AdjEnvelope<Float, Index, Exc>::solve_x()
+  {
+    if (init_x)
+      {
+        if (min_x_list == 0)   // regularization for all parameters
+          {
+            min_x_size = parameters;
+            min_x_list = new Index[min_x_size];
+            for (Index i=0; i<min_x_size; i++)
+              min_x_list[i] = i+1;
+          }
+
+        if (this->stage < stage_x0) solve_x0();
+        init_x = false;
+        if (defect() == 0)
+          {
+            x = x0;
+            return;
+          }
+
+        nullity = defect();
+        const Index N1 = nullity+1;
+        G.reset(parameters, N1);
+        Vec<Float, Exc> tmp(parameters);
+
+        for (Index k=1, column=1; column<=parameters; column++)
+          if (envelope.diagonal(column) == 0)
+            {
+              for (Index i=1; i<=parameters; i++)
+                if (Float* e = envelope.element(i, column))
+                  tmp(i) = *e;
+                else
+                  tmp(i) = Float();
+
+              envelope.upperSolve(1, parameters, tmp.begin());
+
+              tmp(column) = Float(-1); 
+              for (Index i=1; i<=parameters; i++)
+                  G(i,k) = tmp(i);
+
+              k++;
+            }
+
+        for (Index i=1; i<=parameters; i++)
+          G(ordering.invp(i), N1) = x0(i);
+
+
+        // Gramm-Schmidt orthogonalization
+
+        static Index s_tol = Float();
+        if (s_tol <= Float()) 
+          {
+            s_tol = std::sqrt( std::numeric_limits<Float>::epsilon() );
+          }
+
+        for (Index column=1; column<=nullity; column++)
+          {
+            const Float pivot = std::sqrt( dot(column, column) );
+            if (pivot < s_tol) 
+              {
+                init_x = true;
+                throw Exc(Exception::BadRegularization,
+                        "AdjEnvelope::solve_x() --- bad regularization"); 
+              }
+            for (Index i=1; i<=parameters; i++) 
+              G(i,column) /= pivot;
+
+            for (Index col=column+1; col<=N1; col++)
+              {
+                const Float dp = dot(column, col); 
+                for (Index i=1; i<=parameters; i++) 
+                  G(i,col) -= dp*G(i, column);
+              }
+          }
+
+        x.reset(parameters);
+        for (Index i=1; i<=parameters; i++)
+          x(ordering.perm(i)) = G(i, N1);
       }
   }
 }
