@@ -56,6 +56,7 @@ libgama_src = \
    gnu_gama/sparse/sbdiagonal.h \
    gnu_gama/sparse/smatrix_graph_connected.h \
    gnu_gama/sparse/smatrix_graph.h \
+   gnu_gama/sparse/smatrix_ordering.h \
    gnu_gama/sparse/smatrix.h \
    gnu_gama/sparse/svector.h \
    gnu_gama/xml/baseparser.cpp \
