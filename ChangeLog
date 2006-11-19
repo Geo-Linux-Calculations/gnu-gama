@@ -1,4 +1,7 @@
-    - fixed bug in gama-local in revision of observed heights
+        - fixed bug reported by Jim Sutherland; new XML output: fixed
+	  point Y value has a minus sign (input file was positive)
+
+	- fixed bug in gama-local in revision of observed heights
 
 Index: lib/gamalib/local/revision/xyz.h
 ===================================================================

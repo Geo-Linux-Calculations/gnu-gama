@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.5 2006/11/19 09:28:44 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.6 2006/11/19 15:16:15 cepek Exp $
  */
 
 
@@ -273,19 +273,23 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     const int dof = netinfo->degrees_of_freedom();
     float test=0, lower=0, upper=0; 
 
+    test  = netinfo->m_0() / netinfo->apriori_m_0();
     if (dof)
       if (netinfo->m_0_aposteriori())
         {
           const double alfa_pul = (1 - netinfo->conf_pr())/2;
-          test  = netinfo->m_0() / netinfo->apriori_m_0();
           lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,dof)/dof);
           upper = sqrt(GNU_gama::Chi_square(  alfa_pul,dof)/dof);
+        }
+      else
+        {
+          out << "   <!-- no test for apriori standard deviation -->\n";
         }
 
     tagnl(out, "ratio",  test);
     tagnl(out, "lower",  lower);
     tagnl(out, "upper",  upper);
-    if (lower < test && test < upper)
+    if (lower < test && test < upper || netinfo->m_0_apriori())
       out << "   <passed/>\n\n";
     else
       out << "   <failed/>\n\n";
