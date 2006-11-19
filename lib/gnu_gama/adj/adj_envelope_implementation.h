@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.8 2006/09/28 18:20:15 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.9 2006/11/19 09:28:44 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -45,21 +45,21 @@ namespace GNU_gama {
 
     set_stage(stage_init);
 
-
+    return;
     // ######  LADENI  ##########################################
-
+    
     Homogenization<> hom(data);
-
+    
     const SparseMatrix<>* mat = hom.mat();
     const Vec<Float>&     rhs = hom.rhs();
-
+    
     {
       Index M = mat->rows();
       Index N = mat->columns();
     
       b.reset(M);
       for (Index i=1; i<=M; i++) b(i) = rhs(i);
-
+    
       A.reset(M, N);
       A.set_zero();
       for (Index i=1; i<=M; i++)
@@ -250,10 +250,67 @@ namespace GNU_gama {
   }
 
 
+  // T = I - alpha*inv(alpha'*alpha)*alpha'
+
+  template <typename Float, typename Index, typename Exc> 
+  void AdjEnvelope<Float, Index, Exc>
+  ::T_row(GNU_gama::Vec<Float, Exc>& row, Index ii)
+  {
+    Float t;
+    const Index i = ordering.invp(ii);
+    for (Index jj=1; jj<=parameters; jj++)
+      {
+        const Index j = ordering.invp(jj);
+        t = Float();
+        if (i == j) t = Float(1);
+
+        for (Index k=0; k<min_x_size; k++)
+          if (min_x_list[k] == jj)
+            {
+              for (Index c=1; c<=nullity; c++) t -= G(i,c)*G(j,c);
+              break;
+            }
+
+        row(j) = t;
+      }
+  }
+
+
   template <typename Float, typename Index, typename Exc> 
   Float AdjEnvelope<Float, Index, Exc>::q_xx(Index i, Index j)
   {
-    return chol->q_xx(i,j);
+    if (this->stage < stage_q0) solve_q0();
+
+    if (nullity == 0)
+      {
+        Float* q = q0.element(ordering.invp(i), ordering.invp(j));
+        if (q) return *q;
+
+        // elements outside the envelope (full solution)
+
+        const Index ii = ordering.invp(i); // !!! add buffering !!!
+        const Index jj = ordering.invp(j);
+        Vec<Float, Exc> a(parameters);    
+        a.set_zero();
+        a(ii) = 1;
+        envelope.solve(a.begin(), a.dim());
+        return a(jj);
+      }
+
+
+    Vec<Float, Exc> a(parameters);
+    Vec<Float, Exc> b(parameters);
+    T_row(a, i);
+    T_row(b, j);
+    envelope.lowerSolve(1, parameters, a.begin()); // !!! buffering !!!
+    envelope.lowerSolve(1, parameters, b.begin());
+    
+    Float s = Float();
+    for (Index i=1; i<=parameters; i++) 
+      if (const Float d = envelope.diagonal(i))
+        s += a(i)/d*b(i);
+    
+    return s;
   }
 
 
@@ -325,7 +382,9 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   Float AdjEnvelope<Float, Index, Exc>::q_bx(Index i, Index j)
   {
-    return chol->q_bx(i,j);
+    throw Exc(Exception::BadRegularization,
+              "q_bx not implemented"); 
+    return 0;
   }
 
 
@@ -334,8 +393,8 @@ namespace GNU_gama {
   {
     if (this->stage < stage_x0) solve_x0();
 
-    return chol->lindep(i);  // envelope zlobi v bug-1.3.25-zpk.gkf
-    //return (envelope.diagonal(i) == Float());
+    // return chol->lindep(i);  // envelope zlobi v bug-1.3.25-zpk.gkf
+    return (envelope.diagonal(i) == Float());
   }
 
 
@@ -353,7 +412,7 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   void AdjEnvelope<Float, Index, Exc>::min_x(Index n, Index m[])
   {
-    chol->min_x(n, m);
+    // chol->min_x(n, m);
     delete[] min_x_list;
     min_x_size = n;
     min_x_list = new Index[min_x_size];
@@ -368,7 +427,7 @@ namespace GNU_gama {
   void AdjEnvelope<Float, Index, Exc>::solve()
   {
     solve_x(); 
-    chol->solve(); 
+    // chol->solve(); 
   }
 
 
@@ -450,7 +509,7 @@ namespace GNU_gama {
 
         // Gramm-Schmidt orthogonalization
 
-        static Index s_tol = Float();
+        static Float s_tol = Float();
         if (s_tol <= Float()) 
           {
             s_tol = std::sqrt( std::numeric_limits<Float>::epsilon() );
@@ -481,6 +540,7 @@ namespace GNU_gama {
           x(ordering.perm(i)) = G(i, N1);
       }
   }
+
 }
 
 #endif

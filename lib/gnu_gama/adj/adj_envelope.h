@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.7 2006/09/28 18:20:14 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.8 2006/11/19 09:28:44 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -102,6 +102,7 @@ namespace GNU_gama {
     void solve_x0();
     void solve_x();
     void solve_q0();
+    void T_row(GNU_gama::Vec<Float, Exc>& row, Index i);
 
     Index nullity;
     Mat<Float, Exc> G;

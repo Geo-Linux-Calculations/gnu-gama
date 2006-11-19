@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.4 2006/08/29 10:06:52 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.5 2006/11/19 09:28:44 cepek Exp $
  */
 
 
@@ -78,7 +78,7 @@ void LocalNetworkXML::write(std::ostream& out) const
       out << "   axes-xy=\""; 
       switch (netinfo->PD.local_coordinate_system)
         {
-        case   1: out << "ne"; break;
+        case   1: out << "en"; break;
         case   2: out << "nw"; break;
         case   4: out << "se"; break;
         case   8: out << "ws"; break;
@@ -300,6 +300,8 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
 
 void LocalNetworkXML::coordinates(std::ostream& out) const
 {
+  const int y_sign = Consistent(netinfo->PD) ? +1 : -1;
+  
   out << "\n<coordinates>\n";
 
   out.setf(ios_base::fixed, ios_base::floatfield);
@@ -325,7 +327,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       if (bxy)
         {
           const double x = (p.x()+X(p.index_x())/1000);
-          const double y = (p.y()+X(p.index_y())/1000);
+          const double y = (p.y()+X(p.index_y())/1000)*y_sign;
           tagsp(out, "x", x);
           tagsp(out, "y", y);
         }
@@ -362,7 +364,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
               cy = "Y";
             }
           const double x = p.x();
-          const double y = p.y();
+          const double y = p.y()*y_sign;
           tagsp(out, cx, x);
           tagsp(out, cy, y);
         }
@@ -404,7 +406,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
               cy = "Y";
             }
           const double x = (p.x()+X(p.index_x())/1000);
-          const double y = (p.y()+X(p.index_y())/1000);
+          const double y = (p.y()+X(p.index_y())/1000)*y_sign;
           tagsp(out, cx, x);
           tagsp(out, cy, y);
           ind[++dim] = p.index_x();
