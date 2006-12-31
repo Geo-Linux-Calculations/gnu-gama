@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.9 2006/11/19 09:28:44 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.10 2006/12/31 10:23:57 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -44,40 +44,6 @@ namespace GNU_gama {
     this->input  = data;
 
     set_stage(stage_init);
-
-    return;
-    // ######  LADENI  ##########################################
-    
-    Homogenization<> hom(data);
-    
-    const SparseMatrix<>* mat = hom.mat();
-    const Vec<Float>&     rhs = hom.rhs();
-    
-    {
-      Index M = mat->rows();
-      Index N = mat->columns();
-    
-      b.reset(M);
-      for (Index i=1; i<=M; i++) b(i) = rhs(i);
-    
-      A.reset(M, N);
-      A.set_zero();
-      for (Index i=1; i<=M; i++)
-        {
-          Float *b = mat->begin(i);
-          Float *e = mat->end(i);
-          Index *n = mat->ibegin(i);
-          while(b != e)
-            {
-              A(i, *n) = *b;
-              
-              b++;
-              n++;
-            }
-        }
-      
-      chol->reset(A, b);
-    }
   }
 
 
@@ -112,7 +78,7 @@ namespace GNU_gama {
 
     SparseMatrixGraph <Float, Index> graph(design_matrix);
     ordering.reset(&graph);
-    // std::cout << "zruseno precislovani!\n";
+    // std::cerr << "renumbering is suppressed!\n";
     // for (int i=1; i<=design_matrix->columns(); i++)
     //   ordering.perm(i) = ordering.invp(i) = i;
 
@@ -393,7 +359,7 @@ namespace GNU_gama {
   {
     if (this->stage < stage_x0) solve_x0();
 
-    // return chol->lindep(i);  // envelope zlobi v bug-1.3.25-zpk.gkf
+    // return chol->lindep(i);  // envelope ... problem in bug-1.3.25-zpk.gkf
     return (envelope.diagonal(i) == Float());
   }
 
@@ -427,7 +393,6 @@ namespace GNU_gama {
   void AdjEnvelope<Float, Index, Exc>::solve()
   {
     solve_x(); 
-    // chol->solve(); 
   }
 
 
