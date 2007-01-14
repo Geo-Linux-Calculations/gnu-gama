@@ -20,13 +20,14 @@
 */
 
 /*
- *  $Id: adj.h,v 1.2 2006/08/22 18:30:41 cepek Exp $
+ *  $Id: adj.h,v 1.3 2007/01/14 15:23:20 cepek Exp $
  */
 
 #include <matvec/covmat.h>
 #include <gnu_gama/sparse/smatrix.h>
 #include <gnu_gama/sparse/sbdiagonal.h>
 #include <gnu_gama/sparse/intlist.h>
+#include <gnu_gama/adj/adj_envelope.h>
 #include <gnu_gama/adj/adj_svd.h>
 #include <gnu_gama/adj/adj_gso.h>
 #include <gnu_gama/adj/adj_chol.h>
@@ -46,7 +47,7 @@ namespace GNU_gama {
   {
   public:
     
-    enum algorithm {gso, svd, cholesky};
+    enum algorithm {envelope, gso, svd, cholesky};
     
     Adj () : data(0), algorithm_(gso), minx_dim(0), minx(0) { init(0); }
     virtual ~Adj();
@@ -70,7 +71,13 @@ namespace GNU_gama {
   private:
     
     const AdjInputData *data;
-    AdjBaseFull<double, Exception::matvec> *least_squares;
+
+    typedef GNU_gama::AdjBase<double, Index, Vec<> >         AdjBase;
+    typedef GNU_gama::AdjBaseFull<double, Exception::matvec> AdjBaseFull;
+    typedef GNU_gama::AdjBaseSparse<double, Index, Vec<>,
+                                    GNU_gama::AdjInputData>  AdjBaseSparse;
+
+    AdjBase*       least_squares;
 
     bool      solved;
     algorithm algorithm_;

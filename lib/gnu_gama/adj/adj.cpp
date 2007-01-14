@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.cpp,v 1.2 2006/08/25 15:52:35 cepek Exp $
+ *  $Id: adj.cpp,v 1.3 2007/01/14 15:23:20 cepek Exp $
  */
 
 #include <gnu_gama/adj/adj.h>
@@ -276,26 +276,32 @@ void Adj::init_least_squares()
 {
   delete least_squares;
 
+  AdjBaseFull*   full = 0;
+  AdjBaseSparse* sprs = 0;
+
   switch (algorithm_) 
     {
+    case envelope:
+      least_squares = sprs = new AdjEnvelope<double, Index, Exception::matvec>;
+      break;
     case svd: 
-      least_squares = new AdjSVD<double, Exception::matvec>;
+      least_squares = full = new AdjSVD<double, Exception::matvec>;
       break;
     case gso: 
-      least_squares = new AdjGSO<double, Exception::matvec>;
+      least_squares = full = new AdjGSO<double, Exception::matvec>;
       break;
     case cholesky: 
-      least_squares = new AdjCholDec<double, Exception::matvec>;
+      least_squares = full = new AdjCholDec<double, Exception::matvec>;
       break;
     default:
       throw Exception::adjustment("### unknown algorithm");
     }
-
+  
   if (const IntegerList<>* p = data->minx())
     {
       delete minx;
       minx_dim = 0;
-
+      
       if (Index N = p->dim())
         {
           minx_dim = N;
@@ -306,58 +312,59 @@ void Adj::init_least_squares()
               *q++ = *i;
             }
         }
-
-      switch (algorithm_) 
-        {
-        case svd: 
-        case gso: 
-        case cholesky: 
-          least_squares->min_x(minx_dim, minx);
-          break;
-        default:
-          throw Exception::adjustment("### unknown algorithm");
-    }
       
+      least_squares->min_x(minx_dim, minx);
     }
 
-  A_dot.reset(data->A->rows(), data->A->columns());
-  A_dot.set_zero();
-  b_dot.reset(data->A->rows());
-
-  for (std::size_t k=1; k<=data->A->rows(); k++)
+  if (sprs)
     {
-      double* n = data->A->begin(k);
-      double* e = data->A->end  (k);
-      for(size_t* i=data->A->ibegin(k) ; n!=e; n++, i++)  A_dot(k,*i) = *n; 
-     }
-
-  for (std::size_t i, j, dim, width, r=0, b=1; 
-       b<=data->pcov->blocks(); b++, r += dim)
+      sprs->reset(data);
+    }
+  else if (full)
     {
-      dim   = data->pcov->dim(b);
-      width = data->pcov->width(b);
-      CovMat<> C(dim, width);
-
-      const double *p = data->pcov->begin(b), *e = data->pcov->end(b);
-      CovMat<>::iterator c = C.begin();
-      while (p != e) *c++ = *p++;
-      choldec(C);
-
-      Vec<> t(dim);
-      for (i=1; i<=dim; i++) t(i) = data->prhs(r+i);
-      forwardSubstitution(C, t);
-      for (i=1; i<=dim; i++) b_dot(r+i) = t(i);
-
-      for (j=1; j<=data->A->columns(); j++)
+      A_dot.reset(data->A->rows(), data->A->columns());
+      A_dot.set_zero();
+      b_dot.reset(data->A->rows());
+      
+      for (std::size_t k=1; k<=data->A->rows(); k++)
         {
-          for (i=1; i<=dim; i++) t(i) = A_dot(r+i,j);
-          forwardSubstitution(C, t);
-          for (i=1; i<=dim; i++) A_dot(r+i,j) = t(i);
+          double* n = data->A->begin(k);
+          double* e = data->A->end  (k);
+          for(size_t* i=data->A->ibegin(k) ; n!=e; n++, i++)  A_dot(k,*i) = *n;
         }
+      
+      for (std::size_t i, j, dim, width, r=0, b=1; 
+           b<=data->pcov->blocks(); b++, r += dim)
+        {
+          dim   = data->pcov->dim(b);
+          width = data->pcov->width(b);
+          CovMat<> C(dim, width);
+          
+          const double *p = data->pcov->begin(b), *e = data->pcov->end(b);
+          CovMat<>::iterator c = C.begin();
+          while (p != e) *c++ = *p++;
+          choldec(C);
+          
+          Vec<> t(dim);
+          for (i=1; i<=dim; i++) t(i) = data->prhs(r+i);
+          forwardSubstitution(C, t);
+          for (i=1; i<=dim; i++) b_dot(r+i) = t(i);
+          
+          for (j=1; j<=data->A->columns(); j++)
+            {
+              for (i=1; i<=dim; i++) t(i) = A_dot(r+i,j);
+              forwardSubstitution(C, t);
+              for (i=1; i<=dim; i++) A_dot(r+i,j) = t(i);
+            }
+        }
+      
+      full->reset(A_dot, b_dot);
     }
-
-  least_squares->reset(A_dot, b_dot);
-
+  else
+    {
+      throw Exception::adjustment("### unknown algorithm");
+    }
+  
   x_   = least_squares->unknowns();
 
   const Vec<>& v = least_squares->residuals();
@@ -386,6 +393,7 @@ void Adj::set_algorithm(Adj::algorithm alg)
 {
   switch (alg)
     {
+    case envelope:
     case svd:
     case gso:
     case cholesky:

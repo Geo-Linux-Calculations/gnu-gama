@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.2 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.3 2007/01/14 15:23:20 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -154,7 +154,8 @@ void Model::write_xml_adjustment_results_statistics(std::ostream& out)
 
   Adj::algorithm alg = adj->get_algorithm();
   out << "<algorithm> ";
-  if      (alg == Adj::gso)      cout << "gso";
+  if      (alg == Adj::envelope) cout << "envelope";
+  else if (alg == Adj::gso)      cout << "gso";
   else if (alg == Adj::svd)      cout << "svd";
   else if (alg == Adj::cholesky) cout << "cholesky";
   else                           cout << "unknown";

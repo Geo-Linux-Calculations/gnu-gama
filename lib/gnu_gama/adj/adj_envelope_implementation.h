@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.10 2006/12/31 10:23:57 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.11 2007/01/14 15:23:20 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -28,11 +28,6 @@
 
 #include <gnu_gama/adj/adj_envelope.h>
 
-namespace 
-{
-  static GaMaLib::Vec b;
-  static GaMaLib::Mat A;
-}
 
 namespace GNU_gama {
 

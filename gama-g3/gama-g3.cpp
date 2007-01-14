@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: gama-g3.cpp,v 1.1 2006/03/05 12:41:13 cepek Exp $
+ * $Id: gama-g3.cpp,v 1.2 2007/01/14 15:23:20 cepek Exp $
  */
 
 #include <fstream>
@@ -64,7 +64,8 @@ namespace
               ok = false;
 
             const std::string arg = arg_algorithm;
-            if      (arg == "gso"     ) algorithm = GNU_gama::Adj::gso;
+            if      (arg == "envelope") algorithm = GNU_gama::Adj::envelope;
+            else if (arg == "gso"     ) algorithm = GNU_gama::Adj::gso;
             else if (arg == "svd"     ) algorithm = GNU_gama::Adj::svd;
             else if (arg == "cholesky") algorithm = GNU_gama::Adj::cholesky;
             else
@@ -100,7 +101,7 @@ namespace
       " input      xml data file name\n"
       " output     optional output data file name\n\n"
 
-      " --algorithm  gso | svd | cholesky\n"
+      " --algorithm  envelope | gso | svd | cholesky\n"
 
       " --project-equations file"
       "     optional output of project equations in XML\n"

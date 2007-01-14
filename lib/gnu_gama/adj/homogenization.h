@@ -20,13 +20,14 @@
 */
 
 /*
- *  $Id: homogenization.h,v 1.2 2006/09/09 07:40:05 cepek Exp $
+ *  $Id: homogenization.h,v 1.3 2007/01/14 15:23:20 cepek Exp $
  */
 
 #ifndef GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
 #define GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
 
 
+#include <gnu_gama/adj/adj.h>
 #include <gnu_gama/adj/envelope.h>
 #include <matvec/covmat.h>
 #include <set>
