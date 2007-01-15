@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.cpp,v 1.3 2007/01/14 15:23:20 cepek Exp $
+ *  $Id: adj.cpp,v 1.4 2007/01/15 09:07:48 cepek Exp $
  */
 
 #include <gnu_gama/adj/adj.h>
@@ -276,22 +276,19 @@ void Adj::init_least_squares()
 {
   delete least_squares;
 
-  AdjBaseFull*   full = 0;
-  AdjBaseSparse* sprs = 0;
-
   switch (algorithm_) 
     {
     case envelope:
-      least_squares = sprs = new AdjEnvelope<double, Index, Exception::matvec>;
+      least_squares = new AdjEnvelope<double, Index, Exception::matvec>;
       break;
     case svd: 
-      least_squares = full = new AdjSVD<double, Exception::matvec>;
+      least_squares = new AdjSVD<double, Exception::matvec>;
       break;
     case gso: 
-      least_squares = full = new AdjGSO<double, Exception::matvec>;
+      least_squares = new AdjGSO<double, Exception::matvec>;
       break;
     case cholesky: 
-      least_squares = full = new AdjCholDec<double, Exception::matvec>;
+      least_squares = new AdjCholDec<double, Exception::matvec>;
       break;
     default:
       throw Exception::adjustment("### unknown algorithm");
@@ -316,11 +313,15 @@ void Adj::init_least_squares()
       least_squares->min_x(minx_dim, minx);
     }
 
-  if (sprs)
+  if (AdjBaseSparse* sprs = dynamic_cast<AdjBaseSparse*>(least_squares))
     {
       sprs->reset(data);
+
+      x_   = least_squares->unknowns();
+      r_   = least_squares->residuals();
+      rtr_ = least_squares->sum_of_squares();
     }
-  else if (full)
+  else if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
     {
       A_dot.reset(data->A->rows(), data->A->columns());
       A_dot.set_zero();
@@ -359,31 +360,31 @@ void Adj::init_least_squares()
         }
       
       full->reset(A_dot, b_dot);
+
+      const Vec<>& v = least_squares->residuals();
+      rtr_ = trans(v)*v;
+
+      x_   = least_squares->unknowns();
+      
+      const Vec<>& rhs = data->rhs();
+      r_.reset(data->A->rows());
+      for (Index i=1; i<=r_.dim(); i++)
+        {
+          double* b = data->A->begin(i);
+          double* e = data->A->end(i);
+          Index * n = data->A->ibegin(i);
+          double  s = 0;
+          while (b != e)
+            s += *b++ * x_(*n++);
+          
+          r_(i) = s - rhs(i);
+        }
     }
   else
     {
       throw Exception::adjustment("### unknown algorithm");
     }
   
-  x_   = least_squares->unknowns();
-
-  const Vec<>& v = least_squares->residuals();
-  rtr_ = trans(v)*v;
-
-  const Vec<>& rhs = data->rhs();
-  r_.reset(data->A->rows());
-  for (Index i=1; i<=r_.dim(); i++)
-    {
-      double* b = data->A->begin(i);
-      double* e = data->A->end(i);
-      Index * n = data->A->ibegin(i);
-      double  s = 0;
-      while (b != e)
-          s += *b++ * x_(*n++);
-
-      r_(i) = s - rhs(i);
-    }
-
   solved = true;
 }
 
