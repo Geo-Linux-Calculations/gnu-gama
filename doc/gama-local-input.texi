@@ -1,4 +1,4 @@
-@comment $Id: gama-xml-input.texi,v 1.10 2007/01/20 11:18:37 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.1 2007/01/20 11:52:21 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 

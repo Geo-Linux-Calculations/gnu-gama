@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.19 2006/04/15 12:27:14 cepek Exp $
+@comment $Id: gama.texi,v 1.20 2007/01/20 11:52:21 cepek Exp $
 
 @comment Part 1 : Header
 
@@ -155,7 +155,7 @@ directly to @uref{mailto:cepek@@gnu.org, Ales Cepek}.
 
 @node    XML input data format for gama-local
 @chapter XML input data format for @code{gama-local}
-@include gama-xml-input.texi
+@include gama-local-input.texi
 
 @node    Network adjustment with gama-local
 @chapter Network adjustment with @code{gama-local}

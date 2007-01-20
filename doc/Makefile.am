@@ -13,7 +13,7 @@ gama_TEXINFOS =           \
    gama-local-macros.texi \
    gama-local.texi        \
    gama-versions.texi     \
-   gama-xml-input.texi    \
+   gama-local-input.texi  \
    obsdata.texi           \
    version.texi	          \
    xyz2blh.texi
@@ -25,10 +25,10 @@ EXTRA_DIST =                    \
    gama-local-adj-ellipse-g.pdf	\
    gama-local-adj-ellipse-g.png	\
    gama-local-adj-ellipse-g.txt	\
-   gama-xml-input-example.eps	\
-   gama-xml-input-example.pdf	\
-   gama-xml-input-example.png	\
-   gama-xml-input-example.txt	\
+   gama-local-input-example.eps	\
+   gama-local-input-example.pdf	\
+   gama-local-input-example.png	\
+   gama-local-input-example.txt	\
    obsdata-fig.eps		\
    obsdata-fig.pdf		\
    obsdata-fig.png		\
