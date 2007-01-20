@@ -7,6 +7,11 @@ gama-local.dtd                     version 2.0.14  2007-01-20
 
       - gama-xml.dtd renamed to gama-local.dtd
 
+      - changed type of distance-stdev attribute to CDATA
+         <    distance-stdev      NMTOKEN  #IMPLIED
+         ---
+         >    distance-stdev      CDATA    #IMPLIED
+
 2.0.13  2006-02-12
 
       - added new optional attribute  epoch NMTOKEN "0.0"
@@ -188,7 +193,7 @@ information visit
 
 <!ATTLIST points-observations
 
-   distance-stdev      NMTOKEN  #IMPLIED
+   distance-stdev      CDATA    #IMPLIED
    direction-stdev     NMTOKEN  #IMPLIED
    angle-stdev         NMTOKEN  #IMPLIED
    zenith-angle-stdev  NMTOKEN  #IMPLIED  >
