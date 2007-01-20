@@ -1,4 +1,4 @@
-EXTRA_DIST = gama-xml.dtd \
+EXTRA_DIST = gama-local.dtd \
       ellipsoids.xml \
       gama-local-adjustment.dtd \
       lang/ca/rmpoints.ca.lang \

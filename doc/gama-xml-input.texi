@@ -1,6 +1,6 @@
-@comment $Id: gama-xml-input.texi,v 1.9 2005/07/18 19:09:13 cepek Exp $
+@comment $Id: gama-xml-input.texi,v 1.10 2007/01/20 11:18:37 cepek Exp $
 
-@comment setfilename gama-xml-inp.info
+@comment setfilename gama-local-inp.info
 
 @c @chapter   XML input data format
 @c @cindex    XML input data format
@@ -22,7 +22,7 @@ described using XML start-end pair tags @code{<xxx>} and @code{</xxx>}
 and empty-element tags @code{<xxx/>}. The syntax of XML input format is
 defined in the Document Type Definition (DTD) at
 
-@center    @uref{http://www.gnu.org/software/gama/gama-xml.dtd}
+@center    @uref{http://www.gnu.org/software/gama/gama-local.dtd}
 
 @noindent
 and can formally be validated independently on the program
@@ -52,7 +52,7 @@ object is given.
 @menu
 * Angular units::             Angular units
 * Prolog::                    XML declaration
-* Network definition::        Tags @code{<gama-xml>} and @code{<network>} 
+* Network definition::        Tags @code{<gama-local>} and @code{<network>} 
 * Network description::       Tag  @code{<description>}
 * Network parameters::        Tag  @code{<parameters />}
 * Points and observations::   Tag  @code{<points-observations>}
@@ -115,18 +115,18 @@ declaration:
 
 @example
 <?xml version="1.0" ?>
-<!DOCTYPE gama-xml 
-  SYSTEM "http://www.gnu.org/software/gama/gama-xml.dtd">
+<!DOCTYPE gama-local 
+  SYSTEM "http://www.gnu.org/software/gama/gama-local.dtd">
 @end example
 
 
 @node     Network definition
-@section  Tags @code{<gama-xml>} and @code{<network>}
-@cindex   @code{<gama-xml>}
+@section  Tags @code{<gama-local>} and @code{<network>}
+@cindex   @code{<gama-local>}
 @cindex   @code{<network>}
 
 
-A pair tag @code{<gama-xml>} contains a single pair tag @code{<network>}
+A pair tag @code{<gama-local>} contains a single pair tag @code{<network>}
 that contains the network definition.  The definition of the network is
 composed of three sections:
 
@@ -193,13 +193,13 @@ is reverted back by @code{gama-local}).
 @heading Example
 
 @example
-<gama-xml>
+<gama-local>
 <network>                     
    <description> ... </description>
    <parameters ... />
    <points-observations> ... </points-observations>
 </network>
-</gama-xml>
+</gama-local>
 @end example
 
 It is planned in future versions of the program to allow more
@@ -1065,16 +1065,16 @@ guide to Geodet/PC by Frantisek Charamza.
 @c % \end{figure}
 
 
-@c include gama-xml-inp-example.ed.texi
-@image{gama-xml-input-example, 14cm}
+@c include gama-local-inp-example.ed.texi
+@image{gama-local-input-example, 14cm}
 
 
 @example
 <?xml version="1.0" ?>
-<!DOCTYPE gama-xml 
-  SYSTEM "http://www.gnu.org/software/gama/gama-xml.dtd">   
+<!DOCTYPE gama-local 
+  SYSTEM "http://www.gnu.org/software/gama/gama-local.dtd">   
 
-<gama-xml>
+<gama-local>
 <network axes-xy="sw">          
 
 <description>
@@ -1214,7 +1214,7 @@ XML input stream of points and observation data for program Gama
 </points-observations>
 
 </network>
-</gama-xml>
+</gama-local>
 @end example
 
 

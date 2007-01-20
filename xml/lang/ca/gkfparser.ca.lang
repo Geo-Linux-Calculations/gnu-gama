@@ -6,20 +6,20 @@
    ca="text il·legal" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   EN="document must start with tag &lt;gama-xml&gt;"
-   ca="el document ha de començar amb &lt;gama-xml&gt;" />
+   EN="document must start with tag &lt;gama-local&gt;"
+   ca="el document ha de començar amb &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
    ca="valor il·legal per al atribut: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   EN="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: "
-   ca="valor il·legal de l\'atribut \'version\' de l\'etiqueta &lt;gama-xml&gt;: " />
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   ca="valor il·legal de l\'atribut \'version\' de l\'etiqueta &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   EN="undefined attribute of tag &lt;gama-xml&gt;: "
-   ca="atribut no definit per a l\'etiqueta &lt;gama-xml&gt;: " />
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   ca="atribut no definit per a l\'etiqueta &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "

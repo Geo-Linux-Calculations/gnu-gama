@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
 
-<!-- $Id: gkfparser.ua.lang,v 1.1 2005/12/14 22:57:07 cepek Exp $ -->
+<!-- $Id: gkfparser.ua.lang,v 1.2 2007/01/20 11:18:37 cepek Exp $ -->
 <entries>
 
 <e id="T_GKF_illegal_text"
@@ -8,20 +8,20 @@
    ua="недопустимий текст" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   EN="document must start with tag &lt;gama-xml&gt;"
-   ua="документ повинен починатися тегом &lt;gama-xml&gt;" />
+   EN="document must start with tag &lt;gama-local&gt;"
+   ua="документ повинен починатися тегом &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
    ua="невірне значення атрибута: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   EN="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: "
-   ua="невірне значення атрибута 'version' тега &lt;gama-xml&gt;: " />
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   ua="невірне значення атрибута 'version' тега &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   EN="undefined attribute of tag &lt;gama-xml&gt;: "
-   ua="не вказаний атрибут тега &lt;gama-xml&gt;: " />
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   ua="не вказаний атрибут тега &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "

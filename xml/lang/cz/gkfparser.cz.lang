@@ -6,20 +6,20 @@
    cz="nepovolený text" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   EN="document must start with tag &lt;gama-xml&gt;"
-   cz="dávka musí zaèínat znaèkou &lt;gama-xml&gt;" />
+   EN="document must start with tag &lt;gama-local&gt;"
+   cz="dávka musí zaèínat znaèkou &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
    cz="nepovolená hodnota atributu: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   EN="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: "
-   cz="nepovolená hodnota atributu 'version' znacky &lt;gama-xml&gt;: " />
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   cz="nepovolená hodnota atributu 'version' znacky &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   EN="undefined attribute of tag &lt;gama-xml&gt;: "
-   cz="nedefinovaný atribut znaèky &lt;gama-xml&gt;: " />
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   cz="nedefinovaný atribut znaèky &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "

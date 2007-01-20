@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!DOCTYPE gama-xml SYSTEM "gama-xml.dtd">
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
 
-<gama-xml version="2.0">
+<gama-local version="2.0">
 <network>
 
 <description>
@@ -142,7 +142,7 @@ variant: two fixed points, others adjusted
 </points-observations>
 
 </network>
-</gama-xml>
+</gama-local>
 
 
 

@@ -1,7 +1,11 @@
 <!-- ****************************************************************
 
-gama-xml.dtd                       version 2.0.13  2006-02-12
-============  
+gama-local.dtd                     version 2.0.14  2007-01-20
+==============
+
+2.0.14  2007-01-20
+
+      - gama-xml.dtd renamed to gama-local.dtd
 
 2.0.13  2006-02-12
 
@@ -57,7 +61,7 @@ gama-xml.dtd                       version 2.0.13  2006-02-12
 
 2.0.04  2001.04.24
 
-      - added attribute version into tag gama-xml
+      - added attribute version into tag gama-local
 
 2.0.03  2001.04.17
 
@@ -127,7 +131,7 @@ gama-xml.dtd                       version 2.0.13  2006-02-12
 Definition of XML input stream for GNU GaMa for adjustment of local
 geodetic network. Latest version is available from
 
-            http://www.gnu.org/software/gama/gama-xml.dtd
+            http://www.gnu.org/software/gama/gama-local.dtd
 
 GNU GaMa is subject to GNU General Public Licence, for more
 information visit
@@ -136,7 +140,7 @@ information visit
 
 *********************************************************************** -->
 
-<!ELEMENT  gama-xml     (network) >
+<!ELEMENT  gama-local     (network) >
 <!ELEMENT  network      (description | parameters | points-observations)* >
 <!ELEMENT  description  (#PCDATA) >
 <!ELEMENT  parameters   EMPTY >
@@ -165,7 +169,7 @@ information visit
 <!ELEMENT  vectors     (vec+, cov-mat) >  
 <!ELEMENT  vec          EMPTY > 
 
-<!ATTLIST gama-xml version NMTOKEN #IMPLIED >
+<!ATTLIST gama-local version NMTOKEN #IMPLIED >
 
 <!ATTLIST network
 

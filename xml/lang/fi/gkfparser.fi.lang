@@ -6,20 +6,20 @@
    fi="virheellinen teksti" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   EN="document must start with tag &lt;gama-xml&gt;"
-   fi="dokumentin pitää alkaa tagilla &lt;gama-xml&gt;" />
+   EN="document must start with tag &lt;gama-local&gt;"
+   fi="dokumentin pitää alkaa tagilla &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
    fi="virheellinen atribuutin arvo: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   EN="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: "
-   fi="virheellinen arvo atribuutissa 'versio' tagissa &lt;gama-xml&gt;: " />
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   fi="virheellinen arvo atribuutissa 'versio' tagissa &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   EN="undefined attribute of tag &lt;gama-xml&gt;: "
-   fi="määrittelemätön atribuutti tagissa &lt;gama-xml&gt;: " />
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   fi="määrittelemätön atribuutti tagissa &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gkfparser.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: gkfparser.cpp,v 1.2 2007/01/20 11:18:37 cepek Exp $
  */ 
 
 
@@ -285,12 +285,12 @@ namespace GaMaLib {
     
     
 
-  /* grep ELEMENT gamaxml/gama-xml.dtd | awk '//{print $2}' | sort 
+  /* grep ELEMENT gamaxml/gama-local.dtd | awk '//{print $2}' | sort 
    * -------------------------------------------------------------
    * angle 
    * coordinates cov-mat 
    * description dh direction distance
-   * gama-xml 
+   * gama-local 
    * height-differences 
    * network 
    * obs 
@@ -318,7 +318,7 @@ namespace GaMaLib {
         if (!strcmp(c, "distance"           )) return tag_distance;
         break;
       case 'g':
-        if (!strcmp(c, "gama-xml"           )) return tag_gama_xml;
+        if (!strcmp(c, "gama-local"           )) return tag_gama_xml;
         break;
       case 'h':
         if (!strcmp(c, "height-differences" )) return tag_height_differences;
@@ -1560,9 +1560,9 @@ int main(int argc, char* argv[])
     
     cout << 
       "<?xml version=\"1.0\" ?>\n"
-      "<!DOCTYPE gama-xml SYSTEM \"http://gama.fsv.cvut.cz/gama-xml.dtd\">\n\n"
+      "<!DOCTYPE gama-local SYSTEM \"http://gama.fsv.cvut.cz/gama-local.dtd\">\n\n"
 
-      "<gama-xml version=\"2.0\">\n"
+      "<gama-local version=\"2.0\">\n"
       "<network>\n\n";
 
     if (gp.description != "")
@@ -1580,7 +1580,7 @@ int main(int argc, char* argv[])
          << PData << "\n" << OData
          << "\n</points-observations>\n"
          << "</network>\n"
-         << "</gama-xml>\n";      
+         << "</gama-local>\n";      
   }
   catch (GaMaLib::Exception e) {
     cout << "\nException : " << e.text << "\n\n";

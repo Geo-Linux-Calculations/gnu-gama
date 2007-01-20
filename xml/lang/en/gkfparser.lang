@@ -5,19 +5,19 @@
    en="illegal text" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   en="document must start with tag &lt;gama-xml&gt;" />
+   en="document must start with tag &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    en="illegal value of the attribute: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   en="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: " />
+   en="illegal value of attribue 'version' of tag &lt;gama-local&gt;: " />
 
 <e id="T_GKF_error_on_reading_of_epoch"
-   en="error on reading attribute 'epoch' of tag &lt;gama-xml&gt;: " />
+   en="error on reading attribute 'epoch' of tag &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   en="undefined attribute of tag &lt;gama-xml&gt;: " />
+   en="undefined attribute of tag &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    en="undefined attribute of tag &lt;vectors&gt;: " />

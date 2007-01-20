@@ -6,20 +6,20 @@
    hu="érvénytelen szöveg" />
 
 <e id="T_GKF_must_start_with_gama_xml"
-   EN="document must start with tag &lt;gama-xml&gt;"
-   hu="a dokumentumnak a &lt;gama-xml&gt; címkével kell kezdõdni" />
+   EN="document must start with tag &lt;gama-local&gt;"
+   hu="a dokumentumnak a &lt;gama-local&gt; címkével kell kezdõdni" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
    hu="érvénytelen attribútum érték: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
-   EN="illegal value of attribue 'version' of tag &lt;gama-xml&gt;: "
-   hu="érvénytelen értékû &lt;version&lt; attribútum a &lt;gama-xml&gt; címkében: " />
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   hu="érvénytelen értékû &lt;version&lt; attribútum a &lt;gama-local&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
-   EN="undefined attribute of tag &lt;gama-xml&gt;: "
-   hu="nem definiált &lt;gama-xml&lt; attribútum: " />
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   hu="nem definiált &lt;gama-local&lt; attribútum: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "
