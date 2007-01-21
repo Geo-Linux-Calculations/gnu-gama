@@ -1,3 +1,5 @@
+1.9.02 2007-01-21
+	
     - gama-xml.dtd renamed to gama-local.dtt
         
     - fixed bug reported by Jim Sutherland; new XML output: fixed
