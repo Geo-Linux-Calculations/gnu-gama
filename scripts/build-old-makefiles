@@ -1,7 +1,7 @@
 #
-# builds dictionaris for GaMaLib
+# builds dictionaries for GaMaLib
 # 
-# $Id: build-old-makefiles,v 1.2 2006/08/29 11:57:27 cepek Exp $
+# $Id: build-old-makefiles,v 1.3 2007/01/22 19:01:49 cepek Exp $
 
 CXX=g++
 
@@ -47,7 +47,7 @@ echo -e "\tmake -f Makefile-gama-g3-$1"    >> lib/Makefile-all-$1
 
 # ------------------------------------------------------------------------
 
-
+echo Please edit lib/gnu_gama/version.cpp 
 
 
 
