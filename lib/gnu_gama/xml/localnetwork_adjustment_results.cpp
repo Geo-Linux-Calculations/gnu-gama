@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.4 2007/01/27 10:20:19 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.5 2007/01/27 21:27:18 cepek Exp $
  */
 
 
@@ -34,6 +34,20 @@
 
 using namespace std;
 using namespace GNU_gama;
+
+
+double LocalNetworkAdjustmentResults::Observation::residual() const
+  throw()
+{
+  double r = (adj - obs);
+  if (xml_tag == "direction" || xml_tag == "angle")
+    {
+      if (r >= 400 || std::abs(r - 400) < std::abs(r)) r -= 400;
+      r *= 10;
+    }
+
+  return r*1000;
+}
 
 
 void LocalNetworkAdjustmentResults::read_xml(std::istream& xml)
@@ -142,7 +156,8 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_to_end                             ][t_obs                            ] = &Parser::obs;
   tagfun[s_obs_end                            ][t_adj                            ] = &Parser::obs_adj;
   tagfun[s_obs_adj_end                        ][t_stdev                          ] = &Parser::stdev;
-  tagfun[s_stdev_end                          ][t_f                              ] = &Parser::obs_f;
+  tagfun[s_stdev_end                          ][t_qrr                            ] = &Parser::obs_qrr;
+  tagfun[s_obs_qrr_end                        ][t_f                              ] = &Parser::obs_f;
   tagfun[s_obs_f_end                          ][t_std_residual                   ] = &Parser::std_residual;
   tagfun[s_std_residual_end                   ][t_err_obs                        ] = &Parser::err_obs;
   tagfun[s_err_obs_end                        ][t_err_adj                        ] = &Parser::err_adj;
@@ -258,6 +273,9 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "point"                     )) return t_point;
       if (!strcmp(c, "probability"               )) return t_probability;
       if (!strcmp(c, "project-equations"         )) return t_project_equations;
+      break;
+    case 'q':
+      if (!strcmp(c, "qrr"                       )) return t_qrr;
       break;
     case 'r':
       if (!strcmp(c, "ratio"                     )) return t_ratio;
@@ -389,7 +407,13 @@ void LocalNetworkAdjustmentResults::Parser::network_general_parameters(bool star
           string atr = *attributes++;
           string val = *attributes++;
 
-          if (atr == "epoch") 
+          if (atr == "gama-local-version") 
+            adj->network_general_parameters.gama_local_version = val;
+          else if (atr == "gama-local-algorithm") 
+            adj->network_general_parameters.gama_local_algorithm = val;
+          else if (atr == "gama-local-compiler") 
+            adj->network_general_parameters.gama_local_compiler = val;
+          else if (atr == "epoch") 
             adj->network_general_parameters.epoch = val;
           else if (atr == "axes-xy") 
             adj->network_general_parameters.axes_xy = val;
@@ -1414,6 +1438,21 @@ void LocalNetworkAdjustmentResults::Parser::stdev(bool start)
     {
       tmp_obs.stdev = get_float();
       set_state(s_stdev_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::obs_qrr(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::obs_qrr);
+      set_state(s_obs_qrr);
+    }
+  else
+    {
+      tmp_obs.qrr = get_float();
+      set_state(s_obs_qrr_end);
     }
 }
 

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.h,v 1.3 2006/05/14 11:06:24 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.h,v 1.4 2007/01/27 21:27:18 cepek Exp $
  */
 
 #ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
@@ -49,6 +49,9 @@ namespace GNU_gama
     
     struct 
     {
+      std::string gama_local_version;
+      std::string gama_local_algorithm;
+      std::string gama_local_compiler;
       std::string epoch;
       std::string axes_xy;
       std::string angles;
@@ -150,6 +153,7 @@ namespace GNU_gama
       double obs;               // observed value
       double adj;               // adjusted
       double stdev;             // standard deviation of adj. value
+      double qrr;               // weight coefficient of the residual
       double f;
 
       std::string std_residual; // standardized residual
@@ -158,7 +162,7 @@ namespace GNU_gama
 
       void clear()
       {
-        obs = adj = stdev = f = 0;
+        obs = adj = stdev = qrr = f = 0;
         xml_tag     .clear();
         from        .clear();
         to          .clear();
@@ -168,6 +172,8 @@ namespace GNU_gama
         err_obs     .clear();
         err_adj     .clear();
       }
+
+      double residual() const throw();
     };
 
     typedef std::vector<Observation> ObservationList;
@@ -177,6 +183,9 @@ namespace GNU_gama
 
     void init()  
     {
+      network_general_parameters.gama_local_version.  clear();
+      network_general_parameters.gama_local_algorithm.clear();
+      network_general_parameters.gama_local_compiler. clear();
       network_general_parameters.epoch.  clear();
       network_general_parameters.axes_xy.clear();
       network_general_parameters.angles. clear();
@@ -407,6 +416,8 @@ namespace GNU_gama
           s_obs_adj_end,
           s_stdev,
           s_stdev_end,
+          s_obs_qrr,
+          s_obs_qrr_end,
           s_obs_f,
           s_obs_f_end,
           s_std_residual,
@@ -482,6 +493,7 @@ namespace GNU_gama
           t_point,
           t_probability,
           t_project_equations,
+          t_qrr,
           t_ratio,
           t_right,
           t_s_dists,
@@ -599,6 +611,7 @@ namespace GNU_gama
       void obs(bool);
       void obs_adj(bool);
       void stdev(bool);
+      void obs_qrr(bool);
       void obs_f(bool);
       void std_residual(bool);
       void err_obs(bool);

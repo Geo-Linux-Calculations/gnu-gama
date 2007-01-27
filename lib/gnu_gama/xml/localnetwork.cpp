@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.6 2006/11/19 15:16:15 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.7 2007/01/27 21:27:18 cepek Exp $
  */
 
 
@@ -31,6 +31,7 @@
 #include <gnu_gama/xml/localnetwork.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
+#include <gnu_gama/version.h>
 
 using namespace std;
 using GNU_gama::LocalNetworkXML;
@@ -55,7 +56,7 @@ using GaMaLib::Zdiff;
 
 namespace 
 {
-  const char* const VERSION = "0.4a";
+  const char* const VERSION = "0.5";
 }
 
 
@@ -69,8 +70,15 @@ void LocalNetworkXML::write(std::ostream& out) const
   
   {
     {
+      using GNU_gama::GNU_gama_version;
+      using GNU_gama::GNU_gama_compiler;
+
       out << "\n<network-general-parameters\n";
     
+      out << "   gama-local-version=\""   << GNU_gama_version    << "\"\n";
+      out << "   gama-local-algorithm=\"" << netinfo->algorithm()<< "\"\n";
+      out << "   gama-local-compiler=\""  << GNU_gama_compiler   << "\"\n";
+
       out.setf(ios_base::fixed, ios_base::floatfield);
       out.precision(7);
       out << "   epoch=\""<< netinfo->epoch << "\"\n";
@@ -691,11 +699,13 @@ void LocalNetworkXML::observations(std::ostream& out) const
          ml *= scale;
        
        out << " <stdev>" << ml << "</stdev>\n";
-       // out.width(7);
-       // out << ml*kki;
 
+       // weight coefficient of the residual
+       double qrr = netinfo->wcoef_res(i);
+       out << "   <qrr>" << qrr << "</qrr>";
+              
        double f = netinfo->obs_control(i);
-       out << "   <f>" << f << "</f>";
+       out << " <f>" << f << "</f>";
               
        double sc=scale;
        if (f >= 0.1)

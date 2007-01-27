@@ -46,13 +46,14 @@ void general_parameters(const Adjustment& adj)
   set_gama_language(en);
 
   cout << T_GaMa_Adjustment_of_geodetic_network << "        "
-       << T_GaMa_version << GNU_gama::GNU_gama_version 
-    /* << "-" << IS->algorithm() */
-    /* << " / " << GNU_gama::GNU_gama_compiler */ << "\n" 
+       << T_GaMa_version 
+       << adj.network_general_parameters.gama_local_version     << "-" 
+       << adj.network_general_parameters.gama_local_algorithm   << " / " 
+       << adj.network_general_parameters.gama_local_compiler    << "\n" 
        << underline(T_GaMa_Adjustment_of_geodetic_network, '*') << "\n"
        << "http://www.gnu.org/software/gama/\n\n\n";
   
-  
+
   if (!adj.description.empty())
     {
       cout << T_GaMa_network_description << '\n'
@@ -284,18 +285,15 @@ void general_parameters(const Adjustment& adj)
                    T_GaMa_interval_doesnt_contain)
                << "\n";
 
-          /*
-          float m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
-          float sqd=0, sqs=0, squ=0;   // sum of weight coefficients
-          int   itd=0, its=0, itu=0;
-          double m0used = (adj.standard_deviation.using_aposteriori ?
-                           adj.standard_deviation.aposteriori :
-                           adj.standard_deviation.apriori);
+
+          double m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
+          double sqd=0, sqs=0, squ=0;   // sum of weight coefficients
+          int    itd=0, its=0, itu=0;
           for (int i=0; i<observations; i++)
             {
               const Adjustment::Observation& obs = adj.obslist[i];
-              double v = obs.adj - obs.obs;
-              double q = ... weight coeff. of residuals needs obs. weight
+              double v = obs.residual();
+              double q = obs.qrr;
               if (obs.xml_tag == "distance")
                 {
                   itd = 1;
@@ -319,7 +317,7 @@ void general_parameters(const Adjustment& adj)
           if (its + itu) m0s = sqrt((m0s+m0u)/(sqs+squ));
           if (itd+its+itu > 1)
             {
-              float ma = adj.standard_deviation.apriori;
+              double ma = adj.standard_deviation.apriori;
               if (itd)
                 cout << T_GaMa_m0_distances << m0d/ma << "   ";
               if (its+itu)
@@ -333,7 +331,82 @@ void general_parameters(const Adjustment& adj)
                 }
               cout << '\n';
             }
-          */  
         }
+
+
+      double stud_opr;
+      double max_stud = 0;
+      int imax = -1;
+      for (int i=0; i<observations; i++)
+        {
+          const Adjustment::Observation& obs = adj.obslist[i];
+          if (obs.qrr > 1e-4)
+            {
+              stud_opr = std::abs(atof(obs.std_residual.c_str()));
+              if (stud_opr > max_stud)
+                {
+                  max_stud = stud_opr;
+                  imax = i;
+                }
+            }
+        }
+      bool aprm0 = !adj.standard_deviation.using_aposteriori;
+      float krit_opr;
+      if (aprm0)
+        krit_opr = GNU_gama::Normal(alfa_pul);
+      else
+        {
+          float s = GNU_gama::Student(alfa_pul, nadb-1);
+          float t = s*s;
+          krit_opr = sqrt(nadb*t/(nadb-1+t));
+        }
+      
+      if (nadb > 1 && imax > -1 && adj.standard_deviation.using_aposteriori)
+        {
+          const Adjustment::Observation& obs = adj.obslist[imax];
+          double v = obs.residual();
+          double q = obs.qrr;
+          double m_0_red = 
+            sqrt(fabs(adj.project_equations.sum_of_squares-v*v/q)/(nadb-1));
+          cout << "\n" << T_GaMa_Maximal_decrease_of_m0
+              << setprecision(3) << m_0_red/adj.standard_deviation.apriori
+              << "\n\n";
+        }
+      
+      if (imax > -1)
+        {
+          cout.setf(ios_base::fixed, ios_base::floatfield);
+          if (aprm0)
+            cout << T_GaMa_Maximal_normalized_residual;
+          else
+            cout << T_GaMa_genpar_Maximal_studentized_residual;
+          cout << setprecision(2) << max_stud;
+          if (max_stud > krit_opr)
+            cout << T_GaMa_genpar_exceeds;
+          else
+            cout << T_GaMa_genpar_doesnt_exceed;
+          cout << T_GaMa_genpar_critical_value <<  krit_opr << "\n"
+               << T_GaMa_genpar_on_significance_level
+               << setprecision(0) 
+               << (1 - adj.standard_deviation.probability)*100
+               << T_GaMa_genpar_for_observation_ind
+               << imax+1 << "\n";
+
+          const Adjustment::Observation& obs = adj.obslist[imax];
+          cout << "<" <<  obs.xml_tag;
+          cout << " from=\"" << obs.from
+               << "\" to=\"" << obs.to << "\"";
+
+          cout.precision(3);
+          cout << " val=\"" << obs.obs 
+               << "\"";
+          // cout << " stdev=\"" << obs.stdev 
+          //      << "\"";
+          cout << " />\n";
+
+          cout << "\n";
+        }    
     }
+
+  cout << "\n\n";
 }

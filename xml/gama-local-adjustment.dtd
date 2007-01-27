@@ -1,5 +1,5 @@
 <!-- 
-        gama-local-adjustment.dtd          version 0.4a  2006-02-19
+        gama-local-adjustment.dtd          version 0.5  2007-01-27
         =========================
 
         http://www.gnu.org/software/gama/gama-local-adjustment.dtd
@@ -19,6 +19,9 @@
 <!ELEMENT network-general-parameters EMPTY >
 
 <!ATTLIST network-general-parameters
+        gama-local-version                    ( #CDATA )
+        gama-local-algorithm                  ( #CDATA )
+        gama-local-compiler                   ( #CDATA )
         axes-xy (ne | sw | es | wn |
                  en | nw | se | ws )          "ne"
         angles  (right-handed | left-handed)  "right-handed"
@@ -112,7 +115,7 @@
 <!ELEMENT orientation ( id, approx, adj ) >
 
 <!ENTITY  % observation-elements
-        "(obs, adj, stdev, f,  (std-residual, (err-obs, err-adj)? )?)" >
+        (obs, adj, stdev, qrr, f, (std-residual, (err-obs, err-adj)? )?) >
 
 <!ELEMENT distance       ( from, to,          %observation-elements; ) >
 <!ELEMENT direction      ( from, to,          %observation-elements; ) >
@@ -174,6 +177,8 @@
 <!ELEMENT err-adj ( #PCDATA ) >
 
 <!ELEMENT err-obs ( #PCDATA ) >
+
+<!ELEMENT qrr ( #PCDATA ) >
 
 <!ELEMENT f ( #PCDATA ) >
 
