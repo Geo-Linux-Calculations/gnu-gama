@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.3 2006/05/14 11:06:24 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.4 2007/01/27 10:20:19 cepek Exp $
  */
 
 
@@ -1304,7 +1304,9 @@ void LocalNetworkAdjustmentResults::Parser::observation(bool start)
     }
   else
     {
-      if (state != s_err_adj_end) error("observation attribute(s) missing");
+      if (state != s_obs_f_end        && 
+          state != s_std_residual_end &&
+          state != s_err_adj_end        ) error("observation attribute(s) missing");
       adj->obslist.push_back(tmp_obs);
       set_state(s_observations);
     }
