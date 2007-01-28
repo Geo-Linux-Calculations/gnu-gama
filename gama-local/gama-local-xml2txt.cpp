@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 #include <gnu_gama/version.h>
 #include <gamalib/language.h>
@@ -7,14 +8,12 @@
 #include <gnu_gama/statan.h>
 
 using namespace GaMaLib;
-using std::cout;
-using std::setw;
-using std::ios_base;
-using std::setprecision;
 
 typedef GNU_gama::LocalNetworkAdjustmentResults Adjustment;
 
-void general_parameters(const Adjustment&);
+void general_parameters   (std::ostream& cout,const Adjustment&);
+void adjusted_parameters  (std::ostream& cout,const Adjustment&);
+void adjusted_observations(std::ostream& cout,const Adjustment&);
 
 
 int main()
@@ -24,7 +23,9 @@ int main()
     {
       adj.read_xml(std::cin);
 
-      general_parameters(adj);
+      general_parameters   (std::cout, adj);
+      adjusted_parameters  (std::cout, adj);
+      adjusted_observations(std::cout, adj);
     }
   catch (GNU_gama::Exception::parser perr)
     {
@@ -41,8 +42,12 @@ int main()
 }
 
 
-void general_parameters(const Adjustment& adj)
+void general_parameters(std::ostream& cout, const Adjustment& adj)
 {
+  using std::setw;
+  using std::ios_base;
+  using std::setprecision;
+
   set_gama_language(en);
 
   cout << T_GaMa_Adjustment_of_geodetic_network << "        "
@@ -403,10 +408,147 @@ void general_parameters(const Adjustment& adj)
           // cout << " stdev=\"" << obs.stdev 
           //      << "\"";
           cout << " />\n";
-
-          cout << "\n";
         }    
     }
 
   cout << "\n\n";
 }
+
+
+void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
+{
+  using std::setw;
+  using std::ios_base;
+  using std::setprecision;
+
+  const int MAXWID  = 12;     // IS->maxw_id();
+  const int MAXWUNK =  3;     // IS->maxw_unk();
+  const int MAXWOBS =  4;     // IS->maxw_obs();
+
+  std::string prev_id;
+
+  { /* fixed points */
+
+    int pocpevb=0, pocpevv=0;
+    {   // for ...
+      for (int i=0, N=adj.fixed_points.size(); i<N; ++i)
+        {
+          const Adjustment::Point& point = adj.fixed_points[i];
+          
+          if (point.hxy) pocpevb++;
+          if (point.hz ) pocpevv++;          
+        }
+    }   // for ...
+    
+    if (pocpevb != 0 || pocpevv != 0) 
+      {
+        cout << T_GaMa_Review_of_fixed_points << "\n"
+             << underline(T_GaMa_Review_of_fixed_points, '*') << "\n\n";
+
+        std::ostringstream ostr;
+        ostr.width(MAXWID);
+        ostr << T_GaMa_point;
+        int table=0;
+        if (pocpevb)
+          {
+            ostr.width(13);
+            ostr << "x   ";
+            ostr.width(13+2);
+            ostr << "y   ";
+            table += 2*13 + 2;
+          }
+        if (pocpevv)
+          {
+            if (pocpevb) 
+              {
+                ostr << "  ";
+                table += 2;
+              }
+            ostr.width(13);
+            ostr << "z   ";
+            table += 13;
+          }
+        cout << ostr.str() << '\n';
+        for (int i=0; i<ostr.str().size(); i++) cout << '=';
+        cout << "\n\n";
+
+        for (int i=0, N=adj.fixed_points.size(); i<N; ++i)
+        {
+          const Adjustment::Point& point = adj.fixed_points[i];
+          cout.width(MAXWID); //IS->maxw_id());
+
+          cout << point.id;
+          if (point.hxy)
+            {
+              cout.precision(3);
+              cout.width(13);
+              cout << point.x;
+              cout << "  ";
+              cout.width(13);
+              cout << point.y;
+            }
+          if (point.hz)
+            {
+              if (pocpevb && !point.hxy)
+                {
+                  cout.width(2*13+2);
+                  cout << " ";
+                }
+              cout.precision(3);
+              if (pocpevb)  cout << "  ";
+              cout.width(13);
+              cout << point.z;
+          }
+
+          cout << "\n";
+        }
+      }
+    cout << "\n\n";
+  }
+
+  if (adj.adjusted_points.size())
+    { /* Adjusted unknowns */
+      
+      cout << T_GaMa_adjunk_Review_of_unknowns_coordidantes << "\n"
+           << underline(T_GaMa_adjunk_Review_of_unknowns_coordidantes, '*') 
+           << "\n\n";
+      cout.width(MAXWUNK);
+      cout << "i" << " ";
+      cout.width(MAXWID);
+      cout << T_GaMa_point;
+      cout << T_GaMa_adjunk_header1;
+      for (int i=0; i<MAXWUNK+MAXWID+1; i++) cout << '=';
+      cout << T_GaMa_adjunk_header2;
+      cout.setf(ios_base::fixed, ios_base::floatfield);
+
+      prev_id.clear();
+      for (int ii=0; ii<adj.adjusted_points.size(); ii++)
+        {
+          const Adjustment::Point point = adj.adjusted_points[ii];
+          
+          if (point.hxy)
+            {              
+              cout.width(MAXWUNK);
+              cout << " " << " ";
+              cout.width(MAXWID);
+              if (prev_id != point.id)
+                cout << point.id.c_str();
+              else
+                cout << " ";
+              prev_id = point.id;
+            }
+
+          cout << "\n";
+        }
+    }
+}
+
+
+void adjusted_observations(std::ostream& cout,const Adjustment& adj)
+{
+  using std::setw;
+  using std::ios_base;
+  using std::setprecision;
+
+}
+
