@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.7 2007/01/27 21:27:18 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.8 2007/02/04 14:12:54 cepek Exp $
  */
 
 
@@ -468,6 +468,29 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   
   out << "</cov-mat>\n";
   
+
+  out << "\n<!-- original indexes from the adjustment -->\n"
+      << "<original-index>\n";
+
+  for (PointData::const_iterator
+         i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
+    {
+      const LocalPoint& p = (*i).second;
+      if (!p.active_xy() && !p.active_z()) continue;
+      const bool bxy = p.active_xy() && p.index_x() != 0;
+      const bool bz  = p.active_z () && p.index_z() != 0;
+      if (bxy) out << "<ind>" << p.index_x() << "</ind>\n";
+      if (bxy) out << "<ind>" << p.index_y() << "</ind>\n";
+      if (bz ) out << "<ind>" << p.index_z() << "</ind>\n";
+    }
+
+  for (int i=1; i<=netinfo->sum_unknowns(); i++)
+    if (netinfo->unknown_type(i) == 'R')
+      {
+        out << "<ind>" << i << "</ind>\n";
+      }
+
+  out << "</original-index>\n";
   
   out << "\n</coordinates>\n";
 }

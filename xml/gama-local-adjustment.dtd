@@ -72,11 +72,14 @@
         approximate, 
         adjusted, 
         orientation-shifts, 
-        cov-mat ) >
+        cov-mat,
+        original-index ) >
 
 <!ELEMENT orientation-shifts ( orientation* ) >
 
 <!ELEMENT cov-mat ( dim, band, flt+ ) >
+
+<!ELEMENT original-index ( ind+ ) >
 
 <!ELEMENT observations ( 
         distance | 
@@ -183,6 +186,8 @@
 <!ELEMENT f ( #PCDATA ) >
 
 <!ELEMENT flt ( #PCDATA ) >
+
+<!ELEMENT ind ( #PCDATA ) >
 
 <!ELEMENT h-diffs ( #PCDATA ) >
 

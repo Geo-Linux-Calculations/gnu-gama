@@ -6,6 +6,8 @@
 #include <gamalib/language.h>
 #include <gamalib/local/results/text/underline.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/gon2deg.h>
+
 
 using namespace GaMaLib;
 
@@ -347,7 +349,7 @@ void general_parameters(std::ostream& cout, const Adjustment& adj)
           const Adjustment::Observation& obs = adj.obslist[i];
           if (obs.qrr > 1e-4)
             {
-              stud_opr = std::abs(atof(obs.std_residual.c_str()));
+              stud_opr = std::abs(obs.std_residual);
               if (stud_opr > max_stud)
                 {
                   max_stud = stud_opr;
@@ -399,13 +401,23 @@ void general_parameters(std::ostream& cout, const Adjustment& adj)
 
           const Adjustment::Observation& obs = adj.obslist[imax];
           cout << "<" <<  obs.xml_tag;
-          cout << " from=\"" << obs.from
-               << "\" to=\"" << obs.to << "\"";
+          if (obs.xml_tag == "angle")
+            cout << " from\"" <<  obs.from  << "\""
+                 << " left\"" <<  obs.left  << "\""
+                 << " right\"" << obs.right << "\"";
+          else  
+            cout << " from=\"" << obs.from << "\""
+                 << " to=\""   << obs.to   << "\"";
 
-          cout.precision(3);
+          if (obs.xml_tag == "direction" || obs.xml_tag == "angle" ||
+              obs.xml_tag == "z-angle")           
+            cout.precision(4);
+          else
+            cout.precision(3);
+
           cout << " val=\"" << obs.obs 
                << "\"";
-          // cout << " stdev=\"" << obs.stdev 
+          // cout << " stdev=\"" << obs.stdev  !!! currently not available !!!
           //      << "\"";
           cout << " />\n";
         }    
@@ -506,7 +518,15 @@ void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
     cout << "\n\n";
   }
 
-  if (adj.adjusted_points.size())
+  double kki         = adj.standard_deviation.confidence_scale;
+  bool   coordinates = false;
+  bool   heights     = false;
+  for (int i=0; i<adj.adjusted_points.size(); i++)
+    {
+      if (adj.adjusted_points[i].hxy) coordinates = true;
+      if (adj.adjusted_points[i].hz ) heights     = true;
+    }
+  if (coordinates)
     { /* Adjusted unknowns */
       
       cout << T_GaMa_adjunk_Review_of_unknowns_coordidantes << "\n"
@@ -525,6 +545,7 @@ void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
       for (int ii=0; ii<adj.adjusted_points.size(); ii++)
         {
           const Adjustment::Point point = adj.adjusted_points[ii];
+          const Adjustment::Point aprox = adj.approximate_points[ii];
           
           if (point.hxy)
             {              
@@ -536,10 +557,394 @@ void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
               else
                 cout << " ";
               prev_id = point.id;
+              double mx = std::sqrt(adj.cov(point.indx, point.indx));
+              double my = std::sqrt(adj.cov(point.indy, point.indy));
+              double mp = sqrt(my*my+mx*mx);
+              cout << "\n";
+
+              cout.width(MAXWUNK);
+              cout << adj.original_index[point.indx] << " ";
+              cout.width(MAXWID);
+              if (point.cxy)
+                cout << "X" << " * ";
+              else
+                cout << "x" << "   ";
+              cout.precision(5);
+              cout.width(13);
+              cout.precision(5);
+              cout.width(13);
+              cout << aprox.x << " ";
+              cout.width(9);
+              cout << (point.x - aprox.x) << " ";
+              cout.width(13);
+              cout << point.x << " ";
+              cout.precision(1);
+              cout.width(7);
+              cout << mx << " ";
+              cout.width(7);
+              cout << mx*kki;
+              cout << "\n";
+              
+              cout.width(MAXWUNK);
+              cout << adj.original_index[point.indy] << " ";
+              cout.width(MAXWID);
+              if (point.cxy)
+                cout << "Y" << " * ";
+              else
+                cout << "y" << "   ";
+              cout.precision(5);
+              cout.width(13);
+              cout << aprox.y << " ";
+              cout.width(9);
+              cout << (point.y - aprox.y) << " ";
+              cout.width(13);
+              cout << point.y << " ";
+              cout.precision(1);
+              cout.width(7);
+              cout << my << " ";
+              cout.width(7);
+              cout << my*kki;
+              cout << "\n";
+            }
+
+          if (point.hz)
+            {
+              if (!point.hxy)
+              {
+                cout.width(MAXWUNK);
+                cout << " " << " ";
+                cout.width(MAXWID);
+                if (prev_id != point.id)
+                  cout << point.id.c_str();
+                else
+                  cout << " ";
+                cout << '\n';
+              }
+              prev_id = point.id;
+
+              cout.width(MAXWUNK);
+              cout << adj.original_index[point.indz] << " ";
+              cout.width(MAXWID);
+              if (point.cz)
+                cout << "Z" << " * ";
+              else
+                cout << "z" << "   ";
+
+              cout.precision(5);
+              cout.width(13);
+              cout << aprox.z << " ";
+              cout.width(9);
+              cout << (point.z - aprox.z) << " ";
+              cout.width(13);
+              cout << point.z << " ";
+              double mz = std::sqrt(adj.cov(point.indz, point.indz));
+              cout.precision(1);
+              cout.width(7);
+              cout << mz << " ";
+              cout.width(7);
+              cout << mz*kki;
+              cout << "\n";
             }
 
           cout << "\n";
+        }      
+
+      if (adj.orientations.size())
+        { /* Adjusted orientation shifts */
+
+          double scale  = adj.gons ? 1.0 : 0.324;
+
+          cout << T_GaMa_adjunk_Review_of_unknowns_bearings << "\n"
+               << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*') 
+               << "\n\n";
+          cout.width(MAXWUNK);
+          cout << "i" << " ";
+          cout.width(MAXWID);
+          cout << T_GaMa_standpoint;
+          if (!adj.gons) cout << "   ";
+          cout << T_GaMa_adjunk_header3;
+          for (int i=0; i<MAXWUNK+MAXWID+1; i++) cout << '=';
+          if (adj.gons)
+            cout  << T_GaMa_adjunk_header4;
+          else
+            cout << 
+              "====== [d] ========= [d] ======== [d] =========== [ss] ===\n\n";
+
+          for (int i=0; i<adj.orientations.size(); i++)
+            {
+              const Adjustment::Orientation& orp = adj.orientations[i];
+
+              cout.width(MAXWUNK);
+              cout << adj.original_index[orp.index] << " " ;
+              cout.width(MAXWID);
+              const std::string& cb = orp.id;
+              cout << cb.c_str() << "  ";
+              double z = orp.approx;
+              if (z <  0 ) z += 400;
+              if (z > 400) z -= 400;
+              cout.setf(ios_base::fixed, ios_base::floatfield);
+              cout.precision(6);
+              cout.width(12);
+              if (adj.gons)
+                cout << z << " ";
+              else
+                cout << GNU_gama::gon2deg(z, 0, 2) << " ";
+              cout.width(10);
+              double cor = orp.adj - orp.approx;
+              if (adj.gons)
+                cout << cor << " ";
+              else
+                cout << GNU_gama::gon2deg(cor, 2, 2) << " ";
+              z = orp.adj;
+              if (z <  0 ) z += 400;
+              if (z > 400) z -= 400;
+              cout.width(11);
+              if (adj.gons)
+                cout << z << " ";
+              else
+                cout << GNU_gama::gon2deg(z, 0, 2) << " ";
+              cout.precision(1);
+              cout.width(8);
+              double mz = std::sqrt(adj.cov(orp.index, orp.index))*scale;
+              cout << mz << " ";
+              cout.width(7);
+              cout << mz*kki;
+              cout << '\n';
+            }
+
+          cout << '\n' << '\n';
         }
+      
+      { /* Mean errors and parameters of error ellipses */
+        double elp_k = 0;
+        {
+          double alfa = (1 - adj.standard_deviation.probability);
+          if (!adj.standard_deviation.using_aposteriori)
+            {
+              elp_k = std::sqrt(GNU_gama::Chi_square(float(alfa), 2));
+            }
+          else
+            {
+              int n = adj.project_equations.degrees_of_freedom;
+              if (n > 0)
+                elp_k = std::sqrt( n*(std::pow(alfa, -2.0/n) - 1));
+              else
+                elp_k = 0;
+            }
+        }
+
+        std::string mp_max_id;
+        double mp_max = -1, mp_mean = 0;
+        int number_of_points = 0;
+
+        bool has_coordinates = false;
+        for (int i=0; i<adj.adjusted_points.size(); i++)
+          if (adj.adjusted_points[i].hxy)
+            {
+              has_coordinates = true;
+              break;
+            }
+
+        if (has_coordinates)
+          {     
+            cout.precision(1);
+ 
+            cout 
+              << T_GaMa_errell_review_of_mean_errors_and_error_ellipses << "\n" 
+              << underline(T_GaMa_errell_review_of_mean_errors_and_error_ellipses,'*')
+              << "\n\n";
+            cout.width(MAXWID);
+            cout << T_GaMa_point << ' ';
+            cout << T_GaMa_errell_header1;
+            for (int i=0; i<MAXWID+1; i++) cout << '=';
+            if (adj.gons)
+              cout << T_GaMa_errell_header2;
+            else
+              cout <<
+                "== [mm] == [mm] ==== a [mm] b ==== [d] ===== a' [mm] b' ========";
+            cout << "\n\n";
+
+            for (int i=0; i<adj.adjusted_points.size(); i++)
+              {
+                const Adjustment::Point& point = adj.adjusted_points[i];
+                if (!point.hxy) continue;
+
+                cout.width(MAXWID);
+                cout << point.id.c_str() << ' ';
+
+                double my = std::sqrt(adj.cov(point.indy, point.indy));
+                double mx = std::sqrt(adj.cov(point.indx, point.indx));
+               
+                double mp = sqrt(my*my+mx*mx);
+                if (mp < 1000)     
+                  cout.setf(ios_base::fixed, ios_base::floatfield);
+                else
+                  cout.setf(ios_base::scientific, ios_base::floatfield);
+                cout.width(7);
+                cout << mp << ' ';
+                
+                mp_mean += mp;
+                if (mp > mp_max) {
+                  mp_max = mp;
+                  mp_max_id = point.id;
+                }
+                number_of_points++;
+
+                double myx = mp/sqrt(2.0);
+                cout.width(7);
+                if (myx < 1000)     
+                  cout.setf(ios_base::fixed, ios_base::floatfield);
+                else
+                  cout.setf(ios_base::scientific, ios_base::floatfield);
+                cout << myx << ' ' ;
+                
+                double a, b, alfa;
+                { // IS->std_error_ellipse(point_id, a, b, alfa);
+                  int iy = point.indy;
+                  int ix = point.indx;
+                  double m = adj.standard_deviation.using_aposteriori ?
+                    adj.standard_deviation.aposteriori :
+                    adj.standard_deviation.apriori;
+
+                  double m2 = m*m;
+                  double cyy = adj.cov(iy,iy)/m2;
+                  double cyx = adj.cov(iy,ix)/m2;
+                  double cxx = adj.cov(ix,ix)/m2; 
+                  double c = std::sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
+                  b = (cyy+cxx-c)/2;
+                  if (b < 0) b = 0;
+                  
+                  a = m * std::sqrt(b+c);
+                  b = m * std::sqrt(b);
+                  if (c == 0) 
+                    alfa = 0;
+                  else { 
+                    alfa = std::atan2(2*cyx, cxx-cyy)/2;
+                    if (alfa < 0) alfa += M_PI;
+                  }
+                }
+
+                cout.width(7);
+                if (a < 1000)     
+                  cout.setf(ios_base::fixed, ios_base::floatfield);
+                else
+                  cout.setf(ios_base::scientific, ios_base::floatfield);
+                cout << a << ' ';
+                cout.width(7);
+                if (b < 1000)     
+                  cout.setf(ios_base::fixed, ios_base::floatfield);
+                else
+                  cout.setf(ios_base::scientific, ios_base::floatfield);
+                cout << b << ' ';
+                cout.width(7);
+                cout.setf(ios_base::fixed, ios_base::floatfield);
+                double ea = alfa/M_PI*200;
+                if (!adj.gons) ea *= 360.0/400;
+                cout << ea << ' ';
+
+                if (mp < 1000 && mp > 1e-3)
+                  {       // ********* testing noise (coordinates are OK)
+                    double ak = a*elp_k;
+                    double bk = b*elp_k;
+                    cout.width(7);
+                    if (ak < 1000)     
+                      cout.setf(ios_base::fixed, ios_base::floatfield);
+                    else
+                      cout.setf(ios_base::scientific, ios_base::floatfield);
+                    cout << ak << ' ';
+                    cout.width(7);
+                    if (bk < 1000)     
+                      cout.setf(ios_base::fixed, ios_base::floatfield);
+                    else
+                      cout.setf(ios_base::scientific, ios_base::floatfield);
+                    cout << bk << ' ';
+                    
+                    double g  = 0;
+                    double dx = point.x - adj.approximate_points[i].x;
+                    double dy = point.y - adj.approximate_points[i].y;
+                    dx *= 1000;   // meters ==> millimetres
+                    dy *= 1000;   //
+                    double p1 = (dx*std::cos(alfa) + dy*std::sin(alfa));
+                    double p2 = (dy*std::cos(alfa) - dx*std::sin(alfa));
+                    if (ak > 0 && bk > 0 && bk > ak*1e-4) 
+                      {   // ***** testing noise (bk is practically 0)
+                        p1 /= ak;
+                        p2 /= bk;
+                        g = std::sqrt(p1*p1 + p2*p2);
+                      }
+                    if (g < 1000)     
+                      cout.setf(ios_base::fixed, ios_base::floatfield);
+                    else
+                      cout.setf(ios_base::scientific, ios_base::floatfield);
+                    cout.width(7);
+                    cout << g;		 
+                 }
+
+                cout << "\n";
+              }
+
+            /* Maximal/mean position error */
+            if (number_of_points >= 5) 
+              {
+                cout.precision(1);
+                cout << "\n"
+                     << T_GaMa_adjunk_mean_position_error_maximal << mp_max
+                     << T_GaMa_adjunk_mean_position_error_on_point 
+                     << mp_max_id << '\n'
+                     << T_GaMa_adjunk_mean_position_error_average 
+                     << mp_mean/number_of_points
+                     << " mm\n\n";
+              }
+          }
+      }
+    }
+
+
+  if (heights && !coordinates)
+    {
+      cout << T_GaMa_adjunk_Review_of_unknowns_heights << "\n"
+           << underline(T_GaMa_adjunk_Review_of_unknowns_heights, '*') 
+           << "\n\n";
+      cout.width(MAXWUNK);
+      cout << "i" << " ";
+      cout.width(MAXWID);
+      cout << T_GaMa_point;
+      cout << T_GaMa_adjunk_header5;
+      for (int i=0; i<MAXWUNK+MAXWID+1; i++) cout << '=';
+      cout << T_GaMa_adjunk_header6;
+      cout.setf(ios_base::fixed, ios_base::floatfield);
+      
+      for (int i=0; i<adj.adjusted_points.size(); i++)
+        {
+          const Adjustment::Point& point = adj.adjusted_points[i];
+          if (!point.hz) continue;
+
+          cout.width(MAXWUNK);
+          cout << adj.original_index[point.indz] << " ";
+          cout.width(MAXWID);
+          cout << point.id.c_str();
+          if (point.cz)
+            cout << " * ";
+          else
+            cout << "   ";    
+          cout.precision(5);
+          cout.width(13);
+          cout << adj.approximate_points[i].z << " ";
+          cout.width(9);
+          cout << (point.z - adj.approximate_points[i].z) << " ";
+          cout.width(13);
+          cout << point.z << " ";
+          int j = point.indz;
+          double mv = std::sqrt(adj.cov(j,j));
+          cout.precision(1);
+          cout.width(7);
+          cout << mv << " ";
+          cout.width(7);
+          cout << mv*kki;
+          cout << '\n';
+        }
+      
+      cout << "\n\n";
     }
 }
 
@@ -550,5 +955,433 @@ void adjusted_observations(std::ostream& cout,const Adjustment& adj)
   using std::ios_base;
   using std::setprecision;
 
+  const int MAXWID  = 12;     // IS->maxw_id();
+  const int MAXWUNK =  3;     // IS->maxw_unk();
+  const int MAXWOBS =  4;     // IS->maxw_obs();
+
+  const double kki   = adj.standard_deviation.confidence_scale;
+  const double scale = adj.gons ? 1.0 : 0.324;
+
+  /* adjusted observations */
+
+  cout << T_GaMa_adjobs_Adjusted_observations << "\n"
+       << underline(T_GaMa_adjobs_Adjusted_observations, '*') << "\n\n";
+
+  int minval = 12;
+  int maxval = minval;   // maximal value field width (coordinates!)
+  for (int i=0; i<adj.obslist.size(); i++)
+    {
+      const Adjustment::Observation& obs = adj.obslist[i];
+      int z = 0;
+      double d = obs.obs;
+      if (d < 0)
+        {
+          z = 1;
+          d = -d;
+        }
+      if (d < 1e5) continue;
+      z += 6;   // ... decimal point plus 5 digits
+      do {
+        z++; 
+        d /= 10;
+      } while (d >= 1);
+      if (z > maxval) maxval = z;
+    }
+  
+  cout.width(MAXWOBS);
+  cout << "i" << " ";
+  cout.width(MAXWID);
+  cout << T_GaMa_standpoint << " ";
+  cout.width(MAXWID);
+  cout << T_GaMa_target << "       ";
+  cout.width(maxval);
+  cout << T_GaMa_adjobs_observed << " ";
+  cout.width(maxval);
+  cout << T_GaMa_adjobs_adjusted << T_GaMa_adjobs_header1;
+  {
+    int kk = 13 + maxval-minval;
+    for (int i=0; i < (MAXWOBS+2*MAXWID+kk); i++) cout << "=";
+  }
+  cout << T_GaMa_adjobs_value;
+  {
+    for (int i=minval; i<maxval; i++) cout << "=";
+  }
+  if (adj.gons)
+    cout << "==== [m|g] ====== [mm|cc] ==\n\n";
+  else
+    cout << "==== [m|d] ====== [mm|ss] ==\n\n";
+
+  std::string predcs="";  // previous standpoint ID
+  for (int i=0; i<adj.obslist.size(); i++)
+    {
+      const Adjustment::Observation& obs = adj.obslist[i];
+
+      cout.width(MAXWOBS);
+      cout << i+1 << " ";
+      std::string cs = obs.from;
+      cout.width(MAXWID);
+      if (cs != predcs)
+         cout << cs.c_str();
+      else
+         cout << " ";
+      cout << " ";
+      std::string cc = obs.to;
+      if (obs.xml_tag == "angle") cc = obs.left;
+      cout.width(MAXWID);
+      cout << cc.c_str();
+      cout.setf(ios_base::fixed, ios_base::floatfield);
+
+      if (obs.xml_tag == "distance")
+        {
+          cout << T_GaMa_distance;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";
+        }
+      else if (obs.xml_tag == "direction")
+        {
+          cout << T_GaMa_direction;
+          cout.precision(6);
+          cout.width(maxval);
+          double m = obs.obs;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+          cout.width(maxval);
+          m = obs.adj;
+          if (m < 0) m += 400;
+          if (m >= 400) m -= 400;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+        }
+      else if (obs.xml_tag == "angle")
+        {
+          cout << '\n';
+          cout.width(MAXWOBS + 2 + 2*(MAXWID));
+          cout << obs.right.c_str();
+          cout << T_GaMa_angle;
+          cout.precision(6);
+          cout.width(maxval);
+          double m = obs.obs;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+          cout.width(maxval);
+          m = obs.adj;
+          if (m < 0) m += 400;
+          if (m >= 400) m -= 400;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+        }
+      else if (obs.xml_tag == "slope-distance")
+        {
+          cout << T_GaMa_s_distance; 
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";
+        }
+      else if (obs.xml_tag == "zenith-angle")
+        {
+          cout << T_GaMa_z_angle;
+          cout.precision(6);
+          cout.width(maxval);
+          double m = obs.obs;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+          cout.width(maxval);
+          m = obs.adj;
+          if (adj.gons)
+            cout << m << " ";
+          else
+            cout << GNU_gama::gon2deg(m, 0, 2) << " ";
+        }
+      else if (obs.xml_tag == "coordinate-x")
+        {
+          cout << T_GaMa_x;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";
+        }
+      else if (obs.xml_tag == "coordinate-y")
+        {
+          cout << T_GaMa_y;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";
+        }
+      else if (obs.xml_tag == "coordinate-z")
+        {
+          cout << T_GaMa_z;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";
+        }
+      else if (obs.xml_tag == "height-diff")
+        {
+          cout << T_GaMa_levell;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " "; 
+        }
+      else if (obs.xml_tag == "dx")
+        {
+          cout << T_GaMa_xdiff;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";            
+        }
+      else if (obs.xml_tag == "dy")
+        {
+          cout << T_GaMa_ydiff;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";            
+        }
+      else if (obs.xml_tag == "dz")
+        {
+          cout << T_GaMa_zdiff;
+          cout.precision(5);
+          cout.width(maxval);
+          cout << obs.obs << " ";
+          cout.width(maxval);
+          cout << obs.adj << " ";            
+        }
+      else  
+        {
+          cout << "\n######  review/adjusted_observations.h - "
+               << "unknown observation type " << obs.xml_tag << "\n\n";
+        }
+
+      cout.precision(1);
+      cout.width(7);
+      double ml = obs.stdev;
+      if (obs.xml_tag == "direction" || obs.xml_tag == "angle" ||
+          obs.xml_tag == "z-angle")
+        {
+          ml *= scale;
+        }
+      cout << ml << " ";
+      cout.width(7);
+      cout << ml*kki;
+
+      cout << "\n";
+      predcs = cs;
+    }
+
+
+  /* Residuals and analysis of observations */
+
+  // class StOpSort {
+  // 
+  //   GaMaLib::LocalNetwork* IS;
+  // 
+  // public:
+  // 
+  //   StOpSort(GaMaLib::LocalNetwork* is) : IS(is) {}
+  //   bool operator()(int a, int b) 
+  //     {
+  //       using namespace std;
+  //       GaMaLib::Double sa = fabs(IS->studentized_residual(a));
+  //       GaMaLib::Double sb = fabs(IS->studentized_residual(b));
+  //       return sa > sb; 
+  //     } 
+  // };
+  
+  std::vector<int> outliers;
+    int imax = -1;         // index of maximal studentized residual
+  {
+    double maxno = 0;
+    for (int i=1; i<adj.obslist.size(); i++)
+      {
+        const Adjustment::Observation& obs = adj.obslist[i];
+        
+        if (obs.f < 0.1) continue;
+        
+        double no = std::abs(obs.std_residual);
+        if (no > maxno) {
+          maxno = no;
+          imax = i;
+        }
+        if (no > kki) outliers.push_back(i);
+      }
+    // if (outliers.size() > 0)
+    //   sort(outliers.begin(), outliers.end(), StOpSort(IS));
+  }
+
+  for (int pass=1; pass; pass--)
+    {
+      if (pass)
+        cout << "\n\n"
+             << T_GaMa_resobs_Review_of_residuals_analysis_obs << "\n"
+             << underline(T_GaMa_resobs_Review_of_residuals_analysis_obs, '*') 
+             << "\n\n";
+      else
+        cout << "\n\n"
+             << T_GaMa_resobs_Outlying_observations << "\n"
+             << underline(T_GaMa_resobs_Outlying_observations, '*') << "\n\n";
+      
+      cout.width(MAXWOBS);
+      cout << "i" << " ";
+      cout.width(MAXWID);
+      cout << T_GaMa_standpoint << " ";
+      cout.width(MAXWID);
+      cout << T_GaMa_target 
+           << T_GaMa_resobs_header1;
+      for (int i=0; i < (MAXWOBS + 2*MAXWID + 10); i++)  cout << "=";
+      if (adj.gons)
+        cout << "======== [mm|cc] =========== [mm|cc] ===\n\n";
+      else
+        cout << "======== [mm|ss] =========== [mm|ss] ===\n\n";
+
+
+      std::string previous_id = "";    // previous standpoint ID
+      const int NN = pass ? adj.obslist.size() : outliers.size();
+      for (int ii=0; ii<NN; ii++)
+        {
+          int i = pass ? ii : outliers[ii];
+          const Adjustment::Observation& obs = adj.obslist[i];
+
+          cout.width(MAXWOBS);
+          cout << i+1 << " ";
+          cout.width(MAXWID);
+          if (obs.from != previous_id)
+            cout << obs.from.c_str();
+          else
+            cout << " ";
+          previous_id = obs.from;
+          cout << " ";
+          std::string cc = obs.to;
+          if (obs.xml_tag == "angle")  cc = obs.left;
+          cout.width(MAXWID);
+          cout << cc.c_str();
+          cout.setf(ios_base::fixed, ios_base::floatfield);
+
+          if (obs.xml_tag == "distance")
+            {
+              cout << T_GaMa_distance;
+            }
+          else if (obs.xml_tag == "direction")
+            {
+              cout << T_GaMa_direction;
+            }
+          else if (obs.xml_tag == "angle")
+            {
+              cout << '\n';
+              cout.width(MAXWOBS + 2 + 2*MAXWID);
+              cout << obs.right.c_str();
+              cout << T_GaMa_angle;
+            }
+          else if (obs.xml_tag == "slope-distance")
+            {
+              cout << T_GaMa_s_distance;
+            }
+          else if (obs.xml_tag == "zenith-angle")
+            {
+              cout << T_GaMa_z_angle;
+            }
+          else if (obs.xml_tag == "coordinate-x")
+            {
+              cout << T_GaMa_x;
+            }
+          else if (obs.xml_tag == "coordinate-y")
+            {
+              cout << T_GaMa_y;
+            }
+          else if (obs.xml_tag == "coordinate-z")
+            {
+              cout << T_GaMa_z;
+            }
+          else if (obs.xml_tag == "height-diff")
+            {
+              cout << T_GaMa_levell;
+            }
+          else if (obs.xml_tag == "dx")
+            {
+              cout << T_GaMa_xdiff;
+            }
+          else if (obs.xml_tag == "dy")
+            {
+              cout << T_GaMa_ydiff;
+            }
+          else if (obs.xml_tag == "dz")
+            {
+              cout << T_GaMa_zdiff;
+            }
+          else
+            {
+              cout << "\n######  review/adjusted_observations.h - "
+                   << "unknown observation type " << obs.xml_tag << "\n\n";
+            }
+
+
+          double f = obs.f; 
+          cout.precision(1);
+          cout.width(5);
+          cout << f;
+          if (f < 0.1)    cout << T_GaMa_resobs_no_control;   // uncontrolled
+          else if (f < 5) cout << T_GaMa_resobs_weak_control; // weak control
+          else            cout << "  ";
+          cout << ' ';
+          
+          cout.precision(3);
+          cout.width(9);
+          cout << obs.residual() << ' ';
+          cout.precision(1);
+          cout.width(4);
+          if (f >= 0.1)
+            {
+              double no = std::abs(obs.std_residual);
+              cout << no;
+
+              if (i == imax)
+                {
+                  if (no > kki)  cout << T_GaMa_resobs_mc_max_critical;
+                  else           cout << T_GaMa_resobs_mc_max;
+                }
+              else if (no > kki) cout << T_GaMa_resobs_mc_critical;
+              else               cout << "   ";
+              
+              
+              if ((f >=5 || (f >= 0.1 && no > kki)) &&
+                  !obs.err_obs.empty() && 
+                  !obs.err_adj.empty()
+                  )
+                {
+                  double erro = std::atof(obs.err_obs.c_str());
+                  cout.width(7);
+                  cout << erro;
+                  double erra = std::atof(obs.err_adj.c_str());
+                  cout.width(7);
+                  cout << erra;
+                }
+            }
+          
+          cout << "\n";
+        }
+    }
 }
 

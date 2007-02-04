@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.h,v 1.4 2007/01/27 21:27:18 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.h,v 1.5 2007/02/04 14:12:54 cepek Exp $
  */
 
 #ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
@@ -45,6 +45,7 @@ namespace GNU_gama
 
     void read_xml(std::istream&) throw(Exception::parser);
 
+    bool gons;
     std::string description;
     
     struct 
@@ -142,6 +143,8 @@ namespace GNU_gama
 
     CovMat<> cov;
 
+    std::vector<int> original_index; // original indexes from the adjustment
+
     struct Observation
     {
       std::string xml_tag;
@@ -156,19 +159,18 @@ namespace GNU_gama
       double qrr;               // weight coefficient of the residual
       double f;
 
-      std::string std_residual; // standardized residual
+      double      std_residual; // standardized residual
       std::string err_obs;      // estimate of observed value error
       std::string err_adj;      //  ....       adjusted  ....
 
       void clear()
       {
-        obs = adj = stdev = qrr = f = 0;
+        obs = adj = stdev = qrr = f = std_residual = 0;
         xml_tag     .clear();
         from        .clear();
         to          .clear();
         left        .clear();
         right       .clear();
-        std_residual.clear();
         err_obs     .clear();
         err_adj     .clear();
       }
@@ -183,6 +185,8 @@ namespace GNU_gama
 
     void init()  
     {
+      gons = true;
+
       network_general_parameters.gama_local_version.  clear();
       network_general_parameters.gama_local_algorithm.clear();
       network_general_parameters.gama_local_compiler. clear();
@@ -386,6 +390,8 @@ namespace GNU_gama
           s_orientation_shifts_end,
           s_orientation,
           s_orientation_end,
+          s_original_index,
+          s_original_index_end,
           s_ors_approx,
           s_ors_approx_end,
           s_ors_adj,
@@ -406,6 +412,8 @@ namespace GNU_gama
           s_from_end,
           s_to,
           s_to_end,
+          s_ind,
+          s_ind_end,
           s_left,
           s_left_end,
           s_right,
@@ -479,6 +487,7 @@ namespace GNU_gama
           t_h_diffs,
           t_height_diff,
           t_id,
+          t_ind,
           t_left,
           t_lower,
           t_network_general_parameters,
@@ -489,6 +498,7 @@ namespace GNU_gama
           t_observations_summary,
           t_orientation_shifts,
           t_orientation,
+          t_original_index,
           t_passed,
           t_point,
           t_probability,
@@ -599,9 +609,11 @@ namespace GNU_gama
       void ors_approx(bool);      
       void ors_adj(bool);      
       void cov_mat(bool);      
+      void original_index(bool);      
       void dim(bool);      
       void band(bool);      
       void flt(bool);      
+      void ind(bool);      
       void observations(bool);
       void observation(bool);
       void from(bool);

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.5 2007/01/27 21:27:18 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.6 2007/02/04 14:12:54 cepek Exp $
  */
 
 
@@ -146,8 +146,11 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_ors_approx_end                     ][t_adj                            ] = &Parser::ors_adj;
   tagfun[s_orientation_shifts_end             ][t_cov_mat                        ] = &Parser::cov_mat;
   tagfun[s_cov_mat                            ][t_dim                            ] = &Parser::dim;
+  tagfun[s_cov_mat_end                        ][t_original_index                 ] = &Parser::original_index;
   tagfun[s_dim_end                            ][t_band                           ] = &Parser::band;
   tagfun[s_flt_end                            ][t_flt                            ] = &Parser::flt;
+  tagfun[s_original_index                     ][t_ind                            ] = &Parser::ind;
+  tagfun[s_ind_end                            ][t_ind                            ] = &Parser::ind;
   tagfun[s_coordinates_end                    ][t_observations                   ] = &Parser::observations;
   tagfun[s_observation                        ][t_from                           ] = &Parser::from;
   tagfun[s_from_end                           ][t_to                             ] = &Parser::to;
@@ -252,6 +255,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       break;
     case 'i':
       if (!strcmp(c, "id"                        )) return t_id;
+      if (!strcmp(c, "ind"                       )) return t_ind;
       break;
     case 'l':
       if (!strcmp(c, "left"                      )) return t_left;
@@ -267,6 +271,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "observations-summary"      )) return t_observations_summary;
       if (!strcmp(c, "orientation-shifts"        )) return t_orientation_shifts;
       if (!strcmp(c, "orientation"               )) return t_orientation;
+      if (!strcmp(c, "original-index"            )) return t_original_index;
       break;
     case 'p':
       if (!strcmp(c, "passed"                    )) return t_passed;
@@ -1251,6 +1256,23 @@ void LocalNetworkAdjustmentResults::Parser::cov_mat(bool start)
 }
 
 
+void LocalNetworkAdjustmentResults::Parser::original_index(bool start)
+{
+  if (start)
+    {
+      adj->original_index.clear();
+      adj->original_index.push_back(-1);  // indexing from 1
+
+      stack.push(&Parser::original_index);
+      set_state(s_original_index);
+    }
+  else
+    {
+      set_state(s_original_index_end);
+    }
+}
+
+
 void LocalNetworkAdjustmentResults::Parser::dim(bool start)
 {
   if (start)
@@ -1297,6 +1319,21 @@ void LocalNetworkAdjustmentResults::Parser::flt(bool start)
     {
       if (tmp_i != tmp_e)  *tmp_i++ = get_float();
       set_state(s_flt_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::ind(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::ind);
+      set_state(s_ind);
+    }
+  else
+    {
+      adj->original_index.push_back( get_int() );
+      set_state(s_ind_end);
     }
 }
 
@@ -1481,7 +1518,7 @@ void LocalNetworkAdjustmentResults::Parser::std_residual(bool start)
     }
   else
     {
-      tmp_obs.std_residual = get_string();
+      tmp_obs.std_residual = get_float();
       set_state(s_std_residual_end);
     }
 }
