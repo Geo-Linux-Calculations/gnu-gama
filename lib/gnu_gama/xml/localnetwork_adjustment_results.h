@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.h,v 1.5 2007/02/04 14:12:54 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.h,v 1.6 2007/02/04 18:03:42 cepek Exp $
  */
 
 #ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
@@ -380,6 +380,8 @@ namespace GNU_gama
           s_point_end,
           s_id,
           s_id_end,
+          s_obs_id,
+          s_obs_id_end,
           s_x,
           s_x_end,
           s_y,
@@ -572,6 +574,8 @@ namespace GNU_gama
       void directions(bool);
       void angles(bool);
       void xyz_coords(bool);
+      void id(bool);
+      void obs_id(bool);
       void h_diffs(bool);
       void z_angles(bool);
       void s_dists(bool);
@@ -600,7 +604,6 @@ namespace GNU_gama
       void approximate(bool);      
       void adjusted(bool);      
       void point(bool);      
-      void id(bool);      
       void x(bool);      
       void y(bool);      
       void z(bool);      

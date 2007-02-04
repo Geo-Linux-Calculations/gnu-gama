@@ -654,7 +654,7 @@ void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
 
           double scale  = adj.gons ? 1.0 : 0.324;
 
-          cout << T_GaMa_adjunk_Review_of_unknowns_bearings << "\n"
+          cout << "\n" << T_GaMa_adjunk_Review_of_unknowns_bearings << "\n"
                << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*') 
                << "\n\n";
           cout.width(MAXWUNK);
@@ -964,7 +964,7 @@ void adjusted_observations(std::ostream& cout,const Adjustment& adj)
 
   /* adjusted observations */
 
-  cout << T_GaMa_adjobs_Adjusted_observations << "\n"
+  cout << "\n" << T_GaMa_adjobs_Adjusted_observations << "\n"
        << underline(T_GaMa_adjobs_Adjusted_observations, '*') << "\n\n";
 
   int minval = 12;

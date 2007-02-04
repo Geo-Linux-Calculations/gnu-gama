@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.7 2007/02/04 14:58:21 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.8 2007/02/04 18:03:42 cepek Exp $
  */
 
 
@@ -158,6 +158,8 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_from_end                           ][t_left                           ] = &Parser::left;
   tagfun[s_left_end                           ][t_right                          ] = &Parser::right;
   tagfun[s_to_end                             ][t_obs                            ] = &Parser::obs;
+  tagfun[s_observation                        ][t_id                             ] = &Parser::obs_id;
+  tagfun[s_obs_id_end                         ][t_obs                            ] = &Parser::obs;
   tagfun[s_obs_end                            ][t_adj                            ] = &Parser::obs_adj;
   tagfun[s_obs_adj_end                        ][t_stdev                          ] = &Parser::stdev;
   tagfun[s_stdev_end                          ][t_qrr                            ] = &Parser::obs_qrr;
@@ -1126,6 +1128,21 @@ void LocalNetworkAdjustmentResults::Parser::id(bool start)
     {
       tmp_id = get_string();
       set_state(s_id_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::obs_id(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::obs_id);
+      set_state(s_obs_id);
+    }
+  else
+    {
+      tmp_obs.from = get_string();
+      set_state(s_obs_id_end);
     }
 }
 
