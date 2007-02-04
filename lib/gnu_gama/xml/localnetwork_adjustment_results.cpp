@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork_adjustment_results.cpp,v 1.6 2007/02/04 14:12:54 cepek Exp $
+ *  $Id: localnetwork_adjustment_results.cpp,v 1.7 2007/02/04 14:58:21 cepek Exp $
  */
 
 
@@ -40,7 +40,8 @@ double LocalNetworkAdjustmentResults::Observation::residual() const
   throw()
 {
   double r = (adj - obs);
-  if (xml_tag == "direction" || xml_tag == "angle")
+  if (xml_tag == "direction" || xml_tag == "angle" || 
+      xml_tag == "zenith-angle")
     {
       if (r >= 400 || std::abs(r - 400) < std::abs(r)) r -= 400;
       r *= 10;

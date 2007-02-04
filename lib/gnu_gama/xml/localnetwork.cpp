@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.8 2007/02/04 14:12:54 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.9 2007/02/04 14:58:21 cepek Exp $
  */
 
 
@@ -317,7 +317,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out << "\n<coordinates>\n";
 
   out.setf(ios_base::fixed, ios_base::floatfield);
-  out.precision(5);
+  out.precision(6);
   
   const GaMaLib::Vec& X = netinfo->solve();
   std::vector<Index> ind(netinfo->sum_unknowns() + 1);
@@ -571,19 +571,22 @@ void LocalNetworkXML::observations(std::ostream& out) const
        ostringstream ostr;
        ostr.setf(ios_base::fixed, ios_base::floatfield);
 
+       const int linear  =  6;    // output precision 
+       const int angular =  7;    // output precision 
+
        if (Distance* d = dynamic_cast<Distance*>(pm))
          {
            out << "<" << (tag="distance") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = d->value();
-           ostr << " <obs>" <<m << "</obs>";
+           ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
            ostr << " <adj>" << m << "</adj>";
          }
        else if (Direction* s = dynamic_cast<Direction*>(pm))
          {
            out << "<" << (tag="direction") << ">";
-           ostr.precision(6);
+           ostr.precision(angular);
            double m = R2G*(s->value());
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/10000;
@@ -594,7 +597,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if ( (u = dynamic_cast<Angle*>(pm)) )
          {
            out << "<" << (tag="angle") << ">";
-           ostr.precision(6);
+           ostr.precision(angular);
            double m = R2G*(u->value());
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/10000;
@@ -605,7 +608,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (S_Distance* sd = dynamic_cast<S_Distance*>(pm))
          {
            out << "<" << (tag="slope-distance") << ">"; 
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = sd->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
@@ -614,7 +617,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (Z_Angle* za = dynamic_cast<Z_Angle*>(pm))
          {
            out << "<" << (tag="zenith-angle") << ">";
-           ostr.precision(6);
+           ostr.precision(angular);
            double m = R2G*(za->value());
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/10000;
@@ -624,7 +627,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
          {
            xyz = true;
            out << "<" << (tag="coordinate-x") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = x->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
@@ -634,7 +637,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
          {
            xyz = true;
            out << "<" << (tag="coordinate-y") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = y->value();
            ostr << " <obs>" << y_sign*m << "</obs>";
            m += v(i)/1000;
@@ -644,7 +647,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
          {
            xyz = true;
            out << "<" << (tag="coordinate-z") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = z->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
@@ -653,7 +656,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (H_Diff* h = dynamic_cast<H_Diff*>(pm))
          {
            out << "<" << (tag="height-diff") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = h->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
@@ -662,7 +665,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
          {
            out << "<" << (tag="dx") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = dx->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
@@ -671,7 +674,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
          {
            out << "<" << (tag="dy") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = dy->value();
            ostr << " <obs>" << y_sign*m << "</obs>";
            m += v(i)/1000;
@@ -680,7 +683,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
          {
            out << "<" << (tag="dz") << ">";
-           ostr.precision(5);
+           ostr.precision(linear);
            double m = dz->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
