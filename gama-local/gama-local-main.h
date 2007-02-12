@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.4 2006/09/01 10:27:47 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.5 2007/02/12 18:14:43 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -441,6 +441,8 @@ int GaMa_Main(int argc, char **argv)
 
         if (argv_xmlout)
           {
+            IS->set_gons();
+
             GNU_gama::LocalNetworkXML xml(IS);
             xml.description = description;
 

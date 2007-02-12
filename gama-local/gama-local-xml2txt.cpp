@@ -1447,7 +1447,14 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
             }
 
 
-          double f = obs.f; 
+          double f  = obs.f; 
+          double sc = 1.0;
+          if (obs.xml_tag == "direction" || obs.xml_tag == "angle" ||
+              obs.xml_tag == "z-angle")
+            {
+              sc = adj.gons ? 1.0 : 0.324;
+            }
+
           cout.precision(1);
           cout.width(5);
           cout << f;
@@ -1458,7 +1465,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           
           cout.precision(3);
           cout.width(9);
-          cout << obs.residual() << ' ';
+          cout << obs.residual()*sc << ' ';
           cout.precision(1);
           cout.width(4);
           if (f >= 0.1)
@@ -1480,10 +1487,10 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
                   !obs.err_adj.empty()
                   )
                 {
-                  double erro = std::atof(obs.err_obs.c_str());
+                  double erro = std::atof(obs.err_obs.c_str()) * sc;
                   cout.width(7);
                   cout << erro;
-                  double erra = std::atof(obs.err_adj.c_str());
+                  double erra = std::atof(obs.err_adj.c_str()) * sc;
                   cout.width(7);
                   cout << erra;
                 }
