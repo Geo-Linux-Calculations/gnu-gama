@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <sstream>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 #include <gnu_gama/version.h>
@@ -7,27 +8,40 @@
 #include <gamalib/local/results/text/underline.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
+#include <gnu_gama/outstream.h>
 
 
 using namespace GaMaLib;
 
 typedef GNU_gama::LocalNetworkAdjustmentResults Adjustment;
+typedef GNU_gama::OutStream                     OutStream;
 
-void general_parameters   (std::ostream& cout,const Adjustment&);
-void adjusted_parameters  (std::ostream& cout,const Adjustment&);
-void adjusted_observations(std::ostream& cout,const Adjustment&);
+template<typename Stream>
+void general_parameters   (Stream& cout,const Adjustment&);
+template<typename Stream>
+void adjusted_parameters  (Stream& cout,const Adjustment&);
+template<typename Stream>
+void adjusted_observations(Stream& cout,const Adjustment&);
+int help();
+int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out);
 
 
-int main()
+
+int main(int argc, char* argv[])
 {
   Adjustment adj;
+  OutStream  out(&std::cout);
+  set_gama_language(en);
+
   try
     {
+      if (const int k = parameters(argc, argv, adj, out)) return k;
+
       adj.read_xml(std::cin);
 
-      general_parameters   (std::cout, adj);
-      adjusted_parameters  (std::cout, adj);
-      adjusted_observations(std::cout, adj);
+      general_parameters   (out, adj);
+      adjusted_parameters  (out, adj);
+      adjusted_observations(out, adj);
     }
   catch (GNU_gama::Exception::parser perr)
     {
@@ -44,13 +58,104 @@ int main()
 }
 
 
-void general_parameters(std::ostream& cout, const Adjustment& adj)
+
+int help()
+{
+  using std::cerr;
+  
+  cerr << "Usage: gama-local-xml2txt [options] < std_input > std_output\n\n" 
+       << "Convert XML adjustment output of gama-local to text format\n\n";
+  
+  cerr << "Options:\n"
+       << "\n";
+  cerr << "--angles     400 | 360\n"  
+       << "--language   en | ca | cz | du | fi | fr | hu | ru | ua \n"
+       << "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 "
+       << "| cp-1251\n"
+       << "--help\n";
+  cerr << "\n";
+  
+  return 1;
+}
+
+
+
+int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out)
+{
+  if (argc == 1) return 0;
+  
+  const char* c;
+  const char* argv_lang   = 0;
+  const char* argv_enc    = 0;
+  const char* argv_angles = 0;
+  
+  for (int i=1; i<argc; i++)
+    {
+      c = argv[i];
+      if (*c != '-') return help();
+      if (*c && *c == '-') c++;
+      if (*c && *c == '-') c++;
+      
+      const std::string name(c);
+      c = argv[++i];
+      
+      if      (name == "help"      ) return help();
+      else if (name == "language"  ) argv_lang   = c;
+      else if (name == "encoding"  ) argv_enc    = c;
+      else if (name == "angles"    ) argv_angles = c;
+      else
+        return help();
+    }
+  
+  if (argv_lang)
+    {
+      if      (!strcmp("en", argv_lang)) set_gama_language(en);
+      else if (!strcmp("ca", argv_lang)) set_gama_language(ca);
+      else if (!strcmp("cs", argv_lang)) set_gama_language(cz);
+      else if (!strcmp("cz", argv_lang)) set_gama_language(cz);
+      else if (!strcmp("du", argv_lang)) set_gama_language(du);
+      else if (!strcmp("fi", argv_lang)) set_gama_language(fi);
+      else if (!strcmp("fr", argv_lang)) set_gama_language(fr);
+      else if (!strcmp("hu", argv_lang)) set_gama_language(hu);
+      else if (!strcmp("ru", argv_lang)) set_gama_language(ru);
+      else if (!strcmp("ua", argv_lang)) set_gama_language(ua);
+      else return help();
+    }
+  
+  if (argv_angles)
+    {
+      if      (!strcmp("400", argv_angles))  adj.gons = true;
+      else if (!strcmp("360", argv_angles))  adj.gons = false;
+      else return help();
+    }
+  
+  if (argv_enc)
+    {
+      if (!strcmp("utf-8", argv_enc)) 
+        out.set_encoding(OutStream::utf_8);
+      else if (!strcmp("iso-8859-2", argv_enc)) 
+        out.set_encoding(OutStream::iso_8859_2);
+      else if (!strcmp("iso-8859-2-flat", argv_enc)) 
+        out.set_encoding(OutStream::iso_8859_2_flat);
+      else if (!strcmp("cp-1250", argv_enc)) 
+        out.set_encoding(OutStream::cp_1250);
+      else if (!strcmp("cp-1251", argv_enc)) 
+        out.set_encoding(OutStream::cp_1251);
+      else
+        return help();
+    }
+  
+  return 0;
+}
+
+
+
+template <typename Stream>
+void general_parameters(Stream& cout, const Adjustment& adj)
 {
   using std::setw;
   using std::ios_base;
   using std::setprecision;
-
-  set_gama_language(en);
 
   cout << T_GaMa_Adjustment_of_geodetic_network << "        "
        << T_GaMa_version 
@@ -427,7 +532,9 @@ void general_parameters(std::ostream& cout, const Adjustment& adj)
 }
 
 
-void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
+
+template <typename Stream>
+void adjusted_parameters(Stream& cout,const Adjustment& adj)
 {
   using std::setw;
   using std::ios_base;
@@ -949,7 +1056,9 @@ void adjusted_parameters(std::ostream& cout,const Adjustment& adj)
 }
 
 
-void adjusted_observations(std::ostream& cout,const Adjustment& adj)
+
+template <typename Stream>
+void adjusted_observations(Stream& cout,const Adjustment& adj)
 {
   using std::setw;
   using std::ios_base;
