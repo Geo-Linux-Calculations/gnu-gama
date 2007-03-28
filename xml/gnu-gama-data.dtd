@@ -1,0 +1,79 @@
+<!--
+        gnu-gama-data.dtd          version 0.001  2007-03-29
+        =================          !! beta version !!! 
+
+        http://www.gnu.org/software/gama/gnu-gama-data.dtd
+-->
+
+<!ELEMENT gnu-gama-data (
+        text |
+        g3-model )* >
+
+
+<!ELEMENT text (#PCDATA) >
+
+<!ELEMENT g3-model (
+                constants?,
+                ( ( (fixed|free|constr)?, point? ) | obs? )*
+        ) >
+
+<!ELEMENT constants (
+                apriori-standard-deviation |
+                confidence-level |
+                angular-units-gons |
+                angular-units-degrees |
+                ellipsoid
+        )* > 
+
+<!ELEMENT apriori-standard-deviation (#PCDATA) > 
+<!ELEMENT confidence-level           (#PCDATA) > 
+<!ELEMENT angular-units-gons           EMPTY   >
+<!ELEMENT angular-units-degrees        EMPTY   >
+<!ELEMENT ellipsoid (
+                 (id) | (a, (b | inv-f)) )     >
+<!ELEMENT id                         (#PCDATA) > 
+<!ELEMENT a                          (#PCDATA) > 
+<!ELEMENT inv-f                      (#PCDATA) > 
+
+<!ELEMENT fixed  (n | e | u)*                  >
+<!ELEMENT free   (n | e | u)*                  >
+<!ELEMENT constr (n | e | u)*                  >
+<!ELEMENT n                            EMPTY   >
+<!ELEMENT e                            EMPTY   >
+<!ELEMENT u                            EMPTY   >
+
+<!ELEMENT point  (id, 
+                  ((x, y, z) | (b, l, h))?,    
+                  (height?, geoid?,
+                   unused?, fixed?, free?, 
+                   constr? )*,
+                  (db, dl)?                  ) >
+<!ELEMENT x                          (#PCDATA) > 
+<!ELEMENT y                          (#PCDATA) > 
+<!ELEMENT z                          (#PCDATA) > 
+<!ELEMENT b                          (#PCDATA) > 
+<!ELEMENT l                          (#PCDATA) > 
+<!ELEMENT h                          (#PCDATA) > 
+<!ELEMENT height                     (#PCDATA) > 
+<!ELEMENT geoid                      (#PCDATA) > 
+<!ELEMENT db                         (#PCDATA) > 
+<!ELEMENT dl                         (#PCDATA) > 
+
+
+<!ELEMENT obs ( (vector)*, cov-mat? )          >
+
+<!ELEMENT vector (from, to, dx, dy, dz,
+                  from-dh?, to-dh?           ) >
+
+<!ELEMENT from                       (#PCDATA) > 
+<!ELEMENT to                         (#PCDATA) > 
+<!ELEMENT dx                         (#PCDATA) > 
+<!ELEMENT dy                         (#PCDATA) > 
+<!ELEMENT dz                         (#PCDATA) > 
+<!ELEMENT from-dh                    (#PCDATA) > 
+<!ELEMENT to-dh                      (#PCDATA) > 
+
+<!ELEMENT cov-mat (dim, band, flt+)            >
+<!ELEMENT dim                        (#PCDATA) > 
+<!ELEMENT band                       (#PCDATA) > 
+<!ELEMENT flt                        (#PCDATA) > 
