@@ -1,36 +1,49 @@
 <!--
-        gnu-gama-data.dtd          version 0.001  2007-03-29
+        gnu-gama-data.dtd          version 0.002  2007-03-29
         =================          !! beta version !!! 
 
         http://www.gnu.org/software/gama/gnu-gama-data.dtd
--->
+  -->
 
-<!ELEMENT gnu-gama-data (
-        text |
-        g3-model )* >
-
+<!ELEMENT gnu-gama-data ( text |
+                          g3-model |
+                          g3-model-adjustment )* >
 
 <!ELEMENT text (#PCDATA) >
 
-<!ELEMENT g3-model (
-                constants?,
-                ( ( (fixed|free|constr)?, point? ) | obs? )*
-        ) >
+<!ELEMENT g3-model ( constants?,
+                    (fixed | free | constr | point)*, 
+                     obs* ) >
 
-<!ELEMENT constants (
-                apriori-standard-deviation |
-                confidence-level |
-                angular-units-gons |
-                angular-units-degrees |
-                ellipsoid
-        )* > 
+<!ELEMENT constants ( apriori-standard-deviation |
+                      confidence-level |
+                      angular-units-gons |
+                      angular-units-degrees |
+                      ellipsoid)* > 
+
+<!ELEMENT point  ( id, ((x, y, z) | (b, l, h))?,    
+                  (height | geoid |
+                   unused | fixed | free | 
+                   constr | db | dl )* ) >     
+
+<!ELEMENT obs ( (vector   |
+                 xyz      |
+                 distance )*, 
+                 cov-mat? ) >
+
+<!ELEMENT vector (from, to, dx, dy, dz,
+                 (from-dh | to-dh)* ) >
+
+<!ELEMENT xyz (id, x, y, z) >
+
+<!ELEMENT distance ( from, to, val, 
+                    (from-dh | to-dh | stdev)* ) >
 
 <!ELEMENT apriori-standard-deviation (#PCDATA) > 
 <!ELEMENT confidence-level           (#PCDATA) > 
 <!ELEMENT angular-units-gons           EMPTY   >
 <!ELEMENT angular-units-degrees        EMPTY   >
-<!ELEMENT ellipsoid (
-                 (id) | (a, (b | inv-f)) )     >
+<!ELEMENT ellipsoid ( id | (a, (b | inv-f)) )  >
 <!ELEMENT id                         (#PCDATA) > 
 <!ELEMENT a                          (#PCDATA) > 
 <!ELEMENT inv-f                      (#PCDATA) > 
@@ -42,12 +55,6 @@
 <!ELEMENT e                            EMPTY   >
 <!ELEMENT u                            EMPTY   >
 
-<!ELEMENT point  (id, 
-                  ((x, y, z) | (b, l, h))?,    
-                  (height?, geoid?,
-                   unused?, fixed?, free?, 
-                   constr? )*,
-                  (db, dl)?                  ) >
 <!ELEMENT x                          (#PCDATA) > 
 <!ELEMENT y                          (#PCDATA) > 
 <!ELEMENT z                          (#PCDATA) > 
@@ -58,12 +65,6 @@
 <!ELEMENT geoid                      (#PCDATA) > 
 <!ELEMENT db                         (#PCDATA) > 
 <!ELEMENT dl                         (#PCDATA) > 
-
-
-<!ELEMENT obs ( (vector)*, cov-mat? )          >
-
-<!ELEMENT vector (from, to, dx, dy, dz,
-                  from-dh?, to-dh?           ) >
 
 <!ELEMENT from                       (#PCDATA) > 
 <!ELEMENT to                         (#PCDATA) > 
@@ -77,3 +78,7 @@
 <!ELEMENT dim                        (#PCDATA) > 
 <!ELEMENT band                       (#PCDATA) > 
 <!ELEMENT flt                        (#PCDATA) > 
+
+<!ELEMENT val                        (#PCDATA) > 
+<!ELEMENT stdev                      (#PCDATA) > 
+

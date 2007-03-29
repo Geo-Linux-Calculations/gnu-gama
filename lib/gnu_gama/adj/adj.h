@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.h,v 1.3 2007/01/14 15:23:20 cepek Exp $
+ *  $Id: adj.h,v 1.4 2007/03/29 12:31:36 cepek Exp $
  */
 
 #include <matvec/covmat.h>
@@ -49,7 +49,7 @@ namespace GNU_gama {
     
     enum algorithm {envelope, gso, svd, cholesky};
     
-    Adj () : data(0), algorithm_(gso), minx_dim(0), minx(0) { init(0); }
+    Adj () : data(0), algorithm_(envelope), minx_dim(0), minx(0) { init(0); }
     virtual ~Adj();
     
     int n_obs() const { return n_obs_; }

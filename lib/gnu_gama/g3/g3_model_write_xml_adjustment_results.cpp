@@ -20,16 +20,16 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.3 2007/01/14 15:23:20 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.4 2007/03/29 12:31:36 cepek Exp $
  */
 
+#include <iomanip>
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/g3/g3_cluster.h>
 #include <gnu_gama/g3/g3_write_observation_xml.h>
 #include <gnu_gama/outstream.h>
 #include <gnu_gama/adj/adj.h>
-#include <iomanip>
-
+#include <gnu_gama/xml/dataparser.h>
 
 using namespace std;
 using namespace GNU_gama::g3;
@@ -105,10 +105,16 @@ void Model::write_xml_adjustment_results(std::ostream& out)
 {
   if (!check_adjustment()) update_adjustment();
 
+  out << GNU_gama::DataParser::xml_start;
+  out << "<g3-model-adjustment>\n";
+
   write_xml_rejected_observations          (out);
   write_xml_adjustment_results_statistics  (out);
   write_xml_adjustment_results_points      (out);
   write_xml_adjustment_results_observations(out);
+
+  out << "</g3-model-adjustment>\n";
+  out << GNU_gama::DataParser::xml_end;
 }
 
 
@@ -154,11 +160,11 @@ void Model::write_xml_adjustment_results_statistics(std::ostream& out)
 
   Adj::algorithm alg = adj->get_algorithm();
   out << "<algorithm> ";
-  if      (alg == Adj::envelope) cout << "envelope";
-  else if (alg == Adj::gso)      cout << "gso";
-  else if (alg == Adj::svd)      cout << "svd";
-  else if (alg == Adj::cholesky) cout << "cholesky";
-  else                           cout << "unknown";
+  if      (alg == Adj::envelope) out << "envelope";
+  else if (alg == Adj::gso)      out << "gso";
+  else if (alg == Adj::svd)      out << "svd";
+  else if (alg == Adj::cholesky) out << "cholesky";
+  else                           out << "unknown";
   out << " </algorithm>\n\n";
 
   {
@@ -346,8 +352,33 @@ void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, Index index)
 
 void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index)
 {
-  out << "\n<distance> ";
+  out << "\n<distance> "
+      << "<from>"  << d->from << "</from> "
+      << "<to>"    << d->to   << "</to> "
+      << "<index>" << index   << "</index>\n";
+
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
+                                                  std::ios_base::floatfield);
+  const int prec  = out.precision(5);
+  const int width = 13;
+
+  double rd = adj->r()(index)/Linear().scale();
+  out << "\n        <observed>" << setw(13) << d->obs()      
+      << " </observed>";
+  out << "\n";
+  out << "        <residual>" << setw(13) << rd          
+      << " </residual>";
+  out << "\n";
+  out << "        <adjusted>" << setw(13) << d->obs()+rd  
+      << " </adjusted>";
+  out << "\n";
+  
+  write_xml_adjusted_stdev("", out, d, 0, index);
+
   out << "        </distance>\n";
+
+  out.precision(prec);
+  out.setf(format);
 }
 
 
@@ -359,36 +390,41 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
       << "<to>"    << v->to   << "</to> " 
       << "<index>" << index   << "</index>\n";
 
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
+                                                  std::ios_base::floatfield);
+  const int prec  = out.precision(5);
+  const int width = 13;
+
   double rdx = adj->r()(index)/Linear().scale();
-  out << "\n        <dx-observed>" << setw(13) << v->dx()      
+  out << "\n        <dx-observed>" << setw(width) << v->dx()      
       << " </dx-observed>";
   out << "\n";
-  out << "        <dx-residual>" << setw(13) << rdx          
+  out << "        <dx-residual>" << setw(width) << rdx          
       << " </dx-residual>";
   out << "\n";
-  out << "        <dx-adjusted>" << setw(13) << v->dx()+rdx  
+  out << "        <dx-adjusted>" << setw(width) << v->dx()+rdx  
       << " </dx-adjusted>";
   out << "\n";
 
   double rdy = adj->r()(index+1)/Linear().scale();
-  out << "\n        <dy-observed>" << setw(13) << v->dy()      
+  out << "\n        <dy-observed>" << setw(width) << v->dy()      
       << " </dy-observed>";
   out << "\n";
-  out << "        <dy-residual>" << setw(13) << rdy          
+  out << "        <dy-residual>" << setw(width) << rdy          
       << " </dy-residual>";
   out << "\n";
-  out << "        <dy-adjusted>" << setw(13) << v->dy()+rdy  
+  out << "        <dy-adjusted>" << setw(width) << v->dy()+rdy  
       << " </dy-adjusted>";
   out << "\n";
 
   double rdz = adj->r()(index+2)/Linear().scale();
-  out << "\n        <dz-observed>" << setw(13) << v->dz()      
+  out << "\n        <dz-observed>" << setw(width) << v->dz()      
       << " </dz-observed>";
   out << "\n";
-  out << "        <dz-residual>" << setw(13) << rdz          
+  out << "        <dz-residual>" << setw(width) << rdz          
       << " </dz-residual>";
   out << "\n";
-  out << "        <dz-adjusted>" << setw(13) << v->dz()+rdz  
+  out << "        <dz-adjusted>" << setw(width) << v->dz()+rdz  
       << " </dz-adjusted>";
   out << "\n";
 
@@ -399,6 +435,9 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
   write_xml_adjusted_cov_xyz(out, v, index);
   
   out << "        </vector>\n";
+
+  out.precision(prec);
+  out.setf(format);
 }
 
 
@@ -409,20 +448,28 @@ void Model::write_xml_adjusted(std::ostream& out, const Height* h, Index index)
       << "<id>" << h->id << "</id> "
       << "<index>" << index   << "</index>\n";
 
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
+                                                  std::ios_base::floatfield);
+  const int prec  = out.precision(5);
+  const int width = 13;
+
   double rdh = adj->r()(index)/Linear().scale();
-  out << "\n        <observed>" << setw(13) << h->obs()      
+  out << "\n        <observed>" << setw(width) << h->obs()      
       << " </observed>";
   out << "\n";
-  out << "        <residual>" << setw(13) << rdh          
+  out << "        <residual>" << setw(width) << rdh          
       << " </residual>";
   out << "\n";
-  out << "        <adjusted>" << setw(13) << h->obs()+rdh  
+  out << "        <adjusted>" << setw(width) << h->obs()+rdh  
       << " </adjusted>";
   out << "\n";
 
   write_xml_adjusted_stdev("", out, h, 0, index);
 
   out << "        </height>\n";
+
+  out.precision(prec);
+  out.setf(format);
 }
 
 
@@ -433,20 +480,28 @@ void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, Index in
       << "<from>" << hd->from << "</from> <to>" << hd->to << "</to> "
       << "<index>" << index << "</index>\n";
 
-  double rdhd = adj->r()(index)/Linear().scale();
-  out << "\n        <observed>" << setw(13) << hd->obs()      
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
+                                                  std::ios_base::floatfield);
+  const int prec  = out.precision(5);
+  const int width = 13;
+ 
+ double rdhd = adj->r()(index)/Linear().scale();
+  out << "\n        <observed>" << setw(width) << hd->obs()      
       << " </observed>";
   out << "\n";
-  out << "        <residual>" << setw(13) << rdhd          
+  out << "        <residual>" << setw(width) << rdhd          
       << " </residual>";
   out << "\n";
-  out << "        <adjusted>" << setw(13) << hd->obs()+rdhd  
+  out << "        <adjusted>" << setw(width) << hd->obs()+rdhd  
       << " </adjusted>";
   out << "\n";
 
   write_xml_adjusted_stdev("", out, hd, 0, index);
 
   out << "        </height-diff>\n";
+
+  out.precision(prec);
+  out.setf(format);
 }
 
 
@@ -457,37 +512,42 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
       << "<id>" << xyz->id << "</id> "
       << "<index>" << index   << "</index>\n";
 
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
+                                                  std::ios_base::floatfield);
+  const int prec  = out.precision(5);
+  const int width = 14;
+
   double rx = adj->r()(index)/Linear().scale();
-  out << "\n        <dx-observed>" << setw(13) << xyz->x()      
-      << " </dx-observed>";
+  out << "\n        <x-observed>" << setw(width) << xyz->x()      
+      << " </x-observed>";
   out << "\n";
-  out << "        <dx-residual>" << setw(13) << rx          
-      << " </dx-residual>";
+  out << "        <x-residual>" << setw(width) << rx          
+      << " </x-residual>";
   out << "\n";
-  out << "        <dx-adjusted>" << setw(13) << xyz->x()+rx  
-      << " </dx-adjusted>";
+  out << "        <x-adjusted>" << setw(width) << xyz->x()+rx  
+      << " </x-adjusted>";
   out << "\n";
 
   double ry = adj->r()(index+1)/Linear().scale();
-  out << "\n        <dy-observed>" << setw(13) << xyz->y()      
-      << " </dy-observed>";
+  out << "\n        <y-observed>" << setw(width) << xyz->y()      
+      << " </y-observed>";
   out << "\n";
-  out << "        <dy-residual>" << setw(13) << ry          
-      << " </dy-residual>";
+  out << "        <y-residual>" << setw(width) << ry          
+      << " </y-residual>";
   out << "\n";
-  out << "        <dy-adjusted>" << setw(13) << xyz->y()+ry  
-      << " </dy-adjusted>";
+  out << "        <y-adjusted>" << setw(width) << xyz->y()+ry  
+      << " </y-adjusted>";
   out << "\n";
 
   double rz = adj->r()(index+2)/Linear().scale();
-  out << "\n        <dz-observed>" << setw(13) << xyz->z()      
-      << " </dz-observed>";
+  out << "\n        <z-observed>" << setw(width) << xyz->z()      
+      << " </z-observed>";
   out << "\n";
-  out << "        <dz-residual>" << setw(13) << rz          
-      << " </dz-residual>";
+  out << "        <z-residual>" << setw(width) << rz          
+      << " </z-residual>";
   out << "\n";
-  out << "        <dz-adjusted>" << setw(13) << xyz->z()+rz  
-      << " </dz-adjusted>";
+  out << "        <z-adjusted>" << setw(width) << xyz->z()+rz  
+      << " </z-adjusted>";
   out << "\n";
 
   write_xml_adjusted_stdev("x-", out, xyz, 0, index);
@@ -497,6 +557,9 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
   write_xml_adjusted_cov_xyz(out, xyz, index);
   
   out << "        </xyz>\n";
+
+  out.precision(prec);
+  out.setf(format);
 }
 
 
