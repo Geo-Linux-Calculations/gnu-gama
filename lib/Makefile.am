@@ -38,6 +38,8 @@ libgama_src = \
    gnu_gama/adj/adj_svd.h \
    gnu_gama/adj/envelope.h \
    gnu_gama/adj/homogenization.h \
+   gnu_gama/g3/g3_adjres.cpp \
+   gnu_gama/g3/g3_adjres.h \
    gnu_gama/g3/g3_cluster.cpp \
    gnu_gama/g3/g3_cluster.h \
    gnu_gama/g3/g3_model.cpp \
@@ -66,6 +68,7 @@ libgama_src = \
    gnu_gama/xml/dataparser_adj.cpp \
    gnu_gama/xml/dataparser.cpp \
    gnu_gama/xml/dataparser_g3.cpp \
+   gnu_gama/xml/dataparser_g3adj.cpp \
    gnu_gama/xml/dataparser.h \
    gnu_gama/xml/encoding_cp1251.cpp \
    gnu_gama/xml/encoding.cpp \

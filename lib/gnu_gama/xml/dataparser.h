@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.2 2006/04/23 15:36:21 cepek Exp $
+ *  $Id: dataparser.h,v 1.3 2007/03/31 18:16:22 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -40,6 +40,7 @@ namespace GNU_gama {
 
   struct DataParser_adj;
   struct DataParser_g3;
+  struct DataParser_g3adj;
   
   class DataParser : public BaseParser<Exception::parser>
     {
@@ -503,6 +504,12 @@ namespace GNU_gama {
         double b, l, h;
       } blh;
 
+      // ***  DataObject::g3_adjustment ***
+
+      DataParser_g3adj* g3adj;
+
+      void        init_g3adj();
+      void        close_g3adj();
     };
 }
 
