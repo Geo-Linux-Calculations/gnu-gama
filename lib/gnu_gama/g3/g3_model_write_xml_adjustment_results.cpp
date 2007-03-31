@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.4 2007/03/29 12:31:36 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.5 2007/03/31 17:15:08 cepek Exp $
  */
 
 #include <iomanip>
@@ -106,14 +106,14 @@ void Model::write_xml_adjustment_results(std::ostream& out)
   if (!check_adjustment()) update_adjustment();
 
   out << GNU_gama::DataParser::xml_start;
-  out << "<g3-model-adjustment>\n";
+  out << "<g3-adjustment>\n";
 
   write_xml_rejected_observations          (out);
   write_xml_adjustment_results_statistics  (out);
   write_xml_adjustment_results_points      (out);
   write_xml_adjustment_results_observations(out);
 
-  out << "</g3-model-adjustment>\n";
+  out << "</g3-adjustment>\n";
   out << GNU_gama::DataParser::xml_end;
 }
 
