@@ -7,7 +7,7 @@
 
 <!ELEMENT gnu-gama-data ( text |
                           g3-model |
-                          g3-adjustment )* >
+                          g3-adjustment-results )* >
 
 <!ELEMENT text (#PCDATA) >
 
