@@ -20,12 +20,14 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.1 2007/03/31 18:16:22 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.2 2007/04/26 11:11:42 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
 #define GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
 
+#include <ostream>
+#include <string>
 
 namespace GNU_gama {  namespace g3 {
 
@@ -33,6 +35,24 @@ namespace GNU_gama {  namespace g3 {
   {
   public:
     
+    // <adjustment-statistics>
+
+    std::string algorithm;
+    std::string ell_cap;       // <ellipsoid> <caption>
+    std::string ell_id;        //             <id> 
+    std::string ell_a;         //             <a>
+    std::string ell_b;         //             <b>
+    std::string parameters ;
+    std::string equations;
+    std::string defect;
+    std::string redundancy;
+    std::string sum_of_squares;
+    std::string apriori_var;
+    std::string aposteriori_var;
+    std::string variance_factor;
+    std::string design_m_graph;
+
+    void write_xml(std::ostream&) const;
   };
   
 }}

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.2 2006/04/23 15:36:21 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.3 2007/04/26 11:11:42 cepek Exp $
  */
 
 
@@ -47,6 +47,7 @@ DataParser::~DataParser()
 {
   close_adj();
   close_g3();
+  close_g3adj();
 
   delete adj_sparse_mat;
   delete adj_block_diagonal;
@@ -56,8 +57,9 @@ DataParser::~DataParser()
 
 DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
 {
-  adj = 0;
-  g3  = 0;
+  adj   = 0;
+  g3    = 0;
+  g3adj = 0;
 
   adj_sparse_mat = 0;
   adj_block_diagonal = 0;
@@ -92,6 +94,10 @@ DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
   // .....  <g3-model>  ..............................................
 
   init_g3(); 
+
+  // .....  <g3-adjustment-reults>  ..................................
+
+  init_g3adj(); 
 
   // .....  <text>  ..................................................
  
@@ -148,11 +154,16 @@ DataParser::data_tag DataParser::tag(const char* c)
     {
     case 'a':
       if (!strcmp(c, "a"                         )) return t_a;
+      if (!strcmp(c, "algorithm"                 )) return t_algorithm;
       if (!strcmp(c, "angle"                     )) return t_angle;
       if (!strcmp(c, "adj-input-data"            )) return t_adj_input_data;
+      if (!strcmp(c, "adjustment-results"        )) return t_adj_results;
+      if (!strcmp(c, "adjustment-statistics"     )) return t_adj_statistics;
       if (!strcmp(c, "angular-units-degrees"     )) return t_ang_degrees;
       if (!strcmp(c, "angular-units-gons"        )) return t_ang_gons;
       if (!strcmp(c, "apriori-standard-deviation")) return t_apriori_sd;
+      if (!strcmp(c, "apriori-variance"          )) return t_apriori_var;
+      if (!strcmp(c, "aposteriori-variance"      )) return t_aposteriori_var;
       if (!strcmp(c, "array"                     )) return t_array;
       if (!strcmp(c, "azimuth"                   )) return t_azimuth;
       break;                                     
@@ -164,6 +175,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "block"                     )) return t_block;
       break;                                     
     case 'c' :                                   
+      if (!strcmp(c, "caption"                   )) return t_caption;
       if (!strcmp(c, "confidence-level"          )) return t_conf_level;
       if (!strcmp(c, "cols"                      )) return t_cols;
       if (!strcmp(c, "constants"                 )) return t_constants;
@@ -172,6 +184,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'd' :                                   
       if (!strcmp(c, "db"                        )) return t_db;
+      if (!strcmp(c, "defect"                    )) return t_defect;
+      if (!strcmp(c, "design-matrix-graph"       )) return t_design_m_graph;
       if (!strcmp(c, "dim"                       )) return t_dim;
       if (!strcmp(c, "distance"                  )) return t_dist;
       if (!strcmp(c, "dl"                        )) return t_dl;
@@ -182,6 +196,7 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 'e':                                    
       if (!strcmp(c, "e"                         )) return t_e;
       if (!strcmp(c, "ellipsoid"                 )) return t_ellipsoid;
+      if (!strcmp(c, "equations"                 )) return t_equations;
       break;                                     
     case 'f' :                                   
       if (!strcmp(c, "fixed"                     )) return t_fixed;
@@ -191,6 +206,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "free"                      )) return t_free;
       break;                                     
     case 'g' :                                   
+      if (!strcmp(c, "g3-adjustment-results"     )) return t_g3_adj_results;
       if (!strcmp(c, "g3-model"                  )) return t_g3_model;
       if (!strcmp(c, "geoid"                     )) return t_geoid;
       if (!strcmp(c, "gnu-gama-data"             )) return t_gama_data;
@@ -218,9 +234,11 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "obs"                       )) return t_obs;
       break;                                     
     case 'p':                                    
+      if (!strcmp(c, "parameters"                )) return t_parameters;
       if (!strcmp(c, "point"                     )) return t_point;
       break;                                     
     case 'r':                                    
+      if (!strcmp(c, "redundancy"                )) return t_redundancy;
       if (!strcmp(c, "right"                     )) return t_right;
       if (!strcmp(c, "right-dh"                  )) return t_right_dh;
       if (!strcmp(c, "row"                       )) return t_row;
@@ -229,6 +247,7 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 's':                                    
       if (!strcmp(c, "stdev"                     )) return t_stdev;
       if (!strcmp(c, "sparse-mat"                )) return t_sparse_mat;
+      if (!strcmp(c, "sum-of-squares"            )) return t_sum_of_squares;
       break;                                     
     case 't' :                                   
       if (!strcmp(c, "text"                      )) return t_text;
@@ -242,6 +261,7 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 'v' :                                   
       if (!strcmp(c, "val"                       )) return t_val;
       if (!strcmp(c, "variance"                  )) return t_variance;
+      if (!strcmp(c, "variance-factor-used"      )) return t_variance_factor;
       if (!strcmp(c, "vector"                    )) return t_vector;
       break;                                     
     case 'w' :                                   

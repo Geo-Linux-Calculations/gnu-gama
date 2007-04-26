@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.1 2007/03/31 18:16:22 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.2 2007/04/26 11:11:42 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -28,4 +28,42 @@
 using namespace std;
 using namespace GNU_gama::g3;
 
+namespace 
+{
+  void xml(std::ostream& out, const std::string data, const std::string& tag)
+  {
+    if (!data.empty())
+      out << "   <" << tag << ">" << data << "</" << tag << ">\n";
+  }
+}
 
+void AdjustmentResults::write_xml(std::ostream& out) const
+{
+  out << "<g3-adjustment-results>\n\n";
+
+  out << "<adjustment-statistics>\n";
+  
+  xml(out, algorithm, "algorithm"); 
+  if (!(ell_cap.empty() && ell_id.empty() && ell_a.empty() && ell_b.empty()))
+    {
+      out << "   <ellipsoid>\n";
+      xml(out, ell_cap, "caption");
+      xml(out, ell_id,  "id");
+      xml(out, ell_a,   "a");
+      xml(out, ell_b,   "b");
+      out << "   </ellipsoid>\n";      
+    }
+  xml(out, parameters,      "parameters"); 
+  xml(out, equations,       "equations");
+  xml(out, defect,          "defect");
+  xml(out, redundancy,      "redundancy");
+  xml(out, sum_of_squares,  "sum-of-squares");
+  xml(out, apriori_var,     "apriori-varance");
+  xml(out, aposteriori_var, "aposteriori-variance");
+  xml(out, variance_factor, "variance-factor-used");
+  xml(out, design_m_graph,  "design-matrix-graph");
+
+  out << "</adjustment-statistics>\n\n";
+
+  out << "</g3-adjustment-results>\n";
+}

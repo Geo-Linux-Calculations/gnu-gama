@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataobject.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: dataobject.h,v 1.2 2007/04/26 11:11:42 cepek Exp $
  */ 
 
 #ifndef GaMaLib_GaMa_XML_Data_Object__object___h_
@@ -30,6 +30,7 @@
 #include <sstream>
 #include <gnu_gama/adj/adj.h>
 #include <gnu_gama/g3/g3_model.h>
+#include <gnu_gama/g3/g3_adjres.h>
 
 namespace GNU_gama { namespace DataObject {
 
@@ -110,6 +111,32 @@ namespace GNU_gama { namespace DataObject {
           {
             std::stringstream out;
             model->write_xml(out);
+            
+            return out.str();
+          }
+
+        return "";
+      }
+  };
+
+
+  class g3_adj_results : public Base {
+  public:
+  
+    GNU_gama::g3::AdjustmentResults *adjres;
+  
+    g3_adj_results() : adjres(0)
+      {
+      }    
+    g3_adj_results(GNU_gama::g3::AdjustmentResults *m) : adjres(m)
+      {
+      }    
+    std::string xml() const 
+      {
+        if (adjres) 
+          {
+            std::stringstream out;
+            adjres->write_xml(out);
             
             return out.str();
           }

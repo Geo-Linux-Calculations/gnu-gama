@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.3 2007/03/31 18:16:22 cepek Exp $
+ *  $Id: dataparser.h,v 1.4 2007/04/26 11:11:42 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -272,13 +272,41 @@ namespace GNU_gama {
           s_array_dim,
           s_array_2,
           s_array_int,
-          s_stop       
+
+          // ..................................................
+
+          s_g3a_adj_results,
+          s_g3a_statistics,
+          s_g3a_algorithm,
+          s_g3a_ellipsoid,
+          s_g3a_ellipsoid_cap,
+          s_g3a_ellipsoid_id,
+          s_g3a_ellipsoid_a,
+          s_g3a_ellipsoid_b,
+          s_g3a_parameters,
+          s_g3a_equations,
+          s_g3a_defect,
+          s_g3a_redundancy,
+          s_g3a_sum_of_squares,
+          s_g3a_apriori_var,
+          s_g3a_aposteriori_var,
+          s_g3a_variance_factor,
+          s_g3a_design_m_graph,
+
+          // ..................................................
+
+          s_stop
         }; 
       
       enum data_tag 
         {
           t_a,
           t_adj_input_data,
+          t_adj_results,
+          t_adj_statistics,
+          t_apriori_var,
+          t_aposteriori_var,
+          t_algorithm,
           t_ang_degrees,
           t_ang_gons,
           t_angle,
@@ -290,12 +318,15 @@ namespace GNU_gama {
           t_block,
           t_block_diagonal,
           t_blocks,
+          t_caption,
           t_cols,
           t_conf_level,
           t_constants,
           t_constr,
           t_covmat,
           t_db,
+          t_defect,
+          t_design_m_graph,
           t_dl,
           t_dim,
           t_dist,
@@ -304,11 +335,13 @@ namespace GNU_gama {
           t_dz,
           t_e,
           t_ellipsoid,
+          t_equations,
           t_flt,
           t_fixed,
           t_free,
           t_from,
           t_from_dh,
+          t_g3_adj_results,
           t_g3_model,
           t_gama_data,
           t_geoid,
@@ -324,13 +357,16 @@ namespace GNU_gama {
           t_n,
           t_nonz,
           t_obs,
+          t_parameters,
           t_point,
+          t_redundancy,
           t_right,
           t_right_dh,
           t_rows,
           t_row,
           t_sparse_mat,
           t_stdev,
+          t_sum_of_squares,
           t_text,
           t_to,
           t_to_dh,
@@ -338,6 +374,7 @@ namespace GNU_gama {
           t_unknown,
           t_val,
           t_variance,
+          t_variance_factor,
           t_vector,
           t_width,
           t_x,
@@ -429,6 +466,23 @@ namespace GNU_gama {
       int array_dim               (const char *name);
       int array_int               (const char *name);
       
+      int g3a_adj_results         (const char *name, const char **atts);
+      int g3a_adj_results         (const char *name);
+      int g3a_algorithm           (const char *name);
+      int g3a_ell_caption         (const char *name);
+      int g3a_ell_id              (const char *name);
+      int g3a_ell_a               (const char *name);
+      int g3a_ell_b               (const char *name);
+      int g3a_parameters          (const char *name);
+      int g3a_equations           (const char* name);
+      int g3a_defect              (const char* name);
+      int g3a_redundancy          (const char* name);
+      int g3a_sum_of_squares      (const char* name);
+      int g3a_apriori_var         (const char* name);
+      int g3a_aposteriori_var     (const char* name);
+      int g3a_variance_factor     (const char* name);
+      int g3a_design_m_graph      (const char* name);
+
       int add_text     (const char *name, int len);
       int end_tag      (const char *name);
       int no_attributes(const char *name, const char **atts);
@@ -504,12 +558,17 @@ namespace GNU_gama {
         double b, l, h;
       } blh;
 
-      // ***  DataObject::g3_adjustment ***
+
+      // ***  DataObject::g3_adjustment_results ***
 
       DataParser_g3adj* g3adj;
 
       void        init_g3adj();
       void        close_g3adj();
+
+      void        g3a_text_string (std::string& str);
+      void        g3a_text_float  (std::string& str);
+      void        g3a_text_integer(std::string& str);
     };
 }
 
