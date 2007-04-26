@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_revision.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_model_revision.cpp,v 1.2 2007/04/26 12:44:05 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -106,10 +106,7 @@ void Model::update_observations()
   for (Model::ObservationData::iterator 
          i=obsdata.begin(), e=obsdata.end(); i!=e; ++i)
     {
-      accepted = false;
-      // (*i)->revision_accept(this);
       (*i)->accept(&revision);
-      if (!accepted) (*i)->set_active(false);; 
     }
 
   for (Model::ClusterList::iterator ci = obsdata.clusters.begin(), 
@@ -125,8 +122,6 @@ void Model::update_observations()
 
 bool Model::revision(Angle* angle)
 {
-  accepted = true;
-
   if (!angle->active()) return false;
 
   Point* from  = points->find(angle->from);
@@ -173,8 +168,6 @@ bool Model::revision(Angle* angle)
 
 bool Model::revision(Azimuth* a)
 {
-  accepted = true;
-
   if (!a->active()) return false;
   
   Point* from = points->find(a->from);
@@ -208,8 +201,6 @@ bool Model::revision(Azimuth* a)
 
 bool Model::revision(Distance* d)
 {
-  accepted = true;
-
   if (!d->active()) return false;
   
   Point* from = points->find(d->from);
@@ -243,8 +234,6 @@ bool Model::revision(Distance* d)
 
 bool Model::revision(Height* height)
 {  
-  accepted = true;
-
   if (!height->active()) return false;
   
   Point* point = points->find(height->id);
@@ -268,8 +257,6 @@ bool Model::revision(Height* height)
 
 bool Model::revision(HeightDiff* dh)
 {
-  accepted = true;
-
   if (!dh->active()) return false;
   
   Point* from = points->find(dh->from);
@@ -297,8 +284,6 @@ bool Model::revision(HeightDiff* dh)
 
 bool Model::revision(Vector* v)
 {
-  accepted = true;
-
   if (!v->active()) return false;
 
   Point* from = points->find(v->from);
@@ -332,8 +317,6 @@ bool Model::revision(Vector* v)
 
 bool Model::revision(XYZ* xyz)
 {
-  accepted = true;
-
   if (!xyz->active()) return false;
 
   Point* point = points->find(xyz->id);
@@ -359,8 +342,6 @@ bool Model::revision(XYZ* xyz)
 
 bool Model::revision(ZenithAngle* z)
 {
-  accepted = true;
-
   if (!z->active()) return false;
   
   Point* from = points->find(z->from);

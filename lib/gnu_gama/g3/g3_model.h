@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.h,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_model.h,v 1.2 2007/04/26 12:44:05 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
@@ -197,8 +197,6 @@ namespace GNU_gama {  namespace g3 {
     void write_xml_adjustment_results_statistics  (std::ostream&);
     void write_xml_adjustment_results_points      (std::ostream&);
     void write_xml_adjustment_results_observations(std::ostream&);
-
-    bool accepted;
 
     void write_xml_adjusted_stdev  (const char*, 
                                     std::ostream&, const Observation*,
