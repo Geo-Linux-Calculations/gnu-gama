@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.5 2007/04/29 10:25:55 cepek Exp $
+ *  $Id: dataparser.h,v 1.6 2007/04/29 12:57:50 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -277,45 +277,78 @@ namespace GNU_gama {
 
           s_g3a_adj_results,
 
-          s_g3a_statistics,
-          s_g3a_algorithm,
-          s_g3a_ellipsoid,
-          s_g3a_ellipsoid_cap,
-          s_g3a_ellipsoid_id,
-          s_g3a_ellipsoid_a,
-          s_g3a_ellipsoid_b,
-          s_g3a_parameters,
-          s_g3a_equations,
-          s_g3a_defect,
-          s_g3a_redundancy,
-          s_g3a_sum_of_squares,
-          s_g3a_apriori_var,
-          s_g3a_aposteriori_var,
-          s_g3a_variance_factor,
-          s_g3a_design_m_graph,
+          s_g3a_s_statistics,
+          s_g3a_s_s_algorithm,
+          s_g3a_s_ellipsoid,
+          s_g3a_s_ellipsoid_cap,
+          s_g3a_s_ellipsoid_id,
+          s_g3a_s_ellipsoid_a,
+          s_g3a_s_ellipsoid_b,
+          s_g3a_s_parameters,
+          s_g3a_s_equations,
+          s_g3a_s_defect,
+          s_g3a_s_redundancy,
+          s_g3a_s_sum_of_squares,
+          s_g3a_s_apriori_var,
+          s_g3a_s_aposteriori_var,
+          s_g3a_s_variance_factor,
+          s_g3a_s_design_m_graph,
 
           s_g3a_ar_adj_results,
-          s_g3a_ar_point,
-          s_g3a_ar_point_end,
-          s_g3a_ar_point_id,
-          s_g3a_ar_point_after_id,
-          s_g3a_ar_point_n,
-          s_g3a_ar_point_after_n,
-          s_g3a_ar_point_e,
-          s_g3a_ar_point_after_e,
-          s_g3a_ar_point_u,
-          s_g3a_ar_point_after_u,
-          s_g3a_ar_point_n_type,
-          s_g3a_ar_point_e_type,
-          s_g3a_ar_point_u_type,
+          s_g3a_r_point,
+          s_g3a_r_point_end,
+          s_g3a_r_point_id,
+          s_g3a_r_point_after_id,
+          s_g3a_r_point_n,
+          s_g3a_r_point_after_n,
+          s_g3a_r_point_e,
+          s_g3a_r_point_after_e,
+          s_g3a_r_point_u,
+          s_g3a_r_point_after_u,
+          s_g3a_r_point_n_type,
+          s_g3a_r_point_e_type,
+          s_g3a_r_point_u_type,
 
-          s_g3a_ar_point_n_dn,
-          s_g3a_ar_point_e_de,
-          s_g3a_ar_point_u_du,
-          s_g3a_ar_point_n_ind,
-          s_g3a_ar_point_e_ind,
-          s_g3a_ar_point_u_ind,
+          s_g3a_r_point_n_dn,
+          s_g3a_r_point_e_de,
+          s_g3a_r_point_u_du,
+          s_g3a_r_point_n_ind,
+          s_g3a_r_point_e_ind,
+          s_g3a_r_point_u_ind,
 
+          s_g3a_r_point_cnn,
+          s_g3a_r_point_cne,
+          s_g3a_r_point_cnu,
+          s_g3a_r_point_cee,
+          s_g3a_r_point_ceu,
+          s_g3a_r_point_cuu,
+
+          s_g3a_r_point_x_given,
+          s_g3a_r_point_x_correction,
+          s_g3a_r_point_x_adjusted,
+          s_g3a_r_point_y_given,
+          s_g3a_r_point_y_correction,
+          s_g3a_r_point_y_adjusted,
+          s_g3a_r_point_z_given,
+          s_g3a_r_point_z_correction,
+          s_g3a_r_point_z_adjusted,
+
+          s_g3a_r_point_cxx,
+          s_g3a_r_point_cxy,
+          s_g3a_r_point_cxz,
+          s_g3a_r_point_cyy,
+          s_g3a_r_point_cyz,
+          s_g3a_r_point_czz,
+
+          s_g3a_r_point_b_given,
+          s_g3a_r_point_b_correction,
+          s_g3a_r_point_b_adjusted,
+          s_g3a_r_point_l_given,
+          s_g3a_r_point_l_correction,
+          s_g3a_r_point_l_adjusted,
+          s_g3a_r_point_h_given,
+          s_g3a_r_point_h_correction,
+          s_g3a_r_point_h_adjusted,
 
           // ..................................................
 
@@ -530,34 +563,70 @@ namespace GNU_gama {
       int array_dim               (const char *name);
       int array_int               (const char *name);
       
-      int g3a_adj_results         (const char *name, const char **atts);
-      int g3a_adj_results         (const char *name);
-      int g3a_algorithm           (const char *name);
-      int g3a_ell_caption         (const char *name);
-      int g3a_ell_id              (const char *name);
-      int g3a_ell_a               (const char *name);
-      int g3a_ell_b               (const char *name);
-      int g3a_parameters          (const char *name);
-      int g3a_equations           (const char* name);
-      int g3a_defect              (const char* name);
-      int g3a_redundancy          (const char* name);
-      int g3a_sum_of_squares      (const char* name);
-      int g3a_apriori_var         (const char* name);
-      int g3a_aposteriori_var     (const char* name);
-      int g3a_variance_factor     (const char* name);
-      int g3a_design_m_graph      (const char* name);
-      int g3a_ar_point            (const char *name, const char **atts);
-      int g3a_ar_point            (const char *name);
-      int g3a_ar_point_id         (const char *name);
-      int g3a_ar_point_n_type     (const char *name);
-      int g3a_ar_point_e_type     (const char *name);
-      int g3a_ar_point_u_type     (const char *name);
-      int g3a_ar_point_n_dn       (const char *name);
-      int g3a_ar_point_e_de       (const char *name);
-      int g3a_ar_point_u_du       (const char *name);
-      int g3a_ar_point_n_ind      (const char *name);
-      int g3a_ar_point_e_ind      (const char *name);
-      int g3a_ar_point_u_ind      (const char *name);
+      int g3a_s_adj_results       (const char *name, const char **atts);
+      int g3a_s_adj_results       (const char *name);
+      int g3a_s_algorithm         (const char *name);
+      int g3a_s_ell_caption       (const char *name);
+      int g3a_s_ell_id            (const char *name);
+      int g3a_s_ell_a             (const char *name);
+      int g3a_s_ell_b             (const char *name);
+      int g3a_s_parameters        (const char *name);
+      int g3a_s_equations         (const char* name);
+      int g3a_s_defect            (const char* name);
+      int g3a_s_redundancy        (const char* name);
+      int g3a_s_sum_of_squares    (const char* name);
+      int g3a_s_apriori_var       (const char* name);
+      int g3a_s_aposteriori_var   (const char* name);
+      int g3a_s_variance_factor   (const char* name);
+      int g3a_s_design_m_graph    (const char* name);
+
+      int g3a_r_point             (const char *name, const char **atts);
+      int g3a_r_point             (const char *name);
+      int g3a_r_point_id          (const char *name);
+
+      int g3a_r_point_n_type      (const char *name);
+      int g3a_r_point_e_type      (const char *name);
+      int g3a_r_point_u_type      (const char *name);
+      int g3a_r_point_n_dn        (const char *name);
+      int g3a_r_point_e_de        (const char *name);
+      int g3a_r_point_u_du        (const char *name);
+      int g3a_r_point_n_ind       (const char *name);
+      int g3a_r_point_e_ind       (const char *name);
+      int g3a_r_point_u_ind       (const char *name);
+
+      int g3a_r_point_cnn         (const char *name);
+      int g3a_r_point_cne         (const char *name);
+      int g3a_r_point_cnu         (const char *name);
+      int g3a_r_point_cee         (const char *name);
+      int g3a_r_point_ceu         (const char *name);
+      int g3a_r_point_cuu         (const char *name);
+
+      int g3a_r_point_x_given     (const char *name);
+      int g3a_r_point_x_correction(const char *name);
+      int g3a_r_point_x_adjusted  (const char *name);
+      int g3a_r_point_y_given     (const char *name);
+      int g3a_r_point_y_correction(const char *name);
+      int g3a_r_point_y_adjusted  (const char *name);
+      int g3a_r_point_z_given     (const char *name);
+      int g3a_r_point_z_correction(const char *name);
+      int g3a_r_point_z_adjusted  (const char *name);
+
+      int g3a_r_point_cxx         (const char *name);
+      int g3a_r_point_cxy         (const char *name);
+      int g3a_r_point_cxz         (const char *name);
+      int g3a_r_point_cyy         (const char *name);
+      int g3a_r_point_cyz         (const char *name);
+      int g3a_r_point_czz         (const char *name);
+
+      int g3a_r_point_b_given     (const char *name);
+      int g3a_r_point_b_correction(const char *name);
+      int g3a_r_point_b_adjusted  (const char *name);
+      int g3a_r_point_l_given     (const char *name);
+      int g3a_r_point_l_correction(const char *name);
+      int g3a_r_point_l_adjusted  (const char *name);
+      int g3a_r_point_h_given     (const char *name);
+      int g3a_r_point_h_correction(const char *name);
+      int g3a_r_point_h_adjusted  (const char *name);
 
       int add_text     (const char *name, int len);
       int end_tag      (const char *name);

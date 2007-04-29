@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.3 2007/04/29 10:25:55 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.4 2007/04/29 12:57:50 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -97,12 +97,38 @@ void AdjustmentResults::write_xml(std::ostream& out) const
       EOL = true;
 
       xml(out, p->cnn, "cnn");
-      xml(out, p->cnn, "cne");
-      xml(out, p->cnn, "cnu");
-      xml(out, p->cnn, "cee");
-      xml(out, p->cnn, "ceu");
-      xml(out, p->cnn, "cnn");
-      xml(out, p->cnn, "cuu");
+      xml(out, p->cne, "cne");
+      xml(out, p->cnu, "cnu");
+      xml(out, p->cee, "cee");
+      xml(out, p->ceu, "ceu");
+      xml(out, p->cuu, "cuu");
+
+      xml(out, p->x_given,      "x-given");
+      xml(out, p->x_correction, "x-correction");
+      xml(out, p->x_adjusted,   "x-adjusted");
+      xml(out, p->y_given,      "y-given");
+      xml(out, p->y_correction, "y-correction");
+      xml(out, p->y_adjusted,   "y-adjusted");
+      xml(out, p->z_given,      "z-given");
+      xml(out, p->z_correction, "z-correction");
+      xml(out, p->z_adjusted,   "z-adjusted");
+
+      xml(out, p->cnn, "cxx");
+      xml(out, p->cne, "cxy");
+      xml(out, p->cnu, "cxz");
+      xml(out, p->cee, "cyy");
+      xml(out, p->ceu, "cyz");
+      xml(out, p->cuu, "czz");
+
+      xml(out, p->b_given,      "b-given");
+      xml(out, p->b_correction, "b-correction");
+      xml(out, p->b_adjusted,   "b-adjusted");
+      xml(out, p->l_given,      "l-given");
+      xml(out, p->l_correction, "l-correction");
+      xml(out, p->l_adjusted,   "l-adjusted");
+      xml(out, p->h_given,      "h-given");
+      xml(out, p->h_correction, "h-correction");
+      xml(out, p->h_adjusted,   "h-adjusted");
 
       out << "\t</point>\n";
     }
