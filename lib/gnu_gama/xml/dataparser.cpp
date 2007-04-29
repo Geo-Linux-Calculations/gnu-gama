@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.4 2007/04/29 10:25:55 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
  */
 
 
@@ -157,6 +157,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "algorithm"                 )) return t_algorithm;
       if (!strcmp(c, "angle"                     )) return t_angle;
       if (!strcmp(c, "adj-input-data"            )) return t_adj_input_data;
+      if (!strcmp(c, "adjusted-observations"     )) return t_adj_observations;
       if (!strcmp(c, "adjustment-results"        )) return t_adj_results;
       if (!strcmp(c, "adjustment-statistics"     )) return t_adj_statistics;
       if (!strcmp(c, "angular-units-degrees"     )) return t_ang_degrees;

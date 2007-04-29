@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.4 2007/04/29 12:57:50 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -133,6 +133,10 @@ void AdjustmentResults::write_xml(std::ostream& out) const
       out << "\t</point>\n";
     }
   out << "\n</adjustment-results>\n\n";
+  
+  out << "<adjusted-observations>\n";
+  
+  out << "\n</adjusted-observations>\n\n";
   
   out << "</g3-adjustment-results>\n";
 }

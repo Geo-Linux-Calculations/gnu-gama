@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.6 2007/04/29 12:57:50 cepek Exp $
+ *  $Id: dataparser.h,v 1.7 2007/04/29 15:02:34 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -276,8 +276,10 @@ namespace GNU_gama {
           // ..................................................
 
           s_g3a_adj_results,
+          s_g3a_adj_results_end,
 
           s_g3a_s_statistics,
+          s_g3a_s_statistics_end,
           s_g3a_s_s_algorithm,
           s_g3a_s_ellipsoid,
           s_g3a_s_ellipsoid_cap,
@@ -294,7 +296,8 @@ namespace GNU_gama {
           s_g3a_s_variance_factor,
           s_g3a_s_design_m_graph,
 
-          s_g3a_ar_adj_results,
+          s_g3a_r_adj_results,
+          s_g3a_r_adj_results_end,
           s_g3a_r_point,
           s_g3a_r_point_end,
           s_g3a_r_point_id,
@@ -350,6 +353,9 @@ namespace GNU_gama {
           s_g3a_r_point_h_correction,
           s_g3a_r_point_h_adjusted,
 
+          s_g3a_o_observations,
+          s_g3a_o_observations_end,
+
           // ..................................................
 
           s_stop
@@ -360,7 +366,11 @@ namespace GNU_gama {
           t_a,
           t_adj_input_data,
           t_adj_results,
+          t_adj_results_end,
+          t_adj_observations,
+          t_adj_observations_end,
           t_adj_statistics,
+          t_adj_statistics_end,
           t_apriori_var,
           t_aposteriori_var,
           t_algorithm,

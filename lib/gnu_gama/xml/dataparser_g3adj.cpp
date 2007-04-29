@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.4 2007/04/29 12:57:50 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
  */
 
 
@@ -66,13 +66,13 @@ void DataParser::init_g3adj()
   // .....  <g3-adjustment-results>  .................................
 
   init(s_gama_data, t_g3_adj_results,
-       s_g3a_adj_results, 0, 0,
+       s_g3a_adj_results, s_g3a_o_observations_end, 0,
        &DataParser::g3a_s_adj_results, 0, &DataParser::g3a_s_adj_results);
 
   // .....  <g3-adjustment-results>  <adjustment-statistics>  ........
 
   init(s_g3a_adj_results, t_adj_statistics,
-       s_g3a_s_statistics, 0, 0,
+       s_g3a_s_statistics, 0, s_g3a_s_statistics_end,
        0, 0, 0);
 
   init(s_g3a_s_statistics, t_algorithm,
@@ -137,14 +137,14 @@ void DataParser::init_g3adj()
 
   // .....  <g3-adjustment-results>  <adjustment-results>  ........
 
-  init(s_g3a_adj_results, t_adj_results,
-       s_g3a_ar_adj_results, 0, 0,
+  init(/*s_g3a_adj_results*/s_g3a_s_statistics_end, t_adj_results,
+       s_g3a_r_adj_results, 0, s_g3a_r_adj_results_end,
        0, 0, 0);
 
   // .....  <g3-adjustment-results>  <adjustment-results>  <point>
 
 
-  init(s_g3a_ar_adj_results, t_point,
+  init(s_g3a_r_adj_results, t_point,
        s_g3a_r_point, s_g3a_r_point_after_u, 0,
        &DataParser::g3a_r_point, 0, &DataParser::g3a_r_point);
 
@@ -375,6 +375,13 @@ void DataParser::init_g3adj()
   init(s_g3a_r_point_after_u, t_h_adjusted,
        s_g3a_r_point_h_adjusted, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_h_adjusted); 
+
+ // ..... <adjusted-observations> .................................
+
+  init(s_g3a_r_adj_results_end, t_adj_observations,
+       s_g3a_o_observations, 0, s_g3a_o_observations_end,
+       0, 0, 0); 
+
 }
 
 
