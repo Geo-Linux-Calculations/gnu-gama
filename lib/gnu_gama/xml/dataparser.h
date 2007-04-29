@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.4 2007/04/26 11:11:42 cepek Exp $
+ *  $Id: dataparser.h,v 1.5 2007/04/29 10:25:55 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -276,6 +276,7 @@ namespace GNU_gama {
           // ..................................................
 
           s_g3a_adj_results,
+
           s_g3a_statistics,
           s_g3a_algorithm,
           s_g3a_ellipsoid,
@@ -292,6 +293,29 @@ namespace GNU_gama {
           s_g3a_aposteriori_var,
           s_g3a_variance_factor,
           s_g3a_design_m_graph,
+
+          s_g3a_ar_adj_results,
+          s_g3a_ar_point,
+          s_g3a_ar_point_end,
+          s_g3a_ar_point_id,
+          s_g3a_ar_point_after_id,
+          s_g3a_ar_point_n,
+          s_g3a_ar_point_after_n,
+          s_g3a_ar_point_e,
+          s_g3a_ar_point_after_e,
+          s_g3a_ar_point_u,
+          s_g3a_ar_point_after_u,
+          s_g3a_ar_point_n_type,
+          s_g3a_ar_point_e_type,
+          s_g3a_ar_point_u_type,
+
+          s_g3a_ar_point_n_dn,
+          s_g3a_ar_point_e_de,
+          s_g3a_ar_point_u_du,
+          s_g3a_ar_point_n_ind,
+          s_g3a_ar_point_e_ind,
+          s_g3a_ar_point_u_ind,
+
 
           // ..................................................
 
@@ -314,22 +338,40 @@ namespace GNU_gama {
           t_array,
           t_azimuth,
           t_b,
+          t_b_given,
+          t_b_correction,
+          t_b_adjusted,
           t_band,
           t_block,
           t_block_diagonal,
           t_blocks,
           t_caption,
+          t_cee,
+          t_ceu,
           t_cols,
           t_conf_level,
           t_constants,
           t_constr,
           t_covmat,
+          t_cnn,
+          t_cne,
+          t_cnu,
+          t_cuu,
+          t_cxx,
+          t_cxy,
+          t_cxz,
+          t_cyy,
+          t_cyz,
+          t_czz,
           t_db,
+          t_de,
           t_defect,
           t_design_m_graph,
           t_dl,
+          t_dn,
           t_dim,
           t_dist,
+          t_du,
           t_dx,
           t_dy,
           t_dz,
@@ -338,6 +380,12 @@ namespace GNU_gama {
           t_equations,
           t_flt,
           t_fixed,
+          // t_fixed_position, .... unused tags
+          // t_free_position,
+          // t_constr_position,
+          // t_constr_height,
+          // t_fixed_height,
+          // t_free_height,
           t_free,
           t_from,
           t_from_dh,
@@ -346,12 +394,19 @@ namespace GNU_gama {
           t_gama_data,
           t_geoid,
           t_h,
+          t_h_given,
+          t_h_correction,
+          t_h_adjusted,
           t_hdiff,
           t_height,
           t_id,
+          t_ind,
           t_int,
           t_inv_f,
           t_l,
+          t_l_given,
+          t_l_correction,
+          t_l_adjusted,
           t_left,
           t_left_dh,
           t_n,
@@ -378,9 +433,18 @@ namespace GNU_gama {
           t_vector,
           t_width,
           t_x,
+          t_x_given,
+          t_x_correction,
+          t_x_adjusted,
           t_xyz,
           t_y,
+          t_y_given,
+          t_y_correction,
+          t_y_adjusted,
           t_z,
+          t_z_given,
+          t_z_correction,
+          t_z_adjusted,
           t_zenith,
           t_unused
         };
@@ -482,6 +546,18 @@ namespace GNU_gama {
       int g3a_aposteriori_var     (const char* name);
       int g3a_variance_factor     (const char* name);
       int g3a_design_m_graph      (const char* name);
+      int g3a_ar_point            (const char *name, const char **atts);
+      int g3a_ar_point            (const char *name);
+      int g3a_ar_point_id         (const char *name);
+      int g3a_ar_point_n_type     (const char *name);
+      int g3a_ar_point_e_type     (const char *name);
+      int g3a_ar_point_u_type     (const char *name);
+      int g3a_ar_point_n_dn       (const char *name);
+      int g3a_ar_point_e_de       (const char *name);
+      int g3a_ar_point_u_du       (const char *name);
+      int g3a_ar_point_n_ind      (const char *name);
+      int g3a_ar_point_e_ind      (const char *name);
+      int g3a_ar_point_u_ind      (const char *name);
 
       int add_text     (const char *name, int len);
       int end_tag      (const char *name);

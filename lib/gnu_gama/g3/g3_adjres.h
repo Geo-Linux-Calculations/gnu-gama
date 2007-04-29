@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.2 2007/04/26 11:11:42 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.3 2007/04/29 10:25:55 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -28,6 +28,7 @@
 
 #include <ostream>
 #include <string>
+#include <list>
 
 namespace GNU_gama {  namespace g3 {
 
@@ -51,6 +52,48 @@ namespace GNU_gama {  namespace g3 {
     std::string aposteriori_var;
     std::string variance_factor;
     std::string design_m_graph;
+
+    // <adjustment-results>
+
+    struct Point 
+    {
+      std::string id;
+      std::string height;
+      std::string n;        // fixed, free, constr, 'empty string'
+      std::string n_dn;     // adjsutment correction 
+      std::string n_ind;    // adjustment index
+      std::string e;
+      std::string e_de;
+      std::string e_ind;
+      std::string u;
+      std::string u_du;
+      std::string u_ind;
+      std::string cnn, cne, cnu, cee, ceu, cuu;
+      std::string x_given;
+      std::string x_correction;
+      std::string x_adjusted;
+      std::string y_given;
+      std::string y_correction;
+      std::string y_adjusted;
+      std::string z_given;
+      std::string z_correction;
+      std::string z_adjusted;
+      std::string cxx, cxy, cxz, cyy, cyz, czz;
+      std::string b_given;
+      std::string b_correction;
+      std::string b_adjusted;
+      std::string l_given;
+      std::string l_correction;
+      std::string l_adjusted;
+      std::string h_given;
+      std::string h_correction;
+      std::string h_adjusted;
+
+      void clear() { *this = Point(); } 
+
+    } point;
+
+    std::list<Point> points;
 
     void write_xml(std::ostream&) const;
   };

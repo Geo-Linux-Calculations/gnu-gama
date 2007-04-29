@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.3 2007/04/26 11:11:42 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.4 2007/04/29 10:25:55 cepek Exp $
  */
 
 
@@ -169,6 +169,9 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'b':                                    
       if (!strcmp(c, "b"                         )) return t_b;
+      if (!strcmp(c, "b-adjusted"                )) return t_b_adjusted;
+      if (!strcmp(c, "b-correction"              )) return t_b_correction;
+      if (!strcmp(c, "b-given"                   )) return t_b_given;
       if (!strcmp(c, "band"                      )) return t_band;
       if (!strcmp(c, "block-diagonal"            )) return t_block_diagonal;
       if (!strcmp(c, "blocks"                    )) return t_blocks;
@@ -176,19 +179,36 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'c' :                                   
       if (!strcmp(c, "caption"                   )) return t_caption;
+      if (!strcmp(c, "cee"                       )) return t_cee;
+      if (!strcmp(c, "ceu"                       )) return t_ceu;
+      if (!strcmp(c, "cnn"                       )) return t_cnn;
+      if (!strcmp(c, "cne"                       )) return t_cne;
+      if (!strcmp(c, "cnu"                       )) return t_cnu;
       if (!strcmp(c, "confidence-level"          )) return t_conf_level;
       if (!strcmp(c, "cols"                      )) return t_cols;
       if (!strcmp(c, "constants"                 )) return t_constants;
       if (!strcmp(c, "constr"                    )) return t_constr;
+      // (!strcmp(c, "constr-height"             )) return t_constr_height;
+      // (!strcmp(c, "constr-position"           )) return t_constr_position;
       if (!strcmp(c, "cov-mat"                   )) return t_covmat;
+      if (!strcmp(c, "cuu"                       )) return t_cuu;
+      if (!strcmp(c, "cxx"                       )) return t_cxx;
+      if (!strcmp(c, "cxy"                       )) return t_cxy;
+      if (!strcmp(c, "cxz"                       )) return t_cxz;
+      if (!strcmp(c, "cyy"                       )) return t_cyy;
+      if (!strcmp(c, "cyz"                       )) return t_cyz;
+      if (!strcmp(c, "czz"                       )) return t_czz;
       break;                                     
     case 'd' :                                   
       if (!strcmp(c, "db"                        )) return t_db;
+      if (!strcmp(c, "de"                        )) return t_de;
       if (!strcmp(c, "defect"                    )) return t_defect;
       if (!strcmp(c, "design-matrix-graph"       )) return t_design_m_graph;
       if (!strcmp(c, "dim"                       )) return t_dim;
       if (!strcmp(c, "distance"                  )) return t_dist;
       if (!strcmp(c, "dl"                        )) return t_dl;
+      if (!strcmp(c, "dn"                        )) return t_dn;
+      if (!strcmp(c, "du"                        )) return t_du;
       if (!strcmp(c, "dx"                        )) return t_dx;
       if (!strcmp(c, "dy"                        )) return t_dy;
       if (!strcmp(c, "dz"                        )) return t_dz;
@@ -200,10 +220,14 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'f' :                                   
       if (!strcmp(c, "fixed"                     )) return t_fixed;
+      // (!strcmp(c, "fixed-height"              )) return t_fixed_height;
+      // (!strcmp(c, "fixed-position"            )) return t_fixed_position;
       if (!strcmp(c, "flt"                       )) return t_flt;
       if (!strcmp(c, "from"                      )) return t_from;
       if (!strcmp(c, "from-dh"                   )) return t_from_dh;
       if (!strcmp(c, "free"                      )) return t_free;
+      // (!strcmp(c, "free-height"               )) return t_free_height;
+      // (!strcmp(c, "free-position"             )) return t_free_position;
       break;                                     
     case 'g' :                                   
       if (!strcmp(c, "g3-adjustment-results"     )) return t_g3_adj_results;
@@ -213,16 +237,23 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'h':                                    
       if (!strcmp(c, "h"                         )) return t_h;
+      if (!strcmp(c, "h-adjusted"                )) return t_h_adjusted;
+      if (!strcmp(c, "h-correction"              )) return t_h_correction;
+      if (!strcmp(c, "h-given"                   )) return t_h_given;
       if (!strcmp(c, "hdiff"                     )) return t_hdiff;
       if (!strcmp(c, "height"                    )) return t_height;
       break;                                     
     case 'i':                                    
       if (!strcmp(c, "id"                        )) return t_id;
+      if (!strcmp(c, "ind"                       )) return t_ind;
       if (!strcmp(c, "int"                       )) return t_int;
       if (!strcmp(c, "inv-f"                     )) return t_inv_f;
       break;                                     
     case 'l':                                    
       if (!strcmp(c, "l"                         )) return t_l;
+      if (!strcmp(c, "l-adjusted"                )) return t_l_adjusted;
+      if (!strcmp(c, "l-correction"              )) return t_l_correction;
+      if (!strcmp(c, "l-given"                   )) return t_l_given;
       if (!strcmp(c, "left"                      )) return t_left;
       if (!strcmp(c, "left-dh"                   )) return t_left_dh;
       break;                                     
@@ -269,13 +300,22 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'x' :                                   
       if (!strcmp(c, "x"                         )) return t_x;
+      if (!strcmp(c, "x-adjusted"                )) return t_x_adjusted;
+      if (!strcmp(c, "x-correction"              )) return t_x_correction;
+      if (!strcmp(c, "x-given"                   )) return t_x_given;
       if (!strcmp(c, "xyz"                       )) return t_xyz;
       break;                                     
     case 'y' :                                   
       if (!strcmp(c, "y"                         )) return t_y;
+      if (!strcmp(c, "y-adjusted"                )) return t_y_adjusted;
+      if (!strcmp(c, "y-correction"              )) return t_y_correction;
+      if (!strcmp(c, "y-given"                   )) return t_y_given;
       break;                                     
     case 'z' :                                   
       if (!strcmp(c, "z"                         )) return t_z;
+      if (!strcmp(c, "z-adjusted"                )) return t_z_adjusted;
+      if (!strcmp(c, "z-correction"              )) return t_z_correction;
+      if (!strcmp(c, "z-given"                   )) return t_z_given;
       if (!strcmp(c, "zenith"                    )) return t_zenith;
       break;
     default:

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.2 2007/04/26 11:11:42 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.3 2007/04/29 10:25:55 cepek Exp $
  */
 
 
@@ -134,7 +134,124 @@ void DataParser::init_g3adj()
   init(s_g3a_statistics, t_design_m_graph,
        s_g3a_design_m_graph, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_design_m_graph);
+
+  // .....  <g3-adjustment-results>  <adjustment-results>  ........
+
+  init(s_g3a_adj_results, t_adj_results,
+       s_g3a_ar_adj_results, 0, 0,
+       0, 0, 0);
+
+  // .....  <g3-adjustment-results>  <adjustment-results>  <point>
+
+
+  init(s_g3a_ar_adj_results, t_point,
+       s_g3a_ar_point, s_g3a_ar_point_after_u, 0,
+       &DataParser::g3a_ar_point, 0, &DataParser::g3a_ar_point);
+
+  init(s_g3a_ar_point, t_id,
+       s_g3a_ar_point_id, 0, s_g3a_ar_point_after_id,
+       0,  &DataParser::add_text, &DataParser::g3a_ar_point_id);
+
+  // .....  <n> / <e> / <u> .......................................
+
+  init(s_g3a_ar_point_after_id, t_n,
+       s_g3a_ar_point_n, 0, s_g3a_ar_point_after_n,
+       0, 0, 0);
+
+  init(s_g3a_ar_point_after_n, t_e,
+       s_g3a_ar_point_e, 0, s_g3a_ar_point_after_e,
+       0, 0, 0);
+
+  init(s_g3a_ar_point_after_e, t_u,
+       s_g3a_ar_point_u, 0, s_g3a_ar_point_after_u,
+       0, 0, 0);
+
+  // .....  <point> ... <n/e/u> <fixed/>  .........................
+
+  init(s_g3a_ar_point_n, t_fixed,
+       s_g3a_ar_point_n_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_n_type);
+
+  init(s_g3a_ar_point_e, t_fixed,
+       s_g3a_ar_point_e_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_e_type);
+
+  init(s_g3a_ar_point_u, t_fixed,
+       s_g3a_ar_point_u_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_u_type);
+
+  // .....  <point> ... <n/e/u> <free/>  ..........................
+
+  init(s_g3a_ar_point_n, t_free,
+       s_g3a_ar_point_n_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_n_type);
+
+  init(s_g3a_ar_point_e, t_free,
+       s_g3a_ar_point_e_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_e_type);
+
+  init(s_g3a_ar_point_u, t_free,
+       s_g3a_ar_point_u_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_u_type);
+
+  // .....  <point> ... <n/e/u> <constr/>  ........................
+
+  init(s_g3a_ar_point_n, t_constr,
+       s_g3a_ar_point_n_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_n_type);
+
+  init(s_g3a_ar_point_e, t_constr,
+       s_g3a_ar_point_e_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_e_type);
+
+  init(s_g3a_ar_point_u, t_constr,
+       s_g3a_ar_point_u_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_u_type);
+
+  // .....  <point> ... <n/e/u> <unused/>  ........................
+
+  init(s_g3a_ar_point_n, t_unused,
+       s_g3a_ar_point_n_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_n_type);
+
+  init(s_g3a_ar_point_e, t_unused,
+       s_g3a_ar_point_e_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_e_type);
+
+  init(s_g3a_ar_point_u, t_unused,
+       s_g3a_ar_point_u_type, 0, 0,
+       0, 0, &DataParser::g3a_ar_point_u_type);
+
+  // ..... <point> ... <n/e/u> <dn/de/du/index>  ..................
+
+  init(s_g3a_ar_point_n, t_dn,
+       s_g3a_ar_point_n_dn, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_n_dn);
+
+  init(s_g3a_ar_point_e, t_de,
+       s_g3a_ar_point_e_de, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_e_de);
+
+  init(s_g3a_ar_point_u, t_du,
+       s_g3a_ar_point_u_du, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_u_du);
+
+  init(s_g3a_ar_point_n, t_ind,
+       s_g3a_ar_point_n_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_n_ind);
+
+  init(s_g3a_ar_point_e, t_ind,
+       s_g3a_ar_point_e_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_e_ind);
+
+  init(s_g3a_ar_point_u, t_ind,
+       s_g3a_ar_point_u_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_ar_point_u_ind);
+
 }
+
+
+// callback functions for <g3-adjustment-results>
 
 int DataParser::g3a_adj_results(const char *name, const char **atts)
 {
@@ -146,6 +263,7 @@ int DataParser::g3a_adj_results(const char *name, const char **atts)
   
   return 0;
 }
+
 
 int DataParser::g3a_adj_results(const char *name)
 {
@@ -286,4 +404,97 @@ int DataParser::g3a_design_m_graph(const char *name)
   g3a_text_string(g3adj->adj->design_m_graph);
   return  end_tag(name);
 }
+
+
+int DataParser::g3a_ar_point(const char *name, const char **atts)
+{
+  no_attributes( name, atts );
+  state = next[state][tag(name)];
+
+  g3adj->adj->point.clear();
+  g3adj->adj->point.n = "unused";
+  g3adj->adj->point.e = "unused";
+  g3adj->adj->point.u = "unused";
+  
+  return 0;
+}
+
+
+int DataParser::g3a_ar_point(const char *name)
+{
+  g3adj->adj->points.push_back(g3adj->adj->point);
+
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_id(const char *name)
+{
+  g3a_text_string(g3adj->adj->point.id);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_n_type(const char *name)
+{
+  g3adj->adj->point.n = name;
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_e_type(const char *name)
+{
+  g3adj->adj->point.e = name;
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_u_type(const char *name)
+{
+  g3adj->adj->point.u = name;
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_n_dn(const char *name)
+{
+  g3a_text_float(g3adj->adj->point.n_dn);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_e_de(const char *name)
+{
+  g3a_text_float(g3adj->adj->point.e_de);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_u_du(const char *name)
+{
+  g3a_text_float(g3adj->adj->point.u_du);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_n_ind(const char *name)
+{
+  g3a_text_integer(g3adj->adj->point.n_ind);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_e_ind(const char *name)
+{
+  g3a_text_integer(g3adj->adj->point.e_ind);
+  return  end_tag(name);
+}
+
+
+int DataParser::g3a_ar_point_u_ind(const char *name)
+{
+  g3a_text_integer(g3adj->adj->point.u_ind);
+  return  end_tag(name);
+}
+
 
