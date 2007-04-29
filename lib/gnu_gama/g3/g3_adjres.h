@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.3 2007/04/29 10:25:55 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.4 2007/04/29 17:33:53 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -52,6 +52,7 @@ namespace GNU_gama {  namespace g3 {
     std::string aposteriori_var;
     std::string variance_factor;
     std::string design_m_graph;
+
 
     // <adjustment-results>
 
@@ -94,6 +95,32 @@ namespace GNU_gama {  namespace g3 {
     } point;
 
     std::list<Point> points;
+
+
+    // <adjusted-observations>
+
+    struct Observation
+    {
+      std::string  type;      // observation type (vector, distance, ...)
+      std::string index;      // index (first index if dim > 1)
+
+      std::string   id1,  id2,  id3;     // identification
+      std::string  obs1, obs2, obs3;     // observed value
+      std::string  res1, res2, res3;     // residual
+      std::string  adj1, adj2, adj3;     // adjusted
+
+      // standard devations of observed / adjusted value(s)
+      
+      std::string stdev_obs1, stdev_obs2, stdev_obs3;  
+      std::string stdev_adj1, stdev_adj2, stdev_adj3;  
+      
+      std::string c11, c12, c13, c22, c23, c33;   // covariances (dim > 1)
+
+      void clear() { *this = Observation(); } 
+
+    } observation;
+
+    std::list<Observation> observations;
 
     void write_xml(std::ostream&) const;
   };

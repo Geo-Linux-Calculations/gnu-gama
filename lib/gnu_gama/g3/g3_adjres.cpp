@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.6 2007/04/29 17:33:53 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -133,9 +133,52 @@ void AdjustmentResults::write_xml(std::ostream& out) const
       out << "\t</point>\n";
     }
   out << "\n</adjustment-results>\n\n";
-  
+
   out << "<adjusted-observations>\n";
-  
+  for (std::list<Observation>::const_iterator 
+         p=observations.begin(), e=observations.end(); p!=e; ++p)
+    {
+      if (p->type == "vector")
+        {
+          out << "\n<vector>";
+          EOL = false;
+          xml(out, p->id1, "from");
+          xml(out, p->id2, "to");
+          EOL = true;
+          xml(out, p->index, "index");
+
+          xml(out, p->obs1, "dx-observed");
+          xml(out, p->res1, "dx-residual");
+          xml(out, p->adj1, "dx-adjusted");
+          xml(out, p->obs2, "dy-observed");
+          xml(out, p->res2, "dy-residual");
+          xml(out, p->adj2, "dy-adjusted");
+          xml(out, p->obs3, "dz-observed");
+          xml(out, p->res3, "dz-residual");
+          xml(out, p->adj3, "dz-adjusted");
+
+          xml(out, p->stdev_obs1, "dx-stdev-obs");
+          xml(out, p->stdev_adj1, "dx-stdev-adj");
+          xml(out, p->stdev_obs2, "dy-stdev-obs");
+          xml(out, p->stdev_adj2, "dy-stdev-adj");
+          xml(out, p->stdev_obs3, "dz-stdev-obs");
+          xml(out, p->stdev_adj3, "dz-stdev-adj");
+
+          xml(out, p->c11, "cxx");
+          xml(out, p->c12, "cxy");
+          xml(out, p->c13, "cxz");
+          xml(out, p->c22, "cyy");
+          xml(out, p->c23, "cyz");
+          xml(out, p->c33, "czz");
+
+          out << "</vector>\n";
+        }
+      else
+        {
+          out << "<!-- observation type '" << p->type 
+              << "' not implemented ->\n";
+        }
+    }  
   out << "\n</adjusted-observations>\n\n";
   
   out << "</g3-adjustment-results>\n";
