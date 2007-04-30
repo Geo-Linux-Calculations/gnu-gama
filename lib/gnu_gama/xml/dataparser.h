@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.7 2007/04/29 15:02:34 cepek Exp $
+ *  $Id: dataparser.h,v 1.8 2007/04/30 15:46:56 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -356,6 +356,35 @@ namespace GNU_gama {
           s_g3a_o_observations,
           s_g3a_o_observations_end,
 
+          s_g3a_o_vector,
+          s_g3a_o_vector_from,
+          s_g3a_o_vector_to,
+          s_g3a_o_vector_index,
+          s_g3a_o_vector_dx_observed,
+          s_g3a_o_vector_dx_residual,
+          s_g3a_o_vector_dx_adjusted,
+          s_g3a_o_vector_dy_observed,
+          s_g3a_o_vector_dy_residual,
+          s_g3a_o_vector_dy_adjusted,
+          s_g3a_o_vector_dz_observed,
+          s_g3a_o_vector_dz_residual,
+          s_g3a_o_vector_dz_adjusted,
+
+          s_g3a_o_vector_dx_stdev_obs,
+          s_g3a_o_vector_dx_stdev_adj,
+          s_g3a_o_vector_dy_stdev_obs,
+          s_g3a_o_vector_dy_stdev_adj,
+          s_g3a_o_vector_dz_stdev_obs,
+          s_g3a_o_vector_dz_stdev_adj,
+
+          s_g3a_o_vector_cxx,
+          s_g3a_o_vector_cxy,
+          s_g3a_o_vector_cxz,
+          s_g3a_o_vector_cyy,
+          s_g3a_o_vector_cyz,
+          s_g3a_o_vector_czz,
+
+
           // ..................................................
 
           s_stop
@@ -416,8 +445,23 @@ namespace GNU_gama {
           t_dist,
           t_du,
           t_dx,
+          t_dx_observed,
+          t_dx_residual,
+          t_dx_adjusted,
+          t_dx_stdev_obs,
+          t_dx_stdev_adj,
           t_dy,
+          t_dy_observed,
+          t_dy_residual,
+          t_dy_adjusted,
+          t_dy_stdev_obs,
+          t_dy_stdev_adj,
           t_dz,
+          t_dz_observed,
+          t_dz_residual,
+          t_dz_adjusted,
+          t_dz_stdev_obs,
+          t_dz_stdev_adj,
           t_e,
           t_ellipsoid,
           t_equations,
@@ -444,6 +488,7 @@ namespace GNU_gama {
           t_height,
           t_id,
           t_ind,
+          t_index,
           t_int,
           t_inv_f,
           t_l,
@@ -637,6 +682,34 @@ namespace GNU_gama {
       int g3a_r_point_h_given     (const char *name);
       int g3a_r_point_h_correction(const char *name);
       int g3a_r_point_h_adjusted  (const char *name);
+
+      int g3a_o_observation       (const char *name, const char **atts);
+      int g3a_o_observation       (const char *name);
+      int g3a_o_from              (const char *name);
+      int g3a_o_to                (const char *name);
+      int g3a_o_index             (const char *name);
+      int g3a_o_obs1              (const char *name);
+      int g3a_o_res1              (const char *name);
+      int g3a_o_adj1              (const char *name);
+      int g3a_o_obs2              (const char *name);
+      int g3a_o_res2              (const char *name);
+      int g3a_o_adj2              (const char *name);
+      int g3a_o_obs3              (const char *name);
+      int g3a_o_res3              (const char *name);
+      int g3a_o_adj3              (const char *name);
+      int g3a_o_stdev_obs1        (const char *name);
+      int g3a_o_stdev_adj1        (const char *name);
+      int g3a_o_stdev_obs2        (const char *name);
+      int g3a_o_stdev_adj2        (const char *name);
+      int g3a_o_stdev_obs3        (const char *name);
+      int g3a_o_stdev_adj3        (const char *name);
+      int g3a_o_c11               (const char *name);
+      int g3a_o_c12               (const char *name);
+      int g3a_o_c13               (const char *name);
+      int g3a_o_c22               (const char *name);
+      int g3a_o_c23               (const char *name);
+      int g3a_o_c33               (const char *name);
+
 
       int add_text     (const char *name, int len);
       int end_tag      (const char *name);

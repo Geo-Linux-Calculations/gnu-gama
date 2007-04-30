@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.6 2007/04/30 15:46:56 cepek Exp $
  */
 
 
@@ -211,8 +211,23 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "dn"                        )) return t_dn;
       if (!strcmp(c, "du"                        )) return t_du;
       if (!strcmp(c, "dx"                        )) return t_dx;
+      if (!strcmp(c, "dx-observed"               )) return t_dx_observed;
+      if (!strcmp(c, "dx-residual"               )) return t_dx_residual;
+      if (!strcmp(c, "dx-adjusted"               )) return t_dx_adjusted;
+      if (!strcmp(c, "dx-stdev-obs"              )) return t_dx_stdev_obs;
+      if (!strcmp(c, "dx-stdev-adj"              )) return t_dx_stdev_adj;
       if (!strcmp(c, "dy"                        )) return t_dy;
+      if (!strcmp(c, "dy-observed"               )) return t_dy_observed;
+      if (!strcmp(c, "dy-residual"               )) return t_dy_residual;
+      if (!strcmp(c, "dy-adjusted"               )) return t_dy_adjusted;
+      if (!strcmp(c, "dy-stdev-obs"              )) return t_dy_stdev_obs;
+      if (!strcmp(c, "dy-stdev-adj"              )) return t_dy_stdev_adj;
       if (!strcmp(c, "dz"                        )) return t_dz;
+      if (!strcmp(c, "dz-observed"               )) return t_dz_observed;
+      if (!strcmp(c, "dz-residual"               )) return t_dz_residual;
+      if (!strcmp(c, "dz-adjusted"               )) return t_dz_adjusted;
+      if (!strcmp(c, "dz-stdev-obs"              )) return t_dz_stdev_obs;
+      if (!strcmp(c, "dz-stdev-adj"              )) return t_dz_stdev_adj;
       break;                                     
     case 'e':                                    
       if (!strcmp(c, "e"                         )) return t_e;
@@ -247,6 +262,7 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 'i':                                    
       if (!strcmp(c, "id"                        )) return t_id;
       if (!strcmp(c, "ind"                       )) return t_ind;
+      if (!strcmp(c, "index"                     )) return t_index;
       if (!strcmp(c, "int"                       )) return t_int;
       if (!strcmp(c, "inv-f"                     )) return t_inv_f;
       break;                                     

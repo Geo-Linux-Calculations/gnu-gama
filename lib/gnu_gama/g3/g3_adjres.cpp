@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.6 2007/04/29 17:33:53 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.7 2007/04/30 15:46:56 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -171,7 +171,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
           xml(out, p->c23, "cyz");
           xml(out, p->c33, "czz");
 
-          out << "</vector>\n";
+          out << "\t</vector>\n";
         }
       else
         {

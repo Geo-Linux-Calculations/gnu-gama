@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.5 2007/04/29 15:02:34 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.6 2007/04/30 15:46:56 cepek Exp $
  */
 
 
@@ -382,6 +382,107 @@ void DataParser::init_g3adj()
        s_g3a_o_observations, 0, s_g3a_o_observations_end,
        0, 0, 0); 
 
+ // ..... <adjusted-observations> <vector> ........................
+
+  init(s_g3a_o_observations, t_vector,
+       s_g3a_o_vector, 0, 0,
+       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation); 
+
+  init(s_g3a_o_vector, t_from,
+       s_g3a_o_vector_from, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_from); 
+
+  init(s_g3a_o_vector, t_to,
+       s_g3a_o_vector_to, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_to); 
+
+  init(s_g3a_o_vector, t_index,
+       s_g3a_o_vector_index, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_index); 
+
+  init(s_g3a_o_vector, t_dx_observed,
+       s_g3a_o_vector_dx_observed, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_obs1); 
+
+  init(s_g3a_o_vector, t_dx_residual,
+       s_g3a_o_vector_dx_residual, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_res1); 
+
+  init(s_g3a_o_vector, t_dx_adjusted,
+       s_g3a_o_vector_dx_adjusted, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_adj1); 
+
+  init(s_g3a_o_vector, t_dy_observed,
+       s_g3a_o_vector_dy_observed, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_obs2); 
+
+  init(s_g3a_o_vector, t_dy_residual,
+       s_g3a_o_vector_dy_residual, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_res2); 
+
+  init(s_g3a_o_vector, t_dy_adjusted,
+       s_g3a_o_vector_dy_adjusted, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_adj2); 
+
+  init(s_g3a_o_vector, t_dz_observed,
+       s_g3a_o_vector_dz_observed, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_obs3); 
+
+  init(s_g3a_o_vector, t_dz_residual,
+       s_g3a_o_vector_dz_residual, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_res3); 
+
+  init(s_g3a_o_vector, t_dz_adjusted,
+       s_g3a_o_vector_dz_adjusted, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_adj3); 
+
+  init(s_g3a_o_vector, t_dx_stdev_obs,
+       s_g3a_o_vector_dx_stdev_obs, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1); 
+
+  init(s_g3a_o_vector, t_dx_stdev_adj,
+       s_g3a_o_vector_dx_stdev_adj, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1); 
+
+  init(s_g3a_o_vector, t_dy_stdev_obs,
+       s_g3a_o_vector_dy_stdev_obs, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs2); 
+
+  init(s_g3a_o_vector, t_dy_stdev_adj,
+       s_g3a_o_vector_dy_stdev_adj, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj2); 
+
+  init(s_g3a_o_vector, t_dz_stdev_obs,
+       s_g3a_o_vector_dz_stdev_obs, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs3); 
+
+  init(s_g3a_o_vector, t_dz_stdev_adj,
+       s_g3a_o_vector_dz_stdev_adj, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj3); 
+
+  init(s_g3a_o_vector, t_cxx,
+       s_g3a_o_vector_cxx, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c11); 
+
+  init(s_g3a_o_vector, t_cxy,
+       s_g3a_o_vector_cxy, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c12); 
+
+  init(s_g3a_o_vector, t_cxz,
+       s_g3a_o_vector_cxz, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c13); 
+
+  init(s_g3a_o_vector, t_cyy,
+       s_g3a_o_vector_cyy, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c22); 
+
+  init(s_g3a_o_vector, t_cyz,
+       s_g3a_o_vector_cyz, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c23); 
+
+  init(s_g3a_o_vector, t_czz,
+       s_g3a_o_vector_czz, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_c33); 
 }
 
 
@@ -398,7 +499,6 @@ int DataParser::g3a_s_adj_results(const char *name, const char **atts)
   return 0;
 }
 
-
 int DataParser::g3a_s_adj_results(const char *name)
 {
   objects.push_back( new DataObject::g3_adj_results(g3adj->adj) );
@@ -406,7 +506,6 @@ int DataParser::g3a_s_adj_results(const char *name)
 
   return  end_tag(name);
 }
-
 
 void DataParser::g3a_text_string(std::string& str)
 {
@@ -416,7 +515,6 @@ void DataParser::g3a_text_string(std::string& str)
   str = std::string(b, e);
   text_buffer.clear();
 }
-
 
 void DataParser::g3a_text_float(std::string& str)
 {
@@ -428,7 +526,6 @@ void DataParser::g3a_text_float(std::string& str)
   text_buffer.clear();
 }
 
-
 void DataParser::g3a_text_integer(std::string& str)
 {
   std::string::const_iterator b=text_buffer.begin();
@@ -439,14 +536,12 @@ void DataParser::g3a_text_integer(std::string& str)
   text_buffer.clear();
 }
 
-
 int DataParser::g3a_s_algorithm(const char *name)
 {
   g3a_text_string(g3adj->adj->algorithm);
 
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_ell_caption(const char *name)
 {
@@ -455,13 +550,11 @@ int DataParser::g3a_s_ell_caption(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_ell_id(const char *name)
 {
   g3a_text_string(g3adj->adj->ell_id);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_ell_a(const char *name)
 {
@@ -469,13 +562,11 @@ int DataParser::g3a_s_ell_a(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_ell_b(const char *name)
 {
   g3a_text_float(g3adj->adj->ell_b);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_parameters(const char *name)
 {
@@ -483,13 +574,11 @@ int DataParser::g3a_s_parameters(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_equations(const char *name)
 {
   g3a_text_integer(g3adj->adj->equations);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_defect(const char *name)
 {
@@ -497,13 +586,11 @@ int DataParser::g3a_s_defect(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_redundancy(const char *name)
 {
   g3a_text_integer(g3adj->adj->redundancy);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_sum_of_squares(const char *name)
 {
@@ -511,13 +598,11 @@ int DataParser::g3a_s_sum_of_squares(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_apriori_var(const char *name)
 {
   g3a_text_float(g3adj->adj->apriori_var);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_s_aposteriori_var(const char *name)
 {
@@ -525,20 +610,17 @@ int DataParser::g3a_s_aposteriori_var(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_variance_factor(const char *name)
 {
   g3a_text_string(g3adj->adj->variance_factor);
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_s_design_m_graph(const char *name)
 {
   g3a_text_string(g3adj->adj->design_m_graph);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point(const char *name, const char **atts)
 {
@@ -553,7 +635,6 @@ int DataParser::g3a_r_point(const char *name, const char **atts)
   return 0;
 }
 
-
 int DataParser::g3a_r_point(const char *name)
 {
   g3adj->adj->points.push_back(g3adj->adj->point);
@@ -561,13 +642,11 @@ int DataParser::g3a_r_point(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_id(const char *name)
 {
   g3a_text_string(g3adj->adj->point.id);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_n_type(const char *name)
 {
@@ -575,13 +654,11 @@ int DataParser::g3a_r_point_n_type(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_e_type(const char *name)
 {
   g3adj->adj->point.e = name;
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_u_type(const char *name)
 {
@@ -589,13 +666,11 @@ int DataParser::g3a_r_point_u_type(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_n_dn(const char *name)
 {
   g3a_text_float(g3adj->adj->point.n_dn);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_e_de(const char *name)
 {
@@ -603,13 +678,11 @@ int DataParser::g3a_r_point_e_de(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_u_du(const char *name)
 {
   g3a_text_float(g3adj->adj->point.u_du);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_n_ind(const char *name)
 {
@@ -617,13 +690,11 @@ int DataParser::g3a_r_point_n_ind(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_e_ind(const char *name)
 {
   g3a_text_integer(g3adj->adj->point.e_ind);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_u_ind(const char *name)
 {
@@ -631,13 +702,11 @@ int DataParser::g3a_r_point_u_ind(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_cnn(const char *name)
 {
   g3a_text_float(g3adj->adj->point.cnn);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cne(const char *name)
 {
@@ -645,13 +714,11 @@ int DataParser::g3a_r_point_cne(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_cnu(const char *name)
 {
   g3a_text_float(g3adj->adj->point.cnu);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cee(const char *name)
 {
@@ -659,13 +726,11 @@ int DataParser::g3a_r_point_cee(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_ceu(const char *name)
 {
   g3a_text_float(g3adj->adj->point.ceu);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cuu(const char *name)
 {
@@ -673,13 +738,11 @@ int DataParser::g3a_r_point_cuu(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_x_given(const char *name)
 {
   g3a_text_float(g3adj->adj->point.x_given);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_x_correction(const char *name)
 {
@@ -687,13 +750,11 @@ int DataParser::g3a_r_point_x_correction(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_x_adjusted(const char *name)
 {
   g3a_text_float(g3adj->adj->point.x_adjusted);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_y_given(const char *name)
 {
@@ -701,13 +762,11 @@ int DataParser::g3a_r_point_y_given(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_y_correction(const char *name)
 {
   g3a_text_float(g3adj->adj->point.y_correction);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_y_adjusted(const char *name)
 {
@@ -715,13 +774,11 @@ int DataParser::g3a_r_point_y_adjusted(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_z_given(const char *name)
 {
   g3a_text_float(g3adj->adj->point.z_given);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_z_correction(const char *name)
 {
@@ -729,13 +786,11 @@ int DataParser::g3a_r_point_z_correction(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_z_adjusted(const char *name)
 {
   g3a_text_float(g3adj->adj->point.x_adjusted);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cxx(const char *name)
 {
@@ -743,13 +798,11 @@ int DataParser::g3a_r_point_cxx(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_cxy(const char *name)
 {
   g3a_text_float(g3adj->adj->point.cxy);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cxz(const char *name)
 {
@@ -757,13 +810,11 @@ int DataParser::g3a_r_point_cxz(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_cyy(const char *name)
 {
   g3a_text_float(g3adj->adj->point.cyy);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_cyz(const char *name)
 {
@@ -771,13 +822,11 @@ int DataParser::g3a_r_point_cyz(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_czz(const char *name)
 {
   g3a_text_float(g3adj->adj->point.czz);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_b_given(const char *name)
 {
@@ -785,13 +834,11 @@ int DataParser::g3a_r_point_b_given(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_b_correction(const char *name)
 {
   g3a_text_string(g3adj->adj->point.b_correction);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_b_adjusted(const char *name)
 {
@@ -799,13 +846,11 @@ int DataParser::g3a_r_point_b_adjusted(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_l_given(const char *name)
 {
   g3a_text_string(g3adj->adj->point.l_given);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_l_correction(const char *name)
 {
@@ -813,13 +858,11 @@ int DataParser::g3a_r_point_l_correction(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_l_adjusted(const char *name)
 {
   g3a_text_string(g3adj->adj->point.l_adjusted);
   return  end_tag(name);
 }
-
 
 int DataParser::g3a_r_point_h_given(const char *name)
 {
@@ -827,16 +870,178 @@ int DataParser::g3a_r_point_h_given(const char *name)
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_h_correction(const char *name)
 {
   g3a_text_string(g3adj->adj->point.h_correction);
   return  end_tag(name);
 }
 
-
 int DataParser::g3a_r_point_h_adjusted(const char *name)
 {
   g3a_text_string(g3adj->adj->point.h_adjusted);
   return  end_tag(name);
 }
+
+int DataParser::g3a_o_observation(const char *name, const char **atts)
+{
+  no_attributes( name, atts );
+  state = next[state][tag(name)];
+
+  g3adj->adj->observation.clear();
+  g3adj->adj->observation.type = name;
+
+  return 0;
+}
+
+int DataParser::g3a_o_observation(const char *name)
+{
+  g3adj->adj->observations.push_back(g3adj->adj->observation);
+
+  return end_tag(name);
+}
+
+int DataParser::g3a_o_from(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.id1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_to(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.id2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_index(const char *name)
+{
+  g3a_text_integer(g3adj->adj->observation.index);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_obs1(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.obs1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_res1(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.res1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_adj1(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.adj1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_obs2(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.obs2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_res2(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.res2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_adj2(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.adj2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_obs3(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.obs3);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_res3(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.res3);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_adj3(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.adj3);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_obs1(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_obs1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_adj1(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_adj1);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_obs2(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_obs2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_adj2(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_adj2);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_obs3(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_obs3);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_stdev_adj3(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.stdev_adj3);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c11(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c11);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c12(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c12);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c13(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c13);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c22(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c22);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c23(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c23);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_o_c33(const char *name)
+{
+  g3a_text_float(g3adj->adj->observation.c33);
+  return  end_tag(name);
+}
+
+
