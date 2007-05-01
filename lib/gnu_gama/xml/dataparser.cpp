@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.6 2007/04/30 15:46:56 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.7 2007/05/01 13:08:48 cepek Exp $
  */
 
 
@@ -157,6 +157,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "algorithm"                 )) return t_algorithm;
       if (!strcmp(c, "angle"                     )) return t_angle;
       if (!strcmp(c, "adj-input-data"            )) return t_adj_input_data;
+      if (!strcmp(c, "adjusted"                  )) return t_adjusted;
       if (!strcmp(c, "adjusted-observations"     )) return t_adj_observations;
       if (!strcmp(c, "adjustment-results"        )) return t_adj_results;
       if (!strcmp(c, "adjustment-statistics"     )) return t_adj_statistics;
@@ -280,6 +281,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'o':                                    
       if (!strcmp(c, "obs"                       )) return t_obs;
+      if (!strcmp(c, "observed"                  )) return t_observed;
       break;                                     
     case 'p':                                    
       if (!strcmp(c, "parameters"                )) return t_parameters;
@@ -287,6 +289,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'r':                                    
       if (!strcmp(c, "redundancy"                )) return t_redundancy;
+      if (!strcmp(c, "residual"                  )) return t_residual;
       if (!strcmp(c, "right"                     )) return t_right;
       if (!strcmp(c, "right-dh"                  )) return t_right_dh;
       if (!strcmp(c, "row"                       )) return t_row;
@@ -294,6 +297,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 's':                                    
       if (!strcmp(c, "stdev"                     )) return t_stdev;
+      if (!strcmp(c, "stdev-obs"                 )) return t_stdev_obs;
+      if (!strcmp(c, "stdev-adj"                 )) return t_stdev_adj;
       if (!strcmp(c, "sparse-mat"                )) return t_sparse_mat;
       if (!strcmp(c, "sum-of-squares"            )) return t_sum_of_squares;
       break;                                     
@@ -320,6 +325,11 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "x-adjusted"                )) return t_x_adjusted;
       if (!strcmp(c, "x-correction"              )) return t_x_correction;
       if (!strcmp(c, "x-given"                   )) return t_x_given;
+      if (!strcmp(c, "x-observed"                )) return t_x_observed;
+      if (!strcmp(c, "x-residual"                )) return t_x_residual;
+      if (!strcmp(c, "x-adjusted"                )) return t_x_adjusted;
+      if (!strcmp(c, "x-stdev-obs"               )) return t_x_stdev_obs;
+      if (!strcmp(c, "x-stdev-adj"               )) return t_x_stdev_adj;
       if (!strcmp(c, "xyz"                       )) return t_xyz;
       break;                                     
     case 'y' :                                   
@@ -327,12 +337,22 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "y-adjusted"                )) return t_y_adjusted;
       if (!strcmp(c, "y-correction"              )) return t_y_correction;
       if (!strcmp(c, "y-given"                   )) return t_y_given;
+      if (!strcmp(c, "y-observed"                )) return t_y_observed;
+      if (!strcmp(c, "y-residual"                )) return t_y_residual;
+      if (!strcmp(c, "y-adjusted"                )) return t_y_adjusted;
+      if (!strcmp(c, "y-stdev-obs"               )) return t_y_stdev_obs;
+      if (!strcmp(c, "y-stdev-adj"               )) return t_y_stdev_adj;
       break;                                     
     case 'z' :                                   
       if (!strcmp(c, "z"                         )) return t_z;
       if (!strcmp(c, "z-adjusted"                )) return t_z_adjusted;
       if (!strcmp(c, "z-correction"              )) return t_z_correction;
       if (!strcmp(c, "z-given"                   )) return t_z_given;
+      if (!strcmp(c, "z-observed"                )) return t_z_observed;
+      if (!strcmp(c, "z-residual"                )) return t_z_residual;
+      if (!strcmp(c, "z-adjusted"                )) return t_z_adjusted;
+      if (!strcmp(c, "z-stdev-obs"               )) return t_z_stdev_obs;
+      if (!strcmp(c, "z-stdev-adj"               )) return t_z_stdev_adj;
       if (!strcmp(c, "zenith"                    )) return t_zenith;
       break;
     default:

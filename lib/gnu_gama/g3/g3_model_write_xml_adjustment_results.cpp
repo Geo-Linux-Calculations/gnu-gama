@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.6 2007/04/01 15:20:30 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.7 2007/05/01 13:08:48 cepek Exp $
  */
 
 #include <iomanip>
@@ -186,7 +186,7 @@ void Model::write_xml_adjustment_results_statistics(std::ostream& out)
   out << "<equations> " << setw(5) << dm_rows       << " </equations>\n";
   out << "<defect>    " << setw(5) << adj->defect() << " </defect>\n";
 
-  out << "<redundancy>" << setw(5) << redundancy    << " </redundancy\n\n";
+  out << "<redundancy>" << setw(5) << redundancy    << " </redundancy>\n\n";
 
   out.setf(ios_base::scientific, ios_base::floatfield);
   out.precision(5);

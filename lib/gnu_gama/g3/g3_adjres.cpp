@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.7 2007/04/30 15:46:56 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.8 2007/05/01 13:08:48 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -45,6 +45,11 @@ namespace
 
 void AdjustmentResults::write_xml(std::ostream& out) const
 {
+  out << 
+    "<?xml version=\"1.0\" ?>\n"
+    "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
+    "<gnu-gama-data>\n";
+
   EOL = true;
 
   out << "<g3-adjustment-results>\n\n";
@@ -66,7 +71,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   xml(out, defect,          "defect");
   xml(out, redundancy,      "redundancy");
   xml(out, sum_of_squares,  "sum-of-squares");
-  xml(out, apriori_var,     "apriori-varance");
+  xml(out, apriori_var,     "apriori-variance");
   xml(out, aposteriori_var, "aposteriori-variance");
   xml(out, variance_factor, "variance-factor-used");
   xml(out, design_m_graph,  "design-matrix-graph");
@@ -173,6 +178,58 @@ void AdjustmentResults::write_xml(std::ostream& out) const
 
           out << "\t</vector>\n";
         }
+      else if (p->type == "xyz")
+        {
+          out << "\n<xyz>";
+          EOL = false;
+          xml(out, p->id1, "id");
+          EOL = true;
+          xml(out, p->index, "index");
+
+          xml(out, p->obs1, "x-observed");
+          xml(out, p->res1, "x-residual");
+          xml(out, p->adj1, "x-adjusted");
+          xml(out, p->obs2, "y-observed");
+          xml(out, p->res2, "y-residual");
+          xml(out, p->adj2, "y-adjusted");
+          xml(out, p->obs3, "z-observed");
+          xml(out, p->res3, "z-residual");
+          xml(out, p->adj3, "z-adjusted");
+
+          xml(out, p->stdev_obs1, "x-stdev-obs");
+          xml(out, p->stdev_adj1, "x-stdev-adj");
+          xml(out, p->stdev_obs2, "y-stdev-obs");
+          xml(out, p->stdev_adj2, "y-stdev-adj");
+          xml(out, p->stdev_obs3, "z-stdev-obs");
+          xml(out, p->stdev_adj3, "z-stdev-adj");
+
+          xml(out, p->c11, "cxx");
+          xml(out, p->c12, "cxy");
+          xml(out, p->c13, "cxz");
+          xml(out, p->c22, "cyy");
+          xml(out, p->c23, "cyz");
+          xml(out, p->c33, "czz");
+
+          out << "\t</xyz>\n";
+        }
+      else if (p->type == "distance")
+        {
+          out << "\n<distance>";
+          EOL = false;
+          xml(out, p->id1, "from");
+          xml(out, p->id2, "to");
+          EOL = true;
+          xml(out, p->index, "index");
+
+          xml(out, p->obs1, "observed");
+          xml(out, p->res1, "residual");
+          xml(out, p->adj1, "adjusted");
+
+          xml(out, p->stdev_obs1, "stdev-obs");
+          xml(out, p->stdev_adj1, "stdev-adj");
+
+          out << "\t</distance>\n";
+        }
       else
         {
           out << "<!-- observation type '" << p->type 
@@ -182,4 +239,5 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   out << "\n</adjusted-observations>\n\n";
   
   out << "</g3-adjustment-results>\n";
+  out << "</gnu-gama-data>\n";
 }

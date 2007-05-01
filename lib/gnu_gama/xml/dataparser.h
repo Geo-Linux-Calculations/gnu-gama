@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.8 2007/04/30 15:46:56 cepek Exp $
+ *  $Id: dataparser.h,v 1.9 2007/05/01 13:08:48 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -384,6 +384,42 @@ namespace GNU_gama {
           s_g3a_o_vector_cyz,
           s_g3a_o_vector_czz,
 
+          s_g3a_o_xyz,
+          s_g3a_o_xyz_id,
+          s_g3a_o_xyz_index,
+          s_g3a_o_xyz_x_observed,
+          s_g3a_o_xyz_x_residual,
+          s_g3a_o_xyz_x_adjusted,
+          s_g3a_o_xyz_y_observed,
+          s_g3a_o_xyz_y_residual,
+          s_g3a_o_xyz_y_adjusted,
+          s_g3a_o_xyz_z_observed,
+          s_g3a_o_xyz_z_residual,
+          s_g3a_o_xyz_z_adjusted,
+
+          s_g3a_o_xyz_x_stdev_obs,
+          s_g3a_o_xyz_x_stdev_adj,
+          s_g3a_o_xyz_y_stdev_obs,
+          s_g3a_o_xyz_y_stdev_adj,
+          s_g3a_o_xyz_z_stdev_obs,
+          s_g3a_o_xyz_z_stdev_adj,
+
+          s_g3a_o_xyz_cxx,
+          s_g3a_o_xyz_cxy,
+          s_g3a_o_xyz_cxz,
+          s_g3a_o_xyz_cyy,
+          s_g3a_o_xyz_cyz,
+          s_g3a_o_xyz_czz,
+
+          s_g3a_o_distance,
+          s_g3a_o_distance_from,
+          s_g3a_o_distance_to,
+          s_g3a_o_distance_index,
+          s_g3a_o_distance_observed,
+          s_g3a_o_distance_residual,
+          s_g3a_o_distance_adjusted,
+          s_g3a_o_distance_stdev_obs,
+          s_g3a_o_distance_stdev_adj,
 
           // ..................................................
 
@@ -400,6 +436,7 @@ namespace GNU_gama {
           t_adj_observations_end,
           t_adj_statistics,
           t_adj_statistics_end,
+          t_adjusted,
           t_apriori_var,
           t_aposteriori_var,
           t_algorithm,
@@ -500,15 +537,19 @@ namespace GNU_gama {
           t_n,
           t_nonz,
           t_obs,
+          t_observed,
           t_parameters,
           t_point,
           t_redundancy,
+          t_residual,
           t_right,
           t_right_dh,
           t_rows,
           t_row,
           t_sparse_mat,
           t_stdev,
+          t_stdev_obs,
+          t_stdev_adj,
           t_sum_of_squares,
           t_text,
           t_to,
@@ -521,18 +562,30 @@ namespace GNU_gama {
           t_vector,
           t_width,
           t_x,
+          t_x_stdev_obs,
+          t_x_stdev_adj,
           t_x_given,
           t_x_correction,
           t_x_adjusted,
+          t_x_observed,
+          t_x_residual,
           t_xyz,
           t_y,
+          t_y_stdev_obs,
+          t_y_stdev_adj,
           t_y_given,
           t_y_correction,
           t_y_adjusted,
+          t_y_observed,
+          t_y_residual,
           t_z,
+          t_z_stdev_obs,
+          t_z_stdev_adj,
           t_z_given,
           t_z_correction,
           t_z_adjusted,
+          t_z_observed,
+          t_z_residual,
           t_zenith,
           t_unused
         };
@@ -685,6 +738,7 @@ namespace GNU_gama {
 
       int g3a_o_observation       (const char *name, const char **atts);
       int g3a_o_observation       (const char *name);
+
       int g3a_o_from              (const char *name);
       int g3a_o_to                (const char *name);
       int g3a_o_index             (const char *name);
