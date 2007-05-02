@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_point.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_point.cpp,v 1.2 2007/05/02 10:52:37 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_point.h>
@@ -395,45 +395,45 @@ void Point::write_xml(std::ostream& ostr)
   ostr.setf(std::ios_base::fixed, std::ios_base::floatfield);
   ostr.precision(3);
 
-  ostr << "        <n> ";
+  ostr << "        ";
   if (N.fixed())
-    ostr << "<fixed/>  ";
+    ostr << "<n-fixed/>  ";
   else if (N.constr())
-    ostr << "<constr/> ";
+    ostr << "<n-constr/> ";
   else if (N.free())
-    ostr << "<free/>   ";
+    ostr << "<n-free/>   ";
   else
-    ostr << "<unused/> ";
+    ostr << "<n-unused/> ";
   if (N.index())
     {
       ostr << "<dn>"  << setw(8) << N()*1000  << " </dn> "
            << "<ind>" << N.index() << "</ind> ";
     }
-  ostr << "</n>\n";
+  ostr << "\n";
 
-  ostr << "        <e> ";
+  ostr << "        ";
   if (E.fixed())
-    ostr << "<fixed/>  ";
+    ostr << "<e-fixed/>  ";
   else if (E.constr())
-    ostr << "<constr/> ";
+    ostr << "<e-constr/> ";
   else if (E.free())
-    ostr << "<free/>   ";
+    ostr << "<e-free/>   ";
   else
-    ostr << "<unused/> ";
+    ostr << "<e-unused/> ";
   if (E.index())
     {
       ostr << "<de>"  << setw(8) << E()*1000  << " </de> "
            << "<ind>" << E.index() << "</ind> ";
     }
-  ostr << "</e>\n";
+  ostr << "\n";
 
-  ostr << "        <u> ";
+  ostr << "        ";
   if (U.fixed())
-    ostr << "<fixed/>  ";
+    ostr << "<u-fixed/>  ";
   else if (U.constr())
-    ostr << "<constr/> ";
+    ostr << "<u-constr/> ";
   else if (U.free())
-    ostr << "<free/>   ";
+    ostr << "<u-free/>   ";
   else
     ostr << "<unused/> ";
   if (U.index())
@@ -441,7 +441,7 @@ void Point::write_xml(std::ostream& ostr)
       ostr << "<du>"  << setw(8) << U()*1000  << " </du> "
            << "<ind>" << U.index() << "</ind> ";
     }
-  ostr << "</u>\n";
+  ostr << "\n";
 
   if (!fixed_position())
     {

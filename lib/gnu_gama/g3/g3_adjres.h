@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.4 2007/04/29 17:33:53 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.5 2007/05/02 10:52:37 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -61,7 +61,7 @@ namespace GNU_gama {  namespace g3 {
       std::string id;
       std::string height;
       std::string n;        // fixed, free, constr, 'empty string'
-      std::string n_dn;     // adjsutment correction 
+      std::string n_dn;     // adjustment correction 
       std::string n_ind;    // adjustment index
       std::string e;
       std::string e_de;

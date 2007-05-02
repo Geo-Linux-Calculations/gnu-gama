@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.9 2007/05/01 13:08:48 cepek Exp $
+ *  $Id: dataparser.h,v 1.10 2007/05/02 10:52:37 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -302,15 +302,28 @@ namespace GNU_gama {
           s_g3a_r_point_end,
           s_g3a_r_point_id,
           s_g3a_r_point_after_id,
-          s_g3a_r_point_n,
+          /*VYHODIT*/s_g3a_r_point_n,
+          /*VYHODIT*/s_g3a_r_point_e,
+          /*VYHODIT*/s_g3a_r_point_u,
+          /*VYHODIT*/s_g3a_r_point_n_type,
+          /*VYHODIT*/s_g3a_r_point_e_type,
+          /*VYHODIT*/s_g3a_r_point_u_type,
+          s_g3a_r_point_n_fixed,
+          s_g3a_r_point_n_free,
+          s_g3a_r_point_n_constr,
+          s_g3a_r_point_n_unused,
+          s_g3a_r_point_e_fixed,
+          s_g3a_r_point_e_free,
+          s_g3a_r_point_e_constr,
+          s_g3a_r_point_e_unused,
+          s_g3a_r_point_u_fixed,
+          s_g3a_r_point_u_free,
+          s_g3a_r_point_u_constr,
+          s_g3a_r_point_u_unused,
+
           s_g3a_r_point_after_n,
-          s_g3a_r_point_e,
           s_g3a_r_point_after_e,
-          s_g3a_r_point_u,
           s_g3a_r_point_after_u,
-          s_g3a_r_point_n_type,
-          s_g3a_r_point_e_type,
-          s_g3a_r_point_u_type,
 
           s_g3a_r_point_n_dn,
           s_g3a_r_point_e_de,
@@ -500,16 +513,14 @@ namespace GNU_gama {
           t_dz_stdev_obs,
           t_dz_stdev_adj,
           t_e,
+          t_e_fixed,
+          t_e_free,
+          t_e_constr,
+          t_e_unused,
           t_ellipsoid,
           t_equations,
           t_flt,
           t_fixed,
-          // t_fixed_position, .... unused tags
-          // t_free_position,
-          // t_constr_position,
-          // t_constr_height,
-          // t_fixed_height,
-          // t_free_height,
           t_free,
           t_from,
           t_from_dh,
@@ -535,6 +546,10 @@ namespace GNU_gama {
           t_left,
           t_left_dh,
           t_n,
+          t_n_fixed,
+          t_n_free,
+          t_n_constr,
+          t_n_unused,
           t_nonz,
           t_obs,
           t_observed,
@@ -555,6 +570,10 @@ namespace GNU_gama {
           t_to,
           t_to_dh,
           t_u,
+          t_u_fixed,
+          t_u_free,
+          t_u_constr,
+          t_u_unused,
           t_unknown,
           t_val,
           t_variance,
@@ -692,9 +711,23 @@ namespace GNU_gama {
       int g3a_r_point             (const char *name);
       int g3a_r_point_id          (const char *name);
 
-      int g3a_r_point_n_type      (const char *name);
-      int g3a_r_point_e_type      (const char *name);
-      int g3a_r_point_u_type      (const char *name);
+      /*VYHODIT*/int g3a_r_point_n_type      (const char *name);
+      /*VYHODIT*/int g3a_r_point_e_type      (const char *name);
+      /*VYHODIT*/int g3a_r_point_u_type      (const char *name);
+
+      int g3a_r_point_n_fixed     (const char *name);
+      int g3a_r_point_n_free      (const char *name);
+      int g3a_r_point_n_constr    (const char *name);
+      int g3a_r_point_n_unused    (const char *name);
+      int g3a_r_point_e_fixed     (const char *name);
+      int g3a_r_point_e_free      (const char *name);
+      int g3a_r_point_e_constr    (const char *name);
+      int g3a_r_point_e_unused    (const char *name);
+      int g3a_r_point_u_fixed     (const char *name);
+      int g3a_r_point_u_free      (const char *name);
+      int g3a_r_point_u_constr    (const char *name);
+      int g3a_r_point_u_unused    (const char *name);
+
       int g3a_r_point_n_dn        (const char *name);
       int g3a_r_point_e_de        (const char *name);
       int g3a_r_point_u_du        (const char *name);

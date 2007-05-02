@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.8 2007/05/01 13:08:48 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.9 2007/05/02 10:52:37 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -85,20 +85,20 @@ void AdjustmentResults::write_xml(std::ostream& out) const
       EOL = false;
       out << "\n<point>";
       xml(out, p->id,    "id");
-      out << "\n\t<n> <" << p->n << "/>";
+      out << "\n\t<n-" << p->n << "/>";
       xml(out, p->n_dn,  "dn");
       xml(out, p->n_ind, "ind");
-      out << " </n>\n";
+      out << "\n";
 
-      out << "\t<e> <" << p->e << "/>";
+      out << "\t<e-" << p->e << "/>";
       xml(out, p->e_de,  "de");
       xml(out, p->e_ind, "ind");
-      out << " </e>\n";
+      out << "\n";
 
-      out << "\t<u> <" << p->u << "/>";
+      out << "\t<u-" << p->u << "/>";
       xml(out, p->u_du,  "du");
       xml(out, p->u_ind, "ind");
-      out << " </u>\n";
+      out << "\n";
       EOL = true;
 
       xml(out, p->cnn, "cnn");

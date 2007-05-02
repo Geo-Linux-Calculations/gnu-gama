@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.7 2007/05/01 13:08:48 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.8 2007/05/02 10:52:37 cepek Exp $
  */
 
 
@@ -152,99 +152,143 @@ void DataParser::init_g3adj()
        s_g3a_r_point_id, 0, s_g3a_r_point_after_id,
        0,  &DataParser::add_text, &DataParser::g3a_r_point_id);
 
-  // .....  <n> / <e> / <u> .......................................
+  // .....  <n-...> / <e-...> / <u-...> ...........................
 
-  init(s_g3a_r_point_after_id, t_n,
-       s_g3a_r_point_n, 0, s_g3a_r_point_after_n,
-       0, 0, 0);
+  init(s_g3a_r_point_after_id, t_n_fixed,
+       s_g3a_r_point_n_fixed, 0, s_g3a_r_point_after_n,
+       0, 0, &DataParser::g3a_r_point_n_fixed);
 
-  init(s_g3a_r_point_after_n, t_e,
-       s_g3a_r_point_e, 0, s_g3a_r_point_after_e,
-       0, 0, 0);
+  init(s_g3a_r_point_after_id, t_n_free,
+       s_g3a_r_point_n_free, 0, s_g3a_r_point_after_n,
+       0, 0, &DataParser::g3a_r_point_n_free);
 
-  init(s_g3a_r_point_after_e, t_u,
-       s_g3a_r_point_u, 0, s_g3a_r_point_after_u,
-       0, 0, 0);
+  init(s_g3a_r_point_after_id, t_n_constr,
+       s_g3a_r_point_n_constr, 0, s_g3a_r_point_after_n,
+       0, 0, &DataParser::g3a_r_point_n_constr);
 
-  // .....  <point> ... <n/e/u> <fixed/>  .........................
+  init(s_g3a_r_point_after_id, t_n_unused,
+       s_g3a_r_point_n_unused, 0, s_g3a_r_point_after_n,
+       0, 0, &DataParser::g3a_r_point_n_unused);
 
-  init(s_g3a_r_point_n, t_fixed,
-       s_g3a_r_point_n_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_n_type);
+  init(s_g3a_r_point_after_n, t_e_fixed,
+       s_g3a_r_point_e_fixed, 0, s_g3a_r_point_after_e,
+       0, 0, &DataParser::g3a_r_point_e_fixed);
 
-  init(s_g3a_r_point_e, t_fixed,
-       s_g3a_r_point_e_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_e_type);
+  init(s_g3a_r_point_after_n, t_e_free,
+       s_g3a_r_point_e_free, 0, s_g3a_r_point_after_e,
+       0, 0, &DataParser::g3a_r_point_e_free);
 
-  init(s_g3a_r_point_u, t_fixed,
-       s_g3a_r_point_u_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_u_type);
+  init(s_g3a_r_point_after_n, t_e_constr,
+       s_g3a_r_point_e_constr, 0, s_g3a_r_point_after_e,
+       0, 0, &DataParser::g3a_r_point_e_constr);
 
-  // .....  <point> ... <n/e/u> <free/>  ..........................
+  init(s_g3a_r_point_after_n, t_e_unused,
+       s_g3a_r_point_e_unused, 0, s_g3a_r_point_after_e,
+       0, 0, &DataParser::g3a_r_point_e_unused);
 
-  init(s_g3a_r_point_n, t_free,
-       s_g3a_r_point_n_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_n_type);
+  init(s_g3a_r_point_after_e, t_u_fixed,
+       s_g3a_r_point_u_fixed, 0, s_g3a_r_point_after_u,
+       0, 0, &DataParser::g3a_r_point_u_fixed);
 
-  init(s_g3a_r_point_e, t_free,
-       s_g3a_r_point_e_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_e_type);
+  init(s_g3a_r_point_after_e, t_u_free,
+       s_g3a_r_point_u_free, 0, s_g3a_r_point_after_u,
+       0, 0, &DataParser::g3a_r_point_u_free);
 
-  init(s_g3a_r_point_u, t_free,
-       s_g3a_r_point_u_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_u_type);
+  init(s_g3a_r_point_after_e, t_u_constr,
+       s_g3a_r_point_u_constr, 0, s_g3a_r_point_after_u,
+       0, 0, &DataParser::g3a_r_point_u_constr);
 
-  // .....  <point> ... <n/e/u> <constr/>  ........................
+  init(s_g3a_r_point_after_e, t_u_unused,
+       s_g3a_r_point_u_unused, 0, s_g3a_r_point_after_u,
+       0, 0, &DataParser::g3a_r_point_u_unused);
 
-  init(s_g3a_r_point_n, t_constr,
-       s_g3a_r_point_n_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_n_type);
+  //VYHODITinit(s_g3a_r_point_after_n, t_e,
+  //VYHODIT     s_g3a_r_point_e, 0, s_g3a_r_point_after_e,
+  //VYHODIT     0, 0, 0);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_after_e, t_u,
+  //VYHODIT     s_g3a_r_point_u, 0, s_g3a_r_point_after_u,
+  //VYHODIT     0, 0, 0);
+  //VYHODIT
+  //VYHODIT// .....  <point> ... <n/e/u> <fixed/>  .........................
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_n, t_fixed,
+  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_e, t_fixed,
+  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_u, t_fixed,
+  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
+  //VYHODIT
+  //VYHODIT// .....  <point> ... <n/e/u> <free/>  ..........................
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_n, t_free,
+  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_e, t_free,
+  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_u, t_free,
+  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
+  //VYHODIT
+  //VYHODIT// .....  <point> ... <n/e/u> <constr/>  ........................
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_n, t_constr,
+  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_e, t_constr,
+  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_u, t_constr,
+  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
+  //VYHODIT
+  //VYHODIT// .....  <point> ... <n/e/u> <unused/>  ........................
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_n, t_unused,
+  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_e, t_unused,
+  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
+  //VYHODIT
+  //VYHODITinit(s_g3a_r_point_u, t_unused,
+  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
+  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
 
-  init(s_g3a_r_point_e, t_constr,
-       s_g3a_r_point_e_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_e_type);
+  // ..... <point> ...  <dn/de/du/index>  .........................
 
-  init(s_g3a_r_point_u, t_constr,
-       s_g3a_r_point_u_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_u_type);
-
-  // .....  <point> ... <n/e/u> <unused/>  ........................
-
-  init(s_g3a_r_point_n, t_unused,
-       s_g3a_r_point_n_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_n_type);
-
-  init(s_g3a_r_point_e, t_unused,
-       s_g3a_r_point_e_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_e_type);
-
-  init(s_g3a_r_point_u, t_unused,
-       s_g3a_r_point_u_type, 0, 0,
-       0, 0, &DataParser::g3a_r_point_u_type);
-
-  // ..... <point> ... <n/e/u> <dn/de/du/index>  ..................
-
-  init(s_g3a_r_point_n, t_dn,
+  init(s_g3a_r_point_after_n, t_dn,
        s_g3a_r_point_n_dn, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_n_dn);
 
-  init(s_g3a_r_point_e, t_de,
+  init(s_g3a_r_point_after_e, t_de,
        s_g3a_r_point_e_de, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_e_de);
 
-  init(s_g3a_r_point_u, t_du,
+  init(s_g3a_r_point_after_u, t_du,
        s_g3a_r_point_u_du, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_u_du);
 
-  init(s_g3a_r_point_n, t_ind,
+  init(s_g3a_r_point_after_n, t_ind,
        s_g3a_r_point_n_ind, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_n_ind);
 
-  init(s_g3a_r_point_e, t_ind,
+  init(s_g3a_r_point_after_e, t_ind,
        s_g3a_r_point_e_ind, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_e_ind);
 
-  init(s_g3a_r_point_u, t_ind,
+  init(s_g3a_r_point_after_u, t_ind,
        s_g3a_r_point_u_ind, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_r_point_u_ind);
 
@@ -785,21 +829,93 @@ int DataParser::g3a_r_point_id(const char *name)
   return  end_tag(name);
 }
 
-int DataParser::g3a_r_point_n_type(const char *name)
+/*VYHODIT*/int DataParser::g3a_r_point_n_type(const char *name)
+/*VYHODIT*/{
+/*VYHODIT*/  g3adj->adj->point.n = name;
+/*VYHODIT*/  return  end_tag(name);
+/*VYHODIT*/}
+/*VYHODIT*/
+/*VYHODIT*/int DataParser::g3a_r_point_e_type(const char *name)
+/*VYHODIT*/{
+/*VYHODIT*/  g3adj->adj->point.e = name;
+/*VYHODIT*/  return  end_tag(name);
+/*VYHODIT*/}
+/*VYHODIT*/
+/*VYHODIT*/int DataParser::g3a_r_point_u_type(const char *name)
+/*VYHODIT*/{
+/*VYHODIT*/  g3adj->adj->point.u = name;
+/*VYHODIT*/  return  end_tag(name);
+/*VYHODIT*/}
+
+int DataParser::g3a_r_point_n_fixed(const char *name)
 {
-  g3adj->adj->point.n = name;
+  g3adj->adj->point.n = "fixed";
   return  end_tag(name);
 }
 
-int DataParser::g3a_r_point_e_type(const char *name)
+int DataParser::g3a_r_point_n_free(const char *name)
 {
-  g3adj->adj->point.e = name;
+  g3adj->adj->point.n = "free";
   return  end_tag(name);
 }
 
-int DataParser::g3a_r_point_u_type(const char *name)
+int DataParser::g3a_r_point_n_constr(const char *name)
 {
-  g3adj->adj->point.u = name;
+  g3adj->adj->point.n = "constr";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_n_unused(const char *name)
+{
+  g3adj->adj->point.n = "unused";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_e_fixed(const char *name)
+{
+  g3adj->adj->point.e = "fixed";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_e_free(const char *name)
+{
+  g3adj->adj->point.e = "free";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_e_constr(const char *name)
+{
+  g3adj->adj->point.e = "constr";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_e_unused(const char *name)
+{
+  g3adj->adj->point.e = "unused";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_u_fixed(const char *name)
+{
+  g3adj->adj->point.u = "fixed";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_u_free(const char *name)
+{
+  g3adj->adj->point.u = "free";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_u_constr(const char *name)
+{
+  g3adj->adj->point.n = "constr";
+  return  end_tag(name);
+}
+
+int DataParser::g3a_r_point_u_unused(const char *name)
+{
+  g3adj->adj->point.u = "unused";
   return  end_tag(name);
 }
 

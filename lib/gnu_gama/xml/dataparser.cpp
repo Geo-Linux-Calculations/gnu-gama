@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.7 2007/05/01 13:08:48 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.8 2007/05/02 10:52:37 cepek Exp $
  */
 
 
@@ -232,6 +232,10 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'e':                                    
       if (!strcmp(c, "e"                         )) return t_e;
+      if (!strcmp(c, "e-fixed"                   )) return t_e_fixed;
+      if (!strcmp(c, "e-free"                    )) return t_e_free;
+      if (!strcmp(c, "e-constr"                  )) return t_e_constr;
+      if (!strcmp(c, "e-unused"                  )) return t_e_unused;
       if (!strcmp(c, "ellipsoid"                 )) return t_ellipsoid;
       if (!strcmp(c, "equations"                 )) return t_equations;
       break;                                     
@@ -277,6 +281,10 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'n':                                    
       if (!strcmp(c, "n"                         )) return t_n;
+      if (!strcmp(c, "n-fixed"                   )) return t_n_fixed;
+      if (!strcmp(c, "n-free"                    )) return t_n_free;
+      if (!strcmp(c, "n-constr"                  )) return t_n_constr;
+      if (!strcmp(c, "n-unused"                  )) return t_n_unused;
       if (!strcmp(c, "nonz"                      )) return t_nonz;
       break;                                     
     case 'o':                                    
@@ -309,6 +317,10 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'u' :                                   
       if (!strcmp(c, "u"                         )) return t_u;
+      if (!strcmp(c, "u-fixed"                   )) return t_u_fixed;
+      if (!strcmp(c, "u-free"                    )) return t_u_free;
+      if (!strcmp(c, "u-constr"                  )) return t_u_constr;
+      if (!strcmp(c, "u-unused"                  )) return t_u_unused;
       if (!strcmp(c, "unused"                    )) return t_unused;
       break;                                     
     case 'v' :                                   
