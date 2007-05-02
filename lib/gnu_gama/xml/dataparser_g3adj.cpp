@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.8 2007/05/02 10:52:37 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.9 2007/05/02 15:19:40 cepek Exp $
  */
 
 
@@ -252,7 +252,7 @@ void DataParser::init_g3adj()
   //VYHODIT     s_g3a_r_point_u_type, 0, 0,
   //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
   //VYHODIT
-  //VYHODIT// .....  <point> ... <n/e/u> <unused/>  ........................
+  //VYHODIT// .....  <point> ... <n/e/u> <unused/>  ...............
   //VYHODIT
   //VYHODITinit(s_g3a_r_point_n, t_unused,
   //VYHODIT     s_g3a_r_point_n_type, 0, 0,
@@ -266,7 +266,7 @@ void DataParser::init_g3adj()
   //VYHODIT     s_g3a_r_point_u_type, 0, 0,
   //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
 
-  // ..... <point> ...  <dn/de/du/index>  .........................
+  // ..... <point> ...  <dn/de/du/ind>  ...........................
 
   init(s_g3a_r_point_after_n, t_dn,
        s_g3a_r_point_n_dn, 0, 0,
@@ -440,9 +440,9 @@ void DataParser::init_g3adj()
        s_g3a_o_vector_to, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_o_to); 
 
-  init(s_g3a_o_vector, t_index,
-       s_g3a_o_vector_index, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_index); 
+  init(s_g3a_o_vector, t_ind,
+       s_g3a_o_vector_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
 
   init(s_g3a_o_vector, t_dx_observed,
        s_g3a_o_vector_dx_observed, 0, 0,
@@ -538,9 +538,9 @@ void DataParser::init_g3adj()
        s_g3a_o_xyz_id, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_o_from); 
 
-  init(s_g3a_o_xyz, t_index,
-       s_g3a_o_xyz_index, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_index); 
+  init(s_g3a_o_xyz, t_ind,
+       s_g3a_o_xyz_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
 
   init(s_g3a_o_xyz, t_x_observed,
        s_g3a_o_xyz_x_observed, 0, 0,
@@ -640,9 +640,9 @@ void DataParser::init_g3adj()
        s_g3a_o_distance_to, 0, 0,
        0, &DataParser::add_text, &DataParser::g3a_o_to); 
 
-  init(s_g3a_o_distance, t_index,
-       s_g3a_o_distance_index, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_index); 
+  init(s_g3a_o_distance, t_ind,
+       s_g3a_o_distance_ind, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
 
   init(s_g3a_o_distance, t_observed,
        s_g3a_o_distance_observed, 0, 0,
@@ -909,7 +909,7 @@ int DataParser::g3a_r_point_u_free(const char *name)
 
 int DataParser::g3a_r_point_u_constr(const char *name)
 {
-  g3adj->adj->point.n = "constr";
+  g3adj->adj->point.u = "constr";
   return  end_tag(name);
 }
 
@@ -1165,9 +1165,9 @@ int DataParser::g3a_o_to(const char *name)
   return  end_tag(name);
 }
 
-int DataParser::g3a_o_index(const char *name)
+int DataParser::g3a_o_ind(const char *name)
 {
-  g3a_text_integer(g3adj->adj->observation.index);
+  g3a_text_integer(g3adj->adj->observation.ind);
   return  end_tag(name);
 }
 

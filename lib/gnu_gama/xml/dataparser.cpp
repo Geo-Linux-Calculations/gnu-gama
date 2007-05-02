@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.8 2007/05/02 10:52:37 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.9 2007/05/02 15:19:40 cepek Exp $
  */
 
 
@@ -267,7 +267,6 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 'i':                                    
       if (!strcmp(c, "id"                        )) return t_id;
       if (!strcmp(c, "ind"                       )) return t_ind;
-      if (!strcmp(c, "index"                     )) return t_index;
       if (!strcmp(c, "int"                       )) return t_int;
       if (!strcmp(c, "inv-f"                     )) return t_inv_f;
       break;                                     

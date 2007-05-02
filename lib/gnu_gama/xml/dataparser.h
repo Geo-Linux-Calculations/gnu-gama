@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.10 2007/05/02 10:52:37 cepek Exp $
+ *  $Id: dataparser.h,v 1.11 2007/05/02 15:19:40 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -372,7 +372,7 @@ namespace GNU_gama {
           s_g3a_o_vector,
           s_g3a_o_vector_from,
           s_g3a_o_vector_to,
-          s_g3a_o_vector_index,
+          s_g3a_o_vector_ind,
           s_g3a_o_vector_dx_observed,
           s_g3a_o_vector_dx_residual,
           s_g3a_o_vector_dx_adjusted,
@@ -399,7 +399,7 @@ namespace GNU_gama {
 
           s_g3a_o_xyz,
           s_g3a_o_xyz_id,
-          s_g3a_o_xyz_index,
+          s_g3a_o_xyz_ind,
           s_g3a_o_xyz_x_observed,
           s_g3a_o_xyz_x_residual,
           s_g3a_o_xyz_x_adjusted,
@@ -427,7 +427,7 @@ namespace GNU_gama {
           s_g3a_o_distance,
           s_g3a_o_distance_from,
           s_g3a_o_distance_to,
-          s_g3a_o_distance_index,
+          s_g3a_o_distance_ind,
           s_g3a_o_distance_observed,
           s_g3a_o_distance_residual,
           s_g3a_o_distance_adjusted,
@@ -536,7 +536,6 @@ namespace GNU_gama {
           t_height,
           t_id,
           t_ind,
-          t_index,
           t_int,
           t_inv_f,
           t_l,
@@ -774,7 +773,7 @@ namespace GNU_gama {
 
       int g3a_o_from              (const char *name);
       int g3a_o_to                (const char *name);
-      int g3a_o_index             (const char *name);
+      int g3a_o_ind               (const char *name);
       int g3a_o_obs1              (const char *name);
       int g3a_o_res1              (const char *name);
       int g3a_o_adj1              (const char *name);

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.9 2007/05/02 10:52:37 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.10 2007/05/02 15:19:40 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -150,7 +150,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
           xml(out, p->id1, "from");
           xml(out, p->id2, "to");
           EOL = true;
-          xml(out, p->index, "index");
+          xml(out, p->ind, "ind");
 
           xml(out, p->obs1, "dx-observed");
           xml(out, p->res1, "dx-residual");
@@ -184,7 +184,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
           EOL = false;
           xml(out, p->id1, "id");
           EOL = true;
-          xml(out, p->index, "index");
+          xml(out, p->ind, "ind");
 
           xml(out, p->obs1, "x-observed");
           xml(out, p->res1, "x-residual");
@@ -219,7 +219,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
           xml(out, p->id1, "from");
           xml(out, p->id2, "to");
           EOL = true;
-          xml(out, p->index, "index");
+          xml(out, p->ind, "ind");
 
           xml(out, p->obs1, "observed");
           xml(out, p->res1, "residual");

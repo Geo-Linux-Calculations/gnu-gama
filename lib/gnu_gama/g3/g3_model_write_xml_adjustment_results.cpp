@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.7 2007/05/01 13:08:48 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.8 2007/05/02 15:19:40 cepek Exp $
  */
 
 #include <iomanip>
@@ -355,7 +355,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index
   out << "\n<distance> "
       << "<from>"  << d->from << "</from> "
       << "<to>"    << d->to   << "</to> "
-      << "<index>" << index   << "</index>\n";
+      << "<ind>" << index   << "</ind>\n";
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
                                                   std::ios_base::floatfield);
@@ -388,7 +388,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
   out << "\n<vector> "
       << "<from>"  << v->from << "</from> "
       << "<to>"    << v->to   << "</to> " 
-      << "<index>" << index   << "</index>\n";
+      << "<ind>" << index   << "</ind>\n";
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
                                                   std::ios_base::floatfield);
@@ -446,7 +446,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Height* h, Index index)
 {
   out << "\n<height> "
       << "<id>" << h->id << "</id> "
-      << "<index>" << index   << "</index>\n";
+      << "<ind>" << index   << "</ind>\n";
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
                                                   std::ios_base::floatfield);
@@ -478,7 +478,7 @@ void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, Index in
 {
   out << "\n<height-diff> "
       << "<from>" << hd->from << "</from> <to>" << hd->to << "</to> "
-      << "<index>" << index << "</index>\n";
+      << "<ind>" << index << "</ind>\n";
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
                                                   std::ios_base::floatfield);
@@ -510,7 +510,7 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
 {
   out << "\n<xyz> "
       << "<id>" << xyz->id << "</id> "
-      << "<index>" << index   << "</index>\n";
+      << "<ind>" << index   << "</ind>\n";
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed, 
                                                   std::ios_base::floatfield);

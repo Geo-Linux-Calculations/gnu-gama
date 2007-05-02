@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.5 2007/05/02 10:52:37 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.6 2007/05/02 15:19:40 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -102,7 +102,7 @@ namespace GNU_gama {  namespace g3 {
     struct Observation
     {
       std::string  type;      // observation type (vector, distance, ...)
-      std::string index;      // index (first index if dim > 1)
+      std::string   ind;      // index (first index if dim > 1)
 
       std::string   id1,  id2,  id3;     // identification
       std::string  obs1, obs2, obs3;     // observed value

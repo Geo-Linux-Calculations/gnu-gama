@@ -3,82 +3,333 @@
         =================          !! beta version !!! 
 
         http://www.gnu.org/software/gama/gnu-gama-data.dtd
+
   -->
 
-<!ELEMENT gnu-gama-data ( text |
-                          g3-model |
-                          g3-adjustment-results )* >
+<!ELEMENT gnu-gama-data 
+
+ ( text | g3-model | g3-adjustment-results )* >
 
 <!ELEMENT text (#PCDATA) >
 
-<!ELEMENT g3-model ( constants?,
-                    (fixed | free | constr | point)*, 
-                     obs* ) >
+<!ELEMENT g3-model 
 
-<!ELEMENT constants ( apriori-standard-deviation |
-                      confidence-level |
-                      angular-units-gons |
-                      angular-units-degrees |
-                      ellipsoid)* > 
+ ( constants?, (fixed | free | constr | point)*, obs* ) >
 
-<!ELEMENT point  ( id, ((x, y, z) | (b, l, h))?,    
-                  (height | geoid |
-                   unused | fixed | free | 
-                   constr | db | dl )* ) >     
+<!ELEMENT g3-adjustment-results ( 
 
-<!ELEMENT obs ( (vector   |
-                 xyz      |
-                 distance )*, 
-                 cov-mat? ) >
+   adjustment-statistics, adjustment-results, adjusted-observations ) >
 
-<!ELEMENT vector (from, to, dx, dy, dz,
-                 (from-dh | to-dh)* ) >
 
-<!ELEMENT xyz (id, x, y, z) >
+<!-- ============================================================== -->
 
-<!ELEMENT distance ( from, to, val, 
-                    (from-dh | to-dh | stdev)* ) >
+<!ELEMENT a (#PCDATA) > 
+
+<!ELEMENT adjusted ( #PCDATA ) >
+
+<!ELEMENT adjusted-observations 
+ (( vector | xyz | distance )*) >
+
+<!ELEMENT adjustment-results ( point+ ) >
+
+<!ELEMENT adjustment-statistics 
+ ( algorithm, ellipsoid, parameters, equations, defect, redundancy, 
+   sum-of-squares, apriori-variance, aposteriori-variance, 
+   variance-factor-used, design-matrix-graph ) >
+
+<!ELEMENT algorithm ( #PCDATA ) >
+
+<!ELEMENT angular-units-gons           EMPTY   >
+
+<!ELEMENT angular-units-degrees        EMPTY   >
+
+<!ELEMENT aposteriori-variance ( #PCDATA ) >
 
 <!ELEMENT apriori-standard-deviation (#PCDATA) > 
-<!ELEMENT confidence-level           (#PCDATA) > 
-<!ELEMENT angular-units-gons           EMPTY   >
-<!ELEMENT angular-units-degrees        EMPTY   >
-<!ELEMENT ellipsoid ( id | (a, (b | inv-f)) )  >
-<!ELEMENT id                         (#PCDATA) > 
-<!ELEMENT a                          (#PCDATA) > 
-<!ELEMENT inv-f                      (#PCDATA) > 
 
-<!ELEMENT fixed  (n | e | u)*                  >
-<!ELEMENT free   (n | e | u)*                  >
+<!ELEMENT apriori-variance ( #PCDATA ) >
+
+<!ELEMENT b (#PCDATA) > 
+
+<!ELEMENT b-adjusted ( #PCDATA ) >
+
+<!ELEMENT b-correction ( #PCDATA ) >
+
+<!ELEMENT b-given ( #PCDATA ) >
+
+<!ELEMENT band (#PCDATA) > 
+
+<!ELEMENT caption ( #PCDATA ) >
+
+<!ELEMENT constants
+ ( apriori-standard-deviation | confidence-level | angular-units-gons |
+   angular-units-degrees | ellipsoid )* > 
+
+<!ELEMENT confidence-level (#PCDATA) > 
+
 <!ELEMENT constr (n | e | u)*                  >
-<!ELEMENT n                            EMPTY   >
-<!ELEMENT e                            EMPTY   >
-<!ELEMENT u                            EMPTY   >
 
-<!ELEMENT x                          (#PCDATA) > 
-<!ELEMENT y                          (#PCDATA) > 
-<!ELEMENT z                          (#PCDATA) > 
-<!ELEMENT b                          (#PCDATA) > 
-<!ELEMENT l                          (#PCDATA) > 
-<!ELEMENT h                          (#PCDATA) > 
-<!ELEMENT height                     (#PCDATA) > 
-<!ELEMENT geoid                      (#PCDATA) > 
-<!ELEMENT db                         (#PCDATA) > 
-<!ELEMENT dl                         (#PCDATA) > 
+<!ELEMENT cov-mat (dim, band, flt+) >
 
-<!ELEMENT from                       (#PCDATA) > 
-<!ELEMENT to                         (#PCDATA) > 
-<!ELEMENT dx                         (#PCDATA) > 
-<!ELEMENT dy                         (#PCDATA) > 
-<!ELEMENT dz                         (#PCDATA) > 
-<!ELEMENT from-dh                    (#PCDATA) > 
-<!ELEMENT to-dh                      (#PCDATA) > 
+<!ELEMENT cee ( #PCDATA ) >
 
-<!ELEMENT cov-mat (dim, band, flt+)            >
-<!ELEMENT dim                        (#PCDATA) > 
-<!ELEMENT band                       (#PCDATA) > 
-<!ELEMENT flt                        (#PCDATA) > 
+<!ELEMENT ceu ( #PCDATA ) >
 
-<!ELEMENT val                        (#PCDATA) > 
-<!ELEMENT stdev                      (#PCDATA) > 
+<!ELEMENT cne ( #PCDATA ) >
 
+<!ELEMENT cnn ( #PCDATA ) >
+
+<!ELEMENT cnu ( #PCDATA ) >
+
+<!ELEMENT cuu ( #PCDATA ) >
+
+<!ELEMENT cxx ( #PCDATA ) >
+
+<!ELEMENT cxy ( #PCDATA ) >
+
+<!ELEMENT cxz ( #PCDATA ) >
+
+<!ELEMENT cyy ( #PCDATA ) >
+
+<!ELEMENT cyz ( #PCDATA ) >
+
+<!ELEMENT czz ( #PCDATA ) >
+
+<!ELEMENT db (#PCDATA) > 
+
+<!ELEMENT de ( #PCDATA ) >
+
+<!ELEMENT defect ( #PCDATA ) >
+
+<!ELEMENT design-matrix-graph ( #PCDATA ) >
+
+<!ELEMENT dim (#PCDATA) > 
+
+<!ELEMENT distance 
+ ( (from, to),
+   ((val, (from-dh | to-dh | stdev)*)
+   |
+   (ind, observed, residual, adjusted, stdev-obs, stdev-adj))) >
+
+<!ELEMENT dl (#PCDATA) > 
+
+<!ELEMENT dn ( #PCDATA ) >
+
+<!ELEMENT du ( #PCDATA ) >
+
+<!ELEMENT dx (#PCDATA) > 
+
+<!ELEMENT dx-adjusted ( #PCDATA ) >
+
+<!ELEMENT dx-observed ( #PCDATA ) >
+
+<!ELEMENT dx-residual ( #PCDATA ) >
+
+<!ELEMENT dx-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT dx-stdev-obs ( #PCDATA ) >
+
+<!ELEMENT dy (#PCDATA) > 
+
+<!ELEMENT dy-adjusted ( #PCDATA ) >
+
+<!ELEMENT dy-observed ( #PCDATA ) >
+
+<!ELEMENT dy-residual ( #PCDATA ) >
+
+<!ELEMENT dy-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT dy-stdev-obs ( #PCDATA ) >
+
+<!ELEMENT dz (#PCDATA) > 
+
+<!ELEMENT dz-adjusted ( #PCDATA ) >
+
+<!ELEMENT dz-observed ( #PCDATA ) >
+
+<!ELEMENT dz-residual ( #PCDATA ) >
+
+<!ELEMENT dz-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT dz-stdev-obs ( #PCDATA ) >
+
+<!ELEMENT e EMPTY >
+
+<!ELEMENT equations ( #PCDATA ) >
+
+<!ELEMENT e-fixed EMPTY >
+
+<!ELEMENT e-free EMPTY >
+
+<!ELEMENT ellipsoid 
+ ( ( caption, id, a, b ) 
+   |
+   ( id | (a, (b | inv-f)) ) )  >
+
+<!ELEMENT fixed  (n | e | u)* >
+
+<!ELEMENT flt (#PCDATA) > 
+
+<!ELEMENT free   (n | e | u)* >
+
+<!ELEMENT from (#PCDATA) > 
+
+<!ELEMENT from-dh (#PCDATA) > 
+
+<!ELEMENT geoid (#PCDATA) > 
+
+<!ELEMENT h (#PCDATA) > 
+
+<!ELEMENT h-adjusted ( #PCDATA ) >
+
+<!ELEMENT h-correction ( #PCDATA ) >
+
+<!ELEMENT h-given ( #PCDATA ) >
+
+<!ELEMENT height (#PCDATA) > 
+
+<!ELEMENT id (#PCDATA) > 
+
+<!ELEMENT ind ( #PCDATA ) >
+
+<!ELEMENT inv-f (#PCDATA) > 
+
+<!ELEMENT n-fixed EMPTY >
+
+<!ELEMENT n-free EMPTY >
+
+<!ELEMENT l (#PCDATA) > 
+
+<!ELEMENT l-adjusted ( #PCDATA ) >
+
+<!ELEMENT l-correction ( #PCDATA ) >
+
+<!ELEMENT l-given ( #PCDATA ) >
+
+<!ELEMENT n EMPTY >
+
+<!ELEMENT obs 
+ ( (vector | xyz | distance )*, cov-mat? ) >
+
+<!ELEMENT observed ( #PCDATA ) >
+
+<!ELEMENT parameters  ( #PCDATA ) >
+
+<!ELEMENT point  
+ ( (id), 
+    ( ( ((x, y, z) | (b, l, h))?, 
+      (height | geoid | unused | fixed | free | constr | db | dl )* )
+    |
+    (
+     ((n-fixed | n-unused) | ((n-free | n-constr), dn, ind)),
+     ((e-fixed | e-unused) | ((e-free | e-constr), de, ind)),
+     ((u-fixed | u-unused) | ((u-free | u-constr), du, ind)),
+     (cnn, cne, cnu, cee, ceu, cuu)?,
+     x-given, (x-correction, x-adjusted)?,
+     y-given, (y-correction, y-adjusted)?,
+     z-given, (z-correction, z-adjusted)?,
+     (cxx, cxy, cxz, cyy, cyz, czz)?,
+     b-given, (b-correction, b-adjusted)?,
+     l-given, (l-correction, l-adjusted)?,
+     h-given, (h-correction, h-adjusted)?
+    ))) >
+
+<!ELEMENT redundancy ( #PCDATA ) >
+
+<!ELEMENT residual ( #PCDATA ) >
+
+<!ELEMENT stdev (#PCDATA) > 
+
+<!ELEMENT stdev-adj ( #PCDATA ) >
+
+<!ELEMENT stdev-obs ( #PCDATA ) >
+
+<!ELEMENT sum-of-squares ( #PCDATA ) >
+
+<!ELEMENT to (#PCDATA) > 
+
+<!ELEMENT to-dh (#PCDATA) > 
+
+<!ELEMENT u EMPTY >
+
+<!ELEMENT u-fixed EMPTY >
+
+<!ELEMENT u-free EMPTY >
+
+<!ELEMENT val (#PCDATA) > 
+
+<!ELEMENT variance-factor-used ( #PCDATA ) >
+
+<!ELEMENT vector 
+ ( (from, to),
+   ((dx, dy, dz, (from-dh | to-dh)*)
+   |
+   ( ind, 
+     dx-observed, dx-residual, dx-adjusted, 
+     dy-observed, dy-residual, dy-adjusted, 
+     dz-observed, dz-residual, dz-adjusted, 
+     dx-stdev-obs, dx-stdev-adj, 
+     dy-stdev-obs, dy-stdev-adj, 
+     dz-stdev-obs, dz-stdev-adj, 
+     cxx, cxy, cxz, cyy, cyz, czz) )) >
+
+<!ELEMENT x (#PCDATA) > 
+
+<!ELEMENT x-adjusted ( #PCDATA ) >
+
+<!ELEMENT x-correction ( #PCDATA ) >
+
+<!ELEMENT x-given ( #PCDATA ) >
+
+<!ELEMENT x-observed ( #PCDATA ) >
+
+<!ELEMENT x-residual ( #PCDATA ) >
+
+<!ELEMENT x-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT x-stdev-obs ( #PCDATA ) >
+
+<!ELEMENT xyz
+ ((id),
+ ((x, y, z)
+ |
+ (ind, 
+  x-observed, x-residual, x-adjusted, 
+  y-observed, y-residual, y-adjusted, 
+  z-observed, z-residual, z-adjusted, 
+  x-stdev-obs, x-stdev-adj, 
+  y-stdev-obs, y-stdev-adj, 
+  z-stdev-obs, z-stdev-adj, 
+  cxx, cxy, cxz, cyy, cyz, czz)) ) >
+
+<!ELEMENT y (#PCDATA) > 
+
+<!ELEMENT y-adjusted ( #PCDATA ) >
+
+<!ELEMENT y-correction ( #PCDATA ) >
+
+<!ELEMENT y-given ( #PCDATA ) >
+
+<!ELEMENT y-observed ( #PCDATA ) >
+
+<!ELEMENT y-residual ( #PCDATA ) >
+
+<!ELEMENT y-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT y-stdev-obs ( #PCDATA ) >
+
+<!ELEMENT z (#PCDATA) > 
+
+<!ELEMENT z-adjusted ( #PCDATA ) >
+
+<!ELEMENT z-correction ( #PCDATA ) >
+
+<!ELEMENT z-given ( #PCDATA ) >
+
+<!ELEMENT z-observed ( #PCDATA ) >
+
+<!ELEMENT z-residual ( #PCDATA ) >
+
+<!ELEMENT z-stdev-adj ( #PCDATA ) >
+
+<!ELEMENT z-stdev-obs ( #PCDATA ) >
