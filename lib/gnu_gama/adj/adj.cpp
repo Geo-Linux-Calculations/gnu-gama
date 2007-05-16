@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.cpp,v 1.4 2007/01/15 09:07:48 cepek Exp $
+ *  $Id: adj.cpp,v 1.5 2007/05/16 12:59:56 cepek Exp $
  */
 
 #include <gnu_gama/adj/adj.h>
@@ -248,7 +248,6 @@ void AdjInputData::read_gama_local_old_format(std::istream& inp)
 
 Adj::~Adj()
 { 
-  delete data; 
   delete least_squares;
   delete minx;
 }

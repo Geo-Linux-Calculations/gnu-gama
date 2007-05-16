@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.h,v 1.4 2007/03/29 12:31:36 cepek Exp $
+ *  $Id: adj.h,v 1.5 2007/05/16 12:59:56 cepek Exp $
  */
 
 #include <matvec/covmat.h>
@@ -117,8 +117,6 @@ namespace GNU_gama {
     void set_rhs (Vec          <>   p) {               prhs  = p; }
     void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; } 
 
-    void swap(AdjInputData *);
-
     /* Sparse project equations for uncorrelated observations. *
      * Defined here only for backward data compatibility       */
     void read_gama_local_old_format(std::istream&);
@@ -133,6 +131,7 @@ namespace GNU_gama {
     Vec          <>   prhs;
     IntegerList  <> * pminx;
 
+    void swap(AdjInputData *);
   };
   
 }  // namespace GNU_gama

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_model.cpp,v 1.2 2007/05/16 12:59:56 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -38,10 +38,11 @@ Model::Model()
 { 
   using namespace GNU_gama;
 
-  points     = new PointBase;
-  active_obs = new ObservationList;
-  par_list   = new ParameterList;
-  adj        = new Adj;
+  points         = new PointBase;
+  active_obs     = new ObservationList;
+  par_list       = new ParameterList;
+  adj            = new Adj;
+  adj_input_data = 0;
 
   points->set_common_data(this); 
   set(&ellipsoid, ellipsoid_wgs84);
@@ -63,6 +64,7 @@ Model::~Model()
   delete  active_obs;
   delete  par_list;
   delete  adj;
+  delete  adj_input_data;
 }
 
 
