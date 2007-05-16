@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.11 2007/01/14 15:23:20 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.12 2007/05/16 08:10:19 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -354,7 +354,6 @@ namespace GNU_gama {
   {
     if (this->stage < stage_x0) solve_x0();
 
-    // return chol->lindep(i);  // envelope ... problem in bug-1.3.25-zpk.gkf
     return (envelope.diagonal(i) == Float());
   }
 
@@ -364,7 +363,6 @@ namespace GNU_gama {
   {
     delete[] min_x_list;
     min_x_list = 0;
-    chol->min_x();
 
     init_x = true;
   }
@@ -373,7 +371,6 @@ namespace GNU_gama {
   template <typename Float, typename Index, typename Exc> 
   void AdjEnvelope<Float, Index, Exc>::min_x(Index n, Index m[])
   {
-    // chol->min_x(n, m);
     delete[] min_x_list;
     min_x_size = n;
     min_x_list = new Index[min_x_size];

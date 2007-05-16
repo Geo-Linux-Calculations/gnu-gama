@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.8 2006/11/19 09:28:44 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.9 2007/05/16 08:10:19 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -28,7 +28,6 @@
 
 
 #include <gnu_gama/adj/adj_basesparse.h>
-#include <gnu_gama/adj/adj_chol.h>
 #include <gnu_gama/adj/envelope.h>
 #include <gnu_gama/sparse/smatrix_ordering.h>
 #include <gnu_gama/adj/homogenization.h>
@@ -44,8 +43,8 @@ namespace GNU_gama {
   {
   public:
 
-    AdjEnvelope() : chol(new AdjCholDec<Float, Exc>), min_x_list(0) {}
-    ~AdjEnvelope() { delete chol; delete[] min_x_list; }
+    AdjEnvelope() : min_x_list(0) {}
+    ~AdjEnvelope() { delete[] min_x_list; }
 
     virtual const GNU_gama::Vec<Float, Exc>& unknowns();
     virtual const GNU_gama::Vec<Float, Exc>& residuals();
@@ -65,8 +64,6 @@ namespace GNU_gama {
     virtual void reset(const AdjInputData *data);
 
   private:
-
-    AdjCholDec<Float, Exc>*          chol;  // #########################   
 
     ReverseCuthillMcKee<Index>   ordering;
     Homogenization<Float, Index>      hom;
