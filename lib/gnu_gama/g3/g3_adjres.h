@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.6 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.7 2007/05/19 19:57:47 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -121,6 +121,7 @@ namespace GNU_gama {  namespace g3 {
     } observation;
 
     std::list<Observation> observations;
+    std::list<Observation> rejected_observations;
 
     void write_xml(std::ostream&) const;
   };

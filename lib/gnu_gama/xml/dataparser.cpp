@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.9 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.10 2007/05/19 19:57:47 cepek Exp $
  */
 
 
@@ -295,7 +295,10 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "point"                     )) return t_point;
       break;                                     
     case 'r':                                    
+      if (!strcmp(c, "reason"                    )) return t_reason;
       if (!strcmp(c, "redundancy"                )) return t_redundancy;
+      if (!strcmp(c, "rejected"                  )) return t_rejected;
+      if (!strcmp(c, "rejected-observations"     )) return t_rejected_obs;
       if (!strcmp(c, "residual"                  )) return t_residual;
       if (!strcmp(c, "right"                     )) return t_right;
       if (!strcmp(c, "right-dh"                  )) return t_right_dh;

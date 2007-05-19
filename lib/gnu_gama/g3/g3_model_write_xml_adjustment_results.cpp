@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.8 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.9 2007/05/19 19:57:47 cepek Exp $
  */
 
 #include <iomanip>
@@ -139,14 +139,14 @@ void Model::write_xml_rejected_observations(std::ostream& out)
         default:                   tag = "unknown"; break;
         }
 
-      out << "\n<" << tag << ">\n";
+      out << "\n<rejected>\t<reason>" << tag << "</reason>\n";
       
       robs.observation->accept(&visitor);
       out << "        ";
       for (int i=0; i<robs.observation->dimension(); i++)
         out << "<flt>" << robs.data[i] << "</flt> ";     
 
-      out << "\n</"  << tag << ">\n";
+      out << "\n</rejected>\n";
     }
 
   out << "\n</rejected-observations>\n\n";

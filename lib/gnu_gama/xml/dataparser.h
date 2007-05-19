@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.11 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: dataparser.h,v 1.12 2007/05/19 19:57:48 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -278,6 +278,19 @@ namespace GNU_gama {
           s_g3a_adj_results,
           s_g3a_adj_results_end,
 
+          s_g3a_rejected_obs,
+          s_g3a_rejected_obs_end,
+          s_g3a_x_rejected,
+          s_g3a_x_reason,
+          s_g3a_x_observation,
+          s_g3a_x_id1,
+          s_g3a_x_id2,
+          s_g3a_x_id3,
+          s_g3a_x_obs1,
+          s_g3a_x_obs2,
+          s_g3a_x_obs3,
+          s_g3a_x_flt,
+
           s_g3a_s_statistics,
           s_g3a_s_statistics_end,
           s_g3a_s_s_algorithm,
@@ -302,12 +315,6 @@ namespace GNU_gama {
           s_g3a_r_point_end,
           s_g3a_r_point_id,
           s_g3a_r_point_after_id,
-          /*VYHODIT*/s_g3a_r_point_n,
-          /*VYHODIT*/s_g3a_r_point_e,
-          /*VYHODIT*/s_g3a_r_point_u,
-          /*VYHODIT*/s_g3a_r_point_n_type,
-          /*VYHODIT*/s_g3a_r_point_e_type,
-          /*VYHODIT*/s_g3a_r_point_u_type,
           s_g3a_r_point_n_fixed,
           s_g3a_r_point_n_free,
           s_g3a_r_point_n_constr,
@@ -554,7 +561,10 @@ namespace GNU_gama {
           t_observed,
           t_parameters,
           t_point,
+          t_reason,
           t_redundancy,
+          t_rejected,
+          t_rejected_obs,
           t_residual,
           t_right,
           t_right_dh,
@@ -689,6 +699,17 @@ namespace GNU_gama {
       int array_dim               (const char *name);
       int array_int               (const char *name);
       
+      int g3a_x_rejected          (const char *name);
+      int g3a_x_reason            (const char *name);
+      int g3a_x_observation       (const char *name);
+      int g3a_x_id1               (const char *name);
+      int g3a_x_id2               (const char *name);
+      int g3a_x_id3               (const char *name);
+      int g3a_x_obs1              (const char *name);
+      int g3a_x_obs2              (const char *name);
+      int g3a_x_obs3              (const char *name);
+      int g3a_x_flt               (const char *name);
+
       int g3a_s_adj_results       (const char *name, const char **atts);
       int g3a_s_adj_results       (const char *name);
       int g3a_s_algorithm         (const char *name);
@@ -709,10 +730,6 @@ namespace GNU_gama {
       int g3a_r_point             (const char *name, const char **atts);
       int g3a_r_point             (const char *name);
       int g3a_r_point_id          (const char *name);
-
-      /*VYHODIT*/int g3a_r_point_n_type      (const char *name);
-      /*VYHODIT*/int g3a_r_point_e_type      (const char *name);
-      /*VYHODIT*/int g3a_r_point_u_type      (const char *name);
 
       int g3a_r_point_n_fixed     (const char *name);
       int g3a_r_point_n_free      (const char *name);

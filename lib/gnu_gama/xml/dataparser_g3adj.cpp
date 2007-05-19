@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.9 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.10 2007/05/19 19:57:48 cepek Exp $
  */
 
 
@@ -69,7 +69,109 @@ void DataParser::init_g3adj()
        s_g3a_adj_results, s_g3a_o_observations_end, 0,
        &DataParser::g3a_s_adj_results, 0, &DataParser::g3a_s_adj_results);
 
+  // .....  <g3-adjustment-results>  <rejected-observations>  ........
+
+  init(s_g3a_adj_results, t_rejected_obs,
+       s_g3a_rejected_obs, 0, s_g3a_rejected_obs_end,
+       0, 0, 0);
+
+  init(s_g3a_rejected_obs, t_rejected,
+       s_g3a_x_rejected, 0, 0,
+       0, 0, &DataParser::g3a_x_rejected);
+
+  init(s_g3a_x_rejected, t_reason,
+       s_g3a_x_reason, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_reason);
+
+  init(s_g3a_x_rejected, t_angle,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_azimuth,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_dist,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_height,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_hdiff,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_vector,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_xyz,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_rejected, t_zenith,
+       s_g3a_x_observation, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_observation);
+
+  init(s_g3a_x_observation, t_from,
+       s_g3a_x_id1, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_id1);
+
+  init(s_g3a_x_observation, t_id,
+       s_g3a_x_id1, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_id1);
+
+  init(s_g3a_x_observation, t_to,
+       s_g3a_x_id2, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_id2);
+
+  init(s_g3a_x_observation, t_left,
+       s_g3a_x_id2, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_id2);
+
+  init(s_g3a_x_observation, t_right,
+       s_g3a_x_id3, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_id3);
+
+  init(s_g3a_x_observation, t_val,
+       s_g3a_x_obs1, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs1);
+
+  init(s_g3a_x_observation, t_dx,
+       s_g3a_x_obs1, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs1);
+
+  init(s_g3a_x_observation, t_dy,
+       s_g3a_x_obs2, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs2);
+
+  init(s_g3a_x_observation, t_dz,
+       s_g3a_x_obs3, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs3);
+
+  init(s_g3a_x_observation, t_x,
+       s_g3a_x_obs1, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs1);
+
+  init(s_g3a_x_observation, t_y,
+       s_g3a_x_obs2, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs2);
+
+  init(s_g3a_x_observation, t_z,
+       s_g3a_x_obs3, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_obs3);
+
+  init(s_g3a_x_rejected, t_flt,
+       s_g3a_x_flt, 0, 0,
+       0, &DataParser::add_text, &DataParser::g3a_x_flt);
+
   // .....  <g3-adjustment-results>  <adjustment-statistics>  ........
+
+  init(s_g3a_rejected_obs_end, t_adj_statistics,
+       s_g3a_s_statistics, 0, s_g3a_s_statistics_end,
+       0, 0, 0);
 
   init(s_g3a_adj_results, t_adj_statistics,
        s_g3a_s_statistics, 0, s_g3a_s_statistics_end,
@@ -201,70 +303,6 @@ void DataParser::init_g3adj()
   init(s_g3a_r_point_after_e, t_u_unused,
        s_g3a_r_point_u_unused, 0, s_g3a_r_point_after_u,
        0, 0, &DataParser::g3a_r_point_u_unused);
-
-  //VYHODITinit(s_g3a_r_point_after_n, t_e,
-  //VYHODIT     s_g3a_r_point_e, 0, s_g3a_r_point_after_e,
-  //VYHODIT     0, 0, 0);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_after_e, t_u,
-  //VYHODIT     s_g3a_r_point_u, 0, s_g3a_r_point_after_u,
-  //VYHODIT     0, 0, 0);
-  //VYHODIT
-  //VYHODIT// .....  <point> ... <n/e/u> <fixed/>  .........................
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_n, t_fixed,
-  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_e, t_fixed,
-  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_u, t_fixed,
-  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
-  //VYHODIT
-  //VYHODIT// .....  <point> ... <n/e/u> <free/>  ..........................
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_n, t_free,
-  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_e, t_free,
-  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_u, t_free,
-  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
-  //VYHODIT
-  //VYHODIT// .....  <point> ... <n/e/u> <constr/>  ........................
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_n, t_constr,
-  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_e, t_constr,
-  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_u, t_constr,
-  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
-  //VYHODIT
-  //VYHODIT// .....  <point> ... <n/e/u> <unused/>  ...............
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_n, t_unused,
-  //VYHODIT     s_g3a_r_point_n_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_n_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_e, t_unused,
-  //VYHODIT     s_g3a_r_point_e_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_e_type);
-  //VYHODIT
-  //VYHODITinit(s_g3a_r_point_u, t_unused,
-  //VYHODIT     s_g3a_r_point_u_type, 0, 0,
-  //VYHODIT     0, 0, &DataParser::g3a_r_point_u_type);
 
   // ..... <point> ...  <dn/de/du/ind>  ...........................
 
@@ -829,24 +867,6 @@ int DataParser::g3a_r_point_id(const char *name)
   return  end_tag(name);
 }
 
-/*VYHODIT*/int DataParser::g3a_r_point_n_type(const char *name)
-/*VYHODIT*/{
-/*VYHODIT*/  g3adj->adj->point.n = name;
-/*VYHODIT*/  return  end_tag(name);
-/*VYHODIT*/}
-/*VYHODIT*/
-/*VYHODIT*/int DataParser::g3a_r_point_e_type(const char *name)
-/*VYHODIT*/{
-/*VYHODIT*/  g3adj->adj->point.e = name;
-/*VYHODIT*/  return  end_tag(name);
-/*VYHODIT*/}
-/*VYHODIT*/
-/*VYHODIT*/int DataParser::g3a_r_point_u_type(const char *name)
-/*VYHODIT*/{
-/*VYHODIT*/  g3adj->adj->point.u = name;
-/*VYHODIT*/  return  end_tag(name);
-/*VYHODIT*/}
-
 int DataParser::g3a_r_point_n_fixed(const char *name)
 {
   g3adj->adj->point.n = "fixed";
@@ -1294,6 +1314,82 @@ int DataParser::g3a_o_c23(const char *name)
 int DataParser::g3a_o_c33(const char *name)
 {
   g3a_text_float(g3adj->adj->observation.c33);
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_rejected(const char *name)
+{
+  g3adj->adj->rejected_observations.push_back(g3adj->adj->observation);
+  g3adj->adj->observation.clear();
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_reason(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.ind);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_observation(const char *name)
+{
+  g3adj->adj->observation.type = name;
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_id1(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.id1);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_id2(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.id2);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_id3(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.id1);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_obs1(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.obs1);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_obs2(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.obs2);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_obs3(const char *name)
+{
+  g3a_text_string(g3adj->adj->observation.obs3);
+
+  return  end_tag(name);
+}
+
+int DataParser::g3a_x_flt(const char *name)
+{
+  if (g3adj->adj->observation.res1.empty()) 
+    g3a_text_string(g3adj->adj->observation.res1);
+  else if (g3adj->adj->observation.res2.empty()) 
+    g3a_text_string(g3adj->adj->observation.res2);
+  else
+    g3a_text_string(g3adj->adj->observation.res3);
+
   return  end_tag(name);
 }
 

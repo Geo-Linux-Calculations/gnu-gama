@@ -1,5 +1,5 @@
 <!--
-        gnu-gama-data.dtd          version 0.002  2007-03-29
+        gnu-gama-data.dtd          version 0.003  2007-05-19
         =================          !! beta version !!! 
 
         http://www.gnu.org/software/gama/gnu-gama-data.dtd
@@ -18,7 +18,10 @@
 
 <!ELEMENT g3-adjustment-results ( 
 
-   adjustment-statistics, adjustment-results, adjusted-observations ) >
+   rejected-observations?,     
+   adjustment-statistics, 
+   adjustment-results, 
+   adjusted-observations ) >
 
 
 <!-- ============================================================== -->
@@ -234,7 +237,11 @@
      h-given, (h-correction, h-adjusted)?
     ))) >
 
+<!ELEMENT reason ( #PCDATA) > 
+
 <!ELEMENT redundancy ( #PCDATA ) >
+
+<!ELEMENT rejected-observations ( reason, (vector | xyz | distance ), flt* )* >
 
 <!ELEMENT residual ( #PCDATA ) >
 

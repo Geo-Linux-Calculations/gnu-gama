@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_write_observation_xml.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_write_observation_xml.cpp,v 1.2 2007/05/19 19:57:47 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_write_observation_xml.h>
@@ -67,10 +67,10 @@ void WriteObservationXML::visit(Height* h)
 
 void WriteObservationXML::visit(HeightDiff* hd)
 {
-  out << "<height>" 
+  out << "<height-diff>" 
       << " <from>" << hd->from << "</from> <to>" << hd->to << "</to>\n"
       << "        <val>" << hd->obs() << "</val>\n"
-      << "        </height>\n"; 
+      << "        </height-diff>\n"; 
 }
 
 void WriteObservationXML::visit(Vector* v)
@@ -78,8 +78,8 @@ void WriteObservationXML::visit(Vector* v)
   out << "<vector>" 
       << " <from>" << v->from << "</from> <to>" << v->to << "</to>\n"
       << "        <dx>" << v->dx() << "</dx>\n"
-      << "        <dy>" << v->dy() << "</dx>\n"
-      << "        <dz>" << v->dz() << "</dx>\n"
+      << "        <dy>" << v->dy() << "</dy>\n"
+      << "        <dz>" << v->dz() << "</dz>\n"
       << "        </vector>\n"; 
 }
 
@@ -87,9 +87,9 @@ void WriteObservationXML::visit(XYZ* xyz)
 {
   out << "<xyz>" 
       << " <id>" << xyz->id << "</id>\n"
-      << "        <dx>" << xyz->x() << "</dx>\n"
-      << "        <dy>" << xyz->y() << "</dx>\n"
-      << "        <dz>" << xyz->z() << "</dx>\n"
+      << "        <x>" << xyz->x() << "</x>\n"
+      << "        <y>" << xyz->y() << "</y>\n"
+      << "        <z>" << xyz->z() << "</z>\n"
       << "        </xyz>\n"; 
 }
 

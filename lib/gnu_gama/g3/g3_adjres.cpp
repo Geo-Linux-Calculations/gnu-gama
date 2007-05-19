@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.10 2007/05/02 15:19:40 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.11 2007/05/19 19:57:47 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -53,6 +53,35 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   EOL = true;
 
   out << "<g3-adjustment-results>\n\n";
+
+  if (!rejected_observations.empty())
+    {
+      out << "<rejected-observations>\n";
+      for (std::list<Observation>::const_iterator 
+             p=rejected_observations.begin(), e=rejected_observations.end(); 
+           p!=e; ++p)
+        {
+          out << "\n<rejected> ";
+          xml(out, p->ind, "reason");
+          out << "\t<"  << p->type << ">\n";
+          if (p->type == "vector")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id2,  "to");
+              xml(out, p->obs1, "dx");
+              xml(out, p->obs2, "dy");
+              xml(out, p->obs3, "dz");
+            }
+          out << "\t</" << p->type << ">\n";
+          xml(out, p->res1, "flt");
+          xml(out, p->res2, "flt");
+          xml(out, p->res3, "flt");
+
+          out << "<rejected>\n";
+        }
+      out << "\n<rejected-observations>\n\n";
+    }
+
 
   out << "<adjustment-statistics>\n";
   
