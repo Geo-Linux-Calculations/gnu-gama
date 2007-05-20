@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_linearization.cpp,v 1.1 2006/04/09 16:40:25 cepek Exp $
+ *  $Id: g3_model_linearization.cpp,v 1.2 2007/05/20 07:46:27 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -403,7 +403,20 @@ void Model::linearization(Distance* d)
     double dz = to->Z_dh(d->to_dh) - from->Z_dh(d->from_dh);
     double D  = std::sqrt(dx*dx + dy*dy + dz*dz);
 
-    rhs(++rhs_ind) = (d->obs() - D)*Linear().scale();
+    double rd = rhs(++rhs_ind) = (d->obs() - D)*Linear().scale();
+
+    if (abs(rd) > 1e3)
+      {
+        Model::Rejected robs;
+        
+        robs.criterion   = Model::Rejected::rhs;
+        robs.observation = d;
+        robs.data[0]     = rd;
+        
+        rejected_obs.push_back(robs);
+        reset_parameters();
+        d->set_active(false);
+      }
   }
 }
 
@@ -547,15 +560,30 @@ void Model::linearization(XYZ* xyz)
 
    // right hand site
    {
-     double x = point->X();
-     double y = point->Y();
-     double z = point->Z();
+     double rx, x = point->X();
+     double ry, y = point->Y();
+     double rz, z = point->Z();
 
      const double s = Linear().scale();
 
-     rhs(++rhs_ind) = (xyz->x() - x)*s;
-     rhs(++rhs_ind) = (xyz->y() - y)*s;
-     rhs(++rhs_ind) = (xyz->z() - z)*s;
+     rhs(++rhs_ind) = rx =(xyz->x() - x)*s;
+     rhs(++rhs_ind) = ry = (xyz->y() - y)*s;
+     rhs(++rhs_ind) = rz = (xyz->z() - z)*s;
+
+     if (abs(rx) > 1e3 || abs(ry) > 1e3 || abs(rz) > 1e3)
+       {
+         Model::Rejected robs;
+
+         robs.criterion   = Model::Rejected::rhs;
+         robs.observation = xyz;
+         robs.data[0]     = rx;
+         robs.data[1]     = ry;
+         robs.data[2]     = rz;
+
+         rejected_obs.push_back(robs);
+         reset_parameters();
+         xyz->set_active(false);
+       }
    }
 }
 

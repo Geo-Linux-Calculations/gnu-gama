@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.12 2007/05/19 19:57:48 cepek Exp $
+ *  $Id: dataparser.h,v 1.13 2007/05/20 07:46:27 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -541,6 +541,7 @@ namespace GNU_gama {
           t_h_adjusted,
           t_hdiff,
           t_height,
+          t_hobs,
           t_id,
           t_ind,
           t_int,

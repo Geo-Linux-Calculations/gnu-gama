@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.10 2007/05/19 19:57:47 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.11 2007/05/20 07:46:27 cepek Exp $
  */
 
 
@@ -241,14 +241,10 @@ DataParser::data_tag DataParser::tag(const char* c)
       break;                                     
     case 'f' :                                   
       if (!strcmp(c, "fixed"                     )) return t_fixed;
-      // (!strcmp(c, "fixed-height"              )) return t_fixed_height;
-      // (!strcmp(c, "fixed-position"            )) return t_fixed_position;
       if (!strcmp(c, "flt"                       )) return t_flt;
       if (!strcmp(c, "from"                      )) return t_from;
       if (!strcmp(c, "from-dh"                   )) return t_from_dh;
       if (!strcmp(c, "free"                      )) return t_free;
-      // (!strcmp(c, "free-height"               )) return t_free_height;
-      // (!strcmp(c, "free-position"             )) return t_free_position;
       break;                                     
     case 'g' :                                   
       if (!strcmp(c, "g3-adjustment-results"     )) return t_g3_adj_results;
@@ -263,6 +259,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "h-given"                   )) return t_h_given;
       if (!strcmp(c, "hdiff"                     )) return t_hdiff;
       if (!strcmp(c, "height"                    )) return t_height;
+      if (!strcmp(c, "hobs"                      )) return t_hobs;
       break;                                     
     case 'i':                                    
       if (!strcmp(c, "id"                        )) return t_id;

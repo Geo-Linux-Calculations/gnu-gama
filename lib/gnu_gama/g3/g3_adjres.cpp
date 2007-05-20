@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.cpp,v 1.11 2007/05/19 19:57:47 cepek Exp $
+ *  $Id: g3_adjres.cpp,v 1.12 2007/05/20 07:46:27 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_adjres.h>
@@ -64,6 +64,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
           out << "\n<rejected> ";
           xml(out, p->ind, "reason");
           out << "\t<"  << p->type << ">\n";
+
           if (p->type == "vector")
             {
               xml(out, p->id1,  "from");
@@ -72,14 +73,57 @@ void AdjustmentResults::write_xml(std::ostream& out) const
               xml(out, p->obs2, "dy");
               xml(out, p->obs3, "dz");
             }
+          else if (p->type == "xyz")
+            {
+              xml(out, p->id1,  "id");
+              xml(out, p->obs1, "x");
+              xml(out, p->obs2, "y");
+              xml(out, p->obs3, "z");
+            }
+          else if (p->type == "distance")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id1,  "to");
+              xml(out, p->obs1, "val");
+            }
+          else if (p->type == "angle")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id1,  "to");
+              xml(out, p->obs1, "val");
+            }
+          else if (p->type == "azimuth")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id1,  "to");
+              xml(out, p->obs1, "val");
+            }
+          else if (p->type == "hdiff")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id1,  "to");
+              xml(out, p->obs1, "val");
+            }
+          else if (p->type == "hobs")
+            {
+              xml(out, p->id1,  "id");
+              xml(out, p->obs1, "val");
+            }
+          else if (p->type == "zenith")
+            {
+              xml(out, p->id1,  "from");
+              xml(out, p->id1,  "to");
+              xml(out, p->obs1, "val");
+            }
+
           out << "\t</" << p->type << ">\n";
           xml(out, p->res1, "flt");
           xml(out, p->res2, "flt");
           xml(out, p->res3, "flt");
 
-          out << "<rejected>\n";
+          out << "</rejected>\n";
         }
-      out << "\n<rejected-observations>\n\n";
+      out << "\n</rejected-observations>\n\n";
     }
 
 

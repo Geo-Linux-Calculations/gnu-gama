@@ -42,6 +42,11 @@
 
 <!ELEMENT algorithm ( #PCDATA ) >
 
+<!ELEMENT angle 
+ ( (from, to),
+   ((val, (from-dh | to-dh | stdev)*)
+   )) >
+
 <!ELEMENT angular-units-gons           EMPTY   >
 
 <!ELEMENT angular-units-degrees        EMPTY   >
@@ -51,6 +56,11 @@
 <!ELEMENT apriori-standard-deviation (#PCDATA) > 
 
 <!ELEMENT apriori-variance ( #PCDATA ) >
+
+<!ELEMENT azimuth
+ ( (from, to),
+   ((val, (from-dh | to-dh | stdev)*)
+   )) >
 
 <!ELEMENT b (#PCDATA) > 
 
@@ -183,6 +193,13 @@
 
 <!ELEMENT h (#PCDATA) > 
 
+<!ELEMENT hdiff
+ ( (from, to),
+   ((val, (from-dh | to-dh | stdev)*)
+   )) >
+
+<!ELEMENT hobs ( id, val, stdev+ )  >
+
 <!ELEMENT h-adjusted ( #PCDATA ) >
 
 <!ELEMENT h-correction ( #PCDATA ) >
@@ -241,7 +258,11 @@
 
 <!ELEMENT redundancy ( #PCDATA ) >
 
-<!ELEMENT rejected-observations ( reason, (vector | xyz | distance ), flt* )* >
+<!ELEMENT rejected (reason, ( 
+ (angle | azimuth | distance | hobs | hdiff | vector | xyz | zenith), 
+  flt* )* ) >
+
+<!ELEMENT rejected-observations (rejected)* >
 
 <!ELEMENT residual ( #PCDATA ) >
 
@@ -326,6 +347,11 @@
 <!ELEMENT y-stdev-obs ( #PCDATA ) >
 
 <!ELEMENT z (#PCDATA) > 
+
+<!ELEMENT zenith
+ ( (from, to),
+   ((val, (from-dh | to-dh | stdev)*)
+   )) >
 
 <!ELEMENT z-adjusted ( #PCDATA ) >
 
