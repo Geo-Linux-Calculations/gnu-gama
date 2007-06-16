@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.12 2007/05/16 08:10:19 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.13 2007/06/16 10:59:04 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -145,6 +145,8 @@ namespace GNU_gama {
         squares += t*t;
       }
 
+    nullity = envelope.defect();
+
     set_stage(stage_x0);
   }
 
@@ -207,7 +209,7 @@ namespace GNU_gama {
   {
     if (this->stage < stage_x0) solve_x0();
 
-    return envelope.defect();
+    return nullity;
   }
 
 
