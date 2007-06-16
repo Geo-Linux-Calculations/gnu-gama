@@ -1,4 +1,6 @@
-1.9.02 2007-01-21
+1.9.02 2007-06-16
+
+    - fixed bug in nullity/defect() in adj_envelope_implementation.h
 	
     - gama-xml.dtd renamed to gama-local.dtt
         
