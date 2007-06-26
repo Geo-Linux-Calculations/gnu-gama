@@ -6,7 +6,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_basefull.h,v 1.2 2006/09/22 15:45:31 cepek Exp $
+ *  $Id: adj_basefull.h,v 1.3 2007/06/26 15:04:09 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseFull_h

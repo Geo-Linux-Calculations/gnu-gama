@@ -6,7 +6,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.7 2007/05/19 19:57:47 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.8 2007/06/26 15:04:10 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres

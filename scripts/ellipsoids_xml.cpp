@@ -2,7 +2,7 @@
  * input file into ellipsoids.[h|cpp|html|texi] output.
  * ==========================================================================
  * 
- * $Id: ellipsoids_xml.cpp,v 1.15 2006/08/26 13:23:30 cepek Exp $
+ * $Id: ellipsoids_xml.cpp,v 1.16 2007/06/26 15:04:12 cepek Exp $
  *
  * ------------------------------------------------------------------------ */
 
@@ -46,7 +46,7 @@ const char* version = "0.06";
  *  
  *  This library is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
+ *  the Free Software Foundation; either version 3 of the License, or
  *  (at your option) any later version.
  *
  *  This library is distributed in the hope that it will be useful,

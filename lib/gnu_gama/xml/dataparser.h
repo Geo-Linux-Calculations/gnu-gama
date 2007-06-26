@@ -6,7 +6,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.13 2007/05/20 07:46:27 cepek Exp $
+ *  $Id: dataparser.h,v 1.14 2007/06/26 15:04:11 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_

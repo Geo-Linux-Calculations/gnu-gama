@@ -6,7 +6,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_svd.h,v 1.8 2006/08/31 16:07:33 cepek Exp $
+ *  $Id: adj_svd.h,v 1.9 2007/06/26 15:04:10 cepek Exp $
  */
 
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h

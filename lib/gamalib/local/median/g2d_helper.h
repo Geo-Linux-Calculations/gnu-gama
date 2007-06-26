@@ -7,7 +7,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -21,7 +21,7 @@
 */
 
 /*
- *  $Id: g2d_helper.h,v 1.2 2006/08/26 13:23:30 cepek Exp $
+ *  $Id: g2d_helper.h,v 1.3 2007/06/26 15:04:07 cepek Exp $
  */
 
 /*********************************************************************

@@ -1,11 +1,6 @@
-1.9.02 2007-06-16
-
-    - fixed bug in nullity/defect() in adj_envelope_implementation.h
+1.9.03 2007-06-29
 	
-    - gama-xml.dtd renamed to gama-local.dtt
-        
-    - fixed bug reported by Jim Sutherland; new XML output: fixed
-      point Y value has a minus sign (input file was positive)
+    - upgrade to GPLv3
 
     - fixed bug in gama-local in revision of observed heights
 
@@ -30,6 +25,16 @@ diff -u -6 -r1.1 xyz.h
    return true;
  }
  
+
+1.9.02 2007-01-21
+
+    - fixed bug in nullity/defect() in adj_envelope_implementation.h
+	
+    - gama-xml.dtd renamed to gama-local.dtt
+        
+    - fixed bug reported by Jim Sutherland; new XML output: fixed
+      point Y value has a minus sign (input file was positive)
+
 
 1.9.01 2006-08-26
 

@@ -6,7 +6,7 @@
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
+    the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
     This library is distributed in the hope that it will be useful,
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_revision.cpp,v 1.2 2007/04/26 12:44:05 cepek Exp $
+ *  $Id: g3_model_revision.cpp,v 1.3 2007/06/26 15:04:10 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
