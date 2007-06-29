@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.6 2007/06/26 15:04:04 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.7 2007/06/29 17:50:31 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -91,17 +91,6 @@ int help()
 }
 
 
-int version()
-{
-  using namespace std;
-  using namespace GaMaLib;
-  
-  cout << GNU_gama::GNU_gama_version << endl;
-
-  return 0;
-}
-
-
 int GaMa_Main(int argc, char **argv)
 {
   using namespace std;
@@ -149,7 +138,7 @@ int GaMa_Main(int argc, char **argv)
       c = argv[++i];
 
       if      (name == "help"      ) return help();
-      else if (name == "version"   ) return version();
+      else if (name == "version"   ) return GNU_gama::version("gama-local", "Ales Cepek");
       else if ( i   ==  argc       ) return help();
       else if (name == "algorithm" ) argv_algo = c; 
       else if (name == "language"  ) argv_lang = c;

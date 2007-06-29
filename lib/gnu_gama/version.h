@@ -1,6 +1,6 @@
 /*  
     GNU Gama --- Geodesy and Mapping C++ library 
-    Copyright (C) 1999, 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2003, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: version.h,v 1.2 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: version.h,v 1.3 2007/06/29 17:50:31 cepek Exp $
  */
 
 #ifndef GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
@@ -28,9 +28,11 @@
 
 namespace GNU_gama {
 
-   extern const char* GNU_gama_version; 
-   extern const char* GNU_gama_compiler;
+  extern const char* GNU_gama_version; 
+  extern const char* GNU_gama_compiler;
+  extern const char* GNU_gama_year;
 
+  int version(const char* program, const char* copyright_holder);
 }
 
 #endif

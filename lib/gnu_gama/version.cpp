@@ -20,12 +20,13 @@
 */
 
 /*
- *  $Id: version.cpp,v 1.2 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: version.cpp,v 1.3 2007/06/29 17:50:31 cepek Exp $
  */
 
 
 #include <gnu_gama/version.h>
 #include <config.h>
+#include <iostream>
 
 namespace GNU_gama {
 
@@ -36,8 +37,6 @@ namespace GNU_gama {
   const char* GNU_gama_compiler =
               #if   defined (__GNUC__)
               "GNU g++"             // g++ 3.3 / 3.4
-              // #elif defined (__BORLANDC__) && (__linux__)
-              // "kylix-bc++"          // 5.7
               #elif defined (__BORLANDC__)
               "win32-borland"       // 5.6
               #elif defined (_MSC_VER)
@@ -46,6 +45,21 @@ namespace GNU_gama {
               #error GNU_gama - has not been tested with your compiler
               #endif
               ;
+
+  const char* GNU_gama_year = "2007";
+
+  
+  int version(const char* program, const char* copyright_holder)
+  {
+    std::cout << program << " (GNU Gama) " << GNU_gama_version << "\n";
+    std::cout << "Copyright (C) " << GNU_gama_year << " " << copyright_holder << "\n";
+    std::cout << "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
+    std::cout << "This is free software: you are free to change and redistribute it.\n";
+    std::cout << "There is NO WARRANTY, to the extent permitted by law.\n";
+
+    return 0;
+  }
+
 }
 
 

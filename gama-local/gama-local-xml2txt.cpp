@@ -100,6 +100,7 @@ int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out)
       c = argv[++i];
       
       if      (name == "help"      ) return help();
+      else if (name == "version"   ) return 1+GNU_gama::version("gama-local-xml2txt", "Ales Cepek");
       else if (name == "language"  ) argv_lang   = c;
       else if (name == "encoding"  ) argv_enc    = c;
       else if (name == "angles"    ) argv_angles = c;

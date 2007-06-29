@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: gama-g3.cpp,v 1.3 2007/06/26 15:04:04 cepek Exp $
+ * $Id: gama-g3.cpp,v 1.4 2007/06/29 17:50:31 cepek Exp $
  */
 
 #include <fstream>
@@ -28,6 +28,7 @@
 #include <gnu_gama/xml/dataparser.h>
 #include <gnu_gama/list.h>
 #include <gnu_gama/g3/g3_model.h>
+#include <gnu_gama/version.h>
 
 namespace 
 {
@@ -55,6 +56,11 @@ namespace
           { 
             ok = false;
             continue;
+          }
+        if (a == "-version")
+          {
+            ok = false;
+            return 1+GNU_gama::version("gama-g3", "Ales Cepek");
           }
         if (a == "-algorithm")
           {
