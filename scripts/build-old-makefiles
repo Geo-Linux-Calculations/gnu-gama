@@ -1,7 +1,7 @@
 #
 # builds dictionaries for GaMaLib
 # 
-# $Id: build-old-makefiles,v 1.3 2007/01/22 19:01:49 cepek Exp $
+# $Id: build-old-makefiles,v 1.4 2007/07/06 11:07:25 cepek Exp $
 
 CXX=g++
 
@@ -39,11 +39,17 @@ $DEP expat      "$1" > lib/Makefile-expat-$1
 $DEP gama-local "$1" > lib/Makefile-gama-local-$1
 $DEP gama-g3    "$1" > lib/Makefile-gama-g3-$1
 
+MAKE=make
+if test "$1" == "win32-msvc";
+then
+        MAKE=nmake
+fi
+
 echo all: > lib/Makefile-all-$1
-echo -e "\tmake -f Makefile-lib-$1"        >> lib/Makefile-all-$1
-echo -e "\tmake -f Makefile-expat-$1"      >> lib/Makefile-all-$1
-echo -e "\tmake -f Makefile-gama-local-$1" >> lib/Makefile-all-$1
-echo -e "\tmake -f Makefile-gama-g3-$1"    >> lib/Makefile-all-$1
+echo -e "\t$MAKE -f Makefile-lib-$1"        >> lib/Makefile-all-$1
+echo -e "\t$MAKE -f Makefile-expat-$1"      >> lib/Makefile-all-$1
+echo -e "\t$MAKE -f Makefile-gama-local-$1" >> lib/Makefile-all-$1
+echo -e "\t$MAKE -f Makefile-gama-g3-$1"    >> lib/Makefile-all-$1
 
 # ------------------------------------------------------------------------
 
