@@ -1,4 +1,4 @@
-@comment $Id: gama-local-input.texi,v 1.1 2007/01/20 11:52:21 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.2 2007/07/18 12:22:45 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 
@@ -255,9 +255,9 @@ tests (dafault value 0.95)
 absolute terms in project equations (default value 1000 mm)
 
 @item 
-@code{sigma-act = "apriori"}  actual type of reference standard deviation
+@code{sigma-act = "aposteriori"}  actual type of reference standard deviation
 use in statistical tests (@code{aposteriori | apriori}); default value
-is @code{apriori}
+is @code{aposteriori}
 
 @item
 @code{update-constrained-coordinates = "no"} enables user to control
