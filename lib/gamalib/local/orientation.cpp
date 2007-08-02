@@ -20,14 +20,15 @@
 */
 
 /*
- *  $Id: orientation.cpp,v 1.2 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: orientation.cpp,v 1.3 2007/08/02 12:05:33 cepek Exp $
  */
 
 #include <gamalib/local/orientation.h>
 #include <gamalib/cluster.h>
 #include <gamalib/local/gamadata.h>
 #include <algorithm>
-
+#include <sstream>
+#include <iomanip>
 
 using namespace GaMaLib;
 
@@ -92,7 +93,37 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
           PointData::const_iterator pb = PL.find(direction->to());
           if (pb != PL.end() && (*pb).second.test_xy())
             {
-              double zn = bearing((*pa).second, (*pb).second);
+              // gama 1.9.04
+              double zn;
+              try
+                {
+                  zn = bearing((*pa).second, (*pb).second);
+                }
+              catch (GaMaLib::Exception e)
+                {
+                  std::stringstream s;
+                  s.precision(5);
+                  s << e.text << "\n\n";
+
+                  s.precision(5);
+                  s.setf(std::ios_base::fixed, std::ios_base::floatfield);
+
+                  s << std::setw(13) << pa->first;
+                  s << "  x = " << std::setw(13) << pa->second.x();
+                  s << "  y = " << std::setw(13) << pa->second.y();
+                  s << "\n";
+
+                  s << std::setw(13) << pb->first;
+                  s << "  x = " << std::setw(13) << pb->second.x();
+                  s << "  y = " << std::setw(13) << pb->second.y();
+                  s << "\n";
+
+                  throw GaMaLib::Exception(s.str());
+                }
+              catch (...)
+                {
+                  throw;
+                }
               double sn = direction->value();
               double df = zn - sn;
               // if (df < 0) df += 2*M_PI;  ......  gamalib-1.1.13

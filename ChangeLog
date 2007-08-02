@@ -1,3 +1,83 @@
+1.9.04
+
+    - enhanced warning text for gama-local when two identical poins (identical
+      coordinates) are found; gama-local stops
+
+===================================================================
+RCS file: /sources/gama/gama/gama-local/gama-local-main.h,v
+retrieving revision 1.7
+diff -u -r1.7 gama-local-main.h
+--- gama-local/gama-local-main.h	29 Jun 2007 17:50:31 -0000	1.7
++++ gama-local/gama-local-main.h	2 Aug 2007 11:56:35 -0000
+@@ -365,6 +365,11 @@
+         ApproximateCoordinates(&acord, cout);
+ 
+       }
++    catch(GaMaLib::Exception e)
++      {
++        cerr << e.text << endl;
++        return 1;
++      }
+     catch(...)
+       {
+         cerr << "Gama / Acord: approximate coordinates failed\n\n";
+Index: lib/gamalib/local/orientation.cpp
+===================================================================
+RCS file: /sources/gama/gama/lib/gamalib/local/orientation.cpp,v
+retrieving revision 1.2
+diff -u -r1.2 orientation.cpp
+--- lib/gamalib/local/orientation.cpp	26 Jun 2007 15:04:05 -0000	1.2
++++ lib/gamalib/local/orientation.cpp	2 Aug 2007 11:56:36 -0000
+@@ -27,7 +27,8 @@
+ #include <gamalib/cluster.h>
+ #include <gamalib/local/gamadata.h>
+ #include <algorithm>
+-
++#include <sstream>
++#include <iomanip>
+ 
+ using namespace GaMaLib;
+ 
+@@ -92,7 +93,36 @@
+           PointData::const_iterator pb = PL.find(direction->to());
+           if (pb != PL.end() && (*pb).second.test_xy())
+             {
+-              double zn = bearing((*pa).second, (*pb).second);
++              double zn;
++              try
++                {
++                  zn = bearing((*pa).second, (*pb).second);
++                }
++              catch (GaMaLib::Exception e)
++                {
++                  std::stringstream s;
++                  s.precision(5);
++                  s << e.text << "\n\n";
++
++                  s.precision(5);
++                  s.setf(std::ios_base::fixed, std::ios_base::floatfield);
++
++                  s << std::setw(13) << pa->first;
++                  s << "  x = " << std::setw(13) << pa->second.x();
++                  s << "  y = " << std::setw(13) << pa->second.y();
++                  s << "\n";
++
++                  s << std::setw(13) << pb->first;
++                  s << "  x = " << std::setw(13) << pb->second.x();
++                  s << "  y = " << std::setw(13) << pb->second.y();
++                  s << "\n";
++
++                  throw GaMaLib::Exception(s.str());
++                }
++              catch (...)
++                {
++                  throw;
++                }
+               double sn = direction->value();
+               double df = zn - sn;
+               // if (df < 0) df += 2*M_PI;  ......  gamalib-1.1.13
+	
+
 1.9.03 2007-06-29
 	
     - upgrade to GPLv3

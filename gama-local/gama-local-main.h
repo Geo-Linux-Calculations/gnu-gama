@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.7 2007/06/29 17:50:31 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.8 2007/08/02 12:05:33 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -364,6 +364,11 @@ int GaMa_Main(int argc, char **argv)
 
         ApproximateCoordinates(&acord, cout);
 
+      }
+    catch(GaMaLib::Exception e)
+      {
+        cerr << e.text << endl;
+        return 1;
       }
     catch(...)
       {
