@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.8 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: network.cpp,v 1.9 2007/10/20 14:28:02 cepek Exp $
  */
 
 #include <fstream>
@@ -61,6 +61,8 @@ LocalNetwork::LocalNetwork()
 
   epoch = 0.0;
   Asp = 0;
+
+  xml_covband_ = -1;
 }
 
 

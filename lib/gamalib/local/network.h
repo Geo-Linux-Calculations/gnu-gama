@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.h,v 1.9 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: network.h,v 1.10 2007/10/20 14:28:02 cepek Exp $
  */
 
 // LocalNetwork - Network Informations class (Informace o siti)
@@ -272,7 +272,9 @@ namespace GaMaLib
     bool degrees() const { return !gons_; }     
     void set_gons()      { gons_ = true;  Observation::gons = true;  }
     void set_degrees()   { gons_ = false; Observation::gons = false; }
-    
+
+    void set_xml_covband(int band=-1) { xml_covband_ = band; }
+    int  xml_covband() const { return xml_covband_; }
     
     // ...  connected network  .............................................
     
@@ -341,6 +343,7 @@ namespace GaMaLib
     Index* min_x_;
     
     bool   gons_;
+    int    xml_covband_;
     
     // preparation for design matrix
     

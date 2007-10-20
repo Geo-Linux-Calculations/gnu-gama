@@ -1,5 +1,11 @@
-1.9.04
+1.9.04 2007-10-20
 
+    - new option --cov-band for gama-local
+
+	--cov-band   covariance matrix of adjusted parameters in XML output 
+                     n  = -1  for full covariance matrix (implicit value)
+                     n >=  0  covariances are computed only for bandwidth n
+	
     - enhanced warning text for gama-local when two identical poins (identical
       coordinates) are found; gama-local stops
 

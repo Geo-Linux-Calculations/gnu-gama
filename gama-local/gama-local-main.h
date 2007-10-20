@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gama-local-main.h,v 1.8 2007/08/02 12:05:33 cepek Exp $
+ *  $Id: gama-local-main.h,v 1.9 2007/10/20 14:28:02 cepek Exp $
  */
 
 #ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
@@ -84,6 +84,9 @@ int help()
        << "--text       adjustment_results.txt\n"
        << "--xml        adjustment_results.xml\n"
     /* << "--obs        observation_equations.txt (obsolete format)\n" */
+       << "--cov-band   covariance matrix of adjusted parameters in XML output\n"
+       << "             n  = -1  for full covariance matrix (implicit value)\n"
+       << "             n >=  0  covariances are computed only for bandwidth n\n"
        << "--version\n"
        << "--help\n";
   cerr << endl;
@@ -109,6 +112,7 @@ int GaMa_Main(int argc, char **argv)
   const char* argv_txtout = 0;
   const char* argv_xmlout = 0;
   const char* argv_obsout = 0;
+  const char* argv_covband = 0;
 
   bool correction_to_ellipsoid = false;
   GNU_gama::Ellipsoid el;
@@ -149,6 +153,7 @@ int GaMa_Main(int argc, char **argv)
       else if (name == "text"      ) argv_txtout = c;
       else if (name == "xml"       ) argv_xmlout = c;
       else if (name == "obs"       ) argv_obsout = c;
+      else if (name == "cov-band"  ) argv_covband = c;
       else
           return help();
     }
@@ -231,6 +236,17 @@ int GaMa_Main(int argc, char **argv)
             IS->set_degrees();
           else
             return help();
+        }
+
+      if (argv_covband)
+        {
+          std::istringstream istr(argv_covband);
+          int band = -1;
+          if (!(istr >> band) || band < -1) return help();
+          char c;
+          if (istr >> c) return help();
+
+          IS->set_xml_covband(band);
         }
 
     }

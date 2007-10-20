@@ -33,6 +33,9 @@ Options:
 --ellipsoid  <ellipsoid name>
 --text       adjustment_results.txt
 --xml        adjustment_results.xml
+--cov-band   covariance matrix of adjusted parameters in XML output
+             n  = -1  for full covariance matrix (implicit value)
+             n >=  0  covariances are computed only for bandwidth n
 --version
 --help
 @end example
@@ -78,6 +81,16 @@ Adjustment results (@code{--text} and @code{--xml}) can be redirected
 to standard output if instead of a file name is used "-" string. If no
 output is given, XML adjustment format is implicitly send to standard
 output.
+
+Option @code{--cov-band} is used to reduce the number of computed
+covariances (cofactors) in XML adjustment output. Implicitly full
+matrix is written to XML output, which could degrade time eficiency
+for the @code{envelope} algorithm for sparse matrix solution. Explicit
+option for full covariance matrix is @code{--cov-band -1}, option
+@code{--cov-band 0} means that only a diagonal of covariance matrix is
+written to XML output, @code{--cov-band 1} results in computing the
+main diagonal and first codiagonal etc. If higher rank is specified then
+available, it si reduced do maximum possible value @code{dim-1}.
 
 
 @menu

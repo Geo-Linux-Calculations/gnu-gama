@@ -20,13 +20,14 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.10 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.11 2007/10/20 14:28:02 cepek Exp $
  */
 
 
 #include <vector>
 #include <iomanip>
 #include <cmath>
+#include <algorithm>
 #include <sstream>
 #include <gnu_gama/xml/localnetwork.h>
 #include <gnu_gama/statan.h>
@@ -441,9 +442,13 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   
   orientation_shifts(out, ind, dim);
   
-  Index band = 0;
-  if (dim) band = dim - 1;
-  out << "\n<!-- upper part of symmetric matrix by rows -->\n"
+  int band = 0;   // signed value, must not be declared as Index
+  if (dim) 
+    {
+      band = netinfo->xml_covband();
+      if (band == -1 || band > dim-1) band = dim - 1;
+    }
+  out << "\n<!-- upper part of symmetric matrix band by rows -->\n"
       << "<cov-mat>\n"
       << "<dim>"  << dim  << "</dim> "
       << "<band>" << band << "</band>\n";
@@ -452,7 +457,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out.precision(7);
   const double m2 = netinfo->m_0() * netinfo->m_0();
   for (Index k=0, i=1; i<=dim; i++)
-    for (Index j=i; j<=dim; j++)
+    for (Index j=i; j<=std::min(dim, i+band); j++)
       {
         out << "<flt>" << m2*netinfo->qxx(ind[i], ind[j]) << "</flt>";
         if (++k == 3)
