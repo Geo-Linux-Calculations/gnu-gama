@@ -1,6 +1,6 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 0.9.26)
-    Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: matbase.h,v 1.3 2007/06/26 15:04:12 cepek Exp $
+ *  $Id: matbase.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
