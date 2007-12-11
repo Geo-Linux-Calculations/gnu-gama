@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.10 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.11 2007/12/11 18:08:07 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -31,6 +31,8 @@
 #include <gnu_gama/adj/envelope.h>
 #include <gnu_gama/sparse/smatrix_ordering.h>
 #include <gnu_gama/adj/homogenization.h>
+#include <gnu_gama/movetofront.h>
+#include <vector>
 
 namespace GNU_gama {
 
@@ -81,6 +83,9 @@ namespace GNU_gama {
 
     GNU_gama::Vec<Float, Exc>     tmpvec;   
     GNU_gama::Vec<Float, Exc>     tmpres;         // used in q_bb
+
+    std::vector<GNU_gama::Vec<Float, Exc> > qxxbuf;
+    GNU_gama::MoveToFront<3,Index,Index>    indbuf;
 
     enum Stage { 
       stage_init,       // implicitly set by Adj_BaseSparse constuctor

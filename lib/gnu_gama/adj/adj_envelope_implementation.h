@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.14 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.15 2007/12/11 18:08:08 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -37,6 +37,11 @@ namespace GNU_gama {
     observations = data->mat()->rows();
     parameters   = data->mat()->columns();
     this->input  = data;
+
+    indbuf.erase();
+    qxxbuf.resize(indbuf.size());
+    for (Index i=0; i<qxxbuf.size(); i++)
+      qxxbuf[i].reset();
 
     set_stage(stage_init);
   }
@@ -147,6 +152,13 @@ namespace GNU_gama {
 
     nullity = envelope.defect();
 
+    if (nullity)
+      {
+        qxxbuf.resize(indbuf.size());
+        for (Index i=0; i<qxxbuf.size(); i++)
+          qxxbuf[i].reset(parameters);
+      }
+
     set_stage(stage_x0);
   }
 
@@ -251,22 +263,50 @@ namespace GNU_gama {
 
         // elements outside the envelope (full solution)
 
-        const Index ii = ordering.invp(i); // !!! add buffering !!!
-        const Index jj = ordering.invp(j);
-        Vec<Float, Exc> a(parameters);    
-        a.set_zero();
-        a(ii) = 1;
-        envelope.solve(a.begin(), a.dim());
+        if (qxxbuf[0].dim() != parameters)
+          {        
+            qxxbuf.resize(indbuf.size());
+            for (Index i=0; i<qxxbuf.size(); i++)
+              qxxbuf[i].reset(parameters);
+          }
+
+        Index ii = ordering.invp(i);
+        Index jj = ordering.invp(j);
+        if (ii < jj) std::swap(ii, jj);
+
+        std::pair<Index,bool> pa = indbuf.get(ii);
+
+        Vec<Float, Exc>& a = qxxbuf[pa.first];
+        if (!pa.second)
+          {
+            a.set_zero();
+            a(ii) = 1;
+            envelope.solve(a.begin(), a.dim());
+          }
+
         return a(jj);
       }
 
 
-    Vec<Float, Exc> a(parameters);
-    Vec<Float, Exc> b(parameters);
-    T_row(a, i);
-    T_row(b, j);
-    envelope.lowerSolve(1, parameters, a.begin()); // !!! buffering !!!
-    envelope.lowerSolve(1, parameters, b.begin());
+    // singular system
+
+    if (init_x) solve_x();
+
+    std::pair<Index,bool> pa = indbuf.get(i);
+    std::pair<Index,bool> pb = indbuf.get(j);
+    
+    Vec<Float, Exc>& a = qxxbuf[pa.first];
+    Vec<Float, Exc>& b = qxxbuf[pb.first];
+    if (!pa.second)
+      {
+        T_row(a, i);
+        envelope.lowerSolve(1, parameters, a.begin());
+      }
+    if (!pb.second)
+      {
+        T_row(b, j);
+        envelope.lowerSolve(1, parameters, b.begin());
+      }
     
     Float s = Float();
     for (Index i=1; i<=parameters; i++) 

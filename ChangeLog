@@ -1,6 +1,8 @@
 1.9.05 
 
-    - fixed a bug in matvec/vecbase.h (missing test in operator>>)
+      - fixed a bug in Adj_envelope::q_xx(int, int) brought in version 1.9.03
+
+      - fixed a bug in matvec/vecbase.h (missing test in operator>>)
       
       New version of matvec C++ template library is 1.0.00
 
