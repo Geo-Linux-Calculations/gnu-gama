@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.cpp,v 1.6 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: adj.cpp,v 1.7 2007/12/12 19:52:38 cepek Exp $
  */
 
 #include <gnu_gama/adj/adj.h>
@@ -426,32 +426,32 @@ const Vec<>& Adj::r()
 
 
 
-double Adj::q_bb(Index i, Index j)
-{
-  double* ib;
-  double* ie;
-  Index * in;
-
-  double* jb = data->A->begin(j);
-  double* je = data->A->end(j);
-  Index * jn = data->A->ibegin(j);
-
-  double t, sum = 0;
-  while (jb != je)
-    {
-      ib = data->A->begin(i);
-      ie = data->A->end(i);
-      in = data->A->ibegin(i);
-      t  = 0;
-      while (ib != ie)  t += *ib++ * q_xx(*in++, *jn);
-
-      sum += *jb * t;
-      jb++;
-      jn++;
-    }
-
-  return sum;
-}
+// double Adj::q_bb(Index i, Index j) 
+// {
+//   double* ib;
+//   double* ie;
+//   Index * in;
+// 
+//   double* jb = data->A->begin(j);
+//   double* je = data->A->end(j);
+//   Index * jn = data->A->ibegin(j);
+// 
+//   double t, sum = 0;
+//   while (jb != je)
+//     {
+//       ib = data->A->begin(i);
+//       ie = data->A->end(i);
+//       in = data->A->ibegin(i);
+//       t  = 0;
+//       while (ib != ie)  t += *ib++ * q_xx(*in++, *jn);
+// 
+//       sum += *jb * t;
+//       jb++;
+//       jn++;
+//     }
+// 
+//   return sum;
+// }
 
 
 

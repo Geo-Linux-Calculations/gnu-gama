@@ -1,5 +1,7 @@
 1.9.05 
 
+      - improved performance of Adj::q_bb(int, int) for sparse matrices
+
       - fixed a bug in Adj_envelope::q_xx(int, int) brought in version 1.9.03
 
       - fixed a bug in matvec/vecbase.h (missing test in operator>>)
