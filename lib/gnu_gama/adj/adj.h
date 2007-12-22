@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.h,v 1.7 2007/12/12 19:52:38 cepek Exp $
+ *  $Id: adj.h,v 1.8 2007/12/22 20:54:53 cepek Exp $
  */
 
 #include <matvec/covmat.h>
@@ -66,7 +66,7 @@ namespace GNU_gama {
     const Vec<>& r();                          /* adjusted residuals      */
 
     double q_xx(Index i, Index j) { return least_squares->q_xx(i,j); }
-    double q_bb(Index i, Index j) { return least_squares->q_bb(i,j); }
+    double q_bb(Index i, Index j);
   
   private:
     

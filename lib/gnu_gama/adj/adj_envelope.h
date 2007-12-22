@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope.h,v 1.11 2007/12/11 18:08:07 cepek Exp $
+ *  $Id: adj_envelope.h,v 1.12 2007/12/22 20:54:53 cepek Exp $
  */
 
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
@@ -56,6 +56,8 @@ namespace GNU_gama {
     virtual Float q_xx(Index i, Index j);
     virtual Float q_bb(Index i, Index j);
     virtual Float q_bx(Index i, Index j);
+                                                                      
+    virtual Float q0_xx(Index i, Index j);
                                                                       
     virtual bool lindep(Index i);
     virtual void min_x();

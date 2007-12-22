@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_envelope_implementation.h,v 1.15 2007/12/11 18:08:08 cepek Exp $
+ *  $Id: adj_envelope_implementation.h,v 1.16 2007/12/22 20:54:53 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_implementationenvelope__implementation_h
@@ -256,37 +256,7 @@ namespace GNU_gama {
   {
     if (this->stage < stage_q0) solve_q0();
 
-    if (nullity == 0)
-      {
-        Float* q = q0.element(ordering.invp(i), ordering.invp(j));
-        if (q) return *q;
-
-        // elements outside the envelope (full solution)
-
-        if (qxxbuf[0].dim() != parameters)
-          {        
-            qxxbuf.resize(indbuf.size());
-            for (Index i=0; i<qxxbuf.size(); i++)
-              qxxbuf[i].reset(parameters);
-          }
-
-        Index ii = ordering.invp(i);
-        Index jj = ordering.invp(j);
-        if (ii < jj) std::swap(ii, jj);
-
-        std::pair<Index,bool> pa = indbuf.get(ii);
-
-        Vec<Float, Exc>& a = qxxbuf[pa.first];
-        if (!pa.second)
-          {
-            a.set_zero();
-            a(ii) = 1;
-            envelope.solve(a.begin(), a.dim());
-          }
-
-        return a(jj);
-      }
-
+    if (nullity == 0) return q0_xx(i, j);
 
     // singular system
 
@@ -314,6 +284,41 @@ namespace GNU_gama {
         s += a(i)/d*b(i);
     
     return s;
+  }
+
+
+  template <typename Float, typename Index, typename Exc> 
+  Float AdjEnvelope<Float, Index, Exc>::q0_xx(Index i, Index j)
+  {
+    if (this->stage < stage_q0) solve_q0();
+
+    Float* q = q0.element(ordering.invp(i), ordering.invp(j));
+    if (q) return *q;
+    
+    // elements outside the envelope (full solution)
+    
+    if (qxxbuf[0].dim() != parameters)
+      {        
+        qxxbuf.resize(indbuf.size());
+        for (Index i=0; i<qxxbuf.size(); i++)
+          qxxbuf[i].reset(parameters);
+      }
+    
+    Index ii = ordering.invp(i);
+    Index jj = ordering.invp(j);
+    if (ii < jj) std::swap(ii, jj);
+    
+    std::pair<Index,bool> pa = indbuf.get(ii);
+    
+    Vec<Float, Exc>& a = qxxbuf[pa.first];
+    if (!pa.second)
+      {
+        a.set_zero();
+        a(ii) = 1;
+        envelope.solve(a.begin(), a.dim());
+      }
+    
+    return a(jj);
   }
 
 

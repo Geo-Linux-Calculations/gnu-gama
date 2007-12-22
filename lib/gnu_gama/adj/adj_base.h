@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.15 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: adj_base.h,v 1.16 2007/12/22 20:54:53 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
@@ -51,6 +51,10 @@ namespace GNU_gama {
     virtual void min_x(Index, Index[]) = 0;   // subset of x for regularization
 
     virtual Float cond() { return Float(); }  // 0 if not available
+
+    // weight coefficients for the particular solution (if defined)
+
+    virtual Float q0_xx(Index i, Index j)  { return q_xx(i,j); }
 
   };
 
