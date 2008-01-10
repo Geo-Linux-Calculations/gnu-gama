@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.cpp,v 1.3 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_model.cpp,v 1.4 2008/01/10 19:20:52 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -259,6 +259,9 @@ void Model::update_adjustment()
     }
 
   // ..........................................................
+
+  if (dm_rows == 0 || dm_col == 0)
+    throw GNU_gama::Exception::string("No parameters and/or observations");
 
   redundancy = dm_rows - dm_cols + adj->defect();
 
