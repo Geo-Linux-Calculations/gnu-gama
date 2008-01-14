@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3adj.cpp,v 1.11 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataparser_g3adj.cpp,v 1.12 2008/01/14 14:43:54 cepek Exp $
  */
 
 
@@ -1061,7 +1061,7 @@ int DataParser::g3a_r_point_z_correction(const char *name)
 
 int DataParser::g3a_r_point_z_adjusted(const char *name)
 {
-  g3a_text_float(g3adj->adj->point.x_adjusted);
+  g3a_text_float(g3adj->adj->point.z_adjusted);
   return  end_tag(name);
 }
 
