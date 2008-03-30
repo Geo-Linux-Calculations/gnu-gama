@@ -1,4 +1,4 @@
-@comment $Id: gama-local-input.texi,v 1.2 2007/07/18 12:22:45 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.3 2008/03/30 18:48:30 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 
@@ -159,34 +159,30 @@ observed angles and/or directions.
 @code{axes-xy="ne"} orientation of axes @code{x} and @code{y}; value
 @code{ne} implies that axis @code{x} is oriented north and axis @code{y}
 is oriented east. Acceptable values are @code{ne}, @code{sw},
-@code{es}, @code{wn} for right-handed coordinate systems and @code{en},
-@code{nw}, @code{se}, @code{ws} for left-oriented coordinate systems
+@code{es}, @code{wn} for left-handed coordinate systems and @code{en},
+@code{nw}, @code{se}, @code{ws} for right-handed coordinate systems
 (default value is @code{ne}).
     
 @item 
-@code{angles="right-handed"}  defines clockwise observed angles and/or
-directions, value @code{left-handed} defines counterclockwise observed
+@code{angles="right-handed"} defines counterclockwise observed angles
+and/or directions, value @code{left-handed} defines clockwise observed
 angles and/or directions (default value is @code{right-handed}).
 
 @end itemize
 
 
 Many geodetic systems are right handed with @code{x} axis oriented
-north, @code{y} axis oriented east and clockwise angular
-observations. Example of right-handed orthogonal system with different
+east, @code{y} axis oriented north and counterclockwise angular
+observations. Example of left-handed orthogonal system with different
 axes orientation is coordinate system @emph{Krovak} used in the Czech
 Republic where the axes @code{x} and @code{y} are oriented south and
-west respectively.  Apart from right handed systems the program
-@code{gama-local} can adjust observations and coordinates in
-left-handed systems with counterclockwise angles and/or
-directions. 
+west respectively. 
 
-The current version does not support mixed systems with different
-orientation of axes and angles. If such a situation is detected,
-@code{gama-local} tries to recover from the unsupported system by
-simply internally changing the sign of all @code{y} coordinates (in
-the text output of adjustment results the sign of @code{y} coordinates
-is reverted back by @code{gama-local}).
+GNU Gama can adjust any combination of coordinate and angular
+systems. Not all cases are supported directly, if needed, Gama simply
+internally changes the sign of all @code{y} coordinates (in the text
+output of adjustment results the sign of @code{y} coordinates is
+reverted back by @code{gama-local}).
 
 
 

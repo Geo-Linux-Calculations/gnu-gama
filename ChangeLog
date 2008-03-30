@@ -1,5 +1,8 @@
 1.9.05 
 
+      - fixed terminology errors reported by Brona Koska (description
+	of left-handed and right-handed coordinates adn angular units)
+	
       - improved performance of Adj::q_bb(int, int) for sparse matrices
 
       - fixed a bug in Adj_envelope::q_xx(int, int) brought in version 1.9.03

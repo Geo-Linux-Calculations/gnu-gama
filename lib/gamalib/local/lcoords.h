@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: lcoords.h,v 1.2 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: lcoords.h,v 1.3 2008/03/30 18:48:30 cepek Exp $
  */
 
 #ifndef GaMaLib____Local_Coordinate_System___h____
@@ -35,11 +35,11 @@ namespace GaMaLib {
     enum CS
     {
                                             // orientation of axes x and y :
-      EN= 1, NW= 2, SE= 4, WS=  8,          //   plane left-handed  systems
-      NE=16, SW=32, ES=64, WN=128,          //   plane right-handed systems
+      EN= 1, NW= 2, SE= 4, WS=  8,          //   plane right-handed  systems
+      NE=16, SW=32, ES=64, WN=128,          //   plane left-handed systems
 
-      left_handed  = (EN | NW | SE | WS),
-      right_handed = (NE | SW | ES | WN)
+      right_handed = (EN | NW | SE | WS),
+      left_handed  = (NE | SW | ES | WN)
 
     } local_coordinate_system;
 
@@ -47,13 +47,13 @@ namespace GaMaLib {
       : local_coordinate_system(cs)
       {
       }
-    bool left_handed_coordinates () const 
-      { 
-        return local_coordinate_system & left_handed; 
-      }
     bool right_handed_coordinates() const 
       { 
         return local_coordinate_system & right_handed; 
+      }
+    bool left_handed_coordinates () const 
+      { 
+        return local_coordinate_system & left_handed; 
       }
     
   };

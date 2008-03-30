@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: gamadata.h,v 1.2 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: gamadata.h,v 1.3 2008/03/30 18:48:30 cepek Exp $
  */ 
 
 #ifndef GaMaLib____ObservationData____and_other_data_objects___h_____
@@ -55,9 +55,13 @@ namespace GaMaLib {
 
   inline bool Consistent(const PointData& lcs)
     {
+      // first version of gama adjustment was designed for coordinate
+      // system with left-handed coordinates and right-handed angular
+      // observations
+
       return 
-        (lcs.right_handed_coordinates() &&  lcs.right_handed_angles) ||
-        (lcs. left_handed_coordinates() && !lcs.right_handed_angles) ; 
+        (lcs. left_handed_coordinates() &&  lcs.right_handed_angles) ||
+        (lcs.right_handed_coordinates() && !lcs.right_handed_angles) ; 
     }
 
 
