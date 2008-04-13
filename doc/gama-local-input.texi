@@ -1,4 +1,4 @@
-@comment $Id: gama-local-input.texi,v 1.3 2008/03/30 18:48:30 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.4 2008/04/13 10:23:07 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 
@@ -179,10 +179,11 @@ Republic where the axes @code{x} and @code{y} are oriented south and
 west respectively. 
 
 GNU Gama can adjust any combination of coordinate and angular
-systems. Not all cases are supported directly, if needed, Gama simply
-internally changes the sign of all @code{y} coordinates (in the text
-output of adjustment results the sign of @code{y} coordinates is
-reverted back by @code{gama-local}).
+systems. 
+@c Not all cases are supported directly, if needed, Gama simply
+@c internally changes the sign of all @code{y} coordinates (in the text
+@c output of adjustment results the sign of @code{y} coordinates is
+@c reverted back by @code{gama-local}).
 
 
 
