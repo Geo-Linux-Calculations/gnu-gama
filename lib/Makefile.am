@@ -13,6 +13,7 @@ libgama_src = \
    gnu_gama/latlong.h \
    gnu_gama/list.h \
    gnu_gama/model.h \
+   gnu_gama/movetofront.h \
    gnu_gama/obsdata.h \
    gnu_gama/outstream.cpp \
    gnu_gama/outstream.h \
