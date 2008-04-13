@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: acord.cpp,v 1.2 2007/06/26 15:04:05 cepek Exp $
+ *  $Id: acord.cpp,v 1.3 2008/04/13 10:02:31 cepek Exp $
  */
 
  
@@ -62,7 +62,7 @@ Acord::Acord(PointData& b, ObservationData& m)
          i=OD.begin(), e=OD.end(); i!=e; ++i, ++observations);
 
 
-  if (Consistent(PD)) return;
+  if (GaMaConsistent(PD)) return;
 
   for (PointData::iterator ii=PD.begin(); ii!=PD.end(); ++ii)
     {

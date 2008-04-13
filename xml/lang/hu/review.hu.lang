@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
 <entries>
 
-<!-- $Id: review.hu.lang,v 1.2 2006/08/26 17:19:11 cepek Exp $ -->
+<!-- $Id: review.hu.lang,v 1.3 2008/04/13 10:02:32 cepek Exp $ -->
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
-   hu="Nem konzisztens koordináták és szögek: minden Y koordináta előjele megváltoztatva" />
+   hu="Nem konzisztens koordináták és szögek: minden Y koordináta előjelét megváltoztattam" />
 
 <e id="T_GaMa_point"
    EN="point"
@@ -61,7 +61,7 @@
 
 <e id="T_GaMa_gpar1_computed_heights"
    EN="Number of computed heights"
-   hu="Számmított magasságok" />
+   hu="Számított magasságok" />
 
 <e id="T_GaMa_gpar2_constrained_heights"
    EN="Constrained heights"
@@ -77,19 +77,19 @@
 
 <e id="T_GaMa_gpar1_directions"
    EN="Number of directions"
-   hu="Irányok" />
+   hu="Irányok száma" />
 
 <e id="T_GaMa_gpar2_bearings"
    EN="Number of bearings"
-   hu="Tájékozások" />
+   hu="Irányszögek száma" />
 
 <e id="T_GaMa_gpar1_angles"
    EN="Number of angles"
-   hu="Szögek" />
+   hu="Szögek száma" />
 
 <e id="T_GaMa_gpar1_distances"
    EN="Number of distances"
-   hu="Távolságok" />
+   hu="Távolságok száma" />
 
 <e id="T_GaMa_gpar1_observed_coords"
    EN="Coordinates"
@@ -125,7 +125,7 @@
 
 <e id="T_GaMa_gpar2_network_defect"
    EN="Network defect"
-   hu="Hálózati hiba" />
+   hu="Hálózati defektus" />
 
 <e id="T_GaMa_not_enough_constrained_points"
    EN="Not enough constrained points defined"
@@ -137,7 +137,7 @@
 
 <e id="T_GaMa_Free_network_defect_is"
    EN="Free network defect is "
-   hu="Szabad hálózati hiba " />
+   hu="Szabad hálózati defektus " />
 
 <e id="T_GaMa_Given_network_configuration_can_not_be_adjusted"
    EN="Given network configuration can not be adjusted"
@@ -185,11 +185,11 @@
 
 <e id="T_GaMa_interval_contains"
    EN="contains value m0\'/m0"
-   hu="m0\'/m0 értket tartalmaz" />
+   hu="m0\'/m0 értket tartalmazza" />
 
 <e id="T_GaMa_interval_doesnt_contain"
    EN="does not contain value m0\'/m0" 
-   hu="nem tartalmaz m0\'/m0 értéket" />
+   hu="nem tartalmazza m0\'/m0 értéket" />
 
 <e id="T_GaMa_m0_distances"
    EN="m0\'/m0 (distances): "
@@ -209,15 +209,15 @@
 
 <e id="T_GaMa_Maximal_decrease_of_m0"
    EN="Maximal decrease of m0\'\'/m0 on elimination of one observation: "
-   hu="Egy észlelésre jutó m0\'\'/m0 növekmény : " />
+   hu="Egy mérés elhagyásávaki elérhető maximális csökkenés az m0\'\'/m0 értékben : " />
 
 <e id="T_GaMa_Maximal_normalized_residual"
    EN="Maximal normalized residual "
-   hu="Maximális normalizált eredő" />
+   hu="Maximális normalizált javítás" />
 
 <e id="T_GaMa_genpar_Maximal_studentized_residual"
    EN="Maximal studentized residual "
-   hu="Maximális eredő " />
+   hu="Maximális studentizált javítás " />
 
 <e id="T_GaMa_genpar_exceeds"
    EN=" exceeds"
@@ -233,7 +233,7 @@
 
 <e id="T_GaMa_genpar_on_significance_level"
    EN="on significance level "
-   hu="szignifikancia szint " />
+   hu="szignifikancia szinten " />
 
 <e id="T_GaMa_genpar_for_observation_ind"
    EN=" % for observation #"
@@ -309,12 +309,12 @@
 
 <e id="T_GaMa_tstlin_Differences"
    EN="Diffs in adj. observations from residuals and from adjusted coordinates"
-   hu="Eltérések a kiegyenlített észlelésektől és a kiegyenlített koordinátáktól"
+   hu="Eltérések a kiegyenlített mérések és a kiegyenlített koordinátákból számítható értékek között"
    />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
    EN="      observed     r        difference"
-   hu="      észlelt      r           eltérés" />
+   hu="        mért       r           eltérés" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"
@@ -342,15 +342,15 @@
    
 <e id="T_GaMa_x"
    EN=" x     "
-   hu=" X     " />
+   hu=" x     " />
 
 <e id="T_GaMa_y"
    EN=" y     "
-   hu=" Y     " />
+   hu=" y     " />
 
 <e id="T_GaMa_z"
    EN=" z     "
-   hu=" Z     " />
+   hu=" z     " />
 
 <e id="T_GaMa_levell"
    EN=" h dif "
@@ -358,15 +358,16 @@
 
 <e id="T_GaMa_xdiff"
    EN=" x dif "
-   hu=" X elt " />
+   hu=" x elt " />
 
 <e id="T_GaMa_ydiff"
    EN=" y dif "
-   hu=" Y elt " />
+   hu=" y elt " />
+
 
 <e id="T_GaMa_zdiff"
    EN=" z dif "
-   hu=" Z elt " />
+   hu=" z elt " />
 
 <e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
    EN="Mean errors and parameters of error ellipses"
@@ -382,11 +383,11 @@
 
 <e id="T_GaMa_adjobs_Adjusted_observations"
    EN="Adjusted observations"
-   hu="Kiegyenlített észlelések" />
+   hu="Kiegyenlített mérések" />
 
 <e id="T_GaMa_adjobs_observed"
    EN="observed"
-   hu="észlelt" />
+   hu="mért" />
 
 <e id="T_GaMa_adjobs_adjusted"
    EN="adjusted"
@@ -402,11 +403,11 @@
 
 <e id="T_GaMa_resobs_Review_of_residuals_analysis_obs"
    EN="Residuals and analysis of observations"
-   hu="Eredők és az észlelések analízise" />
+   hu="Javítások és mérések elemzése" />
 
 <e id="T_GaMa_resobs_Outlying_observations"
    EN="Outlying observations"
-   hu="Hibahatáron kívüli észlelések" />
+   hu="Hibahatáron kívül eső mérések" />
 
 <e id="T_GaMa_resobs_header1"
    EN="        f[%]        v    |v'|     e-obs.  e-adj.\n"
@@ -438,7 +439,7 @@
 
 <e id="T_GaMa_resobs_normality_test"
    EN="Test of normality of homogenised residuals"
-   hu="Homogenizált eredők normalitásának vizsgálata" />
+   hu="Homogenizált javítások normalitás vizsgálata" />
 
 <e id="T_GaMa_resobs_condition_number"
    EN="Condition number        : "
@@ -446,23 +447,23 @@
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
    en="Reduced observations" 
-   hu="Reduced observations" />
+   hu="Redukált mérések" />
 
 <e id="T_GaMa_reduced_observed"
    en="observed" 
-   hu="observed" />
+   hu="mért" />
 
 <e id="T_GaMa_reduced_reduced" 
    en="reduced" 
-   hu="reduced" />
+   hu="redukált" />
 
 <e id="T_GaMa_reduced_header1"
    en="  diff dh\n" 
-   hu="  diff dh\n" />
+   hu="  mag.kül\n" />
 
 <e id="T_GaMa_reduced_value"
    en="== value " 
-   hu="== value " />
+   hu="== érték " />
 
 
 <e id="T_GaMa_approx_Review_of_approximate_coordinates"
@@ -471,7 +472,7 @@
 
 <e id="T_GaMa_approx_observations"
    EN="observations: "
-   hu="észlelések  : " />
+   hu="mérések  : " />
 
 <e id="T_GaMa_approx_header1"
    EN="coordinates   "
@@ -499,22 +500,17 @@
 
 <e id="T_GaMa_abstrm_Review_of_outlying_abs_terms"
    EN="Outlying absolute terms in project equations"
-   hu="Hibahatáron túli abszolut kifejezések az egyenletekben" />
+   hu="Hibahatárnál nagyobb tisztatagok az egyenletekben" />
 
 <e id="T_GaMa_abstrm_header1"
    EN="           observed     absolute\n"
-   hu="           észlelt      abszolut\n" />
+   hu="             mért       abszolút\n" />
 
 <e id="T_GaMa_abstrm_header2"
    EN="== value ===== term ==\n\n"
-   hu="== érték ===== kif. ==\n\n" />
+   hu="== érték ===== ttag ==\n\n" />
 
 </entries>
-
-
-
-
-
 
 
 

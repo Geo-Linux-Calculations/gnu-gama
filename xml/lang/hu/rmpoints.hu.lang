@@ -7,30 +7,30 @@
 
 <e id="T_LN_rm_missing_xyz"
    EN="missing coordiantes xyz"
-   hu="hiányzó 3D koordináták" />
+   hu="hiányzó xyz koordináták" />
 
 <e id="T_LN_rm_missing_xy"
    EN="missing coordiantes xy"
-   hu="hiányzó 2D koordináták" />
+   hu="hiányzó xy koordináták" />
 
 <e id="T_LN_rm_missing_z"
    EN="missing coordiantes z"
-   hu="hiányzó 1D koordináták" />
+   hu="hiányzó z koordináták" />
 
 <e id="T_LN_rm_singular_xy"
    EN="singular coordiantes xy"
-   hu="Egyedülálló 2D koordináták" />
+   hu="Egyedülálló xy koordináták" />
 
 <e id="T_LN_rm_huge_cov_xyz"
    EN="indeterminable coordinates xyz"
-   hu="meghatározhatatlan 3D koordináták" />
+   hu="meghatározhatatlan xyz koordináták" />
 
 <e id="T_LN_rm_huge_cov_xy"
    EN="indeterminable coordinates xy"
-   hu="meghatározhatatlan 2D koordináták" />
+   hu="meghatározhatatlan xy koordináták" />
 
 <e id="T_LN_rm_huge_cov_z"
    EN="indeterminable coordinate z"
-   hu="meghatározhatatlan 1D koordináták" />
+   hu="meghatározhatatlan z koordináták" />
 
 </entries>

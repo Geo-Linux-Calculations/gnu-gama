@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.11 2007/10/20 14:28:02 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.12 2008/04/13 10:02:32 cepek Exp $
  */
 
 
@@ -313,7 +313,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
 
 void LocalNetworkXML::coordinates(std::ostream& out) const
 {
-  const int y_sign = Consistent(netinfo->PD) ? +1 : -1;
+  const int y_sign = GaMaConsistent(netinfo->PD) ? +1 : -1;
   
   out << "\n<coordinates>\n";
 
@@ -509,7 +509,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
 
   const GaMaLib::Vec& X = netinfo->solve();
   //const double scale    = netinfo->gons() ? 1.0 : 0.324;
-  const int    y_sign   = Consistent(netinfo->PD) ? +1 : -1;
+  const int    y_sign   = GaMaConsistent(netinfo->PD) ? +1 : -1;
   //const double kki      = netinfo->conf_int_coef();
   const int    unknowns = netinfo->sum_unknowns();
 
@@ -558,7 +558,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
    using namespace std;
    // using namespace GaMaLib;
 
-   const int      y_sign = Consistent(netinfo->PD) ? +1 : -1;
+   const int      y_sign = GaMaConsistent(netinfo->PD) ? +1 : -1;
    const GaMaLib::Vec& v = netinfo->residuals();
    const int      pocmer = netinfo->sum_observations();
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;

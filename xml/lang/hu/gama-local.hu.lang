@@ -31,11 +31,11 @@
 
 <e id="T_GaMa_No_network_points_defined"
    EN="No network points defined"
-   hu="Nincsenek meghatározva hálózati pontok meghatározva" />
+   hu="Nincsenek megadva hálózati pontok" />
 
 <e id="T_GaMa_No_unknowns_defined"
    EN="No unknowns have been defined"
-   hu="Nincsenek ismeretlenek meghatározva" />
+   hu="Nincsenek ismeretlenek" />
 
 <e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
    EN="Observations with outlying absolute terms removed"
@@ -47,19 +47,14 @@
 
 <e id="T_GaMa_Approximate_coordinates_replaced"
    EN="Approximate coordinates of computed points replaced by adjusted"
-   hu="A számított pontok elõzetes koordinátái cserélve a kiegyenlítettre" />
+   hu="A számított pontok elõzetes koordinátáit a kiegyenlítettre cseréltem" />
 
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"
-   hu="GNU Gama - hibás megoldás!" />
+   hu="GNU Gama - hiba a megoldás közben!" />
 
 <e id="T_GaMa_internal_program_error"
    EN="GNU Gama - internal program error!"
    hu="GNU Gama - belsõ programhiba!" />
   
 </entries>   
-
-
-
-
-

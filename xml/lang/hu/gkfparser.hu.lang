@@ -7,7 +7,7 @@
 
 <e id="T_GKF_must_start_with_gama_xml"
    EN="document must start with tag &lt;gama-local&gt;"
-   hu="a dokumentumnak a &lt;gama-local&gt; címkével kell kezdõdni" />
+   hu="a dokumentumnak a &lt;gama-local&gt; címkével kell kezdõdnie" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
@@ -27,7 +27,7 @@
 
 <e id ="T_GKF_missing_tag_network"
    EN="missing tag &lt;network&gt;"
-   hu="nem definiált &lt;vectors&gt; attribútum: " />
+   hu="hiányzó &lt;vectors&gt; címke: " />
 
 <e id="T_GKF_e01a_illegal_tag"
    EN="illegal_tag &lt;"
@@ -43,11 +43,11 @@
 
 <e id="T_GKF_error_on_reading_of_confidence_probability"
    EN="error on reading of confidence probability"
-   hu="hiba a konfidencia próba olvasása közben" />
+   hu="hiba a konfidencia valószinûség olvasása közben" />
 
 <e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
    EN="error on reading of tolerance for identification of outlying absolute terms"
-   hu="hiba az abszolut hibahatár olvasása közben" />
+   hu="hiba a tisztatagokra vonatkozó abszolut hibahatár olvasása közben" />
 
 <e id="T_GKF_wrong_type_of_standard_deviation"
    EN="wrong type of standard deviation" 
@@ -90,12 +90,12 @@
    hu="hiányzó pontszám (értékig=\&quot;...\&quot;)" />
 
 <e id="T_GKF_multiple_definition_of_xy_in_tag_point"
-   EN="multiple dexinition of coordinates xy in tag &lt;point&gt;"
-   hu="többszörös vízszintes koordináta definíciók a &lt;point&gt; címkében" />
+   EN="multiple definition of coordinates xy in tag &lt;point&gt;"
+   hu="több vízszintes koordináta a &lt;point&gt; címkében" />
 
 <e id="T_GKF_multiple_definition_of_z_in_tag_point"
    EN="multiple definition of coordinate z in tag &lt;point&gt;"
-   hu="töbsszörös magassági koordináta a efiníciók a &lt;point&gt; címkében" /> 
+   hu="több magasság a &lt;point&gt; címkében" /> 
 
 <e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
    EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
@@ -103,11 +103,11 @@
 
 <e id="T_GKF_coordinate_x_is_not_defined"
    EN="coordinate x is not defined"
-   hu="X koordináta nem definiált" />
+   hu="X koordináta nincs megadva" />
 
 <e id="T_GKF_coordinate_y_is_not_defined"
    EN="coordinate y is not defined"
-   hu="Y koordináta nem definiált" />
+   hu="Y koordináta nincs megadva" />
 
 <e id="T_GKF_bad_coordinate_x"
    EN="bad coordinate x: "
@@ -151,7 +151,7 @@
 
 <e id="T_GKF_missing_observed_value"
    EN="missing observed value"
-   hu="hányzó észlelés" />
+   hu="hányzó mért érték" />
 
 <e id="T_GKF_bad_distance"
    EN="bad distance: "
@@ -191,7 +191,7 @@
 
 <e id="T_GKF_bad_orientation_angle"
    EN="bad orientation angle: "
-   hu="hibás szög irány: " />
+   hu="hibás tájékozási szög: " />
 
 <e id="T_GKF_undefined_attribute_of_direction"
    EN="undefined attribute of &lt;direction&gt;: " 
@@ -223,27 +223,27 @@
 
 <e id="T_GKF_cov_mat_missing_band_width"
    EN="missing band-width of covariance matrix"
-   hu="kovariancia mátrix szélessége hiányzik" />
+   hu="kovariancia mátrix sávszélessége hiányzik" />
 
 <e id="T_GKF_covariance_matrix_is_not_positive_definite"
    EN="variance-covariance matrix is not positive definite"
-   hu="variancia-kovariancia mátrix ne pozitívan határozott" />
+   hu="variancia-kovariancia mátrix nem pozitív definit" />
 
 <e id="T_GKF_cov_mat_bad_dim"
    EN="bad dimension of covariance matrix: "
-   hu="hibás kovariancia mátrix dimenzió: " />
+   hu="hibás kovariancia mátrix méret: " />
 
 <e id="T_GKF_cov_mat_bad_band_width"
    EN="missing band-width of covariance matrix: "
-   hu="hiányzó kovariancia mátrix szélesség: " />
+   hu="hiányzó kovariancia mátrix sávszélesség: " />
 
 <e id="T_GKF_cov_mat_bad_dim_too_many_elements"
    EN="bad dimension of covariance matrix - too many elements"
-   hu="hibás kovariancia mátrix dimenzió - túl sok elem" />
+   hu="hibás kovariancia mátrix méret - túl sok elem" />
 
 <e id="T_GKF_cov_mat_bad_dim_not_enough_elements"
    EN="bad dimension of covariance matrix - not enough elements"
-   hu="hibás kovariancia mátrix dimenzió - túl kevés elem" />
+   hu="hibás kovariancia mátrix méret - túl kevés elem" />
 
 <e id="T_GKF_cov_mat_bad_element"
    EN="bad covariance matrix element: "
@@ -259,7 +259,7 @@
 
 <e id="T_GKF_cov_dim_differs_from_number_of_coordinates"
    EN="covariance matrix dimension differs from the number of coordinates"
-   hu="kovariancia mátrix dimenziója eltér a koordináták számától" />
+   hu="kovariancia mátrix mérete eltér a koordináták számától" />
 
 <e id="T_GKF_vectors_without_covariance_matrix"
    EN="vectors without covariance matrix"
@@ -267,16 +267,11 @@
 
 <e id="T_GKF_cov_dim_differs_from_number_of_vectors"
    EN="covariance matrix dimension differs from the number of vectors"
-   hu="kovariancia mátrix dimenziója eltér a vektorok számától" />
+   hu="kovariancia mátrix mérete eltér a vektorok számától" />
 
 <e id="T_GKF_bad_vector_data"
    EN="bad vector data"
    hu="hibás vektor adat" />
 
 </entries>   
-
-
-
-
-
 

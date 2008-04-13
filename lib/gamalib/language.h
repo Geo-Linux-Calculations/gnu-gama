@@ -1,7 +1,7 @@
 #ifndef GaMaLib___language__header_file_h
 #define GaMaLib___language__header_file_h
 
-namespace GaMaLib {      /* slovnikar 1.08 */
+namespace GaMaLib {      /* slovnikar 1.09 */
 
 enum gama_language { en, ca, cz, du, fi, fr, hu, ru, ua };
 void set_gama_language(gama_language);

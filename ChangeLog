@@ -1,15 +1,24 @@
-1.9.05 
+1.9.05 2007-04-13
 
-      - fixed terminology errors reported by Brona Koska (description
-	of left-handed and right-handed coordinates adn angular units)
-	
-      - improved performance of Adj::q_bb(int, int) for sparse matrices
+    - new revision of Hungariona translation by Zoltan Siki (Budapest
+      University of Technology and Economics in Hungary)
 
-      - fixed a bug in Adj_envelope::q_xx(int, int) brought in version 1.9.03
+    - fixed terminology errors reported by Brona Koska (description of
+      left-handed and right-handed coordinates adn angular units)
 
-      - fixed a bug in matvec/vecbase.h (missing test in operator>>)
-      
-      New version of matvec C++ template library is 1.0.00
+      Inline function Consistent (defined in gamadata.h) has been
+      renamed to GaMaConsistent to reflect its real meaning. (first
+      version of gama adjustment was designed for coordinate system with
+      left-handed coordinates and right-handed angular observations and
+      this combination was supposed to be 'consistent')
+
+    - improved performance of Adj::q_bb(int, int) for sparse matrices
+
+    - fixed a bug in Adj_envelope::q_xx(int, int) brought in version 1.9.03
+
+    - fixed a bug in matvec/vecbase.h (missing test in operator>>)
+  
+    - new version of matvec C++ template library is 1.0.00
 
 	
 1.9.04 2007-10-20

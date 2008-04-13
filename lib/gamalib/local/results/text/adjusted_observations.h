@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adjusted_observations.h,v 1.2 2007/06/26 15:04:07 cepek Exp $
+ *  $Id: adjusted_observations.h,v 1.3 2008/04/13 10:02:31 cepek Exp $
  */
 
 #ifndef GaMa_GaMaProg_Vyrovnana_Pozorovani_h_
@@ -39,7 +39,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
    using namespace GaMaLib;
    // using GaMaLib::Double;
 
-   const int    y_sign = Consistent(IS->PD) ? +1 : -1;
+   const int    y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
    const Vec&   v      = IS->residuals();
    const int    pocmer = IS->sum_observations();
    const double scale  = IS->gons() ? 1.0 : 0.324;
