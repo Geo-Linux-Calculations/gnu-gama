@@ -22,10 +22,11 @@
 */
 
 /*
- *  $Id: pointid.cpp,v 1.2 2007/06/26 15:04:04 cepek Exp $
+ *  $Id: pointid.cpp,v 1.3 2008/09/23 10:08:41 cepek Exp $
  */
 
 
+#include <cstdlib>
 #include <gamalib/pointid.h>
 
 // typedef std::string PointID;  
@@ -40,7 +41,7 @@ PointID::PointID(const std::string& s)
   string::const_iterator b=s.begin(), e=s.end();
   GNU_gama::TrimWhiteSpaces(b, e);
   sid = std::string(b,e);
-  iid = atoi(sid.c_str());
+  iid = std::atoi(sid.c_str());
   
   if (iid < 0) iid = 0;
   

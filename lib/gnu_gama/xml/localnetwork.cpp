@@ -20,10 +20,11 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.12 2008/04/13 10:02:32 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.13 2008/09/23 10:08:41 cepek Exp $
  */
 
 
+#include <typeinfo>
 #include <vector>
 #include <iomanip>
 #include <cmath>

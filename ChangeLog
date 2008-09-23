@@ -1,6 +1,37 @@
+1.9.06
+
+    - added missing standard headers (reported by Tomas Kouba and Jan Pytel)
+
+Index: lib/gamalib/pointid.cpp
+===================================================================
+RCS file: /sources/gama/gama/lib/gamalib/pointid.cpp,v
+retrieving revision 1.2
+diff -r1.2 pointid.cpp
+28a29
+> #include <cstdlib>
+43c44
+<   iid = atoi(sid.c_str());
+---
+>   iid = std::atoi(sid.c_str());
+Index: lib/gnu_gama/adj/envelope.h
+===================================================================
+RCS file: /sources/gama/gama/lib/gnu_gama/adj/envelope.h,v
+retrieving revision 1.11
+diff -r1.11 envelope.h
+29a30
+> #include <limits>
+Index: lib/gnu_gama/xml/localnetwork.cpp
+===================================================================
+RCS file: /sources/gama/gama/lib/gnu_gama/xml/localnetwork.cpp,v
+retrieving revision 1.12
+diff -r1.12 localnetwork.cpp
+26a27
+> #include <typeinfo>
+
+	
 1.9.05 2007-04-13
 
-    - new revision of Hungariona translation by Zoltan Siki (Budapest
+    - new revision of Hungarian translation by Zoltan Siki (Budapest
       University of Technology and Economics in Hungary)
 
     - fixed terminology errors reported by Brona Koska (description of

@@ -20,13 +20,14 @@
 */
 
 /*
- *  $Id: envelope.h,v 1.11 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: envelope.h,v 1.12 2008/09/23 10:08:41 cepek Exp $
  */
 
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 #define GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 
 
+#include <limits>
 #include <gnu_gama/sparse/smatrix_graph.h>
 #include <gnu_gama/sparse/smatrix_ordering.h>
 #include <gnu_gama/sparse/sbdiagonal.h>
