@@ -9,13 +9,7 @@ latest GNU Gama source, issue the following commands
    cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P gama
 \endverbatim
 
-or
-
-\verbatim
-   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P -r gama-1-8 gama
-\endverbatim
-
-for the stable branch gama-1-8. You can later update your sources by running
+You can later update your sources by running
 
 \verbatim
    cvs update -dPA
