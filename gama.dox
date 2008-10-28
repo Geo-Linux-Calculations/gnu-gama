@@ -3,7 +3,7 @@
 GNU Gama is a package for adjustment of geodetic networks.
 
 To get an anonymous read-only access to the CVS repository for the
-latest GNU Gama source, issue the following commands
+latest GNU Gama source, issue the following command
 
 \verbatim
    cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P gama
