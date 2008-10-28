@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: pinv.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: pinv.h,v 1.5 2008/10/28 09:24:43 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -29,8 +29,30 @@
 
 #include <matvec/svd.h>
 
+/** GNU Gama
+ */
+
 namespace GNU_gama {
 
+  /** Moore-Penrose pseudoinverse of a real M x N matrix.
+      
+  \param  A input matrix
+  \return pseudoinverse of A
+
+  Definition:
+
+  \f{eqnarray*}
+  AA^+A    &=& A     \\
+  A^+A^A   &=& A^+   \\
+  (AA^+)^T &=& AA^+  \\
+  (A^+A)^T &=& A^+A  \\
+  \f}
+  
+  Pseudoinverse is computed by using singular value decomposition
+  (template class SVD).
+
+  */
+  
 template <typename Float, typename Exc>
 Mat<Float, Exc> pinv(const Mat<Float, Exc>& A)
 {
@@ -51,11 +73,11 @@ Mat<Float, Exc> pinv(const Mat<Float, Exc>& A)
     else
       W_inv(k) = 0;
   
-  Mat<Float, Exc> pseudo_inverse(M, N);  // V*inv(W)*trans(U);
+  Mat<Float, Exc> pseudo_inverse(N, M);  // V*inv(W)*trans(U);
   
   Float s;
-  for (Index i=1; i<=M; i++)
-    for (Index j=1; j<=N; j++)
+  for (Index i=1; i<=N; i++)
+    for (Index j=1; j<=M; j++)
       {
         s = 0;
         for (Index k=1; k<=N; k++)
@@ -71,6 +93,8 @@ Mat<Float, Exc> pinv(const Mat<Float, Exc>& A)
 }   // namespace GNU_gama
 
 #endif
+
+
 
 
 
