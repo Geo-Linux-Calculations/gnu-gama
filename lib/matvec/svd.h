@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: svd.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: svd.h,v 1.5 2008/10/28 12:39:19 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -33,8 +33,10 @@
 
 namespace GNU_gama {
 
-  /* Exception::Singular Value Decomposition          A = U*W*trans(V)
-     ############################
+  /** \brief Singular Value Decomposition  */
+
+  /*  Singular Value Decomposition          A = U*W*trans(V) 
+      ############################
 
      SVD is based on the fortran SVD source from package CMLIB
 

@@ -1,0 +1,53 @@
+/** \mainpage GNU Gama classes and functions
+
+GNU Gama is a package for adjustment of geodetic networks.
+
+To get an anonymous read-only access to the CVS repository for the
+latest GNU Gama source, issue the following commands
+
+\verbatim
+   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P gama
+\endverbatim
+
+or
+
+\verbatim
+   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P -r gama-1-8 gama
+\endverbatim
+
+for the stable branch gama-1-8. You can later update your sources by running
+
+\verbatim
+   cvs update -dPA
+\endverbatim
+
+To download from CVS only the matrix/vector C++ template library matvec issue
+
+\verbatim
+   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co gama/lib/matvec
+\endverbatim
+
+The collection of sample networks is available as a separete CVS module. To checkout the gama-local examples from CVS use the command
+
+\verbatim
+   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co examples
+\endverbatim
+
+
+
+
+\namespace GNU_gama \brief The main namespace used in the GNU Gama project.
+
+Apart from GNU_gama, a second namespace GaMaLib is used for deprecated
+objects related to gama-local program.
+
+
+\namespace GaMaLib  \brief Deprecated
+
+GaMaLib is a second namespace used in GNU Gama for objects related
+only in gama-local program. Object from GaMaLib namespace are
+deprecated.
+
+The main namespace of GNU Gama project is GNU_gama.
+
+*/

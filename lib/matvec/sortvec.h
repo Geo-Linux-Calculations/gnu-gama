@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: sortvec.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: sortvec.h,v 1.5 2008/10/28 12:39:19 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -31,7 +31,7 @@
 #include <matvec/vecbase.h>
 
 
-namespace GNU_gama {
+namespace GNU_gama {   /** \brief Sort vector elements */
 
 template <typename Float, typename Exc>
 inline void sort(Vec<Float, Exc>& v)

@@ -1,6 +1,11 @@
-1.9.06
+2008-10-28  Ales Cepek  <cepek@localhost>
 
-    - added missing standard headers (reported by Tomas Kouba and Jan Pytel)
+	* new version 1.9.06
+	
+	* fixed a bug in pseudoinverse reported by Bronislav Koska 
+
+	* added missing standard headers (reported by Tomas Kouba and Jan
+	  Pytel)
 
 Index: lib/gamalib/pointid.cpp
 ===================================================================

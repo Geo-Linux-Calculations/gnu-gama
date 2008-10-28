@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: pinv.h,v 1.5 2008/10/28 09:24:43 cepek Exp $
+ *  $Id: pinv.h,v 1.6 2008/10/28 12:39:19 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -29,12 +29,10 @@
 
 #include <matvec/svd.h>
 
-/** GNU Gama
- */
 
 namespace GNU_gama {
 
-  /** Moore-Penrose pseudoinverse of a real M x N matrix.
+  /** \brief Moore-Penrose pseudoinverse of a real M x N matrix.
       
   \param  A input matrix
   \return pseudoinverse of A

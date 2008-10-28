@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2006, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: symmat.h,v 1.5 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: symmat.h,v 1.6 2008/10/28 12:39:19 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -31,7 +31,7 @@
 #include <matvec/choldec.h>
 
 
-namespace GNU_gama {
+namespace GNU_gama {   /** \brief Symmetrix matrix */
 
 template <typename Float=double,  typename Exc=Exception::matvec> 
 class SymMat : public MatBase<Float, Exc>, public CholDec<Float, Exc> {

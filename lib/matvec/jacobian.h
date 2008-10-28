@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 2002, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: jacobian.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: jacobian.h,v 1.5 2008/10/28 12:39:18 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -36,11 +36,12 @@
 
 namespace GNU_gama {
 
-  /* 
-   *  Template C++ class Jacobian computes Jacobian matrix for the
-   *  given argument of a vector function. Derivatives are numerically
+  /** \brief Jacobian
+   * 
+   *  Template C++ class computes Jacobian matrix for the given
+   *  argument of a vector function. Derivatives are numerically
    *  computed from a Lagrange polynomial of degree 2*n with
-   *  equidistant arguments. 
+   *  equidistant arguments.
    *  
    *  For example for degree 4 Lagrange's formula L4(x) goes through
    *  points y1=f(x-2h), y2=f(x-h), y3=f(x), y4=f(x+h) and y5=f(x+2h).

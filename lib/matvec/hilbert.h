@@ -1,5 +1,5 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 2000, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: hilbert.h,v 1.4 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: hilbert.h,v 1.5 2008/10/28 12:39:18 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -31,13 +31,10 @@
 
 namespace GNU_gama {
 
-template <typename Float, typename Exc> Mat<Float, Exc> InvHilbert(Index n)
-{
-  /* Inverse of a finite segment of the Hilbert matrix
+  /** \brief Inverse of a finite segment of the Hilbert matrix
    *
    * CACM Algorithm 50 by John R. Herndon (1961), corrections by
    * B. Randel, improved version by P. Naur
-   * ----------------------------------------------------------------- 
    *
    * This procedure computes the elements of the innverse of an n x n
    * finite segment of the Hilbert Matrix. The Hilbert matrix has the
@@ -46,6 +43,8 @@ template <typename Float, typename Exc> Mat<Float, Exc> InvHilbert(Index n)
    * 
    */
 
+template <typename Float, typename Exc> Mat<Float, Exc> InvHilbert(Index n)
+{
   Mat<Float, Exc> H(n,n);
 
   Index i, j, k;
@@ -72,6 +71,8 @@ template <typename Float, typename Exc> Mat<Float, Exc> InvHilbert(Index n)
 
   return H;
 }
+
+  /** Hilbert matrix */
 
 template <typename Float, typename Exc> Mat<Float, Exc> Hilbert(Index n)
 {

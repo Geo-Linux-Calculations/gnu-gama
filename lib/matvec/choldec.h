@@ -1,5 +1,5 @@
 /*  
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.00)
+    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: choldec.h,v 1.5 2007/12/01 20:21:18 cepek Exp $
+ *  $Id: choldec.h,v 1.6 2008/10/28 12:39:18 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -32,15 +32,14 @@
 
 namespace GNU_gama {
 
-/* Cholesky Decomposition of Positive Definite Matrix
- * ==================================================
- *
- * Two variants of implementation are possible:
- *
- *    a)   A = L*trans(L)
- *    b)   A = L*D*trans(L),   where D is diagonal and L has 1 on diagonal 
- */
-
+  /** \brief Cholesky Decomposition of Positive Definite Matrix
+   *
+   * Two variants of implementation are possible:
+   *
+   *    -    A = L*trans(L)
+   *    -    A = L*D*trans(L),   where D is diagonal and L has 1 on diagonal 
+   */
+  
 
 template <typename Float=double, typename Exc=Exception::matvec>
 class CholDec {
