@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.13 2008/09/23 10:08:41 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.14 2008/10/29 09:32:43 cepek Exp $
  */
 
 
@@ -370,8 +370,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       tagsp(out, "id", (*i).first);
       if (bxy)
         {
-          char* cx = "x";
-          char* cy = "y";
+          const char* cx = "x";
+          const char* cy = "y";
           if (p.constrained_xy())
             {
               cx = "X";
@@ -384,7 +384,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
         }
       if (bz)
         {
-          char* cz = "z";
+          const char* cz = "z";
           if (p.constrained_z())
             {
               cz = "Z";
@@ -412,8 +412,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       tagsp(out, "id", (*i).first);
       if (bxy)
         {
-          char* cx = "x";
-          char* cy = "y";
+          const char* cx = "x";
+          const char* cy = "y";
           if (p.constrained_xy())
             {
               cx = "X";
@@ -428,7 +428,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
         }
       if (bz)
         {
-          char* cz = "z";
+          const char* cz = "z";
           if (p.constrained_z())
             {
               cz = "Z";
