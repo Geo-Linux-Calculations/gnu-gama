@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: intlist.h,v 1.2 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: intlist.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
@@ -29,6 +29,8 @@
 #include <cstddef>
 
 namespace GNU_gama {
+
+/** Integer list class */
 
 template <typename Index=std::size_t> 
 

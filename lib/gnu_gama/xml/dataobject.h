@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataobject.h,v 1.3 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataobject.h,v 1.4 2008/10/31 18:23:26 cepek Exp $
  */ 
 
 #ifndef GaMaLib_GaMa_XML_Data_Object__object___h_
@@ -32,7 +32,13 @@
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/g3/g3_adjres.h>
 
-namespace GNU_gama { namespace DataObject {
+namespace GNU_gama { 
+
+  /** \brief Data Object sub-namespace */
+
+  namespace DataObject {
+
+  /** \brief Abstract data object class */
 
   class Base {
   public:
@@ -40,12 +46,16 @@ namespace GNU_gama { namespace DataObject {
     virtual ~Base() 
       {
       }
+
+    /** XML representation of the object  */
     virtual std::string xml() const = 0;
 
     static  std::string xml_begin();
     static  std::string xml_end();
   };
 
+
+  /** \brief Text object (tad <text>) */
 
   class Text : public Base {
   public:
@@ -67,6 +77,8 @@ namespace GNU_gama { namespace DataObject {
       }
   };
 
+
+  /** \brief Adjustment Data Input object */
 
   class AdjInput : public Base {
   public:
@@ -94,6 +106,8 @@ namespace GNU_gama { namespace DataObject {
   };
 
 
+  /** \brief g3_model adjustment XML input data */
+
   class g3_model : public Base {
   public:
   
@@ -119,6 +133,8 @@ namespace GNU_gama { namespace DataObject {
       }
   };
 
+
+  /** \brief g3_model adjustment results */
 
   class g3_adj_results : public Base {
   public:

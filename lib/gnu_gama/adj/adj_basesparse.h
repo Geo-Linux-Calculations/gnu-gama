@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_basesparse.h,v 1.4 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: adj_basesparse.h,v 1.5 2008/10/31 18:23:25 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBaseSparse_h
@@ -30,6 +30,7 @@
 
 namespace GNU_gama {
 
+  /** \brief Base adjustment class for sparse matrix solutions. */
 
   template <typename Float, typename Index, typename Vector, 
             typename AdjInputData>

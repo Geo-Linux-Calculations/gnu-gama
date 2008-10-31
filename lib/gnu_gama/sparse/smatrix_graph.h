@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix_graph.h,v 1.8 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: smatrix_graph.h,v 1.9 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
@@ -33,6 +33,7 @@
 
 namespace GNU_gama {
 
+  /** Adjacency structure. */
 
   template <typename Index=std::size_t>
   class Adjacency
@@ -72,6 +73,7 @@ namespace GNU_gama {
   };
 
 
+  /** Sparse matrix graph. */
 
   template <typename Float=double, typename Index=std::size_t>
   class SparseMatrixGraph : public Adjacency<Index>

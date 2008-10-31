@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: model.h,v 1.4 2007/06/26 15:04:09 cepek Exp $
+ *  $Id: model.h,v 1.5 2008/10/31 18:23:25 cepek Exp $
  */
 
 #ifndef GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
@@ -44,12 +44,20 @@ namespace GNU_gama {
   // ObservationVisitor is a completely degenerated class having only
   // the virtual destructor.
 
+
+  /** ObservationVisitor is a completely degenerated class having only
+   *  the virtual destructor.
+   */
+
   class ObservationVisitor 
   {
   public: 
     virtual ~ObservationVisitor() {}
   };
   
+
+  /** Base observation class.
+   */
 
   template <typename Cluster, typename Matrix, typename Index=std::size_t>
   class Observation
@@ -79,6 +87,9 @@ namespace GNU_gama {
   // .....................................................................
     
 
+  /** Abstract visitor class (design pattern 'acyclic visitor')
+   */
+
   template <typename Observation> class Visitor
   {
   public:
@@ -86,6 +97,11 @@ namespace GNU_gama {
     virtual void visit(Observation* observation) = 0;
   };
     
+
+  /** Base template class Model (mathematical model of geodetic
+   *  adjustment)
+   */
+
   template <typename Observation> 
   class Model
   {

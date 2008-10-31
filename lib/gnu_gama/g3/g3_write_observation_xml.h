@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_write_observation_xml.h,v 1.2 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_write_observation_xml.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 
@@ -36,7 +36,8 @@
 
 namespace GNU_gama { namespace g3 {
     
-    
+  /** g3 visitor class for writing observation data in XML. */
+
   class WriteObservationXML :  
     public GNU_gama::ObservationVisitor,
     public GNU_gama::Visitor<Angle>,

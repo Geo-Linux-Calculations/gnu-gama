@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: baseparser.h,v 1.3 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: baseparser.h,v 1.4 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GaMaLib_GaMa__XML__BASE_Base_base__PARSER_Parser_parser__h_
@@ -36,14 +36,14 @@
 
 namespace GNU_gama {
   
+    /** \brief expat parser interface */
+    
   class CoreParser 
   {
   public:
     
     CoreParser();
     virtual ~CoreParser();
-    
-    // expat parser interface
     
     virtual void xml_parse(const char *s, int len, int  isFinal) = 0;
     void xml_parse(const std::string& s, bool isFinal) 
@@ -75,6 +75,7 @@ namespace GNU_gama {
 
 
 
+  /** \brief Base parser class */
 
   template<typename ParserException> class BaseParser : public CoreParser 
   {

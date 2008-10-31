@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: svector.h,v 1.2 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: svector.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 
@@ -31,6 +31,8 @@
 
 
 namespace GNU_gama {
+
+/** Sparse vector class */
 
 template <typename Float=double, typename Index=std::size_t> 
 
@@ -72,10 +74,13 @@ template <typename Float=double, typename Index=std::size_t>
   Index* ibegin   () const { return indx;        }
   Index* iend     () const { return indx + used; }
 
+  /** resets the number of vector elements to zero */
   void reset() 
   { 
     used = 0; 
   }
+
+  /** add index-value pair into the vector */
   void add(Index ind, Float flt)
   {
     if (used == flts)

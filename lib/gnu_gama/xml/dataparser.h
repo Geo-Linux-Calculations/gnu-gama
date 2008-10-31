@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.h,v 1.14 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataparser.h,v 1.15 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
@@ -42,6 +42,12 @@ namespace GNU_gama {
   struct DataParser_g3;
   struct DataParser_g3adj;
   
+  /** \brief General Gama XML data parser 
+
+       DataParser class reads XML input and creates a list of pointers
+       DataObjects
+   */
+
   class DataParser : public BaseParser<Exception::parser>
     {
     public:

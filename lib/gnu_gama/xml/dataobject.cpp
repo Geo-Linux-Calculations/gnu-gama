@@ -20,13 +20,15 @@
 */
 
 /*
- *  $Id: dataobject.cpp,v 1.2 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataobject.cpp,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 #include <gnu_gama/xml/dataobject.h>
 
 using namespace std;
 using namespace GNU_gama::DataObject;
+
+/** \brief Gama XML data header */
 
 string Base::xml_begin()
 {
@@ -37,6 +39,8 @@ string Base::xml_begin()
     "<gnu-gama-data>\n";
 }
 
+
+/** \brief Gama XML data 'footer' */
 
 string Base::xml_end()
 {

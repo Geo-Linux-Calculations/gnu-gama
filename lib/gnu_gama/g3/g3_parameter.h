@@ -19,7 +19,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* $Id: g3_parameter.h,v 1.2 2007/06/26 15:04:10 cepek Exp $  */
+/* $Id: g3_parameter.h,v 1.3 2008/10/31 18:23:26 cepek Exp $  */
 
 #ifndef GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
 #define GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
@@ -33,6 +33,8 @@
 
 namespace GNU_gama { namespace g3 {
 
+
+  /** g3 base XML helper class. */
 
   class ParXML {
   public:
@@ -55,6 +57,7 @@ namespace GNU_gama { namespace g3 {
   };
 
 
+  /** g3 base parameter class. */
 
   class Parameter : public ParXML {
   public:
@@ -110,11 +113,15 @@ namespace GNU_gama { namespace g3 {
   };
 
 
+  /** g3 angular observations base class */
+
   class Angular : public Parameter {
   public:
     double scale() const { return RAD_TO_CC; }
   };
   
+
+  /** g3 linear observations base class */
 
   class Linear  : public Parameter {
   public:

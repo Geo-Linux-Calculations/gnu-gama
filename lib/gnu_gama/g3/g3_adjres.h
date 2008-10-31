@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_adjres.h,v 1.8 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_adjres.h,v 1.9 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
@@ -31,6 +31,8 @@
 #include <list>
 
 namespace GNU_gama {  namespace g3 {
+
+  /** g3 adjustment results class. */
 
   class AdjustmentResults
   {

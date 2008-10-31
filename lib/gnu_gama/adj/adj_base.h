@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj_base.h,v 1.16 2007/12/22 20:54:53 cepek Exp $
+ *  $Id: adj_base.h,v 1.17 2008/10/31 18:23:25 cepek Exp $
  */
 
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
@@ -29,6 +29,7 @@
 
 namespace GNU_gama {
 
+  /** \brief Base adjustment class. */
 
   template <typename Float, typename Index, typename Vector>
   class AdjBase {

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: sbdiagonal.h,v 1.5 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: sbdiagonal.h,v 1.6 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
@@ -32,6 +32,8 @@
 #include <cmath>
 
 namespace GNU_gama {
+
+  /** Symmetric block diagonal matrix. */
 
   template <typename Float=double, typename Index=std::size_t> 
   class BlockDiagonal {    // symmetric block diagonal matrix

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: adj.h,v 1.8 2007/12/22 20:54:53 cepek Exp $
+ *  $Id: adj.h,v 1.9 2008/10/31 18:23:25 cepek Exp $
  */
 
 #include <matvec/covmat.h>
@@ -43,29 +43,47 @@ namespace GNU_gama {
 
   class AdjInputData;
 
+  /** \brief General adjustment class for GNU Gama project.
+    */
+
   class Adj 
   {
   public:
     
-    enum algorithm {envelope, gso, svd, cholesky};
+    /** Adjustment algorithms implemented in Adj class */
+    enum algorithm 
+      {
+        /** Sparse matrix solution of Cholesky decomposition minimizing
+            local bandwidth.
+         */
+        envelope,  
+        gso,       /*!< Gram-Schmidt ortogonalization of design matrix */
+        svd,       /*!< Singular Value decomposition of project matrix */
+        cholesky   /*!< Cholesky decomposition of normal equations     */
+      };
     
     Adj () : data(0), algorithm_(envelope), minx_dim(0), minx(0) { init(0); }
     virtual ~Adj();
     
-    int n_obs() const { return n_obs_; }
-    int n_par() const { return n_par_; }
+    int n_obs() const { return n_obs_; }   /*!< number of observations */
+    int n_par() const { return n_par_; }   /*!< number of parameters   */
     
+    /**  sets pointer to input data object */
     void set(const AdjInputData* inp) { init(inp); }
 
+    /** numerical algorithm                 */
     void set_algorithm(Adj::algorithm);
+    /** returns current numerical algorithm */
     Adj::algorithm get_algorithm() const { return algorithm_; }
   
     int    defect() const { return least_squares->defect(); }
-    double rtr   () const { return rtr_; }     /* weighted sum of squares */
-    const Vec<>& x();                          /* adjusted parameters     */
-    const Vec<>& r();                          /* adjusted residuals      */
+    double rtr   () const { return rtr_; }     /*!< weighted sum of squares */
+    const Vec<>& x();                          /*!< adjusted parameters     */
+    const Vec<>& r();                          /*!< adjusted residuals      */
 
+    /** weight coeficients of adjusted parameters    */
     double q_xx(Index i, Index j) { return least_squares->q_xx(i,j); }
+    /** weight coefficients of adjusted observations */
     double q_bb(Index i, Index j);
   
   private:
@@ -98,6 +116,9 @@ namespace GNU_gama {
   };
   
 
+  /** \brief Adjustment input data class.
+   */
+
   class AdjInputData {
   public:
 
@@ -107,9 +128,13 @@ namespace GNU_gama {
     void write_xml(std::ostream&) const;
     void read_xml(std::istream&);
 
+    /** Sparse design matrix */
     const SparseMatrix <> * mat () const { return A;     }
+    /** Block diagonal matrix of observtion covariances */
     const BlockDiagonal<> * cov () const { return pcov;  }
+    /** Right-hand site*/
     const Vec          <> & rhs () const { return prhs;  }
+    /** List of parameters indexes used in regulrization of singular systems */
     const IntegerList  <> * minx() const { return pminx; } 
 
     void set_mat (SparseMatrix <> * p) { delete A;     A     = p; }

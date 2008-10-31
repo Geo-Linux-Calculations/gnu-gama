@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_observation.h,v 1.2 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_observation.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 
@@ -36,6 +36,8 @@
 namespace GNU_gama {  namespace g3 {
 
 
+  /** g3 observation base class. */
+
   class Observation :
     public GNU_gama::Observation<Cluster<Observation>, GNU_gama::CovMat<> >
   {
@@ -43,6 +45,8 @@ namespace GNU_gama {  namespace g3 {
 
   };
 
+
+  /** g3 helper class */
 
   class FromTo {
   public:
@@ -56,6 +60,8 @@ namespace GNU_gama {  namespace g3 {
   };
 
 
+  /** g3 helper class. */
+
   class Value {
     double value;
   public:
@@ -67,6 +73,8 @@ namespace GNU_gama {  namespace g3 {
     void   set(double d) { value = d;    }
   };
 
+
+  /** g3 distance class. */
 
   class Distance : public Observation, public FromTo, public Value {
   public:  
@@ -88,6 +96,8 @@ namespace GNU_gama {  namespace g3 {
   };
 
 
+  /** g3 zenith angle class. */
+
   class ZenithAngle : public Observation, public FromTo, public Value {
   public:  
 
@@ -107,6 +117,8 @@ namespace GNU_gama {  namespace g3 {
 
   };
 
+  
+  /** g3 azimuth class. */
 
   class Azimuth : public Observation, public FromTo, public Value {
   public:  
@@ -127,6 +139,8 @@ namespace GNU_gama {  namespace g3 {
 
   };
 
+
+  /** g3 vector class. */
 
   class Vector : public Observation, public FromTo {
   public:  
@@ -163,6 +177,8 @@ namespace GNU_gama {  namespace g3 {
     double dx_, dy_, dz_;
   };
 
+
+  /** g3 observed coordinates class. */
 
   class XYZ : public Observation {
   public:  
@@ -202,6 +218,8 @@ namespace GNU_gama {  namespace g3 {
   };
 
 
+  /** g3 height difference class. */
+
   class HeightDiff : public Observation, public FromTo, public Value {
   public:  
 
@@ -221,6 +239,8 @@ namespace GNU_gama {  namespace g3 {
 
   };
 
+
+  /** g3 observed height class. */
 
   class Height : public Observation, public Value {
   public:  
@@ -243,6 +263,8 @@ namespace GNU_gama {  namespace g3 {
     
   };
 
+
+  /** g3 horizontal angle class. */
 
   class Angle : public Observation, public Value {
   public:

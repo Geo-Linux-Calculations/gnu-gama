@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: smatrix.h,v 1.2 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: smatrix.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama___GaMaLib_Sparse_General_Matrix_______General___Matrix__
@@ -33,6 +33,8 @@
 namespace GNU_gama {
 
 template <typename Float=double, typename Index=std::size_t> 
+
+  /** Sparse general matrix is a set of unordered sparse rows. */
 
   class SparseMatrix {
     

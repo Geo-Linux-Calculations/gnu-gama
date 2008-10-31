@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.h,v 1.3 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_model.h,v 1.4 2008/10/31 18:23:26 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
@@ -39,7 +39,12 @@
 #include <gnu_gama/e3.h>
 #include <list>
 
-namespace GNU_gama {  namespace g3 {
+namespace GNU_gama {  
+
+  /** \brief Adjustment model on ellipsoid */
+  namespace g3 {
+
+  /** g3 adjustment model. */
 
   class Model : public GNU_gama::Model<g3::Observation>
   {
