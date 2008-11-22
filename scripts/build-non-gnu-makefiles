@@ -1,19 +1,26 @@
+#!/bin/bash
 #
-# builds dictionaries for GaMaLib
-# 
-# $Id: build-old-makefiles,v 1.4 2007/07/06 11:07:25 cepek Exp $
+# $Id: build-non-gnu-makefiles,v 1.1 2008/11/22 14:00:57 cepek Exp $
 
 CXX=g++
 
 if test "$1" != "gnu" -a "$1" != "win32-borland" -a "$1" != "win32-msvc"; 
 then
-        echo;
-        echo "usage: "
-        echo;
-        echo "cd working-directory";
-        echo "$0 gnu | win32-borland | win32-msvc";
-        echo;
-        exit;
+cat <<EOF
+
+usage: 
+
+cd working-directory
+$0 gnu | win32-borland | win32-msvc
+
+
+The script (with the helper program gnu_gama_dep.cpp) is run from a
+working directory with GNU gama source codes.  Resulting makefiles are
+written to the 'lib' subdirectory. Before using makefile you need to
+rename file lib/config.h-"platform" to lib/config.h.
+
+EOF
+exit;
 fi
 
 if pwd | grep /scripts$; then cd ..; fi
@@ -33,7 +40,7 @@ echo
 VER=$(awk '/AC_INIT/{print $2}'  configure.ac | sed s/\\[//g | sed s/\\],//)
 echo "#define VERSION \""$VER\"  > lib/config.h-$1
 
-find lib -name *.cpp | sed s/lib\\/// | \
+find lib -name "*.cpp" | sed s/lib\\/// | \
 $DEP lib        "$1" > lib/Makefile-lib-$1
 $DEP expat      "$1" > lib/Makefile-expat-$1
 $DEP gama-local "$1" > lib/Makefile-gama-local-$1
@@ -52,10 +59,3 @@ echo -e "\t$MAKE -f Makefile-gama-local-$1" >> lib/Makefile-all-$1
 echo -e "\t$MAKE -f Makefile-gama-g3-$1"    >> lib/Makefile-all-$1
 
 # ------------------------------------------------------------------------
-
-echo Please edit lib/gnu_gama/version.cpp 
-
-
-
-
-
