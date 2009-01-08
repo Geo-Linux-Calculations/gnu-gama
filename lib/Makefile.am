@@ -252,8 +252,15 @@ expat_extra = \
    expat/xmlparse/hashtable.h \
    expat/xmlparse/xmlparse.h 
 
+win32_msvc = \
+   config.h-win32-msvc \
+   Makefile-all-win32-msvc \
+   Makefile-expat-win32-msvc \
+   Makefile-gama-g3-win32-msvc \
+   Makefile-gama-local-win32-msvc \
+   Makefile-lib-win32-msvc
+
 noinst_LIBRARIES  = libgama.a
 libgama_a_SOURCES = $(libgama_src) $(matvec_src)
 
-EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
-
+EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra) $(win32_msvc)
