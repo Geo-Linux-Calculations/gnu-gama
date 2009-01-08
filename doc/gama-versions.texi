@@ -1,8 +1,8 @@
-@comment $Id: gama-versions.texi,v 1.12 2009/01/08 15:13:06 cepek Exp $
+@comment $Id: gama-versions.texi,v 1.13 2009/01/08 19:55:53 cepek Exp $
 
 GNU Gama is a project dedicated to adjustment of @emph{geodetic
 networks}. It was formerly inspired by Fortran system Geodet/PC (1990)
-designed by Frantisek Charamza. The GNU Gama project has been started
+designed by Frantisek Charamza. The GNU Gama project started
 at the department of mapping and cartography, faculty of Civil
 Engineering, Czech Technical University in Prague (CTU) about 1998 and
 its name is an acronym for @emph{geodesy and mapping}.  It was
