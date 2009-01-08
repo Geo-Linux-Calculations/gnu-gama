@@ -1,40 +1,21 @@
 GNU Gama is developed and tested under Debian GNU/Linux
-(@uref{http://www.debian.org/}). You can compile Gama easily
-yourself if you download the sources.  If @code{expat} XML parser
-is installed on your system, change to the directory of Gama project
-and issue the following commands at the shell prompt:
+(@uref{http://www.debian.org/}).@footnote{Under MS Windows start
+Visual Studio .NET Command prompt, change to the directory @code{lib},
+rename file @code{config.h-win32-msvc} to @code{config.h} and run
+@code{nmake -f Makefile-all-win32-msvc}. A static library
+@code{libgama.lib} and executables are build in the @code{lib} folder.
+Please mind, that Windows version of Gama is not maintained and
+tested.}  You can compile Gama easily yourself if you download the
+sources.  If @code{expat} XML parser is installed on your system,
+change to the directory of Gama project and issue the following
+commands at the shell prompt
 @c
 @example
-$ make dep
-$ make
-$ make example
-@end example
-@c
-If for any reason @code{expat} is not installed on your system, you
-can still compile and build Gama with old version @code{expat 1.1}
-that is shipped with Gama
-@c
-@example
-$ make dep-expat-1.1
+$ ./configure
 $ make
 @end example
 
 
-To compile GNU Gama under Windows (command-line tool
-@code{gama-local}) you need makefiles for Microsoft @code{nmake}
-and/or Borland free compiler @code{bcc32}. These makefiles are build
-under GNU/Linux by @code{scripts/build-old-makefiles}.  The script
-must be run with an argument @code{win32-msvc}, @code{win32-borland} or
-@code{gnu} for creating corresponding makefiles. The script writes
-makefiles into the @code{lib} directory.
 
-After building makefiles you also need to edit
-@code{lib/gnu_gama/version.cpp} to set manually the version of GNU
-Gama and comment out the include directive for @code{config.h}.
-
-Under Windows start a DOS window, change to the directory @code{lib}
-and run @code{nmake -f Makefile-all-win32-msvc} or @code{make -f
-Makefile-all-win32-borlan}. Executables are created in the @code{lib}
-folder.
 
 

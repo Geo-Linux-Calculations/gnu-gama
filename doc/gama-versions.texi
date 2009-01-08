@@ -1,4 +1,4 @@
-@comment $Id: gama-versions.texi,v 1.13 2009/01/08 19:55:53 cepek Exp $
+@comment $Id: gama-versions.texi,v 1.14 2009/01/08 20:58:15 cepek Exp $
 
 GNU Gama is a project dedicated to adjustment of @emph{geodetic
 networks}. It was formerly inspired by Fortran system Geodet/PC (1990)
@@ -32,3 +32,31 @@ by a command-line program @code{gama-local} that adjusts geodetic
 differences, 3D vectors and observed coordinates (coordinates with
 given variance-covariance matrix).  Adjustment in global coordinate
 systems is supported only partly as a @code{gama-g3} program.
+
+
+
+@section What is a geodetic network adjustment?
+
+Surveying is the technique and science of accurately determining the
+terrestrial or three-dimensional space position of points and the
+distances and angles between them.  GNU Gama is a software for
+adjustment of traditional geodetic surveyings which are still used and
+needed in special measurements (e.g., underground or high precision
+engineering measurements) where GPS cannot be used.
+
+Adjustment is a technical term traditional used by geodesists which
+simply means "application of Least Squares method to process the
+over-determined system of measurements" (other statistical method than
+Least Square are used sometimes but are not common). In other words we
+have more observations than needed and we are trying to get the best
+estimate for adjusted observations and/or coordinates.
+
+@emph{Adjustment of a geodetic network} means that we have a set of points
+with given coordinates coordinates of some points and a set of
+observations among them. What is typical for adjustment of special
+geodetic measurements is that the resulting linearised system might be
+singular (we can have a network with no fixed points) and we are
+not only interested in values of 'adjusted parameters and
+observations' but also in the estimates of their covariances. This is
+what Gama does.
+
