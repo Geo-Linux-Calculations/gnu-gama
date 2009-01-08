@@ -1,4 +1,3 @@
-@comment $Id: gama-g3.texi,v 1.1 2004/03/03 17:06:15 cepek Exp $
+@comment $Id: gama-g3.texi,v 1.2 2009/01/08 15:13:06 cepek Exp $
 
-There is no documentation for unstable development branch
-program @code{gama-g3} yet ...
+There is no documentation for program @code{gama-g3} yet ...

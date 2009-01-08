@@ -1,40 +1,21 @@
-The latest GNU Gama stable version can be found on in the subdirectory
-@code{/gnu/gama/} on your favourite
-@uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or from the CVS as
-the branch @code{@value{STABLEV}}.  See our project page at
+GNU Gama  can be found in the subdirectory @code{/gnu/gama/} on
+your favourite @uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or
+checked-out from the CVS. See our project page at
 @uref{http://savannah.gnu.org/projects/gama/, savannah} for more
-information.  
-
-Development branch version @code{@value{VERSION}} is available from
-the CVS on the main trunk or from the alpha GNU FTP server
-@uref{ftp://alpha.gnu.org/gnu/gama/}.  Archive of previous versions
-(both stable and unstable) is available at
-@uref{http://gama.fsv.cvut.cz/gama/archive/}.
-
+information.
 
 To get an anonymous read-only access to the CVS repository for the
-latest GNU Gama unstable source, submit the following commands
+latest GNU Gama source, issue the following command
 
 @example
-cvs -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama login
-cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama co gama
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co -P gama
 @end example
 
-@noindent or
-
-@example
-cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama 
-         co -r @value{STABLEV} gama
-@end example
-
-@noindent for the stable branch @code{@value{STABLEV}}.
 
 To download from CVS only the matrix/vector C++ template library
 @code{matvec} run
 @example
-@c cvs -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama login 
-cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama 
-         co gama/matvec
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co gama/lib/matvec
 @end example
 
 
@@ -52,8 +33,7 @@ module. To checkout the @code{gama-local} examples from CVS use the
 command
 
 @example
-cvs -z3 -d:pserver:anoncvs@@subversions.gnu.org:/cvsroot/gama 
-         co examples
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co examples
 @end example
 
 

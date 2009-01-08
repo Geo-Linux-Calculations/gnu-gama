@@ -1,4 +1,5 @@
-EXTRA_DIST = autogen.sh build-dictionaries build-ellipsoids build-old-makefiles
+EXTRA_DIST = autogen.sh build-dictionaries build-ellipsoids \
+             build-non-gnu-makefiles
 
 noinst_PROGRAMS   = slovnikar ellipsoids_xml gnu_gama_dep
 

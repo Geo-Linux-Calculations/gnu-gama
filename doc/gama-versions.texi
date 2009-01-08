@@ -1,6 +1,4 @@
-@comment $Id: gama-versions.texi,v 1.11 2006/03/11 17:44:39 cepek Exp $
-
-@set STABLEV 1.8
+@comment $Id: gama-versions.texi,v 1.12 2009/01/08 15:13:06 cepek Exp $
 
 GNU Gama is a project dedicated to adjustment of @emph{geodetic
 networks}. It was formerly inspired by Fortran system Geodet/PC (1990)
@@ -12,7 +10,13 @@ presented to wider public for the first time at FIG Working Week 2000
 in Prague and then at FIG Workshop and Seminar at HUT Helsinki in
 2001.
 
+GNU Gama homepage is
+
             @center   @uref{http://www.gnu.org/software/gama/}
+
+and the project is hosted on
+
+            @center   @uref{http://savannah.gnu.org/cvs/?group=gama}
 
 
 GNU Gama is released under GNU General Public Licence and is based on
@@ -22,33 +26,9 @@ documents GNU Gama calls @code{expat} parser version 1.1 written by
 James Clark. The @code{expat} parser is not part of the GNU Gama
 project, but is used with GNU Gama.
 
-
-GNU Gama currently contains two main development branches.  Stable
-branch of the project is limited to network adjustment in a local
-coordinate system and its functionality is represented by a command
-line program @code{gama-local}.  Program @code{gama-local} adjusts
-geodetic (free) networks of observed distances, directions, angles,
-height differences, 3D vectors and observed coordinates (coordinates
-with given variance-covariance matrix).
-
-
-In the unstable development branch the adjustment model is based on
-geocentric coordinate system (adjustment model on ellipsoid). Its
-functionality is represented by command line program
-@code{gama-g3}.  The stable branch is frozen but is being updated to
-be compatible with the model of adjustment in geocentric coordinates.
-
-
-Project Rocinante is the GNU Gama GUI for the adjustment in local
-coordinate systems (stable branch; program @code{roci-local}) and is
-based on the Qt graphical library. Rocinante is documented
-separatedly, for more information see
-
-         @center @uref{http://roci.sourceforge.net/}
-
-@noindent Compiled executables of program @code{roci-local} corresponding 
-to stable version @value{STABLEV} for Linux and Win32 can be downloaded from
-
-         @center @uref{http://sourceforge.net/projects/roci/}
-
-
+Adjustment in local carthesian coordinate systems is fully supported
+by a command-line program @code{gama-local} that adjusts geodetic
+(free) networks of observed distances, directions, angles, height
+differences, 3D vectors and observed coordinates (coordinates with
+given variance-covariance matrix).  Adjustment in global coordinate
+systems is supported only partly as a @code{gama-g3} program.
