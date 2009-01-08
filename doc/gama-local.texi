@@ -17,7 +17,7 @@ with extension@code{.txt} is used.  If run without arguments
 
 $ ./gama-local 
 
-Adjustment of local geodetic network        version: 1.9.01 / GNU g++
+Adjustment of local geodetic network        version: @value{VERSION} / GNU g++
 ************************************
 http://www.gnu.org/software/gama/
 
