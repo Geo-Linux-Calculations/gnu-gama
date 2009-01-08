@@ -1,4 +1,4 @@
-@comment $Id: gama-versions.texi,v 1.14 2009/01/08 20:58:15 cepek Exp $
+@comment $Id: gama-versions.texi,v 1.15 2009/01/08 22:16:14 cepek Exp $
 
 GNU Gama is a project dedicated to adjustment of @emph{geodetic
 networks}. It was formerly inspired by Fortran system Geodet/PC (1990)
@@ -35,7 +35,7 @@ systems is supported only partly as a @code{gama-g3} program.
 
 
 
-@section What is a geodetic network adjustment?
+@section What is the geodetic network adjustment?
 
 Surveying is the technique and science of accurately determining the
 terrestrial or three-dimensional space position of points and the
