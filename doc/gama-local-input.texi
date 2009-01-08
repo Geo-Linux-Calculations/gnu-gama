@@ -1,4 +1,4 @@
-@comment $Id: gama-local-input.texi,v 1.4 2008/04/13 10:23:07 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.5 2009/01/08 13:49:32 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 
@@ -1054,16 +1054,9 @@ instrument and/or target height are
 The XML input data format should be now reasonably clear from the
 following sample geodetic network.  This example is taken from user's
 guide to Geodet/PC by Frantisek Charamza.
-@c %
-@c % \cite{charamza:geodetpc}.
-@c % \begin{figure}
-@c % \gmimage{priklad-vstup}{\textwidth}
-@c % \caption{Sketch of the example network}
-@c % \end{figure}
-
 
 @c include gama-local-inp-example.ed.texi
-@image{gama-local-input-example, 14cm}
+@image{fig/gama-local-input-example, 14cm}
 
 
 @example

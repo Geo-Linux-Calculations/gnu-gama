@@ -1,4 +1,4 @@
-@comment $Id: gama-local-adj.texi,v 1.7 2004/06/20 13:34:23 cepek Exp $
+@comment $Id: gama-local-adj.texi,v 1.8 2009/01/08 13:49:32 cepek Exp $
 
 @c @setfilename gama-local-adj.info
 
@@ -856,18 +856,7 @@ where @gmat{k_p} is a coefficient computed for the given probability
 @gmat{P} as defined in @ref{Statistical analysis}.
 
 
-@c %%% %
-@c %%% \begin{figure}
-@c %%% \begin{center}
-@c %%% \mbox{\gmimage{priklad-elipsa-g}{0.6\textwidth}}
-@c %%% \end{center}
-@c %%% \en{\caption{Approximate position of adjusted point 
-@c %%%              with regard to confidence ellipse}}
-@c %%% \label{priklad-elipsa-g}
-@c %%% \end{figure}
-@c %%% %
-
-@image{gama-local-adj-ellipse-g,8cm}
+@image{fig/gama-local-adj-ellipse-g,8cm}
 
 Position of  approximate coordinates of an adjusted point with
 respect to its confidence ellipse

@@ -1,4 +1,4 @@
-@comment $Id: xyz2blh.texi,v 1.2 2003/02/16 13:09:14 cepek Exp $
+@comment $Id: xyz2blh.texi,v 1.3 2009/01/08 13:49:33 cepek Exp $
 
 Spatial coordinates @math{(X, Y, Z)} can be easily computed from
 geographical ellipsoidal coordinates @math{(B, L, H)}, where @math{B}
@@ -89,7 +89,7 @@ Transformation from spatial to geographical coordinates, Survey Review
 XXIII, 181, July 1976} that is more effective and sufficiantly
 accurate and that is used in GNU Gama.
 
-@image{xyz2blh-fig,10cm}
+@image{fig/xyz2blh-fig,10cm}
 
 @noindent The centre of curvature @math{C} of the spheroid corresponding to
 @math{P'} is the point
