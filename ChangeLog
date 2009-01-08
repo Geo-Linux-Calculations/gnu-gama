@@ -1,3 +1,14 @@
+2009-01-08  Ales Cepek  <cepek@localhost>
+
+	* added makefiles for Microsoft .NET studio to help builidng Gama
+	for people without access to GNU/Linux
+
+	* all figures from 'doc' dorectory moved to a single subdirectory
+	'fig' to easy publishing of manuals on the web
+
+	* removed all notes on Rocinante from the manual, the Roci project
+ 	is dead
+
 2008-10-28  Ales Cepek  <cepek@localhost>
 
 	* new version 1.9.06
