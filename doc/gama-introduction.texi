@@ -1,4 +1,4 @@
-@comment $Id: gama-versions.texi,v 1.16 2009/01/09 07:11:20 cepek Exp $
+@comment $Id: gama-introduction.texi,v 1.1 2009/01/09 07:16:35 cepek Exp $
 
 Surveying is the technique and science of accurately determining the
 terrestrial or three-dimensional space position of points and the

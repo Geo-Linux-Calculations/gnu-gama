@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.21 2009/01/08 15:13:06 cepek Exp $
+@comment $Id: gama.texi,v 1.22 2009/01/09 07:16:35 cepek Exp $
 
 @comment Part 1 : Header
 
@@ -22,8 +22,7 @@
 @comment Part 2: Summary Description and Copyright
 
 @ifinfo
-This is a working documentation version of GNU Gama @value{VERSION}
-unstable development branch.
+This is a documentation version of GNU Gama @value{VERSION}.
 
 Copyright @copyright{} 2003 Ales Cepek.
 
@@ -84,7 +83,7 @@ Free Documentation License''.
 
 @node    Introduction
 @chapter Introduction
-@include gama-versions.texi
+@include gama-introduction.texi
 
 @c Program gama-g3:: 
 

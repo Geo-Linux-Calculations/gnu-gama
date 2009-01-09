@@ -9,10 +9,10 @@ gama_TEXINFOS =           \
    gama-download.texi     \
    gama-g3.texi           \
    gama-install.texi      \
+   gama-introduction.texi \
    gama-local-adj.texi    \
    gama-local-macros.texi \
    gama-local.texi        \
-   gama-versions.texi     \
    gama-local-input.texi  \
    obsdata.texi           \
    version.texi	          \
