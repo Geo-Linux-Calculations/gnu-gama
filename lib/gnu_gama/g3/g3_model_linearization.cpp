@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_linearization.cpp,v 1.3 2007/06/26 15:04:10 cepek Exp $
+ *  $Id: g3_model_linearization.cpp,v 1.4 2009/01/10 17:06:19 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -118,6 +118,8 @@ void GNU_gama::g3::Model::update_linearization()
       
     } while (!check_observations());
   
+  if (dm_floats * dm_rows * dm_cols == 0)
+    throw GNU_gama::Exception::string("No parameters and/or observations");
 
   adj_input_data->set_mat(A);
   adj_input_data->set_rhs(rhs);
