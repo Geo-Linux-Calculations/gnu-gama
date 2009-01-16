@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3.cpp,v 1.3 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataparser_g3.cpp,v 1.4 2009/01/16 18:22:25 cepek Exp $
  */
 
 
@@ -1061,7 +1061,7 @@ int DataParser::g3_obs_vector(const char *name)
       return end_tag(name);
     }
   
-  return error("### bad <vector>");
+  return error("### bad <vector> from to dx dy dz : " + text_buffer);
 }
 
 int DataParser::g3_obs_xyz(const char *name)
