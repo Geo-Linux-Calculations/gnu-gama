@@ -1,4 +1,7 @@
-2009-01-08  Ales Cepek  <cepek@localhost>
+2009-01-20  Ales Cepek  <cepek@localhost>
+
+	* Karl Berry rearranged some of the introduction text and
+	corrected a few English things (doc/gama-intrtoduction.texi)
 
 	* added makefiles for Microsoft .NET studio to help builidng Gama
 	for people without access to GNU/Linux
