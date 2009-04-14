@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: network.cpp,v 1.9 2007/10/20 14:28:02 cepek Exp $
+ *  $Id: network.cpp,v 1.10 2009/04/14 14:54:55 cepek Exp $
  */
 
 #include <fstream>
@@ -444,9 +444,19 @@ bool LocalNetwork::singular_coords(const Mat& A)
           bb += b*b;
         }
 
-      D = aa*bb - ab*ab;
+      // old scale dependent test:
+      //
+      // D = aa*bb - ab*ab;
+      // 
+      // if ((aa == 0) || (fabs(D) <= aa*1e-6))
 
-      if ((aa == 0) || (fabs(D) <= aa*1e-6))
+      if (bb > aa) std::swap(aa, bb);
+      if (aa == 0)
+        D = 0;
+      else
+        D = 1 - std::abs(ab)/std::sqrt(aa*bb);     // 1 - |cos(a,b)|
+
+      if (D < 1e-12)
         {
           result = true;
           p.unused_xy();

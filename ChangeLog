@@ -1,4 +1,35 @@
-2009-01-20  Ales Cepek  <cepek@localhost>
+2009-04-14  Ales Cepek  <cepek@gnu.org>
+
+	* Fixed a scale dependent test of "singular coordinates". The bug
+	was reported by Zdenek Lukes. 
+
+diff -u -r1.9 network.cpp
+--- lib/gamalib/local/network.cpp	20 Oct 2007 14:28:02 -0000	1.9
++++ lib/gamalib/local/network.cpp	14 Apr 2009 14:51:22 -0000
+@@ -444,9 +444,19 @@
+           bb += b*b;
+         }
+ 
+-      D = aa*bb - ab*ab;
++      // old scale dependent test:
++      //
++      // D = aa*bb - ab*ab;
++      // 
++      // if ((aa == 0) || (fabs(D) <= aa*1e-6))
++
++      if (bb > aa) std::swap(aa, bb);
++      if (aa == 0)
++        D = 0;
++      else
++        D = 1 - std::abs(ab)/std::sqrt(aa*bb);     // 1 - |cos(a,b)|
+ 
+-      if ((aa == 0) || (fabs(D) <= aa*1e-6))
++      if (D < 1e-12)
+         {
+           result = true;
+           p.unused_xy();
+	
+2009-01-20  Ales Cepek  <cepek@gnu.org>
 
 	* Karl Berry rearranged some of the introduction text and
 	corrected a few English things (doc/gama-intrtoduction.texi)
@@ -12,7 +43,7 @@
 	* removed all notes on Rocinante from the manual, the Roci project
  	is dead
 
-2008-10-28  Ales Cepek  <cepek@localhost>
+2008-10-28  Ales Cepek  <cepek@gnu.org>
 
 	* new version 1.9.06
 	
