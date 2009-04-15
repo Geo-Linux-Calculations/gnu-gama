@@ -1,7 +1,7 @@
 2009-04-14  Ales Cepek  <cepek@gnu.org>
 
 	* Fixed a scale dependent test of "singular coordinates". The bug
-	was reported by Zdenek Lukes. 
+	was reported by Zdenek Lukes <zdenek.lukes@fsv.cvut.cz>.
 
 diff -u -r1.9 network.cpp
 --- lib/gamalib/local/network.cpp	20 Oct 2007 14:28:02 -0000	1.9
