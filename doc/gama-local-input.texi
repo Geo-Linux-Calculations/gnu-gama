@@ -1,4 +1,4 @@
-@comment $Id: gama-local-input.texi,v 1.5 2009/01/08 13:49:32 cepek Exp $
+@comment $Id: gama-local-input.texi,v 1.6 2009/07/03 13:57:19 cepek Exp $
 
 @comment setfilename gama-local-inp.info
 
@@ -40,7 +40,7 @@ alternatively be used under the GNU General Public License (GPL)
 instead.
 
 
-In the @code{gama-local} XML input, distances are given in metres,
+In the @code{gama-local} XML input, distances are given in meters,
 angular values in centigrades and their standard deviations (rms
 errors) in millimetres or centigrade seconds, respectively.
 Alternatively angular values in @code{gama-local} XML input can be
@@ -911,7 +911,7 @@ empty tags @code{<dh />} having the following attributes:
 @code{stdev = "@dots{}"}  standard deviation of levellin elevation and
 
 @item 
-@code{dist  = "@dots{}"}  distance of leveling section (in meters)
+@code{dist  = "@dots{}"}  distance of leveling section (in kilometers)
 @end itemize
 
 
