@@ -1,6 +1,6 @@
 /*  
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2009  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
     
@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: pinv.h,v 1.6 2008/10/28 12:39:19 cepek Exp $
+ *  $Id: pinv.h,v 1.7 2009/07/29 11:11:07 cepek Exp $
  *  http://www.gnu.org/software/gama/
  */
 
@@ -66,7 +66,7 @@ Mat<Float, Exc> pinv(const Mat<Float, Exc>& A)
   Vec<Float,Exc> W_inv(N);
   Float t = svd.tol();
   for (Index k=1; k<=N; k++)
-    if (W(k) > t)
+    if (!svd.lindep(k))
       W_inv(k) = 1 / W(k);
     else
       W_inv(k) = 0;
