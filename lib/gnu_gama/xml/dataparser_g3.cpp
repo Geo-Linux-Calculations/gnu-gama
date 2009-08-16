@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser_g3.cpp,v 1.4 2009/01/16 18:22:25 cepek Exp $
+ *  $Id: dataparser_g3.cpp,v 1.5 2009/08/16 19:23:32 cepek Exp $
  */
 
 
@@ -95,6 +95,10 @@ void DataParser::init_g3()
   init(s_g3_const, t_conf_level,
        s_g3_const_conf_level, 0, s_g3_const,
        0, &DataParser::add_text, &DataParser::g3_const_conf_level);
+
+  init(s_g3_const, t_tol_abs,
+       s_g3_const_tol_abs, 0, s_g3_const,
+       0, &DataParser::add_text, &DataParser::g3_const_tol_abs);
 
   init(s_g3_const, t_ang_degrees,
        s_g3_const_ang, 0, s_g3_const,
@@ -1173,6 +1177,24 @@ int DataParser::g3_const_conf_level(const char *name)
    }
 
   return error("### bad <confidence-level>");
+}
+
+int DataParser::g3_const_tol_abs(const char *name)
+{
+  using namespace g3;  
+  stringstream istr(text_buffer);
+  double       ta;
+
+  if (pure_data(istr >> ta))
+   {
+     text_buffer.clear();
+ 
+     g3->model->set_tol_abs(ta);
+     
+     return  end_tag(name);
+   }
+
+  return error("### bad <tol-abs>");
 }
 
 int DataParser::g3_const_ellipsoid_id(const char *name)

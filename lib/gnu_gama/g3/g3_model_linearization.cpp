@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model_linearization.cpp,v 1.4 2009/01/10 17:06:19 cepek Exp $
+ *  $Id: g3_model_linearization.cpp,v 1.5 2009/08/16 19:23:32 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -407,7 +407,7 @@ void Model::linearization(Distance* d)
 
     double rd = rhs(++rhs_ind) = (d->obs() - D)*Linear().scale();
 
-    if (abs(rd) > 1e3)
+    if (abs(rd) > tol_abs)
       {
         Model::Rejected robs;
         
@@ -512,7 +512,7 @@ void Model::linearization(Vector* v)
      rhs(++rhs_ind) = ry = (v->dy() - dy)*s;
      rhs(++rhs_ind) = rz = (v->dz() - dz)*s;
 
-     if (abs(rx) > 1e3 || abs(ry) > 1e3 || abs(rz) > 1e3)
+     if (abs(rx) > tol_abs || abs(ry) > tol_abs || abs(rz) > tol_abs)
        {
          Model::Rejected robs;
 
@@ -572,7 +572,7 @@ void Model::linearization(XYZ* xyz)
      rhs(++rhs_ind) = ry = (xyz->y() - y)*s;
      rhs(++rhs_ind) = rz = (xyz->z() - z)*s;
 
-     if (abs(rx) > 1e3 || abs(ry) > 1e3 || abs(rz) > 1e3)
+     if (abs(rx) > tol_abs || abs(ry) > tol_abs || abs(rz) > tol_abs)
        {
          Model::Rejected robs;
 

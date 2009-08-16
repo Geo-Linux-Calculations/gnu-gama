@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.cpp,v 1.5 2008/01/10 19:23:22 cepek Exp $
+ *  $Id: g3_model.cpp,v 1.6 2009/08/16 19:23:32 cepek Exp $
  */
 
 #include <gnu_gama/g3/g3_model.h>
@@ -51,6 +51,7 @@ Model::Model()
 
   apriori_sd       = 1.00;
   confidence_level = 0.95;
+  tol_abs          = 1e3;
 
   actual_sd = aposteriori;
 

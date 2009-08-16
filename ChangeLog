@@ -1,5 +1,9 @@
-2009-07-29  Ales Cepek  <cepek@gnu.org>
+2009-08-16  Ales Cepek  <cepek@gnu.org>
 
+	* Added a new xml tag <tol-abs> into the gama-g3 programa xml
+	input data for explicit specification of absolute term tolerance
+	during linearization.
+	
 	* Fixed a bug reported by Brona Koska <koska@email.cz> in pinv.h
 
 diff -u -r1.6 pinv.h

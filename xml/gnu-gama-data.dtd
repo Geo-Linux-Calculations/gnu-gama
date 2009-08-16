@@ -75,12 +75,14 @@
 <!ELEMENT caption ( #PCDATA ) >
 
 <!ELEMENT constants
- ( apriori-standard-deviation | confidence-level | angular-units-gons |
-   angular-units-degrees | ellipsoid )* > 
+ ( apriori-standard-deviation | confidence-level | tol-abs |
+   angular-units-gons | angular-units-degrees | ellipsoid )* > 
 
 <!ELEMENT confidence-level (#PCDATA) > 
 
-<!ELEMENT constr (n | e | u)*                  >
+<!ELEMENT tol-abs (#PCDATA) > 
+
+<!ELEMENT constr (n | e | u)* >
 
 <!ELEMENT cov-mat (dim, band, flt+) >
 

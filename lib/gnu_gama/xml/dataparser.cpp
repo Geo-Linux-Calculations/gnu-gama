@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: dataparser.cpp,v 1.12 2007/06/26 15:04:11 cepek Exp $
+ *  $Id: dataparser.cpp,v 1.13 2009/08/16 19:23:32 cepek Exp $
  */
 
 
@@ -313,6 +313,7 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "text"                      )) return t_text;
       if (!strcmp(c, "to"                        )) return t_to;
       if (!strcmp(c, "to-dh"                     )) return t_to_dh;
+      if (!strcmp(c, "tol-abs"                   )) return t_tol_abs;
       break;                                     
     case 'u' :                                   
       if (!strcmp(c, "u"                         )) return t_u;

@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: g3_model.h,v 1.4 2008/10/31 18:23:26 cepek Exp $
+ *  $Id: g3_model.h,v 1.5 2009/08/16 19:23:32 cepek Exp $
  */
 
 #ifndef GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
@@ -115,6 +115,8 @@ namespace GNU_gama {
     double get_apriori_sd() const   { return apriori_sd;       } 
     void   set_conf_level(double c) { confidence_level = c;    }
     double get_conf_level() const   { return confidence_level; } 
+    void   set_tol_abs   (double c) { tol_abs = c;             }
+    double get_tol_abs   () const   { return tol_abs;          } 
 
     double standard_deviation() const { return std_deviation; }
     double standard_variance () const { return std_variance; }
@@ -194,6 +196,7 @@ namespace GNU_gama {
     // constants
     double apriori_sd;
     double confidence_level;
+    double tol_abs;
 
     bool   gons_;
 
