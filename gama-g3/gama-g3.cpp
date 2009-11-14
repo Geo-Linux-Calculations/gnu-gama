@@ -20,7 +20,7 @@
 */
 
 /*
- * $Id: gama-g3.cpp,v 1.5 2008/01/10 19:32:09 cepek Exp $
+ * $Id: gama-g3.cpp,v 1.6 2009/11/14 08:39:47 cepek Exp $
  */
 
 #include <fstream>
@@ -226,6 +226,11 @@ int main(int argc, char* argv[])
   try 
     {
       return main_g3();
+    }
+  catch (GNU_gama::Exception::matvec m)
+    {
+      std::cerr <<  "\n### gama-g3 : " 
+                << m.description << " (" << m.error << ")\n";
     }
   catch (GNU_gama::Exception::string s)
     {
