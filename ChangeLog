@@ -1,4 +1,30 @@
-2009-08-16  Ales Cepek  <cepek@gnu.org>
+1.9.07  2009-12-02  Ales Cepek  <cepek@gnu.org>
+
+	* fixed a bug reported by Martin Beckett a trailing space in 3 of
+	the XML element name
+
+RCS file: /sources/gama/gama/lib/gnu_gama/xml/localnetwork.cpp,v
+retrieving revision 1.14
+diff -r1.14 localnetwork.cpp
+253c253
+<   tagnl(out, "sum-of-squares ", netinfo->trans_VWV());
+---
+>   tagnl(out, "sum-of-squares", netinfo->trans_VWV());
+281c281
+<     tagnl(out, "probability ", netinfo->conf_pr());
+---
+>     tagnl(out, "probability", netinfo->conf_pr());
+309c309
+<     tagnl(out, "confidence-scale ",  netinfo->conf_int_coef());
+---
+>     tagnl(out, "confidence-scale",  netinfo->conf_int_coef());
+
+	Strictly speaking this was not a bug according to XML 1.0 (5th Ed.)
+
+	     STag ::= '<' Name (S  Attribute)* S? '>'
+
+	but there was no use for the trailing spaces in XML tags and as
+	they caused a problem they were removed.
 
 	* Added a new xml tag <tol-abs> into the gama-g3 programa xml
 	input data for explicit specification of absolute term tolerance

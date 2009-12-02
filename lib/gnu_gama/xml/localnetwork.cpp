@@ -20,7 +20,7 @@
 */
 
 /*
- *  $Id: localnetwork.cpp,v 1.14 2008/10/29 09:32:43 cepek Exp $
+ *  $Id: localnetwork.cpp,v 1.15 2009/12/02 19:15:30 cepek Exp $
  */
 
 
@@ -250,7 +250,7 @@ void LocalNetworkXML::equations_summary(std::ostream& out) const
 
   out.setf(ios_base::scientific, ios_base::floatfield);
   out.precision(7);
-  tagnl(out, "sum-of-squares ", netinfo->trans_VWV());
+  tagnl(out, "sum-of-squares", netinfo->trans_VWV());
 
   if (netinfo->connected_network())
     out << "   <connected-network/>\n";
@@ -278,7 +278,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
 
     out.setf(ios_base::fixed, ios_base::floatfield);
     out.precision(3);
-    tagnl(out, "probability ", netinfo->conf_pr());
+    tagnl(out, "probability", netinfo->conf_pr());
 
     const int dof = netinfo->degrees_of_freedom();
     float test=0, lower=0, upper=0; 
@@ -306,7 +306,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     
     out.setf(ios_base::scientific, ios_base::floatfield);
     out.precision(7);
-    tagnl(out, "confidence-scale ",  netinfo->conf_int_coef());
+    tagnl(out, "confidence-scale",  netinfo->conf_int_coef());
 
     out << "</standard-deviation>\n";
 }
