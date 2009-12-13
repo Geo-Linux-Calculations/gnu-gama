@@ -14,7 +14,16 @@ commands at the shell prompt
 $ ./configure
 $ make
 @end example
-
+@c
+@noindent to compile and build all binaries. Run
+@example
+$ ./configure [--bindir=DIR --infodir=DIR]
+$ make install
+@end example
+@c
+@noindent if you want also install the binaries. You can use configure 
+pararameters if you need to change directories where user executables
+and info dosumentation should be installed.
 
 
 
