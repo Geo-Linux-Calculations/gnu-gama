@@ -11,18 +11,54 @@ latest GNU Gama source, issue the following command
 cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co -P gama
 @end example
 
+@noindent
+You can checkout a specific branch with @code{-r} flag, for example
+
+@example
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
+    co -r gama-1-10 -P gama
+@end example
+
+@noindent 
+CVS option @code{-P} in previous examples is used to prune empty
+directories in your working copy of the repository.
+
+, for example
+
+@example
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
+    co -r gama-1-10 -P gama
+@end example
+
+@noindent 
+CVS option @code{-P} in previous examples is used to prune empty
+directories in your working copy of the repository.
 
 To download from CVS only the matrix/vector C++ template library
 @code{matvec} run
 @example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co gama/lib/matvec
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
+    co gama/lib/matvec
 @end example
 
 
-
 @menu
+* Matvec::
 * Examples::
 @end menu
+
+@node       Matvec
+@subsection Matvec
+@cindex     matvec
+
+To download from CVS only the matrix/vector C++ template library
+@code{matvec} run
+@example
+cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
+    co gama/lib/matvec
+@end example
+ 
+
 
 @node       Examples
 @subsection Examples

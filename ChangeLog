@@ -1,3 +1,11 @@
+1.10 2010-xx-xx  Ales Cepek  <cepek@gnu.org>
+
+	* This is a working CVS branch gama-1-10 for the next planned
+	release 1.10
+	
+	* According to GNU Coding Standards new release is identified with
+	a pair of version numbers (1.10)
+
 1.9.07  2009-12-02  Ales Cepek  <cepek@gnu.org>
 
 	* fixed a bug reported by Martin Beckett a trailing space in 3 of

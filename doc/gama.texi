@@ -1,5 +1,5 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.23 2009/01/20 14:33:18 cepek Exp $
+@comment $Id: gama.texi,v 1.23.2.1 2009/12/21 15:15:20 cepek Exp $
 
 @c ./gendocs.sh --email cepek@gnu.org gama "GNU Gama manual"
 
@@ -132,8 +132,8 @@ to GNU Gama project:
 @c
 Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
-Diego Berge, Boris Pihtin, Stephane Kaloustian, Anton Horpynich and
-Claudio Fontana.
+Diego Berge, Boris Pihtin, Stephane Kaloustian, Anton Horpynich,
+Claudio Fontana, Brona Koska and Martin Beckett.
 
 
 @node     Reporting bugs
