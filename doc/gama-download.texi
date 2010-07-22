@@ -1,64 +1,19 @@
 GNU Gama  can be found in the subdirectory @code{/gnu/gama/} on
 your favourite @uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or
-checked-out from the CVS. See our project page at
+checked-out from the GIT. See our project page at
 @uref{http://savannah.gnu.org/projects/gama/, savannah} for more
 information.
 
-To get an anonymous read-only access to the CVS repository for the
+To get an anonymous read-only access to the GIT repository for the
 latest GNU Gama source, issue the following command
 
 @example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co -P gama
+git clone git://git.sv.gnu.org:/sources/gama.git
 @end example
-
-@noindent
-You can checkout a specific branch with @code{-r} flag, for example
-
-@example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
-    co -r gama-1-10 -P gama
-@end example
-
-@noindent 
-CVS option @code{-P} in previous examples is used to prune empty
-directories in your working copy of the repository.
-
-, for example
-
-@example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
-    co -r gama-1-10 -P gama
-@end example
-
-@noindent 
-CVS option @code{-P} in previous examples is used to prune empty
-directories in your working copy of the repository.
-
-To download from CVS only the matrix/vector C++ template library
-@code{matvec} run
-@example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
-    co gama/lib/matvec
-@end example
-
 
 @menu
-* Matvec::
 * Examples::
 @end menu
-
-@node       Matvec
-@subsection Matvec
-@cindex     matvec
-
-To download from CVS only the matrix/vector C++ template library
-@code{matvec} run
-@example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama \
-    co gama/lib/matvec
-@end example
- 
-
 
 @node       Examples
 @subsection Examples
@@ -69,7 +24,6 @@ module. To checkout the @code{gama-local} examples from CVS use the
 command
 
 @example
-cvs -d:pserver:anonymous@@cvs.sv.gnu.org:/sources/gama co examples
+git clone git://git.sv.gnu.org:/gama/example.git
 @end example
-
 
