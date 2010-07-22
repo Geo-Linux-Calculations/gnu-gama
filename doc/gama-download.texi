@@ -8,7 +8,7 @@ To get an anonymous read-only access to the GIT repository for the
 latest GNU Gama source, issue the following command
 
 @example
-git clone git://git.sv.gnu.org:/sources/gama.git
+git clone git://git.sv.gnu.org/gama.git
 @end example
 
 @menu
@@ -24,6 +24,6 @@ module. To checkout the @code{gama-local} examples from CVS use the
 command
 
 @example
-git clone git://git.sv.gnu.org:/gama/example.git
+git clone git://git.sv.gnu.org/gama/example.git
 @end example
 
