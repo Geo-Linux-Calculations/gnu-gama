@@ -1,10 +1,50 @@
-1.10 2010-xx-xx  Ales Cepek  <cepek@gnu.org>
+1.10 2010-07-23  Ales Cepek  <cepek@gnu.org>
 
-	* This is a working CVS branch gama-1-10 for the next planned
-	release 1.10
-	
 	* According to GNU Coding Standards new release is identified with
 	a pair of version numbers (1.10)
+
+	* Switching to GIT for GNU Gama 1.10
+
+CVS Gama repository imported into git
+
+  $ git cvsimport -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama  gama
+
+  $ git branch
+     gama-1-10
+     gama-1-4
+     gama-1-8
+   * master
+     origin
+
+Imported branch origin (the most recent version of the CVS main trunk) was renamed to gama-1-9
+
+  $ git branch -m origin gama-1-9
+
+Branch gama-1-10 merged to master
+
+  $ git merge gama-1-10
+
+and branch gama-1-10 was deleted
+
+  $ git branch -d gama-1-10
+
+Pushing a Newly-Created, Existing, or Converted Git Repository
+--------------------------------------------------------------
+
+  $ git  push --all -v  cepek@git.sv.gnu.org:/srv/git/gama.git
+  Pushing to cepek@git.sv.gnu.org:/srv/git/gama.git
+  Counting objects: 8330, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (1911/1911), done.
+  Writing objects: 100% (8330/8330), 1.88 MiB, done.
+  Total 8330 (delta 6280), reused 8290 (delta 6257)
+  To cepek@git.sv.gnu.org:/srv/git/gama.git
+   * [new branch]      gama-1-4 -> gama-1-4
+   * [new branch]      gama-1-8 -> gama-1-8
+   * [new branch]      gama-1-9 -> gama-1-9
+   * [new branch]      master -> master
+
+
 
 1.9.07  2009-12-02  Ales Cepek  <cepek@gnu.org>
 
