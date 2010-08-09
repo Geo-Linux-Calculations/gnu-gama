@@ -1,7 +1,15 @@
 <!-- ****************************************************************
 
-gama-local.dtd                     version 2.0.14  2007-01-20
+gama-local.dtd                     version 2.0.15  2010-08-09
 ==============
+
+2.0.15  2010-08-09
+
+      - implicit type of standard deviations was changed to "aposteriori" in DTD
+
+        Implicit type of sigma-act was aposteriori both in gama-local
+        program and documentation and gama-local.dtd only adopted an
+        already existing practice.
 
 2.0.14  2007-01-20
 
@@ -187,7 +195,7 @@ information visit
    sigma-apr  NMTOKEN  "10.0" 
    conf-pr    NMTOKEN  "0.95"
    tol-abs    NMTOKEN  "1000.0"
-   sigma-act           (aposteriori | apriori) "apriori" 
+   sigma-act           (aposteriori | apriori) "aposteriori"
    update-constrained-coordinates   (yes | no) "no" >
 
 <!ATTLIST points-observations
