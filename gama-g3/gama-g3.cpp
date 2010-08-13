@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- * $Id: gama-g3.cpp,v 1.6 2009/11/14 08:39:47 cepek Exp $
- */
-
 #include <fstream>
 #include <iostream>
 #include <gnu_gama/xml/dataparser.h>

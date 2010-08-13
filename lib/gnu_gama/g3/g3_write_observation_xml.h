@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_write_observation_xml.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
- */
-
-
 #ifndef GNU_gama__g3___WriteObservationXML__g3_xml_write_observation_h
 #define GNU_gama__g3___WriteObservationXML__g3_xml_write_observation_h
 

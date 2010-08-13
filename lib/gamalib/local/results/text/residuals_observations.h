@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,18 +19,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: residuals_observations.h,v 1.2 2007/06/26 15:04:07 cepek Exp $
- */
-
-
 #ifndef GaMa_GaMaProg_Opravy_Pozorovani__h_
 #define GaMa_GaMaProg_Opravy_Pozorovani__h_
 
 #include <gamalib/local/network.h>
 #include <gnu_gama/statan.h>
 #include <algorithm>
-#include <typeinfo>
 
 static float ResidualsObservations_N01(float x)   // local helper function
 {
@@ -155,11 +149,11 @@ void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
           out << cc.c_str();
           out.setf(ios_base::fixed, ios_base::floatfield);
           
-          if (typeid(*pm) == typeid(Distance))
+          if (dynamic_cast<Distance*>(pm))
             {
               out << T_GaMa_distance;
             }
-          else if (typeid(*pm) == typeid(Direction))
+          else if (dynamic_cast<Direction*>(pm))
             {
               out << T_GaMa_direction;
             }
@@ -170,39 +164,39 @@ void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
               out << (u->fs()).c_str();
               out << T_GaMa_angle;
             }
-          else if (typeid(*pm) == typeid(S_Distance))
+          else if (dynamic_cast<S_Distance*>(pm))
             {
               out << T_GaMa_s_distance;
             }
-          else if (typeid(*pm) == typeid(Z_Angle))
+          else if (dynamic_cast<Z_Angle*>(pm))
             {
               out << T_GaMa_z_angle;
             }
-          else if (typeid(*pm) == typeid(X))
+          else if (dynamic_cast<X*>(pm))
             {
               out << T_GaMa_x;
             }
-          else if (typeid(*pm) == typeid(Y))
+          else if (dynamic_cast<Y*>(pm))
             {
               out << T_GaMa_y;
             }
-          else if (typeid(*pm) == typeid(Z))
+          else if (dynamic_cast<Z*>(pm))
             {
               out << T_GaMa_z;
             }
-          else if (typeid(*pm) == typeid(H_Diff))
+          else if (dynamic_cast<H_Diff*>(pm))
             {
               out << T_GaMa_levell;
             }
-          else if (typeid(*pm) == typeid(Xdiff))
+          else if (dynamic_cast<Xdiff*>(pm))
             {
               out << T_GaMa_xdiff;
             }
-          else if (typeid(*pm) == typeid(Ydiff))
+          else if (dynamic_cast<Ydiff*>(pm))
             {
               out << T_GaMa_ydiff;
             }
-          else if (typeid(*pm) == typeid(Zdiff))
+          else if (dynamic_cast<Zdiff*>(pm))
             {
               out << T_GaMa_zdiff;
             }

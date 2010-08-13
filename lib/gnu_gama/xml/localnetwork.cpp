@@ -1,8 +1,8 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
+    GNU Gama C++ library
+    Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+    This file is part of the GNU Gama C++ library
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,12 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: localnetwork.cpp,v 1.15 2009/12/02 19:15:30 cepek Exp $
- */
-
-
-#include <typeinfo>
 #include <vector>
 #include <iomanip>
 #include <cmath>
@@ -189,18 +183,18 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
     hdiffs = 0, zangles=0, chords=0, vectors=0;
 
   for (int i=1; i<=netinfo->sum_observations(); i++)
-    if      (typeid(*netinfo->ptr_obs(i)) == typeid(Distance))   dists++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(Direction))  dirs++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(Angle))      angles++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(X))          coords++;
-  //else if (typeid(*netinfo->ptr_obs(i)) == typeid(Y))          coords++;
-  //else if (typeid(*netinfo->ptr_obs(i)) == typeid(Z))          coords++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(H_Diff))     hdiffs++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(Z_Angle))    zangles++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(S_Distance)) chords++;
-    else if (typeid(*netinfo->ptr_obs(i)) == typeid(Xdiff))      vectors++;
-  //else if (typeid(*netinfo->ptr_obs(i)) == typeid(Ydiff))      vectors++;
-  //else if (typeid(*netinfo->ptr_obs(i)) == typeid(Zdiff))      vectors++;
+    if      (dynamic_cast<Distance*  >(netinfo->ptr_obs(i))) dists++;
+    else if (dynamic_cast<Direction* >(netinfo->ptr_obs(i))) dirs++;
+    else if (dynamic_cast<Angle*     >(netinfo->ptr_obs(i))) angles++;
+    else if (dynamic_cast<X*         >(netinfo->ptr_obs(i))) coords++;
+  //else if (dynamic_cast<Y*         >(netinfo->ptr_obs(i))) coords++;
+  //else if (dynamic_cast<Z*         >(netinfo->ptr_obs(i))) coords++;
+    else if (dynamic_cast<H_Diff*    >(netinfo->ptr_obs(i))) hdiffs++;
+    else if (dynamic_cast<Z_Angle*   >(netinfo->ptr_obs(i))) zangles++;
+    else if (dynamic_cast<S_Distance*>(netinfo->ptr_obs(i))) chords++;
+    else if (dynamic_cast<Xdiff*     >(netinfo->ptr_obs(i))) vectors++;
+  //else if (dynamic_cast<Ydiff*     >(netinfo->ptr_obs(i))) vectors++;
+  //else if (dynamic_cast<Zdiff*     >(netinfo->ptr_obs(i))) vectors++;
   
   tagnl(out, "distances",  dists);
   tagnl(out, "directions", dirs);

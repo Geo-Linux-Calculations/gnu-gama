@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_point.cpp,v 1.3 2007/06/26 15:04:10 cepek Exp $
- */
-
 #include <gnu_gama/g3/g3_point.h>
 #include <gnu_gama/g3/g3_observation.h>
 #include <gnu_gama/g3/g3_model.h>

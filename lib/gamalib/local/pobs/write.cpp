@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,13 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: write.cpp,v 1.2 2007/06/26 15:04:07 cepek Exp $
- */
-
 #include <iostream>
 #include <iomanip>
-#include <typeinfo>
 #include <gamalib/local/gamadata.h>
 #include <gamalib/local/pobs/format.h>
 #include <gamalib/observation.h>
@@ -134,12 +129,12 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
 
           end_tag   = "</obs>\n"; 
         }
-      else if (typeid(**c) == typeid(Coordinates))
+      else if (dynamic_cast<Coordinates*>(*c))
         {
           start_tag = "\n<coordinates>\n";
           end_tag   = "</coordinates>\n";
         }
-      else if (typeid(**c) == typeid(HeightDifferences))
+      else if (dynamic_cast<HeightDifferences*>(*c))
         {
           start_tag = "\n<height-differences>\n";
           end_tag   = "</height-differences>\n";

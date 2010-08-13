@@ -1,8 +1,9 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 2002,2002  Jan Pytel  <pytel@gama.fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 2002 Jan Pytel  <pytel@fsv.cvut.cz>
+                  2010 Ales Cepek <cepek@gnu.org> 
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,13 +20,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: reduce_observations.cpp,v 1.2 2007/06/26 15:04:06 cepek Exp $
- */
-
- 
 #include <gamalib/local/acord/reduce_observations.h>
-#include <typeinfo>
 #include <iostream>
 
 using namespace std;
@@ -94,16 +89,14 @@ void ReducedObservations::reduce(ReducedObs& r_obs)
 {
     Observation* obs = r_obs.ptr_obs;
     
-    if ( typeid(*obs) == typeid(S_Distance) )
-	reduce_sdistance(&r_obs);
+    if (dynamic_cast<S_Distance*>(obs))
+      reduce_sdistance(&r_obs);
+    else if (dynamic_cast<Z_Angle*>(obs)) 
+      reduce_zangle(&r_obs);
+    else if (dynamic_cast<Ydiff*>(obs))
+      reduce_ydiff(&r_obs);
     else
-	if ( typeid(*obs) == typeid(Z_Angle) ) 
-	    reduce_zangle(&r_obs);
-	else
-	    if ( typeid(*obs) == typeid(Ydiff) )
-		reduce_ydiff(&r_obs);
-	    else
-		; // !? Must I throw exception here ?
+      ; // !? Must I throw exception here ?
 }
 
 

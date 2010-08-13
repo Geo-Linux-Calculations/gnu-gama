@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: capi_output_file.cpp,v 1.3 2007/06/26 15:04:05 cepek Exp $
- */
-
 #include <gnu_gama/outstream.h>
 
 #include <gamalib/c/api/capi_output_file.h>

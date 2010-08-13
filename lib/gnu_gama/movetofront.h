@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: movetofront.h,v 1.1 2007/12/11 18:08:07 cepek Exp $
- */
-
 #ifndef GNU_Gama_MoveToFront___gnu_gama_move_to_front___movetofront_h
 #define GNU_Gama_MoveToFront___gnu_gama_move_to_front___movetofront_h
 

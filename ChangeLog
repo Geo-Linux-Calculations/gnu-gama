@@ -1,9 +1,14 @@
+2010-08-13  Ales Cepek  <cepek@gnu.org>
+
+	* all calls to typeid() replaced by dynamic_cast<>()
+	* all CVS $Id: comments deleted
+
 1.10 2010-07-23  Ales Cepek  <cepek@gnu.org>
 
 	* According to GNU Coding Standards new release is identified with
 	a pair of version numbers (1.10)
 
-	* Switching to GIT for GNU Gama 1.10
+	* CVS repository moved to GIT for GNU Gama 1.10
 
 CVS Gama repository imported into git
 

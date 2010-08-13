@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj_svd.h,v 1.9 2007/06/26 15:04:10 cepek Exp $
- */
-
 #ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
 #define GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
 

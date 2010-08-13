@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: dataparser.h,v 1.16 2009/08/16 19:23:32 cepek Exp $
- */
-
 #ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
 #define GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
 

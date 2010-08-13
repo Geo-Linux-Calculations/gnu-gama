@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: smatrix_graph_connected.h,v 1.6 2007/06/26 15:04:11 cepek Exp $
- */
-
 #include <stack>
 
 template <typename Float, typename Index>

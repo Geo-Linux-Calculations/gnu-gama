@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: homogenization.h,v 1.4 2007/06/26 15:04:10 cepek Exp $
- */
-
 #ifndef GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
 #define GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
 

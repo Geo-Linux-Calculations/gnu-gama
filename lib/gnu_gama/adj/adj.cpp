@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj.cpp,v 1.8 2007/12/22 20:54:53 cepek Exp $
- */
-
 #include <gnu_gama/adj/adj.h>
 #include <gnu_gama/xml/dataparser.h>
 #include <vector>

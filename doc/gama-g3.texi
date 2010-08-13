@@ -1,3 +1,1 @@
-@comment $Id: gama-g3.texi,v 1.2 2009/01/08 15:13:06 cepek Exp $
-
 There is no documentation for program @code{gama-g3} yet ...

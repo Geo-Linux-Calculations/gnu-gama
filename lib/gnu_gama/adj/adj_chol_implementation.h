@@ -19,10 +19,6 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- * $Id: adj_chol_implementation.h,v 1.3 2007/06/26 15:04:09 cepek Exp $
- */
-
 #ifndef GNU_gama_adjustment_cholesky_decomposition_implementation__h
 #define GNU_gama_adjustment_cholesky_decomposition_implementation__h
 

@@ -1,6 +1,4 @@
 \input texinfo   @c -*-texinfo-*-
-@comment $Id: gama.texi,v 1.23.2.1 2009/12/21 15:15:20 cepek Exp $
-
 @c ./gendocs.sh --email cepek@gnu.org gama "GNU Gama manual"
 
 @comment Part 1 : Header

@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_model_write_xml_adjustment_results.cpp,v 1.10 2007/06/26 15:04:10 cepek Exp $
- */
-
 #include <iomanip>
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/g3/g3_cluster.h>

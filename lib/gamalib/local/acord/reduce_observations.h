@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: reduce_observations.h,v 1.2 2007/06/26 15:04:06 cepek Exp $
- */
-
- 
 #ifndef GaMaLib_acord_reduce_observations_h
 #define GaMaLib_acord_reduce_observations_h
 

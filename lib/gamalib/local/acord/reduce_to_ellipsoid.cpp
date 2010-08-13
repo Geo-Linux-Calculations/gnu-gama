@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: reduce_to_ellipsoid.cpp,v 1.3 2007/06/26 15:04:06 cepek Exp $
- */
-
 #include <gamalib/local/acord/reduce_to_ellipsoid.h>
 #include <gamalib/local/pobs/bearing.h>
 #include <cmath>

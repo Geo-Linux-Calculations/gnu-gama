@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: gon2deg.h,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
 #include <string>
 
 #ifndef GNU_gama_gons_to_degrees_h___GNU_Gama_gon2deg__gon2deg

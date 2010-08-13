@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: gamadata.h,v 1.4 2008/04/13 10:02:31 cepek Exp $
- */ 
-
 #ifndef GaMaLib____ObservationData____and_other_data_objects___h_____
 #define GaMaLib____ObservationData____and_other_data_objects___h_____
 

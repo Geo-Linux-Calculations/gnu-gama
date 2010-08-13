@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: envelope.h,v 1.12 2008/09/23 10:08:41 cepek Exp $
- */
-
 #ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 #define GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
 

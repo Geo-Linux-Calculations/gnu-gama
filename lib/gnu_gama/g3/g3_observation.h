@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_observation.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
- */
-
-
 #include <matvec/covmat.h>
 #include <gnu_gama/model.h>
 #include <gnu_gama/g3/g3_point.h>

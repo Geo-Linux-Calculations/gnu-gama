@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: localnetwork_adjustment_results.h,v 1.7 2007/06/26 15:04:11 cepek Exp $
- */
-
 #ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
 #define GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
 

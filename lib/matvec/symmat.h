@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: symmat.h,v 1.6 2008/10/28 12:39:19 cepek Exp $
- *  http://www.gnu.org/software/gama/
- */
-
 #ifndef GNU_gama_gMatVec_SymMat__h_
 #define GNU_gama_gMatVec_SymMat__h_
 

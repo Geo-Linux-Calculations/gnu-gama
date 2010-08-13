@@ -20,11 +20,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: approx_heights.h,v 1.2 2007/06/26 15:04:06 cepek Exp $
- */
-
- 
 #ifndef GaMaLib_acord___ApproximateHeights_ApproxHeights___header___h
 #define GaMaLib_acord___ApproximateHeights_ApproxHeights___header___h
 

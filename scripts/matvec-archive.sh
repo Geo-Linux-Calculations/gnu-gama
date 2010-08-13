@@ -2,8 +2,6 @@
 #
 # matvec tar archive: script must be run in the parent directory of matvec
 # ################## 
-#
-# $Id: matvec-archive.sh,v 1.1 2005/04/01 17:38:01 cepek Exp $
 
 HOME=.
 cd $HOME

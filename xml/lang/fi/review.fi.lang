@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
 <entries>
 
-<!-- $Id: review.fi.lang,v 1.4 2006/08/26 17:19:11 cepek Exp $ -->
-
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: changing sign of all Y coordinates"
    fi="Ristiriitaisia koordinaatteja ja kulmia: kaikkien Y-koordinaattien merkit vaihdetaan" />

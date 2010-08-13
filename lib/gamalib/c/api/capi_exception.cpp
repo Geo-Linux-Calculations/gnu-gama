@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: capi_exception.cpp,v 1.2 2007/06/26 15:04:05 cepek Exp $
- */
-
 #include <gamalib/c/api/capi_exception.h>
 #include <gamalib/c/api/capi_private_exception.h>
 #include <gamalib/exception.h>

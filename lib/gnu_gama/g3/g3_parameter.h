@@ -19,8 +19,6 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* $Id: g3_parameter.h,v 1.3 2008/10/31 18:23:26 cepek Exp $  */
-
 #ifndef GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
 #define GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
 

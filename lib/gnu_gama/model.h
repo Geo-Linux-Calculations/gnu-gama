@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: model.h,v 1.5 2008/10/31 18:23:25 cepek Exp $
- */
-
 #ifndef GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
 #define GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
 

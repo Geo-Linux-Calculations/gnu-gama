@@ -21,11 +21,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: pointid.cpp,v 1.3 2008/09/23 10:08:41 cepek Exp $
- */
-
-
 #include <cstdlib>
 #include <gamalib/pointid.h>
 

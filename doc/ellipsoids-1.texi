@@ -1,3 +1,1 @@
-@comment $Id: ellipsoids-1.texi,v 1.1 2002/10/12 15:52:22 cepek Exp $
-
 @include ellipsoids.texi

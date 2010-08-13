@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: intlist.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
- */
-
 #ifndef GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
 #define GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
 

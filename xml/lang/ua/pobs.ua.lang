@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
 
-<!-- $Id: pobs.ua.lang,v 1.1 2005/12/14 22:57:07 cepek Exp $ -->
 <entries>
 
 <e id="T_POBS_computation_of_bearing_for_identical_points"

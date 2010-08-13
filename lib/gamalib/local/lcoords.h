@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: lcoords.h,v 1.3 2008/03/30 18:48:30 cepek Exp $
- */
-
 #ifndef GaMaLib____Local_Coordinate_System___h____
 #define GaMaLib____Local_Coordinate_System___h____
 

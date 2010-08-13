@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: sbdiagonal.h,v 1.6 2008/10/31 18:23:26 cepek Exp $
- */
-
 #ifndef GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
 #define GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
 

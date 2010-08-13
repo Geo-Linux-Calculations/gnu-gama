@@ -4,10 +4,6 @@
  * different directories. This file is here to circumvent this problem.
  */
 
-/*
- *  $Id: observation_local.cpp,v 1.1 2006/04/09 16:40:24 cepek Exp $
- */
-
 #include <gamalib/local/linearization/direction.h>
 #include <gamalib/local/linearization/distance.h>
 #include <gamalib/local/linearization/hdiff.h>

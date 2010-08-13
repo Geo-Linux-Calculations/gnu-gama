@@ -20,10 +20,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g2d_helper.cpp,v 1.2 2007/06/26 15:04:06 cepek Exp $
- */
-
 /*************************************************************
  * helper functions and classes                              *
  *************************************************************/

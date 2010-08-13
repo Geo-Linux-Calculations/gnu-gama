@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: observation.h,v 1.4 2007/06/26 15:04:04 cepek Exp $
- */
-
 #ifndef GaMaLib_Bod_Mer_Mereni_H
 #define GaMaLib_Bod_Mer_Mereni_H
 

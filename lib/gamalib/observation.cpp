@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,13 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: observation.cpp,v 1.2 2007/06/26 15:04:04 cepek Exp $
- */
-
 #include <gamalib/observation.h>
 #include <gamalib/cluster.h>
-#include <typeinfo>
 
 namespace GaMaLib 
 {

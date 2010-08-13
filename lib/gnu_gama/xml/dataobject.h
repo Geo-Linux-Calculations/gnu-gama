@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: dataobject.h,v 1.4 2008/10/31 18:23:26 cepek Exp $
- */ 
-
 #ifndef GaMaLib_GaMa_XML_Data_Object__object___h_
 #define GaMaLib_GaMa_XML_Data_Object__object___h_
 

@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: version.h,v 1.3 2007/06/29 17:50:31 cepek Exp $
- */
-
 #ifndef GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
 #define GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
 

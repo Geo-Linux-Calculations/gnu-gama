@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
 <entries>
 
-<!-- $Id: review.hu.lang,v 1.3 2008/04/13 10:02:32 cepek Exp $ -->
-
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
    hu="Nem konzisztens koordináták és szögek: minden Y koordináta előjelét megváltoztattam" />

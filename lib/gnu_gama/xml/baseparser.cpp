@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: baseparser.cpp,v 1.3 2009/07/01 15:39:36 cepek Exp $
- */
-
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/encoding.h>
 #include <cstdlib>

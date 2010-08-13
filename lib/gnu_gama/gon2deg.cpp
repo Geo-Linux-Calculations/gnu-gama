@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: gon2deg.cpp,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
-
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/intfloat.h>
 #include <sstream>

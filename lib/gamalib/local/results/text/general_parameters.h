@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: general_parameters.h,v 1.3 2007/06/26 15:04:07 cepek Exp $
- */
-
 #ifndef GaMa_GaMaProg_Zakladni_Parametry_h_
 #define GaMa_GaMaProg_Zakladni_Parametry_h_
 
@@ -32,7 +28,6 @@
 #include <gnu_gama/statan.h>
 #include <gamalib/local/results/text/underline.h>
 #include <cstring>
-#include <typeinfo>
 
 namespace GaMaLib {
 
@@ -198,15 +193,15 @@ bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
   {   // for ...
     for (int i=1; i<=IS->sum_observations(); i++)
       // *****************************************************
-      if      (typeid(*IS->ptr_obs(i)) == typeid(Distance))   pocdel++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(Direction))  pocsmer++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(Angle))      pocuhl++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(X))          pocsour++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(Y))          pocsour++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(Z))          pocsour++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(H_Diff))     pocnivp++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(Z_Angle))    poczeni++;
-      else if (typeid(*IS->ptr_obs(i)) == typeid(S_Distance)) pocsikm++;
+      if      (dynamic_cast<Distance*  >(IS->ptr_obs(i))) pocdel++;
+      else if (dynamic_cast<Direction* >(IS->ptr_obs(i))) pocsmer++;
+      else if (dynamic_cast<Angle*     >(IS->ptr_obs(i))) pocuhl++;
+      else if (dynamic_cast<X*         >(IS->ptr_obs(i))) pocsour++;
+      else if (dynamic_cast<Y*         >(IS->ptr_obs(i))) pocsour++;
+      else if (dynamic_cast<Z*         >(IS->ptr_obs(i))) pocsour++;
+      else if (dynamic_cast<H_Diff*    >(IS->ptr_obs(i))) pocnivp++;
+      else if (dynamic_cast<Z_Angle*   >(IS->ptr_obs(i))) poczeni++;
+      else if (dynamic_cast<S_Distance*>(IS->ptr_obs(i))) pocsikm++;
     // *****************************************************
   }   // for ...
   for (int i=1; i<=IS->sum_unknowns(); i++)
@@ -370,19 +365,19 @@ bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
             {
               float v = IS->residuals()(i);
               float q = IS->wcoef_res(i);
-              if (typeid(*IS->ptr_obs(i)) == typeid(Distance))
+              if (dynamic_cast<Distance*>(IS->ptr_obs(i)))
                 {
                   itd = 1;
                   m0d += v*v;
                   sqd += q;
                 }
-              else if (typeid(*IS->ptr_obs(i)) == typeid(Direction))
+              else if (dynamic_cast<Direction*>(IS->ptr_obs(i)))
                 {
                   its = 1;
                   m0s += v*v;
                   sqs += q;
                 }
-              else if (typeid(*IS->ptr_obs(i)) == typeid(Angle))
+              else if (dynamic_cast<Angle*>(IS->ptr_obs(i)))
                 {
                   itu = 2;
                   m0u += v*v;

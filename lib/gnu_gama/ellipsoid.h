@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: ellipsoid.h,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
 #ifndef GNU_gama__gamalib____ellipsoid_H___________ELLIPSOID_H________
 #define GNU_gama__gamalib____ellipsoid_H___________ELLIPSOID_H________
 

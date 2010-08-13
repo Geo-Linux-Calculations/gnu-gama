@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: pinv.h,v 1.7 2009/07/29 11:11:07 cepek Exp $
- *  http://www.gnu.org/software/gama/
- */
-
 #ifndef GNU_gama_gMatVec_Mat_Inv__h_
 #define GNU_gama_gMatVec_Mat_Inv__h_
 

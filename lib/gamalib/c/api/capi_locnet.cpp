@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: capi_locnet.cpp,v 1.2 2007/06/26 15:04:05 cepek Exp $
- */
-
 #include <gamalib/c/api/capi_locnet.h>
 #include <gamalib/c/api/capi_private_exception.h>
 #include <gamalib/local/network.h>

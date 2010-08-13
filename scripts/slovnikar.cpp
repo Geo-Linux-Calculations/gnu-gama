@@ -20,8 +20,6 @@
  * available.  Attribute EN is ignored on input and serves as a kind
  * of comment.
  * 
- * $Id: slovnikar.cpp,v 1.14 2006/08/26 13:23:30 cepek Exp $
- *
  * ------------------------------------------------------------------------ */
 
          const char* language[] = { "en", "ca", "cz", "du", "fi", "fr", 

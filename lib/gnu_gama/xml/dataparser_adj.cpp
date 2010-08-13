@@ -19,12 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: dataparser_adj.cpp,v 1.2 2007/06/26 15:04:11 cepek Exp $
- */
-
-
-
 #include <gnu_gama/xml/dataparser.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/radian.h>

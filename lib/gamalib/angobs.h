@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: angobs.h,v 1.2 2007/06/26 15:04:04 cepek Exp $
- */
-
 #ifndef GaMaLib____Angular_Observations__h____
 #define GaMaLib____Angular_Observations__h____
 

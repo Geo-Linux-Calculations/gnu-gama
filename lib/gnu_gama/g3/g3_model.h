@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_model.h,v 1.5 2009/08/16 19:23:32 cepek Exp $
- */
-
 #ifndef GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
 #define GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
 

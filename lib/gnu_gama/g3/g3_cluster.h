@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_cluster.h,v 1.3 2008/10/31 18:23:26 cepek Exp $
- */
-
-
 // #include <gnu_gama/g3/g3_observation/g3_cluster_vec.h>
 
 #ifndef GNU_gama__g3_cluster___g3clustergnugamag3cluster__gnu_gama_g3_cluster

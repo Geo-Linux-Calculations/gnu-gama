@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj_gso.h,v 1.8 2007/06/26 15:04:09 cepek Exp $
- */
-
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 

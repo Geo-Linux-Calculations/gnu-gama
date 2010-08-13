@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: acord.cpp,v 1.3 2008/04/13 10:02:31 cepek Exp $
- */
-
- 
 #include <gamalib/local/acord.h>
 #include <gamalib/local/orientation.h>
 #include <gamalib/local/median/g2d_coordinates.h>

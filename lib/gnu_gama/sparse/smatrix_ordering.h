@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: smatrix_ordering.h,v 1.8 2008/10/31 18:23:26 cepek Exp $
- */
-
 #ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
 #define GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
 

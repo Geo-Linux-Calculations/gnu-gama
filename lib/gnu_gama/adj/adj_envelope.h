@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj_envelope.h,v 1.12 2007/12/22 20:54:53 cepek Exp $
- */
-
 #ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
 #define GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
 

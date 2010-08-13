@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: e3.h,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
-
 #ifndef GNU_gama__e3_____gnu_gama_e3_____gnugamae3____h
 #define GNU_gama__e3_____gnu_gama_e3_____gnugamae3____h
 

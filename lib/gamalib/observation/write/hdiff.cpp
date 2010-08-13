@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: hdiff.cpp,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
 #include <iostream>
 #include <iomanip>
 #include <gamalib/observation.h>

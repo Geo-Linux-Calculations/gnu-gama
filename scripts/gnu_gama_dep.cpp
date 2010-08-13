@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: gnu_gama_dep.cpp,v 1.13 2007/06/26 15:04:12 cepek Exp $
- */
-
 #include <iostream>
 #include <fstream>
 #include <cctype>

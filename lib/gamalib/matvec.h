@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: matvec.h,v 1.2 2007/06/26 15:04:04 cepek Exp $
- */
-
 #ifndef GaMaLib_Bod_Mer_MatVec_H
 #define GaMaLib_Bod_Mer_MatVec_H
 

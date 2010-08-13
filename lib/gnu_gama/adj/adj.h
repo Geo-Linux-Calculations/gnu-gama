@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj.h,v 1.9 2008/10/31 18:23:25 cepek Exp $
- */
-
 #include <matvec/covmat.h>
 #include <gnu_gama/sparse/smatrix.h>
 #include <gnu_gama/sparse/sbdiagonal.h>

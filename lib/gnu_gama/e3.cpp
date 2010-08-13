@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: e3.cpp,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
 #include <gnu_gama/e3.h>
 #include <cmath>
 

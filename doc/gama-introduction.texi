@@ -1,5 +1,3 @@
-@comment $Id: gama-introduction.texi,v 1.2 2009/01/20 14:02:38 cepek Exp $
-
 GNU Gama is a project dedicated to adjustment of geodetic networks.
 It is intended for use with traditional geodetic surveyings which are
 still used and needed in special measurements (e.g., underground or

@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: orientation.cpp,v 1.3 2007/08/02 12:05:33 cepek Exp $
- */
-
 #include <gamalib/local/orientation.h>
 #include <gamalib/cluster.h>
 #include <gamalib/local/gamadata.h>

@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999, 2006  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,16 +19,11 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: network.cpp,v 1.10 2009/04/14 14:54:55 cepek Exp $
- */
-
 #include <fstream>
 #include <iomanip>
 #include <cctype>
 #include <memory>
 #include <set>
-#include <typeinfo>
 
 #include <gamalib/local/network.h>
 #include <gamalib/local/linearization.h>
@@ -630,28 +625,28 @@ Double LocalNetwork::test_abs_term(Index indm)
         d0 = sqrt(dy*dy + dx*dx);
       }
     
-    if      (typeid(*m) == typeid(Distance))
+    if (dynamic_cast<const Distance*>(m))
       {
         if (fabs(m->value() - d0)*1000 > tol_abs_)
           return b(indm);
         else
           return 0;
       }
-    else if (typeid(*m) == typeid(Direction))
+    else if (dynamic_cast<const Direction*>(m))
       {
         if (fabs(b(indm)*d0/(10*R2G)) > tol_abs_)
           return b(indm);
         else
           return 0;
       }
-    else if (typeid(*m) == typeid(Angle))
+    else if (dynamic_cast<const Angle*>(m))
       {
         if (fabs(b(indm)*d0/(10*R2G)) > tol_abs_)
           return b(indm);
         else
           return 0;
       }
-    else if (typeid(*m) == typeid(Z_Angle))
+    else if (dynamic_cast<const Z_Angle*>(m))
       {
         Double dz = stan.z() - cil.z();
         Double d3 = sqrt(dz*dz + d0*d0);
@@ -660,7 +655,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         else
           return 0;
       }
-    else if (typeid(*m) == typeid(S_Distance))
+    else if (dynamic_cast<const S_Distance*>(m))
       {
         Double dz = stan.z() - cil.z();
         Double d3 = sqrt(dz*dz + d0*d0);
@@ -669,7 +664,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         else
           return 0;   
       }
-    else if (typeid(*m) == typeid(Xdiff))
+    else if (dynamic_cast<const Xdiff*>(m))
       {
         const Double dx = cil.x() - stan.x();
         if (fabs(dx - m->value())*1000 > tol_abs_)
@@ -677,7 +672,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         else
           return 0;           
       }
-    else if (typeid(*m) == typeid(Ydiff))
+    else if (dynamic_cast<const Ydiff*>(m))
       {
         const Double dy = cil.y() - stan.y();
         if (fabs(dy - m->value())*1000 > tol_abs_)
@@ -685,7 +680,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         else
           return 0;           
       }
-    else if (typeid(*m) == typeid(Zdiff))
+    else if (dynamic_cast<const Zdiff*>(m))
       {
         const Double dz = cil.z() - stan.z();
         if (fabs(dz - m->value())*1000 > tol_abs_)
@@ -693,21 +688,21 @@ Double LocalNetwork::test_abs_term(Index indm)
         else
           return 0;           
       }
-    else if (typeid(*m) == typeid(X))
+    else if (dynamic_cast<const X*>(m))
       {
         if (fabs(stan.x() - m->value())*1000 > tol_abs_)
           return b(indm);
         else
           return 0;           
       }
-    else if (typeid(*m) == typeid(Y))
+    else if (dynamic_cast<const Y*>(m))
       {
         if (fabs(stan.y() - m->value())*1000 > tol_abs_)
           return b(indm);
         else
           return 0;           
       }
-    else if (typeid(*m) == typeid(Z))
+    else if (dynamic_cast<const Z*>(m))
       {
         if (fabs(stan.z() - m->value())*1000 > tol_abs_)
           return b(indm);

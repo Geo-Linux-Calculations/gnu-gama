@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: bandmat.h,v 1.5 2008/10/28 12:39:18 cepek Exp $
- *  http://www.gnu.org/software/gama/
- */
-
 #ifndef GNU_gama_gMatVec_Symmetric_Band_Matrix__H_
 #define GNU_gama_gMatVec_Symmetric_Band_Matrix__H_
 

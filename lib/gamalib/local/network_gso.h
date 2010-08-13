@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: network_gso.h,v 1.3 2007/06/26 15:04:05 cepek Exp $
- */
-
-
 #ifndef GaMaLib_LocalNetwork_gso_h
 #define GaMaLib_LocalNetwork_gso_h
 

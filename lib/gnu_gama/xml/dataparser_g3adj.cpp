@@ -19,12 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: dataparser_g3adj.cpp,v 1.12 2008/01/14 14:43:54 cepek Exp $
- */
-
-
-
 #include <gnu_gama/g3/g3_adjres.h>
 #include <gnu_gama/xml/dataparser.h>
 #include <gnu_gama/gon2deg.h>

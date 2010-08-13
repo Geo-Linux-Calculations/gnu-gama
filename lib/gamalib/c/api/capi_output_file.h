@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: capi_output_file.h,v 1.2 2007/06/26 15:04:05 cepek Exp $
- */
-
 #ifndef GaMaLib__C_API_internal_output_file_class____capi_output_file__H__
 #define GaMaLib__C_API_internal_output_file_class____capi_output_file__H__
 

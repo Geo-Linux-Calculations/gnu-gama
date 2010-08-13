@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: underline.h,v 1.2 2007/06/26 15:04:07 cepek Exp $
- */
-
 #ifndef GaMaLib___gamalib__local__results__underline_H_
 #define GaMaLib___gamalib__local__results__underline_H_
 

@@ -1,5 +1,3 @@
-@comment $Id: gama-local-input.texi,v 1.6 2009/07/03 13:57:19 cepek Exp $
-
 @comment setfilename gama-local-inp.info
 
 @c @chapter   XML input data format

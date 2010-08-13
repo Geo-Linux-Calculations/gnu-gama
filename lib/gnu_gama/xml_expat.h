@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: xml_expat.h,v 1.2 2007/06/26 15:04:09 cepek Exp $
- */
-
 #ifndef GNU_gama_xml_expat_h___GNU_Gama_interface_for_Expat_XML_parser
 #define GNU_gama_xml_expat_h___GNU_Gama_interface_for_Expat_XML_parser
 

@@ -1,11 +1,8 @@
 /* Ellipsoids_xml is a simple program to transform ellipsoids.xml
  * input file into ellipsoids.[h|cpp|html|texi] output.
  * ==========================================================================
- * 
- * $Id: ellipsoids_xml.cpp,v 1.16 2007/06/26 15:04:12 cepek Exp $
- *
- * ------------------------------------------------------------------------ */
-
+ */
+ 
 const char* version = "0.06";
 
 /* ---------------------------------------------------------------------------

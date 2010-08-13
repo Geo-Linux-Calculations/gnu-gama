@@ -1,8 +1,8 @@
 /*  
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama C++ library
+    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library
     
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: test_linearization.h,v 1.2 2007/06/26 15:04:07 cepek Exp $
- */
-
 #ifndef GaMa_GaMaProg_Prehled_Test_Chyby_z_Linearizace_h_
 #define GaMa_GaMaProg_Prehled_Test_Chyby_z_Linearizace_h_
 
@@ -33,7 +29,6 @@
 #include <gnu_gama/statan.h>
 #include <cmath>
 #include <algorithm>
-#include <typeinfo>
 
 
 namespace GaMaLib {
@@ -288,7 +283,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             else
               out << v(i)*0.324 << ' ';
               
-            if (typeid(*pm) == typeid(Distance))
+            if (dynamic_cast<Distance*>(pm))
               {
                 out << "         ";
               }

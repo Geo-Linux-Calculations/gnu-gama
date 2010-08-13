@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: g3_adjres.h,v 1.9 2008/10/31 18:23:26 cepek Exp $
- */
-
 #ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
 #define GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
 

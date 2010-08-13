@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: version.cpp,v 1.3 2007/06/29 17:50:31 cepek Exp $
- */
-
-
 #include <gnu_gama/version.h>
 #include <config.h>
 #include <iostream>

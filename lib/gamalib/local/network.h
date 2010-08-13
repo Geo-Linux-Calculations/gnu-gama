@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: network.h,v 1.10 2007/10/20 14:28:02 cepek Exp $
- */
-
 // LocalNetwork - Network Informations class (Informace o siti)
 // =========================================================================
 

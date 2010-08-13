@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: adj_base.h,v 1.17 2008/10/31 18:23:25 cepek Exp $
- */
-
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_AdjBase_h
 

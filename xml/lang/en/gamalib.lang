@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
 <entries>
 
-<!-- $Id: gamalib.lang,v 1.1 2006/08/26 17:19:11 cepek Exp $ -->
-
 <!--
    ./gamalib/xml/gkfparser.lang
    ./gamalib/gamalib.lang

@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: exception.h,v 1.2 2007/06/26 15:04:08 cepek Exp $
- */
-
-
 #ifndef GNU_gama__exception__exception_class_hierarchy_____exception_h
 #define GNU_gama__exception__exception_class_hierarchy_____exception_h
 

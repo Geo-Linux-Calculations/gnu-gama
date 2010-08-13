@@ -1,7 +1,6 @@
 #
 # builds ellipsoids.[h|cpp|texi] for GNU GaMa
 # 
-# $Id: build-ellipsoids,v 1.6 2006/08/26 16:02:43 cepek Exp $
 
 
 if pwd | grep /scripts$; then cd ..; fi

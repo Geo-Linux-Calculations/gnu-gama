@@ -19,11 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: outstream.cpp,v 1.4 2007/06/26 15:04:09 cepek Exp $
- */
-
-
 #include <gnu_gama/outstream.h>
 
 namespace {

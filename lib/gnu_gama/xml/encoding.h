@@ -19,10 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
- *  $Id: encoding.h,v 1.2 2007/06/26 15:04:11 cepek Exp $
- */
-
 #include <gnu_gama/xml_expat.h>
 
 #ifndef GaMaLib_GKF__XML__encoding__h_
