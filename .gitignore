@@ -26,9 +26,10 @@ doc/gama.info
 doc/stamp-vti
 doc/manual/
 #
-gama-g3/gama-g3
-gama-local/gama-local
-gama-local/gama-local-xml2txt
+bin/.deps
+bin/gama-g3
+bin/gama-local
+bin/gama-local-xml2txt
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar

@@ -22,9 +22,9 @@
 #ifndef GNU_gama__xml__localnetwork__gnugamaxmllocalnetwork______________h
 #define GNU_gama__xml__localnetwork__gnugamaxmllocalnetwork______________h
 
-#include <gamalib/local/gamadata.h>
-#include <gamalib/local/network.h>
-#include <gamalib/cluster.h>
+#include <gnu_gama/local/local/gamadata.h>
+#include <gnu_gama/local/local/network.h>
+#include <gnu_gama/local/cluster.h>
 #include <string>
 
 

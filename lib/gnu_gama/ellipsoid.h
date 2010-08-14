@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__gamalib____ellipsoid_H___________ELLIPSOID_H________
-#define GNU_gama__gamalib____ellipsoid_H___________ELLIPSOID_H________
+#ifndef GNU_gama__gnu_gama_local____ellipsoid_H___________ELLIPSOID_H________
+#define GNU_gama__gnu_gama_local____ellipsoid_H___________ELLIPSOID_H________
 
 namespace GNU_gama {
 
