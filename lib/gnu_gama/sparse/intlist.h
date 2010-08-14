@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,18 +28,18 @@ namespace GNU_gama {
 
 /** Integer list class */
 
-template <typename Index=std::size_t> 
+template <typename Index=std::size_t>
 
   class IntegerList {     // Integer List class
-    
-    IntegerList (const IntegerList&); 
+
+    IntegerList (const IntegerList&);
     void operator=(const IntegerList&);
 
     Index*  m;
     Index*  e;
 
     public:
-    
+
     IntegerList() : m(0), e(0)
     {
     }
@@ -49,8 +49,8 @@ template <typename Index=std::size_t>
       m = new Index[n];
       e = m + n;
     }
-    
-    ~IntegerList() 
+
+    ~IntegerList()
     {
       delete[] m;
     }
@@ -75,7 +75,7 @@ template <typename Index=std::size_t>
       iterator b = m;
       while (b != e)  *b++ = f;
     }
-    
+
     void set_zero() { set_all(Index()); }
 
 
@@ -83,15 +83,15 @@ template <typename Index=std::size_t>
     typedef const Index* const_iterator;
 
     iterator begin() { return m; }
-    iterator end()   { return e; } 
+    iterator end()   { return e; }
 
     const_iterator begin() const { return m; }
-    const_iterator end()   const { return e; } 
+    const_iterator end()   const { return e; }
 
     Index  operator()(Index i) const { return m[i]; }
     Index& operator()(Index i)       { return m[i]; }
   };
- 
+
 }   // namespace GNU_gama
 
 #endif

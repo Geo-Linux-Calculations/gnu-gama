@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -37,9 +37,9 @@ using   GNU_gama::List;
 typedef GNU_gama::List<Observation*>  ObsList;
 
 
-namespace 
+namespace
 {
-  class Init :  
+  class Init :
     public GNU_gama::ObservationVisitor,
     public GNU_gama::Visitor<Height>,
     public GNU_gama::Visitor<Vector>,
@@ -64,12 +64,12 @@ namespace
     bool                  updated;
   };
 
-  
+
   void Init::approx_xyz_height()
   {
     obs_in  = &a;
     obs_out = &b;
-   
+
     updated = false;
     ObservationData<Observation>::iterator i=model->obsdata.begin();
     ObservationData<Observation>::iterator e=model->obsdata.end();
@@ -82,7 +82,7 @@ namespace
       {
         obs_in->clear();
         std::swap(obs_in, obs_out);
-        
+
         updated = false;
         for (ObsList::iterator e=obs_in->end(), i=obs_in->begin(); i!=e; i++)
           {

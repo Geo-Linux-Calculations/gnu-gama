@@ -36,9 +36,9 @@ namespace GNU_gama
 
     std::string description;
 
-    LocalNetworkXML(GaMaLib::LocalNetwork* ln) : netinfo(ln) {}    
+    LocalNetworkXML(GaMaLib::LocalNetwork* ln) : netinfo(ln) {}
     void write(std::ostream&) const;
-    
+
   private:
 
     GaMaLib::LocalNetwork* netinfo;

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ library (GNU GaMa)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -59,7 +59,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
          if (d < 1e5) continue;
          z += 6;   // ... decimal point plus 5 digits
          do {
-           z++; 
+           z++;
            d /= 10;
          } while (d >= 1);
          if (z > maxval) maxval = z;
@@ -164,7 +164,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
           }
         else if (S_Distance* sd = dynamic_cast<S_Distance*>(pm))
           {
-            out << T_GaMa_s_distance; 
+            out << T_GaMa_s_distance;
             out.precision(5);
             out.width(maxval);
             Double m = sd->value();
@@ -232,7 +232,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
             out << m << " ";
             out.width(maxval);
             m += v(i)/1000;
-            out << m << " ";            
+            out << m << " ";
           }
         else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
           {
@@ -243,7 +243,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
             out << m << " ";
             out.width(maxval);
             m += v(i)/1000;
-            out << m << " ";            
+            out << m << " ";
           }
         else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
           {
@@ -254,7 +254,7 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
             out << y_sign*m << " ";
             out.width(maxval);
             m += v(i)/1000;
-            out << y_sign*m << " ";            
+            out << y_sign*m << " ";
           }
         else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
           {
@@ -265,9 +265,9 @@ void AdjustedObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
             out << m << " ";
             out.width(maxval);
             m += v(i)/1000;
-            out << m << " ";            
+            out << m << " ";
           }
-        else  
+        else
           {
             throw GaMaLib::Exception("review/adjusted_observations.h - "
                                      "unknown observation type");

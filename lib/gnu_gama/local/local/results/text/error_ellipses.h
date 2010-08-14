@@ -3,7 +3,7 @@
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,7 +36,7 @@ void ErrorEllipses(GaMaLib::LocalNetwork* IS, OutStream& out)
    using GaMaLib::Double;
 
   const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
-  
+
    const Vec& x = IS->solve();
    Double elp_k = 0;
    {
@@ -69,13 +69,13 @@ void ErrorEllipses(GaMaLib::LocalNetwork* IS, OutStream& out)
    Double mp_max = -1, mp_prum = 0;
    PointID mp_max_cb;
    int pocbod = 0;
-   
-   if (sour) 
+
+   if (sour)
    {
      out.precision(1);
- 
-     out 
-       << T_GaMa_errell_review_of_mean_errors_and_error_ellipses << "\n" 
+
+     out
+       << T_GaMa_errell_review_of_mean_errors_and_error_ellipses << "\n"
        << underline(T_GaMa_errell_review_of_mean_errors_and_error_ellipses,'*')
        << "\n\n";
      out.width(IS->maxw_id());
@@ -91,42 +91,42 @@ void ErrorEllipses(GaMaLib::LocalNetwork* IS, OutStream& out)
      {   // for ...
        // 1.3.13 for (int i=1; i<=pocnez; i++)
        // 1.3.13  if (IS->unknown_type(i) == 'X')
-       for (PointData::const_iterator 
+       for (PointData::const_iterator
               point=IS->PD.begin(); point!=IS->PD.end(); ++point)
          if ((*point).second.free_xy())
            if ((*point).second.index_x())
              {
-               const PointID point_id  = (*point).first;	     
+               const PointID point_id  = (*point).first;
                out.width(IS->maxw_id());
                out << point_id.c_str() << ' ';
-               
-               const LocalPoint& p = (*point).second; 
+
+               const LocalPoint& p = (*point).second;
                Double my = IS->unknown_stdev(p.index_y());
                Double mx = IS->unknown_stdev(p.index_x());
-               
+
                Double mp = sqrt(my*my+mx*mx);
-               if (mp < 1000)     
+               if (mp < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
                else
                  out.setf(ios_base::scientific, ios_base::floatfield);
                out.width(7);
                out << mp << ' ';
-               
+
                mp_prum += mp;
                if (mp > mp_max) {
                  mp_max = mp;
                  mp_max_cb = point_id;
                }
                pocbod++;
-               
+
                Double myx = mp/sqrt(2.0);
                out.width(7);
-               if (myx < 1000)     
+               if (myx < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
                else
                  out.setf(ios_base::scientific, ios_base::floatfield);
                out << myx << ' ' ;
-               
+
                Double a, b, alfa;
                IS->std_error_ellipse(point_id, a, b, alfa);
                // if (y_sign == -1)
@@ -134,13 +134,13 @@ void ErrorEllipses(GaMaLib::LocalNetwork* IS, OutStream& out)
                //     // 1.7.10 alfa = 2*M_PI - alfa;
                //   }
                out.width(7);
-               if (a < 1000)     
+               if (a < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
                else
                  out.setf(ios_base::scientific, ios_base::floatfield);
                out << a << ' ';
                out.width(7);
-               if (b < 1000)     
+               if (b < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
                else
                  out.setf(ios_base::scientific, ios_base::floatfield);
@@ -150,61 +150,61 @@ void ErrorEllipses(GaMaLib::LocalNetwork* IS, OutStream& out)
                double ea = alfa*R2G;
                if (IS->degrees()) ea *= 360.0/400;
                out << ea << ' ';
-               
+
                if (mp < 1000 && mp > 1e-3)
                  {           // ********* testing noise (coordinates are OK)
                    Double ak = a*elp_k;
                    Double bk = b*elp_k;
                    out.width(7);
-                   if (ak < 1000)     
+                   if (ak < 1000)
                      out.setf(ios_base::fixed, ios_base::floatfield);
                    else
                      out.setf(ios_base::scientific, ios_base::floatfield);
                    out << ak << ' ';
                    out.width(7);
-                   if (bk < 1000)     
+                   if (bk < 1000)
                      out.setf(ios_base::fixed, ios_base::floatfield);
                    else
                      out.setf(ios_base::scientific, ios_base::floatfield);
                    out << bk << ' ';
-                   
+
                    Double g  = 0;
                    Double dx = x( p.index_x() );
                    Double dy = y_sign*x( p.index_y() );
                    Double p1 = (dx*cos(alfa) + dy*sin(alfa));
                    Double p2 = (dy*cos(alfa) - dx*sin(alfa));
-                   if (ak > 0 && bk > 0 && bk > ak*1e-4) 
+                   if (ak > 0 && bk > 0 && bk > ak*1e-4)
                      {           // ***** testing noise (bk is practically 0)
                        p1 /= ak;
                        p2 /= bk;
                        g = sqrt(p1*p1 + p2*p2);
                      }
-                   if (g < 1000)     
+                   if (g < 1000)
                      out.setf(ios_base::fixed, ios_base::floatfield);
                    else
                      out.setf(ios_base::scientific, ios_base::floatfield);
                    out.width(7);
-                   out << g;		 
+                   out << g;
                  }
-               
+
                out << "\n";
                out.flush();
              }
      }   // for ...
-     
-     if (pocbod >= 5) 
+
+     if (pocbod >= 5)
        {
          out.precision(1);
          out << '\n'
              << T_GaMa_adjunk_mean_position_error_maximal << mp_max
-             << T_GaMa_adjunk_mean_position_error_on_point 
+             << T_GaMa_adjunk_mean_position_error_on_point
              << mp_max_cb << '\n'
              << T_GaMa_adjunk_mean_position_error_average << mp_prum/pocbod
              << " mm\n";
        }
-     
-     out << "\n\n";     
-     
+
+     out << "\n\n";
+
    }
 }
 

@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -27,8 +27,8 @@
 
 namespace GNU_gama {
 
-  template <typename Float, typename Index, typename Exc> 
-  void AdjEnvelope<Float, Index, Exc>::reset(const AdjInputData *data) 
+  template <typename Float, typename Index, typename Exc>
+  void AdjEnvelope<Float, Index, Exc>::reset(const AdjInputData *data)
   {
     observations = data->mat()->rows();
     parameters   = data->mat()->columns();
@@ -43,10 +43,10 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::set_stage(Stage s)
   {
-    switch (s) 
+    switch (s)
       {
       default:
       case stage_init:
@@ -64,8 +64,8 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
-  void AdjEnvelope<Float, Index, Exc>::solve_ordering() 
+  template <typename Float, typename Index, typename Exc>
+  void AdjEnvelope<Float, Index, Exc>::solve_ordering()
   {
     if (this->stage >= stage_ordering) return;
 
@@ -79,34 +79,34 @@ namespace GNU_gama {
     //   ordering.perm(i) = ordering.invp(i) = i;
 
     const Vec<Float>& rhs = hom.rhs();
-    const Index N = design_matrix->columns();    
+    const Index N = design_matrix->columns();
     tmpvec.reset(N);
     tmpvec.set_zero();
-    
+
     for (Index r=1; r<=design_matrix->rows(); r++)
       {
         const Float* b=design_matrix->begin (r);
         const Float* e=design_matrix->end   (r);
         const Index* n=design_matrix->ibegin(r);
-        
+
         while (b != e)
           {
             const Index c = ordering.invp(*n++);
             const Float a = *b++;
-            
+
             // absolute terms in normal equations
-            tmpvec(c) +=  a * rhs(r);              
+            tmpvec(c) +=  a * rhs(r);
           }
       }
-    
-    envelope.set(design_matrix, &graph, &ordering);   
+
+    envelope.set(design_matrix, &graph, &ordering);
 
     set_stage(stage_ordering);
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
-  void AdjEnvelope<Float, Index, Exc>::solve_x0() 
+  template <typename Float, typename Index, typename Exc>
+  void AdjEnvelope<Float, Index, Exc>::solve_x0()
   {
     if (this->stage >= stage_x0) return;
     solve_ordering();
@@ -120,7 +120,7 @@ namespace GNU_gama {
     envelope.solve(tmpvec.begin(), tmpvec.dim());
 
     x0.reset(tmpvec.dim());
-    for (Index i=1; i<=tmpvec.dim(); i++) 
+    for (Index i=1; i<=tmpvec.dim(); i++)
       {
         x0(ordering.perm(i)) = tmpvec(i);
       }
@@ -132,12 +132,12 @@ namespace GNU_gama {
     const Vec         <Float>&         rhs = hom.rhs();
     squares = 0;
     for (Index i=1; i<=mat->rows(); i++)
-      {        
+      {
         Float *b = mat->begin(i);
         Float *e = mat->end(i);
         Index *n = mat->ibegin(i);
         Float  s = Float();
-        while(b != e) 
+        while(b != e)
           {
             s += *b++ * x0(*n++);
           }
@@ -159,51 +159,51 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
-  const GNU_gama::Vec<Float, Exc>& 
+  template <typename Float, typename Index, typename Exc>
+  const GNU_gama::Vec<Float, Exc>&
   AdjEnvelope<Float, Index, Exc>::unknowns()
   {
     if (init_x) solve_x();
 
     return x;
-  }    
+  }
 
 
-  template <typename Float, typename Index, typename Exc> 
-  const GNU_gama::Vec<Float, Exc>& 
+  template <typename Float, typename Index, typename Exc>
+  const GNU_gama::Vec<Float, Exc>&
   AdjEnvelope<Float, Index, Exc>::residuals()
   {
     if (init_residuals)
       {
         if (this->stage < stage_x0) solve_x0();
-        
+
         const SparseMatrix<Float, Index>* mat = this->input->mat();
         const Vec<>&                      rhs = this->input->rhs();
         const Index N = rhs.dim();
         resid.reset(N);
-        
+
         for (Index i=1; i<=N; i++)        // residuals = Ax - rhs
           {
             Float *b = mat->begin(i);
             Float *e = mat->end(i);
             Index *n = mat->ibegin(i);
             Float  s = Float();
-            while(b != e) 
+            while(b != e)
               {
                 s += *b++ * x0(*n++);
               }
-            
+
             resid(i) = s - rhs(i);
           }
 
-        init_residuals = false; 
+        init_residuals = false;
       }
-    
+
     return resid;
-  }    
+  }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::sum_of_squares()
   {
     if (this->stage < stage_x0) solve_x0();
@@ -212,7 +212,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Index AdjEnvelope<Float, Index, Exc>::defect()
   {
     if (this->stage < stage_x0) solve_x0();
@@ -223,7 +223,7 @@ namespace GNU_gama {
 
   // T = I - alpha*inv(alpha'*alpha)*alpha'
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>
   ::T_row(GNU_gama::Vec<Float, Exc>& row, Index ii)
   {
@@ -247,7 +247,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::q_xx(Index i, Index j)
   {
     if (this->stage < stage_q0) solve_q0();
@@ -260,7 +260,7 @@ namespace GNU_gama {
 
     std::pair<Index,bool> pa = indbuf.get(i);
     std::pair<Index,bool> pb = indbuf.get(j);
-    
+
     Vec<Float, Exc>& a = qxxbuf[pa.first];
     Vec<Float, Exc>& b = qxxbuf[pb.first];
     if (!pa.second)
@@ -273,39 +273,39 @@ namespace GNU_gama {
         T_row(b, j);
         envelope.lowerSolve(1, parameters, b.begin());
       }
-    
+
     Float s = Float();
-    for (Index i=1; i<=parameters; i++) 
+    for (Index i=1; i<=parameters; i++)
       if (const Float d = envelope.diagonal(i))
         s += a(i)/d*b(i);
-    
+
     return s;
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::q0_xx(Index i, Index j)
   {
     if (this->stage < stage_q0) solve_q0();
 
     Float* q = q0.element(ordering.invp(i), ordering.invp(j));
     if (q) return *q;
-    
+
     // elements outside the envelope (full solution)
-    
+
     if (qxxbuf[0].dim() != parameters)
-      {        
+      {
         qxxbuf.resize(indbuf.size());
         for (Index i=0; i<qxxbuf.size(); i++)
           qxxbuf[i].reset(parameters);
       }
-    
+
     Index ii = ordering.invp(i);
     Index jj = ordering.invp(j);
     if (ii < jj) std::swap(ii, jj);
-    
+
     std::pair<Index,bool> pa = indbuf.get(ii);
-    
+
     Vec<Float, Exc>& a = qxxbuf[pa.first];
     if (!pa.second)
       {
@@ -313,21 +313,21 @@ namespace GNU_gama {
         a(ii) = 1;
         envelope.solve(a.begin(), a.dim());
       }
-    
+
     return a(jj);
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::q_bb(Index i, Index j)
   {
     if (this->stage < stage_q0) solve_q0();
 
     // if i == j the test for null pointers is redundant
 
-    const Float* b2; 
-    const Float* e2; 
-    const Index* n2; 
+    const Float* b2;
+    const Float* e2;
+    const Index* n2;
     const Float* b = design_matrix->begin (i);
     const Float* e = design_matrix->end   (i);
     const Index* n = design_matrix->ibegin(i);
@@ -350,10 +350,10 @@ namespace GNU_gama {
       }
     return qbb;
 
-    
+
   FULL_VECTOR:
 
-    if (init_q_bb) 
+    if (init_q_bb)
     {
       tmpres.reset(parameters);
       init_q_bb = false;
@@ -367,9 +367,9 @@ namespace GNU_gama {
       {
         tmpres(ordering.invp(*n++)) = *b++;
       }
-    
+
     envelope.solve(tmpres.begin(), parameters);
-    
+
     b = design_matrix->begin (i);
     e = design_matrix->end   (i);
     n = design_matrix->ibegin(i);
@@ -383,16 +383,16 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::q_bx(Index i, Index j)
   {
     throw Exc(Exception::BadRegularization,
-              "q_bx not implemented"); 
+              "q_bx not implemented");
     return 0;
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   bool AdjEnvelope<Float, Index, Exc>::lindep(Index i)
   {
     if (this->stage < stage_x0) solve_x0();
@@ -401,7 +401,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::min_x()
   {
     delete[] min_x_list;
@@ -411,7 +411,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::min_x(Index n, Index m[])
   {
     delete[] min_x_list;
@@ -424,20 +424,20 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::solve()
   {
-    solve_x(); 
+    solve_x();
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::solve_q0()
   {
     if (init_q0)
       {
         if (this->stage < stage_x0) solve_x0();
-        
+
         q0.inverse(envelope);
 
         init_q0 = false;
@@ -446,7 +446,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   Float AdjEnvelope<Float, Index, Exc>::dot(Index i, Index j) const
   {
     Float s = Float();
@@ -459,7 +459,7 @@ namespace GNU_gama {
   }
 
 
-  template <typename Float, typename Index, typename Exc> 
+  template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>::solve_x()
   {
     if (init_x)
@@ -496,7 +496,7 @@ namespace GNU_gama {
 
               envelope.upperSolve(1, parameters, tmp.begin());
 
-              tmp(column) = Float(-1); 
+              tmp(column) = Float(-1);
               for (Index i=1; i<=parameters; i++)
                   G(i,k) = tmp(i);
 
@@ -510,7 +510,7 @@ namespace GNU_gama {
         // Gramm-Schmidt orthogonalization
 
         static Float s_tol = Float();
-        if (s_tol <= Float()) 
+        if (s_tol <= Float())
           {
             s_tol = std::sqrt( std::numeric_limits<Float>::epsilon() );
           }
@@ -518,19 +518,19 @@ namespace GNU_gama {
         for (Index column=1; column<=nullity; column++)
           {
             const Float pivot = std::sqrt( dot(column, column) );
-            if (pivot < s_tol) 
+            if (pivot < s_tol)
               {
                 init_x = true;
                 throw Exc(Exception::BadRegularization,
-                        "AdjEnvelope::solve_x() --- bad regularization"); 
+                        "AdjEnvelope::solve_x() --- bad regularization");
               }
-            for (Index i=1; i<=parameters; i++) 
+            for (Index i=1; i<=parameters; i++)
               G(i,column) /= pivot;
 
             for (Index col=column+1; col<=N1; col++)
               {
-                const Float dp = dot(column, col); 
-                for (Index i=1; i<=parameters; i++) 
+                const Float dp = dot(column, col);
+                for (Index i=1; i<=parameters; i++)
                   G(i,col) -= dp*G(i, column);
               }
           }

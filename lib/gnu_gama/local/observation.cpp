@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama C++ library
     Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -22,7 +22,7 @@
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/cluster.h>
 
-namespace GaMaLib 
+namespace GaMaLib
 {
   // the static member Observation::gons was introduced in 1.7.09 to
   // enable selection between grades and degrees in virtual functions
@@ -41,10 +41,10 @@ bool  Observation::check_std_dev() const
 }
 
 
-Double Observation::stdDev() const 
+Double Observation::stdDev() const
 {
-   return cluster->stdDev(cluster_index); 
-}  
+   return cluster->stdDev(cluster_index);
+}
 
 Double Direction::orientation() const
 {

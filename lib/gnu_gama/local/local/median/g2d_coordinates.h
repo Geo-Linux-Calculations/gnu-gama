@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -26,7 +26,7 @@
  * - list of points                                          *
  * - all points with unknown coordinates                     *
  *************************************************************/
- 
+
 #ifndef GaMaLib_g2d_coordinates_h__GaMaLib_Median_Pribl_s_H
 #define GaMaLib_g2d_coordinates_h__GaMaLib_Median_Pribl_s_H
 
@@ -40,7 +40,7 @@ namespace GaMaLib {
   class ApproximateCoordinates
     {
     private:
-      
+
       // point list used to return results
       PointData&       SB;
       ObservationData& OD;
@@ -51,17 +51,17 @@ namespace GaMaLib {
 
       // list of selected points (with unknown coordinates)
       PointIDList selected;
-      
+
       // list of solved points
       PointData solved_pd;
       int depth;
 
       // number of points with known coordinates
       int known_coordinates_;
-      
+
       bool absent(PointID cb)
         {
-          return 
+          return
             (std::find(selected.begin(),selected.end(),cb) == selected.end());
         }
 
@@ -72,7 +72,7 @@ namespace GaMaLib {
             (std::find(sb.begin(), sb.end(), (*sm)->to()) != sb.end());
           if(Angle* u = dynamic_cast<Angle*>(*sm))
             {
-              pom = pom && (std::find(sb.begin(), sb.end(), u->fs()) 
+              pom = pom && (std::find(sb.begin(), sb.end(), u->fs())
                             != sb.end());
             }
           return pom;
@@ -80,7 +80,7 @@ namespace GaMaLib {
 
       void reset();
 
-      bool observation_hasID(ObservationList::iterator m, 
+      bool observation_hasID(ObservationList::iterator m,
                              PointIDList::iterator cb)
         {
           bool pom = (((*m)->from() == (*cb)) || ((*m)->to() == (*cb)));
@@ -118,13 +118,13 @@ namespace GaMaLib {
 
       void copy_horizontal(const ObservationData& from, ObservationList& to);
 
-      ApproximateCoordinates(PointData& b, ObservationData& m, int vn)   
+      ApproximateCoordinates(PointData& b, ObservationData& m, int vn)
         : SB(b), OD(m), depth(vn)
         {
           copy_horizontal(OD, SM);
           reset();
         }
-      
+
       void reset(PointData& b, ObservationList& m)
         {
           SB = b;
@@ -132,24 +132,24 @@ namespace GaMaLib {
           depth = 0;
           reset();
         }
-      
+
     public:
-      
-      ApproximateCoordinates(PointData& b, ObservationData& m) 
+
+      ApproximateCoordinates(PointData& b, ObservationData& m)
         : SB(b), OD(m),  depth(0)
         {
           copy_horizontal(OD, SM);
           reset();
         }
-      
+
       // one point (even if already solved); true - succeeded to get
       // coordinates
       bool calculation(PointID cb);
-      
+
       // poinst in PointIDList (even those already solved); true -
       // succeded to get all coordinates
       bool calculation(PointIDList cb);
-      
+
       // all points without coordinates; true - succeeded to get all
       // coordinates
       bool calculation()
@@ -192,7 +192,7 @@ namespace GaMaLib {
             throw g2d_exc("ApproximateCoordinates::"
                           "solved - calculation not done");
           return solved_pd;
-        }  
+        }
 
       int Total_points () const
         {
@@ -206,8 +206,8 @@ namespace GaMaLib {
 
       // number of points with known coordinates (see reset)
       int Known_coordinates() const
-        { 
-          return known_coordinates_; 
+        {
+          return known_coordinates_;
         }
 
     };

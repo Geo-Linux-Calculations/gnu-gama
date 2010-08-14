@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -24,7 +24,7 @@
 using namespace std;
 using namespace GNU_gama::g3;
 
-namespace 
+namespace
 {
   bool EOL;
 
@@ -35,13 +35,13 @@ namespace
         out << "\t<" << tag << ">" << data << "</" << tag << ">";
         if (EOL) out << "\n";
       }
-    
+
   }
 }
 
 void AdjustmentResults::write_xml(std::ostream& out) const
 {
-  out << 
+  out <<
     "<?xml version=\"1.0\" ?>\n"
     "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
     "<gnu-gama-data>\n";
@@ -53,8 +53,8 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   if (!rejected_observations.empty())
     {
       out << "<rejected-observations>\n";
-      for (std::list<Observation>::const_iterator 
-             p=rejected_observations.begin(), e=rejected_observations.end(); 
+      for (std::list<Observation>::const_iterator
+             p=rejected_observations.begin(), e=rejected_observations.end();
            p!=e; ++p)
         {
           out << "\n<rejected> ";
@@ -124,8 +124,8 @@ void AdjustmentResults::write_xml(std::ostream& out) const
 
 
   out << "<adjustment-statistics>\n";
-  
-  xml(out, algorithm, "algorithm"); 
+
+  xml(out, algorithm, "algorithm");
   if (!(ell_cap.empty() && ell_id.empty() && ell_a.empty() && ell_b.empty()))
     {
       out << "\t<ellipsoid>\n";
@@ -133,9 +133,9 @@ void AdjustmentResults::write_xml(std::ostream& out) const
       xml(out, ell_id,  "id");
       xml(out, ell_a,   "a");
       xml(out, ell_b,   "b");
-      out << "\t</ellipsoid>\n";      
+      out << "\t</ellipsoid>\n";
     }
-  xml(out, parameters,      "parameters"); 
+  xml(out, parameters,      "parameters");
   xml(out, equations,       "equations");
   xml(out, defect,          "defect");
   xml(out, redundancy,      "redundancy");
@@ -148,7 +148,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   out << "</adjustment-statistics>\n\n";
 
   out << "<adjustment-results>\n";
-  for (std::list<Point>::const_iterator 
+  for (std::list<Point>::const_iterator
          p=points.begin(), e=points.end(); p!=e; ++p)
     {
       EOL = false;
@@ -209,7 +209,7 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   out << "\n</adjustment-results>\n\n";
 
   out << "<adjusted-observations>\n";
-  for (std::list<Observation>::const_iterator 
+  for (std::list<Observation>::const_iterator
          p=observations.begin(), e=observations.end(); p!=e; ++p)
     {
       if (p->type == "vector")
@@ -301,12 +301,12 @@ void AdjustmentResults::write_xml(std::ostream& out) const
         }
       else
         {
-          out << "<!-- observation type '" << p->type 
+          out << "<!-- observation type '" << p->type
               << "' not implemented ->\n";
         }
-    }  
+    }
   out << "\n</adjusted-observations>\n\n";
-  
+
   out << "</g3-adjustment-results>\n";
   out << "</gnu-gama-data>\n";
 }

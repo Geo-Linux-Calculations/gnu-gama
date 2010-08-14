@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,7 +31,7 @@ namespace GNU_gama { namespace Exception {
   //---  public:
   //---   virtual ~base() {}
   //---  };
-  
+
 
   class string : public base {
   public:
@@ -51,9 +51,9 @@ namespace GNU_gama { namespace Exception {
 
   //---  class matvec : public string {
   //---  public:
-  //---  
+  //---
   //---    const int error;
-  //---  
+  //---
   //---    matvec(int e, const char* s) : string(s), error(e) {}
   //---  };
 
@@ -63,8 +63,8 @@ namespace GNU_gama { namespace Exception {
 
     const int line, error_code;
 
-    parser(const std::string& s, int r, int c) 
-      : string(s), line(r), error_code(c) 
+    parser(const std::string& s, int r, int c)
+      : string(s), line(r), error_code(c)
       {
       }
   };

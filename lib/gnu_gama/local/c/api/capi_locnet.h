@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -38,10 +38,10 @@ extern "C" {
   /* public member functions */
 
   const char* Cgama_LocalNetwork_algorithm(void*);
-  void Cgama_LocalNetwork_set_apriori_m0(void*, double); 
-  void Cgama_LocalNetwork_set_conf_pr   (void*, double); 
-  void Cgama_LocalNetwork_set_tol_abs   (void*, double); 
-  void Cgama_LocalNetwork_set_type_refsd(void*, int); 
+  void Cgama_LocalNetwork_set_apriori_m0(void*, double);
+  void Cgama_LocalNetwork_set_conf_pr   (void*, double);
+  void Cgama_LocalNetwork_set_tol_abs   (void*, double);
+  void Cgama_LocalNetwork_set_type_refsd(void*, int);
   int  Cgama_LocalNetwork_PointData_empty(void*);
   int  Cgama_LocalNetwork_ObservationData_empty(void*);
   int  Cgama_LocalNetwork_sum_points(void*);

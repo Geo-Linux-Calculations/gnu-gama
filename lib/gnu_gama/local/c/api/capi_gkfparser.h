@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -29,7 +29,7 @@ extern "C" {
   void*  Cgama_GKF_parser(void* local_network);
   void   Cgama_GKF_parser_dtor (void*);
   void   Cgama_GKF_parser_parse(void*, const char* text, int len, int isfinal);
-  
+
   double Cgama_GKF_parser_apriori_m0(void*);
   double Cgama_GKF_parser_conf_pr(void*);
   double Cgama_GKF_parser_tol_abs(void*);

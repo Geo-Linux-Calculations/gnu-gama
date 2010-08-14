@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -44,9 +44,9 @@ namespace GaMaLib {
     solved_points.clear();
   }
 
-  
 
-  void ApproxPoint::reset(PointData* sb, ObservationList* sm, 
+
+  void ApproxPoint::reset(PointData* sb, ObservationList* sm,
                           const PointID& cb)
   {
     state_ = calculation_not_done;
@@ -96,7 +96,7 @@ namespace GaMaLib {
     // from and to the stanpoint, identical angles, ... etc.
     ArrangeObservations(sm_pom);
 
-  }  /* ApproxPoint::reset(PointData& sb, const ObservationList& sm, 
+  }  /* ApproxPoint::reset(PointData& sb, const ObservationList& sm,
          const PointID& cb) */
 
 
@@ -165,7 +165,7 @@ namespace GaMaLib {
                   {
                     solved_points.push_back(VR->Solution());
                   }
-                if(solved_points.empty() && 
+                if(solved_points.empty() &&
                    (VR -> state() == 0)  &&  (!two_solutions))
                   {
                     prv = GU->solution_1();
@@ -210,25 +210,25 @@ namespace GaMaLib {
     // ----------------------------------------------------------------------
     // in this function we use std:list instead of GNU_gama::List
     // tu allow 'erase' of list elements
- 
+
     typedef std::list<Observation*> ObservationList;
 
     ObservationList sm_pom;
-    for (GaMaLib::ObservationList::iterator 
+    for (GaMaLib::ObservationList::iterator
            i=psm_pom.begin(), e=psm_pom.end(); i!=e; ++i)
       {
         sm_pom.push_back(*i);
       }
 
     ObservationList SM_S;
-    for (GaMaLib::ObservationList::iterator 
+    for (GaMaLib::ObservationList::iterator
            i=ApproxPoint::SM_S.begin(), e=ApproxPoint::SM_S.end(); i!=e; ++i)
       {
         SM_S.push_back(*i);
       }
 
     ObservationList SM_U;
-    for (GaMaLib::ObservationList::iterator 
+    for (GaMaLib::ObservationList::iterator
            i=ApproxPoint::SM_U.begin(), e=ApproxPoint::SM_U.end(); i!=e; ++i)
       {
         SM_U.push_back(*i);
@@ -239,7 +239,7 @@ namespace GaMaLib {
     ObservationList::iterator i, j;
     // distances
     Double med;
-    std::vector<Double> pom_sez; 
+    std::vector<Double> pom_sez;
     i = sm_pom.begin();
     while(i != sm_pom.end())
       {
@@ -251,9 +251,9 @@ namespace GaMaLib {
             while(j != sm_pom.end())
               {
                 Distance* d2 = dynamic_cast<Distance*>(*j);
-                if(d2 && ((d1->from() == d2->from() && 
+                if(d2 && ((d1->from() == d2->from() &&
                            d1->to() == d2->to()) ||
-                          (d1->to() == d2->from() && 
+                          (d1->to() == d2->from() &&
                            d1->from() == d2->to())))
                   {
                     pom_sez.push_back(d2->value());
@@ -264,10 +264,10 @@ namespace GaMaLib {
               }
             std::sort(pom_sez.begin(),pom_sez.end());
             std::vector<Double>::size_type size = pom_sez.size();
-            med = (g2d_even(size) ? 
-                   (pom_sez[size/2-1] + pom_sez[size/2])/2 : 
+            med = (g2d_even(size) ?
+                   (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                    pom_sez[(size+1)/2-1]);
-            Distance* DD 
+            Distance* DD
               = new Distance(CB, (d1->from()==CB ?
                                   d1->to() :
                                   d1->from()), med);
@@ -278,7 +278,7 @@ namespace GaMaLib {
         else
           i++;
       }
-    
+
     // outer bearings
     i = SM_S.begin();
     while(i != SM_S.end())
@@ -301,8 +301,8 @@ namespace GaMaLib {
           }
         std::sort(pom_sez.begin(),pom_sez.end());
         std::vector<Double>::size_type size = pom_sez.size();
-        med = (g2d_even(size) ? 
-               (pom_sez[size/2-1] + pom_sez[size/2])/2 : 
+        med = (g2d_even(size) ?
+               (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);
         Direction* SS = new Direction(s1->from(),s1->to(),med);
         SM.push_back(SS);
@@ -312,7 +312,7 @@ namespace GaMaLib {
       }
 
     // inner angles
-    // in sm_pom are only inner angels now; dists. have been already removed 
+    // in sm_pom are only inner angels now; dists. have been already removed
     // in SM_U are only angles
     i = sm_pom.begin();
     Double u_mer;
@@ -327,8 +327,8 @@ namespace GaMaLib {
             if(((u1->to()==u2->to())&&(u1->fs()==u2->fs()))||
                ((u1->to()==u2->fs())&&(u1->fs()==u2->to())))
               {
-                u_mer = (u1->to() == u2->to() ? 
-                         u2->value() 
+                u_mer = (u1->to() == u2->to() ?
+                         u2->value()
                          : 2*M_PI-u2->value());
                 pom_sez.push_back(u_mer);
                 j = SM_U.erase(j);
@@ -339,8 +339,8 @@ namespace GaMaLib {
           }
         std::sort(pom_sez.begin(),pom_sez.end());
         std::vector<Double>::size_type size = pom_sez.size();
-        med = (g2d_even(size) ? 
-               (pom_sez[size/2-1] + pom_sez[size/2])/2 : 
+        med = (g2d_even(size) ?
+               (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);
         Angle* UU;
         if(med >= M_PI)
@@ -366,8 +366,8 @@ namespace GaMaLib {
             if(((u1->to()==u2->to())&&(u1->fs()==u2->fs()))||
                ((u1->to()==u2->fs())&&(u1->fs()==u2->to())))
               {
-                u_mer = (u1->to() == u2->to() ? 
-                         u2->value() : 
+                u_mer = (u1->to() == u2->to() ?
+                         u2->value() :
                          2*M_PI-u2->value());
                 pom_sez.push_back(u_mer);
                 j = SM_U.erase(j);
@@ -378,8 +378,8 @@ namespace GaMaLib {
           }
         std::sort(pom_sez.begin(),pom_sez.end());
         std::vector<Double>::size_type size = pom_sez.size();
-        med = (g2d_even(size) ? 
-               (pom_sez[size/2-1] + pom_sez[size/2])/2 : 
+        med = (g2d_even(size) ?
+               (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);
         Angle* UU;
         if(med >= M_PI)
@@ -397,21 +397,21 @@ namespace GaMaLib {
     // now we copy working std::lists back
 
     psm_pom.clear();
-    for (ObservationList::iterator 
+    for (ObservationList::iterator
            i=sm_pom.begin(), e=sm_pom.end(); i!=e; ++i)
       {
         psm_pom.push_back(*i);
       }
 
     ApproxPoint::SM_S.clear();
-    for (ObservationList::iterator 
+    for (ObservationList::iterator
            i=SM_S.begin(), e=SM_S.end(); i!=e; ++i)
       {
         ApproxPoint::SM_S.push_back(*i);
       }
 
     ApproxPoint::SM_U.clear();
-    for (ObservationList::iterator 
+    for (ObservationList::iterator
            i=SM_U.begin(), e=SM_U.end(); i!=e; ++i)
       {
         ApproxPoint::SM_U.push_back(*i);

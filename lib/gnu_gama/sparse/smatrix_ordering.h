@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU Gama)
     Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,7 +33,7 @@ namespace GNU_gama {
   /** \brief Rooted level structure */
 
   template <typename Index=std::size_t>
-  class RootedLevelStructure 
+  class RootedLevelStructure
   {
   public:
 
@@ -55,7 +55,7 @@ namespace GNU_gama {
 
       for (Index i=1; i<=nodes; i++) mask(i) = i;
       const Index mnodes = nodes;     // masked nodes
-      
+
       if (adst.xadj.dim() != nodes+2) adst.xadj.reset(nodes+2);
       if (adst.adjncy.dim() != nodes) adst.adjncy.reset(nodes);
 
@@ -66,7 +66,7 @@ namespace GNU_gama {
       adst.xadj(level) = index;
       adst.xadj(level+1) = index+1;
       index++;
-      
+
       while (index != mnodes)
         {
           // all masked neighbours of nodes in the current level
@@ -77,7 +77,7 @@ namespace GNU_gama {
           while (ii != ee)
             {
               const Index nox = adst.adjncy(ii);
-              typename Adjacency<Index>::const_iterator 
+              typename Adjacency<Index>::const_iterator
                 i=graph->begin(nox), e=graph->end(nox);
               while(i != e)
                 {
@@ -93,7 +93,7 @@ namespace GNU_gama {
             }
 
           if (width == 0) break;
-          
+
           level++;
           adst.xadj(level) = index;
           index += width;
@@ -104,7 +104,7 @@ namespace GNU_gama {
     }
 
   private:
-    
+
     IntegerList<Index> mask;
   };
 
@@ -160,7 +160,7 @@ namespace GNU_gama {
   /** \brief Sprase matrix ordring */
 
   template <typename Index=std::size_t>
-  class SparseMatrixOrdering 
+  class SparseMatrixOrdering
   {
   public:
 
@@ -170,8 +170,8 @@ namespace GNU_gama {
     SparseMatrixOrdering()
     {
     }
-    virtual ~SparseMatrixOrdering() 
-    { 
+    virtual ~SparseMatrixOrdering()
+    {
     }
     SparseMatrixOrdering(const Adjacency<Index>* graph)
     {
@@ -186,7 +186,7 @@ namespace GNU_gama {
           perm.reset(nods+1);
           invp.reset(nods+1);
         }
-      
+
       algorithm(graph);
       inverse_permutaion();
     }
@@ -216,7 +216,7 @@ namespace GNU_gama {
   class ReverseCuthillMcKee : public SparseMatrixOrdering<Index>
   {
   public:
-    
+
     ReverseCuthillMcKee()
     {
     }
@@ -226,7 +226,7 @@ namespace GNU_gama {
     }
 
   private:
-    
+
     void algorithm(const Adjacency<Index>* graph)
     {
       const Index N = graph->nodes();
@@ -236,28 +236,28 @@ namespace GNU_gama {
         }
 
       Index count = 0;         // ordered nodes
-      while (count < N) 
+      while (count < N)
         {
           PseudoPeripheralNode<Index> ppn;
           for (Index i=1; i<=N; i++)
             if (this->invp(i))
               {
-                ppn.set_starting_node(i);              
+                ppn.set_starting_node(i);
                 break;
               }
           const Index r = ppn(graph);
           this->perm(++count) = r;
           this->invp(r) = 0;
-          
+
           for (Index i=1; i<=count; i++)
             {
               // add all unnumbered neighbours, sorted in increasing order
               // of degree
-              
+
               typedef std::pair<Index, Index>  Pair;
               typedef std::vector<Pair>        Vector;
               Vector  tmp;
-              
+
               const Index x = this->perm(i);
               typename Adjacency<Index>::const_iterator b=graph->begin(x);
               typename Adjacency<Index>::const_iterator e=graph->end  (x);
@@ -271,17 +271,17 @@ namespace GNU_gama {
                     }
                   b++;
                 }
-              
+
               std::sort(tmp.begin(), tmp.end());
-              
-              for (typename Vector::const_iterator 
+
+              for (typename Vector::const_iterator
                      i=tmp.begin(), e=tmp.end(); i!=e; ++i)
                 {
                   this->perm(++count) = (*i).second;
                 }
             }
         }
-      
+
       // reverse ordering
       for (Index j=N, i=1; i<j; i++, j--)
         {

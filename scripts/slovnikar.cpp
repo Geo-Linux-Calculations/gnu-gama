@@ -1,7 +1,7 @@
 /* Slovnikar (lexicographer) is a simple program to compile `dictionaries'
  * used in the GNU GaMa project.
  * ==========================================================================
- * 
+ *
  * Program reads series of file names from standard input. Input files
  * contain translations of texts in the following format:
  *
@@ -11,20 +11,20 @@
  *                        cz="Toto je muj text"  />
  *   <e id="your_text_id" en="This is your text"
  *                        cz="Toto je tvuj text" />
- *       <!-- ...... -->      
- *   </entries>   
+ *       <!-- ...... -->
+ *   </entries>
  *
  * Program compiles dictionarise and write files language.h and language.cpp
  *
  * To ease creation of language files, special attribute EN is
  * available.  Attribute EN is ignored on input and serves as a kind
  * of comment.
- * 
+ *
  * ------------------------------------------------------------------------ */
 
-         const char* language[] = { "en", "ca", "cz", "du", "fi", "fr", 
+         const char* language[] = { "en", "ca", "cz", "du", "fi", "fr",
                                     "hu", "ru", "ua" };
-  
+
          const int N = sizeof(language)/sizeof(const char*);
 
          const char* version = "1.09";
@@ -42,7 +42,7 @@
  * 1.07  2005-08-31
  *
  *       - added French (switch "fr")
- * 
+ *
  * 1.06  2005-08-21
  *
  *       - added Russin (switch "ru")
@@ -61,7 +61,7 @@
  *
  * 1.02  2003-03-16
  *
- *       - processing moved from build-dictionaries to Makefile-slovnikar 
+ *       - processing moved from build-dictionaries to Makefile-slovnikar
  *
  * 1.01  2002-11-22
  *
@@ -79,39 +79,39 @@
  * 0.04  2001-11-28
  *
  *       - all undefined texts set to
- *         "internal error : program must call function set_gama_language()" 
+ *         "internal error : program must call function set_gama_language()"
  *
  * 0.03  2001.05.07
  *
  *       - added function set_gama_language() for dynamic language setting
  *
- * 0.02  2000.08.07 
+ * 0.02  2000.08.07
  *
  *       - language.html review table was added
  *       - language "EN" is ignored (changing "en" to "EN" is used for
  *         commenting out the English texts)
- *         
- * 0.01  2000.08.04  
- *       
+ *
+ * 0.01  2000.08.04
+ *
  *       - first draft
  *
  * ---------------------------------------------------------------------------
- *   
+ *
  *   Geodesy and Mapping C++ Library (GaMaLib)
  *   Copyright (C) 2000, 2006  Ales Cepek <cepek@fsv.cvut.cz>
  *
  *   This file is part of the GaMaLib C++ Library.
- *   
+ *
  *   This library is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU Library General Public
  *   License as published by the Free Software Foundation; either
  *   version 2 of the License, or (at your option) any later version.
- *   
+ *
  *   This library is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of      
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *   Library General Public License for more details.
- *         
+ *
  *   You should have received a copy of the GNU Library General Public
  *   License along with this library (see COPYING.LIB); if not, write to the
  *   Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
@@ -170,14 +170,14 @@ void startElement(void *userData, const char *cname, const char **atts)
   Parser* parser = static_cast<Parser*>(userData);
   const string name(cname);
 
-  if (parser->state == START && name == "entries") 
+  if (parser->state == START && name == "entries")
     {
       parser->state = ENTRIES;
     }
-  else if (parser->state == ENTRIES && name == "e") 
+  else if (parser->state == ENTRIES && name == "e")
     {
       parser->state = ENTRY;
-      
+
       string id;
       Entry  entry, dict_entry;
       while (*atts)
@@ -206,7 +206,7 @@ void startElement(void *userData, const char *cname, const char **atts)
               }
           if (lang == N) parser->error("unknown language");
         }
-      
+
       if (id == "")
         parser->error("id not defined");
       else
@@ -215,10 +215,10 @@ void startElement(void *userData, const char *cname, const char **atts)
             {
               if (entry.lang[l] == "") continue;
 
-              if (dict_entry.lang[l] != ""  && 
+              if (dict_entry.lang[l] != ""  &&
                   dict_entry.lang[l] != entry.lang[l])
                 {
-                  string txt = id + " / " 
+                  string txt = id + " / "
                     + string(language[l]) + " = "
                     + entry.lang[l] + " redefined";
                   parser->error(txt.c_str());
@@ -261,16 +261,16 @@ void characterDataHandler(void *userData, const char* s, int len)
 
 Parser::Parser(string fn)
 {
-  expat_parser = XML_ParserCreate(0); 
-  
+  expat_parser = XML_ParserCreate(0);
+
   XML_SetUserData(expat_parser, this);
   XML_SetElementHandler(expat_parser, startElement, endElement);
   XML_SetCharacterDataHandler(expat_parser, characterDataHandler);
   XML_SetUnknownEncodingHandler(expat_parser, UnknownEncodingHandler, 0);
-  
+
   filename = fn;
   state = START;
-  
+
   ifstream inp(filename.c_str());
   if (!inp) cerr << "cannot open file " << filename << endl;
   while (getline(inp, text))
@@ -282,7 +282,7 @@ Parser::Parser(string fn)
           errString = string(XML_ErrorString(XML_GetErrorCode(expat_parser)));
           errCode   = XML_GetErrorCode(expat_parser);
           errLine   = XML_GetCurrentLineNumber(expat_parser);
-          
+
           cerr << filename << ":" << errLine << ": "
                << errString << " : " << text << endl;
           return;
@@ -293,21 +293,21 @@ Parser::Parser(string fn)
 
 Parser::~Parser()
 {
-  XML_ParserFree(expat_parser); 
+  XML_ParserFree(expat_parser);
 }
 
 void Parser::error(const char* message)
 {
   int erl = XML_GetCurrentLineNumber(expat_parser);
-  cerr << filename << ":" << erl << ": " << message << ": " << text << endl; 
+  cerr << filename << ":" << erl << ": " << message << ": " << text << endl;
   result = 1;
 }
 
 int main()
 {
-  /* reading all input files*/ 
+  /* reading all input files*/
   {
-    string f;  
+    string f;
     while (cin >> f) { Parser p(f); };
   }
 
@@ -357,13 +357,13 @@ int main()
 
       for (Dictionary::const_iterator i=dict.begin(); i!=dict.end(); ++i)
         {
-          out << "<tr><td colspan=\"2\"><tt style=\"color : navy\">" 
+          out << "<tr><td colspan=\"2\"><tt style=\"color : navy\">"
               << (*i).first << "</tt></td></tr>\n";
           for (int l=0; l<N; l++)
             {
               out << "<tr>"
                   << "<td>" << language[l] << "</td>"
-                  << "<td>"; 
+                  << "<td>";
 
               string s = (*i).second.lang[l];
               for (string::const_iterator c=s.begin(); c!=s.end(); ++c)
@@ -377,7 +377,7 @@ int main()
                   out << *c;
 
               out << "</td>"
-                  << "</tr>\n";  
+                  << "</tr>\n";
             }
         }
 
@@ -397,8 +397,8 @@ int main()
     Dictionary::const_iterator i;
     for (i=dict.begin(); i!=dict.end(); ++i)
       {
-        out << "const char* " 
-            << (*i).first 
+        out << "const char* "
+            << (*i).first
             << " = T_language_cpp_internal_error;\n";
       }
     out << endl;
@@ -415,17 +415,17 @@ int main()
       for (i=dict.begin(); i!=dict.end(); ++i)
         {
           string text = (*i).second.lang[l];
-          if (text == "") 
+          if (text == "")
             text = (*i).second.lang[0];   // English is used implicitly
-          
+
           out << "\t" << (*i).first << "=\"" << text << "\";\n";
         }
         out << "\treturn;\n\n";
-      
+
       }
     out << "   }\n\n}\n\n}   // namespace GaMaLib\n\n";
   }
-  
+
   return result;
 }
 

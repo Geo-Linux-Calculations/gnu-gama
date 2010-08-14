@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -49,21 +49,21 @@ namespace GaMaLib {
 
   typedef GNU_gama::List<Observation*> ObservationList;
 
-  
-  class Observation 
+
+  class Observation
     {
     protected:
-    
+
       GNU_gama::Cluster<Observation>* cluster;
       int      cluster_index;
       friend   class GNU_gama::Cluster<Observation>;
       bool     check_std_dev() const;
-    
+
     public:
 
       typedef GaMaLib::CovMat CovarianceMatrix;
-    
-      Observation(const PointID& s, const PointID& c, Double m) 
+
+      Observation(const PointID& s, const PointID& c, Double m)
         :
         cluster(0), from_(s), to_(c), value_(m), active_(true),
         from_dh_(0), to_dh_(0)
@@ -72,19 +72,19 @@ namespace GaMaLib {
         }
       virtual ~Observation() {}
 
-      virtual Observation* clone() const = 0; 
+      virtual Observation* clone() const = 0;
 
-      const GNU_gama::Cluster<Observation>* ptr_cluster() const     
-        { 
-          return cluster; 
+      const GNU_gama::Cluster<Observation>* ptr_cluster() const
+        {
+          return cluster;
         }
-      GNU_gama::Cluster<Observation>* ptr_cluster()           
-        { 
-          return cluster; 
+      GNU_gama::Cluster<Observation>* ptr_cluster()
+        {
+          return cluster;
         }
-      void set_cluster(GNU_gama::Cluster<Observation>* c) 
-        { 
-          cluster = c; 
+      void set_cluster(GNU_gama::Cluster<Observation>* c)
+        {
+          cluster = c;
         }
 
       const PointID& from() const { return from_;    }
@@ -95,9 +95,9 @@ namespace GaMaLib {
       void   set_active ()  const { active_ = true;  }
       void   set_passive()  const { active_ = false; }
 
-      bool revision(const Revision* rev) const 
-        { 
-          return rev->revision(this); 
+      bool revision(const Revision* rev) const
+        {
+          return rev->revision(this);
         }
       void linearization(const Linearization* lin) const
         {
@@ -105,52 +105,52 @@ namespace GaMaLib {
         }
 
       virtual void write(std::ostream&, bool print_at) const = 0;
-      
+
       void write(std::ostream* ptr, bool print_at) const
       {
         if (ptr) write(*ptr, print_at);
       }
 
-      static  bool gons;   // added in 1.7.09 
+      static  bool gons;   // added in 1.7.09
 
       // instrument / reflector height
 
       Double  from_dh() const { return from_dh_; }
       Double  to_dh  () const { return to_dh_;   }
 
-      void    set_value  (Double v) { value_   = v; } 
+      void    set_value  (Double v) { value_   = v; }
       void    set_from_dh(Double h) { from_dh_ = h; }
       void    set_to_dh  (Double h) { to_dh_   = h; }
 
       int     dimension() const { return 1; }
 
     private:
-    
+
       const PointID from_;
       const PointID to_;
       Double        value_;        // observed value
       mutable bool  active_;       // set false for unused observation
       Double        from_dh_;      // height of instrument
       Double        to_dh_;        // height of reflector
-    
+
     protected:
-    
-      void norm_rad_val() 
+
+      void norm_rad_val()
         {
           while (value_ >= 2*M_PI) value_ -= 2*M_PI;
           while (value_ <   0    ) value_ += 2*M_PI;
         };
 
     };
-        
 
-  class Distance : public Observation 
+
+  class Distance : public Observation
     {
     public:
       Distance(const PointID& s, const PointID& c, Double d)
-        : Observation(s, c, d) 
-        { 
-          if (d <= 0) 
+        : Observation(s, c, d)
+        {
+          if (d <= 0)
             throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
         }
       ~Distance() {}
@@ -159,47 +159,47 @@ namespace GaMaLib {
 
       void write(std::ostream&, bool print_at) const;
     };
- 
 
-  class Direction : public Observation 
+
+  class Direction : public Observation
     {
     public:
       Direction(const PointID& s, const PointID& c,  Double d)
-        : Observation(s, c, d) 
-        { 
-          norm_rad_val(); 
+        : Observation(s, c, d)
+        {
+          norm_rad_val();
         }
       ~Direction() {}
 
       CLONE(Direction*) clone() const { return new Direction(*this); }
 
       void write(std::ostream&, bool print_at) const;
-     
-      Double orientation() const; 
+
+      Double orientation() const;
       void   set_orientation(Double p);
-      bool   test_orientation() const; 
-      void   delete_orientation();     
-      void   index_orientation(int n); 
+      bool   test_orientation() const;
+      void   delete_orientation();
+      void   index_orientation(int n);
       int    index_orientation() const;
     };
- 
 
-  class Angle : public Observation 
+
+  class Angle : public Observation
     {
     private:
       PointID fs_;
       Double  fs_dh_;
     public:
       Angle(const PointID& s, const PointID& b,  const PointID& f,
-            Double d) : Observation(s, b, d), fs_(f), fs_dh_(0) 
-        { 
+            Double d) : Observation(s, b, d), fs_(f), fs_dh_(0)
+        {
           /* was: if (s == c2 || c == c2) ...; from 1.3.31 we allow
            * left and right targets to be identical, surely this is
            * not an realistic case but it's useful in g2d_point.h:67
            * and should not cause a trouble elsewhere */
-          if (s == f) 
+          if (s == f)
             throw GaMaLib::Exception(T_GaMa_from_equals_to);
-          norm_rad_val(); 
+          norm_rad_val();
         }
       ~Angle() {}
 
@@ -216,17 +216,17 @@ namespace GaMaLib {
     };
 
 
-  // height differences 
+  // height differences
 
-  class H_Diff : public Observation 
+  class H_Diff : public Observation
     {
     private:
       Double dist_;
     public:
       H_Diff(const PointID& s, const PointID& c, Double dh, Double d=0)
-        : Observation(s, c, dh), dist_(d) 
-        { 
-          if (d < 0)   // zero distance is legal in H_Diff 
+        : Observation(s, c, dh), dist_(d)
+        {
+          if (d < 0)   // zero distance is legal in H_Diff
             throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
         }
       ~H_Diff() {}
@@ -235,22 +235,22 @@ namespace GaMaLib {
 
       void write(std::ostream&, bool print_at) const;
 
-      void   set_dist(Double d) 
-        { 
-          if (d < 0)    // zero distance is legal in H_Diff 
+      void   set_dist(Double d)
+        {
+          if (d < 0)    // zero distance is legal in H_Diff
             throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
-          dist_ = d;    
+          dist_ = d;
         }
       Double dist() const { return dist_; }
     };
- 
+
 
   // coordinate differences (vectors)  dx, dy, dz
 
   class Xdiff : public Observation
     {
     public:
-      Xdiff(const PointID& from, const PointID& to, Double dx) 
+      Xdiff(const PointID& from, const PointID& to, Double dx)
         : Observation(from, to, dx) {}
       ~Xdiff() {}
 
@@ -262,7 +262,7 @@ namespace GaMaLib {
   class Ydiff : public Observation
     {
     public:
-      Ydiff(const PointID& from, const PointID& to, Double dy) 
+      Ydiff(const PointID& from, const PointID& to, Double dy)
         : Observation(from, to, dy) {}
       ~Ydiff() {}
 
@@ -274,7 +274,7 @@ namespace GaMaLib {
   class Zdiff : public Observation
     {
     public:
-      Zdiff(const PointID& from, const PointID& to, Double dz) 
+      Zdiff(const PointID& from, const PointID& to, Double dz)
         : Observation(from, to, dz) {}
       ~Zdiff() {}
 
@@ -283,7 +283,7 @@ namespace GaMaLib {
       void write(std::ostream&, bool print_at) const;
     };
 
- 
+
   // coordinate observations (observed coordinates)  x, y, z
 
   class X : public Observation
@@ -319,16 +319,16 @@ namespace GaMaLib {
       void write(std::ostream&, bool print_at) const;
     };
 
- 
+
   // slope observations (slope distances and zenith angles)
 
-  class S_Distance : public Observation 
+  class S_Distance : public Observation
     {
     public:
       S_Distance(const PointID& s, const PointID& c, Double d)
-        : Observation(s, c, d) 
-        { 
-          if (d <= 0) 
+        : Observation(s, c, d)
+        {
+          if (d <= 0)
             throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
         }
       ~S_Distance() {}
@@ -337,15 +337,15 @@ namespace GaMaLib {
 
       void write(std::ostream&, bool print_at) const;
     };
- 
 
-  class Z_Angle : public Observation 
+
+  class Z_Angle : public Observation
     {
     public:
       Z_Angle(const PointID& s, const PointID& c, Double d)
-        : Observation(s, c, d) 
-        { 
-          if (d <= 0) 
+        : Observation(s, c, d)
+        {
+          if (d <= 0)
             throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
         }
       ~Z_Angle() {}
@@ -354,7 +354,7 @@ namespace GaMaLib {
 
       void write(std::ostream&, bool print_at) const;
     };
- 
+
 
 }   // namespace GaMaLib
 

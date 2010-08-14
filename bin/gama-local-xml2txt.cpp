@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     }
   catch (GNU_gama::Exception::parser perr)
     {
-      std::cerr << "parser error : " << perr.error_code 
+      std::cerr << "parser error : " << perr.error_code
                 << "  line : "       << perr.line
                 << "  text : "       << perr.str
                 << std::endl;
@@ -62,19 +62,19 @@ int main(int argc, char* argv[])
 int help()
 {
   using std::cerr;
-  
-  cerr << "Usage: gama-local-xml2txt [options] < std_input > std_output\n\n" 
+
+  cerr << "Usage: gama-local-xml2txt [options] < std_input > std_output\n\n"
        << "Convert XML adjustment output of gama-local to text format\n\n";
-  
+
   cerr << "Options:\n"
        << "\n";
-  cerr << "--angles     400 | 360\n"  
+  cerr << "--angles     400 | 360\n"
        << "--language   en | ca | cz | du | fi | fr | hu | ru | ua \n"
        << "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 "
        << "| cp-1251\n"
        << "--help\n";
   cerr << "\n";
-  
+
   return 1;
 }
 
@@ -83,22 +83,22 @@ int help()
 int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out)
 {
   if (argc == 1) return 0;
-  
+
   const char* c;
   const char* argv_lang   = 0;
   const char* argv_enc    = 0;
   const char* argv_angles = 0;
-  
+
   for (int i=1; i<argc; i++)
     {
       c = argv[i];
       if (*c != '-') return help();
       if (*c && *c == '-') c++;
       if (*c && *c == '-') c++;
-      
+
       const std::string name(c);
       c = argv[++i];
-      
+
       if      (name == "help"      ) return help();
       else if (name == "version"   ) return 1+GNU_gama::version("gama-local-xml2txt", "Ales Cepek");
       else if (name == "language"  ) argv_lang   = c;
@@ -107,7 +107,7 @@ int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out)
       else
         return help();
     }
-  
+
   if (argv_lang)
     {
       if      (!strcmp("en", argv_lang)) set_gama_language(en);
@@ -122,30 +122,30 @@ int parameters(int argc, char* argv[], Adjustment& adj, OutStream& out)
       else if (!strcmp("ua", argv_lang)) set_gama_language(ua);
       else return help();
     }
-  
+
   if (argv_angles)
     {
       if      (!strcmp("400", argv_angles))  adj.gons = true;
       else if (!strcmp("360", argv_angles))  adj.gons = false;
       else return help();
     }
-  
+
   if (argv_enc)
     {
-      if (!strcmp("utf-8", argv_enc)) 
+      if (!strcmp("utf-8", argv_enc))
         out.set_encoding(OutStream::utf_8);
-      else if (!strcmp("iso-8859-2", argv_enc)) 
+      else if (!strcmp("iso-8859-2", argv_enc))
         out.set_encoding(OutStream::iso_8859_2);
-      else if (!strcmp("iso-8859-2-flat", argv_enc)) 
+      else if (!strcmp("iso-8859-2-flat", argv_enc))
         out.set_encoding(OutStream::iso_8859_2_flat);
-      else if (!strcmp("cp-1250", argv_enc)) 
+      else if (!strcmp("cp-1250", argv_enc))
         out.set_encoding(OutStream::cp_1250);
-      else if (!strcmp("cp-1251", argv_enc)) 
+      else if (!strcmp("cp-1251", argv_enc))
         out.set_encoding(OutStream::cp_1251);
       else
         return help();
     }
-  
+
   return 0;
 }
 
@@ -159,20 +159,20 @@ void general_parameters(Stream& cout, const Adjustment& adj)
   using std::setprecision;
 
   cout << T_GaMa_Adjustment_of_geodetic_network << "        "
-       << T_GaMa_version 
-       << adj.network_general_parameters.gama_local_version     << "-" 
-       << adj.network_general_parameters.gama_local_algorithm   << " / " 
-       << adj.network_general_parameters.gama_local_compiler    << "\n" 
+       << T_GaMa_version
+       << adj.network_general_parameters.gama_local_version     << "-"
+       << adj.network_general_parameters.gama_local_algorithm   << " / "
+       << adj.network_general_parameters.gama_local_compiler    << "\n"
        << underline(T_GaMa_Adjustment_of_geodetic_network, '*') << "\n"
        << "http://www.gnu.org/software/gama/\n\n\n";
-  
+
 
   if (!adj.description.empty())
     {
       cout << T_GaMa_network_description << '\n'
            << underline(T_GaMa_network_description, '*') << '\n'
            << adj.description << "\n\n";
-      
+
       if ((*adj.description.rbegin()) != '\n')
         cout << '\n';
     }
@@ -188,14 +188,14 @@ void general_parameters(Stream& cout, const Adjustment& adj)
     n = strlen(T_GaMa_gpar1_fixed_coordinates);        if (n > w0) w0 = n;
     n = strlen(T_GaMa_gpar1_total);                    if (n > w0) w0 = n;
   }
-  
+
   cout.setf(ios_base::left,  ios_base::adjustfield);
   cout << setw(w0) << T_GaMa_gpar1_coordinates << " ";
   cout.setf(ios_base::right, ios_base::adjustfield);
   cout << setw(w_+1) << "xyz"
        << setw(w_-1) << "xy"
        << setw(w_)   << "z"  << "\n\n";
-  
+
   const int a_xyz = adj.coordinates_summary.adjusted.xyz;
   const int a_xy  = adj.coordinates_summary.adjusted.xy;
   const int a_z   = adj.coordinates_summary.adjusted.z;
@@ -205,7 +205,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
   const int f_xyz = adj.coordinates_summary.fixed.xyz;
   const int f_xy  = adj.coordinates_summary.fixed.xy;
   const int f_z   = adj.coordinates_summary.fixed.z;
-  
+
   cout.setf(ios_base::left,  ios_base::adjustfield);
   cout << setw(w0) << T_GaMa_gpar1_adjusted_coordinates << ":";
   cout.setf(ios_base::right, ios_base::adjustfield);
@@ -227,9 +227,9 @@ void general_parameters(Stream& cout, const Adjustment& adj)
        << setw(w_)  << f_xy
        << setw(w_)  << f_z
        << '\n';
-  
+
   for (int ii=0; ii<w0+1+3*w_+1; ii++) cout << '-'; cout << "\n";
-  
+
   cout.setf(ios_base::left,  ios_base::adjustfield);
   cout << setw(w0) << T_GaMa_gpar1_total << ":";
   cout.setf(ios_base::right, ios_base::adjustfield);
@@ -237,7 +237,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
        << setw(w_)  << (a_xy  + f_xy )
        << setw(w_)  << (a_z   + f_z  )
        << "\n\n";
-  
+
   int w1 = 0;
   {
     int n;
@@ -267,7 +267,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
     n = strlen(T_GaMa_gpar2_network_defect);      if (n > w2) w2 = n;
   }
   const char* tab_sep = "            ";
-  
+
   const int pocdel  = adj.observations_summary.distances;
   const int pocsmer = adj.observations_summary.directions;
   const int pocuhl  = adj.observations_summary.angles;
@@ -276,13 +276,13 @@ void general_parameters(Stream& cout, const Adjustment& adj)
   const int poczeni = adj.observations_summary.z_angles;
   const int pocsikm = adj.observations_summary.s_dists;
   // number of vectors is not printed in gama-local text output
-  const int pocvekt = adj.observations_summary.vectors; 
-  
+  const int pocvekt = adj.observations_summary.vectors;
+
   const int observations = pocdel + pocsmer + pocuhl + pocsour
     + pocnivp + poczeni + pocsikm + pocvekt;
-  
+
   const int pocosn  = adj.orientations.size();
-  
+
   if (pocosn)
     {
       cout << set_width(T_GaMa_gpar1_directions, w1) << ":"
@@ -331,9 +331,9 @@ void general_parameters(Stream& cout, const Adjustment& adj)
   if (types != 1)
     cout << set_width(T_GaMa_gpar1_obs_total, w1) << ":"
          << setw(6) << observations << "\n";
-  cout << '\n';    
+  cout << '\n';
 
-  
+
   cout << set_width(T_GaMa_gpar1_equations, w1) << ":"
        << setw(6) << observations     << tab_sep
        << set_width(T_GaMa_gpar2_number_of_unknowns, w2) << ":"
@@ -368,12 +368,12 @@ void general_parameters(Stream& cout, const Adjustment& adj)
        << (adj.standard_deviation.using_aposteriori ?
            T_GaMa_statan_with_empirical_standard_deviation :
            T_GaMa_statan_with_apriori_standard_deviation);
-  cout << setprecision(2) 
+  cout << setprecision(2)
        << (adj.standard_deviation.using_aposteriori ?
            adj.standard_deviation.aposteriori : adj.standard_deviation.apriori)
        << "\n"
        <<  T_GaMa_statan_with_confidence_level
-       << setprecision(0) << adj.standard_deviation.probability*100 
+       << setprecision(0) << adj.standard_deviation.probability*100
        << " %\n\n";
 
   if (const int nadb = adj.project_equations.degrees_of_freedom)
@@ -381,7 +381,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
       const double alfa_pul = (1 - adj.standard_deviation.probability)/2;
       if (adj.standard_deviation.using_aposteriori)
         {
-          float testm0 = adj.standard_deviation.aposteriori 
+          float testm0 = adj.standard_deviation.aposteriori
             / adj.standard_deviation.apriori;
           float lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
           float upper = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
@@ -473,19 +473,19 @@ void general_parameters(Stream& cout, const Adjustment& adj)
           float t = s*s;
           krit_opr = sqrt(nadb*t/(nadb-1+t));
         }
-      
+
       if (nadb > 1 && imax > -1 && adj.standard_deviation.using_aposteriori)
         {
           const Adjustment::Observation& obs = adj.obslist[imax];
           double v = obs.residual();
           double q = obs.qrr;
-          double m_0_red = 
+          double m_0_red =
             sqrt(fabs(adj.project_equations.sum_of_squares-v*v/q)/(nadb-1));
           cout << "\n" << T_GaMa_Maximal_decrease_of_m0
               << setprecision(3) << m_0_red/adj.standard_deviation.apriori
               << "\n\n";
         }
-      
+
       if (imax > -1)
         {
           cout.setf(ios_base::fixed, ios_base::floatfield);
@@ -500,7 +500,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
             cout << T_GaMa_genpar_doesnt_exceed;
           cout << T_GaMa_genpar_critical_value <<  krit_opr << "\n"
                << T_GaMa_genpar_on_significance_level
-               << setprecision(0) 
+               << setprecision(0)
                << (1 - adj.standard_deviation.probability)*100
                << T_GaMa_genpar_for_observation_ind
                << imax+1 << "\n";
@@ -511,22 +511,22 @@ void general_parameters(Stream& cout, const Adjustment& adj)
             cout << " from\"" <<  obs.from  << "\""
                  << " left\"" <<  obs.left  << "\""
                  << " right\"" << obs.right << "\"";
-          else  
+          else
             cout << " from=\"" << obs.from << "\""
                  << " to=\""   << obs.to   << "\"";
 
           if (obs.xml_tag == "direction" || obs.xml_tag == "angle" ||
-              obs.xml_tag == "z-angle")           
+              obs.xml_tag == "z-angle")
             cout.precision(4);
           else
             cout.precision(3);
 
-          cout << " val=\"" << obs.obs 
+          cout << " val=\"" << obs.obs
                << "\"";
           // cout << " stdev=\"" << obs.stdev  !!! currently not available !!!
           //      << "\"";
           cout << " />\n";
-        }    
+        }
     }
 
   cout << "\n\n";
@@ -554,13 +554,13 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
       for (int i=0, N=adj.fixed_points.size(); i<N; ++i)
         {
           const Adjustment::Point& point = adj.fixed_points[i];
-          
+
           if (point.hxy) pocpevb++;
-          if (point.hz ) pocpevv++;          
+          if (point.hz ) pocpevv++;
         }
     }   // for ...
-    
-    if (pocpevb != 0 || pocpevv != 0) 
+
+    if (pocpevb != 0 || pocpevv != 0)
       {
         cout << T_GaMa_Review_of_fixed_points << "\n"
              << underline(T_GaMa_Review_of_fixed_points, '*') << "\n\n";
@@ -579,7 +579,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
           }
         if (pocpevv)
           {
-            if (pocpevb) 
+            if (pocpevb)
               {
                 ostr << "  ";
                 table += 2;
@@ -636,9 +636,9 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
     }
   if (coordinates)
     { /* Adjusted unknowns */
-      
+
       cout << T_GaMa_adjunk_Review_of_unknowns_coordidantes << "\n"
-           << underline(T_GaMa_adjunk_Review_of_unknowns_coordidantes, '*') 
+           << underline(T_GaMa_adjunk_Review_of_unknowns_coordidantes, '*')
            << "\n\n";
       cout.width(MAXWUNK);
       cout << "i" << " ";
@@ -654,9 +654,9 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
         {
           const Adjustment::Point point = adj.adjusted_points[ii];
           const Adjustment::Point aprox = adj.approximate_points[ii];
-          
+
           if (point.hxy)
-            {              
+            {
               cout.width(MAXWUNK);
               cout << " " << " ";
               cout.width(MAXWID);
@@ -692,7 +692,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
               cout.width(7);
               cout << mx*kki;
               cout << "\n";
-              
+
               cout.width(MAXWUNK);
               cout << adj.original_index[point.indy] << " ";
               cout.width(MAXWID);
@@ -755,7 +755,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
             }
 
           cout << "\n";
-        }      
+        }
 
       if (adj.orientations.size())
         { /* Adjusted orientation shifts */
@@ -763,7 +763,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
           double scale  = adj.gons ? 1.0 : 0.324;
 
           cout << "\n" << T_GaMa_adjunk_Review_of_unknowns_bearings << "\n"
-               << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*') 
+               << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*')
                << "\n\n";
           cout.width(MAXWUNK);
           cout << "i" << " ";
@@ -775,7 +775,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
           if (adj.gons)
             cout  << T_GaMa_adjunk_header4;
           else
-            cout << 
+            cout <<
               "====== [d] ========= [d] ======== [d] =========== [ss] ===\n\n";
 
           for (int i=0; i<adj.orientations.size(); i++)
@@ -822,7 +822,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
 
           cout << '\n' << '\n';
         }
-      
+
       { /* Mean errors and parameters of error ellipses */
         double elp_k = 0;
         {
@@ -854,11 +854,11 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
             }
 
         if (has_coordinates)
-          {     
+          {
             cout.precision(1);
- 
-            cout 
-              << T_GaMa_errell_review_of_mean_errors_and_error_ellipses << "\n" 
+
+            cout
+              << T_GaMa_errell_review_of_mean_errors_and_error_ellipses << "\n"
               << underline(T_GaMa_errell_review_of_mean_errors_and_error_ellipses,'*')
               << "\n\n";
             cout.width(MAXWID);
@@ -882,15 +882,15 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
 
                 double my = std::sqrt(adj.cov(point.indy, point.indy));
                 double mx = std::sqrt(adj.cov(point.indx, point.indx));
-               
+
                 double mp = sqrt(my*my+mx*mx);
-                if (mp < 1000)     
+                if (mp < 1000)
                   cout.setf(ios_base::fixed, ios_base::floatfield);
                 else
                   cout.setf(ios_base::scientific, ios_base::floatfield);
                 cout.width(7);
                 cout << mp << ' ';
-                
+
                 mp_mean += mp;
                 if (mp > mp_max) {
                   mp_max = mp;
@@ -900,12 +900,12 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
 
                 double myx = mp/sqrt(2.0);
                 cout.width(7);
-                if (myx < 1000)     
+                if (myx < 1000)
                   cout.setf(ios_base::fixed, ios_base::floatfield);
                 else
                   cout.setf(ios_base::scientific, ios_base::floatfield);
                 cout << myx << ' ' ;
-                
+
                 double a, b, alfa;
                 { // IS->std_error_ellipse(point_id, a, b, alfa);
                   int iy = point.indy;
@@ -917,29 +917,29 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
                   double m2 = m*m;
                   double cyy = adj.cov(iy,iy)/m2;
                   double cyx = adj.cov(iy,ix)/m2;
-                  double cxx = adj.cov(ix,ix)/m2; 
+                  double cxx = adj.cov(ix,ix)/m2;
                   double c = std::sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
                   b = (cyy+cxx-c)/2;
                   if (b < 0) b = 0;
-                  
+
                   a = m * std::sqrt(b+c);
                   b = m * std::sqrt(b);
-                  if (c == 0) 
+                  if (c == 0)
                     alfa = 0;
-                  else { 
+                  else {
                     alfa = std::atan2(2*cyx, cxx-cyy)/2;
                     if (alfa < 0) alfa += M_PI;
                   }
                 }
 
                 cout.width(7);
-                if (a < 1000)     
+                if (a < 1000)
                   cout.setf(ios_base::fixed, ios_base::floatfield);
                 else
                   cout.setf(ios_base::scientific, ios_base::floatfield);
                 cout << a << ' ';
                 cout.width(7);
-                if (b < 1000)     
+                if (b < 1000)
                   cout.setf(ios_base::fixed, ios_base::floatfield);
                 else
                   cout.setf(ios_base::scientific, ios_base::floatfield);
@@ -955,18 +955,18 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
                     double ak = a*elp_k;
                     double bk = b*elp_k;
                     cout.width(7);
-                    if (ak < 1000)     
+                    if (ak < 1000)
                       cout.setf(ios_base::fixed, ios_base::floatfield);
                     else
                       cout.setf(ios_base::scientific, ios_base::floatfield);
                     cout << ak << ' ';
                     cout.width(7);
-                    if (bk < 1000)     
+                    if (bk < 1000)
                       cout.setf(ios_base::fixed, ios_base::floatfield);
                     else
                       cout.setf(ios_base::scientific, ios_base::floatfield);
                     cout << bk << ' ';
-                    
+
                     double g  = 0;
                     double dx = point.x - adj.approximate_points[i].x;
                     double dy = point.y - adj.approximate_points[i].y;
@@ -974,32 +974,32 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
                     dy *= 1000;   //
                     double p1 = (dx*std::cos(alfa) + dy*std::sin(alfa));
                     double p2 = (dy*std::cos(alfa) - dx*std::sin(alfa));
-                    if (ak > 0 && bk > 0 && bk > ak*1e-4) 
+                    if (ak > 0 && bk > 0 && bk > ak*1e-4)
                       {   // ***** testing noise (bk is practically 0)
                         p1 /= ak;
                         p2 /= bk;
                         g = std::sqrt(p1*p1 + p2*p2);
                       }
-                    if (g < 1000)     
+                    if (g < 1000)
                       cout.setf(ios_base::fixed, ios_base::floatfield);
                     else
                       cout.setf(ios_base::scientific, ios_base::floatfield);
                     cout.width(7);
-                    cout << g;		 
+                    cout << g;
                  }
 
                 cout << "\n";
               }
 
             /* Maximal/mean position error */
-            if (number_of_points >= 5) 
+            if (number_of_points >= 5)
               {
                 cout.precision(1);
                 cout << "\n"
                      << T_GaMa_adjunk_mean_position_error_maximal << mp_max
-                     << T_GaMa_adjunk_mean_position_error_on_point 
+                     << T_GaMa_adjunk_mean_position_error_on_point
                      << mp_max_id << '\n'
-                     << T_GaMa_adjunk_mean_position_error_average 
+                     << T_GaMa_adjunk_mean_position_error_average
                      << mp_mean/number_of_points
                      << " mm\n\n";
               }
@@ -1011,7 +1011,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
   if (heights && !coordinates)
     {
       cout << T_GaMa_adjunk_Review_of_unknowns_heights << "\n"
-           << underline(T_GaMa_adjunk_Review_of_unknowns_heights, '*') 
+           << underline(T_GaMa_adjunk_Review_of_unknowns_heights, '*')
            << "\n\n";
       cout.width(MAXWUNK);
       cout << "i" << " ";
@@ -1021,7 +1021,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
       for (int i=0; i<MAXWUNK+MAXWID+1; i++) cout << '=';
       cout << T_GaMa_adjunk_header6;
       cout.setf(ios_base::fixed, ios_base::floatfield);
-      
+
       for (int i=0; i<adj.adjusted_points.size(); i++)
         {
           const Adjustment::Point& point = adj.adjusted_points[i];
@@ -1034,7 +1034,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
           if (point.cz)
             cout << " * ";
           else
-            cout << "   ";    
+            cout << "   ";
           cout.precision(5);
           cout.width(13);
           cout << adj.approximate_points[i].z << " ";
@@ -1051,7 +1051,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
           cout << mv*kki;
           cout << '\n';
         }
-      
+
       cout << "\n\n";
     }
 }
@@ -1092,12 +1092,12 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
       if (d < 1e5) continue;
       z += 6;   // ... decimal point plus 5 digits
       do {
-        z++; 
+        z++;
         d /= 10;
       } while (d >= 1);
       if (z > maxval) maxval = z;
     }
-  
+
   cout.width(MAXWOBS);
   cout << "i" << " ";
   cout.width(MAXWID);
@@ -1193,7 +1193,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
         }
       else if (obs.xml_tag == "slope-distance")
         {
-          cout << T_GaMa_s_distance; 
+          cout << T_GaMa_s_distance;
           cout.precision(5);
           cout.width(maxval);
           cout << obs.obs << " ";
@@ -1251,7 +1251,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           cout.width(maxval);
           cout << obs.obs << " ";
           cout.width(maxval);
-          cout << obs.adj << " "; 
+          cout << obs.adj << " ";
         }
       else if (obs.xml_tag == "dx")
         {
@@ -1260,7 +1260,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           cout.width(maxval);
           cout << obs.obs << " ";
           cout.width(maxval);
-          cout << obs.adj << " ";            
+          cout << obs.adj << " ";
         }
       else if (obs.xml_tag == "dy")
         {
@@ -1269,7 +1269,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           cout.width(maxval);
           cout << obs.obs << " ";
           cout.width(maxval);
-          cout << obs.adj << " ";            
+          cout << obs.adj << " ";
         }
       else if (obs.xml_tag == "dz")
         {
@@ -1278,9 +1278,9 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           cout.width(maxval);
           cout << obs.obs << " ";
           cout.width(maxval);
-          cout << obs.adj << " ";            
+          cout << obs.adj << " ";
         }
-      else  
+      else
         {
           cout << "\n######  review/adjusted_observations.h - "
                << "unknown observation type " << obs.xml_tag << "\n\n";
@@ -1306,21 +1306,21 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
   /* Residuals and analysis of observations */
 
   // class StOpSort {
-  // 
+  //
   //   GaMaLib::LocalNetwork* IS;
-  // 
+  //
   // public:
-  // 
+  //
   //   StOpSort(GaMaLib::LocalNetwork* is) : IS(is) {}
-  //   bool operator()(int a, int b) 
+  //   bool operator()(int a, int b)
   //     {
   //       using namespace std;
   //       GaMaLib::Double sa = fabs(IS->studentized_residual(a));
   //       GaMaLib::Double sb = fabs(IS->studentized_residual(b));
-  //       return sa > sb; 
-  //     } 
+  //       return sa > sb;
+  //     }
   // };
-  
+
   std::vector<int> outliers;
     int imax = -1;         // index of maximal studentized residual
   {
@@ -1328,9 +1328,9 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
     for (int i=1; i<adj.obslist.size(); i++)
       {
         const Adjustment::Observation& obs = adj.obslist[i];
-        
+
         if (obs.f < 0.1) continue;
-        
+
         double no = std::abs(obs.std_residual);
         if (no > maxno) {
           maxno = no;
@@ -1347,19 +1347,19 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
       if (pass)
         cout << "\n\n"
              << T_GaMa_resobs_Review_of_residuals_analysis_obs << "\n"
-             << underline(T_GaMa_resobs_Review_of_residuals_analysis_obs, '*') 
+             << underline(T_GaMa_resobs_Review_of_residuals_analysis_obs, '*')
              << "\n\n";
       else
         cout << "\n\n"
              << T_GaMa_resobs_Outlying_observations << "\n"
              << underline(T_GaMa_resobs_Outlying_observations, '*') << "\n\n";
-      
+
       cout.width(MAXWOBS);
       cout << "i" << " ";
       cout.width(MAXWID);
       cout << T_GaMa_standpoint << " ";
       cout.width(MAXWID);
-      cout << T_GaMa_target 
+      cout << T_GaMa_target
            << T_GaMa_resobs_header1;
       for (int i=0; i < (MAXWOBS + 2*MAXWID + 10); i++)  cout << "=";
       if (adj.gons)
@@ -1448,7 +1448,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
             }
 
 
-          double f  = obs.f; 
+          double f  = obs.f;
           double sc = 1.0;
           if (obs.xml_tag == "direction" || obs.xml_tag == "angle" ||
               obs.xml_tag == "z-angle")
@@ -1463,7 +1463,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
           else if (f < 5) cout << T_GaMa_resobs_weak_control; // weak control
           else            cout << "  ";
           cout << ' ';
-          
+
           cout.precision(3);
           cout.width(9);
           cout << obs.residual()*sc << ' ';
@@ -1481,10 +1481,10 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
                 }
               else if (no > kki) cout << T_GaMa_resobs_mc_critical;
               else               cout << "   ";
-              
-              
+
+
               if ((f >=5 || (f >= 0.1 && no > kki)) &&
-                  !obs.err_obs.empty() && 
+                  !obs.err_obs.empty() &&
                   !obs.err_adj.empty()
                   )
                 {
@@ -1496,7 +1496,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
                   cout << erra;
                 }
             }
-          
+
           cout << "\n";
         }
     }

@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama C++ library
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -40,14 +40,14 @@ using namespace GaMaLib;
 typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
 typedef GNU_gama::Cluster<Observation>                  Cluster;
 
-namespace 
+namespace
 {
   const char* UNKNOWN_ALGORITHM="### network.cpp : unknown algorithm ###";
 }
 
-LocalNetwork::LocalNetwork()        
+LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
-    m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000), 
+    m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000),
     update_constrained_coordinates_(false), typ_m_0_(empiricka_),
     tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(0),
     gons_(true)
@@ -63,18 +63,18 @@ LocalNetwork::LocalNetwork()
 
 LocalNetwork::~LocalNetwork()
 {
-  delete[] min_x_;  
+  delete[] min_x_;
   delete   Asp;
 }
- 
+
 
 void LocalNetwork::revision_points()
 {
   if (tst_redbod_) return;
-  
+
   undefined_xy_z_.erase(undefined_xy_z_.begin(), undefined_xy_z_.end());
   pocbod_ = 0;
-  
+
   for (PointData::iterator bod=PD.begin(); bod!=PD.end(); ++bod)
     {
       bool ok = true;
@@ -148,17 +148,17 @@ void LocalNetwork::revision_observations()
                 if (d->active())
                   {
                     set<PointID>::const_iterator s = targets.find( d->to() );
-                    if (s == targets.end()) 
+                    if (s == targets.end())
                       {
                         active_directions++;
                         targets.insert( d->to() );
                       }
                   }
             }
-          
+
           if (active_directions < 2)
             {
-              for (ObservationList::iterator 
+              for (ObservationList::iterator
                      i  = sp->observation_list.begin();
                    i != sp->observation_list.end(); ++i)
                 if (Direction* d = dynamic_cast<Direction*>(*i))
@@ -167,13 +167,13 @@ void LocalNetwork::revision_observations()
         }
       (*cit)->update();
     }
-  
+
   RSM.clear();
   removed_obs.clear();
   for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
     {
       Observation* m = *i;
-      
+
       if (m->active()) RSM.push_back(m);
       else             removed_obs.push_back(m);
     }
@@ -188,14 +188,14 @@ void LocalNetwork::project_equations()
 {
   if (tst_rov_opr_) return;
   if (!tst_redmer_) revision_observations();
-  
+
   for (PointData::iterator bod=PD.begin(); bod!=PD.end(); ++bod)
     {
       LocalPoint& b = (*bod).second;
       if (b.active_xy() || b.active_z())
         {
           // indexes of unknowns in project equations: 1, 2, ...
-          b.index_y() = b.index_x() = b.index_z() = 0; 
+          b.index_y() = b.index_x() = b.index_z() = 0;
         }
     }
 
@@ -203,27 +203,27 @@ void LocalNetwork::project_equations()
   for (ClusterList::iterator cl=clusters.begin(); cl!=clusters.end(); ++cl)
     if (StandPoint* standpoint=dynamic_cast<StandPoint*>(*cl))
       standpoint->index_orientation(0);
-  
+
   {
     LocalLinearization  loclin(PD, m_0_apr_);
 
     const size_t  V = pocmer_;               // vectors
-    const size_t  M = V * loclin.max_size;   // reserved memory 
+    const size_t  M = V * loclin.max_size;   // reserved memory
 
 
-    GNU_gama::SparseMatrix<Double, Index>* 
+    GNU_gama::SparseMatrix<Double, Index>*
       tmp = new GNU_gama::SparseMatrix<Double, Index>(M, V, 0);
 
     b.reset(pocmer_);   // initialisation of base class OLS
     rhs_.reset(pocmer_);
-    
+
     int  r = 0;
     pocet_neznamych_ = 0;
     for (RevisedObsList::iterator m=RSM.begin(); m!=RSM.end(); ++m)
       {
         (*m)->linearization(&loclin);
         b(++r)  = loclin.rhs;
-        rhs_(r) = loclin.rhs; 
+        rhs_(r) = loclin.rhs;
         tmp->new_row();
         for (long i=0; i<loclin.size; i++)
             tmp->add_element(loclin.coeff[i], loclin.index[i]);
@@ -256,8 +256,8 @@ void LocalNetwork::project_equations()
   seznez_.erase(seznez_.begin(), seznez_.end());
   seznez_.resize(pocet_neznamych_);
   neznama_ nez;
-  
-  for (ClusterList::iterator 
+
+  for (ClusterList::iterator
          clptr=clusters.begin(); clptr!=clusters.end(); ++clptr)
     if (StandPoint* standpoint=dynamic_cast<StandPoint*>(*clptr))
       /*
@@ -295,9 +295,9 @@ void LocalNetwork::project_equations()
           nez.typ = 'Z';  seznez_[b.index_z()-1] = nez;
         }
     }
-  
+
   // ...  initialization of base class OLS  .............................
-    
+
   vybocujici_abscl_ = false;
   {   // for ...
     for (long r=1; r<=pocmer_; r++)
@@ -305,14 +305,14 @@ void LocalNetwork::project_equations()
         if (test_abs_term(r)) vybocujici_abscl_ = true;
       }
   }   // for ...
-  
-  prepareProjectEquations();  // [A, b] scaled by chol. dec. of weight matrix 
+
+  prepareProjectEquations();  // [A, b] scaled by chol. dec. of weight matrix
 
   if (singular_coords(A))
     {
       update(Points);
       project_equations();
-      return;  
+      return;
     }
 
   if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
@@ -329,13 +329,13 @@ void LocalNetwork::project_equations()
 
       input.set_mat(Asp);
       Asp = 0;
-      
+
       // ---  cofactors  --------------------------------------------------
 
       Index count = 0;   // number of diagonal blocks
-      Index msize = 0;   // memory size 
+      Index msize = 0;   // memory size
 
-      for (ClusterList::const_iterator 
+      for (ClusterList::const_iterator
              cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
         if (const Index N = (*cluster)->activeObs())
         {
@@ -346,7 +346,7 @@ void LocalNetwork::project_equations()
 
       GNU_gama::BlockDiagonal<> *bd = new GNU_gama::BlockDiagonal<>(count, msize);
 
-      for (ClusterList::const_iterator 
+      for (ClusterList::const_iterator
              cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
         if (const Index N = (*cluster)->activeObs())
         {
@@ -357,7 +357,7 @@ void LocalNetwork::project_equations()
 
       input.set_cov(bd);
       bd = 0;
-      
+
       // ---  right-hand side  --------------------------------------------
 
       GNU_gama::Vec<> bb(b.dim());
@@ -371,7 +371,7 @@ void LocalNetwork::project_equations()
       throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
     }
 
-  //--ofstream opr("A_scaled.bin", ios_base::trunc); 
+  //--ofstream opr("A_scaled.bin", ios_base::trunc);
   //--int m=A.rows();
   //--int n=A.cols();
   //--opr.write((char*)(&m), sizeof(int));
@@ -408,7 +408,7 @@ void LocalNetwork::project_equations()
         }
       least_squares->min_x(min_n_, min_x_);
     }
-  
+
   tst_rov_opr_ = true;
   update(Adjustment);
 }
@@ -442,7 +442,7 @@ bool LocalNetwork::singular_coords(const Mat& A)
       // old scale dependent test:
       //
       // D = aa*bb - ab*ab;
-      // 
+      //
       // if ((aa == 0) || (fabs(D) <= aa*1e-6))
 
       if (bb > aa) std::swap(aa, bb);
@@ -457,7 +457,7 @@ bool LocalNetwork::singular_coords(const Mat& A)
           p.unused_xy();
           removed( (*i).first, rm_singular_xy );
         }
-      
+
     }
 
   return result;
@@ -470,7 +470,7 @@ void LocalNetwork::project_equations(std::ostream& out)
   project_equations();
 
   out << "\n" << pocet_neznamych_ << " " << pocmer_ << "\n\n";
-  
+
   Index*  ib;
   Index*  ie;
   Double* nb;
@@ -505,12 +505,12 @@ void LocalNetwork::project_equations(std::ostream& out)
 void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
 {
   project_equations();
-  
+
   A_.reset(A.rows(), A.cols());
   A_.set_zero();
   b_.reset(A.rows());
   w_.reset(A.rows());
-  
+
   Index*  ib;
   Double* nb;
   Double* ne;
@@ -525,7 +525,7 @@ void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
           ++nb;
           ++ib;
         }
-      
+
       b_(i) = rhs(i);
       w_(i) = weight_obs(i);
     }
@@ -534,7 +534,7 @@ void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
 
 void LocalNetwork::conf_pr(Double p)
 {
-  if (p <= 0 || p >= 1) 
+  if (p <= 0 || p >= 1)
     throw GaMaLib::Exception(T_LN_undefined_confidence_level);
   konf_pr_ = p;
 }
@@ -563,7 +563,7 @@ Double LocalNetwork::m_0()
 Double LocalNetwork::conf_int_coef()
 {
   using namespace GaMaLib;
-  
+
   Double pravdepodobnost = (1 - konf_pr_)/2;
   if (m_0_apriori())
     return GNU_gama::Normal(pravdepodobnost);
@@ -616,7 +616,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         return 0;
     }
 
-  { 
+  {
     Double dx, dy, d0;
     if (stan.test_xy() && cil.test_xy())
       {
@@ -624,7 +624,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         dx = stan.x() - cil.x();
         d0 = sqrt(dy*dy + dx*dx);
       }
-    
+
     if (dynamic_cast<const Distance*>(m))
       {
         if (fabs(m->value() - d0)*1000 > tol_abs_)
@@ -662,7 +662,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         if (fabs(d3 - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;   
+          return 0;
       }
     else if (dynamic_cast<const Xdiff*>(m))
       {
@@ -670,7 +670,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         if (fabs(dx - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
     else if (dynamic_cast<const Ydiff*>(m))
       {
@@ -678,7 +678,7 @@ Double LocalNetwork::test_abs_term(Index indm)
         if (fabs(dy - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
     else if (dynamic_cast<const Zdiff*>(m))
       {
@@ -686,30 +686,30 @@ Double LocalNetwork::test_abs_term(Index indm)
         if (fabs(dz - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
     else if (dynamic_cast<const X*>(m))
       {
         if (fabs(stan.x() - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
     else if (dynamic_cast<const Y*>(m))
       {
         if (fabs(stan.y() - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
     else if (dynamic_cast<const Z*>(m))
       {
         if (fabs(stan.z() - m->value())*1000 > tol_abs_)
           return b(indm);
         else
-          return 0;           
+          return 0;
       }
-  } 
+  }
 
   throw GaMaLib::Exception("LocalNetwork::test_abs_term() - unknown observation");
 
@@ -724,27 +724,27 @@ void LocalNetwork::remove_huge_abs_terms()
   for (RevisedObsList::iterator m = RSM.begin(); m!=RSM.end(); ++m)
     if (test_abs_term(++r))
       (*m)->set_passive();
-  
+
   update(Observations);
 }
 
 
 int LocalNetwork::null_space()
 {
-  try 
-    { 
-      vyrovnani_(); 
-    } 
-  catch(const MatVecException& vs) 
+  try
+    {
+      vyrovnani_();
+    }
+  catch(const MatVecException& vs)
     {
       if (vs.error != GNU_gama::Exception::BadRegularization) throw;
-      
+
       for (int i=1; i<=sum_unknowns(); i++)
         if (lindep(i))
           {
             const char    type = unknown_type(i);
             const PointID id   = unknown_pointid(i);
-            
+
             LocalPoint& p = PD[id];
             if (type == 'X' || type == 'Y' || type == 'R' )
               {
@@ -756,16 +756,16 @@ int LocalNetwork::null_space()
                 p.unused_z();
                 removed(id, rm_missing_z );
               }
-            
+
             return null_space();
           }
-    } 
-  
+    }
+
   return least_squares->defect();
 }
 
 
-void LocalNetwork::std_error_ellipse(const PointID& cb, 
+void LocalNetwork::std_error_ellipse(const PointID& cb,
                                      Double& a, Double& b, Double& alfa)
 {
   using namespace std;
@@ -775,7 +775,7 @@ void LocalNetwork::std_error_ellipse(const PointID& cb,
   int ix = bod.index_x();
   Double cyy = least_squares->q_xx(iy,iy);
   Double cyx = least_squares->q_xx(iy,ix);
-  Double cxx = least_squares->q_xx(ix,ix); 
+  Double cxx = least_squares->q_xx(ix,ix);
   Double c = sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
   b = (cyy+cxx-c)/2;
   if (b < 0) b = 0;
@@ -816,7 +816,7 @@ void LocalNetwork::refine_approx()
     else if (unknown_type(i) == 'R')
       {
         StandPoint* standpoint = unknown_standpoint(i);
-        Double ori = 
+        Double ori =
           ( standpoint->orientation() )*R2G + x(i)/10000;
         standpoint->set_orientation( ori*G2R );
       }
@@ -842,7 +842,7 @@ void LocalNetwork::cholesky(CovMat& chol)
       chol(i,i) = d;
 
       m = i+b;  if(N < m) m = N;    // m = min(N, i+b);
-      
+
       for (j=i+1; j<=m; j++) chol(i,j) *= d;
     }
 }
@@ -868,12 +868,12 @@ void LocalNetwork::forwardSubstitution(const CovMat& chol, Vec& v)
 //   using namespace std;
 //   const Index N = chol.rows();
 //   const Index b = chol.bandWidth();
-// 
+//
 //   for (Index i=N; i>0; i--)
 //     {
 //       Index m = min(N, i+b);
 //       for (Index j=i+1; j<=m; j++) v(i) -= chol(i,j)*v(j);
-// 
+//
 //       v(i) /= chol(i,i);
 //     }
 // }
@@ -882,7 +882,7 @@ void LocalNetwork::prepareProjectEquations()
 {
   Index ind_0 = 0;
 
-  for (ClusterList::const_iterator 
+  for (ClusterList::const_iterator
          cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
     if (const Index N = (*cluster)->activeObs())
         {
@@ -901,11 +901,11 @@ void LocalNetwork::prepareProjectEquations()
                   if (tmp) empty = false;
                 }
                 if (empty) continue;
-                
+
                 forwardSubstitution(C, t);
                 for (Index l=1; l<=N; l++) A(ind_0+l,j) = t(l);
             }
-          
+
           for (Index k=1; k<=N; k++) t(k) = b(ind_0+k);
           forwardSubstitution(C, t);
           for (Index l=1; l<=N; l++) b(ind_0+l) = t(l);
@@ -921,7 +921,7 @@ void LocalNetwork::vyrovnani_()
   if (tst_vyrovnani_) return;
 
   project_equations();
-  if (sum_unknowns()     == 0) 
+  if (sum_unknowns()     == 0)
     throw GaMaLib::Exception(T_GaMa_No_unknowns_defined);
   if (sum_observations() == 0)
     throw GaMaLib::Exception(T_GaMa_No_observations_available);
@@ -949,11 +949,11 @@ void LocalNetwork::vyrovnani_()
 
         bool bxy = (tx > 1e4) || (ty > 1e4);
         bool bz  = (tz > 1e4);
- 
-        if (bxy && bz) 
-          { 
+
+        if (bxy && bz)
+          {
             P.unused_xy();
-            P.unused_z(); 
+            P.unused_z();
             removed(id, rm_huge_cov_xyz);
             tst_vyrovnani_ = false;
           }
@@ -971,7 +971,7 @@ void LocalNetwork::vyrovnani_()
           }
       }
 
-    if (!tst_vyrovnani_) 
+    if (!tst_vyrovnani_)
       {
         vyrovnani_();
         return;
@@ -986,8 +986,8 @@ void LocalNetwork::vyrovnani_()
 
     Double tmp;
     Index  ind_0 = 0;
-    
-    for (ClusterList::const_iterator 
+
+    for (ClusterList::const_iterator
            cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
       if (const Index N = (*cluster)->activeObs())
         {
@@ -995,10 +995,10 @@ void LocalNetwork::vyrovnani_()
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);
           cholesky(C);
-          
+
           for (Index k=1; k<=N; k++)
             {
-              tmp  = r(ind_0+k); 
+              tmp  = r(ind_0+k);
               t(k) = tmp;
               suma_pvv_ += tmp*tmp;
             }
@@ -1015,7 +1015,7 @@ void LocalNetwork::vyrovnani_()
               }
           }
           for (Index l=1; l<=N; l++) r(ind_0+l) = u(l);
-          
+
           ind_0 += N;
         }
   }
@@ -1028,7 +1028,7 @@ void LocalNetwork::vyrovnani_()
     {
       throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
     }
-  
+
 
   { /* ----------------------------------------------------------------- */
     sigma_L.reset(pocmer_);
@@ -1036,7 +1036,7 @@ void LocalNetwork::vyrovnani_()
     Double MM = m_0() / m_0_apr_;
     Index ind_0 = 0;
 
-    for (ClusterList::const_iterator 
+    for (ClusterList::const_iterator
            cit=OD.clusters.begin(); cit!=OD.clusters.end(); ++cit)
       if (const Index N = (*cit)->activeObs())
         {
@@ -1048,11 +1048,11 @@ void LocalNetwork::vyrovnani_()
           // ??? else
             {
               Index n = ind_0+1;
-              for (ObservationList::const_iterator 
+              for (ObservationList::const_iterator
                      i = cluster.observation_list.begin();
                      i!= cluster.observation_list.end(); ++i)
                 if ((*i)->active())
-                  { 
+                  {
                     // sigma_L = m0() * sqrt(least_squares->q_bb(n,n)) / weight_l
                     sigma_L(n) = MM * sqrt(least_squares->q_bb(n,n)) * (*i)->stdDev();
                     n++;
@@ -1064,15 +1064,15 @@ void LocalNetwork::vyrovnani_()
   }
 
 
-  { /* ----------------------------------------------------------------- */ 
+  { /* ----------------------------------------------------------------- */
     vahkopr.reset(pocmer_);
-    
-    for (int i=1; i<=pocmer_; i++) 
+
+    for (int i=1; i<=pocmer_; i++)
       {
         // F.Charamza: Geodet/PC p. 171
-        // 1.1.56 Double  qv = (1.0 - q_bb(i, i))/w(i); 
-        Double  qv = (1.0 - least_squares->q_bb(i, i))/ weight_obs(i); 
-        vahkopr(i) = (qv >= 0) ? qv : 0;       // removing noise 
+        // 1.1.56 Double  qv = (1.0 - q_bb(i, i))/w(i);
+        Double  qv = (1.0 - least_squares->q_bb(i, i))/ weight_obs(i);
+        vahkopr(i) = (qv >= 0) ? qv : 0;       // removing noise
       }
   }
 

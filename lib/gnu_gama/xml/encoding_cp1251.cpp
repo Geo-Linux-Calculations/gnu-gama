@@ -1,10 +1,10 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2005  Ales Cepek <cepek@gnu.org> 
+    Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
                         Boris Pihtin <cyb@bendery.md>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,8 +36,8 @@ int cp1251_unicode(int* tab)
      // file cp1251.h:
      //
      //    ftp://ftp.gnu.org/pub/gnu/recode/recode-3.6.tar.gz
-     // 
-     
+     //
+
      /* 0x80 */
      0x0402, 0x0403, 0x201a, 0x0453, 0x201e, 0x2026, 0x2020, 0x2021,
      0x20ac, 0x2030, 0x0409, 0x2039, 0x040a, 0x040c, 0x040b, 0x040f,
@@ -62,11 +62,11 @@ int cp1251_unicode(int* tab)
      /* 0xf0 */
      0x0440, 0x0441, 0x0442, 0x0443, 0x0444, 0x0445, 0x0446, 0x0447,
      0x0448, 0x0449, 0x044a, 0x044b, 0x044c, 0x044d, 0x044e, 0x044f,
-   };                       
-         
-   unsigned int i,j;              
+   };
+
+   unsigned int i,j;
    for (i=0;i<0x00000080;i++)tab[i]=(int)i;
-   for (j=0;i<256;i++) tab[i]=cp1251_unicode[j++];                    
+   for (j=0;i<256;i++) tab[i]=cp1251_unicode[j++];
    return 1;
 }
 
@@ -75,11 +75,11 @@ char* utf8_cp1251(char *buf)
 {
   static int tab[256];
   static bool init_tab = true;
-  if (init_tab)  
-    {       
+  if (init_tab)
+    {
       cp1251_unicode((int*)tab);
-      init_tab = false;  
-    }       
+      init_tab = false;
+    }
   unsigned int u;
   char *p,*q;
   p=q=buf;
@@ -94,7 +94,7 @@ char* utf8_cp1251(char *buf)
           q++;
   }
   *q=0;
-  return buf; 
+  return buf;
 }
 
 

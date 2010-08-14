@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,7 +35,7 @@ using GNU_gama::longitude;
 
 using std::setw;
 
-Point::Point() 
+Point::Point()
   : B(B_), L(L_), H(H_), X(X_), Y(Y_), Z(Z_)
 {
   set_unused();
@@ -84,7 +84,7 @@ void Point::point_copy(const Point& point)
   X_ = point.X_;
   Y_ = point.Y_;
   Z_ = point.Z_;
-  
+
   has_xyz_    = point.has_xyz_;
   has_blh_    = point.has_blh_;
   has_height_ = point.has_height_;
@@ -209,7 +209,7 @@ void Point::set_blh(double b, double l, double h)
   B_.set_init_value(b);
   L_.set_init_value(l);
   H_.set_init_value(h);
-  
+
   double x, y, z;
   common->ellipsoid.blh2xyz(b, l, h, x, y, z);
   X_.set_init_value(x);
@@ -227,7 +227,7 @@ void Point::set_xyz(double x, double y, double z)
   X_.set_init_value(x);
   Y_.set_init_value(y);
   Z_.set_init_value(z);
-  
+
   double b, l, h;
   common->ellipsoid.xyz2blh(x, y, z, b, l, h);
   B_.set_init_value(b);
@@ -260,7 +260,7 @@ void Point::transformation_matrix(double b, double l)
   r11 = -sin(b)*cos(l);
   r12 = -sin(l);
   r13 =  cos(b)*cos(l);
-  
+
   r21 = -sin(b)*sin(l);
   r22 =  cos(l);
   r23 =  cos(b)*sin(l);
@@ -363,7 +363,7 @@ bool Point::test_model_height() const
     {
       if (!has_height()) return false;
     }
-  
+
   return true;
 }
 
@@ -451,10 +451,10 @@ void Point::write_xml(std::ostream& ostr)
       ostr << "<cne> " << setw(14) << cne << " </cne> ";
       ostr << "\n                                   ";
       ostr << "<cnu> " << setw(14) << cnu << " </cnu>\n";
-      ostr << "        "; 
+      ostr << "        ";
       ostr << "<cee> " << cee << " </cee> ";
       ostr << "<ceu> " << setw(14) << ceu << " </ceu>\n";
-      ostr << "        "; 
+      ostr << "        ";
       ostr << "<cuu> " << cuu << " </cuu>\n";
     }
 
@@ -525,12 +525,12 @@ void Point::write_xml(std::ostream& ostr)
   if (has_position())
      {
        ostr.setf(std::ios_base::fixed, std::ios_base::floatfield);
-       
-       double dB, dL, dH, BB, LL, HH;   
+
+       double dB, dL, dH, BB, LL, HH;
        double B0 = B.init_value();
        double L0 = L.init_value();
        double H0 = H.init_value();
-       
+
        if (!fixed_position())
          {
            common->ellipsoid.xyz2blh(X(), Y(), Z(), BB, LL, HH);
@@ -538,11 +538,11 @@ void Point::write_xml(std::ostream& ostr)
            dL = LL - L0;
            dH = HH - H0;
          }
-    
+
        ostr << "\n";
        ostr << "        <b-given     > ";
        ostr << latitude(B0);
-       ostr << " </b-given>\n";      
+       ostr << " </b-given>\n";
        if (!fixed_position())
          {
            ostr << "        <b-correction> ";
@@ -556,7 +556,7 @@ void Point::write_xml(std::ostream& ostr)
          }
        ostr << "        <l-given     > ";
        ostr << longitude(L0);
-       ostr << " </l-given>\n";      
+       ostr << " </l-given>\n";
        if (!fixed_position())
          {
            ostr << "        <l-correction> ";
@@ -570,7 +570,7 @@ void Point::write_xml(std::ostream& ostr)
        ostr.precision(5);
        ostr << "        <h-given     > ";
        ostr << setw(18) << H0;
-       ostr << " </h-given>\n";      
+       ostr << " </h-given>\n";
        if (!fixed_position())
          {
            ostr << "        <h-correction> ";
@@ -579,7 +579,7 @@ void Point::write_xml(std::ostream& ostr)
            ostr << "        <h-adjusted  > ";
            ostr << setw(18) << HH;
            ostr << " </h-adjusted>\n";
-         }       
+         }
      }
 
   if (has_height())
@@ -605,7 +605,7 @@ void Point::write_xml(std::ostream& ostr)
       ostr.precision(5);
       ostr << "\n        <geoid>       ";
       ostr << setw(19) << geoid.init_value();
-      ostr << " </geoid>\n";      
+      ostr << " </geoid>\n";
     }
 
 

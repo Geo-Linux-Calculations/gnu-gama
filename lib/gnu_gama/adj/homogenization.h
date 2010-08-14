@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,7 +36,7 @@ namespace GNU_gama {
   class Homogenization
   {
   public:
-    
+
     Homogenization() : data(0), sm(0), ready(false)
     {
     }
@@ -109,7 +109,7 @@ namespace GNU_gama {
             }
         }
 
-      
+
       /* counting total number of nonzeros in scaled sparse matrix */
 
       std::vector<Index> block_cols(bd->blocks()+1);   // 1 based indexing
@@ -144,7 +144,7 @@ namespace GNU_gama {
               total_scaled_nonzeroes += block_dim*indices.size();
             }
         }
-      
+
 
       sm = new Sparse(total_scaled_nonzeroes, mata->rows(), mata->columns());
 
@@ -171,7 +171,7 @@ namespace GNU_gama {
                   {
                     sm->add_element(*b++/d, *n++);
                   }
-              }              
+              }
           else                     // correlated observations
             {
               const Index bcols = block_cols[block_index];
@@ -216,7 +216,7 @@ namespace GNU_gama {
                         T(n++,c) -= *b++ * x;
                       }
                   }
-                            
+
               /* move transformed T to ouput sparse matrix  */
 
               for (Index i=1; i<=block_dim; i++)
@@ -239,9 +239,9 @@ namespace GNU_gama {
       delete blockdiagonal;
       ready = true;
     }
-    
+
   };
-  
+
 }  // namespace GNU_gama
 
 #endif

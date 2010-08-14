@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2004, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,16 +33,16 @@ namespace GNU_gama {
   public:
 
     virtual ~AdjBase() {}
- 
+
     virtual const Vector& unknowns()   = 0;   // unknown parameters
     virtual const Vector& residuals()  = 0;   // adjusted residuals
     virtual Float sum_of_squares()     = 0;
     virtual Index defect()             = 0;
- 
+
     virtual Float q_xx(Index, Index)   = 0;   // weight coefficient (xi,xj)
     virtual Float q_bb(Index, Index)   = 0;   //                    (bi,bj)
     virtual Float q_bx(Index, Index)   = 0;   //                    (bi,xj)
-                                       
+
     virtual bool lindep(Index)         = 0;   // linearly dependent column
     virtual void min_x()               = 0;   // all x used in regularization
     virtual void min_x(Index, Index[]) = 0;   // subset of x for regularization

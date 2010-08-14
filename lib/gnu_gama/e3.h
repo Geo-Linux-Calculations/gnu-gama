@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -48,7 +48,7 @@ namespace GNU_gama {
 
   double angle(const E_3&, const E_3&);
 
-  
+
 
   struct R_3 {    // rotation matrix 3x3
 

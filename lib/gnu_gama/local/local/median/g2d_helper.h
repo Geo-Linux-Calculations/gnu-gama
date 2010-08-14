@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,7 +36,7 @@
  * - class Transformation_g2d                                        *
  * - class SimilarityTr2D : public Transformation_g2d                *
  *********************************************************************/
- 
+
 #ifndef GaMaLib_g2d_helper_h__GaMaLib_Median_G_fce_H
 #define GaMaLib_g2d_helper_h__GaMaLib_Median_G_fce_H
 
@@ -49,7 +49,7 @@ namespace GaMaLib {
   // --------------------------------------------------------------
 
   typedef std::vector<LocalPoint> Helper_list;
-  
+
   // --------------------------------------------------------------
   // inline int signum(const Double& d1) wass added into
   // gnu_gama/local-1.1.61 due to problems with MSC (AC)
@@ -60,9 +60,9 @@ namespace GaMaLib {
       if(d1 > 0) return  1;
       return 0;
     }
-  
+
   // --------------------------------------------------------------
-  
+
   inline Double g2d_sqr(const Double& d)
     {
       return (d*d);
@@ -79,7 +79,7 @@ namespace GaMaLib {
     ambiguous_solution = 2,
     calculation_done = 3
   };
-  
+
   // --------------------------------------------------------------
 
   enum Observation_types
@@ -88,17 +88,17 @@ namespace GaMaLib {
     is_Direction = 10,
     is_Angle = 100
   };
-  
+
   // --------------------------------------------------------------
 
   inline Observation_types ObservationType(const Observation* m)
     {
-      if(/* const Distance  *d =*/ dynamic_cast<const Distance* >(m) ) 
+      if(/* const Distance  *d =*/ dynamic_cast<const Distance* >(m) )
 	return is_Distance;
-      
-      if(/* const Direction *s =*/ dynamic_cast<const Direction*>(m) ) 
+
+      if(/* const Direction *s =*/ dynamic_cast<const Direction*>(m) )
         return is_Direction;
-	
+
       return is_Angle;
     }
 
@@ -117,28 +117,28 @@ namespace GaMaLib {
       return x%2 == 0;
     }
 
-  
-  // -------------------------------------------------------------- 
+
+  // --------------------------------------------------------------
   // in the case of ambiguous (equivocal) solution, the one is chosen
   // to be in accordance with the others
 
   class Select_solution_g2d
     {
     private:
-      
+
       Solution_state_tag state_;
       LocalPoint   B1, B2;
       PointData* SB;
       ObservationList* SM;
-      
-    public:    
-      Select_solution_g2d(PointData* sb, ObservationList* sm) 
-        : state_(calculation_not_done), SB(sb), SM(sm) 
+
+    public:
+      Select_solution_g2d(PointData* sb, ObservationList* sm)
+        : state_(calculation_not_done), SB(sb), SM(sm)
         {
         }
-      Select_solution_g2d(LocalPoint& b1, LocalPoint& b2, PointData* sb, 
+      Select_solution_g2d(LocalPoint& b1, LocalPoint& b2, PointData* sb,
                           ObservationList* sm) :
-        state_(calculation_not_done), B1(b1), B2(b2), SB(sb), SM(sm) 
+        state_(calculation_not_done), B1(b1), B2(b2), SB(sb), SM(sm)
         {
         }
       void calculation();
@@ -156,14 +156,14 @@ namespace GaMaLib {
             throw g2d_exc("Select_solution_g2d: ambiguous solution");
           return B1;
         }
-      int state() const 
-        { 
-          return (state_ > no_solution ? unique_solution : state_); 
+      int state() const
+        {
+          return (state_ > no_solution ? unique_solution : state_);
         }
-      
+
     };  // class Select_solution_g2d
-  
-  
+
+
   // --------------------------------------------------------------
   // Statistics_g2d - calculation of medina from coordinate list
 
@@ -174,13 +174,13 @@ namespace GaMaLib {
       Helper_list* PS;
       LocalPoint median;
       Solution_state_tag state_;
-      
+
     public:
-      Statistics_g2d() : state_(missing_init) 
+      Statistics_g2d() : state_(missing_init)
         {
         }
-      Statistics_g2d(Helper_list* ps) 
-        : PS(ps), state_(calculation_not_done) 
+      Statistics_g2d(Helper_list* ps)
+        : PS(ps), state_(calculation_not_done)
         {
         }
       void calculation();
@@ -190,15 +190,15 @@ namespace GaMaLib {
           PS = ps;
           calculation();
         }
-      Solution_state_tag state() const 
-        { 
-          return state_; 
+      Solution_state_tag state() const
+        {
+          return state_;
         }
       LocalPoint Median()       // resulting coordinate
         {
           if(state_ < no_solution)
             throw g2d_exc("Statistics_g2d: calculation not done");
-          
+
           return median;
         }
 
@@ -211,19 +211,19 @@ namespace GaMaLib {
   class Transformation_g2d
     {
     protected:
-      
+
       PointData& SB;              // point list in target syste
       PointData& local;           // point list in local system
       PointIDList& computed;      // list of computed points
       PointData transf_points_;   // points transformed into target system
       virtual void reset() = 0;
-      
+
       Solution_state_tag state_;
-      
+
     public:
-      Transformation_g2d(PointData& sb, PointData& locl, 
+      Transformation_g2d(PointData& sb, PointData& locl,
                          PointIDList& comp)
-        : SB(sb), local(locl), computed(comp), state_(calculation_not_done) 
+        : SB(sb), local(locl), computed(comp), state_(calculation_not_done)
         {
         }
       virtual ~Transformation_g2d()
@@ -240,18 +240,18 @@ namespace GaMaLib {
           reset();
         }
       virtual void calculation() = 0;
-      Solution_state_tag state() const 
-        { 
-          return state_; 
+      Solution_state_tag state() const
+        {
+          return state_;
         }
       PointData transf_points() const
         {
           if(state_ == calculation_not_done)
             throw g2d_exc("Transformation_g2d: calculation not done");
           if(state_ == no_solution)
-            throw 
+            throw
               g2d_exc("Transformation_g2d: not enough of identical points");
-          
+
           return transf_points_;
         }
 
@@ -283,19 +283,19 @@ namespace GaMaLib {
       void reset();
       bool Given_point(const PointID& cb)
         {
-          return (std::find(computed.begin(), computed.end(), cb) == 
+          return (std::find(computed.begin(), computed.end(), cb) ==
                   computed.end());
         }
-      void Identical_points(PointData::iterator& b1, 
+      void Identical_points(PointData::iterator& b1,
                             PointData::iterator& b2);
-      void transformation_key(PointData::iterator& b1, 
+      void transformation_key(PointData::iterator& b1,
                               PointData::iterator& b2);
 
     public:
       SimilarityTr2D(PointData& sb, PointData& locl, PointIDList& comp)
-        : Transformation_g2d(sb, locl, comp) 
-        { 
-          reset(); 
+        : Transformation_g2d(sb, locl, comp)
+        {
+          reset();
         }
       void calculation();
       std::vector<Double> transf_key() const
@@ -311,7 +311,7 @@ namespace GaMaLib {
 
 } // namespace GaMaLib
 
-#endif 
+#endif
 
 
 

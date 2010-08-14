@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,11 +33,11 @@ namespace GaMaLib {
 
         Ax = b,   w=diag(w1, w2, ..., w_m),   x = inv(At*w*A)*(At*w*b)
 */
-   
+
 template <typename Float, typename Exc>
-void Read_Sparse_Abw(std::istream& inp, 
+void Read_Sparse_Abw(std::istream& inp,
                      gMatVec::Mat<Float, Exc>& A,
-                     gMatVec::Vec<Float, Exc>& b, 
+                     gMatVec::Vec<Float, Exc>& b,
                      gMatVec::Vec<Float, Exc>& w)
 {
    int M, N;

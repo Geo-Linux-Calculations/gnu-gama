@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -25,7 +25,7 @@
 #include <matvec/matvec.h>
 #include <cmath>
 
-/* Gram-Schmidt Ortogonalization 
+/* Gram-Schmidt Ortogonalization
  * =============================
  *
  * Template class GSO is meant only as a tool for testing purposes.
@@ -35,7 +35,7 @@
  * gso1()
  * ------
  *
- * Modified Gram-Schmidt ortogonalization of a given block matrix    
+ * Modified Gram-Schmidt ortogonalization of a given block matrix
  *
  *   ( A1, A2 ) => (W1, W2) == (    W1,     A2 - W1*trans(W1)*A2 )
  *   ( A3, A4 )    (W3, W4)    ( A3*inv(R), A4 - W3*trans(W1)*A2 )
@@ -43,7 +43,7 @@
  * where
  *
  *   A1 = W1*R,  in other words R is upper triangular matrix of
- *               Cholesky decomposition of the matrix trans(A1)*A1  
+ *               Cholesky decomposition of the matrix trans(A1)*A1
  *
  * gso2()
  * ------
@@ -67,16 +67,16 @@ namespace GNU_gama {   /** \brief Gram-Schmidt Ortogonalization */
 template <typename Float=double, typename Exc=Exception::matvec>
 class GSO {
 
-public:   
+public:
 
   GSO(): pA(0), M(0), N(0), sc(true), tol_(0),
     minx_n(0), minx(0), clist(0), rlist(0) {}
   ~GSO() { delete[] minx; delete[] clist; delete[] rlist; }
   GSO(Mat<Float, Exc>& a, Index m, Index n)
     : pA(0), M(0), N(0), sc(true), tol_(0),
-    minx_n(0), minx(0), clist(0), rlist(0) 
-  { 
-    reset(a, m, n);     // where m, n are dimensions of A1(m, n) 
+    minx_n(0), minx(0), clist(0), rlist(0)
+  {
+    reset(a, m, n);     // where m, n are dimensions of A1(m, n)
   }
   void reset(Mat<Float, Exc>& a, Index m, Index n);
 
@@ -98,7 +98,7 @@ private:
   GSO(const GSO&);
   void operator=(const GSO&);
 
-  void modified_gso(Index r_first, Index r_last, 
+  void modified_gso(Index r_first, Index r_last,
                     Index c_last, Index r_dim, bool first);
 
   Mat<Float, Exc> *pA;
@@ -123,12 +123,12 @@ private:
 
 template <typename Float, typename Exc>
 void GSO<Float, Exc>::reset(Mat<Float, Exc>& a, Index m, Index n)
-{ 
-  pA = &a; 
-  M = m; 
-  N = n; 
-  defect_ = 0; 
-  delete[] clist; 
+{
+  pA = &a;
+  M = m;
+  N = n;
+  defect_ = 0;
+  delete[] clist;
   clist = new Index[pA->cols()+1];
   delete[] rlist;
   rlist = new Index[M+1];
@@ -159,7 +159,7 @@ void GSO<Float, Exc>::min_x(Index N, Index nx[])
 template <typename Float, typename Exc>
 void GSO<Float, Exc>::gso1()
 {
-  if (pA==0)  return; 
+  if (pA==0)  return;
   if (solved) return;
 
   for (Index i=1; i<=pA->cols(); i++) clist[i] = i;
@@ -180,10 +180,10 @@ void GSO<Float, Exc>::gso1()
 template <typename Float, typename Exc>
 void GSO<Float, Exc>::gso2()
 {
-  if (pA==0)  return; 
+  if (pA==0)  return;
   if (!solved) gso1();
   if (defect() == 0) return;
-  
+
   for (Index j=1; j<=minx_n; j++) rlist[j] = M+minx[j-1];
   modified_gso(M+1, pA->rows(), defect(), minx_n, false);
 
@@ -197,14 +197,14 @@ void GSO<Float, Exc>::gso2()
 }
 
 template <typename Float, typename Exc>
-void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last, 
+void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last,
                                Index c_last,  Index r_dim, bool first)
 {
   if (tol_ <= 0)
     {
       Float  eps, eps_1, eps_min, eps_max, sum;
       const Float one = 1;
-      
+
       eps_min = 0;
       eps_max = eps = 1e-5;
       do
@@ -219,7 +219,7 @@ void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last,
         } while (ABS(eps - eps_1)/eps > 0.1);
       tol_ = std::sqrt(eps);
     }
-  
+
   Mat<Float, Exc> &A = *pA;
   Float a;
 
@@ -265,14 +265,14 @@ void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last,
               maxi = pivot;
             }
         }
-      
+
       Index t = clist[column];
       clist[column] = clist[maxi];
       clist[maxi] = t;
 
       c = clist[column];
       maxd = std::sqrt(maxd);
-      if (first) 
+      if (first)
         norm(c) = maxd;
 
       if (maxd < tol_)

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -38,7 +38,7 @@ namespace GNU_gama {
     {
     }
     ~DataParser_g3adj()
-    {  
+    {
       delete adj;
     }
 
@@ -450,251 +450,251 @@ void DataParser::init_g3adj()
 
   init(s_g3a_r_point_after_u, t_h_adjusted,
        s_g3a_r_point_h_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_r_point_h_adjusted); 
+       0, &DataParser::add_text, &DataParser::g3a_r_point_h_adjusted);
 
  // ..... <adjusted-observations> .................................
 
   init(s_g3a_r_adj_results_end, t_adj_observations,
        s_g3a_o_observations, 0, s_g3a_o_observations_end,
-       0, 0, 0); 
+       0, 0, 0);
 
  // ..... <adjusted-observations> <vector> ........................
 
   init(s_g3a_o_observations, t_vector,
        s_g3a_o_vector, 0, 0,
-       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation); 
+       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation);
 
   init(s_g3a_o_vector, t_from,
        s_g3a_o_vector_from, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_from); 
+       0, &DataParser::add_text, &DataParser::g3a_o_from);
 
   init(s_g3a_o_vector, t_to,
        s_g3a_o_vector_to, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_to); 
+       0, &DataParser::add_text, &DataParser::g3a_o_to);
 
   init(s_g3a_o_vector, t_ind,
        s_g3a_o_vector_ind, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
+       0, &DataParser::add_text, &DataParser::g3a_o_ind);
 
   init(s_g3a_o_vector, t_dx_observed,
        s_g3a_o_vector_dx_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs1);
 
   init(s_g3a_o_vector, t_dx_residual,
        s_g3a_o_vector_dx_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res1);
 
   init(s_g3a_o_vector, t_dx_adjusted,
        s_g3a_o_vector_dx_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj1);
 
   init(s_g3a_o_vector, t_dy_observed,
        s_g3a_o_vector_dy_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs2);
 
   init(s_g3a_o_vector, t_dy_residual,
        s_g3a_o_vector_dy_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res2);
 
   init(s_g3a_o_vector, t_dy_adjusted,
        s_g3a_o_vector_dy_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj2);
 
   init(s_g3a_o_vector, t_dz_observed,
        s_g3a_o_vector_dz_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs3);
 
   init(s_g3a_o_vector, t_dz_residual,
        s_g3a_o_vector_dz_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res3);
 
   init(s_g3a_o_vector, t_dz_adjusted,
        s_g3a_o_vector_dz_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj3);
 
   init(s_g3a_o_vector, t_dx_stdev_obs,
        s_g3a_o_vector_dx_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1);
 
   init(s_g3a_o_vector, t_dx_stdev_adj,
        s_g3a_o_vector_dx_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1);
 
   init(s_g3a_o_vector, t_dy_stdev_obs,
        s_g3a_o_vector_dy_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs2);
 
   init(s_g3a_o_vector, t_dy_stdev_adj,
        s_g3a_o_vector_dy_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj2);
 
   init(s_g3a_o_vector, t_dz_stdev_obs,
        s_g3a_o_vector_dz_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs3);
 
   init(s_g3a_o_vector, t_dz_stdev_adj,
        s_g3a_o_vector_dz_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj3);
 
   init(s_g3a_o_vector, t_cxx,
        s_g3a_o_vector_cxx, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c11); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c11);
 
   init(s_g3a_o_vector, t_cxy,
        s_g3a_o_vector_cxy, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c12); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c12);
 
   init(s_g3a_o_vector, t_cxz,
        s_g3a_o_vector_cxz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c13); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c13);
 
   init(s_g3a_o_vector, t_cyy,
        s_g3a_o_vector_cyy, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c22); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c22);
 
   init(s_g3a_o_vector, t_cyz,
        s_g3a_o_vector_cyz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c23); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c23);
 
   init(s_g3a_o_vector, t_czz,
        s_g3a_o_vector_czz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c33); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c33);
 
   // ..... <adjusted-observations> <xyz> ...........................
 
   init(s_g3a_o_observations, t_xyz,
        s_g3a_o_xyz, 0, 0,
-       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation); 
+       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation);
 
   init(s_g3a_o_xyz, t_id  ,
        s_g3a_o_xyz_id, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_from); 
+       0, &DataParser::add_text, &DataParser::g3a_o_from);
 
   init(s_g3a_o_xyz, t_ind,
        s_g3a_o_xyz_ind, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
+       0, &DataParser::add_text, &DataParser::g3a_o_ind);
 
   init(s_g3a_o_xyz, t_x_observed,
        s_g3a_o_xyz_x_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs1);
 
   init(s_g3a_o_xyz, t_x_residual,
        s_g3a_o_xyz_x_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res1);
 
   init(s_g3a_o_xyz, t_x_adjusted,
        s_g3a_o_xyz_x_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj1);
 
   init(s_g3a_o_xyz, t_y_observed,
        s_g3a_o_xyz_y_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs2);
 
   init(s_g3a_o_xyz, t_y_residual,
        s_g3a_o_xyz_y_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res2);
 
   init(s_g3a_o_xyz, t_y_adjusted,
        s_g3a_o_xyz_y_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj2);
 
   init(s_g3a_o_xyz, t_z_observed,
        s_g3a_o_xyz_z_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs3);
 
   init(s_g3a_o_xyz, t_z_residual,
        s_g3a_o_xyz_z_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res3);
 
   init(s_g3a_o_xyz, t_z_adjusted,
        s_g3a_o_xyz_z_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj3);
 
   init(s_g3a_o_xyz, t_x_stdev_obs,
        s_g3a_o_xyz_x_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1);
 
   init(s_g3a_o_xyz, t_x_stdev_adj,
        s_g3a_o_xyz_x_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1);
 
   init(s_g3a_o_xyz, t_y_stdev_obs,
        s_g3a_o_xyz_y_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs2);
 
   init(s_g3a_o_xyz, t_y_stdev_adj,
        s_g3a_o_xyz_y_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj2); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj2);
 
   init(s_g3a_o_xyz, t_z_stdev_obs,
        s_g3a_o_xyz_z_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs3);
 
   init(s_g3a_o_xyz, t_z_stdev_adj,
        s_g3a_o_xyz_z_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj3); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj3);
 
   init(s_g3a_o_xyz, t_cxx,
        s_g3a_o_xyz_cxx, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c11); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c11);
 
   init(s_g3a_o_xyz, t_cxy,
        s_g3a_o_xyz_cxy, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c12); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c12);
 
   init(s_g3a_o_xyz, t_cxz,
        s_g3a_o_xyz_cxz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c13); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c13);
 
   init(s_g3a_o_xyz, t_cyy,
        s_g3a_o_xyz_cyy, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c22); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c22);
 
   init(s_g3a_o_xyz, t_cyz,
        s_g3a_o_xyz_cyz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c23); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c23);
 
   init(s_g3a_o_xyz, t_czz,
        s_g3a_o_xyz_czz, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_c33); 
+       0, &DataParser::add_text, &DataParser::g3a_o_c33);
 
   // ..... <adjusted-observations> <distance> ......................
 
   init(s_g3a_o_observations, t_dist,
        s_g3a_o_distance, 0, 0,
-       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation); 
+       &DataParser::g3a_o_observation, 0, &DataParser::g3a_o_observation);
 
   init(s_g3a_o_distance, t_from,
        s_g3a_o_distance_from, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_from); 
+       0, &DataParser::add_text, &DataParser::g3a_o_from);
 
   init(s_g3a_o_distance, t_to,
        s_g3a_o_distance_to, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_to); 
+       0, &DataParser::add_text, &DataParser::g3a_o_to);
 
   init(s_g3a_o_distance, t_ind,
        s_g3a_o_distance_ind, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_ind); 
+       0, &DataParser::add_text, &DataParser::g3a_o_ind);
 
   init(s_g3a_o_distance, t_observed,
        s_g3a_o_distance_observed, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_obs1);
 
   init(s_g3a_o_distance, t_residual,
        s_g3a_o_distance_residual, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_res1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_res1);
 
   init(s_g3a_o_distance, t_adjusted,
        s_g3a_o_distance_adjusted, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_adj1);
 
   init(s_g3a_o_distance, t_stdev_obs,
        s_g3a_o_distance_stdev_obs, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_obs1);
 
   init(s_g3a_o_distance, t_stdev_adj,
        s_g3a_o_distance_stdev_adj, 0, 0,
-       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1); 
+       0, &DataParser::add_text, &DataParser::g3a_o_stdev_adj1);
 
 }
 
@@ -706,9 +706,9 @@ int DataParser::g3a_s_adj_results(const char *name, const char **atts)
   no_attributes( name, atts );
   state = next[state][tag(name)];
 
-  delete g3adj->adj;  
+  delete g3adj->adj;
   g3adj->adj = new g3::AdjustmentResults;
-  
+
   return 0;
 }
 
@@ -844,7 +844,7 @@ int DataParser::g3a_r_point(const char *name, const char **atts)
   g3adj->adj->point.n = "unused";
   g3adj->adj->point.e = "unused";
   g3adj->adj->point.u = "unused";
-  
+
   return 0;
 }
 
@@ -1377,9 +1377,9 @@ int DataParser::g3a_x_obs3(const char *name)
 
 int DataParser::g3a_x_flt(const char *name)
 {
-  if (g3adj->adj->observation.res1.empty()) 
+  if (g3adj->adj->observation.res1.empty())
     g3a_text_string(g3adj->adj->observation.res1);
-  else if (g3adj->adj->observation.res2.empty()) 
+  else if (g3adj->adj->observation.res2.empty())
     g3a_text_string(g3adj->adj->observation.res2);
   else
     g3a_text_string(g3adj->adj->observation.res3);

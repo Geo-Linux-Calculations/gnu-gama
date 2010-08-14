@@ -35,7 +35,7 @@ double LocalNetworkAdjustmentResults::Observation::residual() const
   throw()
 {
   double r = (adj - obs);
-  if (xml_tag == "direction" || xml_tag == "angle" || 
+  if (xml_tag == "direction" || xml_tag == "angle" ||
       xml_tag == "zenith-angle")
     {
       if (r >= 400 || std::abs(r - 400) < std::abs(r)) r -= 400;
@@ -63,7 +63,7 @@ void LocalNetworkAdjustmentResults::read_xml(std::istream& xml)
 
 void LocalNetworkAdjustmentResults::Parser::check_and_clear_data()
 {
-  for (std::string::const_iterator 
+  for (std::string::const_iterator
          i=data.begin(), e=data.end(); i!=e; ++i)
     {
       if (!std::isspace(*i)) error("Bad Data");
@@ -78,7 +78,7 @@ void LocalNetworkAdjustmentResults::Parser::init()
 
   for (int s=0; s<=s_stop; s++)
     for (int t=0; t<=t_unknown; t++)
-      tagfun[s][t] = &Parser::unknown;  
+      tagfun[s][t] = &Parser::unknown;
 
   tagfun[s_start                              ][t_gama_local_adjustment          ] = &Parser::gama_local_adjustment;
   tagfun[s_gama_local_adjustment              ][t_description                    ] = &Parser::description;
@@ -133,11 +133,11 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_id_end                             ][t_x                              ] = &Parser::x;
   tagfun[s_id_end                             ][t_z                              ] = &Parser::z;
   tagfun[s_x_end                              ][t_y                              ] = &Parser::y;
-  tagfun[s_y_end                              ][t_z                              ] = &Parser::z;  
-  tagfun[s_adjusted_end                       ][t_orientation_shifts             ] = &Parser::orientation_shifts;  
-  tagfun[s_orientation_shifts                 ][t_orientation                    ] = &Parser::orientation;  
-  tagfun[s_orientation_end                    ][t_orientation                    ] = &Parser::orientation;  
-  tagfun[s_orientation                        ][t_id                             ] = &Parser::id;  
+  tagfun[s_y_end                              ][t_z                              ] = &Parser::z;
+  tagfun[s_adjusted_end                       ][t_orientation_shifts             ] = &Parser::orientation_shifts;
+  tagfun[s_orientation_shifts                 ][t_orientation                    ] = &Parser::orientation;
+  tagfun[s_orientation_end                    ][t_orientation                    ] = &Parser::orientation;
+  tagfun[s_orientation                        ][t_id                             ] = &Parser::id;
   tagfun[s_id_end                             ][t_approx                         ] = &Parser::ors_approx;
   tagfun[s_ors_approx_end                     ][t_adj                            ] = &Parser::ors_adj;
   tagfun[s_orientation_shifts_end             ][t_cov_mat                        ] = &Parser::cov_mat;
@@ -198,10 +198,10 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "aposteriori"               )) return t_aposteriori;
       if (!strcmp(c, "approx"                    )) return t_approx;
       if (!strcmp(c, "approximate"               )) return t_approximate;
-      break;      
+      break;
     case 'b':
       if (!strcmp(c, "band"                      )) return t_band;
-      break;      
+      break;
     case 'c':
       if (!strcmp(c, "confidence-scale"          )) return t_confidence_scale;
       if (!strcmp(c, "connected-network"         )) return t_connected_network;
@@ -231,7 +231,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "dx"                        )) return t_dx;
       if (!strcmp(c, "dy"                        )) return t_dy;
       if (!strcmp(c, "dz"                        )) return t_dz;
-      break;      
+      break;
     case 'e':
       if (!strcmp(c, "equations"                 )) return t_equations;
       if (!strcmp(c, "err-adj"                   )) return t_err_adj;
@@ -340,7 +340,7 @@ int LocalNetworkAdjustmentResults::Parser::get_int()
   istringstream istr(data);
   int n;
   istr >> n;
-  
+
   return n;
 }
 
@@ -353,7 +353,7 @@ double LocalNetworkAdjustmentResults::Parser::get_float()
   istringstream istr(data);
   double n;
   istr >> n;
-  
+
   return n;
 }
 
@@ -366,7 +366,7 @@ string LocalNetworkAdjustmentResults::Parser::get_string()
   istringstream istr(data);
   string n;
   istr >> n;
-  
+
   return n;
 }
 
@@ -394,7 +394,7 @@ void LocalNetworkAdjustmentResults::Parser::description(bool start)
     }
   else
     {
-      adj->description = data;   
+      adj->description = data;
       set_state(s_description_end);
     }
 }
@@ -410,17 +410,17 @@ void LocalNetworkAdjustmentResults::Parser::network_general_parameters(bool star
           string atr = *attributes++;
           string val = *attributes++;
 
-          if (atr == "gama-local-version") 
+          if (atr == "gama-local-version")
             adj->network_general_parameters.gama_local_version = val;
-          else if (atr == "gama-local-algorithm") 
+          else if (atr == "gama-local-algorithm")
             adj->network_general_parameters.gama_local_algorithm = val;
-          else if (atr == "gama-local-compiler") 
+          else if (atr == "gama-local-compiler")
             adj->network_general_parameters.gama_local_compiler = val;
-          else if (atr == "epoch") 
+          else if (atr == "epoch")
             adj->network_general_parameters.epoch = val;
-          else if (atr == "axes-xy") 
+          else if (atr == "axes-xy")
             adj->network_general_parameters.axes_xy = val;
-          else if (atr == "angles") 
+          else if (atr == "angles")
             adj->network_general_parameters.angles = val;
           else
             {
@@ -449,7 +449,7 @@ void LocalNetworkAdjustmentResults::Parser::network_processing_summary(bool star
     }
 }
 
-     
+
 void LocalNetworkAdjustmentResults::Parser::coordinates_summary(bool start)
 {
   if (start)
@@ -887,7 +887,7 @@ void LocalNetworkAdjustmentResults::Parser::used(bool start)
   else
     {
       string s = get_string();
-      if (s != "apriori" && s != "aposteriori") 
+      if (s != "apriori" && s != "aposteriori")
         error("bad value, can be apriori/aposteriori");
       adj->standard_deviation.using_aposteriori = (s == "aposteriori");
       set_state(s_used_end);
@@ -1056,7 +1056,7 @@ void LocalNetworkAdjustmentResults::Parser::adjusted(bool start)
     {
       pointlist = &adj->adjusted_points;
       tmp_point_adjusted = true;
-      tmp_adj_index = 0; 
+      tmp_adj_index = 0;
 
       stack.push(&Parser::adjusted);
       set_state(s_adjusted);
@@ -1075,13 +1075,13 @@ void LocalNetworkAdjustmentResults::Parser::point(bool start)
       tmp_point.clear();
       point_has_x = point_has_y = point_has_z = false;
       point_con_x = point_con_y = point_con_z = false;  // constrained x,y,z
-      
+
       stack.push(&Parser::point);
       set_state(s_point);
     }
   else
     {
-      // if (!(state == s_y_end || state == s_z_end)) 
+      // if (!(state == s_y_end || state == s_z_end))
       //   error("point must have both x and y");
       if (point_has_x != point_has_y) error("point must have both x and y");
       if (point_con_x != point_con_y) error("point must have both X and Y");
@@ -1214,11 +1214,11 @@ void LocalNetworkAdjustmentResults::Parser::orientation(bool start)
   else
     {
       if (state != s_ors_adj_end) error("missing tag <approx> or <adj>");
-      
+
       tmp_orientation.id = tmp_id;
       tmp_orientation.index = ++tmp_adj_index;
       adj->orientations.push_back(tmp_orientation);
-      
+
       set_state(s_orientation_end);
     }
 }
@@ -1378,7 +1378,7 @@ void LocalNetworkAdjustmentResults::Parser::observation(bool start)
     }
   else
     {
-      if (state != s_obs_f_end        && 
+      if (state != s_obs_f_end        &&
           state != s_std_residual_end &&
           state != s_err_adj_end        ) error("observation attribute(s) missing");
       adj->obslist.push_back(tmp_obs);

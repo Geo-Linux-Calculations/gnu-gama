@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Petr Doubrava <petr@gepro.cz>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -156,10 +156,10 @@ int cp1250_unicode(int* tab){
          0x000000FD,   /* 0xFD */
          0x00000163,   /* 0xFE */
          0x000002D9,   /* 0xFF   */
-   };                                
-   unsigned int i,j;              
+   };
+   unsigned int i,j;
    for (i=0;i<0x00000080;i++)tab[i]=(int)i;
-   for (j=0;i<256;i++) tab[i]=cp1250_unicode[j++];                    
+   for (j=0;i<256;i++) tab[i]=cp1250_unicode[j++];
    return 1;
 }
 
@@ -261,9 +261,9 @@ int iso_8859_2_unicode(int* tab){
          0x00000163,   /* 0xFE */
          0x000002D9,   /* 0xFF */
    };
-   unsigned int i,j;              
+   unsigned int i,j;
    for (i=0;i<0x000000A1;i++)tab[i]=(int)i;
-   for (j=0;i<256;i++) tab[i]=iso_8859_2_unicode[j++];                    
+   for (j=0;i<256;i++) tab[i]=iso_8859_2_unicode[j++];
    return 1;
 }
 
@@ -277,7 +277,7 @@ int Utf8Decode(int& u, unsigned char *buf){
  if (c<0x80){u=c;return 1;}
  int i=0;
  while (c&0x80){
-  i++; 
+  i++;
   c<<=1;
  }
  if (i==2){
@@ -299,11 +299,11 @@ char* utf8_cp1250(char *buf){
   static int tab[256];
   // static int itab=cp1250_unicode((int*)tab);  ... rewritten to avoid warning
   static bool init_tab = true;
-  if (init_tab)  
-    {       
+  if (init_tab)
+    {
       cp1250_unicode((int*)tab);
-      init_tab = false;  
-    }       
+      init_tab = false;
+    }
   unsigned int u;
   char *p,*q;
   p=q=buf;
@@ -318,7 +318,7 @@ char* utf8_cp1250(char *buf){
           q++;
   }
   *q=0;
-  return buf; 
+  return buf;
 }
 
 char* utf8_iso_8859_2(char *buf){
@@ -344,7 +344,7 @@ char* utf8_iso_8859_2(char *buf){
           q++;
   }
   *q=0;
-  return buf; 
+  return buf;
 }
 
 char* utf8_ascii(char *buf){
@@ -356,12 +356,12 @@ char* utf8_ascii(char *buf){
           *q++=u;
   }
   *q=0;
-  return buf; 
+  return buf;
 }
 
 
 // moved to file encoding_unknown_handler.cpp
-//                    
+//
 // int UnknownEncodingHandler(void *userData, const char *name,XML_Encoding *info)
 // {
 //  if (!strcmp(name,"cp-1250")) cp1250_unicode(info->map);

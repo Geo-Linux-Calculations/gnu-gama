@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2004  Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,7 +34,7 @@ namespace GaMaLib {
 
 template <typename OutStream>
 void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
-                           const ReduceToEllipsoid::ObsMap& reduced, OutStream& out)    
+                           const ReduceToEllipsoid::ObsMap& reduced, OutStream& out)
 {
    using namespace std;
    using namespace GaMaLib;
@@ -43,7 +43,7 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
        return;
 
    out << T_GaMa_reduced_Review_of_reduced_observations_to_ellipsoid << "\n"
-       << underline(T_GaMa_reduced_Review_of_reduced_observations_to_ellipsoid, '*') 
+       << underline(T_GaMa_reduced_Review_of_reduced_observations_to_ellipsoid, '*')
        << "\n\n";
 
    int minval_obs = 12;
@@ -51,39 +51,39 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
 
    int minval_dh  = 8;
    int maxval_dh  = minval_dh;
-   
+
    {
        for (ObservationData::iterator i=IS->OD.begin(), e=IS->OD.end(); i!=e; ++i)
        {
            Observation* o = *i;
 
            ReduceToEllipsoid::ObsMap::const_iterator ci = reduced.find(o);
-            
+
            if ( ci == reduced.end() )
                continue;
-           
+
 	   Double orig_value = ci->second;
            Double value      = o->value();
 	   Double diff       = R2G*(value - orig_value);
-	   
+
 	   int oz = 0;
 	   int dz = 0;
-	   
+
 	   if (value < 0)
            {
                oz = 1;
                value = -value;
            }
-	   
+
 	   if (value < 1e5) continue;
-	   
+
 	   oz += 6;   // ... decimal point plus 5 digits
-	   
+
 	   do {
-	       oz++; 
+	       oz++;
 	       value /= 10;
 	   } while (value >= 1);
-	   
+
 	   if (oz > maxval_obs) maxval_obs = oz;
 
 	   if (diff < 0)
@@ -112,12 +112,12 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
    out << T_GaMa_target << "       ";
    out.width(maxval_obs);
    out << T_GaMa_reduced_observed << " ";
-   out.width(maxval_obs); 
+   out.width(maxval_obs);
    out << T_GaMa_reduced_reduced << " ";
    out.width(maxval_dh);
    out << T_GaMa_reduced_to_ellipsoid_header1;
 
-   {  
+   {
      int kk = 12 + 2*IS->maxw_id() + maxval_obs - minval_obs;
      for (int i=0; i < kk; i++) out << "=";
    }
@@ -127,12 +127,12 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
    {
      int kk = maxval_obs - minval_obs + 1;
      for (int i=0; i < kk; i++) out << "=";
-   }  
+   }
 
    if (IS->gons())
        out << "==== [m|g] ";
    else
-       out << "==== [m|d] ";   
+       out << "==== [m|d] ";
 
    {
        int kk = maxval_dh - minval_dh;
@@ -145,21 +145,21 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
        out << "=== [d] ==\n\n";
 
    out.flush();
-   
-   
+
+
    PointID predcs = "";   // provious standpoint ID
 
    for (ObservationData::iterator i=IS->OD.begin(), e=IS->OD.end(); i!=e; ++i)
    {
        ReduceToEllipsoid::ObsMap::const_iterator ci = reduced.find(*i);
-       
+
        if ( ci == reduced.end() )
            continue;
-       
+
        Double orig_value = ci->second;
-       
+
        Observation* pm = *i;
-       
+
        PointID cs = pm->from();
        out.width(IS->maxw_id());
        if (cs != predcs)
@@ -171,18 +171,18 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
        out.width(IS->maxw_id());
        out << cc.c_str();
        out.setf(ios_base::fixed, ios_base::floatfield);
-       
+
        string str_nonexist("");
        for (int i=0; i < maxval_obs - 2; i++)
            str_nonexist+="-";
-       
+
        {   // ***************************************************
-           
+
           if (// Z_Angle* za =
               dynamic_cast<Z_Angle*>(pm))
           {
               out << T_GaMa_z_angle;
-              out.precision(6); 
+              out.precision(6);
               out.width(maxval_obs);
               if (IS->gons())
                   out << R2G*orig_value << " ";
@@ -223,14 +223,14 @@ void ReducedObservationsToEllipsoidText(GaMaLib::LocalNetwork* IS,
            //out << GNU_gama::gon2deg(R2G*(orig_value - pm->value()), 0, 2);
        out << "\n";
        out.flush();
-       
+
        predcs = cs;  // previous standpoint ID
    }
-   
+
    out << "\n\n";
    out.flush();
 }
-    
+
 }
 
 #endif

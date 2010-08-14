@@ -1,9 +1,9 @@
-/*  
-    GNU Gama --- Geodesy and Mapping C++ library 
+/*
+    GNU Gama --- Geodesy and Mapping C++ library
     Copyright (C) 1999, 2003, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -25,7 +25,7 @@
 
 namespace GNU_gama {
 
-  // const char* GNU_gama_version  = "1.9.01a"; 
+  // const char* GNU_gama_version  = "1.9.01a";
   // VERSION is defined in config.h
   const char* GNU_gama_version  = VERSION;
 
@@ -43,7 +43,7 @@ namespace GNU_gama {
 
   const char* GNU_gama_year = "2007";
 
-  
+
   int version(const char* program, const char* copyright_holder)
   {
     std::cout << program << " (GNU Gama) " << GNU_gama_version << "\n";
@@ -60,7 +60,7 @@ namespace GNU_gama {
 
 /* GNU Gama uses James Clark's parser Expat for XML data processing
  *
- *    Expat is subject to the Mozilla Public License Version 1.1. 
+ *    Expat is subject to the Mozilla Public License Version 1.1.
  *    Alternatively you may use expat under the GNU General Public
  *    License instead.
  *

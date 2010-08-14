@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2004  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -26,7 +26,7 @@
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/version.h>
 
-namespace 
+namespace
 {
   const char* arg_input     = 0;
   const char* arg_output    = 0;
@@ -35,7 +35,7 @@ namespace
 
   GNU_gama::Adj::algorithm algorithm;
 
-  int error(const char* s) { std::cerr << s << "\n"; return 1; } 
+  int error(const char* s) { std::cerr << s << "\n"; return 1; }
 
   int help(int argc, char* argv[])
   {
@@ -44,12 +44,12 @@ namespace
     for (int n=0, i=1; ok && i<argc; i++)
       {
         // '-arg' is equivalent to '--arg' in gama-g3
-        const std::string a = 
+        const std::string a =
           (*argv[i] == '-' && *(argv[i]+1) == '-') ? argv[i]+1 : argv[i];
 
 
-        if (a == "-h" || a == "-help")  
-          { 
+        if (a == "-h" || a == "-help")
+          {
             ok = false;
             continue;
           }
@@ -77,18 +77,18 @@ namespace
           }
         if (a == "-project-equations")
           {
-            if (++i < argc) 
+            if (++i < argc)
               arg_projeq = argv[i];
             else
               ok = false;
 
             continue;
           }
-        
+
         ++n;
         if      (n == 1) arg_input  = argv[i];
         else if (n == 2) arg_output = argv[i];
-        else 
+        else
           {
             ok = false;
           }
@@ -96,7 +96,7 @@ namespace
 
     if (ok) return 0;
 
-    std::cerr << 
+    std::cerr <<
       "\n"
       "Usage:  gama-g3  [ options ] input  [ output ] \n\n"
 
@@ -115,7 +115,7 @@ namespace
 
     return 1;
   }
-  
+
   GNU_gama::g3::Model* get_xml_input(const char* file)
   {
     using namespace GNU_gama::g3;
@@ -126,7 +126,7 @@ namespace
     GNU_gama::List<GNU_gama::DataObject::Base*> objects;
     GNU_gama::DataParser parser(objects);
 
-    try 
+    try
       {
         std::string text;
         while (std::getline(input, text))
@@ -138,7 +138,7 @@ namespace
       }
     catch(const GNU_gama::Exception::parser& p)
       {
-        std::cerr << "\nXML parser error on line " << p.line 
+        std::cerr << "\nXML parser error on line " << p.line
                   << " of input data  "
                   << "\t(error code " << p.error_code << ")\n"
                   << p.str << "\n\n";
@@ -180,10 +180,10 @@ int main_g3()
   if (model == 0) return error("error on reading XML input data");
 
   if (arg_algorithm) model->set_algorithm(algorithm);
-  
+
   model->update_linearization();
-  
-  if (arg_projeq) 
+
+  if (arg_projeq)
     {
       std::ofstream out(arg_projeq);
       out.precision(16);
@@ -197,7 +197,7 @@ int main_g3()
   if (arg_output)
     {
       ofstream file(arg_output);
-      if (file) 
+      if (file)
         model->write_xml_adjustment_results(file);
       else
         std::cerr << "\n****** error on opening file " << arg_output << "\n\n";
@@ -206,7 +206,7 @@ int main_g3()
     {
       model->write_xml_adjustment_results(std::cout);
     }
-  
+
   delete model;
   return 0;
 }
@@ -219,13 +219,13 @@ int main(int argc, char* argv[])
 
   if (help(argc, argv)) return 1;
 
-  try 
+  try
     {
       return main_g3();
     }
   catch (GNU_gama::Exception::matvec m)
     {
-      std::cerr <<  "\n### gama-g3 : " 
+      std::cerr <<  "\n### gama-g3 : "
                 << m.description << " (" << m.error << ")\n";
     }
   catch (GNU_gama::Exception::string s)

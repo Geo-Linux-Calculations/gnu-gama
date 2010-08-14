@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,7 +33,7 @@
  *
  * AC 2000.04.26 change median-0.7.5 / gnu_gama/local-0.9.57 */
 
- 
+
 #include <gnu_gama/local/local/median/g2d_helper.h>
 #include <gnu_gama/local/local/pobs/bearing.h>
 
@@ -62,9 +62,9 @@ void Select_solution_g2d::calculation()
      distances. Thus in principle we calculate reciprocal value of tol_i.
 
    ************************************************************************ */
- 
+
   try {
-    
+
     state_ = no_solution;
     Double delta1, delta2, tol1, tol2;
     LocalPoint PB1, PB2;
@@ -84,7 +84,7 @@ void Select_solution_g2d::calculation()
             {
               PB1 = (*(SB->find((*i)->from()))).second;
               tol1 = g2d_distance(B1,PB1);      // was  1/g2d_distance(...)
-              tol2 = g2d_distance(B2,PB1);      // ...  
+              tol2 = g2d_distance(B2,PB1);      // ...
               delta1 = fabs((*i)->value() - bearing(PB1,B1));
               delta2 = fabs((*i)->value() - bearing(PB1,B2));
             }
@@ -105,18 +105,18 @@ void Select_solution_g2d::calculation()
             }
             break;
           }
-        
+
         // in geodesy observed distances are usually longer then 10 cm
         // ... thus I consider this to be zero
         if (tol1 < 0.1 || tol2 < 0.1) continue;
-        
+
         // ********* this test was missing *********
         if (delta1 < tol1 && delta2 < tol2) continue;
         // *****************************************
-        
+
         delta1 *= tol1;
         delta2 *= tol2;
-        
+
         if(delta1 > 10*delta2)
           {
             B1 = B2;		        // second solution selected
@@ -130,18 +130,18 @@ void Select_solution_g2d::calculation()
           }
       }
     return;
-    
-  } 
-  catch (g2d_exc& exc) 
+
+  }
+  catch (g2d_exc& exc)
     {
       throw exc;
     }
-  catch (...) 
+  catch (...)
     {
       state_ = no_solution;
       return;
     }
-  
+
 }  // void Select_solution_g2d::calculation()
 
 
@@ -173,18 +173,18 @@ void Statistics_g2d::calculation()
     y = (g2d_even(size) ? (Y[size/2-1] + Y[size/2])/2 : Y[(size+1)/2-1]);
     median.set_xy(x, y);
     return;
-    
-  } 
-  catch (g2d_exc& exc) 
+
+  }
+  catch (g2d_exc& exc)
     {
       throw exc;
     }
-  catch (...) 
+  catch (...)
     {
       state_ = no_solution;
       return;
     }
-  
+
 }	// void Statistics_g2d::calculation()
 
 
@@ -225,7 +225,7 @@ void SimilarityTr2D::Identical_points(PointData::iterator& b1,
           stred.set_xy(((*i).second.x()+(*j).second.x())/2,
                        ((*i).second.y()+(*j).second.y())/2);
           delka_max = 0;
-          for(PointIDList::iterator cb = computed.begin(); 
+          for(PointIDList::iterator cb = computed.begin();
 	      cb != computed.end(); cb++)
           {
             pomocna_d1 = g2d_distance(stred, local[*cb]);
@@ -245,7 +245,7 @@ void SimilarityTr2D::Identical_points(PointData::iterator& b1,
 }
 
 
-void SimilarityTr2D::transformation_key(PointData::iterator& b1, 
+void SimilarityTr2D::transformation_key(PointData::iterator& b1,
                                         PointData::iterator& b2)
 {
   LocalPoint odkud1, odkud2, kam1, kam2;
@@ -254,7 +254,7 @@ void SimilarityTr2D::transformation_key(PointData::iterator& b1,
   PointData::iterator pom;
   pom = SB.find((*b1).first);
   if(pom == SB.end())
-    throw g2d_exc("SimilarityTr2D: identical point doesn't exist" 
+    throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
                    " in target coordinate system - "+(*b1).first);
   kam1 = (*pom).second;
   pom = SB.find((*b2).first);
@@ -296,30 +296,30 @@ void SimilarityTr2D::calculation()
         pom = (*pom_i).second;
         if(pom.test_xy())
           {
-            transf_points_[(*cb)] = 
+            transf_points_[(*cb)] =
               LocalPoint::XY(
-                        transf_key_[3] + transf_key_[1]*pom.x() - 
+                        transf_key_[3] + transf_key_[1]*pom.x() -
                                          transf_key_[0]*pom.y(),
-                        transf_key_[2] + transf_key_[1]*pom.y() + 
+                        transf_key_[2] + transf_key_[1]*pom.y() +
                                          transf_key_[0]*pom.x()
                         );
-            
+
           }
       }
     state_ = calculation_done;
     return;
 
-  } 
-  catch (g2d_exc& exc) 
+  }
+  catch (g2d_exc& exc)
     {
       throw exc;
     }
-  catch (...) 
+  catch (...)
     {
       state_ = no_solution;
       return;
     }
-  
+
 }  // void SimilarityTr2D::calculation()
 
 } // namespace GaMaLib

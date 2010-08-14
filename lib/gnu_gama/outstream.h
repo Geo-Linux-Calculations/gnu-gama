@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,11 +31,11 @@ namespace GNU_gama {
 
   class OutStream {
   public:
-    
-    enum { utf_8, iso_8859_2, iso_8859_2_flat, cp_1250, cp_1251 }; 
-    
+
+    enum { utf_8, iso_8859_2, iso_8859_2_flat, cp_1250, cp_1251 };
+
     OutStream(std::ostream* str);
-    
+
     OutStream& operator << (const char* c)
       {
         if (str) *str << recode(c);
@@ -46,32 +46,32 @@ namespace GNU_gama {
         if (str) *str << recode(s.c_str());
         return *this;
       }
-    
+
     template<typename T> OutStream& operator << (const T& t)
       {
         if (str) *str << t;
         return *this;
       }
-    
+
     std::ostream* std_stream() { return str; }
-    
-    void setf (std::ios_base::fmtflags t, std::ios_base::fmtflags v) 
-    { 
-      if (str) str->setf(t, v); 
+
+    void setf (std::ios_base::fmtflags t, std::ios_base::fmtflags v)
+    {
+      if (str) str->setf(t, v);
     }
     void width     (int t)  { if (str) str->width(t);     }
     void precision (int t)  { if (str) str->precision(t); }
     void flush     ()       { if (str) str->flush();      }
-    
+
     void set_encoding(int e) { encoding = e; }
-    
+
   private:
-    
+
     std::ostream* str;
     int           encoding;
     std::string   text;
-    
-    const char* recode(const char* s);  
+
+    const char* recode(const char* s);
   };
 
 
@@ -93,7 +93,7 @@ namespace GNU_gama {
 
     std::ostream&           std_stream;
     std::ios_base::fmtflags flgs;
-    int                     prec; 
+    int                     prec;
   };
 
 }

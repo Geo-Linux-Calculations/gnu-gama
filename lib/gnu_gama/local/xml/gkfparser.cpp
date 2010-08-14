@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -48,7 +48,7 @@ namespace GaMaLib {
       {
         description += string(s, len);
       }
-    else if (state == state_obs_cov     || 
+    else if (state == state_obs_cov     ||
              state == state_coords_cov  ||
              state == state_vectors_cov ||
              state == state_hdiffs_cov )
@@ -62,46 +62,46 @@ namespace GaMaLib {
         while (b < len && isspace(s[b]))
           b++;
         if (b == len) return 0;
-        
+
         error(T_GKF_illegal_text);
       }
 
     return 0;
   }
-  
-  
-  
+
+
+
   int GKFparser::startElement(const char *cname, const char **atts)
   {
     const gkf_tag ntag  = tag(cname);
 
-    switch (state) 
+    switch (state)
       {
-        
+
       case state_start:
         switch (ntag) {
         case tag_gama_xml: return process_gama_xml(atts);
         default:
           return error(T_GKF_must_start_with_gama_xml);
         }
-        
+
       case state_gama_xml:
         switch (ntag) {
         case tag_network: return process_network(atts);
-        default:  
+        default:
           return error(T_GKF_missing_tag_network);
         }
-        
+
       case state_network:
         switch (ntag) {
         case tag_description        : return (state = state_description);
         case tag_parameters         : return process_parameters(atts);
         case tag_points_observations: return process_point_obs(atts);
         default:
-          return error(T_GKF_e01a_illegal_tag + string(cname) + 
+          return error(T_GKF_e01a_illegal_tag + string(cname) +
                        T_GKF_e01b_after_tag + " <network>");
         }
-        
+
       case state_point_obs:
         switch(ntag) {
         case tag_point             : return process_point(atts);
@@ -113,16 +113,16 @@ namespace GaMaLib {
           return error(T_GKF_e01a_illegal_tag + string(cname) +
                        T_GKF_e01b_after_tag + " <points-observations>");
         }
-        
+
       case state_obs:
           switch(ntag) {
           case tag_direction : return process_direction(atts);
           case tag_distance  : return process_distance(atts);
           case tag_angle     : return process_angle(atts);
           case tag_s_distance: return process_sdistance(atts);
-          case tag_z_angle   : return process_zangle(atts); 
-          case tag_dh        : return process_obs_dh(atts); 
-          case tag_cov_mat   : return process_obs_cov(atts); 
+          case tag_z_angle   : return process_zangle(atts);
+          case tag_dh        : return process_obs_dh(atts);
+          case tag_cov_mat   : return process_obs_cov(atts);
           default:
             return error(T_GKF_e01a_illegal_tag + string(cname) +
                          T_GKF_e01b_after_tag + " <obs>");
@@ -162,78 +162,78 @@ namespace GaMaLib {
           return error(T_GKF_no_observations_after_cov_mat);
         }
 
-      default: 
+      default:
         return error(T_GKF_e01a_illegal_tag + string(cname) + ">");
-    
+
       }
-    
+
     return 0;
   }
-    
-    
-    
+
+
+
   int GKFparser::endElement(const char * /*name*/)
   {
-    switch (state) 
+    switch (state)
       {
-      case state_gama_xml: 
-        state = state_stop;            
+      case state_gama_xml:
+        state = state_stop;
         break;
-      case state_network: 
-        state = state_gama_xml;        
+      case state_network:
+        state = state_gama_xml;
         break;
-      case state_description: 
-        state = state_network;         
+      case state_description:
+        state = state_network;
         break;
-      case state_parameters: 
-        state = state_network;         
+      case state_parameters:
+        state = state_network;
         break;
-      case state_point_obs: 
-        state = state_network;         
+      case state_point_obs:
+        state = state_network;
         break;
-      case state_point: 
-        state = state_point_obs;       
+      case state_point:
+        state = state_point_obs;
         break;
 
 
-      case state_obs_direction: 
-        state = state_obs;             
-        break;
-      case state_obs_distance: 
-        state = state_obs;             
-        break;
-      case state_obs_angle: 
-        state = state_obs;             
-        break;
-      case state_obs_sdistance: 
+      case state_obs_direction:
         state = state_obs;
         break;
-      case state_obs_zangle: 
+      case state_obs_distance:
         state = state_obs;
         break;
-      case state_obs_dh: 
+      case state_obs_angle:
         state = state_obs;
         break;
-      case state_obs_cov: 
+      case state_obs_sdistance:
+        state = state_obs;
+        break;
+      case state_obs_zangle:
+        state = state_obs;
+        break;
+      case state_obs_dh:
+        state = state_obs;
+        break;
+      case state_obs_cov:
         state = state_obs_after_cov;
         break;
       case state_obs_after_cov:
-        state = state_point_obs; 
-        finish_obs();                             
+        state = state_point_obs;
+        finish_obs();
         break;
-      case state_obs: 
-        state = state_point_obs; 
-        finish_obs();                             
+      case state_obs:
+        state = state_point_obs;
+        finish_obs();
         break;
 
 
-      case state_hdiffs_dh: 
+      case state_hdiffs_dh:
         state = state_hdiffs;
         break;
-      case state_hdiffs_cov: 
+      case state_hdiffs_cov:
         state = state_hdiffs_after_cov;
         break;
-      case state_hdiffs_after_cov: 
+      case state_hdiffs_after_cov:
         state = state_point_obs;
         finish_hdiffs();
         break;
@@ -243,63 +243,63 @@ namespace GaMaLib {
         break;
 
 
-      case state_coords_point: 
+      case state_coords_point:
         state = state_coords;
         break;
-      case state_coords_cov: 
+      case state_coords_cov:
         state = state_coords_after_cov;
         break;
       case state_coords_after_cov:
-        state = state_point_obs;     
+        state = state_point_obs;
         finish_coords();
         break;
 
 
-      case state_vectors_vec: 
+      case state_vectors_vec:
         state = state_vectors;
         break;
-      case state_vectors_cov: 
-        state = state_vectors_after_cov;         
+      case state_vectors_cov:
+        state = state_vectors_after_cov;
         break;
-      case state_vectors_after_cov: 
+      case state_vectors_after_cov:
         state = state_point_obs;
         finish_vectors();
         break;
 
 
-      case state_stop: 
+      case state_stop:
         state = state_error;
         break;
-      default: 
+      default:
         state = state_error;
         break;
       }
 
     return 0;   // return value is never used in GKFparser
   }
-    
-    
 
-  /* grep ELEMENT gamaxml/gama-local.dtd | awk '//{print $2}' | sort 
+
+
+  /* grep ELEMENT gamaxml/gama-local.dtd | awk '//{print $2}' | sort
    * -------------------------------------------------------------
-   * angle 
-   * coordinates cov-mat 
+   * angle
+   * coordinates cov-mat
    * description dh direction distance
-   * gama-local 
-   * height-differences 
-   * network 
-   * obs 
-   * parameters point points-observations 
-   * s-distance 
-   * vec vectors 
+   * gama-local
+   * height-differences
+   * network
+   * obs
+   * parameters point points-observations
+   * s-distance
+   * vec vectors
    * z-angle
    */
-  
+
   GKFparser::gkf_tag GKFparser::tag(const char* c)
   {
     switch (*c)
       {
-      case 'a': 
+      case 'a':
         if (!strcmp(c, "angle"              )) return tag_angle;
         break;
       case 'c':
@@ -348,7 +348,7 @@ namespace GaMaLib {
 
   GKFparser::GKFparser(PointData& sb, ObservationData& od)
     : SB(sb), OD(od)
-  { 
+  {
     // implicit parameters' values
 
     m0_apr          = 10;
@@ -366,14 +366,14 @@ namespace GaMaLib {
     obsolete_attribute = true;
 
     // throw exception if a covariance matrix is not positive-definite
-    check_cov_mat = true;  
+    check_cov_mat = true;
 
   }
 
 
 
-  GKFparser::~GKFparser() 
-  { 
+  GKFparser::~GKFparser()
+  {
   }
 
 
@@ -441,11 +441,11 @@ namespace GaMaLib {
             else if (val == "left-handed" ) SB.right_handed_angles = false;
             else
               return error(T_GKF_undefined_value_of_attribute
-                           + nam + " = " + val);            
+                           + nam + " = " + val);
           }
         else if (nam == "epoch")
           {
-            if (!toDouble(val, epoch)) 
+            if (!toDouble(val, epoch))
               return error(T_GKF_error_on_reading_of_epoch
                            + nam + " = " + val);
           }
@@ -471,31 +471,31 @@ namespace GaMaLib {
       {
         jmeno   = string(*atts++);
         hodnota = string(*atts++);
-      
+
         if      (jmeno == "txt") TXT = hodnota;
         else if (jmeno == "stx") STX = hodnota;
         else if (jmeno == "opr") OPR = hodnota;
         else if (jmeno == "sigma-apr")
           {
-            if (!toDouble(hodnota, dhod)) 
+            if (!toDouble(hodnota, dhod))
               return error(T_GKF_error_on_reading_of_standard_deviation);
-            if (dhod <= 0) 
+            if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_standard_deviation);
             m0_apr = dhod;
           }
         else if (jmeno == "conf-pr")
           {
-            if (!toDouble(hodnota, dhod)) 
+            if (!toDouble(hodnota, dhod))
               return error(T_GKF_error_on_reading_of_confidence_probability);
-            if (dhod <= 0) 
+            if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_confidence_probability);
             konf_pr = dhod;
           }
         else if (jmeno == "tol-abs")
           {
-            if (!toDouble(hodnota, dhod)) 
+            if (!toDouble(hodnota, dhod))
               return error(T_GKF_error_on_reading_of_absolute_terms_tolerance);
-            if (dhod <= 0) 
+            if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_absolute_terms_tolerance);
             tol_abs = dhod;
           }
@@ -503,7 +503,7 @@ namespace GaMaLib {
           {
             if      (hodnota == "aposteriori") typ_m0_apriorni = false;
             else if (hodnota == "apriori"    ) typ_m0_apriorni = true;
-            else 
+            else
               return error(T_GKF_wrong_type_of_standard_deviation);
           }
         else if (jmeno == "update-constrained-coordinates")
@@ -520,7 +520,7 @@ namespace GaMaLib {
                          + jmeno + " = " + hodnota);
           }
       }
-  
+
     return 0;
   }
 
@@ -532,15 +532,15 @@ namespace GaMaLib {
     // on reaching end tag </points-observations> this state is
     // ignored
 
-    string nam, val, sds_abc, sds, sdk, sde, ss="0", su="0", sz="0"; 
+    string nam, val, sds_abc, sds, sdk, sde, ss="0", su="0", sz="0";
     state = state_point_obs;
 
     while (*atts)
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
-        if (nam == "distance-stdev") 
+
+        if (nam == "distance-stdev")
           {
             sds_abc = val;
             string::const_iterator i=val.begin();
@@ -558,7 +558,7 @@ namespace GaMaLib {
         else if (nam == "direction-stdev"   ) ss = val;
         else if (nam == "angle-stdev"       ) su = val;
         else if (nam == "zenith-angle-stdev") sz = val;
-        else 
+        else
           return error(T_GKF_undefined_attribute_of_points_observations
                        + nam + " = " + val);
       }
@@ -568,13 +568,13 @@ namespace GaMaLib {
     if (sde == "") sde = "1";
     if (!toDouble(sds, delka_str)    ||
         !toDouble(sdk, delka_str_km) ||
-        !toDouble(sde, delka_str_exp)) 
+        !toDouble(sde, delka_str_exp))
       return error(T_GKF_bad_attribute_distance_dev  + sds_abc);
-    if (!toDouble(ss, smer_str)) 
+    if (!toDouble(ss, smer_str))
       return error(T_GKF_bad_attribute_direction_dev + ss );
-    if (!toDouble(su, uhel_str)) 
+    if (!toDouble(su, uhel_str))
       return error(T_GKF_bad_attribute_angle_dev     + su );
-    if (!toDouble(sz, z_uhel_str)) 
+    if (!toDouble(sz, z_uhel_str))
       return error(T_GKF_bad_attribute_angle_dev     + sz );
 
     return 0;
@@ -592,7 +592,7 @@ namespace GaMaLib {
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
+
         if      (nam == "id" ) pp_id = val;
         else if (nam == "y"  ) sy = val;
         else if (nam == "x"  ) sx = val;
@@ -601,11 +601,11 @@ namespace GaMaLib {
         else if (nam == "adj") sa = val;
         else if (nam == "xy" ) st = val;         // ###### obsoleted
         else if (nam == "height") sh = val;      // ###### obsoleted
-        else 
-          return 
+        else
+          return
             error(T_GKF_undefined_attribute_of_points + nam + " = " + val);
 
-        if ((nam == "xy" || nam == "height") && obsolete_attribute)          
+        if ((nam == "xy" || nam == "height") && obsolete_attribute)
           {
             description += "\n**** Warning: ";
             description += "obsolete XML attribute(s)";
@@ -613,7 +613,7 @@ namespace GaMaLib {
             description += " " + nam + "=\"" + val + "\" />\n";
 
             ostringstream ostr;
-            ostr << "****          see line number " 
+            ostr << "****          see line number "
                  << XML_GetCurrentLineNumber(parser) << "\n";;
             description += ostr.str();
 
@@ -622,10 +622,10 @@ namespace GaMaLib {
       }
 
     if (pp_id == "") return error(T_GKF_missing_point_ID);
-  
+
     if (sy != "" && sx == "") return error(T_GKF_coordinate_x_is_not_defined);
     if (sx != "" && sy == "") return error(T_GKF_coordinate_y_is_not_defined);
-      
+
     if (sx != "") {
       double dy, dx;
       if (!toDouble(sx, dx)) return error(T_GKF_bad_coordinate_x + sx);
@@ -637,7 +637,7 @@ namespace GaMaLib {
       pp_y     = dy;
       pp_xydef = true;
     }
-      
+
     if (sv != "") {
       double dz;
       if (!toDouble(sv, dz)) return error(T_GKF_bad_height + sv);
@@ -680,17 +680,17 @@ namespace GaMaLib {
       else if (sf == "Z"  ) SB[pp_id].set_fixed_z();
       else
         return error(T_GKF_undefined_point_type + sf);
-    }       
+    }
 
-    // ###### obsoleted 
+    // ###### obsoleted
 
     if      (st == "fixed"     ) SB[pp_id].set_fixed_xy();
     else if (st == "free"      ) SB[pp_id].set_free_xy();
     else if (st =="constrained") SB[pp_id].set_constrained_xy();
     else if (st == "unused"    ) SB[pp_id].unused_xy();
-    else if (st != "") 
+    else if (st != "")
       return error(T_GKF_undefined_point_type + st);
-    
+
     if      (sh == "fixed" ) SB[pp_id].set_fixed_z();
     else if (sh == "free"  ) SB[pp_id].set_free_z();
     else if (sh == "unused") SB[pp_id].unused_z();
@@ -717,7 +717,7 @@ namespace GaMaLib {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
-        else 
+        else
           return error(T_GKF_undefined_attribute_of_distance +nam+" = "+val);
       }
 
@@ -732,14 +732,14 @@ namespace GaMaLib {
       if (!toDouble(sv, dv)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
 
-    try 
+    try
       {
         if (standpoint == 0)
           {
@@ -751,8 +751,8 @@ namespace GaMaLib {
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, false));
-      } 
-    catch (const /*GaMaLib::*/Exception &e) 
+      }
+    catch (const /*GaMaLib::*/Exception &e)
       {
         return error(e.text);
       }
@@ -772,7 +772,7 @@ namespace GaMaLib {
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
+
         if      (nam == "from"   ) ss = val;
         else if (nam == "bs"     ) sl = val;  // backsight station
         else if (nam == "fs"     ) sp = val;  // foresight station
@@ -783,7 +783,7 @@ namespace GaMaLib {
         else if (nam == "from_dh") hf = val;
         else if (nam == "bs_dh"  ) ht = val;
         else if (nam == "fs_dh"  ) h2 = val;
-        else 
+        else
           return error(T_GKF_undefined_attribute_of_angle + nam + " = " + val);
       }
 
@@ -803,18 +803,18 @@ namespace GaMaLib {
       if (!toDouble(sv, dv)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
     double d2 = 0;
     if (h2 != "")
-      if (!toDouble(h2, d2)) 
+      if (!toDouble(h2, d2))
         return error(T_GKF_bad_instrument_reflector_height + h2);
 
-    try 
+    try
       {
         if (standpoint == 0)
           {
@@ -826,8 +826,8 @@ namespace GaMaLib {
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, degrees));
-      } 
-    catch (const /*GaMaLib::*/Exception &e) 
+      }
+    catch (const /*GaMaLib::*/Exception &e)
       {
         error(e.text);
       }
@@ -841,7 +841,7 @@ namespace GaMaLib {
   {
     string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
     state = state_obs_sdistance;
-              
+
     while (*atts)
       {
         nam = string(*atts++);
@@ -852,7 +852,7 @@ namespace GaMaLib {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
-        else 
+        else
           return error(T_GKF_undefined_attribute_of_slopedist +nam+" = "+val);
       }
 
@@ -867,14 +867,14 @@ namespace GaMaLib {
       if (!toDouble(sv, dv)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
 
-    try 
+    try
       {
         if (standpoint == 0)
           {
@@ -886,8 +886,8 @@ namespace GaMaLib {
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, false));
-      } 
-    catch (const /*GaMaLib::*/Exception &e) 
+      }
+    catch (const /*GaMaLib::*/Exception &e)
       {
         return error(e.text);
       }
@@ -931,14 +931,14 @@ namespace GaMaLib {
       if (!toDouble(sv, dv)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
 
-    try 
+    try
       {
         if (standpoint == 0)
           {
@@ -950,8 +950,8 @@ namespace GaMaLib {
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, degrees));
-      } 
-    catch (const /*GaMaLib::*/Exception &e) 
+      }
+    catch (const /*GaMaLib::*/Exception &e)
       {
         return error(e.text);
       }
@@ -975,7 +975,7 @@ namespace GaMaLib {
         if      (nam == "from"       ) ss = val;
         else if (nam == "orientation") sz = val;
         else if (nam == "from_dh"    ) sh = val;
-        else return error(T_GKF_undefined_attribute_of_obs 
+        else return error(T_GKF_undefined_attribute_of_obs
                           + nam + " = " + val);
       }
 
@@ -989,7 +989,7 @@ namespace GaMaLib {
       standpoint->set_orientation(dz);
     }
     if (sh != "") {
-      if (!toDouble(sh, obs_from_dh)) 
+      if (!toDouble(sh, obs_from_dh))
         return error(T_GKF_bad_instrument_reflector_height + sh);
     }
     OD.clusters.push_back(standpoint);
@@ -1016,9 +1016,9 @@ namespace GaMaLib {
         for (Index i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
       }
 
-    if (check_cov_mat) 
+    if (check_cov_mat)
       {
-        try 
+        try
           {
             // scaling of rows/columns corresponding to covariances
             // given in sexagesimal seconds
@@ -1061,7 +1061,7 @@ namespace GaMaLib {
         else if (nam == "stdev"  ) ss = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
-        else return error(T_GKF_undefined_attribute_of_direction 
+        else return error(T_GKF_undefined_attribute_of_direction
                           + nam + " = "+val);
       }
 
@@ -1080,22 +1080,22 @@ namespace GaMaLib {
       if (!toDouble(ss, ds)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
 
-    try 
+    try
       {
         Direction* d = new Direction(standpoint_id, sc, dm*G2R);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(ds, degrees));
-      } 
-    catch (const /*GaMaLib::*/Exception &e) 
+      }
+    catch (const /*GaMaLib::*/Exception &e)
       {
         error(e.text);
       }
@@ -1109,7 +1109,7 @@ namespace GaMaLib {
   {
     /*  the function body was copied from process_dh(const char**)  */
     /*  ##########################################################  */
- 
+
     string  nam, val, sfrom, sto,  sval, sstdev, sdist;
     // ###### state = state_hdiff_dh;
     state = state_obs_dh;
@@ -1118,14 +1118,14 @@ namespace GaMaLib {
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
+
         if      (nam == "from" ) sfrom  = val;
         else if (nam == "to"   ) sto    = val;
         else if (nam == "val"  ) sval   = val;
         else if (nam == "stdev") sstdev = val;
         else if (nam == "dist" ) sdist  = val;
-        else 
-          return error(T_GKF_undefined_attribute_of_height_differences 
+        else
+          return error(T_GKF_undefined_attribute_of_height_differences
                        + nam + " = " + val);
       }
 
@@ -1137,7 +1137,7 @@ namespace GaMaLib {
     if (!toDouble(sval, dm)) return error(T_GKF_bad_height_diff + sval);
     double dd = 0;
     if (sdist != "")
-      if (!toDouble(sdist, dd) || dd < 0) 
+      if (!toDouble(sdist, dd) || dd < 0)
         return error(T_GKF_bad_distance + sdist);
     double ds = m0_apr * sqrt(dd);
     if (sstdev != "")
@@ -1150,7 +1150,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( hd );
         sigma.push_back(DB_pair(ds, false));
       }
-    catch  (const /*GaMaLib::*/Exception &e) 
+    catch  (const /*GaMaLib::*/Exception &e)
       {
         error(e.text);
       }
@@ -1170,20 +1170,20 @@ namespace GaMaLib {
 
         if      (nam == "dim" ) sdim  = val;
         else if (nam == "band") sband = val;
-        else return error(T_GKF_undefined_attribute_of_cov_mat 
+        else return error(T_GKF_undefined_attribute_of_cov_mat
                           + nam + " = "+val);
       }
 
     if (sdim  == "") return error(T_GKF_cov_mat_missing_dim);
     if (sband == "") return error(T_GKF_cov_mat_missing_band_width);
 
-    if (!toIndex(sdim,  idim )) 
+    if (!toIndex(sdim,  idim ))
       return error(T_GKF_cov_mat_bad_dim + nam + " = " + val);
-    if (!toIndex(sband, iband)) 
+    if (!toIndex(sband, iband))
       return error(T_GKF_cov_mat_bad_band_width + nam + " = " + val);
 
     if (idim  < 1) return error(T_GKF_cov_mat_bad_dim + nam + " = " + val);
-    if (iband < 0 || iband >= idim) 
+    if (iband < 0 || iband >= idim)
       return error(T_GKF_cov_mat_bad_band_width + nam + " = " + val);
 
     return 0;
@@ -1202,13 +1202,13 @@ namespace GaMaLib {
       {
         while (i!=cov_mat_data.end() &&  isspace(*i)) ++i;
         string w;
-        while (i!=cov_mat_data.end() && !isspace(*i)) 
-          { 
-            w += *i; ++i; 
+        while (i!=cov_mat_data.end() && !isspace(*i))
+          {
+            w += *i; ++i;
           }
         if (w.size())
           {
-            if (elements == 0) 
+            if (elements == 0)
               return error(T_GKF_cov_mat_bad_dim_too_many_elements);
             double d;
             if (!toDouble(w, d))
@@ -1220,9 +1220,9 @@ namespace GaMaLib {
           }
       }
 
-    if (elements) 
+    if (elements)
       return error(T_GKF_cov_mat_bad_dim_not_enough_elements);
-  
+
     idim = 0;
     cov_mat_data = "";
     return 0;
@@ -1258,7 +1258,7 @@ namespace GaMaLib {
     coordinates->update();
     finish_cov(coordinates->covariance_matrix);
 
-    if (check_cov_mat) 
+    if (check_cov_mat)
       {
         try
           {
@@ -1335,7 +1335,7 @@ namespace GaMaLib {
         for (Index i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
       }
 
-    if (check_cov_mat) 
+    if (check_cov_mat)
       {
         try
           {
@@ -1363,14 +1363,14 @@ namespace GaMaLib {
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
+
         if      (nam == "from" ) sfrom  = val;
         else if (nam == "to"   ) sto    = val;
         else if (nam == "val"  ) sval   = val;
         else if (nam == "stdev") sstdev = val;
         else if (nam == "dist" ) sdist  = val;
-        else 
-          return error(T_GKF_undefined_attribute_of_height_differences 
+        else
+          return error(T_GKF_undefined_attribute_of_height_differences
                        + nam + " = " + val);
       }
 
@@ -1382,7 +1382,7 @@ namespace GaMaLib {
     if (!toDouble(sval, dm)) return error(T_GKF_bad_height_diff + sval);
     double dd = 0;
     if (sdist != "")
-      if (!toDouble(sdist, dd) || dd < 0) 
+      if (!toDouble(sdist, dd) || dd < 0)
         return error(T_GKF_bad_distance + sdist);
     double ds = m0_apr * sqrt(dd);
     if (sstdev != "")
@@ -1394,7 +1394,7 @@ namespace GaMaLib {
         heightdifferences->observation_list.push_back( hd );
         sigma.push_back(DB_pair(ds, false));
       }
-    catch  (const /*GaMaLib::*/Exception &e) 
+    catch  (const /*GaMaLib::*/Exception &e)
       {
         error(e.text);
       }
@@ -1458,7 +1458,7 @@ namespace GaMaLib {
       {
         nam = string(*atts++);
         val = string(*atts++);
-      
+
         if      (nam == "from"   ) sfrom = val;
         else if (nam == "to"     ) sto   = val;
         else if (nam == "dx"     ) sdx   = val;
@@ -1466,15 +1466,15 @@ namespace GaMaLib {
         else if (nam == "dz"     ) sdz   = val;
         else if (nam == "from_dh") hf    = val;
         else if (nam == "to_dh"  ) ht    = val;
-        else 
-          return error(T_GKF_undefined_attribute_of_height_differences 
+        else
+          return error(T_GKF_undefined_attribute_of_height_differences
                        + nam + " = " + val);
       }
 
     if (sfrom == "") return error(T_GKF_missing_from_ID);
     if (sto   == "") return error(T_GKF_missing_to_ID);
-    if (sdx   == "" || 
-        sdy   == "" || 
+    if (sdx   == "" ||
+        sdy   == "" ||
         sdz   == "") return error(T_GKF_bad_vector_data);
 
     double dx, dy, dz;
@@ -1483,11 +1483,11 @@ namespace GaMaLib {
         !toDouble(sdz, dz)  ) return error(T_GKF_bad_vector_data);
     double df = 0;
     if (hf != "")
-      if (!toDouble(hf, df)) 
+      if (!toDouble(hf, df))
         return error(T_GKF_bad_instrument_reflector_height + hf);
     double dt = 0;
     if (ht != "")
-      if (!toDouble(ht, dt)) 
+      if (!toDouble(ht, dt))
         return error(T_GKF_bad_instrument_reflector_height + ht);
 
     try
@@ -1504,7 +1504,7 @@ namespace GaMaLib {
         vectors->observation_list.push_back( ydiff );
         vectors->observation_list.push_back( zdiff );
       }
-    catch  (const /*GaMaLib::*/Exception &e) 
+    catch  (const /*GaMaLib::*/Exception &e)
       {
         error(e.text);
       }
@@ -1527,7 +1527,7 @@ using namespace GaMaLib;
 
 int main(int argc, char* argv[])
 {
-  if (argc != 2) 
+  if (argc != 2)
     {
       cout << "\nusage: demo xml-file.gkf\n\n";
       return 1;
@@ -1536,11 +1536,11 @@ int main(int argc, char* argv[])
   PointData        PData;
   ObservationData  OData;
   GKFparser gp(PData, OData);
-  
+
   try {
     ifstream inp(argv[1]);
     string   rad;
-    
+
     while (getline(inp, rad))
       {
         rad += "\n";      // for expat to count lines properly
@@ -1552,8 +1552,8 @@ int main(int argc, char* argv[])
     Format::coord_p(5);   // output precision in fixed format
     Format::gon_p(5);
     Format::stdev_p (3);
-    
-    cout << 
+
+    cout <<
       "<?xml version=\"1.0\" ?>\n"
       "<!DOCTYPE gama-local SYSTEM \"http://gama.fsv.cvut.cz/gama-local.dtd\">\n\n"
 
@@ -1571,15 +1571,15 @@ int main(int argc, char* argv[])
          <<  (gp.typ_m0_apriorni ? "apriori" : "aposteriori") << "\"\n"
          << "/>\n\n";
 
-    cout << "<points-observations>\n\n"   
+    cout << "<points-observations>\n\n"
          << PData << "\n" << OData
          << "\n</points-observations>\n"
          << "</network>\n"
-         << "</gama-local>\n";      
+         << "</gama-local>\n";
   }
   catch (GaMaLib::Exception e) {
     cout << "\nException : " << e.text << "\n\n";
-    // cout << "line = " << gp.errLineNumber 
+    // cout << "line = " << gp.errLineNumber
     //      << " expat error code = " << gp.errCode << "\n\n";
     return 2;
   }

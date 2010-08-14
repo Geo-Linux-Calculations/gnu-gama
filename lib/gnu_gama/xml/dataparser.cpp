@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,10 +31,10 @@ using namespace GNU_gama;
 const char* const DataParser::xml_start =
     "<?xml version=\"1.0\" ?>\n"
     "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
-    "<gnu-gama-data>\n";  
+    "<gnu-gama-data>\n";
 
 const char* const DataParser::xml_end =
-    "</gnu-gama-data>\n";  
+    "</gnu-gama-data>\n";
 
 
 DataParser::~DataParser()
@@ -62,7 +62,7 @@ DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
   point = 0;
 
   // initial parser state and implicit handlers
-  
+
   state = s_start;
 
   for (int s=s_error; s<=s_stop; s++)
@@ -80,25 +80,25 @@ DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
 
   // .....  <gnu-gama-data>  .........................................
 
-  init(s_start, t_gama_data, 
+  init(s_start, t_gama_data,
        s_gama_data, 0, s_stop,
        &DataParser::gama_data, 0, 0);
 
 
   // .....  <g3-model>  ..............................................
 
-  init_g3(); 
+  init_g3();
 
   // .....  <g3-adjustment-reults>  ..................................
 
-  init_g3adj(); 
+  init_g3adj();
 
   // .....  <text>  ..................................................
- 
+
   init(s_gama_data, t_text,
        s_text, 0, 0,
        0, &DataParser::add_text, &DataParser::text);
- 
+
   // .....  <adj-input-data>  ........................................
 
   init_adj();
@@ -126,7 +126,7 @@ void DataParser::init(int s,   int t,           // current state, tag
 
   next [s][t] = n;
   after[z]    = a;
-  
+
   if (s_) stag[s][t] = s_;
   else    stag[s][t] = &DataParser::start_tag;
 
@@ -134,8 +134,8 @@ void DataParser::init(int s,   int t,           // current state, tag
 
   if (e_) etag[z] = e_;
 
-  if (z2)         // alternative end-state 
-    { 
+  if (z2)         // alternative end-state
+    {
       after[z2] = a;
       etag [z2] = e_;
     }
@@ -162,8 +162,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "aposteriori-variance"      )) return t_aposteriori_var;
       if (!strcmp(c, "array"                     )) return t_array;
       if (!strcmp(c, "azimuth"                   )) return t_azimuth;
-      break;                                     
-    case 'b':                                    
+      break;
+    case 'b':
       if (!strcmp(c, "b"                         )) return t_b;
       if (!strcmp(c, "b-adjusted"                )) return t_b_adjusted;
       if (!strcmp(c, "b-correction"              )) return t_b_correction;
@@ -172,8 +172,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "block-diagonal"            )) return t_block_diagonal;
       if (!strcmp(c, "blocks"                    )) return t_blocks;
       if (!strcmp(c, "block"                     )) return t_block;
-      break;                                     
-    case 'c' :                                   
+      break;
+    case 'c' :
       if (!strcmp(c, "caption"                   )) return t_caption;
       if (!strcmp(c, "cee"                       )) return t_cee;
       if (!strcmp(c, "ceu"                       )) return t_ceu;
@@ -194,8 +194,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "cyy"                       )) return t_cyy;
       if (!strcmp(c, "cyz"                       )) return t_cyz;
       if (!strcmp(c, "czz"                       )) return t_czz;
-      break;                                     
-    case 'd' :                                   
+      break;
+    case 'd' :
       if (!strcmp(c, "db"                        )) return t_db;
       if (!strcmp(c, "de"                        )) return t_de;
       if (!strcmp(c, "defect"                    )) return t_defect;
@@ -223,8 +223,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "dz-adjusted"               )) return t_dz_adjusted;
       if (!strcmp(c, "dz-stdev-obs"              )) return t_dz_stdev_obs;
       if (!strcmp(c, "dz-stdev-adj"              )) return t_dz_stdev_adj;
-      break;                                     
-    case 'e':                                    
+      break;
+    case 'e':
       if (!strcmp(c, "e"                         )) return t_e;
       if (!strcmp(c, "e-fixed"                   )) return t_e_fixed;
       if (!strcmp(c, "e-free"                    )) return t_e_free;
@@ -232,21 +232,21 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "e-unused"                  )) return t_e_unused;
       if (!strcmp(c, "ellipsoid"                 )) return t_ellipsoid;
       if (!strcmp(c, "equations"                 )) return t_equations;
-      break;                                     
-    case 'f' :                                   
+      break;
+    case 'f' :
       if (!strcmp(c, "fixed"                     )) return t_fixed;
       if (!strcmp(c, "flt"                       )) return t_flt;
       if (!strcmp(c, "from"                      )) return t_from;
       if (!strcmp(c, "from-dh"                   )) return t_from_dh;
       if (!strcmp(c, "free"                      )) return t_free;
-      break;                                     
-    case 'g' :                                   
+      break;
+    case 'g' :
       if (!strcmp(c, "g3-adjustment-results"     )) return t_g3_adj_results;
       if (!strcmp(c, "g3-model"                  )) return t_g3_model;
       if (!strcmp(c, "geoid"                     )) return t_geoid;
       if (!strcmp(c, "gnu-gama-data"             )) return t_gama_data;
-      break;                                     
-    case 'h':                                    
+      break;
+    case 'h':
       if (!strcmp(c, "h"                         )) return t_h;
       if (!strcmp(c, "h-adjusted"                )) return t_h_adjusted;
       if (!strcmp(c, "h-correction"              )) return t_h_correction;
@@ -254,38 +254,38 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "hdiff"                     )) return t_hdiff;
       if (!strcmp(c, "height"                    )) return t_height;
       if (!strcmp(c, "hobs"                      )) return t_hobs;
-      break;                                     
-    case 'i':                                    
+      break;
+    case 'i':
       if (!strcmp(c, "id"                        )) return t_id;
       if (!strcmp(c, "ind"                       )) return t_ind;
       if (!strcmp(c, "int"                       )) return t_int;
       if (!strcmp(c, "inv-f"                     )) return t_inv_f;
-      break;                                     
-    case 'l':                                    
+      break;
+    case 'l':
       if (!strcmp(c, "l"                         )) return t_l;
       if (!strcmp(c, "l-adjusted"                )) return t_l_adjusted;
       if (!strcmp(c, "l-correction"              )) return t_l_correction;
       if (!strcmp(c, "l-given"                   )) return t_l_given;
       if (!strcmp(c, "left"                      )) return t_left;
       if (!strcmp(c, "left-dh"                   )) return t_left_dh;
-      break;                                     
-    case 'n':                                    
+      break;
+    case 'n':
       if (!strcmp(c, "n"                         )) return t_n;
       if (!strcmp(c, "n-fixed"                   )) return t_n_fixed;
       if (!strcmp(c, "n-free"                    )) return t_n_free;
       if (!strcmp(c, "n-constr"                  )) return t_n_constr;
       if (!strcmp(c, "n-unused"                  )) return t_n_unused;
       if (!strcmp(c, "nonz"                      )) return t_nonz;
-      break;                                     
-    case 'o':                                    
+      break;
+    case 'o':
       if (!strcmp(c, "obs"                       )) return t_obs;
       if (!strcmp(c, "observed"                  )) return t_observed;
-      break;                                     
-    case 'p':                                    
+      break;
+    case 'p':
       if (!strcmp(c, "parameters"                )) return t_parameters;
       if (!strcmp(c, "point"                     )) return t_point;
-      break;                                     
-    case 'r':                                    
+      break;
+    case 'r':
       if (!strcmp(c, "reason"                    )) return t_reason;
       if (!strcmp(c, "redundancy"                )) return t_redundancy;
       if (!strcmp(c, "rejected"                  )) return t_rejected;
@@ -295,38 +295,38 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "right-dh"                  )) return t_right_dh;
       if (!strcmp(c, "row"                       )) return t_row;
       if (!strcmp(c, "rows"                      )) return t_rows;
-      break;                                     
-    case 's':                                    
+      break;
+    case 's':
       if (!strcmp(c, "stdev"                     )) return t_stdev;
       if (!strcmp(c, "stdev-obs"                 )) return t_stdev_obs;
       if (!strcmp(c, "stdev-adj"                 )) return t_stdev_adj;
       if (!strcmp(c, "sparse-mat"                )) return t_sparse_mat;
       if (!strcmp(c, "sum-of-squares"            )) return t_sum_of_squares;
-      break;                                     
-    case 't' :                                   
+      break;
+    case 't' :
       if (!strcmp(c, "text"                      )) return t_text;
       if (!strcmp(c, "to"                        )) return t_to;
       if (!strcmp(c, "to-dh"                     )) return t_to_dh;
       if (!strcmp(c, "tol-abs"                   )) return t_tol_abs;
-      break;                                     
-    case 'u' :                                   
+      break;
+    case 'u' :
       if (!strcmp(c, "u"                         )) return t_u;
       if (!strcmp(c, "u-fixed"                   )) return t_u_fixed;
       if (!strcmp(c, "u-free"                    )) return t_u_free;
       if (!strcmp(c, "u-constr"                  )) return t_u_constr;
       if (!strcmp(c, "u-unused"                  )) return t_u_unused;
       if (!strcmp(c, "unused"                    )) return t_unused;
-      break;                                     
-    case 'v' :                                   
+      break;
+    case 'v' :
       if (!strcmp(c, "val"                       )) return t_val;
       if (!strcmp(c, "variance"                  )) return t_variance;
       if (!strcmp(c, "variance-factor-used"      )) return t_variance_factor;
       if (!strcmp(c, "vector"                    )) return t_vector;
-      break;                                     
-    case 'w' :                                   
+      break;
+    case 'w' :
       if (!strcmp(c, "width"                     )) return t_width;
-      break;                                     
-    case 'x' :                                   
+      break;
+    case 'x' :
       if (!strcmp(c, "x"                         )) return t_x;
       if (!strcmp(c, "x-adjusted"                )) return t_x_adjusted;
       if (!strcmp(c, "x-correction"              )) return t_x_correction;
@@ -337,8 +337,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "x-stdev-obs"               )) return t_x_stdev_obs;
       if (!strcmp(c, "x-stdev-adj"               )) return t_x_stdev_adj;
       if (!strcmp(c, "xyz"                       )) return t_xyz;
-      break;                                     
-    case 'y' :                                   
+      break;
+    case 'y' :
       if (!strcmp(c, "y"                         )) return t_y;
       if (!strcmp(c, "y-adjusted"                )) return t_y_adjusted;
       if (!strcmp(c, "y-correction"              )) return t_y_correction;
@@ -348,8 +348,8 @@ DataParser::data_tag DataParser::tag(const char* c)
       if (!strcmp(c, "y-adjusted"                )) return t_y_adjusted;
       if (!strcmp(c, "y-stdev-obs"               )) return t_y_stdev_obs;
       if (!strcmp(c, "y-stdev-adj"               )) return t_y_stdev_adj;
-      break;                                     
-    case 'z' :                                   
+      break;
+    case 'z' :
       if (!strcmp(c, "z"                         )) return t_z;
       if (!strcmp(c, "z-adjusted"                )) return t_z_adjusted;
       if (!strcmp(c, "z-correction"              )) return t_z_correction;
@@ -373,8 +373,8 @@ DataParser::data_tag DataParser::tag(const char* c)
 // *****************************************************************
 
 int DataParser::parser_error(const char *name, const char **atts)
-{  
-  return error(string("### tag <") + string(name) 
+{
+  return error(string("### tag <") + string(name)
                + string("> cannot be used in this context"));
 }
 
@@ -394,7 +394,7 @@ int DataParser::no_attributes(const char *name, const char **atts)
 {
   if (*atts)
     {
-      return error(string("### tag <") + string(name) 
+      return error(string("### tag <") + string(name)
                  + string("> cannot have any attributes"));
     }
   return 0;

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Petr Doubrava <petr@gepro.cz>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -26,20 +26,20 @@
 namespace GNU_gama {
 #endif
 
-                   
+
 int UnknownEncodingHandler(void *userData, const char *name,XML_Encoding *info)
 {
- if      (!strcmp(name,"cp-1250")) 
+ if      (!strcmp(name,"cp-1250"))
    cp1250_unicode(info->map);
- else if (!strcmp(name,"windows-1250")) 
+ else if (!strcmp(name,"windows-1250"))
    cp1250_unicode(info->map);             /* this is probably correct */
- else if (!strcmp(name,"cp-1251")) 
+ else if (!strcmp(name,"cp-1251"))
    cp1251_unicode(info->map);
- else if (!strcmp(name,"windows-1251")) 
+ else if (!strcmp(name,"windows-1251"))
    cp1251_unicode(info->map);             /* this is probably correct */
- else if (!strcmp(name,"iso-8859-2")) 
+ else if (!strcmp(name,"iso-8859-2"))
    iso_8859_2_unicode(info->map);
- else 
+ else
    ascii(info->map);
  return 1;
 }

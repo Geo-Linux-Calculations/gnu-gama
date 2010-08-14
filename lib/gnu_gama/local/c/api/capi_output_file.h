@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,8 +33,8 @@ namespace GaMaLib {
   class C_API_output_file {
   public:
 
-    C_API_output_file(LocalNetwork* is, std::ofstream* outp) 
-      : IS(is), out(outp) 
+    C_API_output_file(LocalNetwork* is, std::ofstream* outp)
+      : IS(is), out(outp)
       {
       }
     ~C_API_output_file()
@@ -77,7 +77,7 @@ extern "C" {
   void Cgama_of_outlying_abs_terms(void*);
   void Cgama_of_residuals_observations(void*);
   int  Cgama_of_test_linearization(void*);
-  
+
 
 #ifdef __cplusplus
 }

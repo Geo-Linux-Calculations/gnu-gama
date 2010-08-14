@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,15 +31,15 @@ using namespace GNU_gama;
 
 namespace {
   extern "C" {
-    
+
     void characterDataHandler(void *userData, const char* s, int len)
     {
       using namespace GNU_gama;
       CoreParser* gexp = static_cast<CoreParser*>(userData);
-      
+
       gexp->characterDataHandler(s, len);
-    }      
-    
+    }
+
     void startElement(void *userData, const char *cname, const char **atts)
     {
       using namespace GNU_gama;
@@ -56,8 +56,8 @@ namespace {
       gexp->endElement(cname);
     }
 
-  }   // extern "C" 
-}     // unnamed namespace 
+  }   // extern "C"
+}     // unnamed namespace
 
 // ===========================================================================
 
@@ -68,7 +68,7 @@ CoreParser::CoreParser()
   errCode = errLineNumber = 0;
 
   parser  = XML_ParserCreate(0);
- 
+
   XML_SetUserData              (parser, this);
   XML_SetElementHandler        (parser, ::startElement, ::endElement);
   XML_SetCharacterDataHandler  (parser, ::characterDataHandler);
@@ -77,14 +77,14 @@ CoreParser::CoreParser()
 
 CoreParser::~CoreParser()
 {
-  XML_ParserFree(parser); 
+  XML_ParserFree(parser);
 }
 
 
 bool CoreParser::toDouble(const std::string& s, double& d) const
 {
   using namespace std;        // Visual C++ doesn't know std::atof ???
-  
+
   if (IsFloat(s))
     {
       d = atof(s.c_str());
@@ -100,7 +100,7 @@ bool CoreParser::toIndex(const std::string& s, std::size_t& index) const
   for (std::string::const_iterator i=s.begin(); i!=s.end(); ++i)
     if (!isspace(*i) && !isdigit(*i))
       return false;
-  
+
   double d;
   if (toDouble(s, d))
     {
@@ -116,7 +116,7 @@ int CoreParser::error(const char* text)
 {
   // store only the first detected error
   if(errCode) return 1;
-  
+
   errString = std::string(text);
   errCode   = -1;
   errLineNumber = XML_GetCurrentLineNumber(parser);

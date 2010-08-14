@@ -50,27 +50,27 @@ using GaMaLib::Ydiff;
 using GaMaLib::Zdiff;
 
 
-namespace 
+namespace
 {
   const char* const VERSION = "0.5";
 }
 
 
 void LocalNetworkXML::write(std::ostream& out) const
-{ 
+{
   out << "<?xml version=\"1.0\" ?>\n"
       << "<!DOCTYPE gama-local-adjustment SYSTEM \"gama-local-adjustment.dtd\">\n"
       << "\n<gama-local-adjustment version=\"" << VERSION << "\">\n";
 
   out << "\n<description>" << description << "</description>\n";
-  
+
   {
     {
       using GNU_gama::GNU_gama_version;
       using GNU_gama::GNU_gama_compiler;
 
       out << "\n<network-general-parameters\n";
-    
+
       out << "   gama-local-version=\""   << GNU_gama_version    << "\"\n";
       out << "   gama-local-algorithm=\"" << netinfo->algorithm()<< "\"\n";
       out << "   gama-local-compiler=\""  << GNU_gama_compiler   << "\"\n";
@@ -79,7 +79,7 @@ void LocalNetworkXML::write(std::ostream& out) const
       out.precision(7);
       out << "   epoch=\""<< netinfo->epoch << "\"\n";
 
-      out << "   axes-xy=\""; 
+      out << "   axes-xy=\"";
       switch (netinfo->PD.local_coordinate_system)
         {
         case   1: out << "en"; break;
@@ -94,9 +94,9 @@ void LocalNetworkXML::write(std::ostream& out) const
         }
       out << "\"\n";
 
-      out << "   angles=\"" 
+      out << "   angles=\""
           << (netinfo->PD.right_handed_angles ?
-                                "right-handed" : "left-handed") 
+                                "right-handed" : "left-handed")
           << "\"\n";
 
       out << "/>\n";
@@ -111,15 +111,15 @@ void LocalNetworkXML::write(std::ostream& out) const
     observations_summary(out);
     equations_summary(out);
     std_dev_summary(out);
-    
+
     out << "\n</network-processing-summary>\n";
 
-   
+
   }
 
-  coordinates(out);  
+  coordinates(out);
   observations(out);
-  
+
   out << "\n</gama-local-adjustment>\n";
 }
 
@@ -128,12 +128,12 @@ void LocalNetworkXML::coordinates_summary(std::ostream& out) const
   out << "\n<coordinates-summary>\n";
 
   // summary of coordinates in adjustment
-  
-  int a_xyz = 0, a_xy = 0, a_z = 0;      // adjusted    
-  int c_xyz = 0, c_xy = 0, c_z = 0;      // constrained 
+
+  int a_xyz = 0, a_xy = 0, a_z = 0;      // adjusted
+  int c_xyz = 0, c_xy = 0, c_z = 0;      // constrained
   int f_xyz = 0, f_xy = 0, f_z = 0;      // fixed
-  
-  for (PointData::const_iterator 
+
+  for (PointData::const_iterator
          i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
     {
       const LocalPoint& p = (*i).second;
@@ -142,11 +142,11 @@ void LocalNetworkXML::coordinates_summary(std::ostream& out) const
           if (p.free_xy() && p.free_z()) a_xyz++;
           else if (p.free_xy()) a_xy++;
           else if (p.free_z())  a_z++;
-          
+
           if (p.constrained_xy() && p.constrained_z()) c_xyz++;
           else if (p.constrained_xy()) c_xy++;
           else if (p.constrained_z())  c_z++;
-          
+
           if (p.fixed_xy() && p.fixed_z()) f_xyz++;
           else if (p.fixed_xy()) f_xy++;
           else if (p.fixed_z())  f_z++;
@@ -154,11 +154,11 @@ void LocalNetworkXML::coordinates_summary(std::ostream& out) const
     }
 
   out << "   <coordinates-summary-adjusted>    ";
-  tagsp(out, "count-xyz", a_xyz); 
-  tagsp(out, "count-xy" , a_xy ); 
-  tagsp(out, "count-z"  , a_z  ); 
+  tagsp(out, "count-xyz", a_xyz);
+  tagsp(out, "count-xy" , a_xy );
+  tagsp(out, "count-z"  , a_z  );
   out << "</coordinates-summary-adjusted>\n";
-  
+
   out << "   <coordinates-summary-constrained> ";
   tagsp(out, "count-xyz", c_xyz);
   tagsp(out, "count-xy" , c_xy );
@@ -170,16 +170,16 @@ void LocalNetworkXML::coordinates_summary(std::ostream& out) const
   tagsp(out, "count-xy" , f_xy );
   tagsp(out, "count-z"  , f_z  );
   out << "</coordinates-summary-fixed>\n";
-  
+
   out << "</coordinates-summary>\n";
 }
 
 
 void LocalNetworkXML::observations_summary(std::ostream& out) const
 {
-  out << "\n<observations-summary>\n";  
+  out << "\n<observations-summary>\n";
 
-  int dirs=0,  angles=0, dists=0, coords=0, 
+  int dirs=0,  angles=0, dists=0, coords=0,
     hdiffs = 0, zangles=0, chords=0, vectors=0;
 
   for (int i=1; i<=netinfo->sum_observations(); i++)
@@ -195,7 +195,7 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
     else if (dynamic_cast<Xdiff*     >(netinfo->ptr_obs(i))) vectors++;
   //else if (dynamic_cast<Ydiff*     >(netinfo->ptr_obs(i))) vectors++;
   //else if (dynamic_cast<Zdiff*     >(netinfo->ptr_obs(i))) vectors++;
-  
+
   tagnl(out, "distances",  dists);
   tagnl(out, "directions", dirs);
   tagnl(out, "angles",     angles);
@@ -204,9 +204,9 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
   tagnl(out, "z-angles",   zangles);
   tagnl(out, "s-dists",    chords);
   tagnl(out, "vectors",    vectors);
-  
+
   out << "</observations-summary>\n";
-  
+
   // int bearings = 0;
   // for (int i=1; i<=netinfo->sum_unknowns(); i++)
   //   if (netinfo->unknown_type(i) == 'R')
@@ -231,7 +231,7 @@ void LocalNetworkXML::tagsp(std::ostream& out, const char* t, T n) const
 void LocalNetworkXML::equations_summary(std::ostream& out) const
 {
   out << "\n<project-equations>\n";
-  
+
   const int obs = netinfo->sum_observations();
   const int par = netinfo->sum_unknowns();
   const int dof = netinfo->degrees_of_freedom();
@@ -265,7 +265,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
          sqrt(netinfo->trans_VWV()/netinfo->degrees_of_freedom()) : 0));
     tagnl(out, "used",
         (netinfo->m_0_aposteriori() ?
-         string("aposteriori") : 
+         string("aposteriori") :
          string("apriori") ));
 
     out << "\n";
@@ -275,7 +275,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     tagnl(out, "probability", netinfo->conf_pr());
 
     const int dof = netinfo->degrees_of_freedom();
-    float test=0, lower=0, upper=0; 
+    float test=0, lower=0, upper=0;
 
     test  = netinfo->m_0() / netinfo->apriori_m_0();
     if (dof)
@@ -297,7 +297,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
       out << "   <passed/>\n\n";
     else
       out << "   <failed/>\n\n";
-    
+
     out.setf(ios_base::scientific, ios_base::floatfield);
     out.precision(7);
     tagnl(out, "confidence-scale",  netinfo->conf_int_coef());
@@ -309,19 +309,19 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
 void LocalNetworkXML::coordinates(std::ostream& out) const
 {
   const int y_sign = GaMaConsistent(netinfo->PD) ? +1 : -1;
-  
+
   out << "\n<coordinates>\n";
 
   out.setf(ios_base::fixed, ios_base::floatfield);
   out.precision(6);
-  
+
   const GaMaLib::Vec& X = netinfo->solve();
   std::vector<Index> ind(netinfo->sum_unknowns() + 1);
   Index dim = 0;
-  
-  
+
+
   out << "\n<fixed>\n";
-    
+
   for (PointData::const_iterator
          i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
     {
@@ -346,12 +346,12 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
         }
       out << "</point>\n";
     }
-  
+
   out << "</fixed>\n";
-  
+
 
   out << "\n<approximate>\n";
-    
+
   for (PointData::const_iterator
          i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
     {
@@ -389,11 +389,11 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       out << "</point>\n";
     }
   out << "</approximate>\n";
-  
-  
+
+
   out << "\n<!-- capital X,Y,Z denote constrained coordinates -->\n"
       << "<adjusted>\n";
-    
+
   for (PointData::const_iterator
          i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
     {
@@ -434,11 +434,11 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       out << "</point>\n";
     }
   out << "</adjusted>\n";
-  
+
   orientation_shifts(out, ind, dim);
-  
+
   int band = 0;   // signed value, must not be declared as Index
-  if (dim) 
+  if (dim)
     {
       band = netinfo->xml_covband();
       if (band == -1 || band > dim-1) band = dim - 1;
@@ -447,7 +447,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       << "<cov-mat>\n"
       << "<dim>"  << dim  << "</dim> "
       << "<band>" << band << "</band>\n";
-  
+
   out.setf(ios_base::scientific, ios_base::floatfield);
   out.precision(7);
   const double m2 = netinfo->m_0() * netinfo->m_0();
@@ -465,9 +465,9 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
             out << " ";
           }
       }
-  
+
   out << "</cov-mat>\n";
-  
+
 
   out << "\n<!-- original indexes from the adjustment -->\n"
       << "<original-index>\n";
@@ -491,7 +491,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       }
 
   out << "</original-index>\n";
-  
+
   out << "\n</coordinates>\n";
 }
 
@@ -531,7 +531,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
         if (z <  0 ) z += 400;
         if (z > 400) z -= 400;
         tagsp(out, "adj", z);
-          
+
         // out.precision(3);
         // out.width(8);
         // double mz = netinfo->unknown_stdev(i)*scale;
@@ -541,7 +541,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
 
         out << "</orientation>\n";
       }
-  
+
   out << "</orientation-shifts>\n";
 }
 
@@ -571,8 +571,8 @@ void LocalNetworkXML::observations(std::ostream& out) const
        ostringstream ostr;
        ostr.setf(ios_base::fixed, ios_base::floatfield);
 
-       const int linear  =  6;    // output precision 
-       const int angular =  7;    // output precision 
+       const int linear  =  6;    // output precision
+       const int angular =  7;    // output precision
 
        if (Distance* d = dynamic_cast<Distance*>(pm))
          {
@@ -607,7 +607,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
          }
        else if (S_Distance* sd = dynamic_cast<S_Distance*>(pm))
          {
-           out << "<" << (tag="slope-distance") << ">"; 
+           out << "<" << (tag="slope-distance") << ">";
            ostr.precision(linear);
            double m = sd->value();
            ostr << " <obs>" << m << "</obs>";
@@ -660,7 +660,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
            double m = h->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";            
+           ostr << " <adj>" << m << "</adj>";
          }
        else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
          {
@@ -669,7 +669,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
            double m = dx->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";            
+           ostr << " <adj>" << m << "</adj>";
          }
        else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
          {
@@ -678,7 +678,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
            double m = dy->value();
            ostr << " <obs>" << y_sign*m << "</obs>";
            m += v(i)/1000;
-           ostr << " <adj>" << y_sign*m << "</adj>";            
+           ostr << " <adj>" << y_sign*m << "</adj>";
          }
        else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
          {
@@ -687,14 +687,14 @@ void LocalNetworkXML::observations(std::ostream& out) const
            double m = dz->value();
            ostr << " <obs>" << m << "</obs>";
            m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";            
+           ostr << " <adj>" << m << "</adj>";
          }
-       else  
+       else
          {
            throw GaMaLib::Exception("review/adjusted_observations.h - "
                                     "unknown observation type");
          }
-       
+
        if (u)
          {
            out << " <from>"  << u->from() << "</from>"
@@ -723,25 +723,25 @@ void LocalNetworkXML::observations(std::ostream& out) const
          ml *= scale;
        else if (dynamic_cast<Z_Angle*>(pm))
          ml *= scale;
-       
+
        out << " <stdev>" << ml << "</stdev>\n";
 
        // weight coefficient of the residual
        double qrr = netinfo->wcoef_res(i);
        out << "   <qrr>" << qrr << "</qrr>";
-              
+
        double f = netinfo->obs_control(i);
        out << " <f>" << f << "</f>";
-              
+
        double sc=scale;
        if (f >= 0.1)
          {
            using namespace std;
            double no = fabs(netinfo->studentized_residual(i));
            out << " <std-residual>" << no << "</std-residual>";
-           
-           if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 && 
-                (f >=5 || (f >= 0.1 && no > kki))) 
+
+           if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
+                (f >=5 || (f >= 0.1 && no > kki)))
              {
                double em = v(i)/(netinfo->wcoef_res(i)*netinfo->weight_obs(i));
                out << "\n   <err-obs>" << em*sc << "</err-obs>";
@@ -750,10 +750,10 @@ void LocalNetworkXML::observations(std::ostream& out) const
                out << " <err-adj>" << ev*sc << "</err-adj>";
              }
          }
-       
+
        out << "\n   </" << tag << ">\n";
-       
+
    }
-   
+
   out << "\n</observations>\n";
 }

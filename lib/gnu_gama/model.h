@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -30,7 +30,7 @@ namespace GNU_gama {
   // Three basic components of mathematical model (of geodetic
   // adjustment) are functional relations (class Model), unknown
   // parameters and constants (class Parameter) and observables (class
-  // Observation). 
+  // Observation).
 
   // Model, Parameter and Observation classes are logically
   // related. To brake the source code dependency we use the 'acyclic
@@ -45,12 +45,12 @@ namespace GNU_gama {
    *  the virtual destructor.
    */
 
-  class ObservationVisitor 
+  class ObservationVisitor
   {
-  public: 
+  public:
     virtual ~ObservationVisitor() {}
   };
-  
+
 
   /** Base observation class.
    */
@@ -81,7 +81,7 @@ namespace GNU_gama {
 
 
   // .....................................................................
-    
+
 
   /** Abstract visitor class (design pattern 'acyclic visitor')
    */
@@ -92,24 +92,24 @@ namespace GNU_gama {
     virtual ~Visitor() {}
     virtual void visit(Observation* observation) = 0;
   };
-    
+
 
   /** Base template class Model (mathematical model of geodetic
    *  adjustment)
    */
 
-  template <typename Observation> 
+  template <typename Observation>
   class Model
   {
   public:
-    typedef typename 
+    typedef typename
           ObservationData<Observation>::ClusterList   ClusterList;
     typedef Observation                               ObservationType;
     typedef ObservationData<Observation>              ObsData;
 
-    ObsData  obsdata; 
+    ObsData  obsdata;
   };
-  
+
 }
 
 #endif

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU Gama)
     Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,7 +35,7 @@ namespace GNU_gama {
   class Adjacency
   {
   public:
-    
+
     Adjacency()
     {
     }
@@ -62,7 +62,7 @@ namespace GNU_gama {
 
   private:
 
-    Index  nods; 
+    Index  nods;
 
     Adjacency(const Adjacency&);
     void operator=(const Adjacency&);
@@ -75,12 +75,12 @@ namespace GNU_gama {
   class SparseMatrixGraph : public Adjacency<Index>
   {
   public:
-    
+
     SparseMatrixGraph(const GNU_gama::SparseMatrix<Float, Index>* const sparse)
       : Adjacency<Index>(sparse->columns())
     {
       std::set<std::pair<Index, Index> >  edges;
-      
+
       {
         Index *i, *e, *j;
         for (Index k=1; k<=sparse->rows(); k++)
@@ -92,17 +92,17 @@ namespace GNU_gama {
                   edges.insert(std::pair<Index, Index>(*j, *i));
                 }
       }
-      
+
       this->adjncy.reset(edges.size());
-      
-      typename std::set<std::pair<Index, Index> >::const_iterator 
+
+      typename std::set<std::pair<Index, Index> >::const_iterator
         i=edges.begin(), e=edges.end();
-      
+
       this->xadj(1) = this->xadj(2) = 0;      // needed by empty graphs
       for (Index count=0, index=1; index<=this->nodes(); index++)
         {
           this->xadj(index) = count;
-          while (i!=e && index == i->first) 
+          while (i!=e && index == i->first)
             {
               this->adjncy(count++) = i->second;
               ++i;
@@ -110,7 +110,7 @@ namespace GNU_gama {
           this->xadj(index+1) = count;
         }
     }
-    
+
     typedef const Index* const_iterator;
 
     bool           connected()     const;

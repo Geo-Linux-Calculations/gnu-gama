@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -26,7 +26,7 @@
 
 namespace GNU_gama {   /** \brief Dynamic array */
 
-template <typename Type, typename Exc=Exception::matvec>  
+template <typename Type, typename Exc=Exception::matvec>
 class Array : public MemRep<Type, Exc> {
 
 public:
@@ -34,10 +34,10 @@ public:
   Array(Index dim) : MemRep<Type, Exc>(dim) {}
   Type  operator[](Index i) const { return this->begin()[i]; }
   Type& entry(Index i) { return this->begin()[i]; }
-  void swap(Index i, Index j) 
+  void swap(Index i, Index j)
     {
       Type *ind = this->begin();
-      Type t = ind[i]; ind[i] = ind[j]; ind[j] = t; 
+      Type t = ind[i]; ind[i] = ind[j]; ind[j] = t;
     }
 
 };

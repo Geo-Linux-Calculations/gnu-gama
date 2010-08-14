@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -47,12 +47,12 @@ namespace GaMaLib {
       ObservationList SM_S;  	    // for outer bearings
       LocalPoint v_point;           // final point - output
       LocalPoint v_point2;          //             - ambiguous solutions (two)
-      PointData* SB_puv;            // repeating calc. with another Point ID 
+      PointData* SB_puv;            // repeating calc. with another Point ID
       ObservationList* SM_puv;
       Solution_state_tag state_;    // Solution_state_tag -> see g2d_helper.h
       void ClearLists();  	    // empty helper lists
 
-      Angle* makeAngle(const ObservationList::iterator i, 
+      Angle* makeAngle(const ObservationList::iterator i,
                        const ObservationList::iterator j)
         {
           Direction* s1 = dynamic_cast<Direction*>(*i);
@@ -120,14 +120,14 @@ namespace GaMaLib {
         {
           reset(sb,sm,cb);
         }
-      ApproxPoint(PointData* sb, ObservationList* sm) 
-        : SB_puv(sb), SM_puv(sm), state_(missing_init) 
+      ApproxPoint(PointData* sb, ObservationList* sm)
+        : SB_puv(sb), SM_puv(sm), state_(missing_init)
         {
         }
       ~ApproxPoint()
         {
           ClearLists();
-        } 
+        }
       void calculation(PointData* sb, ObservationList* sm, const PointID& cb)
         {
           SB_puv = sb;
@@ -141,9 +141,9 @@ namespace GaMaLib {
           calculation();
         }
       void calculation();
-      Solution_state_tag state() const 
-        { 
-          return state_; 
+      Solution_state_tag state() const
+        {
+          return state_;
         }
       LocalPoint Solution()
         {

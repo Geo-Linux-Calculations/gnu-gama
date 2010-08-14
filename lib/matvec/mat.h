@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,10 +31,10 @@ namespace GNU_gama {
 
 template <typename Float, typename Exc> class TransMat;
 
-/** \brief Matrix class 
+/** \brief Matrix class
  */
 
-template <typename Float=double, typename Exc=Exception::matvec> 
+template <typename Float=double, typename Exc=Exception::matvec>
 class Mat : public MatBase<Float, Exc> {
 
 public:
@@ -52,9 +52,9 @@ public:
       iterator e=this->end();
       if (p == e)
         throw Exc(Exception::BadRank, "Mat::Mat(Index, Float ...)");
-      *p = m11;  
+      *p = m11;
       ++p;
-      
+
       va_list  ap;
       va_start(ap, m11);
       while (p!=e)
@@ -74,26 +74,26 @@ public:
     return m[--r*this->cols() + --c];
   }
 
-  Mat operator*(Float f) const { 
-    Mat t(this->rows(), this->cols()); mul(f, t); return t; 
+  Mat operator*(Float f) const {
+    Mat t(this->rows(), this->cols()); mul(f, t); return t;
   }
-  Mat operator+(const Mat& M) const { 
+  Mat operator+(const Mat& M) const {
     if (this->rows() != M.rows() || this->cols() != M.cols())
       throw Exc(Exception::BadRank, "Mat::operator+(const Mat& M) const");
-    
-    Mat T(this->rows(), this->cols()); 
-    add(M, T); 
-    return T; 
+
+    Mat T(this->rows(), this->cols());
+    add(M, T);
+    return T;
   }
-  Mat operator-(const Mat& M) const { 
+  Mat operator-(const Mat& M) const {
     if (this->rows() != M.rows() || this->cols() != M.cols())
       throw Exc(Exception::BadRank, "Mat::operator-(const Mat& M) const");
-    
-    Mat T(this->rows(), this->cols()); 
-    sub(M, T); 
-    return T; 
+
+    Mat T(this->rows(), this->cols());
+    sub(M, T);
+    return T;
   }
- 
+
   void transpose() { *this = trans(*this); }
   void invert();
 
@@ -116,8 +116,8 @@ inline Mat<Float, Exc> operator*(Float f, const Mat<Float, Exc> &M) {
 }
 
 
-template <typename Float, typename Exc> 
-Mat<Float, Exc> 
+template <typename Float, typename Exc>
+Mat<Float, Exc>
 operator* (const MatBase<Float, Exc> &A, const MatBase<Float, Exc> &B)
   {
     if (A.cols() != B.rows())
@@ -140,7 +140,7 @@ operator* (const MatBase<Float, Exc> &A, const MatBase<Float, Exc> &B)
 
 
 template <typename Float, typename Exc>
-Mat<Float, Exc> 
+Mat<Float, Exc>
 operator+(const MatBase<Float, Exc> &A,const MatBase<Float, Exc> &B)
   {
     if (A.rows() != B.rows() || A.cols() != B.cols())
@@ -156,7 +156,7 @@ operator+(const MatBase<Float, Exc> &A,const MatBase<Float, Exc> &B)
 
 
 template <typename Float, typename Exc>
-Mat<Float, Exc> 
+Mat<Float, Exc>
 operator-(const MatBase<Float, Exc> &A, const MatBase<Float, Exc> &B)
   {
     if (A.rows() != B.rows() || A.cols() != B.cols())
@@ -186,7 +186,7 @@ operator*(const Mat<Float, Exc> &A, const Mat<Float, Exc> &B)
     typename Mat<Float, Exc>::const_iterator bb = B.begin();
     typename Mat<Float, Exc>::const_iterator b;
     Float s;
-    
+
     for (Index i=1; i<=C.rows(); i++, ab += A.cols())
       for (Index j=0; j<C.cols(); j++)
         {
@@ -220,7 +220,7 @@ void Mat<Float, Exc>::invert()
 
   Float pivot = 0, invpivot, e;
   for (step=0; step<N; step++)
-    {  
+    {
       pivot = 0;
       for (ii=step; ii<N; ii++)
         {
@@ -239,7 +239,7 @@ void Mat<Float, Exc>::invert()
 
       if (step != p_row) indr.swap(step, p_row);
       if (step != p_col) indc.swap(step, p_col);
-      
+
       invpivot = Float(1.0) / pivot;
       entry(indr[step], indc[step]) = Float(1.0);
       i = indr[step];
@@ -254,23 +254,23 @@ void Mat<Float, Exc>::invert()
             for (j=0; j<N; j++) entry(i,j) -= e*entry(indr[step],j);
           }
     }
-  
+
   Array<Index> invr(N), invc(N);  // inverse row/column permutation
   for (i=0; i<N; i++)
-    { 
+    {
       invc.entry(indc[i]) = i;
       invr.entry(indr[i]) = i;
     }
 
   // swap rows
 
-  Array<Index> perm(N), inv_perm(N); 
-  for (i=0; i<N; i++) 
+  Array<Index> perm(N), inv_perm(N);
+  for (i=0; i<N; i++)
     {
       perm.entry(i) = indr[invc[i]];
       inv_perm.entry(perm[i]) = i;
     }
-  {  
+  {
     for (i=0; i<N; i++)
       if (i != (r = perm[i]))
         {
@@ -279,19 +279,19 @@ void Mat<Float, Exc>::invert()
               e = entry(i,j); entry(i,j) = entry(r,j); entry(r,j) = e;
             }
           perm.entry(inv_perm[i]) = perm[i];
-          // perm.entry(i) = i;  
+          // perm.entry(i) = i;
           inv_perm.swap(i, r);
         }
   }
 
   // swap columns
-  
-  for (i=0; i<N; i++) 
+
+  for (i=0; i<N; i++)
     {
       perm.entry(i) = indc[invr[i]];
       inv_perm.entry(perm[i]) = i;
     }
-  {  
+  {
     for (j=0; j<N; j++)
       if (j != (c = perm[j]))
         {
@@ -300,11 +300,11 @@ void Mat<Float, Exc>::invert()
               e = entry(i,j); entry(i,j) = entry(i,c); entry(i,c) = e;
             }
           perm.entry(inv_perm[j]) = perm[j];
-          // perm.entry(j) = j;  
+          // perm.entry(j) = j;
           inv_perm.swap(j, c);
         }
   }
-  
+
 }
 
 

@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -24,9 +24,9 @@
 
 #include <matvec/memrep.h>
 
- 
+
 namespace GNU_gama {   /** \brief Matrix/vector base class */
-  
+
 template <typename Float=double, typename Exc=Exception::matvec>
 class MatVecBase : public MemRep<Float, Exc> {
 
@@ -71,7 +71,7 @@ protected:
       while (x != e)
         *x++ = *a++ * f;
     }
- 
+
   void add(const MatVecBase& B, MatVecBase& X) const
     {
       if (this->size() != B.size() || this->size() != X.size())
@@ -84,7 +84,7 @@ protected:
       while (x != e)
         *x++ = *a++ + *b++;
     }
- 
+
   void sub(const MatVecBase& B, MatVecBase& X) const
     {
       if (this->size() != B.size() || this->size() != X.size())
@@ -98,13 +98,13 @@ protected:
         *x++ = *a++ - *b++;
     }
 
-    const Float Abs(Float x) const 
-    { 
-       return (x >= Float()) ? x : -x ; 
+    const Float Abs(Float x) const
+    {
+       return (x >= Float()) ? x : -x ;
     }
-    const Float Sign(Float a, Float b) const 
-    { 
-       return b >= Float() ? Abs(a) : -Abs(a); 
+    const Float Sign(Float a, Float b) const
+    {
+       return b >= Float() ? Abs(a) : -Abs(a);
     }
 
 
@@ -117,15 +117,15 @@ protected:
 
   public:
 
-  ListInitialiser(iterator begin, 
-                  iterator end) : x(begin), e(end) 
+  ListInitialiser(iterator begin,
+                  iterator end) : x(begin), e(end)
     {
       first = x;
       if (x != e) ++first;
     }
   ~ListInitialiser()
     {
-      if (x != first && x != e)  
+      if (x != first && x != e)
         throw Exc(Exception::BadRank, "ListInitialiser : "
                            "not enough elements in the initialisation list");
     }
@@ -152,7 +152,7 @@ protected:
       linit.add(p);
       return linit;
     }
- 
+
 };
 
 }   // namespace GNU_gama

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Jan Pytel <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -51,10 +51,10 @@ void LocalLinearization::z_angle(const Z_Angle* obs) const
    Double py =  k * dz * dy;
    Double pz = -k *  d *  d;
    // Double w = p*p;                  // weight
-   
+
    Double za = acos(dz/sd);
 
-   if (obs->value() > M_PI) za = 2*M_PI - za; 
+   if (obs->value() > M_PI) za = 2*M_PI - za;
    Double a  = (obs->value() - za);
 
    rhs = a * R2CC; // abs. term in cc

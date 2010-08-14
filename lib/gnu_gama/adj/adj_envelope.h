@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,9 +34,9 @@ namespace GNU_gama {
 
 
   template <typename Float=double,  typename Index=std::size_t,
-            typename Exc=Exception::matvec> 
-  class AdjEnvelope : public AdjBaseSparse<Float, Index, 
-                                           GNU_gama::Vec<Float, Exc>, 
+            typename Exc=Exception::matvec>
+  class AdjEnvelope : public AdjBaseSparse<Float, Index,
+                                           GNU_gama::Vec<Float, Exc>,
                                            AdjInputData >
   {
   public:
@@ -48,13 +48,13 @@ namespace GNU_gama {
     virtual const GNU_gama::Vec<Float, Exc>& residuals();
     virtual Float sum_of_squares();
     virtual Index defect();
- 
+
     virtual Float q_xx(Index i, Index j);
     virtual Float q_bb(Index i, Index j);
     virtual Float q_bx(Index i, Index j);
-                                                                      
+
     virtual Float q0_xx(Index i, Index j);
-                                                                      
+
     virtual bool lindep(Index i);
     virtual void min_x();
     virtual void min_x(Index n, Index m[]);
@@ -68,10 +68,10 @@ namespace GNU_gama {
     ReverseCuthillMcKee<Index>   ordering;
     Homogenization<Float, Index>      hom;
     Envelope<Float, Index>       envelope;
-    
+
     Index                    observations;
     Index                      parameters;
-    const SparseMatrix<>*   design_matrix;        
+    const SparseMatrix<>*   design_matrix;
     GNU_gama::Vec<Float, Exc>          x0;        // particular solution
     GNU_gama::Vec<Float, Exc>           x;        // unique or regularized solution
     //GNU_gama::Mat<Float, Exc>           G;
@@ -79,13 +79,13 @@ namespace GNU_gama {
     Float                         squares;        // sum of squares
     Envelope<Float, Index>             q0;        // weight coefficients for x0
 
-    GNU_gama::Vec<Float, Exc>     tmpvec;   
+    GNU_gama::Vec<Float, Exc>     tmpvec;
     GNU_gama::Vec<Float, Exc>     tmpres;         // used in q_bb
 
     std::vector<GNU_gama::Vec<Float, Exc> > qxxbuf;
     GNU_gama::MoveToFront<3,Index,Index>    indbuf;
 
-    enum Stage { 
+    enum Stage {
       stage_init,       // implicitly set by Adj_BaseSparse constuctor
       stage_ordering,   // permutation vector
       stage_x0,         // particular solution (dependent unknown set to 0)
@@ -114,6 +114,6 @@ namespace GNU_gama {
 
 }  // namespace GNU_gama
 
-#include <gnu_gama/adj/adj_envelope_implementation.h> 
+#include <gnu_gama/adj/adj_envelope_implementation.h>
 
 #endif

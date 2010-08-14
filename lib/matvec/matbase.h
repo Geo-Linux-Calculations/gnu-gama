@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -39,9 +39,9 @@ protected:
   Index col_;
 
   MatBase() : row_(0), col_(0) {}
-  MatBase(Index r, Index c, Index nsz) 
+  MatBase(Index r, Index c, Index nsz)
     : MatVecBase<Float, Exc>(nsz), row_(r), col_(c) {}
-  MatBase(Index r, Index c, const MatBase& m) 
+  MatBase(Index r, Index c, const MatBase& m)
     : MatVecBase<Float, Exc>(m), row_(r), col_(c) {}
   virtual ~MatBase() {}
 
@@ -74,17 +74,17 @@ public:
     }
   void set_identity() { set_diagonal(Float(1.0)); }
 
-  virtual void transpose() 
+  virtual void transpose()
     {
       throw Exc(Exception::NotImplemented, "MatBase::transpose()");
     }
 
-  virtual void invert() 
+  virtual void invert()
     {
       throw Exc(Exception::NotImplemented, "MatBase::invert()");
     }
 
-  virtual std::istream& read(std::istream& inp) 
+  virtual std::istream& read(std::istream& inp)
     {
       Index r, c;
       if (inp >> r >> c)
@@ -96,18 +96,18 @@ public:
          }
       return inp;
     }
-  virtual std::ostream& write(std::ostream& out) const 
+  virtual std::ostream& write(std::ostream& out) const
     {
 
       const int fw = out.width();
-      out.width(fw);  
+      out.width(fw);
       out << rows() << " ";
-      out.width(fw);  
+      out.width(fw);
       out << cols() << "\n\n";
       for (Index i=1; i<=rows(); i++)
         {
           for (Index j=1; j<=cols(); j++) {
-            out.width(fw);  
+            out.width(fw);
             out << operator()(i,j) << " ";
           }
           out << '\n';
@@ -118,15 +118,15 @@ public:
 };
 
 
-template <typename Float, typename Exc> 
-std::istream& operator>>(std::istream& inp, MatBase<Float, Exc>& M) 
+template <typename Float, typename Exc>
+std::istream& operator>>(std::istream& inp, MatBase<Float, Exc>& M)
   {
     return M.read(inp);
   }
 
 
-template <typename Float, typename Exc> 
-std::ostream& operator<<(std::ostream& out, const MatBase<Float, Exc>& M) 
+template <typename Float, typename Exc>
+std::ostream& operator<<(std::ostream& out, const MatBase<Float, Exc>& M)
   {
     return M.write(out);
   }

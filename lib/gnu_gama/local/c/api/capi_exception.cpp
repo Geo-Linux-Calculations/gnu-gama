@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -24,14 +24,14 @@
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/xml/gkfparser.h>
-#include <cstring> 
+#include <cstring>
 
 // exception data is accessible only through the selected functions
 // initialization and clean up si done by ctor/dtor
 
 namespace {
 
-  struct GaMa_C_API_exception_handling_data 
+  struct GaMa_C_API_exception_handling_data
   {
     GaMa_C_API_exception_handling_data()
     {
@@ -41,9 +41,9 @@ namespace {
     {
       clean();
     }
-    void clean() 
+    void clean()
     {
-      if (text[0]) 
+      if (text[0])
         {
           text[0]  = 0;
           unknown  = false;
@@ -51,12 +51,12 @@ namespace {
         }
     }
 
-    
+
     char  text[256];
-    bool  unknown; 
+    bool  unknown;
     int   xml_line;
   };
-  
+
   GaMa_C_API_exception_handling_data  c_api_data;
 }
 
@@ -73,7 +73,7 @@ extern "C" {
   const char* Cgama_exception()
   {
     if (c_api_data.text[0]) return c_api_data.text;
-    
+
     return 0;
   }
 
@@ -81,7 +81,7 @@ extern "C" {
   {
     c_api_data.clean();
   }
-  
+
   int Cgama_exception_unknown()
   {
     return c_api_data.unknown ? 1 : 0;
@@ -101,9 +101,9 @@ void Cgama_private_set_exception(const GaMaLib::Exception& e)
   c_api_data.clean();
   strncpy(c_api_data.text, e.text.c_str(),256);
   c_api_data.text[255] = 0;
-  
+
   using namespace GaMaLib;
-  if (const GaMaLib::ParserException* 
+  if (const GaMaLib::ParserException*
       g = dynamic_cast<const GaMaLib::ParserException*>(&e))
     {
       c_api_data.xml_line = g->line;

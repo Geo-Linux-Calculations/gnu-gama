@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama C++ library
     Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,8 +33,8 @@
 
 namespace GaMaLib {
 
-template <typename OutStream> 
-bool 
+template <typename OutStream>
+bool
 TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
                   double max_pyx = 0.1500, // suspicious coorection in meters
                   double max_dif = 0.0005  // max. positional difference in mm
@@ -44,18 +44,18 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
   using namespace std;
   using namespace GaMaLib;
   using GaMaLib::Double;
-  
+
   bool test  = false;     // result of bad linearization test
-  
+
   // const char hlavicka[] = "Bad linearization test\n"
   //                        "***********************\n";
-  
+
   /****************************  test removed  **************************
   * // repeat adjustment if suspiciously large corrections of coordinates
   * // ==================================================================
   * {
   *   const int N = IS->sum_unknowns();
-  * 
+  *
   *   const Vec& x = IS->solve();
   *   Double pyx = 0;
   *   for (int i=1; i<=N; i++)
@@ -82,7 +82,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
   *     }
   * }
   ******************************************************************/
-  
+
   // difference in adjusted observations computed from residuals and
   // from adjusted coordinates
   // ===============================================================
@@ -91,11 +91,11 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
 
     Vec dif_m(M);   // difference in computation of adjusted observation
     Vec dif_p(M);   //               corresponds to positional shift
-    
+
     const Vec& v = IS->residuals();
     const Vec& x = IS->solve();
 
-    for (int i=1; i<=M; i++) 
+    for (int i=1; i<=M; i++)
       {
         dif_m(i) = 0;
         dif_p(i) = 0;
@@ -105,12 +105,12 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
         Double  mer, pol;
 
         Observation* pm = IS->ptr_obs(i);
-        if (dynamic_cast<const H_Diff*>(pm)) 
+        if (dynamic_cast<const H_Diff*>(pm))
           {
             dif_m(i) = dif_p(i) = 0;
             continue;
           }
-        if (dynamic_cast<const Coordinates*>(pm->ptr_cluster())) 
+        if (dynamic_cast<const Coordinates*>(pm->ptr_cluster()))
           {
             dif_m(i) = dif_p(i) = 0;
             continue;
@@ -130,11 +130,11 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
         if (cil.free_xy())
           {
             cy += x(cil .index_y())/1000;
-            cx += x(cil .index_x())/1000; 
+            cx += x(cil .index_x())/1000;
           }
         Double ds, dd;
         GaMaLib::bearing_distance(sy, sx, cy, cx, ds, dd);
-        
+
         if (Distance* d = dynamic_cast<Distance*>(pm))
           {
             mer  = d->value() + v(i)/1000;
@@ -159,7 +159,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             Double cx2 = cil2.x() + x(cil2.index_x())/1000;
             Double ds2, dd2;
             GaMaLib::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
-            mer = u->value() + v(i)*CC2R - ds2 + ds;         
+            mer = u->value() + v(i)*CC2R - ds2 + ds;
             while (mer >  M_PI) mer -= 2*M_PI;
             while (mer < -M_PI) mer += 2*M_PI;
             pol  = mer*max(dd,dd2)*1000;
@@ -167,14 +167,14 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
           }
         else
           {
-            mer = pol = 0; 
+            mer = pol = 0;
           }
-        
+
         dif_m(i) = mer;
-        dif_p(i) = pol;                                    
+        dif_p(i) = pol;
       }
-    
-    
+
+
     Double max_pol = 0;
     {
       for (Vec::iterator i=dif_p.begin(); i != dif_p.end(); ++i)
@@ -189,16 +189,16 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
           // if (!test) out << hlavicka;
           if (!test)
             out << T_GaMa_tstlin_Test_of_linearization_error << "\n"
-                << underline(T_GaMa_tstlin_Test_of_linearization_error, '*') 
+                << underline(T_GaMa_tstlin_Test_of_linearization_error, '*')
                 << "\n";
           test = true;
-          
-          out << "\n" 
+
+          out << "\n"
                << T_GaMa_tstlin_Differences
               << "\n"
               << underline(T_GaMa_tstlin_Differences, '*')
-              << "\n\n"; 
-          
+              << "\n\n";
+
           out.width(IS->maxw_obs());
           out << "i" << " ";
           out.width(IS->maxw_id());
@@ -206,21 +206,21 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
           out.width(IS->maxw_id());
           out << T_GaMa_target << "      ";
           out << T_GaMa_tstlin_obs_r_diff << "\n";
-          
+
           for (int i=0; i<(IS->maxw_obs()+2*IS->maxw_id()+8); i++) out << '=';
-          out << T_GaMa_tstlin_header_value; 
+          out << T_GaMa_tstlin_header_value;
           if (IS->gons())
             out << "= [mm|cc] == [cc] == [mm] =\n\n";
           else
             out << "= [mm|ss] == [ss] == [mm] =\n\n";
           out.flush();
         }
-        
+
         // print table
         // -----------
-        
+
         PointID predcs;   // previous standpoint ID
-        
+
         for (int i=1; i<=M; i++)
           {
             if (fabs(dif_p(i)) < max_dif) continue;
@@ -239,7 +239,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             out.width(IS->maxw_id());
             out << cc.c_str();
             out.setf(ios_base::fixed, ios_base::floatfield);
-            
+
             bool dms = false;
             Double mer;
             if (Distance* d = dynamic_cast<Distance*>(pm))
@@ -265,7 +265,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
                 mer = (u->value())*R2G;
                 out.precision(6);
               }
-            
+
             if (!dms)
               {
                 out.width(12);
@@ -275,14 +275,14 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
               {
                 out << GNU_gama::gon2deg(mer, 1, 1) << ' ';
               }
-            
+
             out.precision(3);
             out.width(9);
             if (!dms)
               out << v(i) << ' ';
             else
               out << v(i)*0.324 << ' ';
-              
+
             if (dynamic_cast<Distance*>(pm))
               {
                 out << "         ";
@@ -295,30 +295,30 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
                   out << dif_m(i) << ' ';
                 else
                   out << dif_m(i)*0.324 << ' ';
-              }            
-            
+              }
+
             out.precision(3);
             out.width(7);
             out << dif_p(i);
 
             out << '\n';
             out.flush();
-            
+
             predcs = cs;  // previous standpoint ID
           }
-      }     
+      }
   }
-  
+
   if (test && !(IS->update_constrained_coordinates()))
-    { 
+    {
       out << "\n\n";
       out.flush();
-      
+
 
       // if all adjusted points are constrained, adjustment is never
       // repeated (unless explicitly asked for)
       // ------------------------------------------------------
-      
+
       test = false;
       for (PointData::const_iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
         {
@@ -330,7 +330,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             }
         }
     }
-  
+
   return test;
 }
 

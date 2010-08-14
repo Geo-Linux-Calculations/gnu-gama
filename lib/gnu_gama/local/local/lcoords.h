@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -39,19 +39,19 @@ namespace GaMaLib {
 
     } local_coordinate_system;
 
-    LocalCoordinateSystem(CS cs=NE) 
+    LocalCoordinateSystem(CS cs=NE)
       : local_coordinate_system(cs)
       {
       }
-    bool right_handed_coordinates() const 
-      { 
-        return local_coordinate_system & right_handed; 
+    bool right_handed_coordinates() const
+      {
+        return local_coordinate_system & right_handed;
       }
-    bool left_handed_coordinates () const 
-      { 
-        return local_coordinate_system & left_handed; 
+    bool left_handed_coordinates () const
+      {
+        return local_coordinate_system & left_handed;
       }
-    
+
   };
 
 }   // namespace GaMaLib

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,9 +35,9 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
 {
   using namespace std;
   using namespace GaMaLib;
-  
+
   if (!IS->huge_abs_terms()) return;
-  
+
   out << T_GaMa_abstrm_Review_of_outlying_abs_terms << "\n"
       << underline(T_GaMa_abstrm_Review_of_outlying_abs_terms, '*') << "\n\n";
 
@@ -48,12 +48,12 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
   out.width(IS->maxw_id());
   out << T_GaMa_target << T_GaMa_abstrm_header1;
   {  // for ...
-    for (int i=0; i < (IS->maxw_obs() + 2*(IS->maxw_id()) + 13); i++) 
+    for (int i=0; i < (IS->maxw_obs() + 2*(IS->maxw_id()) + 13); i++)
       out << "=";
   }  // for ...
   out << T_GaMa_abstrm_header2;
   out.flush();
-  
+
   PointID predcs = "";   // previous standpoint ID
   for (int i=1; i<=IS->sum_observations(); i++)
     {
@@ -62,7 +62,7 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
         {
           out.width(IS->maxw_obs());
           out << i << " ";
-          
+
           PointID cs = pm->from();
           out.width(IS->maxw_id());
           if (cs != predcs)
@@ -70,12 +70,12 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
           else
             out << " ";
           out << " ";
-          
+
           PointID cc = pm->to();
           out.width(IS->maxw_id());
           out << cc.c_str();
           out.setf(ios_base::fixed, ios_base::floatfield);
-          
+
           {   // ************************************************
             if (Distance* d = dynamic_cast<Distance*>(pm))
               {
@@ -191,14 +191,14 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
                    "GaMa internal error - unknown observation\n");
               }
           }   // ************************************************
-          
+
           out << setiosflags(ios_base::scientific) << setprecision(5);
           out << setw(13) << IS->rhs(i);       // 1.1.56 << pm->rhs();
           out << '\n';
           out.flush();
         }
     }
-  
+
   out << "\n\n";
 }
 

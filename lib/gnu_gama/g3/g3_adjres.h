@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,12 +33,12 @@ namespace GNU_gama {  namespace g3 {
   class AdjustmentResults
   {
   public:
-    
+
     // <adjustment-statistics>
 
     std::string algorithm;
     std::string ell_cap;       // <ellipsoid> <caption>
-    std::string ell_id;        //             <id> 
+    std::string ell_id;        //             <id>
     std::string ell_a;         //             <a>
     std::string ell_b;         //             <b>
     std::string parameters ;
@@ -54,12 +54,12 @@ namespace GNU_gama {  namespace g3 {
 
     // <adjustment-results>
 
-    struct Point 
+    struct Point
     {
       std::string id;
       std::string height;
       std::string n;        // fixed, free, constr, 'empty string'
-      std::string n_dn;     // adjustment correction 
+      std::string n_dn;     // adjustment correction
       std::string n_ind;    // adjustment index
       std::string e;
       std::string e_de;
@@ -88,7 +88,7 @@ namespace GNU_gama {  namespace g3 {
       std::string h_correction;
       std::string h_adjusted;
 
-      void clear() { *this = Point(); } 
+      void clear() { *this = Point(); }
 
     } point;
 
@@ -108,13 +108,13 @@ namespace GNU_gama {  namespace g3 {
       std::string  adj1, adj2, adj3;     // adjusted
 
       // standard devations of observed / adjusted value(s)
-      
-      std::string stdev_obs1, stdev_obs2, stdev_obs3;  
-      std::string stdev_adj1, stdev_adj2, stdev_adj3;  
-      
+
+      std::string stdev_obs1, stdev_obs2, stdev_obs3;
+      std::string stdev_adj1, stdev_adj2, stdev_adj3;
+
       std::string c11, c12, c13, c22, c23, c33;   // covariances (dim > 1)
 
-      void clear() { *this = Observation(); } 
+      void clear() { *this = Observation(); }
 
     } observation;
 
@@ -123,7 +123,7 @@ namespace GNU_gama {  namespace g3 {
 
     void write_xml(std::ostream&) const;
   };
-  
+
 }}
 
 #endif

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,14 +28,14 @@
 using namespace std;
 
 namespace GNU_gama {
-  
+
   string gon2deg(double gon, int sign, int prec)
   {
     bool negative = (gon < 0);
     if (negative) gon = -gon;
 
     gon *= 0.9;   // 400 ==> 360
-    int d = int(gon);  
+    int d = int(gon);
     gon -= d;
     gon *= 60;
     int m = int(gon);
@@ -45,13 +45,13 @@ namespace GNU_gama {
     ostringstream dms;
     if (sign == 1 || sign == 2) dms << " ";
     dms.setf(ios_base::fixed, ios_base::floatfield);
-    if (sign == 3) 
+    if (sign == 3)
       {
         if (negative) dms << "-";
       }
     else
       {
-        dms << setw(3); 
+        dms << setw(3);
       }
     dms << d << "-";
     dms.fill('0');
@@ -61,7 +61,7 @@ namespace GNU_gama {
     string deg = dms.str();
     if (negative)
       {
-        if (sign == 1) 
+        if (sign == 1)
           deg[0] = '-';
         else if (sign == 2)
           {
@@ -74,8 +74,8 @@ namespace GNU_gama {
 
     return deg;
   }
-  
-  
+
+
   bool deg2gon(string deg, double& gon)
   {
     string::const_iterator b=deg.begin();
@@ -95,7 +95,7 @@ namespace GNU_gama {
     if (!(dms >> d))             return false;
     if (  dms.get() != '-')      return false;
     if (! isdigit(dms.peek()))   return false;
-    if (!(dms >> m))             return false;  
+    if (!(dms >> m))             return false;
     if (  dms.get() != '-')      return false;
     if (! isdigit(dms.peek()))   return false;
     if (!(dms >> s))             return false;

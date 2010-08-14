@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -23,7 +23,7 @@
 #include <gnu_gama/latlong.h>
 #include <gnu_gama/radian.h>
 
-namespace 
+namespace
 {
   std::string latlong(double rad, int prec)
   {
@@ -32,7 +32,7 @@ namespace
 
     int d, m;
     rad *= RAD_TO_DEG;
-    d    = int(rad);   
+    d    = int(rad);
 
     rad -= d;
     rad *= 60.0;

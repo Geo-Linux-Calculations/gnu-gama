@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,7 +36,7 @@
 #include <gnu_gama/local/local/results/text/outlying_abs_terms.h>
 #include <gnu_gama/local/local/results/text/residuals_observations.h>
 #include <gnu_gama/local/local/results/text/test_linearization.h>
- 
+
 
 using namespace std;
 using namespace GaMaLib;
@@ -46,7 +46,7 @@ extern "C" {
   /* C API output file constructor */
   void* Cgama_output_file(void* local_network, const char* file_name)
   {
-    try 
+    try
       {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(local_network);
         return new C_API_output_file(locnet, new ofstream(file_name));
@@ -81,7 +81,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -101,7 +101,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -120,7 +120,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -142,7 +142,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -161,7 +161,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -180,7 +180,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -201,7 +201,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -221,7 +221,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -240,7 +240,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -259,7 +259,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();
@@ -278,7 +278,7 @@ extern "C" {
     catch(const GaMaLib::Exception& e)
       {
         Cgama_private_set_exception(e);
-      }       
+      }
     catch(...)
       {
         Cgama_private_set_unknown_exception();

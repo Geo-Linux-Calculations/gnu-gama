@@ -3,7 +3,7 @@
     Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -37,8 +37,8 @@ namespace GNU_gama {
   struct DataParser_adj;
   struct DataParser_g3;
   struct DataParser_g3adj;
-  
-  /** \brief General Gama XML data parser 
+
+  /** \brief General Gama XML data parser
 
        DataParser class reads XML input and creates a list of pointers
        DataObjects
@@ -47,30 +47,30 @@ namespace GNU_gama {
   class DataParser : public BaseParser<Exception::parser>
     {
     public:
-      
+
       DataParser(List<DataObject::Base*>&);
       ~DataParser();
       int startElement(const char *name, const char **atts)
         {
           return (this->*stag[state][tag(name)])(name, atts);
-        }  
+        }
       int characterDataHandler(const char *s, int len)
-        { 
+        {
           return (this->*data[state])(s, len);
-        } 
+        }
       int endElement(const char *name)
         {
           return (this->*etag[state])(name);
         }
 
-      static const char* const xml_start;  
-      static const char* const xml_end;  
-      
-    private: 
-      
+      static const char* const xml_start;
+      static const char* const xml_end;
+
+    private:
+
       List<DataObject::Base*>& objects;
-      
-      enum parser_state 
+
+      enum parser_state
         {
           s_error,
           s_start,
@@ -106,7 +106,7 @@ namespace GNU_gama {
           s_g3_point_b,
           s_g3_point_after_b,
           s_g3_point_l,
-          s_g3_point_after_l,  
+          s_g3_point_after_l,
           s_g3_point_h,
           s_g3_point_x,
           s_g3_point_after_x,
@@ -227,7 +227,7 @@ namespace GNU_gama {
           s_g3_obs_angle_opt_from_dh,
           s_g3_obs_angle_opt_left_dh,
           s_g3_obs_angle_opt_right_dh,
-          
+
           // ..................................................
 
           s_text,
@@ -447,9 +447,9 @@ namespace GNU_gama {
           // ..................................................
 
           s_stop
-        }; 
-      
-      enum data_tag 
+        };
+
+      enum data_tag
         {
           t_a,
           t_adj_input_data,
@@ -622,19 +622,19 @@ namespace GNU_gama {
           t_zenith,
           t_unused
         };
-      
+
       data_tag tag(const char *name);
-      
+
       typedef int (DataParser::*Stag)(const char *name, const char **atts);
       typedef int (DataParser::*Data)(const char *name, int len);
       typedef int (DataParser::*Etag)(const char *name);
 
       Stag stag[s_stop+1][t_unused+1];
-      Data data[s_stop+1];                 
+      Data data[s_stop+1];
       Etag etag[s_stop+1];
 
       int next [s_stop+1][t_unused+1];
-      int after[s_stop+1]; 
+      int after[s_stop+1];
 
       int gama_data               (const char *name, const char **atts);
       int g3_model                (const char *name, const char **atts);
@@ -653,11 +653,11 @@ namespace GNU_gama {
       int g3_param_fixed          (const char *name, const char **atts);
       int g3_param_free           (const char *name, const char **atts);
       int g3_param_constr         (const char *name, const char **atts);
-                                  
+
       int g3_param_n              (const char *name);
       int g3_param_e              (const char *name);
       int g3_param_u              (const char *name);
-                                  
+
       int g3_point                (const char *name);
       int g3_point_id             (const char *name);
       int g3_point_b              (const char *name);
@@ -670,7 +670,7 @@ namespace GNU_gama {
       int g3_point_param_e        (const char *name);
       int g3_point_param_u        (const char *name);
       int g3_point_dl             (const char *name);
-                                  
+
       int g3_obs                  (const char *name, const char **atts);
       int g3_obs                  (const char *name);
       int g3_obs_cov              (const char *name);
@@ -682,9 +682,9 @@ namespace GNU_gama {
       int g3_obs_hdiff            (const char *name);
       int g3_obs_height           (const char *name);
       int g3_obs_angle            (const char *name);
-                                  
+
       int text                    (const char *name);
-                                  
+
       int adj_input_data          (const char *name, const char **atts);
       int adj_input_data          (const char *name);
       int sparse_mat              (const char *name);
@@ -704,7 +704,7 @@ namespace GNU_gama {
       int array                   (const char *name);
       int array_dim               (const char *name);
       int array_int               (const char *name);
-      
+
       int g3a_x_rejected          (const char *name);
       int g3a_x_reason            (const char *name);
       int g3a_x_observation       (const char *name);
@@ -834,7 +834,7 @@ namespace GNU_gama {
       int optional_left_dh (const char *name, int len);
       int optional_right_dh(const char *name, int len);
 
-      void init(int state, int tag, 
+      void init(int state, int tag,
                 int next_state, int end_state, int after_state,
                 Stag, Data, Etag,
                 int end_state2=0);
@@ -865,12 +865,12 @@ namespace GNU_gama {
       DataParser_adj* adj;
 
       void         init_adj();
-      void         close_adj(); 
+      void         close_adj();
 
       GNU_gama::SparseMatrix <> *adj_sparse_mat;
       GNU_gama::BlockDiagonal<> *adj_block_diagonal;
-      Vec<>            adj_vector;  
-      Vec<>::iterator  adj_vector_iterator;  
+      Vec<>            adj_vector;
+      Vec<>::iterator  adj_vector_iterator;
       std::size_t      adj_vector_dim;
       GNU_gama::IntegerList<>   *adj_array;
       GNU_gama::IntegerList<>::iterator adj_array_iterator;
@@ -878,11 +878,11 @@ namespace GNU_gama {
       std::size_t      adj_sparse_mat_nonz;
       std::size_t      adj_sparse_mat_row_nonz;
       std::size_t      block_diagonal_blocks_;
-      std::size_t      block_diagonal_nonz_;  
+      std::size_t      block_diagonal_nonz_;
       std::size_t      block_diagonal_dim;
       std::size_t      block_diagonal_width;
       Vec<>            bd_vector;
-      Vec<>::iterator  bd_vector_iterator;  
+      Vec<>::iterator  bd_vector_iterator;
       std::size_t      bd_vector_dim;
       g3::Point        *point;
 

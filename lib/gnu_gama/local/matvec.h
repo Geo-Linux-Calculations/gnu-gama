@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,14 +34,14 @@ namespace GaMaLib {
     const int error;
     MatVecException(int e, const char *s) : GaMaLib::Exception(s), error(e) {}
   };
-  
+
   typedef GNU_gama::Index Index;
-  
+
   typedef GNU_gama::Vec   <double, MatVecException>   Vec;
   typedef GNU_gama::Mat   <double, MatVecException>   Mat;
   typedef GNU_gama::SVD   <double, MatVecException>   SVD;
   typedef GNU_gama::CovMat<double, MatVecException>   CovMat;  // covariances
-  
+
 }      // GaMaLib
 
 #endif

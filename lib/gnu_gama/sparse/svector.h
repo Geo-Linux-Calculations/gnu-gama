@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -29,7 +29,7 @@ namespace GNU_gama {
 
 /** Sparse vector class */
 
-template <typename Float=double, typename Index=std::size_t> 
+template <typename Float=double, typename Index=std::size_t>
 
   class SparseVector {
   private:
@@ -45,7 +45,7 @@ template <typename Float=double, typename Index=std::size_t>
 
   public:
 
-  SparseVector(Index floats=min_buffer_size, Index dimension=0) 
+  SparseVector(Index floats=min_buffer_size, Index dimension=0)
   {
     if (floats < min_buffer_size) floats = min_buffer_size;
 
@@ -56,23 +56,23 @@ template <typename Float=double, typename Index=std::size_t>
     used = 0;
   }
 
-  ~SparseVector() 
+  ~SparseVector()
   {
     delete[] nonz;
     delete[] indx;
   }
 
   Index  dim      () const { return vdim; }
-  Index  nonzeroes() const { return used; } 
+  Index  nonzeroes() const { return used; }
   Float* begin    () const { return nonz;        }
   Float* end      () const { return nonz + used; }
   Index* ibegin   () const { return indx;        }
   Index* iend     () const { return indx + used; }
 
   /** resets the number of vector elements to zero */
-  void reset() 
-  { 
-    used = 0; 
+  void reset()
+  {
+    used = 0;
   }
 
   /** add index-value pair into the vector */
@@ -100,9 +100,9 @@ template <typename Float=double, typename Index=std::size_t>
     indx[used] = ind;
     used++;
   }
-  
+
   };
- 
+
 }   // namespace GNU_gama
 
 #endif

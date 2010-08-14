@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,7 +35,7 @@ extern "C" {
 
   void* Cgama_GKF_parser(void* local_network)
   {
-    try 
+    try
       {
         LocalNetwork* ln = static_cast<LocalNetwork*>(local_network);
         /* constructed for point data and observation data objects*/
@@ -56,7 +56,7 @@ extern "C" {
     /* do nothing if there was an exception */
     if (Cgama_exception()) return;
 
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         delete gp;
@@ -91,7 +91,7 @@ extern "C" {
   }
   double Cgama_GKF_parser_apriori_m0(void* parser)
   {
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->m0_apr;
@@ -108,7 +108,7 @@ extern "C" {
   }
   double Cgama_GKF_parser_conf_pr(void* parser)
   {
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->konf_pr;
@@ -125,7 +125,7 @@ extern "C" {
   }
   double Cgama_GKF_parser_tol_abs(void* parser)
   {
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->tol_abs;
@@ -142,7 +142,7 @@ extern "C" {
   }
   int Cgama_GKF_parser_m0_apriori(void* parser)
   {
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->typ_m0_apriorni ? 1 : 0;
@@ -160,7 +160,7 @@ extern "C" {
 
   char* Cgama_GKF_parser_description(void* parser)
   {
-    try 
+    try
       {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         if (gp->description == "") return 0;

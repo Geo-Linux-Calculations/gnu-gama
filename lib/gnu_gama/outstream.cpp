@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -23,12 +23,12 @@
 
 namespace {
 
-  unsigned char ascii_table[256] = {0}; 
+  unsigned char ascii_table[256] = {0};
 
   void init_ascii(unsigned char t[])
   {
     for (int i=0; i<256; i++) t[i] = i;
-    
+
     /*
      * man iso-8859-2:
      * ===============
@@ -41,7 +41,7 @@ namespace {
      *
      * Dec             Oct  Hex Char     Description
      * ------------------------------------------------------------------ */
-    
+
     t[160]=' ';     // 240  A0     NO-BREAK SPACE
     t[161]='A';     // 241  A1  ¡  LATIN CAPITAL LETTER A WITH OGONEK
     t[162]=' ';     // 242  A2  ¢  BREVE
@@ -137,7 +137,7 @@ namespace {
     t[252]='u';     // 374  FC  ü  LATIN SMALL LETTER U WITH DIAERESIS
     t[253]='y';     // 375  FD  ý  LATIN SMALL LETTER Y WITH ACUTE
     t[254]='t';     // 376  FE  þ  LATIN SMALL LETTER T WITH CEDILLA
-    t[255]=' ';     // 377  FF  ÿ  DOT ABOVE    
+    t[255]=' ';     // 377  FF  ÿ  DOT ABOVE
   }
 
 }
@@ -154,29 +154,29 @@ const char* OutStream::recode(const char* s)
   if (encoding == utf_8) return s;
 
   text = "";
-  while (*s) text += *s++; 
+  while (*s) text += *s++;
   unsigned char* p;
-  
+
   switch (encoding)
     {
     case iso_8859_2:
       utf8_iso_8859_2((char*)text.c_str());
       break;
-    case iso_8859_2_flat: 
+    case iso_8859_2_flat:
       utf8_iso_8859_2((char*)text.c_str());
       p = (unsigned char*)text.c_str();
       while(*p) { *p = ascii_table[*p]; p++; }
       break;
-    case cp_1250: 
+    case cp_1250:
       utf8_cp1250((char*)text.c_str());
       break;
-    case cp_1251: 
+    case cp_1251:
       utf8_cp1251((char*)text.c_str());
       break;
     default:
       break;
     }
-  
+
   return text.c_str();
 }
 

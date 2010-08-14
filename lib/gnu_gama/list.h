@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -39,39 +39,39 @@ namespace GNU_gama {
 
       List(const List& cod);
       // List& operator=(const List& cod);
-      
-    public:    
-      
+
+    public:
+
       class iterator;
       class const_iterator;
-      
+
       List() {}
-      
+
       std::size_t size()  const   { return vec.size();  }
       bool        empty() const   { return vec.empty(); }
       void        push_back(T* t) { vec.push_back(t);   }
       void        pop_back()      { vec.pop_back();     }
       void        clear()         { vec.clear();        }
 
-    
+
       class const_iterator
-        // : public std::iterator <std::forward_iterator_tag, T> 
+        // : public std::iterator <std::forward_iterator_tag, T>
         {
         public:
-          
+
           const_iterator()
             {
             }
-          const_iterator(const typename Vector::const_iterator& p) : vit(p) 
+          const_iterator(const typename Vector::const_iterator& p) : vit(p)
             {
             }
-          bool operator==(const const_iterator& x) const 
-            { 
-              return vit==x.vit; 
+          bool operator==(const const_iterator& x) const
+            {
+              return vit==x.vit;
             }
-          bool operator!=(const const_iterator& x) const 
-            { 
-              return vit!=x.vit; 
+          bool operator!=(const const_iterator& x) const
+            {
+              return vit!=x.vit;
             }
           const_iterator& operator++()
             {
@@ -88,18 +88,18 @@ namespace GNU_gama {
             {
               return static_cast<T*>(*vit);
             }
-          
+
         private:
           typename Vector::const_iterator vit;
-          
+
         };
-      
+
       const_iterator  begin() const { return vec.begin(); }
       const_iterator  end  () const { return vec.end  (); }
 
 
-      class iterator 
-        // : public std::iterator <std::forward_iterator_tag, T> 
+      class iterator
+        // : public std::iterator <std::forward_iterator_tag, T>
         {
         public:
 
@@ -113,13 +113,13 @@ namespace GNU_gama {
             {
               return const_iterator(vit);
             }
-          bool operator==(const iterator& x) const 
-            { 
-              return vit==x.vit; 
+          bool operator==(const iterator& x) const
+            {
+              return vit==x.vit;
             }
-          bool operator!=(const iterator& x) const 
-            { 
-              return vit!=x.vit; 
+          bool operator!=(const iterator& x) const
+            {
+              return vit!=x.vit;
             }
           iterator& operator++()
             {

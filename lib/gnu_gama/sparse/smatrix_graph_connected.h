@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU Gama)
     Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -24,12 +24,12 @@
 template <typename Float, typename Index>
 bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
 {
-  IntegerList<Index> tag(this->nodes()+1);      // for all nodes i, tag(i)=0   
+  IntegerList<Index> tag(this->nodes()+1);      // for all nodes i, tag(i)=0
   tag.set_zero();
-    
+
   std::stack<Index>  stack;
 
-  stack.push(1);                       // start with node 1 
+  stack.push(1);                       // start with node 1
   tag(1) = 1;
   Index unreachable = this->nodes() - 1;  // number of unreached nodes
 
@@ -39,7 +39,7 @@ bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
       stack.pop();
 
       for (const_iterator b=begin(x), e=end(x); b!=e; ++b)
-        {                              
+        {
           Index y = *b;                // for all neighbors y of node x
           if (tag(y) == 0)
             {
@@ -49,6 +49,6 @@ bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
             }
         }
     }
-  
+
   return unreachable == 0;
 }

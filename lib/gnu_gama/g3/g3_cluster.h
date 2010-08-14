@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,21 +35,21 @@ namespace GNU_gama { namespace g3 {
 
   class g3Cluster :  public GNU_gama::Cluster<Observation> {
   public:
-    
-    g3Cluster(const Model::ObservationData* obs) : Cluster<Observation>(obs) 
+
+    g3Cluster(const Model::ObservationData* obs) : Cluster<Observation>(obs)
     {
     }
-    
-    g3Cluster* clone(const Model::ObservationData*) const 
-    { 
-      throw 
+
+    g3Cluster* clone(const Model::ObservationData*) const
+    {
+      throw
         GNU_gama::Exception::string("g3Cluster::clone() not implemented");
-      return 0; 
+      return 0;
     }
-    
+
     virtual void write_xml(std::ostream&) const = 0;
   };
-  
+
 
   /**  g3 observation cluster class. */
 

@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -26,7 +26,7 @@
 #include <matvec/inderr.h>
 
 namespace GNU_gama {   /** \brief Memory repository for matvec objects */
-  
+
 template <typename Float=double, typename Exc=Exception::matvec>
 class MemRep {
 
@@ -36,7 +36,7 @@ private:
      Float* m;
      Index  sz;
      Index  n;
-     
+
      ~Mrep() { delete[] m; }
      Mrep() : m(0), sz(0), n(1) {}
      Mrep(Index nsz) : m(new Float[nsz]), sz(nsz), n(1) {}
@@ -45,12 +45,12 @@ private:
          using namespace std;
          memcpy(m, p, sz*sizeof(Float));
        }
-     
+
      private:
      Mrep(const Mrep&);
      Mrep& operator=(const Mrep&);
    };      /* struct Mrep; */
-  
+
    mutable Mrep* rep;
 
 protected:
@@ -94,10 +94,10 @@ protected:
 public:
 
    typedef Float* iterator;
-   iterator begin() 
+   iterator begin()
      {
          if (rep->n > 1) { --rep->n; rep = new Mrep(rep->sz, rep->m); }
-         return rep->m;       
+         return rep->m;
      }
    iterator end() { return begin() + rep->sz; }
 

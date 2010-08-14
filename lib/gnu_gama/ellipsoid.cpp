@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,24 +28,24 @@ using namespace std;
 using namespace GNU_gama;
 
 
-double Ellipsoid::M(double b) const 
-{ 
+double Ellipsoid::M(double b) const
+{
   double w = W(b); return AIme2/(w*w*w);
 }
-double Ellipsoid::N(double b) const 
-{ 
+double Ellipsoid::N(double b) const
+{
   return A/W(b);
 }
-double Ellipsoid::W(double b) const 
-{ 
+double Ellipsoid::W(double b) const
+{
   double p = sin(b); return sqrt(1 - e2*p*p);
 }
-double Ellipsoid::V(double b) const 
-{ 
-  double p = cos(b); return sqrt(1 + e22*p*p); 
+double Ellipsoid::V(double b) const
+{
+  double p = cos(b); return sqrt(1 + e22*p*p);
 }
-double Ellipsoid::F(double b) const 
-{ 
+double Ellipsoid::F(double b) const
+{
   return sqrt(1 + n*cos(b+b) + n*n);
 }
 
@@ -68,7 +68,7 @@ void Ellipsoid::set_abff1(double pa, double pb, double pf, double pf1)
   AB    = A/B;
 }
 
-void Ellipsoid::blh2xyz(double  b, double  l, double  h, 
+void Ellipsoid::blh2xyz(double  b, double  l, double  h,
                         double& x, double& y, double& z) const
 {
   const double sb = sin(b);
@@ -84,7 +84,7 @@ void Ellipsoid::blh2xyz(double  b, double  l, double  h,
   z = n1*sb;
 }
 
-void Ellipsoid::xyz2blh(double  x, double  y, double  z, 
+void Ellipsoid::xyz2blh(double  x, double  y, double  z,
                         double& b, double& l, double& h) const
 {
 
@@ -104,7 +104,7 @@ void Ellipsoid::xyz2blh(double  x, double  y, double  z,
     {
       t = y/x;
       x = x * sqrt(1 + t*t);
-    } 
+    }
   else if (y)
     {
       t = x/y;
@@ -137,7 +137,7 @@ void Ellipsoid::xyz2blh(double  x, double  y, double  z,
 
   /* next iteration is never needed in earth bound region; max error
    * is 0.0018" for H=2a
-   
+
   sin_u  = Ime2*N(b)/B*sin(b);
   sin2_u = sin_u*sin_u;
   cos2_u = 1 - sin2_u;

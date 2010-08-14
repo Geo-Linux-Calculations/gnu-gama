@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Jan Pytel <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -27,11 +27,11 @@ using namespace std;
 
 bool LocalRevision::z_angle(const Z_Angle* obs) const
 {
-  if (!obs->active()) return false; 
-  
+  if (!obs->active()) return false;
+
   PointData::const_iterator s = PD.find(obs->from());  // station point
   if (s == PD.end()) return false;
-  // if (!(*s).second.active_xy()) return false; 
+  // if (!(*s).second.active_xy()) return false;
   if (!(*s).second.test_xy())   return false;
   if (!(*s).second.active_z())  return false;
   if (!(*s).second.test_z())    return false;

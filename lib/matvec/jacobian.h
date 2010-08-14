@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 2002, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,12 +31,12 @@
 namespace GNU_gama {
 
   /** \brief Jacobian
-   * 
+   *
    *  Template C++ class computes Jacobian matrix for the given
    *  argument of a vector function. Derivatives are numerically
    *  computed from a Lagrange polynomial of degree 2*n with
    *  equidistant arguments.
-   *  
+   *
    *  For example for degree 4 Lagrange's formula L4(x) goes through
    *  points y1=f(x-2h), y2=f(x-h), y3=f(x), y4=f(x+h) and y5=f(x+2h).
    *  The derivative L'4(x) = 2/24*y1 - 4/6*y2 + 4/6*y4 - 2/24*y5.
@@ -44,18 +44,18 @@ namespace GNU_gama {
 
   template <typename Float=double, typename Exc=Exception::matvec>
   class Jacobian {
-    
+
   public:
 
     typedef Vec<Float, Exc> (*function)(const Vec<Float, Exc>&);
     Mat<Float, Exc> matrix;
-    
+
 
     Jacobian(Index out, Index inp, function pf, int d=0);
 
 
     void compute(Vec<Float, Exc> x);
-    
+
     void set_f(function pf);
     void set_h(Vec<Float, Exc> h);
     void set_scale(Float sc=1e-4);
@@ -64,7 +64,7 @@ namespace GNU_gama {
   private:
 
     Float d_coef(int index);
-    
+
     function f;
     Index    odim, idim;
     bool     use_h;
@@ -75,16 +75,16 @@ namespace GNU_gama {
 
     const Float Abs(const Float x) const { return (x >= Float(0)) ? x : -x ; }
   };
-  
+
 
   template <typename Float, typename Exc>
-  Jacobian<Float, Exc>::Jacobian(Index out, Index inp, function pf, int d)  
+  Jacobian<Float, Exc>::Jacobian(Index out, Index inp, function pf, int d)
     : matrix(out, inp)
   {
     f    = pf;
     odim = out;
     idim = inp;
-    
+
     Vec<Float, Exc> dh(inp);
     for (Index i=1; i<=inp; i++) dh(i) = 1;
     h     = dh;
@@ -92,31 +92,31 @@ namespace GNU_gama {
     set_degree(d);
     set_scale();
   }
-    
-  
+
+
   template <typename Float, typename Exc>
   void Jacobian<Float, Exc>::set_f (function pf)
   {
     f = pf;
   }
-  
-  
+
+
   template <typename Float, typename Exc>
   void Jacobian<Float, Exc>::set_h (Vec<Float, Exc> dh)
   {
     h     = dh;
     use_h = true;
   }
-  
-  
+
+
   template <typename Float, typename Exc>
   void Jacobian<Float, Exc>::set_scale (Float sc)
   {
     scale = sc;
     use_h = false;
   }
-  
-  
+
+
   template <typename Float, typename Exc>
   void Jacobian<Float, Exc>::set_degree(int n)
   {
@@ -126,19 +126,19 @@ namespace GNU_gama {
     coef.reset(degree);
     for (int N=degree/2, i=1; i<=N; i++) coef(i) = d_coef(i);
   }
-  
+
 
   template <typename Float, typename Exc>
   void Jacobian<Float, Exc>::compute(Vec<Float, Exc> x)
   {
     Float tx, dh, c;
-    
+
     for (Index j=1; j<=idim; j++)
       {
         tx = x(j);
         dh = tx + ( use_h ? h(j) : scale*(Float(1.0) + Abs(x(j))) );
         dh = dh - tx;
-       
+
         c    = degree/2;
         x(j) = tx - c*dh;     Vec<Float, Exc> d( f(x) );
         x(j) = tx + c*dh;     Vec<Float, Exc> e( f(x) );
@@ -158,11 +158,11 @@ namespace GNU_gama {
 
         d   *= Float(1.0)/dh;
         x(j) = tx;
-        
+
         for (Index i=1; i<=odim; i++) matrix(i,j) = d(i);
       }
   }
-  
+
 
   /* Coefficients of derivatives of Lagrange polynomial of the given degree
    *
@@ -181,21 +181,21 @@ namespace GNU_gama {
     {
       int N=degree + 1;
       int M=degree/2 + 1;
-      
+
       Float p=1, q=1;
       for (int i=1; i<=N; i++)
         {
-          if (i != index) 
+          if (i != index)
             {
               q *= index - i;
               if (i != M)  p *= M - i;
             }
         }
-      
+
       return p/q;
     }
 
- 
+
 }   // namespace GNU_gama
 
 #endif

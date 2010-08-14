@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,7 +35,7 @@ inline Double bearing(Double ya, Double xa, Double yb, Double xb)
    const Double dy = yb - ya;
    const Double dx = xb - xa;
    if (dy == 0 && dx == 0)
-      throw 
+      throw
         GaMaLib::Exception(T_POBS_computation_of_bearing_for_identical_points);
    const Double s  = atan2( dy , dx );
    return s >= 0 ? s : s + 2*M_PI;
@@ -54,14 +54,14 @@ inline void bearing_distance(Double ya, Double xa, Double yb, Double xb,
    const Double dy = yb - ya;
    const Double dx = xb - xa;
    if (dy == 0 && dx == 0)
-      throw 
+      throw
         GaMaLib::Exception(T_POBS_computation_of_bearing_for_identical_points);
    const Double s  = atan2( dy , dx );
    br = s >= 0 ? s : s + 2*M_PI;
    d  = sqrt(dy*dy + dx*dx);
 }
 
-inline void bearing_distance(const LocalPoint& a, const LocalPoint& b, 
+inline void bearing_distance(const LocalPoint& a, const LocalPoint& b,
                              Double& br, Double& d)
 {
    bearing_distance(a.y(), a.x(), b.y(), b.x(), br, d);

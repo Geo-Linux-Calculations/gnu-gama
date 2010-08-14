@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,8 +31,8 @@ using namespace std;
 void Xdiff::write(std::ostream& out, bool) const
 {
   using namespace std;
-  out << "<!-- from='" << from() << "' to='" << to() << "'" 
-      << " diff x = " 
+  out << "<!-- from='" << from() << "' to='" << to() << "'"
+      << " diff x = "
       << setprecision(Format::coord_p()) << value() << " --!>";
 }
 
@@ -40,8 +40,8 @@ void Xdiff::write(std::ostream& out, bool) const
 void Ydiff::write(std::ostream& out, bool) const
 {
   using namespace std;
-  out << "<!-- from='" << from() << "' to='" << to() << "'" 
-      << " diff y = " 
+  out << "<!-- from='" << from() << "' to='" << to() << "'"
+      << " diff y = "
       << setprecision(Format::coord_p()) << value() << " --!>";
 }
 
@@ -50,7 +50,7 @@ void Zdiff::write(std::ostream& out, bool) const
 {
   using namespace std;
   out << "<!-- from='" << from() << "' to='" << to() << "'"
-      << " diff z = " 
+      << " diff z = "
       << setprecision(Format::coord_p()) << value() << " --!>";
 }
 

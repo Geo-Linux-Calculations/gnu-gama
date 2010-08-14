@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -37,7 +37,7 @@ void Orientation::add_all()
   Double l1;
   int    dir_count;
 
-  while (iterator != OL.end()) 
+  while (iterator != OL.end())
     if (const Direction* direction = dynamic_cast<const Direction*>(*iterator))
       {
         Cluster* cluster = const_cast<Cluster*>(direction->ptr_cluster());
@@ -146,7 +146,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
          l1 = l1a;
       else
          l1 = (sz[n/2] + sz[(n-1)/2]) / 2;
-         
+
       for (int i=0; i<n; i++)
          d += abs(sz[i] - l1);
       d /= n;

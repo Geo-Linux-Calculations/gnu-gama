@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -23,7 +23,7 @@
 /*************************************************************
  * computation of approximate coordinates:                   *
  *************************************************************/
- 
+
 #include <gnu_gama/local/local/median/g2d_coordinates.h>
 #include <gnu_gama/local/local/median/g2d_point.h>
 
@@ -52,7 +52,7 @@ void ApproximateCoordinates::reset()
   state = calculation_not_done;
   selected.erase(selected.begin(), selected.end());
   solved_pd.erase(solved_pd.begin(), solved_pd.end());
-  
+
   known_coordinates_ = 0;
   for (PointData::const_iterator i=SB.begin(); i!=SB.end(); ++i)
     if ((*i).second.test_xy())
@@ -147,7 +147,7 @@ void ApproximateCoordinates::find_missing_coordinates()
 }	// void ApproximateCoordinates::find_missing_coordinates()
 
 
-void ApproximateCoordinates::move_point(PointData& from, PointData& to, 
+void ApproximateCoordinates::move_point(PointData& from, PointData& to,
                                         PointID& what)
 {
 
@@ -162,7 +162,7 @@ void ApproximateCoordinates::move_point(PointData& from, PointData& to,
 }    // ApproximateCoordinates::move_point(PointData&, PointData&, PointID&)
 
 
-bool ApproximateCoordinates::solve_intersection(PointData& points, 
+bool ApproximateCoordinates::solve_intersection(PointData& points,
                                                 PointIDList& what)
 {
   if(what.empty()) return false;
@@ -207,7 +207,7 @@ bool ApproximateCoordinates::solve_intersection(PointData& points,
 
 bool ApproximateCoordinates::solve_insertion()
 {
-  
+
   const int max_depth = 5;
   if(selected.empty() || (depth >= max_depth)) return false;
 
@@ -254,7 +254,7 @@ bool ApproximateCoordinates::solve_insertion()
               obs_points.push_back((*j)->to());
             }
         }
-  
+
   obs_points.sort();
   obs_points.unique();
   /*
@@ -262,12 +262,12 @@ bool ApproximateCoordinates::solve_insertion()
    * for(PointIDList::iterator i = selected.begin(); i != selected.end(); i++)
    * if(!necessary_observations(*i))
    * {
-   * PointIDList::iterator pozice = find(obs_points.begin(), 
+   * PointIDList::iterator pozice = find(obs_points.begin(),
    *                                     obs_points.end(), *i);
-   * obs_points.erase(pozice);    
-   * }; 
+   * obs_points.erase(pozice);
+   * };
    */
-  
+
   int number_of_given = 0;
   for(PointIDList::iterator i = obs_points.begin(); i != obs_points.end(); i++)
     if(absent(*i))
@@ -279,7 +279,7 @@ bool ApproximateCoordinates::solve_insertion()
     return false;
 
   PointData local_s;
-  // removed in 1.7.14   for(PointIDList::iterator i = obs_points.begin(); 
+  // removed in 1.7.14   for(PointIDList::iterator i = obs_points.begin();
   // removed in 1.7.14       i != obs_points.end(); i++)
   // removed in 1.7.14     local_s[*i] = LocalPoint();
 
@@ -287,7 +287,7 @@ bool ApproximateCoordinates::solve_insertion()
   /* ObservationList& SM_local(OD_local.OL);   // gnu_gama/local-1.1.13 (AC)
    *   for(ObservationList::iterator i = SM.begin(); i != SM.end(); i++)
    *     if(Local_observation(i, obs_points))
-   *       SM_local.push_back(*i);  
+   *       SM_local.push_back(*i);
    */
 
   // local coordinate system (cs) must be defined now
@@ -329,11 +329,11 @@ bool ApproximateCoordinates::solve_insertion()
         vypoctene_urc.push_back(*id);
     }
   PointData local_s_yx;
-  for(PointData::iterator sb_it = local_s.begin(); 
+  for(PointData::iterator sb_it = local_s.begin();
       sb_it != local_s.end(); sb_it++)
     if((*sb_it).second.test_xy())
       local_s_yx[(*sb_it).first] = (*sb_it).second;
-  
+
   SimilarityTr2D transf(SB, local_s_yx, vypoctene_urc);
   transf.calculation();
   if(transf.state() < unique_solution)
@@ -353,7 +353,7 @@ bool ApproximateCoordinates::solve_insertion()
     }
 
   // removing solved points from "selected" list
-  for(PointIDList::iterator id = vypoctene_urc.begin(); 
+  for(PointIDList::iterator id = vypoctene_urc.begin();
       id != vypoctene_urc.end(); id++)
     selected.remove(*id);
 
@@ -377,11 +377,11 @@ void ApproximateCoordinates::computational_loop()
   while(i != selected.end());
   for(i = unsolvable.begin(); i != unsolvable.end(); i++)
     {
-      PointIDList::iterator pozice = std::find(selected.begin(), 
+      PointIDList::iterator pozice = std::find(selected.begin(),
                                                selected.end(), *i);
-      selected.erase(pozice);    
-    } 
-  
+      selected.erase(pozice);
+    }
+
   bool finished = false;
   while(!finished)
     {

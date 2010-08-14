@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -32,7 +32,7 @@ AdjInputData::AdjInputData()
 {
   A     = 0;    // SparseMatrix<>  *
   pcov  = 0;    // BlockDiagonal<> *
-  pminx = 0;    // IntegerList<>   * 
+  pminx = 0;    // IntegerList<>   *
 }
 
 
@@ -48,10 +48,10 @@ AdjInputData::~AdjInputData()
 
 void AdjInputData::swap(AdjInputData *data)
 {
-  std::swap(A     , data->A    );     
-  std::swap(pcov  , data->pcov );  
+  std::swap(A     , data->A    );
+  std::swap(pcov  , data->pcov );
   std::swap(prhs  , data->prhs );
-  std::swap(pminx , data->pminx); 
+  std::swap(pminx , data->pminx);
 }
 
 
@@ -67,7 +67,7 @@ void AdjInputData::write_xml(std::ostream& out) const
           << "<rows>" << A->rows() << "</rows> "
           << "<cols>" << A->columns() << "</cols> "
           << "<nonz>" << A->nonzeroes() << "</nonz>\n";
-      
+
       for (std::size_t m, k=1; k<=A->rows(); k++)
         {
           double* n = A->begin(k);
@@ -83,7 +83,7 @@ void AdjInputData::write_xml(std::ostream& out) const
             }
           out << "\n        </row>\n";
         }
-      
+
       out << "  </sparse-mat>\n";
   }
 
@@ -92,28 +92,28 @@ void AdjInputData::write_xml(std::ostream& out) const
   if (pcov)
     {
       const long blocks = pcov->blocks();
-      
+
       out << "\n  <block-diagonal>\n"
           << "    <blocks>" << blocks << "</blocks>"
           << " <nonz>" << pcov->nonzeroes() << "</nonz>\n";
-      
+
       for (long b=1; b<=blocks; b++)
         {
           long dim   = pcov->dim(b);
           long width = pcov->width(b);
-          
-          out << "      <block> <dim>" 
-              << dim    << "</dim> <width>" 
+
+          out << "      <block> <dim>"
+              << dim    << "</dim> <width>"
               << width  << "</width>\n";
-          
+
           const double *m = pcov->begin(b);
           const double *e = pcov->end(b);
           while (m != e)
             out << "      <flt>" << *m++ << "</flt>\n";
-          
+
           out << "      </block>\n";
         }
-      
+
       out << "  </block-diagonal>\n";
     }
 
@@ -123,24 +123,24 @@ void AdjInputData::write_xml(std::ostream& out) const
     {
       out << "\n  <vector>\n"
           << "    <dim>" << prhs.dim() << "</dim>\n";
-      
+
       for (std::size_t i=1; i<=prhs.dim(); i++)
         out << "      <flt>" << prhs(i) << "</flt>\n";
-      
+
       out << "  </vector>\n";
     }
 
   // =================================================================
- 
+
   if (pminx)
     {
       out << "\n  <array>\n"
           << "    <dim>" << pminx->dim() << "</dim>\n";
-      
+
       const std::size_t *indx = pminx->begin();
       for (std::size_t i=1; i<=pminx->dim(); i++)
         out << "      <int>" << *indx++ << "</int>\n";
-       
+
       out << "  </array>\n";
     }
 
@@ -164,7 +164,7 @@ void AdjInputData::read_xml(std::istream& inp)
     }
   dp.xml_parse("", 0, 1);
 
-  for (List<DataObject::Base*>::iterator i=objects.begin(); 
+  for (List<DataObject::Base*>::iterator i=objects.begin();
        i!=objects.end(); ++i)
     {
       if (DataObject::AdjInput *adj = dynamic_cast<DataObject::AdjInput*>(*i))
@@ -188,15 +188,15 @@ void AdjInputData::read_gama_local_old_format(std::istream& inp)
   vector<double> flt;
 
   long cols, rows;
-  inp >> cols >> rows;                    // dimensions 
+  inp >> cols >> rows;                    // dimensions
 
-  delete pminx; 
+  delete pminx;
   pminx = 0;        // no regularization is defined for singular systems
   prhs.reset(rows);
 
   Vec<> c(rows);
 
-  IntegerList<> tmplist(rows);        
+  IntegerList<> tmplist(rows);
   IntegerList<>::iterator m = tmplist.begin();
 
   long floats=0;
@@ -231,7 +231,7 @@ void AdjInputData::read_gama_local_old_format(std::istream& inp)
     {
       A->new_row();
       long nonz = *m++;
-      for (long i=1; i<=nonz; i++, k++)  A->add_element(flt[k], ind[k]);       
+      for (long i=1; i<=nonz; i++, k++)  A->add_element(flt[k], ind[k]);
     }
 
   delete pcov;
@@ -243,7 +243,7 @@ void AdjInputData::read_gama_local_old_format(std::istream& inp)
 // -----------------------------------------------------------------
 
 Adj::~Adj()
-{ 
+{
   delete least_squares;
   delete minx;
 }
@@ -252,10 +252,10 @@ Adj::~Adj()
 
 void Adj::init(const AdjInputData* inp)
 {
-  delete data; 
-  data = inp; 
+  delete data;
+  data = inp;
   least_squares = 0;
-  solved = false; 
+  solved = false;
   n_obs_ = n_par_ = 0;
 
   if (data)
@@ -271,40 +271,40 @@ void Adj::init_least_squares()
 {
   delete least_squares;
 
-  switch (algorithm_) 
+  switch (algorithm_)
     {
     case envelope:
       least_squares = new AdjEnvelope<double, Index, Exception::matvec>;
       break;
-    case svd: 
+    case svd:
       least_squares = new AdjSVD<double, Exception::matvec>;
       break;
-    case gso: 
+    case gso:
       least_squares = new AdjGSO<double, Exception::matvec>;
       break;
-    case cholesky: 
+    case cholesky:
       least_squares = new AdjCholDec<double, Exception::matvec>;
       break;
     default:
       throw Exception::adjustment("### unknown algorithm");
     }
-  
+
   if (const IntegerList<>* p = data->minx())
     {
       delete minx;
       minx_dim = 0;
-      
+
       if (Index N = p->dim())
         {
           minx_dim = N;
           Index* q = minx = new Index[N];
-          for (IntegerList<>::const_iterator 
+          for (IntegerList<>::const_iterator
                  i=p->begin(), e=p->end(); i!=e; i++)
             {
               *q++ = *i;
             }
         }
-      
+
       least_squares->min_x(minx_dim, minx);
     }
 
@@ -321,31 +321,31 @@ void Adj::init_least_squares()
       A_dot.reset(data->A->rows(), data->A->columns());
       A_dot.set_zero();
       b_dot.reset(data->A->rows());
-      
+
       for (std::size_t k=1; k<=data->A->rows(); k++)
         {
           double* n = data->A->begin(k);
           double* e = data->A->end  (k);
           for(size_t* i=data->A->ibegin(k) ; n!=e; n++, i++)  A_dot(k,*i) = *n;
         }
-      
-      for (std::size_t i, j, dim, width, r=0, b=1; 
+
+      for (std::size_t i, j, dim, width, r=0, b=1;
            b<=data->pcov->blocks(); b++, r += dim)
         {
           dim   = data->pcov->dim(b);
           width = data->pcov->width(b);
           CovMat<> C(dim, width);
-          
+
           const double *p = data->pcov->begin(b), *e = data->pcov->end(b);
           CovMat<>::iterator c = C.begin();
           while (p != e) *c++ = *p++;
           choldec(C);
-          
+
           Vec<> t(dim);
           for (i=1; i<=dim; i++) t(i) = data->prhs(r+i);
           forwardSubstitution(C, t);
           for (i=1; i<=dim; i++) b_dot(r+i) = t(i);
-          
+
           for (j=1; j<=data->A->columns(); j++)
             {
               for (i=1; i<=dim; i++) t(i) = A_dot(r+i,j);
@@ -353,14 +353,14 @@ void Adj::init_least_squares()
               for (i=1; i<=dim; i++) A_dot(r+i,j) = t(i);
             }
         }
-      
+
       full->reset(A_dot, b_dot);
 
       const Vec<>& v = least_squares->residuals();
       rtr_ = trans(v)*v;
 
       x_   = least_squares->unknowns();
-      
+
       const Vec<>& rhs = data->rhs();
       r_.reset(data->A->rows());
       for (Index i=1; i<=r_.dim(); i++)
@@ -371,7 +371,7 @@ void Adj::init_least_squares()
           double  s = 0;
           while (b != e)
             s += *b++ * x_(*n++);
-          
+
           r_(i) = s - rhs(i);
         }
     }
@@ -379,7 +379,7 @@ void Adj::init_least_squares()
     {
       throw Exception::adjustment("### unknown algorithm");
     }
-  
+
   solved = true;
 }
 
@@ -422,7 +422,7 @@ const Vec<>& Adj::r()
 
 
 
-double Adj::q_bb(Index i, Index j) 
+double Adj::q_bb(Index i, Index j)
 {
   double* ib;
   double* ie;
@@ -470,7 +470,7 @@ void Adj::choldec(CovMat<>& chol)
       chol(i,i) = d;
 
       m = i+b;  if(N < m) m = N;    // m = min(N, i+b);
-      
+
       for (j=i+1; j<=m; j++) chol(i,j) *= d;
     }
 }

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -241,7 +241,7 @@ float KSprob(float lambda)
 
 float Chi_square(float p, int n)
 {
-   if (n < 2)            
+   if (n < 2)
    {
       float a = Normal(0.5*p);
       return a*a;

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -35,11 +35,11 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
   using namespace GaMaLib;
 
   const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
-  
+
   const Vec& x = IS->solve();
   Double kki = IS->conf_int_coef();
   const int pocnez = IS->sum_unknowns();
-  
+
   bool sour = false;
   {   // for ...
     for (int i=1; i<=pocnez; i++)
@@ -54,9 +54,9 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
       Double mp, mp_max = -1, mp_prum = 0;
       PointID mp_max_cb, prev_id;
       int pocbod = 0;
-      
+
       out << T_GaMa_adjunk_Review_of_unknowns_coordidantes << "\n"
-          << underline(T_GaMa_adjunk_Review_of_unknowns_coordidantes, '*') 
+          << underline(T_GaMa_adjunk_Review_of_unknowns_coordidantes, '*')
           << "\n\n";
       out.width(IS->maxw_unk());
       out << "i" << " ";
@@ -86,7 +86,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
               Double my = IS->unknown_stdev(b.index_y());
               mp = sqrt(my*my+mx*mx);
               out << '\n';
-              
+
               out.width(IS->maxw_unk());
               out << b.index_x() << " ";
               out.width(IS->maxw_id());
@@ -108,7 +108,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
               out.width(7);
               out << mx*kki;
               out << "\n";
-              
+
               out.flush();
               out.width(IS->maxw_unk());
               out << b.index_y() << " ";
@@ -130,7 +130,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
               out << my << " ";
               out.width(7);
               out << my*kki;
-              out << "\n";              
+              out << "\n";
             }
           if (b.free_z() && b.index_z())
             {
@@ -146,7 +146,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
                   out << '\n';
                 }
               prev_id = point_id;
-              
+
               out.width(IS->maxw_unk());
               out << b.index_z() << " ";
               out.width(IS->maxw_id());
@@ -174,12 +174,12 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
           if ((b.free_xy() && b.index_x()) ||
               (b.free_z()  && b.index_z()) ) out << '\n';
         }
-      
-      if (pocbod >= 5) 
+
+      if (pocbod >= 5)
         {
           out.precision(1);
           out << T_GaMa_adjunk_mean_position_error_maximal << mp_max
-              << T_GaMa_adjunk_mean_position_error_on_point 
+              << T_GaMa_adjunk_mean_position_error_on_point
               << mp_max_cb << '\n'
               << T_GaMa_adjunk_mean_position_error_average << mp_prum/pocbod
               << " mm\n\n";
@@ -200,7 +200,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
       const double scale  = IS->gons() ? 1.0 : 0.324;
 
       out << T_GaMa_adjunk_Review_of_unknowns_bearings << "\n"
-          << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*') 
+          << underline(T_GaMa_adjunk_Review_of_unknowns_bearings, '*')
           << "\n\n";
       out.width(IS->maxw_unk());
       out << "i" << " ";
@@ -212,10 +212,10 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
       if (IS->gons())
         out  << T_GaMa_adjunk_header4;
       else
-        out << 
+        out <<
           "====== [d] ========= [d] ======== [d] =========== [ss] ===\n\n";
       out.flush();    // flush() sends read data to output
-      
+
       {   // for ...
         for (int i=1; i<=pocnez; i++)
           if (IS->unknown_type(i) == 'R')
@@ -260,10 +260,10 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
               out.flush();
             }
       }   // for ...
-      
+
       out << '\n' << '\n';
     }
-  
+
 
   bool vysky = false;
   {
@@ -277,7 +277,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
   if (vysky && !sour)
     {
       out << T_GaMa_adjunk_Review_of_unknowns_heights << "\n"
-          << underline(T_GaMa_adjunk_Review_of_unknowns_heights, '*') 
+          << underline(T_GaMa_adjunk_Review_of_unknowns_heights, '*')
           << "\n\n";
       out.width(IS->maxw_unk());
       out << "i" << " ";
@@ -301,7 +301,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
             if (b.constrained_z())
               out << " * ";
             else
-              out << "   ";    
+              out << "   ";
             out.precision(5);
             out.width(13);
             Double adj_z = b.z()+x(i)/1000;

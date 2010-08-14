@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,13 +31,13 @@
 namespace GaMaLib {
 
 
-  class ApproximateHeights 
+  class ApproximateHeights
     {
     private:
 
       struct ObservedHData {
-        std::list<H_Diff*>     HD;        
-        std::list<H_Diff>      tmpHD;        
+        std::list<H_Diff*>     HD;
+        std::list<H_Diff>      tmpHD;
         std::list<Distance*>   DI;
         std::list<S_Distance*> SD;
         std::list<Z_Angle*>    ZA;
@@ -51,8 +51,8 @@ namespace GaMaLib {
 
       ObservedHData      OHD;
 
-    public: 
-      
+    public:
+
       ApproximateHeights(PointData& b, ObservationData& m);
       void execute();
       void print(std::ostream&);

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -37,33 +37,33 @@ void ApproximateCoordinates(GaMaLib::Acord* acord, OutStream& out)
 
    if (!acord->missing_coordinates          &&
        acord->given_xyz == acord->total_xyz &&
-       acord->given_xy  == acord->total_xy  && 
+       acord->given_xy  == acord->total_xy  &&
        acord->given_z   == acord->total_z   ) return;
-   
+
    out << T_GaMa_approx_Review_of_approximate_coordinates << "\n"
-       << underline(T_GaMa_approx_Review_of_approximate_coordinates, '*') 
+       << underline(T_GaMa_approx_Review_of_approximate_coordinates, '*')
        << "\n\n";
 
    const int aw = 10;
-   out << T_GaMa_approx_header1 
+   out << T_GaMa_approx_header1
        << setw(aw) << "xyz" << setw(aw) << "xy" << setw(aw) << "z" << "\n\n";
    out << T_GaMa_approx_given_coordinates
-       << setw(aw) << acord->given_xyz 
+       << setw(aw) << acord->given_xyz
        << setw(aw) << acord->given_xy
        << setw(aw) << acord->given_z
        << "\n";
    out << T_GaMa_approx_computed_coordinates
-       << setw(aw) << acord->computed_xyz 
+       << setw(aw) << acord->computed_xyz
        << setw(aw) << acord->computed_xy
        << setw(aw) << acord->computed_z
        << "\n";
    out << T_GaMa_approx_separator << "\n"
        << T_GaMa_approx_total
-       << setw(aw) << acord->total_xyz 
+       << setw(aw) << acord->total_xyz
        << setw(aw) << acord->total_xy
        << setw(aw) << acord->total_z
        << "\n\n";
-   out << T_GaMa_approx_observations 
+   out << T_GaMa_approx_observations
        << setw(aw) << acord->observations << "\n\n";
 
    if (acord->missing_coordinates)
@@ -87,7 +87,7 @@ void ApproximateCoordinates(GaMaLib::Acord* acord, OutStream& out)
      }
 
    out << "\n";
-   out.flush();    	
+   out.flush();
 }
 
 }

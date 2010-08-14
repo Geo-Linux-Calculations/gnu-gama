@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -30,10 +30,10 @@
 
 
 namespace GNU_gama { namespace g3 {
-    
+
   /** g3 visitor class for writing observation data in XML. */
 
-  class WriteObservationXML :  
+  class WriteObservationXML :
     public GNU_gama::ObservationVisitor,
     public GNU_gama::Visitor<Angle>,
     public GNU_gama::Visitor<Azimuth>,
@@ -45,13 +45,13 @@ namespace GNU_gama { namespace g3 {
     public GNU_gama::Visitor<ZenithAngle>
   {
   private:
-    
+
     mutable std::ostream& out;
-      
+
   public:
-    
+
     WriteObservationXML(std::ostream& ostr) : out(ostr) {}
-    
+
     void visit(Angle*);
     void visit(Azimuth*);
     void visit(Distance*);
@@ -63,7 +63,7 @@ namespace GNU_gama { namespace g3 {
 
   };
 
-  
+
 }}
 
 #endif

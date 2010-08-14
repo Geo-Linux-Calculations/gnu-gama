@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002, 2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
                         2003  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,53 +34,53 @@ namespace GaMaLib {
 
 template <typename OutStream>
 void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
-    	                GaMaLib::ReducedObservations* reduced, OutStream& out)    
+    	                GaMaLib::ReducedObservations* reduced, OutStream& out)
 {
    using namespace std;
    using namespace GaMaLib;
 
    if ( !reduced->size() )
        return;
-   
+
    out << T_GaMa_reduced_Review_of_reduced_observations << "\n"
-       << underline(T_GaMa_reduced_Review_of_reduced_observations, '*') 
+       << underline(T_GaMa_reduced_Review_of_reduced_observations, '*')
        << "\n\n";
 
    if ( reduced->size_nonexist() )
        ; // size_nonexist
-   
+
 
    int minval_obs = 12;
    int maxval_obs = minval_obs;
 
    int minval_dh  = 8;
    int maxval_dh  = minval_dh;
-   
+
    {
        for (ReducedObservations::ListReducedObs_iter it = reduced->begin();
 	                                            it != reduced->end(); it++)
        {
 	   Double value = it->orig_value();
 	   Double dh    = it->ptr_obs->to_dh() - it->ptr_obs->from_dh();
-	   
+
 	   int oz = 0;
 	   int dz = 0;
-	   
+
 	   if (value < 0)
            {
              oz = 1;
              value = -value;
            }
-	   
+
 	   if (value < 1e5) continue;
-	   
+
 	   oz += 6;   // ... decimal point plus 5 digits
-	   
+
 	   do {
-	       oz++; 
+	       oz++;
 	       value /= 10;
 	   } while (value >= 1);
-	   
+
 	   if (oz > maxval_obs) maxval_obs = oz;
 
 	   if (dh < 0)
@@ -109,12 +109,12 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
    out << T_GaMa_target << "       ";
    out.width(maxval_obs);
    out << T_GaMa_reduced_observed << " ";
-   out.width(maxval_obs); 
+   out.width(maxval_obs);
    out << T_GaMa_reduced_reduced << " ";
    out.width(maxval_dh);
    out << T_GaMa_reduced_header1;
 
-   {  
+   {
      int kk = 12 + 2*IS->maxw_id() + maxval_obs - minval_obs;
      for (int i=0; i < kk; i++) out << "=";
    }
@@ -124,12 +124,12 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
    {
      int kk = maxval_obs - minval_obs + 1;
      for (int i=0; i < kk; i++) out << "=";
-   }  
+   }
 
    if (IS->gons())
        out << "==== [m|g] ";
    else
-       out << "==== [m|d] ";   
+       out << "==== [m|d] ";
 
    {
        int kk = maxval_dh - minval_dh;
@@ -139,8 +139,8 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
    out << "=== [m] ==\n\n";
 
    out.flush();
-   
-   
+
+
    PointID predcs = "";   // provious standpoint ID
 
    for (ReducedObservations::ListReducedObs_iter it = reduced->begin();
@@ -162,11 +162,11 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
       string str_nonexist("");
       for (int i=0; i < maxval_obs - 2; i++)
 	  str_nonexist+="-";
-      
+
       {   // ***************************************************
         if (/* S_Distance* sd = */ dynamic_cast<S_Distance*>(pm))
           {
-            out << T_GaMa_s_distance; 
+            out << T_GaMa_s_distance;
             out.precision(5);
             out.width(maxval_obs);
 	    out << it->orig_value() << " ";
@@ -181,7 +181,7 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
         else if (/* Z_Angle* za = */ dynamic_cast<Z_Angle*>(pm))
           {
 	    out << T_GaMa_z_angle;
-            out.precision(6); 
+            out.precision(6);
             out.width(maxval_obs);
 	    if (IS->gons())
 		out << R2G*(it->orig_value()) << " ";
@@ -212,7 +212,7 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
 		out << str_nonexist.c_str();
 	    out << " ";
           }
-        else  
+        else
           {
             throw GaMaLib::Exception("review/reduced_observations.h - "
                                      "unknown observation type");

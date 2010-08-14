@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2002, 2003, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,9 +31,9 @@ namespace GNU_gama {
 
   /** Symmetric block diagonal matrix. */
 
-  template <typename Float=double, typename Index=std::size_t> 
+  template <typename Float=double, typename Index=std::size_t>
   class BlockDiagonal {    // symmetric block diagonal matrix
-    
+
     Index   blocks_;       // number of diagonal blocks
     Float*  nonz_;         // all nonzero elements
     Index   ncnt_;         // number of all nonzeroes
@@ -41,8 +41,8 @@ namespace GNU_gama {
     Index*  dim_;
     Index*  width_;
     Float** begin_;
-    
-    BlockDiagonal (const BlockDiagonal&); 
+
+    BlockDiagonal (const BlockDiagonal&);
     void operator=(const BlockDiagonal&);
 
     void clear()
@@ -53,7 +53,7 @@ namespace GNU_gama {
       delete[] nonz_;
     }
 
-    void init(Index blcks, Index floats) 
+    void init(Index blcks, Index floats)
     {
       dim_    = new Index [blcks+1];  // 1 based indexes
       width_  = new Index [blcks+1];
@@ -73,18 +73,18 @@ namespace GNU_gama {
       nonz_ = 0;
       begin_ = 0;
     }
-    
-    BlockDiagonal(Index blcks, Index floats) 
+
+    BlockDiagonal(Index blcks, Index floats)
     {
       init(blcks, floats);
     }
-    
-    ~BlockDiagonal() 
+
+    ~BlockDiagonal()
     {
       clear();
     }
-    
-    void reset(Index blcks, Index floats) 
+
+    void reset(Index blcks, Index floats)
     {
       clear();
       init (blcks, floats);
@@ -96,21 +96,21 @@ namespace GNU_gama {
     Index  dim   (Index i) const { return dim_  [i]; }
     Index  width (Index i) const { return width_[i]; }
 
-    const Float* begin (Index i) const { return begin_[i];   } 
+    const Float* begin (Index i) const { return begin_[i];   }
     const Float* end   (Index i) const { return begin_[i+1]; }
     Float*       begin (Index i)       { return begin_[i];   }
     Float*       end   (Index i)       { return begin_[i+1]; }
 
-    BlockDiagonal* replicate() const 
-    { 
+    BlockDiagonal* replicate() const
+    {
       return replicate(blocks_, ncnt_);
     }
 
-    BlockDiagonal* replicate(Index new_blocks, Index new_floats) const 
+    BlockDiagonal* replicate(Index new_blocks, Index new_floats) const
     {
       BlockDiagonal* r = new BlockDiagonal(new_blocks, new_floats);
 
-      for (Index i=1; i<=blocks_; i++)  
+      for (Index i=1; i<=blocks_; i++)
       {
         r->add_block(dim(i), width(i), begin(i));
       }
@@ -126,7 +126,7 @@ namespace GNU_gama {
       size_ += bdim;
       ncnt_ += N;
       Float* b = begin_[blocks_];
-      begin_[blocks_+1] = b + N; 
+      begin_[blocks_+1] = b + N;
       memcpy(b, mem, N*sizeof(Float));
 
       dim_  [blocks_] = bdim;
@@ -149,7 +149,7 @@ namespace GNU_gama {
 
         for (row=1; row<=N; row++)
           {
-            if ((pivot = *B) < tol) 
+            if ((pivot = *B) < tol)
               return block;                  // not positive-definite
 
             k = std::min(W, N-row);          // number of of-diagonal elements
@@ -160,7 +160,7 @@ namespace GNU_gama {
                 for (l=n; l<=k; l++) p[l] -= q*B[l];
                 p += std::min(W, N-row-n);
               }
-            *B++ = pivot = std::sqrt(pivot); // scaling pivot row 
+            *B++ = pivot = std::sqrt(pivot); // scaling pivot row
             for (; k; k--) *B++ /= pivot;
           }
 
@@ -172,8 +172,8 @@ namespace GNU_gama {
   };
 
 
- 
-  template <typename Float=double, typename Index=std::size_t> 
+
+  template <typename Float=double, typename Index=std::size_t>
   class UpperBlockDiagonal {     // upper triangular block diagonal matrix
   public:
 
@@ -190,13 +190,13 @@ namespace GNU_gama {
 
     const BlockDiagonal<Float, Index> *blockd;
     const Float **row;
-    
+
     UpperBlockDiagonal(const UpperBlockDiagonal&);
     UpperBlockDiagonal& operator=(UpperBlockDiagonal&);
   };
 
 
-  template <typename Float, typename Index> 
+  template <typename Float, typename Index>
   UpperBlockDiagonal<Float, Index>::UpperBlockDiagonal(const BlockDiagonal<Float, Index> *bd)
     : blockd(bd), row(0)
   {
@@ -215,7 +215,7 @@ namespace GNU_gama {
         for (Index row_width, i=1; i<=dim; i++)
           {
             row_width = width + 1;
-            if (i+row_width > dim) row_width = dim - i + 1; 
+            if (i+row_width > dim) row_width = dim - i + 1;
 
             row[++r] = mem;
             mem     += row_width;
@@ -224,7 +224,7 @@ namespace GNU_gama {
       }
   }
 
-  
+
 
 }   // namespace GNU_gama
 
@@ -242,7 +242,7 @@ using namespace GNU_gama;
 
 void write(ostream& cout, BlockDiagonal<>* bd)
 {
-  // cout.precision(7); 
+  // cout.precision(7);
   cout << endl;
   for (unsigned long i=1; i<=bd->blocks(); i++)
     {
@@ -258,12 +258,12 @@ void write(ostream& cout, BlockDiagonal<>* bd)
 int main()
 {
   cout << "\n---  Symmetric Block Diagonal Matrix demo  -----------------\n";
-      
+
   double b1[] = {1.1, 1.2, 1.3};
   double b2[] = {44.2, 5.2, 66.2, 7.2, 88.2};
   double b3[] = {19, 1, 2, 3, 18, 1, 2, 17, 1, 16};
   double b4[] = {81, 81, 81, 81, 145, 145, 145, 64, 194, 194, 113, 49,
-                 230, 149, 85, 36, 174, 110, 61, 25, 126, 77, 41, 16, 86, 
+                 230, 149, 85, 36, 174, 110, 61, 25, 126, 77, 41, 16, 86,
                  50, 25, 54, 29, 30};
 
   BlockDiagonal<>* m1 = new BlockDiagonal<>(20, 5000);
@@ -272,13 +272,13 @@ int main()
   m1->add_block(4, 3, b3);
   m1->add_block(9, 3, b4);
   write(cout, m1);
-  
+
   BlockDiagonal<>* m2 = m1->replicate();
   m2->cholDec();
   write(cout, m2);
 
   cout << "\n---  Upper Triangular Block Diagonal Matrix  ---------------\n\n";
-      
+
   UpperBlockDiagonal<> upper(m1);
 
   cout << "dimension = " << upper.dim() << endl

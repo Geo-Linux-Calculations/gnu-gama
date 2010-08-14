@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -30,7 +30,7 @@ namespace GNU_gama {
 
   /** \brief Singular Value Decomposition  */
 
-  /*  Singular Value Decomposition          A = U*W*trans(V) 
+  /*  Singular Value Decomposition          A = U*W*trans(V)
       ############################
 
      SVD is based on the fortran SVD source from package CMLIB
@@ -53,7 +53,7 @@ namespace GNU_gama {
      C     A=USV  of a REAL M by N rectangular matrix.  Householder
      C     bidiagonalization and a variant of the QR algorithm are used.
 
-     ------------------------------------------------------------------------- 
+     -------------------------------------------------------------------------
 
      2001-02-30  (AC) Occasional problems with SVD convergence:
 
@@ -69,18 +69,18 @@ namespace GNU_gama {
      use a temporary variable s2:
 
         <    if ((s1 + ABS(rv1[L])) == s1) goto test_for_convergence;
-        ---  
-        >    s2 = s1 + ABS(rv1[L]); 
+        ---
+        >    s2 = s1 + ABS(rv1[L]);
         >    if (s1 == s2) goto test_for_convergence;
-             
+
         <    if (s1 + (ABS(W[L1])) == s1) break;
-        ---  
-        >    s2 = s1 + ABS(W[L1]); 
+        ---
+        >    s2 = s1 + ABS(W[L1]);
         >    if (s1 == s2) break;
-             
+
         <    if (s1 + (ABS(f)) == s1) goto test_for_convergence;
-        ---  
-        >    s2 = s1 + ABS(f); 
+        ---
+        >    s2 = s1 + ABS(f);
         >    if (s1 == s2) goto test_for_convergence;
 
      ----------------------------------------------------------------------- */
@@ -321,7 +321,7 @@ namespace GNU_gama {
           {
             for (j=L; j<=n; j++) U[i][j]=ZERO;
           }
-        if (g) 
+        if (g)
           {
             if (i != mn)
               {
@@ -344,55 +344,55 @@ namespace GNU_gama {
       /* Diagonalization of the bidiagonal form */
 
       /* test for splitting */
-      for (k=n; k>=1; k--) 
+      for (k=n; k>=1; k--)
         {
           k1  = k - 1;
           its = 0;
 
           /* test for splitting */
-          for (;;)     // label 520 in fortran source 
+          for (;;)     // label 520 in fortran source
             {
-              for (L=k; L>=1; L--) 
-                {     
-                  s2 = s1 + ABS(rv1[L]); 
+              for (L=k; L>=1; L--)
+                {
+                  s2 = s1 + ABS(rv1[L]);
                   if (s1 == s2) goto test_for_convergence;
-                  
-                  /* rv[1] is always zero, so there is no exit 
+
+                  /* rv[1] is always zero, so there is no exit
                    * through the bottom of the loop */
                   L1 = L - 1;
-                  s2 = s1 + ABS(W[L1]); 
+                  s2 = s1 + ABS(W[L1]);
                   if (s1 == s2) break;
                 }
-              
+
               /* cancellation of rv1[L], if L greater then 1 */
-              c = ZERO;           
+              c = ZERO;
               s = ONE;
-              for (i=L; i<=k; i++) 
+              for (i=L; i<=k; i++)
                 {
                   f = s * rv1[i];
                   rv1[i] = c * rv1[i];
-                  s2 = s1 + ABS(f); 
+                  s2 = s1 + ABS(f);
                   if (s1 == s2) goto test_for_convergence;
                   g = W[i];
                   h = PYTHAG(f,g);
                   W[i] = h;
                   c =  g / h;
                   s = -f / h;
-                  for (j=1; j<=m; j++) 
+                  for (j=1; j<=m; j++)
                     {
                       y = U[j][L1];
                       z = U[j][i];
                       U[j][L1] =  y*c + z*s;
                       U[j][i]  = -y*s + z*c;
-                    }                  
+                    }
                 }
-              
+
             test_for_convergence:
-              
+
               z = W[k];
-              if (L == k) {             
+              if (L == k) {
                 /* W[k] is made nonnegative */
-                if (z < ZERO) 
+                if (z < ZERO)
                   {
                     W[k] = -z;
                     for (j=1; j<=n; j++) V[j][k] = -V[j][k];
@@ -409,7 +409,7 @@ namespace GNU_gama {
               y = W[k1];
               g = rv1[k1];
               h = rv1[k];
-              // f = (Float)0.5*( ((g + z)/h)*((g - z)/y) + y/h -h/y); 
+              // f = (Float)0.5*( ((g + z)/h)*((g - z)/y) + y/h -h/y);
               f = ((y-z)*(y+z)+(g-h)*(g+h))/(TWO*h*y);              // #_LH_#
               g = PYTHAG(f,ONE);
               s = (f >= ZERO) ? g : - g;         // SIGN(g,f)
@@ -417,7 +417,7 @@ namespace GNU_gama {
               f = ((x-z)*(x+z) + h*(y/(f+s) - h))/x;                // #_LH_#
 
               /* next QR transformation */
-              c = s = ONE;        
+              c = s = ONE;
               for (i1=L; i1<=k1; i1++) {
                 i = i1 + 1;
                 g = rv1[i];
@@ -461,15 +461,15 @@ namespace GNU_gama {
             }   // for (;;)
 
         }   // for k
-   
+
       decomposed = 1;
       set_inv_W();
-      if (defect > 0) 
+      if (defect > 0)
         {
           minV = V_;
           if (minx == subset) min_subset_x();
         }
-   
+
     }      /* void SVD<Float, Exc>::svd() */
 
 
@@ -642,7 +642,7 @@ namespace GNU_gama {
       using namespace std;
 
       if (defect == 0) return;
-      if (defect > n_min) 
+      if (defect > n_min)
         throw Exc(Exception::BadRegularization, "void SVD::min_subset_x()");
 
       Index im;
@@ -658,7 +658,7 @@ namespace GNU_gama {
               s += Vimk*Vimk;
             }
             s = std::sqrt(s);
-            if (s == 0) 
+            if (s == 0)
               throw Exc(Exception::BadRegularization, "void SVD::min_subset_x()");
             { for (Index i = 1; i <= n; i++) V[i][k] /= s; }   // for ...
 
@@ -712,6 +712,6 @@ namespace GNU_gama {
 
 
 
-}   // namespace GNU_gama 
+}   // namespace GNU_gama
 
 #endif

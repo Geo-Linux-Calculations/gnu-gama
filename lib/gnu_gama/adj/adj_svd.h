@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999, 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -27,7 +27,7 @@
 #include <cmath>
 
 namespace GNU_gama {
-  
+
 template <typename Float, typename Exc>
 class AdjSVD : public AdjBaseFull<Float, Exc> {
 
@@ -37,16 +37,16 @@ public:
   AdjSVD() {}
   AdjSVD(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     : AdjBaseFull<Float, Exc>(A, b) {}
-  
+
   void reset(const Mat<Float, Exc>& A, const Vec<Float, Exc>& b)
     {
       AdjBaseFull<Float, Exc>::reset(A, b);
       svd.reset(A);
     }
-  
+
   Index defect() { return svd.nullity(); }
   bool  lindep(Index i) { return svd.lindep(i); }
-  
+
   Float q_xx(Index i, Index j)
     {
       if(!this->is_solved) solve();
@@ -62,13 +62,13 @@ public:
       if (!this->is_solved) solve();
       return svd.q_bx(i, j);
     }
-  
+
   void min_x()   {  svd.min_x(); }
   void min_x(Index n, Index x[]) { svd.min_x(n, x); }
 
   Float cond();
   void solve();
-   
+
 };
 
 // ...................................................................
@@ -76,7 +76,7 @@ public:
 template <typename Float, typename Exc>
 void AdjSVD<Float, Exc>::solve()
 {
-   using namespace GNU_gama; 
+   using namespace GNU_gama;
    using namespace std;
 
    if (this->is_solved) return;

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,7 +33,7 @@ void FixedPoints(GaMaLib::LocalNetwork* IS, OutStream& out)
 {
   using namespace std;
   using namespace GaMaLib;
-  
+
   const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
 
   int pocpevb=0, pocpevv=0;
@@ -41,15 +41,15 @@ void FixedPoints(GaMaLib::LocalNetwork* IS, OutStream& out)
     for (PointData::iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
       {
         if ((*i).second.fixed_xy())  pocpevb++;
-        if ((*i).second.fixed_z()) pocpevv++;          
+        if ((*i).second.fixed_z()) pocpevv++;
       }
   }   // for ...
   if (pocpevb == 0 && pocpevv == 0) return;
-  
+
   out << T_GaMa_Review_of_fixed_points << "\n"
       << underline(T_GaMa_Review_of_fixed_points, '*') << "\n\n";
-  
-  
+
+
   out.width(IS->maxw_id());
   out << T_GaMa_point;
   int table=0;
@@ -63,7 +63,7 @@ void FixedPoints(GaMaLib::LocalNetwork* IS, OutStream& out)
     }
   if (pocpevv)
     {
-      if (pocpevb) 
+      if (pocpevb)
         {
           out << "  ";
           table += 2;

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -32,17 +32,17 @@ namespace GaMaLib {
     class ApproximateVectors
 	{
 	private:
-	    
+
 	    struct ObservedVData {
 		std::vector<const Xdiff*>  XD;
-		std::vector<const Ydiff*>  YD;        
+		std::vector<const Ydiff*>  YD;
 		std::vector<const Zdiff*>  ZD;
 	    };
 
 	    typedef std::vector<const Xdiff*>::const_iterator X_const_iterator;
 	    typedef std::vector<const Ydiff*>::const_iterator Y_const_iterator;
 	    typedef std::vector<const Zdiff*>::const_iterator Z_const_iterator;
-	    
+
 	    bool obs_list_empty() const
 		{
 		    return OVD.XD.empty() && OVD.YD.empty() && OVD.ZD.empty();
@@ -60,17 +60,17 @@ namespace GaMaLib {
 		{
 		    return lp.active_xy() && lp.test_xy();
 		}
-	    
+
 	    static bool unknown_xy(const LocalPoint& lp)
 		{
 		    return lp.active_xy() && !lp.test_xy();
 		}
-	    
+
 	    static bool known_z(const LocalPoint& lp)
 		{
 		    return lp.active_z() && lp.test_z();
 		}
-	    
+
 	    static bool unknown_z(const LocalPoint& lp)
 		{
 		    return lp.active_z() && !lp.test_z();
@@ -83,7 +83,7 @@ namespace GaMaLib {
 	    ObservedVData      OVD;
 
 	public:
-	    
+
 	    ApproximateVectors(PointData& b, ObservationData& m);
 	    void execute();
 	    void print(std::ostream&);

@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,7 +28,7 @@
 #include <matvec/vec.h>
 
 namespace GNU_gama {   /** \brief Transpose vector */
-  
+
 
 template <typename Float=double, typename Exc=Exception::matvec>
 class TransVec : public VecBase<Float, Exc> {
@@ -41,15 +41,15 @@ public:
   TransVec() {}
   TransVec(Index nsz) : VecBase<Float, Exc>(nsz) {}
   TransVec(const VecBase<Float, Exc>& v) : VecBase<Float, Exc>(v) {}
-  
-  TransVec operator*(Float f) const { 
-      TransVec t(this->dim()); mul(f, t); return t; 
+
+  TransVec operator*(Float f) const {
+      TransVec t(this->dim()); mul(f, t); return t;
     }
   TransVec operator+(const TransVec &x) const {
-    TransVec t(this->dim()); add(x, t); return t; 
+    TransVec t(this->dim()); add(x, t); return t;
   }
   TransVec operator-(const TransVec &x) const {
-    TransVec t(this->dim()); sub(x, t); return t; 
+    TransVec t(this->dim()); sub(x, t); return t;
   }
 
 };
@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream& out, const Vec<Float, Exc>& v)
     const int size = v.dim();
     out.width(fw);
     out << size << "\n\n";
-    
+
     typename Vec<Float, Exc>::const_iterator b = v.begin();
     typename Vec<Float, Exc>::const_iterator e = v.end();
     while (b != e)
@@ -86,7 +86,7 @@ std::ostream& operator<<(std::ostream& out, const Vec<Float, Exc>& v)
         ++b;
         out << '\n';
       }
-    
+
     out << '\n';
     return out;
   }
@@ -99,7 +99,7 @@ std::ostream& operator<<(std::ostream& out, const TransVec<Float, Exc>& v)
     const int size = v.dim();
     out.width(fw);
     out << size << "  ";
-    
+
     typename TransVec<Float, Exc>::const_iterator b = v.begin();
     typename TransVec<Float, Exc>::const_iterator e = v.end();
     while (b != e)
@@ -109,28 +109,28 @@ std::ostream& operator<<(std::ostream& out, const TransVec<Float, Exc>& v)
         ++b;
         out << ' ';
       }
-    
+
     out << '\n';
     return out;
   }
 
 
 template <typename Float, typename Exc>
-inline TransVec<Float, Exc> trans(const Vec<Float, Exc>& v) 
-{ 
-  TransVec<Float, Exc> T(v); return T; 
+inline TransVec<Float, Exc> trans(const Vec<Float, Exc>& v)
+{
+  TransVec<Float, Exc> T(v); return T;
 }
 
 
 template <typename Float, typename Exc>
-inline Vec<Float, Exc> trans(const TransVec<Float, Exc>& v) 
-{ 
-  Vec<Float, Exc> T(v); return T; 
+inline Vec<Float, Exc> trans(const TransVec<Float, Exc>& v)
+{
+  Vec<Float, Exc> T(v); return T;
 }
 
 
 template <typename Float, typename Exc>
-TransVec<Float, Exc> 
+TransVec<Float, Exc>
 operator*(const TransVec<Float, Exc> &b, const MatBase<Float, Exc> &A)
   {
     if (b.dim() != A.rows())
@@ -141,7 +141,7 @@ operator*(const TransVec<Float, Exc> &b, const MatBase<Float, Exc> &A)
     for (Index j=1; j<=A.cols(); j++)
       {
         s = 0;
-        for (Index i=1; i<=A.cols(); i++) 
+        for (Index i=1; i<=A.cols(); i++)
           s += b(i)*A(i,j);
         t(j) = s;
       }
@@ -151,7 +151,7 @@ operator*(const TransVec<Float, Exc> &b, const MatBase<Float, Exc> &A)
 
 
 template <typename Float, typename Exc>
-TransVec<Float, Exc> 
+TransVec<Float, Exc>
 operator*(const TransVec<Float, Exc> &b, const Mat<Float, Exc> &A)
   {
     if (b.dim() != A.rows())
@@ -171,7 +171,7 @@ operator*(const TransVec<Float, Exc> &b, const Mat<Float, Exc> &A)
         s = 0;
         bi = bb;
         ai = aj;
-        for (Index i=0; i<a_rows; i++, ai += a_cols) 
+        for (Index i=0; i<a_rows; i++, ai += a_cols)
           s += *bi++ * *ai;
         *ti++ = s;
         aj++;

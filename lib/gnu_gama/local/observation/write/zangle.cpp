@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,7 +34,7 @@ void Z_Angle::write(std::ostream& out, bool print_at) const
   out << "<z-angle";
   if (print_at)
     out << " from=\"" << from() << '"';
-  
+
   out << " to=\"" << to() << '"' << " val=\"";
   if (Observation::gons)
     out << setprecision(Format::gon_p()) << value()*R2G;

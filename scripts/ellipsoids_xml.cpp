@@ -2,13 +2,13 @@
  * input file into ellipsoids.[h|cpp|html|texi] output.
  * ==========================================================================
  */
- 
+
 const char* version = "0.06";
 
 /* ---------------------------------------------------------------------------
  *
  * 0.06  2006-08-26
- * 
+ *
  *       - fixed code to avoid some minor warnings
  *
  * 0.05  2005-09-04
@@ -29,18 +29,18 @@ const char* version = "0.06";
  * 0.02  2002-06-28
  *
  *       - missing `#include <cstring>' in generated code (Jan Pytel)
- *         
- * 0.01  2002-06-09  
- *       
+ *
+ * 0.01  2002-06-09
+ *
  *       - initial draft
  *
  * ---------------------------------------------------------------------------
- *   
+ *
  *  GNU Gama -- Adjustment of geodetic networks
  *  Copyright (C) 2002, 2006  Ales Cepek <cepek@fsv.cvut.cz>
  *
  *  This file is part of the GNU Gama.
- *  
+ *
  *  This library is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 3 of the License, or
@@ -77,7 +77,7 @@ class Parser {
 
 public:
 
-  struct Entry 
+  struct Entry
   {
     string id, caption, a, b, f, f1, ref;
   };
@@ -97,7 +97,7 @@ public:
   void additem (string s)       { item .push_back(s); }
 
   string       item_data;
-  
+
 private:
 
   list<Entry>  elist;
@@ -110,7 +110,7 @@ private:
   int        errCode;
   int        errLine;
   string     text;
-  
+
 };
 
 
@@ -120,7 +120,7 @@ void startElement(void *userData, const char *cname, const char **atts)
   Parser* parser = static_cast<Parser*>(userData);
   const string name(cname);
 
-  if (parser->state == START && name == "ellipsoids") 
+  if (parser->state == START && name == "ellipsoids")
     {
       parser->state = ELLIPSOIDS;
 
@@ -128,7 +128,7 @@ void startElement(void *userData, const char *cname, const char **atts)
         {
           string nam = string(*atts++);
           string val = string(*atts++);
-          
+
           if (nam == "revision")  parser->revision = val;
           else
             {
@@ -136,7 +136,7 @@ void startElement(void *userData, const char *cname, const char **atts)
             }
         }
     }
-  else if (parser->state == ELLIPSOIDS && name == "references") 
+  else if (parser->state == ELLIPSOIDS && name == "references")
     {
       parser->state = REFERENCES;
 
@@ -144,13 +144,13 @@ void startElement(void *userData, const char *cname, const char **atts)
         {
           string nam = string(*atts++);
           string val = string(*atts++);
-          
+
           {
             parser->error("unknown attribute");
           }
         }
     }
-  else if (parser->state == REFERENCES && name == "item") 
+  else if (parser->state == REFERENCES && name == "item")
     {
       parser->state = ITEM;
       parser->item_data.erase();
@@ -159,7 +159,7 @@ void startElement(void *userData, const char *cname, const char **atts)
         {
           string nam = string(*atts++);
           string val = string(*atts++);
-          
+
           if (nam == "label")
             {
               parser->addlabel(val);
@@ -170,17 +170,17 @@ void startElement(void *userData, const char *cname, const char **atts)
             }
         }
     }
-  else if (parser->state == ELLIPSOIDS && name == "ellipsoid") 
+  else if (parser->state == ELLIPSOIDS && name == "ellipsoid")
     {
       parser->state = ELLIPSOID;
-      
+
       string id;
       Parser::Entry  entry;
       while (*atts)
         {
           string nam = string(*atts++);
           string val = string(*atts++);
-          
+
           if      (nam == "id")      entry.id = val;
           else if (nam == "caption") entry.caption = val;
           else if (nam == "a")       entry.a = val;
@@ -207,7 +207,7 @@ void endElement(void *userData, const char * /*cname*/)
     {
     case ELLIPSOIDS: parser->state = END;        break;
     case REFERENCES: parser->state = ELLIPSOIDS; break;
-    case ITEM      : parser->state = REFERENCES; 
+    case ITEM      : parser->state = REFERENCES;
                      parser->additem(parser->item_data);
                                                  break;
     case ELLIPSOID : parser->state = ELLIPSOIDS; break;
@@ -241,16 +241,16 @@ void characterDataHandler(void *userData, const char* s, int len)
 
 Parser::Parser(const char* fn)
 {
-  expat_parser = XML_ParserCreate(0); 
-  
+  expat_parser = XML_ParserCreate(0);
+
   XML_SetUserData(expat_parser, this);
   XML_SetElementHandler(expat_parser, startElement, endElement);
   XML_SetCharacterDataHandler(expat_parser, characterDataHandler);
   XML_SetUnknownEncodingHandler(expat_parser, UnknownEncodingHandler, 0);
-  
+
   filename = string(fn);
   state = START;
-  
+
   ifstream inp(fn);
   while (getline(inp, text))
     {
@@ -261,7 +261,7 @@ Parser::Parser(const char* fn)
           errString = string(XML_ErrorString(XML_GetErrorCode(expat_parser)));
           errCode   = XML_GetErrorCode(expat_parser);
           errLine   = XML_GetCurrentLineNumber(expat_parser);
-          
+
           cerr << filename << ":" << errLine << ": "
                << errString << " : " << text << endl;
           return;
@@ -272,13 +272,13 @@ Parser::Parser(const char* fn)
 
 Parser::~Parser()
 {
-  XML_ParserFree(expat_parser); 
+  XML_ParserFree(expat_parser);
 }
 
 void Parser::error(const char* message)
 {
   int erl = XML_GetCurrentLineNumber(expat_parser);
-  cerr << filename << ":" << erl << ": " << message << ": " << text << endl; 
+  cerr << filename << ":" << erl << ": " << message << ": " << text << endl;
   result = 1;
 }
 
@@ -287,14 +287,14 @@ void Parser::xml2h(ostream& out)
   out << "#ifndef GNU_gama___gama_ellipsoids__header_file_h\n"
       << "#define GNU_gama___gama_ellipsoids__header_file_h\n\n"
       << "#include <gnu_gama/ellipsoid.h>\n\n"
-      << "// This file was generated by GNU Gama (program ellipsoids_xml" 
+      << "// This file was generated by GNU Gama (program ellipsoids_xml"
       << /* version << */ ") from\n"
       << "// http://www.gnu.org/software/gama/xml/ellipsoids.xml"
       << " revision " << revision << "\n\n"
       << "namespace GNU_gama {\n\n"
       << "enum gama_ellipsoid {\n\n"
       << "ellipsoid_unknown,\n";
-  
+
   for (list<Entry>::iterator i=elist.begin(); i!=elist.end();)
     {
       Entry e = *i;
@@ -302,7 +302,7 @@ void Parser::xml2h(ostream& out)
       if (++i != elist.end()) out << ",";
       out << "\t\t// " << e.a << "   " << e.b+e.f+e.f1 << "\n";
     }
-  
+
   out << "\n};\n\n"
       << "extern const char * const gama_ellipsoid_caption[];\n"
       << "extern const char * const gama_ellipsoid_id     [];\n\n"
@@ -316,7 +316,7 @@ void Parser::xml2cpp(ostream& out)
 {
   out << "#include <gnu_gama/ellipsoids.h>\n"
       << "#include <cstring>\n\n"
-      << "// This file was generated by GNU Gama (program ellipsoids_xml" 
+      << "// This file was generated by GNU Gama (program ellipsoids_xml"
       << /* version << */ ") from\n"
       << "// http://www.gnu.org/software/gama/xml/ellipsoids.xml"
       << " revision " << revision << "\n\n"
@@ -343,7 +343,7 @@ void Parser::xml2cpp(ostream& out)
       }
   }
   out << "};\n\n";
-  
+
   out << "int set(Ellipsoid* E, gama_ellipsoid T)\n"
       << "{\n"
       << "   switch(T) {\n";
@@ -353,21 +353,21 @@ void Parser::xml2cpp(ostream& out)
         Entry e = *i;
         out << "   case ellipsoid_" << e.id  << " :\n";
         out << "      E->set_a";
-        if (!e.b.empty()) 
+        if (!e.b.empty())
           out << "b( " << e.a << ", " << e.b  << " );\n";
-        else if (!e.f.empty()) 
+        else if (!e.f.empty())
           out << "f( " << e.a << ", " << e.f  << " );\n";
-        else if (!e.f1.empty()) 
+        else if (!e.f1.empty())
           out << "f1( " << e.a << ", " << e.f1 << " );\n";
         out << "      E->id = ellipsoid_" << e.id << ";\n";
         out << "      break;\n";
       }
-  }    
-  out << 
+  }
+  out <<
     "   default :\n"
     "      E->id = ellipsoid_unknown;\n"
     "      return 1;\n   }\n\n   return 0;\n}\n\n";
-  
+
   out << "gama_ellipsoid ellipsoid(const char* s)\n"
       << "{\n"
       << "   using namespace std;\n\n"
@@ -418,7 +418,7 @@ void Parser::xml2html(ostream& out)
         out << "<td>" << e.b+e.f+e.f1 << "</td>\n";
         out << "<td>" << e.caption    << "</td>\n";
         out << "<td>" << e.ref        << "</td>\n";
-        out << "</tr>\n";  
+        out << "</tr>\n";
       }
 
     out << "\n</table>\n\n";
@@ -440,7 +440,7 @@ void Parser::xml2html(ostream& out)
 
 void Parser::xml2texi(ostream& out)
 {
-  out << 
+  out <<
     "@comment GNU Gama ellipsoids (revision " << revision << ")\n"
     "@comment http://www.gnu.org/software/gama/xml/ellipsoids.xml\n"
     "@multitable @columnfractions .20 .20 .20 .30 .10\n"
@@ -450,29 +450,29 @@ void Parser::xml2texi(ostream& out)
       {
         Entry e = *i;
 
-        out 
+        out
           << "@item " << e.id
-          << " @tab " << e.a         
+          << " @tab " << e.a
           << " @tab " << (e.b+e.f+e.f1)
-          << " @tab " << e.caption   
-          << " @tab " << e.ref       
-          << "\n";  
+          << " @tab " << e.caption
+          << " @tab " << e.ref
+          << "\n";
       }
-  
-  out << "@end multitable\n\n"; 
+
+  out << "@end multitable\n\n";
 
 
   out << "@multitable @columnfractions .07 .93\n";
   list<string>::iterator li=label.begin(), ti=item.begin();
   while (li != label.end() && ti != item.end())
     {
-      out 
+      out
         << "@item " << *li++
         << " @tab " << *ti++
         << "\n";
       }
   out << "@end multitable\n";
-  
+
 }
 
 int main(int argc, char* argv[])

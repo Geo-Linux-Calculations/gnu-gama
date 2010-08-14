@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -32,22 +32,22 @@ namespace GNU_gama {
    * Two variants of implementation are possible:
    *
    *    -    A = L*trans(L)
-   *    -    A = L*D*trans(L),   where D is diagonal and L has 1 on diagonal 
+   *    -    A = L*D*trans(L),   where D is diagonal and L has 1 on diagonal
    */
-  
+
 
 template <typename Float=double, typename Exc=Exception::matvec>
 class CholDec {
 
   Float  tol_;
-  
+
 public:
 
   CholDec(Float t=1e-8) : tol_(t) {}
   virtual ~CholDec() {}
 
   Float  cholTol() const  { return tol_; }
-  Float  cholTol(Float t) { tol_ = t; return tol_; } 
+  Float  cholTol(Float t) { tol_ = t; return tol_; }
 
   virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
   virtual void solve(Vec<Float, Exc>& rhs) const = 0;

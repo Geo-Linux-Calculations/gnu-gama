@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -54,18 +54,18 @@ void DataParser::init_adj()
 
   // .....  <adj-input-data>  ........................................
 
-  init(s_gama_data, t_adj_input_data, 
+  init(s_gama_data, t_adj_input_data,
        s_adj_input_data_1, s_adj_input_data_5, 0,
        &DataParser::adj_input_data, 0, &DataParser::adj_input_data,
        s_adj_input_data_4);
-  
+
   // .....  <sparse-mat>  ............................................
 
   init(s_adj_input_data_1, t_sparse_mat,
        s_sparse_mat_1, s_sparse_mat_4, s_adj_input_data_2,
        0, 0, &DataParser::sparse_mat);
 
-  init(s_sparse_mat_1, t_rows, 
+  init(s_sparse_mat_1, t_rows,
        s_sparse_mat_rows, 0, s_sparse_mat_2,
        0, &DataParser::add_text, 0);
 
@@ -76,8 +76,8 @@ void DataParser::init_adj()
   init(s_sparse_mat_3, t_nonz,
        s_sparse_mat_nonz, 0, s_sparse_mat_4,
        0, &DataParser::add_text, &DataParser::sparse_mat_nonz);
- 
-  init(s_sparse_mat_4, t_row, 
+
+  init(s_sparse_mat_4, t_row,
        s_sparse_mat_row_1, s_sparse_mat_row_2, 0,
        &DataParser::sparse_mat_row, 0, &DataParser::sparse_mat_row);
 
@@ -85,7 +85,7 @@ void DataParser::init_adj()
        s_sparse_mat_row_nonz, 0, s_sparse_mat_row_2,
        0, &DataParser::add_text, &DataParser::sparse_mat_row_n);
 
-  init(s_sparse_mat_row_2, t_int, 
+  init(s_sparse_mat_row_2, t_int,
        s_sparse_mat_row_int, 0, s_sparse_mat_row_3,
        0, &DataParser::add_text, 0);
 
@@ -95,7 +95,7 @@ void DataParser::init_adj()
 
   // ......  <block-diagonal>  .......................................
 
-  init(s_adj_input_data_2, t_block_diagonal, 
+  init(s_adj_input_data_2, t_block_diagonal,
        s_block_diagonal_1, s_block_diagonal_3, s_adj_input_data_3,
        0, 0, &DataParser::block_diagonal);
 
@@ -119,21 +119,21 @@ void DataParser::init_adj()
        s_block_diagonal_block_w, 0, s_block_diagonal_block_3,
        0, &DataParser::add_text, &DataParser::block_diagonal_block_w);
 
-  init(s_block_diagonal_block_3, t_flt,  
+  init(s_block_diagonal_block_3, t_flt,
        s_block_diagonal_block_f, 0, 0,
        0, &DataParser::add_text, &DataParser::block_diagonal_vec_flt);
 
   // ......  <vector>  ...............................................
 
-  init(s_adj_input_data_3, t_vector, 
+  init(s_adj_input_data_3, t_vector,
        s_vector_1, s_vector_2, s_adj_input_data_4,
        0, 0, &DataParser::vector);
 
-  init(s_vector_1, t_dim, 
+  init(s_vector_1, t_dim,
        s_vector_dim, 0, s_vector_2,
        0, &DataParser::add_text, &DataParser::vector_dim);
 
-  init(s_vector_2, t_flt, 
+  init(s_vector_2, t_flt,
        s_vector_flt, 0, 0,
        0, &DataParser::add_text, &DataParser::vector_flt);
 
@@ -150,7 +150,7 @@ void DataParser::init_adj()
   init(s_array_2, t_int,
        s_array_int, 0, 0,
        0, &DataParser::add_text, &DataParser::array_int);
-         
+
   // .................................................................
 }
 
@@ -163,7 +163,7 @@ int DataParser::adj_input_data(const char *name, const char **atts)
 
   adj_sparse_mat = 0;
   adj_block_diagonal = 0;
-  adj_vector.reset();  
+  adj_vector.reset();
   adj_array = 0;
 
   return 0;
@@ -175,7 +175,7 @@ int DataParser::adj_input_data(const char *name)
 
   if (adj_sparse_mat    ) data->set_mat(adj_sparse_mat);
   if (adj_block_diagonal) data->set_cov(adj_block_diagonal);
-  if (adj_vector.dim()  ) data->set_rhs(adj_vector);  
+  if (adj_vector.dim()  ) data->set_rhs(adj_vector);
   if (adj_array         ) data->set_minx(adj_array);
   objects.push_back( new DataObject::AdjInput(data) );
 
@@ -203,7 +203,7 @@ int DataParser::sparse_mat_nonz(const char *name)
   if (pure_data(inp >> rows >> cols >> adj_sparse_mat_nonz))
     {
       text_buffer.erase();
-      adj_sparse_mat = 
+      adj_sparse_mat =
         new SparseMatrix<>(adj_sparse_mat_nonz, rows, cols);
       return end_tag(name);
     }
@@ -267,7 +267,7 @@ int DataParser::block_diagonal_nonz(const char *name)
   if (pure_data(inp >> block_diagonal_blocks_ >> block_diagonal_nonz_))
     {
       text_buffer.erase();
-      adj_block_diagonal = new BlockDiagonal<> 
+      adj_block_diagonal = new BlockDiagonal<>
         (block_diagonal_blocks_, block_diagonal_nonz_);
       return end_tag(name);
     }
@@ -279,7 +279,7 @@ int DataParser::block_diagonal_block_w(const char *name)
   istringstream inp(text_buffer.c_str());
   std::size_t dim, width;
   if (pure_data(inp >> dim >> width) && dim>0 && width>=0 && width<dim)
-    {   
+    {
       block_diagonal_dim   = dim;
       block_diagonal_width = width;
 
@@ -305,10 +305,10 @@ int DataParser::block_diagonal_vec_flt(const char *name)
       block_diagonal_nonz_--;
       text_buffer.erase();
       *bd_vector_iterator++ = flt;
-      
+
       return end_tag(name);
     }
-  
+
   return error("### bad data format in a <flt> element in <block-diagonal>");
 }
 
@@ -321,7 +321,7 @@ int DataParser::block_diagonal_block(const char *name)
     return error("### too many <block> elements in <block-diagonal>");
 
   block_diagonal_blocks_--;
-  adj_block_diagonal->add_block(block_diagonal_dim, 
+  adj_block_diagonal->add_block(block_diagonal_dim,
                                 block_diagonal_width, bd_vector.begin());
 
   return end_tag(name);
@@ -345,7 +345,7 @@ int DataParser::vector_dim(const char *name)
       text_buffer.erase();
       adj_vector.reset(adj_vector_dim);
       adj_vector_iterator = adj_vector.begin();
-      
+
       return end_tag(name);
     }
 
@@ -364,7 +364,7 @@ int DataParser::vector_flt(const char *name)
       adj_vector_dim--;
       text_buffer.erase();
       *adj_vector_iterator++ = flt;
-      
+
       return end_tag(name);
     }
 
@@ -405,7 +405,7 @@ int DataParser::array_int(const char *name)
       adj_array_dim--;
       text_buffer.erase();
       *adj_array_iterator++ = index;
-      
+
       return end_tag(name);
     }
 

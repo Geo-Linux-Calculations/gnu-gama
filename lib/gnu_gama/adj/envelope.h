@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -38,7 +38,7 @@ namespace GNU_gama {
   {
   public:
 
-    Envelope() : dim_(0), defect_(0), diag(0), env(0), xenv(0) 
+    Envelope() : dim_(0), defect_(0), diag(0), env(0), xenv(0)
     {
     }
     Envelope(const Envelope& envelope) : diag(0), env(0), xenv(0)
@@ -53,8 +53,8 @@ namespace GNU_gama {
       set(sm, graph, ordering);
     }
     Envelope(const BlockDiagonal<Float, Index>& cov) : diag(0), env(0), xenv(0)
-    { 
-      set(cov); 
+    {
+      set(cov);
     }
     Envelope(const Float* bdiag, const Float* ediag,
              const Float* benv,  const Float* eenv,
@@ -62,9 +62,9 @@ namespace GNU_gama {
     {
       set(bdiag, ediag, benv, eenv, bbend, eband);
     }
-    ~Envelope() 
-    { 
-      clear(); 
+    ~Envelope()
+    {
+      clear();
     }
     Envelope& operator=(const Envelope& envelope)
     {
@@ -110,7 +110,7 @@ namespace GNU_gama {
           b = xenv[i];
           e = xenv[i+1];
           n = i - j;
-          if (n > Index(e-b)) return 0;  
+          if (n > Index(e-b)) return 0;
 
           return e - n;
         }
@@ -119,7 +119,7 @@ namespace GNU_gama {
           b = xenv[j];
           e = xenv[j+1];
           n = j - i;
-          if (n > Index(e-b)) return 0;  
+          if (n > Index(e-b)) return 0;
 
           return e - n;
         }
@@ -136,7 +136,7 @@ namespace GNU_gama {
           b = xenv[i];
           e = xenv[i+1];
           n = i - j;
-          if (n > Index(e-b)) return 0;  
+          if (n > Index(e-b)) return 0;
 
           return e - n;
         }
@@ -145,7 +145,7 @@ namespace GNU_gama {
           b = xenv[j];
           e = xenv[j+1];
           n = j - i;
-          if (n > Index(e-b)) return 0;  
+          if (n > Index(e-b)) return 0;
 
           return e - n;
         }
@@ -189,10 +189,10 @@ namespace GNU_gama {
         /*
           submatrix decomposition:
           ------------------------
-          
+
           ( L 0 ) ( D 0 ) (L' u') = ( LDL'     LDu'  )
           ( u 1 ) ( 0 d ) (0  1 )   ( uDL'  uDu' + d )
-         
+
          */
 
         Float* b = begin(row);
@@ -252,7 +252,7 @@ namespace GNU_gama {
       }
   }
 
-  
+
   template <typename Float, typename Index>
   void Envelope<Float, Index>::diagonalSolve(Index start, Index stop, Float* rhs) const
   {
@@ -282,19 +282,19 @@ namespace GNU_gama {
       {
         b = xenv[row];
         e = xenv[row+1];
-        
+
         const Float x = *rhs;
         col = rhs - (e-b);
         while (b != e)
           {
             *col++ -= x * *b++;
           }
-        
+
         rhs--;
       }
   }
 
-  
+
   template <typename Float, typename Index>
   void Envelope<Float, Index>::set(const BlockDiagonal<Float, Index>& cov)
   {
@@ -325,7 +325,7 @@ namespace GNU_gama {
         const Float* b   = cov.begin(block);
 
         for (Index r=1; r<=dim; r++)
-          {            
+          {
             Index c = r > band ? r-band : 1;
             xenv[row] = e;
             while (c++ < r)
@@ -389,7 +389,7 @@ namespace GNU_gama {
   template <typename Float, typename Index>
   void Envelope<Float, Index>::copy(const Envelope<Float, Index>& envelope)
   {
-    // diag = env = xenv = 0; ... set before calling copy() 
+    // diag = env = xenv = 0; ... set before calling copy()
 
     dim_ = envelope.dim();
     if (dim_ == 0) return;
@@ -403,7 +403,7 @@ namespace GNU_gama {
     Float* d = diag;
     const Float* cd = envelope.diag;
     for (Index i=1; i<=dim_; i++)
-      { 
+      {
         *d++ = *cd++;
 
         // pointers to off-diagonal elements
@@ -456,7 +456,7 @@ namespace GNU_gama {
         env_size +=  i - min_neighbour[i];
       }
     if (env_size) env = new Float[env_size];
-    Float* e = env; 
+    Float* e = env;
     for (Index i=1; i<=dim_; i++)
       {
         xenv[i] = e;
@@ -464,7 +464,7 @@ namespace GNU_gama {
         xenv[i+1] = e;
       }
     delete[] min_neighbour;
-    
+
 
     for (Index i=0; i<dim_; i++) diag[i] = 0;
     for (Index i=0; i<env_size; i++) env[i] = 0;
@@ -481,7 +481,7 @@ namespace GNU_gama {
         while (b != e)
           {
             a[count] = *b++;
-            c[count] = ordering->invp(*n++);            
+            c[count] = ordering->invp(*n++);
             count++;
           }
 
@@ -495,10 +495,10 @@ namespace GNU_gama {
               {
                 const Index ib = c[j];
                 const Float fb = a[j];
-                
+
                 const Index row = std::max(ia, ib);
                 const Index col = std::min(ia, ib);
-                 
+
                 Float* element = end(row) - (row - col);
                 *element += fa*fb;
               }

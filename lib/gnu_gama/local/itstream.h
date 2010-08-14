@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -39,18 +39,18 @@ template <typename InputStream> class InputTextStream {
 public:
 
   InputTextStream(InputStream& inp, bool sc=false, size_t alloc=256) :
-    input_stream_(inp), skip_comments_(sc), eot_(false), stop_(false),  
+    input_stream_(inp), skip_comments_(sc), eot_(false), stop_(false),
     byte_(0), line_(0), index_(0), end_(0)
     {
-      buffer_.resize(alloc);  
+      buffer_.resize(alloc);
       read_buffer_();
     }
 
   void push_back(char c) { stack_.push(c); }
   void push_back(const std::string&);
- 
-  bool get(char&);                        // get char (' ' on eot() or eol()) 
-  bool get(std::string&);                 //     word 
+
+  bool get(char&);                        // get char (' ' on eot() or eol())
+  bool get(std::string&);                 //     word
   bool get(int&);                         //     int
   bool get(double&);                      //     double
 
@@ -68,8 +68,8 @@ public:
   size_t byte()  const { return byte_;  } // current byte
   size_t line()  const { return line_;  } //         line
 
-  std::pair<const char*, size_t> get_buffer() const { 
-	  return std::pair<const char*, size_t>(buffer_.c_str(), end_); 
+  std::pair<const char*, size_t> get_buffer() const {
+	  return std::pair<const char*, size_t>(buffer_.c_str(), end_);
   }
   size_t get_buffer_index() const { return index_; }
 
@@ -86,7 +86,7 @@ private:
 
 };
 
-template <typename InputStream> 
+template <typename InputStream>
 inline bool InputTextStream<InputStream>::get(char& c)
   {
     if (!stack_.empty())
@@ -94,7 +94,7 @@ inline bool InputTextStream<InputStream>::get(char& c)
         c = stack_.top();
         stack_.pop();
         eol_ = false;    // pushed back 'eols' are ignored
-        return true; 
+        return true;
       }
 
     for (;;)
@@ -106,7 +106,7 @@ inline bool InputTextStream<InputStream>::get(char& c)
         }
       else if (index_ < end_)
         {
-          c = buffer_[index_]; 
+          c = buffer_[index_];
           ++index_;
           ++byte_;
           if (skip_comments_ && (c == '#') )
@@ -134,7 +134,7 @@ inline bool InputTextStream<InputStream>::get(char& c)
         }
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::get(int& n)
   {
     using namespace std;
@@ -144,17 +144,17 @@ bool InputTextStream<InputStream>::get(int& n)
     errno = 0;
     n = atoi(word.c_str());
 
-    if (errno) 
+    if (errno)
       {
         push_back(word);
         n = 0;
         return false;
       }
-    
+
     return true;
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::get(double& n)
   {
     using namespace std;
@@ -164,17 +164,17 @@ bool InputTextStream<InputStream>::get(double& n)
     errno = 0;
     n = atof(word.c_str());
 
-    if (errno) 
+    if (errno)
       {
         push_back(word);
         n = 0;
         return false;
       }
-    
+
     return true;
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::get_int(std::string& word)
   {
     word = "";
@@ -189,7 +189,7 @@ bool InputTextStream<InputStream>::get_int(std::string& word)
       break;
     default:
       push_back(sign);
-      break;  
+      break;
     }
 
     char digit;
@@ -218,12 +218,12 @@ bool InputTextStream<InputStream>::get_int(std::string& word)
     return word!="";
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::get_float(std::string& word)
   {
     word = "";
     skip_ws();
-    
+
     char sign;
     get(sign);
     switch (sign) {
@@ -235,7 +235,7 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
       push_back(sign);
       break;
     }
-    
+
     bool has_digit = false;
     char digit;
     while(get(digit))
@@ -254,7 +254,7 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
         }
         if (eod) break;
       }
-    
+
     char dot;
     get(dot);
     switch(dot) {
@@ -264,8 +264,8 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
     default:
       push_back(dot);
     }
-    
-    while(get(digit)) 
+
+    while(get(digit))
       {
         bool eod = false;
         switch(digit) {
@@ -281,22 +281,22 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
         }
         if (eod) break;
       }
-    
+
     if (!has_digit) {
       push_back(word);
       word = "";
       return false;
     }
-  
+
     char e;
     get(e);
     if (e != 'e' && e !='E')
       push_back(e);
-    else 
+    else
       {
         std::string exp;
         exp += e;
-      
+
         get(sign);
         switch(sign) {
         case '+':
@@ -307,9 +307,9 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
           push_back(sign);
           break;
         }
-        
+
         has_digit = false;
-        while(get(digit)) 
+        while(get(digit))
           {
             bool eod = false;
             switch(digit) {
@@ -325,9 +325,9 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
             }
             if (eod) break;
           }
-      
+
         word += exp;
-        if (!has_digit) 
+        if (!has_digit)
           {
             push_back(word);
             word = "";
@@ -338,14 +338,14 @@ bool InputTextStream<InputStream>::get_float(std::string& word)
     return true;
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::get(std::string& word)
   {
     word = "";
 
     if (!skip_ws()) return false;
 
-    char  c; 
+    char  c;
     while (get(c))
       {
         if (isspace(c))
@@ -359,7 +359,7 @@ bool InputTextStream<InputStream>::get(std::string& word)
     return true;
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 void InputTextStream<InputStream>::push_back(const std::string& word )
   {
     using namespace std;
@@ -368,7 +368,7 @@ void InputTextStream<InputStream>::push_back(const std::string& word )
       stack_.push(*r);
   }
 
-template <typename InputStream> 
+template <typename InputStream>
 bool InputTextStream<InputStream>::skip_ws()
   {
     char c;
@@ -380,8 +380,8 @@ bool InputTextStream<InputStream>::skip_ws()
         }
     return !eot();
   }
- 
-template <typename InputStream> 
+
+template <typename InputStream>
 void InputTextStream<InputStream>::read_buffer_()
   {
     if (eot_) return;
@@ -397,7 +397,7 @@ void InputTextStream<InputStream>::read_buffer_()
     char c;
     while (input_stream_.get(c))
       {
-        if (c == '\n') 
+        if (c == '\n')
           {
             if (end_ < buffer_.length())
               buffer_[end_] = ' ';

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU Gama)
     Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -29,7 +29,7 @@ namespace GNU_gama {
 
   // sign 0  conversion without sign
   //      1  sign left-padded
-  //      2  sign right-padded 
+  //      2  sign right-padded
   //      3  signed with leading spaces trimmed
   std::string gon2deg(double gon,  int sign, int prec);
 

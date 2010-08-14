@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -25,7 +25,7 @@
 using namespace std;
 using namespace GaMaLib;
 
-ApproximateVectors::ApproximateVectors(PointData& b, ObservationData& m) 
+ApproximateVectors::ApproximateVectors(PointData& b, ObservationData& m)
     : PD(b), OD(m)
 {
     missing_coords = false;
@@ -40,7 +40,7 @@ ApproximateVectors::ApproximateVectors(PointData& b, ObservationData& m)
 		break;
 	    }
     }
-    
+
     if (missing_coords)
       for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
         {
@@ -48,7 +48,7 @@ ApproximateVectors::ApproximateVectors(PointData& b, ObservationData& m)
 
           LocalPoint& from = PD[obs->from()];
           LocalPoint& to   = PD[obs->to  ()];
-          
+
           if ( ApproximateVectors::unknown_xy(from) ||
                ApproximateVectors::unknown_xy(to) )
             {
@@ -62,7 +62,7 @@ ApproximateVectors::ApproximateVectors(PointData& b, ObservationData& m)
                ApproximateVectors::unknown_z(to) )
             if (const Zdiff* vz = dynamic_cast<const Zdiff*>(obs))
               OVD.ZD.push_back(vz);
-          
+
         }
 }
 
@@ -75,7 +75,7 @@ void ApproximateVectors::execute()
     do {
 
 	updated = false;
-	
+
 	for (Z_const_iterator ci = OVD.ZD.begin(); ci != OVD.ZD.end(); ++ci)
 	{
 	    const PointID& from_id = (*ci)->from();
@@ -93,10 +93,10 @@ void ApproximateVectors::execute()
 	    else
 		if (ApproximateVectors::known_z(from) &&
 		    ApproximateVectors::unknown_z(to) )
-	    {		
+	    {
 		to.set_z( from.z() + (*ci)->value() );
 		updated = true;
-	    }	    
+	    }
 	} // for
 
 	for (X_const_iterator ci = OVD.XD.begin(); ci != OVD.XD.end(); ++ci)
@@ -113,22 +113,22 @@ void ApproximateVectors::execute()
 		Y_const_iterator cii = find_ydiff(from_id, to_id);
 		if ( cii == OVD.YD.end() )
 		    continue;
-		
+
 		from.set_xy( to.x() - (*ci)->value(), to.y() - (*cii)->value() );
 		updated = true;
 	    }
 	    else
 		if ( ApproximateVectors::known_xy(from) &&
-		     ApproximateVectors::unknown_xy(to) ) 
+		     ApproximateVectors::unknown_xy(to) )
 		{
 		    Y_const_iterator cii = find_ydiff(from_id, to_id);
 		    if ( cii == OVD.YD.end() )
 			continue;
-		    		    
+
 		    to.set_xy( from.x() + (*ci)->value(), from.y() + (*cii)->value() );
 		    updated = true;
 		}
-	    
+
 	} // for
     }
     while ( updated );

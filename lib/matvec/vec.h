@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,7 +28,7 @@
 #include <matvec/vecbase.h>
 
 namespace GNU_gama {   /** \brief Vector */
-  
+
 
 template <typename Float=double, typename Exc=Exception::matvec>
 class Vec : public VecBase<Float, Exc> {
@@ -48,7 +48,7 @@ public:
          iterator e=this->end();
          if (p == e)
             throw Exc(Exception::BadRank, "Vec::Vec(Index, Float ...)");
-         *p = m11;  
+         *p = m11;
          ++p;
 
          va_list  ap;
@@ -61,14 +61,14 @@ public:
          va_end(ap);
     }
 
-  Vec operator*(Float f) const { 
-    Vec t(this->dim()); mul(f, t); return t; 
+  Vec operator*(Float f) const {
+    Vec t(this->dim()); mul(f, t); return t;
   }
   Vec operator+(const Vec &x) const {
-    Vec t(this->dim()); add(x, t); return t; 
+    Vec t(this->dim()); add(x, t); return t;
   }
   Vec operator-(const Vec &x) const {
-    Vec t(this->dim()); sub(x, t); return t; 
+    Vec t(this->dim()); sub(x, t); return t;
   }
 
   Vec& operator*=(Float f)      { mul(f, *this); return *this; }
@@ -91,7 +91,7 @@ inline Vec<Float, Exc> operator*(Float f, const Vec<Float, Exc>& V)
 
 
 template <typename Float, typename Exc>
-Vec<Float, Exc> 
+Vec<Float, Exc>
 operator*(const MatBase<Float, Exc> &A, const Vec<Float, Exc> &b)
   {
     if (A.cols() != b.dim())
@@ -102,7 +102,7 @@ operator*(const MatBase<Float, Exc> &A, const Vec<Float, Exc> &b)
     for (Index i=1; i<=A.rows(); i++)
       {
         s = 0;
-        for (Index j=1; j<=A.cols(); j++) 
+        for (Index j=1; j<=A.cols(); j++)
           s += A(i,j)*b(j);
         t(i) = s;
       }
@@ -112,7 +112,7 @@ operator*(const MatBase<Float, Exc> &A, const Vec<Float, Exc> &b)
 
 
 template <typename Float, typename Exc>
-Vec<Float, Exc> 
+Vec<Float, Exc>
 operator*(const Mat<Float, Exc> &A, const Vec<Float, Exc> &b)
   {
     if (A.cols() != b.dim())
@@ -128,9 +128,9 @@ operator*(const Mat<Float, Exc> &A, const Vec<Float, Exc> &b)
       {
         s = 0;
         bi = bb;
-        for (Index j=1; j<=A.cols(); j++) 
+        for (Index j=1; j<=A.cols(); j++)
           s += *ai++ * *bi++;
-        *ti++ = s; 
+        *ti++ = s;
       }
 
     return t;

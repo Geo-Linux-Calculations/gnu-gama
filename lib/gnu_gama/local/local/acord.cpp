@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -32,7 +32,7 @@
 using namespace std;
 using namespace GaMaLib;
 
-Acord::Acord(PointData& b, ObservationData& m) 
+Acord::Acord(PointData& b, ObservationData& m)
     : PD(b), OD(m), RO(b,m)
 {
   missing_coordinates = false;
@@ -53,7 +53,7 @@ Acord::Acord(PointData& b, ObservationData& m)
       else if (hp)  given_z++,   set_z  .insert(c);
     }
 
-  for (ObservationData::const_iterator 
+  for (ObservationData::const_iterator
          i=OD.begin(), e=OD.end(); i!=e; ++i, ++observations);
 
 
@@ -62,27 +62,27 @@ Acord::Acord(PointData& b, ObservationData& m)
   for (PointData::iterator ii=PD.begin(); ii!=PD.end(); ++ii)
     {
       LocalPoint& p = (*ii).second;
-      
+
       if (p.test_xy()) p.set_xy(p.x(), -p.y());
     }
-  
-  for (ObservationData::ClusterList::iterator 
+
+  for (ObservationData::ClusterList::iterator
          ci=OD.clusters.begin(), ei=OD.clusters.end(); ci!=ei; ++ci)
     {
       ObservationData::ClusterType *cluster = *ci;
-      for (ObservationList::iterator 
+      for (ObservationList::iterator
              m = cluster->observation_list.begin(),
              e = cluster->observation_list.end()  ; m!=e; ++m)
         {
           Observation *obs = *m;
           bool b = false;
- 
+
           if      (dynamic_cast<Y*>    (obs))  b = true;
           else if (dynamic_cast<Ydiff*>(obs))  b = true;
 
           if (b)  obs->set_value( -obs->value() );
         }
-    } 
+    }
 }
 
 void Acord::execute()
@@ -93,7 +93,7 @@ void Acord::execute()
 
       // ReducedObservations RO(PD, OD);
       RO.execute();
-      
+
       do {
         all = total_z + total_xy + total_xyz;
 
@@ -103,10 +103,10 @@ void Acord::execute()
 
         ApproximateHeights ah(PD, OD);
         ah.execute();
-	
+
         ApproximateVectors av(PD, OD);
         av.execute();
-	
+
         {
           // all transformed slope distances go to a single standpoint
           StandPoint* standpoint = new StandPoint(&OD);
@@ -122,7 +122,7 @@ void Acord::execute()
 
               PointID from = s->from();
               PointID to   = s->to();
-              
+
               // look for a zenith angle corresponding to the given slope distance
               ObservationList::iterator i   = c->observation_list.begin();
               ObservationList::iterator end = c->observation_list.end();
@@ -140,47 +140,47 @@ void Acord::execute()
           standpoint->update();
           // insert standpoint into `observation data'
           OD.clusters.push_back(standpoint);
-          
+
           ApproximateCoordinates ps(PD, OD);
           ps.calculation();
-          
+
           OD.clusters.pop_back();
           delete standpoint;
         }
 
 	RO.execute();
-	
+
         ObservationList local;
-        for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i) 
+        for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
         {
           local.push_back(*i);
         }
-        
+
         Orientation orp(PD, local);
         orp.add_all();
-        
+
         for (PointData::const_iterator i=PD.begin(); i!=PD.end(); ++i)
           {
             const PointID&    c = (*i).first;
             const LocalPoint& p = (*i).second;
             bool cp = p.test_xy();
             bool hp = p.test_z();
-            
+
             if (cp && hp) total_xyz++;
             else if (cp)  total_xy++;
             else if (hp)  total_z++;
-            
+
             if (p.active_xy() && !cp) missing_coordinates = true;
             if (p.active_z()  && !hp) missing_coordinates = true;
-            
+
             int t = 0;
             if      (set_xyz.find(c) != set_xyz.end()) t = 1;
             else if (set_xy .find(c) != set_xy .end()) t = 2;
             else if (set_z  .find(c) != set_z  .end()) t = 3;
-            
+
             if (cp && hp)
               {
-                switch (t) 
+                switch (t)
                   {
                   case 0 : computed_xyz++; break;
                   case 1 :                 break;
@@ -191,7 +191,7 @@ void Acord::execute()
               }
             else if (cp)
               {
-                if (t!=2)  computed_xy++; 
+                if (t!=2)  computed_xy++;
               }
             else if (hp)
               {

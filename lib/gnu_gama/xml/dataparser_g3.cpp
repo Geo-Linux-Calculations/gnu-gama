@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,11 +31,11 @@ namespace GNU_gama {
 
   struct DataParser_g3 {
 
-    DataParser_g3() : model(0) 
+    DataParser_g3() : model(0)
     {
     }
     ~DataParser_g3()
-    {  
+    {
       delete model;
     }
 
@@ -115,7 +115,7 @@ void DataParser::init_g3()
   init(s_g3_const_ellipsoid, t_a,
        0, 0, s_g3_const_ellipsoid_a,
        0, &DataParser::add_text, 0);
-  
+
   init(s_g3_const_ellipsoid_a, t_b,
        s_g3_const_ellipsoid_b, 0, s_g3_const_ellipsoid2,
        0, &DataParser::add_text, &DataParser::g3_const_ellipsoid_b);
@@ -234,11 +234,11 @@ void DataParser::init_g3()
        0, &DataParser::add_text, &DataParser::g3_point_dl);
 
   // .....  <g3-model> <obs>  ........................................
-  
+
   init(s_g3_model, t_obs,
        s_g3_obs, 0, 0,
        &DataParser::g3_obs, 0, &DataParser::g3_obs);
-         
+
   // .....  <g3-model> <obs> <cov-mat>  ..............................
 
   init(s_g3_obs, t_covmat,
@@ -278,15 +278,15 @@ void DataParser::init_g3()
   init(s_g3_obs_dist_opt, t_stdev,
        s_g3_obs_dist_opt_stdev, 0, 0,
        0, &DataParser::optional_stdev, 0);
- 
+
   init(s_g3_obs_dist_opt, t_variance,
        s_g3_obs_dist_opt_variance, 0, 0,
        0, &DataParser::optional_variance, 0);
- 
+
   init(s_g3_obs_dist_opt, t_from_dh,
        s_g3_obs_dist_opt_from_dh, 0, 0,
        0, &DataParser::optional_from_dh, 0);
- 
+
   init(s_g3_obs_dist_opt, t_to_dh,
        s_g3_obs_dist_opt_to_dh, 0, 0,
        0, &DataParser::optional_to_dh, 0);
@@ -312,15 +312,15 @@ void DataParser::init_g3()
   init(s_g3_obs_zenith_opt, t_stdev,
        s_g3_obs_zenith_opt_stdev, 0, 0,
        0, &DataParser::optional_stdev, 0);
- 
+
   init(s_g3_obs_zenith_opt, t_variance,
        s_g3_obs_zenith_opt_variance, 0, 0,
        0, &DataParser::optional_variance, 0);
- 
+
   init(s_g3_obs_zenith_opt, t_from_dh,
        s_g3_obs_zenith_opt_from_dh, 0, 0,
        0, &DataParser::optional_from_dh, 0);
- 
+
   init(s_g3_obs_zenith_opt, t_to_dh,
        s_g3_obs_zenith_opt_to_dh, 0, 0,
        0, &DataParser::optional_to_dh, 0);
@@ -346,15 +346,15 @@ void DataParser::init_g3()
   init(s_g3_obs_azimuth_opt, t_stdev,
        s_g3_obs_azimuth_opt_stdev, 0, 0,
        0, &DataParser::optional_stdev, 0);
- 
+
   init(s_g3_obs_azimuth_opt, t_variance,
        s_g3_obs_azimuth_opt_variance, 0, 0,
        0, &DataParser::optional_variance, 0);
- 
+
   init(s_g3_obs_azimuth_opt, t_from_dh,
        s_g3_obs_azimuth_opt_from_dh, 0, 0,
        0, &DataParser::optional_from_dh, 0);
- 
+
   init(s_g3_obs_azimuth_opt, t_to_dh,
        s_g3_obs_azimuth_opt_to_dh, 0, 0,
        0, &DataParser::optional_to_dh, 0);
@@ -364,7 +364,7 @@ void DataParser::init_g3()
   init(s_g3_obs, t_vector,
        s_g3_obs_vector, s_g3_obs_vector_opt, 0,
        0, 0, &DataParser::g3_obs_vector);
-  
+
    init(s_g3_obs_vector, t_from,
         s_g3_obs_vector_from, 0, s_g3_obs_vector_after_from,
         0, &DataParser::add_text, 0);
@@ -380,15 +380,15 @@ void DataParser::init_g3()
    init(s_g3_obs_vector_after_dx, t_dy,
         s_g3_obs_vector_dy, 0, s_g3_obs_vector_after_dy,
         0, &DataParser::add_text, 0);
-  
+
    init(s_g3_obs_vector_after_dy, t_dz,
         s_g3_obs_vector_dz, 0, s_g3_obs_vector_opt,
         0, &DataParser::add_text, 0);
-  
+
    init(s_g3_obs_vector_opt, t_from_dh,
         s_g3_obs_vector_opt_from_dh, 0, 0,
         0, &DataParser::optional_from_dh, 0);
-  
+
    init(s_g3_obs_vector_opt, t_to_dh,
         s_g3_obs_vector_opt_to_dh, 0, 0,
         0, &DataParser::optional_to_dh, 0);
@@ -420,7 +420,7 @@ void DataParser::init_g3()
    init(s_g3_obs, t_hdiff,
         s_g3_obs_hdiff, s_g3_obs_hdiff_opt, 0,
         0, 0, &DataParser::g3_obs_hdiff);
-   
+
    init(s_g3_obs_hdiff, t_from,
         s_g3_obs_hdiff_from, 0, s_g3_obs_hdiff_after_from,
         0, &DataParser::add_text, 0);
@@ -428,33 +428,33 @@ void DataParser::init_g3()
    init(s_g3_obs_hdiff_after_from, t_to,
         s_g3_obs_hdiff_to, 0, s_g3_obs_hdiff_after_to,
         0, &DataParser::add_text, 0);
-   
+
    init(s_g3_obs_hdiff_after_to, t_val,
         s_g3_obs_hdiff_val, 0, s_g3_obs_hdiff_opt,
         0, &DataParser::add_text, 0);
-   
+
    init(s_g3_obs_hdiff_opt, t_stdev,
         s_g3_obs_hdiff_opt_stdev, 0, 0,
         0, &DataParser::optional_stdev, 0);
-   
+
    init(s_g3_obs_hdiff_opt, t_variance,
         s_g3_obs_hdiff_opt_variance, 0, 0,
         0, &DataParser::optional_variance, 0);
- 
+
 //  init(s_g3_obs_hdiff_opt, t_from_dh,
 //       s_g3_obs_hdiff_opt_from_dh, 0, 0,
 //       0, &DataParser::optional_from_dh, 0);
-// 
+//
 //  init(s_g3_obs_hdiff_opt, t_to_dh,
 //       s_g3_obs_hdiff_opt_to_dh, 0, 0,
 //       0, &DataParser::optional_to_dh, 0);
 
-   // ..... <g3-model> <obs> <height> ................................... 
+   // ..... <g3-model> <obs> <height> ...................................
 
    init(s_g3_obs, t_height,
         s_g3_obs_height, s_g3_obs_height_opt, 0,
         0, 0, &DataParser::g3_obs_height);
-   
+
    init(s_g3_obs_height, t_id,
         s_g3_obs_height_id, 0, s_g3_obs_height_after_id,
         0, &DataParser::add_text, 0);
@@ -462,16 +462,16 @@ void DataParser::init_g3()
    init(s_g3_obs_height_after_id, t_val,
         s_g3_obs_height_val, 0, s_g3_obs_height_opt,
         0, &DataParser::add_text, 0);
-   
+
    init(s_g3_obs_height_opt, t_stdev,
         s_g3_obs_height_opt_stdev, 0, 0,
         0, &DataParser::optional_stdev, 0);
-   
+
    init(s_g3_obs_height_opt, t_variance,
         s_g3_obs_height_opt_variance, 0, 0,
         0, &DataParser::optional_variance, 0);
 
-   // ..... <g3-model> <obs> <angle> ................................... 
+   // ..... <g3-model> <obs> <angle> ...................................
 
    init(s_g3_obs, t_angle,
         s_g3_obs_angle, s_g3_obs_angle_opt, 0,
@@ -496,15 +496,15 @@ void DataParser::init_g3()
    init(s_g3_obs_angle_opt, t_stdev,
         s_g3_obs_angle_opt_stdev, 0, 0,
         0, &DataParser::optional_stdev, 0);
-   
+
    init(s_g3_obs_angle_opt, t_variance,
         s_g3_obs_angle_opt_variance, 0, 0,
         0, &DataParser::optional_variance, 0);
-   
+
    init(s_g3_obs_angle_opt, t_from_dh,
         s_g3_obs_angle_opt_from_dh, 0, 0,
         0, &DataParser::optional_from_dh, 0);
-   
+
    init(s_g3_obs_angle_opt, t_left_dh,
         s_g3_obs_angle_opt_left_dh, 0, 0,
         0, &DataParser::optional_left_dh, 0);
@@ -520,7 +520,7 @@ int DataParser::g3_model(const char *name, const char **atts)
   state = next[state][tag(name)];
 
   g3->model = new g3::Model;
-  
+
   return 0;
 }
 
@@ -614,7 +614,7 @@ int DataParser::g3_point(const char *name)
 {
   // checks consistency of the current point
 
-  if (!point->N.cmp_state(point->E)) 
+  if (!point->N.cmp_state(point->E))
     return error("### parameters N and E do not have common status");
 
   return  end_tag(name);
@@ -775,7 +775,7 @@ int DataParser::g3_obs(const char *name)
 {
   using namespace g3;
 
-  int obs_dim = 0; 
+  int obs_dim = 0;
   for (List<g3::Observation*>::const_iterator
          i=g3->obs_cluster->observation_list.begin(),
          e=g3->obs_cluster->observation_list.end();  i!=e;  ++i)
@@ -783,13 +783,13 @@ int DataParser::g3_obs(const char *name)
       obs_dim += (*i)->dimension();
     }
 
-  if (obs_dim != int(g3->scale.size())) 
+  if (obs_dim != int(g3->scale.size()))
     return error("### INTERNAL ERROR IN "
                  "int DataParser::g3_obs(const char *name)");
 
 
   int cov_dim  = 0;
-  int cov_band = 0; 
+  int cov_band = 0;
   typedef std::list<CovMat<> >::const_iterator Iterator;
   for (Iterator i=g3->cov_list.begin(), e=g3->cov_list.end(); i!=e; ++i)
     {
@@ -873,7 +873,7 @@ int DataParser::optional_stdev(const char *s, int len)
   stringstream istr(string(s, len));
   DataParser_g3::Cov   cov(1,0);
   double  f;
-  
+
   if (!pure_data(istr >> f)) return error("### bad <stdev>");
 
   cov(1,1) = f*f;
@@ -888,7 +888,7 @@ int DataParser::optional_variance(const char *s, int len)
   stringstream istr(string(s, len));
   DataParser_g3::Cov   cov(1,0);
   double  f;
-  
+
   if (!pure_data(istr >> f)) return error("### bad <variance>");
 
   cov(1,1) = f;
@@ -939,7 +939,7 @@ int DataParser::optional_right_dh(const char *s, int len)
 
 int DataParser::g3_obs_dist(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       from, to;
   double       val;
@@ -954,7 +954,7 @@ int DataParser::g3_obs_dist(const char *name)
       distance->set(val);
       distance->from_dh = optional(g3->from_dh);
       distance->to_dh   = optional(g3->to_dh);
-      g3->obs_cluster->observation_list.push_back(distance);  
+      g3->obs_cluster->observation_list.push_back(distance);
       g3->scale.push_back(1.0);
 
       return  end_tag(name);
@@ -965,7 +965,7 @@ int DataParser::g3_obs_dist(const char *name)
 
 int DataParser::g3_obs_zenith(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       from, to;
   string       sval;
@@ -993,7 +993,7 @@ int DataParser::g3_obs_zenith(const char *name)
       zenith->set(val*GON_TO_RAD);
       zenith->from_dh = optional(g3->from_dh);
       zenith->to_dh   = optional(g3->to_dh);
-      g3->obs_cluster->observation_list.push_back(zenith);  
+      g3->obs_cluster->observation_list.push_back(zenith);
 
       return  end_tag(name);
     }
@@ -1003,7 +1003,7 @@ int DataParser::g3_obs_zenith(const char *name)
 
 int DataParser::g3_obs_azimuth(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       from, to;
   string       sval;
@@ -1025,7 +1025,7 @@ int DataParser::g3_obs_azimuth(const char *name)
       azimuth->set(val);
       azimuth->from_dh = optional(g3->from_dh);
       azimuth->to_dh   = optional(g3->to_dh);
-      g3->obs_cluster->observation_list.push_back(azimuth);  
+      g3->obs_cluster->observation_list.push_back(azimuth);
 
       return  end_tag(name);
     }
@@ -1035,7 +1035,7 @@ int DataParser::g3_obs_azimuth(const char *name)
 
 int DataParser::g3_obs_vector(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string from, to;
   double dx, dy, dz;
@@ -1058,21 +1058,21 @@ int DataParser::g3_obs_vector(const char *name)
 
       return end_tag(name);
     }
-  
+
   return error("### bad <vector> from to dx dy dz : " + text_buffer);
 }
 
 int DataParser::g3_obs_xyz(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string id;
   double x, y, z;
-  
+
   if (pure_data(istr >> id >> x >> y >> z))
     {
       text_buffer.clear();
-      
+
       XYZ* xyz = new XYZ;
       xyz->id  = id;
       xyz->set_xyz(x, y, z);
@@ -1084,13 +1084,13 @@ int DataParser::g3_obs_xyz(const char *name)
 
       return end_tag(name);
     }
-  
+
   return error("### bad <xyz>");
 }
 
 int DataParser::g3_obs_hdiff(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       from, to;
   double       val;
@@ -1098,14 +1098,14 @@ int DataParser::g3_obs_hdiff(const char *name)
   if (pure_data(istr >> from >> to >> val))
    {
      text_buffer.clear();
-     
+
      HeightDiff* hdiff = new HeightDiff;
      hdiff->from = from;
      hdiff->to   = to;
      hdiff->set(val);
      hdiff->from_dh = optional(g3->from_dh);
      hdiff->to_dh   = optional(g3->to_dh);
-     g3->obs_cluster->observation_list.push_back(hdiff);  
+     g3->obs_cluster->observation_list.push_back(hdiff);
      g3->scale.push_back(1.0);
 
      return  end_tag(name);
@@ -1116,7 +1116,7 @@ int DataParser::g3_obs_hdiff(const char *name)
 
 int DataParser::g3_obs_height(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       id;
   double       val;
@@ -1124,11 +1124,11 @@ int DataParser::g3_obs_height(const char *name)
   if (pure_data(istr >> id >> val))
    {
      text_buffer.clear();
-     
+
      Height* height = new Height;
      height->id = id;
      height->set(val);
-     g3->obs_cluster->observation_list.push_back(height);  
+     g3->obs_cluster->observation_list.push_back(height);
      g3->scale.push_back(1.0);
 
      return  end_tag(name);
@@ -1139,16 +1139,16 @@ int DataParser::g3_obs_height(const char *name)
 
 int DataParser::g3_const_apriori_sd(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   double       sd;
 
   if (pure_data(istr >> sd))
    {
      text_buffer.clear();
- 
+
      g3->model->set_apriori_sd(sd);
-     
+
      return  end_tag(name);
    }
 
@@ -1157,16 +1157,16 @@ int DataParser::g3_const_apriori_sd(const char *name)
 
 int DataParser::g3_const_conf_level(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   double       cl;
 
   if (pure_data(istr >> cl))
    {
      text_buffer.clear();
- 
+
      g3->model->set_conf_level(cl);
-     
+
      return  end_tag(name);
    }
 
@@ -1175,16 +1175,16 @@ int DataParser::g3_const_conf_level(const char *name)
 
 int DataParser::g3_const_tol_abs(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   double       ta;
 
   if (pure_data(istr >> ta))
    {
      text_buffer.clear();
- 
+
      g3->model->set_tol_abs(ta);
-     
+
      return  end_tag(name);
    }
 
@@ -1193,7 +1193,7 @@ int DataParser::g3_const_tol_abs(const char *name)
 
 int DataParser::g3_const_ellipsoid_id(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       s;
 
@@ -1213,7 +1213,7 @@ int DataParser::g3_const_ellipsoid_id(const char *name)
 
 int DataParser::g3_const_ellipsoid_b(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   double       a, b;
 
@@ -1232,7 +1232,7 @@ int DataParser::g3_const_ellipsoid_b(const char *name)
 
 int DataParser::g3_const_ellipsoid_inv_f(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   double       a, inv_f;
 
@@ -1253,7 +1253,7 @@ int DataParser::g3_const_ang_degrees(const char *name)
 {
   text_buffer.clear();
   g3->model->set_angular_units_degrees();
-  
+
   return end_tag(name);
 }
 
@@ -1261,13 +1261,13 @@ int DataParser::g3_const_ang_gons(const char *name)
 {
   text_buffer.clear();
   g3->model->set_angular_units_gons();
-  
+
   return end_tag(name);
 }
 
 int DataParser::g3_obs_angle(const char *name)
 {
-  using namespace g3;  
+  using namespace g3;
   stringstream istr(text_buffer);
   string       from, left, right;
   string       sval;
@@ -1275,7 +1275,7 @@ int DataParser::g3_obs_angle(const char *name)
   if (pure_data(istr >> from >> left >> right >> sval))
    {
      text_buffer.clear();
-     
+
      double val;
      if (deg2gon(sval, val))
        {
@@ -1297,7 +1297,7 @@ int DataParser::g3_obs_angle(const char *name)
      angle->from_dh  = optional(g3->from_dh);
      angle->left_dh  = optional(g3->to_dh);
      angle->right_dh = optional(g3->to_dh);
-     g3->obs_cluster->observation_list.push_back(angle);  
+     g3->obs_cluster->observation_list.push_back(angle);
 
      return  end_tag(name);
    }

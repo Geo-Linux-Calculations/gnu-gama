@@ -35,7 +35,7 @@ namespace GNU_gama {
    * finite segment of the Hilbert Matrix. The Hilbert matrix has the
    * elements H(i,j) = 1/(i+j-1). The segments of this are known to be
    * increasingly ill-conditioned with increasing size.
-   * 
+   *
    */
 
 template <typename Float, typename Exc> Mat<Float, Exc> InvHilbert(Index n)

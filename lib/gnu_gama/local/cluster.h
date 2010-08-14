@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -43,23 +43,23 @@ namespace GaMaLib {
   public:
 
     PointID  station;
-    
-    StandPoint(const ObservationData* od) 
-      : 
-      GNU_gama::Cluster<Observation>(od), 
-      test_or(false), indx_or(0) 
+
+    StandPoint(const ObservationData* od)
+      :
+      GNU_gama::Cluster<Observation>(od),
+      test_or(false), indx_or(0)
       {
       }
 
-    StandPoint* clone(const ObservationData*p) const 
+    StandPoint* clone(const ObservationData*p) const
       {
-        return new StandPoint(p); 
-      } 
+        return new StandPoint(p);
+      }
 
-    double orientation() const       
+    double orientation() const
       {
         if (!test_or) throw GaMaLib::Exception(T_POBS_bad_data);
-        return attr_or;                  
+        return attr_or;
       }
     void   set_orientation(Double p) { attr_or = p; test_or = true; }
     bool   test_orientation() const  { return test_or;              }
@@ -81,14 +81,14 @@ namespace GaMaLib {
   class Coordinates : public GNU_gama::Cluster<Observation> {
   public:
 
-    Coordinates(const ObservationData* od) 
-      : GNU_gama::Cluster<Observation>(od) 
+    Coordinates(const ObservationData* od)
+      : GNU_gama::Cluster<Observation>(od)
       {
       }
-    Coordinates* clone(const ObservationData*p) const 
-      { 
-        return new Coordinates(p); 
-      } 
+    Coordinates* clone(const ObservationData*p) const
+      {
+        return new Coordinates(p);
+      }
   };
 
 
@@ -97,14 +97,14 @@ namespace GaMaLib {
   class HeightDifferences : public GNU_gama::Cluster<Observation> {
   public:
 
-    HeightDifferences(const ObservationData* od) 
-      : GNU_gama::Cluster<Observation>(od) 
+    HeightDifferences(const ObservationData* od)
+      : GNU_gama::Cluster<Observation>(od)
       {
       }
-    HeightDifferences* clone(const ObservationData*p) const 
-      { 
-        return new HeightDifferences(p); 
-      } 
+    HeightDifferences* clone(const ObservationData*p) const
+      {
+        return new HeightDifferences(p);
+      }
   };
 
 
@@ -113,14 +113,14 @@ namespace GaMaLib {
   class Vectors : public GNU_gama::Cluster<Observation> {
   public:
 
-    Vectors(const ObservationData* od) 
-      : GNU_gama::Cluster<Observation>(od) 
+    Vectors(const ObservationData* od)
+      : GNU_gama::Cluster<Observation>(od)
       {
       }
-    Vectors* clone(const ObservationData*p) const 
-      { 
-        return new Vectors(p); 
-      } 
+    Vectors* clone(const ObservationData*p) const
+      {
+        return new Vectors(p);
+      }
   };
 
 

@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -30,14 +30,14 @@
 namespace GaMaLib {
 
 
-  class ParserException : public GaMaLib::Exception 
+  class ParserException : public GaMaLib::Exception
   {
   public:
 
     int line, error_code;
 
     ParserException(std::string s, int r, int c)
-      : GaMaLib::Exception(s), line(r), error_code(c) 
+      : GaMaLib::Exception(s), line(r), error_code(c)
       {
       }
 
@@ -47,33 +47,33 @@ namespace GaMaLib {
   class GKFparser : public GNU_gama::BaseParser<ParserException>
     {
     public:
-   
+
       GKFparser(GaMaLib::PointData& sb, GaMaLib::ObservationData& od);
       ~GKFparser();
-      
+
       int characterDataHandler(const char* s, int len);
       int startElement(const char *cname, const char **atts);
       int endElement(const char * name);
-      
+
       // public data members
-      
+
       std::string description;          // network description
       std::string gama_xml_version;
-      
+
       // adjustment parameters
-      
+
       std::string   TXT, STX, OPR;      // file names from gkf specification
       double m0_apr, konf_pr, tol_abs;  // implicitly 10, 0.95, 1000
       bool   typ_m0_apriorni;           // implicitly false
       bool   update_constr;             // implicitly false
 
-      double epoch;                     // implicitly 0; 
-      
+      double epoch;                     // implicitly 0;
+
       double implicit_stdev_direction() const { return smer_str; }
       double implicit_stdev_angle()    const { return uhel_str; }
       double implicit_stdev_zangle()   const { return z_uhel_str; }
-      double implicit_stdev_distance(double d) const 
-        { 
+      double implicit_stdev_distance(double d) const
+        {
           using namespace std;
           return delka_str + delka_str_km * pow(d/1000, delka_str_exp);
         }
@@ -83,12 +83,12 @@ namespace GaMaLib {
 
       /* check if covariance matrices are positive-definite */
       void   check_covariances(bool ch=true)   { check_cov_mat = ch;   }
-      
-    private: 
-      
+
+    private:
+
       GaMaLib::PointData&       SB;        // point list
       GaMaLib::ObservationData& OD;        // observation list
-      
+
       enum gkf_tag {
         tag_unknown,
         tag_gama_xml,
@@ -110,7 +110,7 @@ namespace GaMaLib {
         tag_vectors,
         tag_vec
       };
-      
+
       gkf_tag tag(const char* cname);
 
       enum gkf_state {
@@ -145,25 +145,25 @@ namespace GaMaLib {
         state_vectors_after_cov,
         state_stop
       };
-      
+
       // 1.7.09 std::pair<"standard deviation", "angular value in degrees">
       std::vector<std::pair<Double, bool> > sigma;
       Index        idim, iband;            // covariance matrix dim. / band
       bool         pp_xydef, pp_zdef;      // process_point();
       Double       pp_x, pp_y, pp_z;
-      PointID      pp_id;      
+      PointID      pp_id;
       std::string  cov_mat_data;
-      
+
       // Implicit value of stanpoint ID is set for sets of
       // directions/distances and/or angles.
-      
+
       std::string         standpoint_id;
-      Double              obs_from_dh; 
-      
+      Double              obs_from_dh;
+
       StandPoint        * standpoint;
       Coordinates       * coordinates;
       HeightDifferences * heightdifferences;
-      Vectors           * vectors; 
+      Vectors           * vectors;
 
       bool                check_cov_mat;
 
@@ -178,18 +178,18 @@ namespace GaMaLib {
       int process_sdistance  (const char** atts);
       int process_zangle     (const char** atts);
       int process_obs_dh     (const char** atts);
-      
-      int process_obs(const char** atts);    
+
+      int process_obs(const char** atts);
       int finish_obs();
-      
+
       int process_coords(const char** atts);
       int finish_coords();
       int process_coords_point(const char** atts);
-      
+
       int process_hdiffs(const char** atts);
       int finish_hdiffs();
       int process_dh(const char** atts);
-      
+
       int process_cov(const char** atts);
       int finish_cov(CovMat&);
       int process_obs_cov(const char** atts)
@@ -212,13 +212,13 @@ namespace GaMaLib {
           state = state_vectors_cov;
           return process_cov(atts);
         }
-      
+
       int process_vectors(const char** atts);
       int finish_vectors();
       int process_vec(const char** atts);
-      
+
       // implicit values of standard deviations
-      
+
       double delka_str;
       double delka_str_km;
       double delka_str_exp;
@@ -229,7 +229,7 @@ namespace GaMaLib {
       // obsolete XML tags and attributes -- warning messages
 
       bool  obsolete_attribute;
-      
+
     };  // class GKFparser
 }       // namespace GaMaLib
 

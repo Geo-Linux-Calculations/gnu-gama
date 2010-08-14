@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -42,28 +42,28 @@ namespace GNU_gama {
   /** \brief General adjustment class for GNU Gama project.
     */
 
-  class Adj 
+  class Adj
   {
   public:
-    
+
     /** Adjustment algorithms implemented in Adj class */
-    enum algorithm 
+    enum algorithm
       {
         /** Sparse matrix solution of Cholesky decomposition minimizing
             local bandwidth.
          */
-        envelope,  
+        envelope,
         gso,       /*!< Gram-Schmidt ortogonalization of design matrix */
         svd,       /*!< Singular Value decomposition of project matrix */
         cholesky   /*!< Cholesky decomposition of normal equations     */
       };
-    
+
     Adj () : data(0), algorithm_(envelope), minx_dim(0), minx(0) { init(0); }
     virtual ~Adj();
-    
+
     int n_obs() const { return n_obs_; }   /*!< number of observations */
     int n_par() const { return n_par_; }   /*!< number of parameters   */
-    
+
     /**  sets pointer to input data object */
     void set(const AdjInputData* inp) { init(inp); }
 
@@ -71,7 +71,7 @@ namespace GNU_gama {
     void set_algorithm(Adj::algorithm);
     /** returns current numerical algorithm */
     Adj::algorithm get_algorithm() const { return algorithm_; }
-  
+
     int    defect() const { return least_squares->defect(); }
     double rtr   () const { return rtr_; }     /*!< weighted sum of squares */
     const Vec<>& x();                          /*!< adjusted parameters     */
@@ -81,9 +81,9 @@ namespace GNU_gama {
     double q_xx(Index i, Index j) { return least_squares->q_xx(i,j); }
     /** weight coefficients of adjusted observations */
     double q_bb(Index i, Index j);
-  
+
   private:
-    
+
     const AdjInputData *data;
 
     typedef GNU_gama::AdjBase<double, Index, Vec<> >         AdjBase;
@@ -101,7 +101,7 @@ namespace GNU_gama {
     Vec <>    x_;
     Vec <>    r_;
     double    rtr_;
-  
+
     void init(const AdjInputData*);
     void init_least_squares();
     void choldec (CovMat<>& chol);                            // move it away!
@@ -110,7 +110,7 @@ namespace GNU_gama {
     Index  minx_dim;
     Index* minx;
   };
-  
+
 
   /** \brief Adjustment input data class.
    */
@@ -120,7 +120,7 @@ namespace GNU_gama {
 
     AdjInputData();
     ~AdjInputData();
-    
+
     void write_xml(std::ostream&) const;
     void read_xml(std::istream&);
 
@@ -131,12 +131,12 @@ namespace GNU_gama {
     /** Right-hand site*/
     const Vec          <> & rhs () const { return prhs;  }
     /** List of parameters indexes used in regulrization of singular systems */
-    const IntegerList  <> * minx() const { return pminx; } 
+    const IntegerList  <> * minx() const { return pminx; }
 
     void set_mat (SparseMatrix <> * p) { delete A;     A     = p; }
     void set_cov (BlockDiagonal<> * p) { delete pcov;  pcov  = p; }
     void set_rhs (Vec          <>   p) {               prhs  = p; }
-    void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; } 
+    void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; }
 
     /* Sparse project equations for uncorrelated observations. *
      * Defined here only for backward data compatibility       */
@@ -154,7 +154,7 @@ namespace GNU_gama {
 
     void swap(AdjInputData *);
   };
-  
+
 }  // namespace GNU_gama
 
 #endif

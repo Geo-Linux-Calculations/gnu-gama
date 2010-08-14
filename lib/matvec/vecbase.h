@@ -3,7 +3,7 @@
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -29,7 +29,7 @@
 
 namespace GNU_gama {   /** \brief Vector base class. */
 
-  
+
 template <typename Float=double, typename Exc=Exception::matvec>
 class VecBase : public MatVecBase<Float, Exc> {
 
@@ -45,12 +45,12 @@ public:
 
   Index dim() const { return this->size(); }
 
-  Float& operator()(Index n) { 
-    Float* m = this->begin(); return m[--n]; 
+  Float& operator()(Index n) {
+    Float* m = this->begin(); return m[--n];
   }
-  Float  operator()(Index n) const { 
-    const Float* m = this->begin(); return m[--n]; 
-  } 
+  Float  operator()(Index n) const {
+    const Float* m = this->begin(); return m[--n];
+  }
 
   void reset(Index n=0) { this->resize(n); }
 
@@ -68,14 +68,14 @@ Float VecBase<Float, Exc>::dot(const VecBase<Float, Exc> &B) const
   {
     if (dim() != B.dim())
       throw Exc(Exception::BadRank, "Float VecBase::dot(const VecBase&) const");
-    
+
     const_iterator a = this->begin();
     const_iterator e = this->end();
     const_iterator b = B.begin();
-    
+
     Float sum = 0;
     while (a != e) sum += *a++ * *b++;
-    
+
     return sum;
   }
 
@@ -85,10 +85,10 @@ Float VecBase<Float, Exc>::norm_L1() const
   {
     const_iterator a = this->begin();
     const_iterator e = this->end();
-    
+
     Float sum = 0;
     while (a != e) { sum += *a >= 0 ? *a : -(*a); ++a; }
-    
+
     return sum;
   }
 
@@ -98,15 +98,15 @@ Float VecBase<Float, Exc>::norm_Linf() const
   {
     const_iterator a = this->begin();
     const_iterator e = this->end();
-    
+
     Float norm = 0, x;
-    while (a != e) 
-      { 
-        x = *a >= 0 ?  *a : -(*a); 
-        ++a; 
+    while (a != e)
+      {
+        x = *a >= 0 ?  *a : -(*a);
+        ++a;
         if (x > norm) norm = x;
       }
-    
+
     return norm;
   }
 
@@ -119,7 +119,7 @@ std::istream& operator>>(std::istream& inp, VecBase<Float, Exc>& v)
       {
         if (size != v.dim())
           v.reset(size);
-        
+
         typename MatVecBase<Float, Exc>::iterator b = v.begin();
         typename MatVecBase<Float, Exc>::iterator e = v.end();
         while (b != e)
@@ -128,7 +128,7 @@ std::istream& operator>>(std::istream& inp, VecBase<Float, Exc>& v)
             ++b;
           }
       }
-    
+
     return inp;
   }
 

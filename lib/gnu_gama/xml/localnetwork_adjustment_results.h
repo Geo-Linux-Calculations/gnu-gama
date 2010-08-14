@@ -43,8 +43,8 @@ namespace GNU_gama
 
     bool gons;
     std::string description;
-    
-    struct 
+
+    struct
     {
       std::string gama_local_version;
       std::string gama_local_algorithm;
@@ -108,21 +108,21 @@ namespace GNU_gama
 
     struct Point
     {
-      std::string id;              
+      std::string id;
       double x, y, z;
- 
+
       bool   hxy, hz;             // point has   x, y, z
       bool   cxy, cz;             // constrained x, y, z
       int    indx, indy, indz;    // adjustment indexes
-      
-      void clear() 
-      { 
-        x=y=z=0; 
-        hxy=hz=cxy=cz=false; 
+
+      void clear()
+      {
+        x=y=z=0;
+        hxy=hz=cxy=cz=false;
         indx=indy=indz=0;
       }
     };
-    
+
     typedef std::vector<Point> PointList;
     PointList  fixed_points, approximate_points, adjusted_points;
 
@@ -179,7 +179,7 @@ namespace GNU_gama
 
   private:
 
-    void init()  
+    void init()
     {
       gons = true;
 
@@ -230,13 +230,13 @@ namespace GNU_gama
       approximate_points.clear();
       adjusted_points   .clear();
     }
-    
+
 
     // ----------------------------------------------------------------------
 
     friend class Parser;
 
-    class Parser : public BaseParser<Exception::parser> 
+    class Parser : public BaseParser<Exception::parser>
     {
     public:
 
@@ -245,7 +245,7 @@ namespace GNU_gama
       Parser(LocalNetworkAdjustmentResults *a) : adj(a) { init(); }
 
       void init();
-      
+
       int startElement(const char *name, const char **atts)
       {
         check_and_clear_data();
@@ -257,14 +257,14 @@ namespace GNU_gama
 
         return 0;
       }
-      
+
       int characterDataHandler(const char *s, int len)
       {
         data += std::string(s, len);
-        
+
         return 0;
       }
-      
+
       int endElement(const char *name)
       {
         if (stack.empty()) stack.push(&Parser::unknown);
@@ -273,10 +273,10 @@ namespace GNU_gama
         stack.pop();
         (this->*f)(false);
         data.clear();
-        
+
         return 0;
       }
-      
+
       void check_and_clear_data();
 
       std::string name;
@@ -596,23 +596,23 @@ namespace GNU_gama
       void failed(bool);
       void confidence_scale(bool);
       void coordinates(bool);
-      void fixed(bool);      
-      void approximate(bool);      
-      void adjusted(bool);      
-      void point(bool);      
-      void x(bool);      
-      void y(bool);      
-      void z(bool);      
-      void orientation_shifts(bool);      
-      void orientation(bool);      
-      void ors_approx(bool);      
-      void ors_adj(bool);      
-      void cov_mat(bool);      
-      void original_index(bool);      
-      void dim(bool);      
-      void band(bool);      
-      void flt(bool);      
-      void ind(bool);      
+      void fixed(bool);
+      void approximate(bool);
+      void adjusted(bool);
+      void point(bool);
+      void x(bool);
+      void y(bool);
+      void z(bool);
+      void orientation_shifts(bool);
+      void orientation(bool);
+      void ors_approx(bool);
+      void ors_adj(bool);
+      void cov_mat(bool);
+      void original_index(bool);
+      void dim(bool);
+      void band(bool);
+      void flt(bool);
+      void ind(bool);
       void observations(bool);
       void observation(bool);
       void from(bool);
@@ -628,7 +628,7 @@ namespace GNU_gama
       void err_obs(bool);
       void err_adj(bool);
     };
-    
+
 
 
   // --------------------------------------------------------------------------

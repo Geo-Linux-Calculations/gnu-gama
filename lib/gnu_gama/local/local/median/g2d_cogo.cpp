@@ -1,10 +1,10 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -23,7 +23,7 @@
  /**************************************************************
   * 2d coordinate geometry                                     *
   **************************************************************/
-  
+
  /*
   * In Median in all methods "calculation" was added try / catch
   * block. Exceptions g2d_exc are sent by command throw for next
@@ -32,9 +32,9 @@
   * by a bug, when in Median computaion of bearing for two identical
   * points failed.
   *
-  * AC 2000.04.26 change median-0.7.5 / gnu_gama/local-0.9.57 
+  * AC 2000.04.26 change median-0.7.5 / gnu_gama/local-0.9.57
   * AC 2001.04.20 gnu_gama/local-1.1.61 */
- 
+
 #include <gnu_gama/local/local/median/g2d_cogo.h>
 #include <gnu_gama/local/local/median/g2d_exception.h>
 #include <gnu_gama/local/local/median/g2d_helper.h>
@@ -43,7 +43,7 @@
 using namespace std;
 
 namespace GaMaLib {
-  
+
 
   // ************** Distance_distance *********************
 
@@ -53,7 +53,7 @@ namespace GaMaLib {
     h2 = dynamic_cast<Distance*>(m2);
     if(!(h1 && h2))
       throw g2d_exc("Distance_distance: wrong observation type");
-  }  
+  }
 
   // ** computation: CHARAMZA, pp.127-130 **
 
@@ -94,16 +94,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Distance_distance::calculation
 
 
@@ -142,7 +142,7 @@ namespace GaMaLib {
                    cos(h1->value())*sin(h2->value())*(B2.y()-B1.y()))/jmen;
       /*
        * if((signum(dy) != signum(sin(h2->value()))) ||
-       *   (signum(B2.x()+(dy*cos(h2->value()))/sin(h2->value())-B1.x()) != 
+       *   (signum(B2.x()+(dy*cos(h2->value()))/sin(h2->value())-B1.x()) !=
        *    signum(cos(h1->value()))))
        *  return; //intersection doesn't exist; intersection in the given point
        *
@@ -160,16 +160,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Direction_direction::calculation
 
 
@@ -187,7 +187,7 @@ namespace GaMaLib {
       };
     if(!(h1 && h2))
       throw g2d_exc("Direction_distance: wrong observation type");
-  } 
+  }
 
 
   // ** computation: CHARAMZA, pp.115-118 **
@@ -232,16 +232,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Direction_distance::calculation()
 
 
@@ -307,16 +307,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Direction_angle::calculation()
 
 
@@ -383,19 +383,19 @@ namespace GaMaLib {
                 number_of_solutions_ = 1;
               };
         };
-      return;  
+      return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Distance_angle::calculation()
 
 
@@ -423,7 +423,7 @@ namespace GaMaLib {
       Circle K2(h2,SB);
       K2.calculation();
       // circle parameters were not solved ?
-      if((K1.number_of_solutions() < 1) || (K2.number_of_solutions() < 1))    
+      if((K1.number_of_solutions() < 1) || (K2.number_of_solutions() < 1))
         return;
       Double rr1 = K1.radius();
       Double rr2 = K2.radius();
@@ -457,9 +457,9 @@ namespace GaMaLib {
             };
         };
       if(DD.number_of_solutions() > 1)
-        if(!(((B1.x()==DD.solution_2().x()) && 
+        if(!(((B1.x()==DD.solution_2().x()) &&
               (B1.y()==DD.solution_2().y())) ||
-             ((B2.x()==DD.solution_2().x()) && 
+             ((B2.x()==DD.solution_2().x()) &&
               (B2.y()==DD.solution_2().y()))))
           {
             uu1 = bearing(DD.solution_2(),B2) - bearing(DD.solution_2(),B1);
@@ -483,16 +483,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Angle_angle::calculation()
 
 
@@ -522,16 +522,16 @@ namespace GaMaLib {
       return;
 
     }
-    catch (g2d_exc& exc) 
+    catch (g2d_exc& exc)
       {
         throw exc;
       }
-    catch (...) 
+    catch (...)
       {
         number_of_solutions_ = -1;
         return;
       }
-  
+
   }  // void Circle::calculation()
 
 } // namespace GaMaLib

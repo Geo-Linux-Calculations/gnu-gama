@@ -1,9 +1,9 @@
-/*  
+/*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
     Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,21 +34,21 @@ namespace GNU_gama {
   namespace Exception {
 
     enum
-      { 
-        BadRank,  
-        BadIndex, 
+      {
+        BadRank,
+        BadIndex,
         Singular,
         BadRegularization,
-        NoConvergence,  
-        ZeroDivision,  
+        NoConvergence,
+        ZeroDivision,
         NonPositiveDefinite,
         NotImplemented,
-        StreamError 
+        StreamError
       };
-    
+
     class base {
     public:
-      virtual ~base() 
+      virtual ~base()
       {
       }
     };
@@ -58,8 +58,8 @@ namespace GNU_gama {
     public:
       const int    error;
       const char*  description;
-      
-      matvec(int e, const char* t) : error(e), description(t) 
+
+      matvec(int e, const char* t) : error(e), description(t)
       {
       }
     };

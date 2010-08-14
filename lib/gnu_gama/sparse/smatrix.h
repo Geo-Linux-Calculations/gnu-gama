@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001, 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -28,32 +28,32 @@
 
 namespace GNU_gama {
 
-template <typename Float=double, typename Index=std::size_t> 
+template <typename Float=double, typename Index=std::size_t>
 
   /** Sparse general matrix is a set of unordered sparse rows. */
 
   class SparseMatrix {
-    
+
     // sparse general matrix is a set of unordered sparse rows
-    
+
     Index   rows_, cols_;
-    
+
     Float*  nonz;   // non-zero elements
-    Index*  cind;   // column indexes of nonzero elements    
+    Index*  cind;   // column indexes of nonzero elements
     Index*  rptr;   // indexes to the beginning of the i-th row
-    
+
     Index*  rptr1;
     Index   rcnt_, rnxt_, ncnt_;
-    
-    SparseMatrix  (const SparseMatrix&); 
+
+    SparseMatrix  (const SparseMatrix&);
     void operator=(const SparseMatrix&);
 
     SparseMatrix  (const SparseMatrix* sm)
     {
       nonz = new Float[sm->ncnt_];
       cind = new Index[sm->ncnt_];
-      rptr = new Index[sm->cols_ + 4]; 
-      
+      rptr = new Index[sm->cols_ + 4];
+
       rptr1  = rptr + 1;
       rows_  = sm->cols_;
       cols_  = sm->rows_;
@@ -61,7 +61,7 @@ template <typename Float=double, typename Index=std::size_t>
       rnxt_  = rcnt_ + 1;
       ncnt_  = sm->ncnt_;
     }
-    
+
     public:
 
     SparseMatrix()
@@ -69,13 +69,13 @@ template <typename Float=double, typename Index=std::size_t>
       nonz = 0;
       cind = rptr = 0;
     }
-    
-    SparseMatrix(Index floats, Index rows, Index cols) 
+
+    SparseMatrix(Index floats, Index rows, Index cols)
     {
       nonz = new Float[floats];
       cind = new Index[floats];
-      rptr = new Index[rows+2]; 
-      
+      rptr = new Index[rows+2];
+
       rptr1  = rptr + 1;
       rows_  = rows;
       cols_  = cols;
@@ -83,26 +83,26 @@ template <typename Float=double, typename Index=std::size_t>
       rnxt_  = 1;
       ncnt_  = 0;
     }
-    
-    ~SparseMatrix() 
+
+    ~SparseMatrix()
     {
       delete[]  nonz;
       delete[]  cind;
       delete[]  rptr;
     }
-    
+
     Index rows()      const { return rows_; }
     Index columns()   const { return cols_; }
     Index nonzeroes() const { return ncnt_; }
-    
+
     Float* begin (Index i) const { return nonz + rptr [i]; }
     Float* end   (Index i) const { return nonz + rptr1[i]; }
     Index* ibegin(Index i) const { return cind + rptr [i]; }
     Index* iend  (Index i) const { return cind + rptr1[i]; }
-    
+
     Index  size  (Index i) const { return rptr1[i]-rptr[i]; }
 
-    void reset(Index floats, Index rows, Index cols) 
+    void reset(Index floats, Index rows, Index cols)
     {
       delete[]  nonz;
       delete[]  cind;
@@ -110,8 +110,8 @@ template <typename Float=double, typename Index=std::size_t>
 
       nonz = new Float[floats];
       cind = new Index[floats];
-      rptr = new Index[rows+2]; 
-      
+      rptr = new Index[rows+2];
+
       rptr1  = rptr + 1;
       rows_  = rows;
       cols_  = cols;
@@ -119,14 +119,14 @@ template <typename Float=double, typename Index=std::size_t>
       rnxt_  = 1;
       ncnt_  = 0;
     }
-    
 
-    SparseMatrix* replicate() const 
-    { 
+
+    SparseMatrix* replicate() const
+    {
       return replicate(ncnt_, rows_, cols_);
     }
 
-    SparseMatrix* replicate(Index new_n, Index new_r, Index new_c) const 
+    SparseMatrix* replicate(Index new_n, Index new_r, Index new_c) const
     {
       SparseMatrix* r = new SparseMatrix(new_n, new_r, new_c);
 
@@ -158,7 +158,7 @@ template <typename Float=double, typename Index=std::size_t>
        * pointer lists in trptr[k], k=3, 4, ... (ie. shifted by 2) */
 
       for (i=0; i<trows_+2; i++)  trptr[i] = 0;
-      for (i=0; i<ncnt_;    i++)  trptr[cind[i]+2]++; 
+      for (i=0; i<ncnt_;    i++)  trptr[cind[i]+2]++;
       for (i=3; i<trows_+2; i++)  trptr[i] += trptr[i-1];
 
       /* now we go over each matrix row and copy non-zero elements
@@ -175,7 +175,7 @@ template <typename Float=double, typename Index=std::size_t>
         while (irb != ire)
           {
             k = cind[irb]+1;
-            j = trptr[k];       
+            j = trptr[k];
             tcind[j] = r;
             tnonz[j] = nonz[irb];
             trptr[k]++;
@@ -188,7 +188,7 @@ template <typename Float=double, typename Index=std::size_t>
 
     /* functions for sequeantial fill-in of non-zero elements by rows */
 
-    void new_row() 
+    void new_row()
     {
       rptr[++rcnt_] = ncnt_;
       rptr[++rnxt_] = ncnt_;
@@ -201,7 +201,7 @@ template <typename Float=double, typename Index=std::size_t>
       rptr[rnxt_]++;
     }
 
-    bool check() const 
+    bool check() const
     {
       bool ok_ = true;
 
@@ -214,7 +214,7 @@ template <typename Float=double, typename Index=std::size_t>
     }
 
   };
- 
+
 }   // namespace GNU_gama
 
 #endif
@@ -246,7 +246,7 @@ void write(ostream& cout, SparseMatrix<>* sgm)
 int main()
 {
   cout << "\n---  Sparse General Matrix demo  ---------------------------\n";
-      
+
   SparseMatrix<>* inp = new SparseMatrix<>(500, 6, 5);
 
   for (int n=1; n<=6; n++)
@@ -278,7 +278,7 @@ int main()
           break;
         };
     }
-  
+
   SparseMatrix<>* sgm = inp->replicate();
   delete inp;
 
@@ -290,7 +290,7 @@ int main()
   delete inp;
 
   write(cout, sgm);
-  
+
   delete sgm;
 }
 

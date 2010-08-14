@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -27,18 +27,18 @@
 
 namespace GaMaLib {
 
-  class LocalLinearization : public Linearization 
+  class LocalLinearization : public Linearization
     {
 
     public:
-      
+
       LocalLinearization(PointData& pd, double m) : PD(pd), maxn(0), m0(m) {}
-      
+
       int  unknowns() const { return maxn; }
       void linearization(const Observation* o) const
         {
           rhs = size = 0;
-          
+
           if     (const Direction  *dir = dynamic_cast<const Direction *>(o))
             direction(dir);
           else if(const Distance   *dis = dynamic_cast<const Distance  *>(o))
@@ -70,7 +70,7 @@ namespace GaMaLib {
       mutable PointData&   PD;
       mutable int          maxn;
       double               m0;
-      
+
       void direction  (const Direction  *obs) const;
       void distance   (const Distance   *obs) const;
       void angle      (const Angle      *obs) const;
@@ -84,7 +84,7 @@ namespace GaMaLib {
       void ydiff      (const Ydiff      *obs) const;
       void zdiff      (const Zdiff      *obs) const;
     };
-  
+
 }
 
 #endif

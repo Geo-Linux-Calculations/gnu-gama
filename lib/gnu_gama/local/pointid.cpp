@@ -1,11 +1,11 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                   2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -24,7 +24,7 @@
 #include <cstdlib>
 #include <gnu_gama/local/pointid.h>
 
-// typedef std::string PointID;  
+// typedef std::string PointID;
 
 
 using namespace GaMaLib;
@@ -32,14 +32,14 @@ using namespace GaMaLib;
 PointID::PointID(const std::string& s)
 {
   using namespace std;
-  
+
   string::const_iterator b=s.begin(), e=s.end();
   GNU_gama::TrimWhiteSpaces(b, e);
   sid = std::string(b,e);
   iid = std::atoi(sid.c_str());
-  
+
   if (iid < 0) iid = 0;
-  
+
   int m10, tmp=iid;
   const std::string& cid = sid;
   const char ctab[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};

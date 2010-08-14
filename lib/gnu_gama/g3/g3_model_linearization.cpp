@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,9 +31,9 @@ using namespace std;
 using namespace GNU_gama::g3;
 
 
-namespace 
+namespace
 {
-  class Linearization :  
+  class Linearization :
     public GNU_gama::ObservationVisitor,
     public GNU_gama::Visitor<Angle>,
     public GNU_gama::Visitor<Azimuth>,
@@ -50,35 +50,35 @@ namespace
 
     void visit(Angle* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(Azimuth* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(Distance* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(Height* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(HeightDiff* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(Vector* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(XYZ* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
     void visit(ZenithAngle* p)
     {
-      model->linearization(p); 
+      model->linearization(p);
     }
 
   private:
@@ -92,28 +92,28 @@ namespace
 
 void GNU_gama::g3::Model::update_linearization()
 {
-  do  
+  do
     {
       if (!check_observations()) update_observations();
-      
+
       if (adj_input_data) delete adj_input_data;
       if (A             ) delete A;
-      
+
       adj_input_data = new AdjInputData;
       A              = new SparseMatrix<>(dm_floats, dm_rows, dm_cols);
-      
+
       rhs.reset(dm_rows);
       rhs_ind = 0;
-      
+
       Linearization linearization(this);
-      for (ObservationList::iterator 
+      for (ObservationList::iterator
              i=active_obs->begin(), e=active_obs->end(); i!=e; ++i)
         {
           (*i)->accept(&linearization);
         }
-      
+
     } while (!check_observations());
-  
+
   if (dm_floats * dm_rows * dm_cols == 0)
     throw GNU_gama::Exception::string("No parameters and/or observations");
 
@@ -128,17 +128,17 @@ void GNU_gama::g3::Model::update_linearization()
 
   {
     int minx=0;
-    for (ParameterList::const_iterator 
+    for (ParameterList::const_iterator
            i=par_list->begin(), e=par_list->end(); i!=e; ++i)
       {
         if ((*i)->constr()) minx++;
       }
-    
+
     if (minx)
       {
         GNU_gama::IntegerList<>* minlist = new GNU_gama::IntegerList<>(minx);
         GNU_gama::IntegerList<>::iterator m = minlist->begin();
-        for (ParameterList::const_iterator 
+        for (ParameterList::const_iterator
                i=par_list->begin(), e=par_list->end(); i!=e; ++i)
           {
             const Parameter* p = *i;
@@ -148,14 +148,14 @@ void GNU_gama::g3::Model::update_linearization()
                 ++m;
               }
           }
-        
+
         adj_input_data->set_minx(minlist);
       }
   }
-  
+
   {
     int nonzeroes=0, blocks=0;
-    for (ClusterList::iterator ci = obsdata.clusters.begin(), 
+    for (ClusterList::iterator ci = obsdata.clusters.begin(),
            ce = obsdata.clusters.end(); ci!=ce; ++ci)
       {
         if (int n = (*ci)->activeNonz())
@@ -165,7 +165,7 @@ void GNU_gama::g3::Model::update_linearization()
           }
       }
 
-    GNU_gama::BlockDiagonal<>* 
+    GNU_gama::BlockDiagonal<>*
       bd = new GNU_gama::BlockDiagonal<>(blocks, nonzeroes);
 
     for (ClusterList::const_iterator ci = obsdata.clusters.begin(),
@@ -181,7 +181,7 @@ void GNU_gama::g3::Model::update_linearization()
 
     adj_input_data->set_cov(bd);
   }
-    
+
   adj->set(adj_input_data);
 
   return next_state_(linear_);
@@ -195,14 +195,14 @@ void Model::linearization(Angle* pangle)
   Point* from  = points->find(pangle->from);
   Point* left  = points->find(pangle->left);
   Point* right = points->find(pangle->right);
-  
+
   const double sca = Angular().scale();
   const double scl = Linear ().scale();
   const double sc  = sca / scl;
 
   E_3 FI = instrument(from,  pangle->from_dh);
-  E_3 FL = instrument(left,  pangle->left_dh); 
-  E_3 FR = instrument(right, pangle->right_dh); 
+  E_3 FL = instrument(left,  pangle->left_dh);
+  E_3 FR = instrument(right, pangle->right_dh);
   E_3 FV = vertical(from);
   FL    -= FI;
   FR    -= FI;
@@ -220,11 +220,11 @@ void Model::linearization(Angle* pangle)
   R_3 tran;
   tran.set_rotation(from->B(), from->L());
 
-  E_3 Lxyz(left ->X.init_value() - from->X.init_value(), 
-           left ->Y.init_value() - from->Y.init_value(), 
+  E_3 Lxyz(left ->X.init_value() - from->X.init_value(),
+           left ->Y.init_value() - from->Y.init_value(),
            left ->Z.init_value() - from->Z.init_value());
-  E_3 Rxyz(right->X.init_value() - from->X.init_value(), 
-           right->Y.init_value() - from->Y.init_value(), 
+  E_3 Rxyz(right->X.init_value() - from->X.init_value(),
+           right->Y.init_value() - from->Y.init_value(),
            right->Z.init_value() - from->Z.init_value());
 
   E_3 Lneu, Rneu;
@@ -282,19 +282,19 @@ void Model::linearization(Azimuth* a)
 {
   Point* from = points->find(a->from);
   Point* to   = points->find(a->to  );
-  
+
   E_3 from_vertical, from_to, p1, v1, p2, v2;
-  
+
   p1.set(from->X(), from->Y(), from->Z());
-  v1 = from_vertical = vertical(from);  
+  v1 = from_vertical = vertical(from);
   v1 *= a->from_dh;
   p1 += v1;                               // instrument
-  
+
   p2.set(to->X(), to->Y(), to->Z());
   v2  = vertical(to);
   v2 *= a->to_dh;
   p2 += v2;                               // target
-  
+
   from_to  = p2;
   from_to -= p1;                          // instrument --> target
 
@@ -306,7 +306,7 @@ void Model::linearization(Azimuth* a)
   // const double h = std::sqrt(local.e1*local.e1 + local.e2*local.e2);
 
   // pd - partial derivatives for the occupied station
-  E_3 pd( std::cos(a->obs()), -std::sin(a->obs()), 0); 
+  E_3 pd( std::cos(a->obs()), -std::sin(a->obs()), 0);
 
   // nonzero derivatives in project equations
   A->new_row();
@@ -325,7 +325,7 @@ void Model::linearization(Azimuth* a)
   tmp *= -1.0;
   R.set_rotation(to->B(),to->L());
   // pd - partial derivatives for the target station
-  R.inverse (tmp, pd);   
+  R.inverse (tmp, pd);
 
   if (to->free_horizontal_position())
     {
@@ -339,10 +339,10 @@ void Model::linearization(Azimuth* a)
 
 
   // right hand site
-  
-  double az = std::atan2(local.e2, local.e1); 
-  std::cout << "??? azimuth " << (a->obs()*GON_TO_RAD - az)*RAD_TO_GON 
-            << "\t" << a->obs() << "\t" << az*RAD_TO_GON 
+
+  double az = std::atan2(local.e2, local.e1);
+  std::cout << "??? azimuth " << (a->obs()*GON_TO_RAD - az)*RAD_TO_GON
+            << "\t" << a->obs() << "\t" << az*RAD_TO_GON
             << "\n";
   rhs(++rhs_ind) = a->obs()*GON_TO_RAD - az;
 }
@@ -406,11 +406,11 @@ void Model::linearization(Distance* d)
     if (abs(rd) > tol_abs)
       {
         Model::Rejected robs;
-        
+
         robs.criterion   = Model::Rejected::rhs;
         robs.observation = d;
         robs.data[0]     = rd;
-        
+
         rejected_obs.push_back(robs);
         reset_parameters();
         d->set_active(false);
@@ -423,7 +423,7 @@ void Model::linearization(Distance* d)
 void Model::linearization(Height* height)
 {
   Point* point = points->find(height->id);
-  
+
   // nonzero derivatives in project equations
   A->new_row();
 
@@ -440,7 +440,7 @@ void Model::linearization(HeightDiff* dh)
 {
   Point* from = points->find(dh->from);
   Point* to   = points->find(dh->to  );
-  
+
   // nonzero derivatives in project equations
   A->new_row();
 
@@ -448,8 +448,8 @@ void Model::linearization(HeightDiff* dh)
   if (to  ->free_height())  A->add_element(+1, to  ->U.index());
 
   // right hand site
- 
-  const double h = to->model_height() - from->model_height();  
+
+  const double h = to->model_height() - from->model_height();
   rhs(++rhs_ind) = (dh->obs() - h)*Linear().scale();
 }
 
@@ -459,7 +459,7 @@ void Model::linearization(Vector* v)
 {
   Point* from = points->find(v->from);
   Point* to   = points->find(v->to  );
- 
+
   for (int i=1; i<=3; i++)
    {
      double tx=0, ty=0, tz=0;
@@ -471,7 +471,7 @@ void Model::linearization(Vector* v)
 
      from->set_diff_XYZ(-tx, -ty, -tz);
      to  ->set_diff_XYZ( tx,  ty,  tz);
-  
+
      // nonzero derivatives in project equations
      A->new_row();
 
@@ -484,7 +484,7 @@ void Model::linearization(Vector* v)
        {
          A->add_element(from->diff_U(), from->U.index());
        }
-     
+
      if (to->free_horizontal_position())
        {
          A->add_element(to->diff_N(), to->N.index());
@@ -503,7 +503,7 @@ void Model::linearization(Vector* v)
      double rz, dz = to->Z_dh(v->to_dh) - from->Z_dh(v->from_dh);
 
      const double s = Linear().scale();
- 
+
      rhs(++rhs_ind) = rx = (v->dx() - dx)*s;
      rhs(++rhs_ind) = ry = (v->dy() - dy)*s;
      rhs(++rhs_ind) = rz = (v->dz() - dz)*s;
@@ -530,7 +530,7 @@ void Model::linearization(Vector* v)
 void Model::linearization(XYZ* xyz)
 {
   Point* point = points->find(xyz->id);
- 
+
   for (int i=1; i<=3; i++)
    {
      double tx=0, ty=0, tz=0;
@@ -541,7 +541,7 @@ void Model::linearization(XYZ* xyz)
      };
 
      point->set_diff_XYZ(tx, ty, tz);
-  
+
      // nonzero derivatives in project equations
      A->new_row();
 
@@ -553,7 +553,7 @@ void Model::linearization(XYZ* xyz)
      if (point->free_height())
        {
          A->add_element(point->diff_U(), point->U.index());
-       }     
+       }
    }
 
    // right hand site
@@ -591,19 +591,19 @@ void Model::linearization(ZenithAngle* z)
 {
   Point* from = points->find(z->from);
   Point* to   = points->find(z->to  );
-  
+
   E_3 from_vertical, from_to, p1, v1, p2, v2;
-  
+
   p1.set(from->X(), from->Y(), from->Z());
-  v1 = from_vertical = vertical(from);  
+  v1 = from_vertical = vertical(from);
   v1 *= z->from_dh;
   p1 += v1;                               // instrument
-  
+
   p2.set(to->X(), to->Y(), to->Z());
   v2  = vertical(to);
   v2 *= z->to_dh;
   p2 += v2;                               // target
-  
+
   from_to  = p2;
   from_to -= p1;                          // instrument --> target
 
@@ -617,7 +617,7 @@ void Model::linearization(ZenithAngle* z)
   const double q = 1.0/(r*s);
 
   // pd - partial derivatives for the occupied station
-  E_3 pd( -local.e1*q, -local.e2*q, r/s); 
+  E_3 pd( -local.e1*q, -local.e2*q, r/s);
 
 
   const double sca = Angular().scale();
@@ -642,7 +642,7 @@ void Model::linearization(ZenithAngle* z)
   tmp *= -1.0;
   R.set_rotation(to->B(),to->L());
   // pd - partial derivatives for the target station
-  R.inverse (tmp, pd);   
+  R.inverse (tmp, pd);
 
   if (to->free_horizontal_position())
     {
@@ -656,8 +656,8 @@ void Model::linearization(ZenithAngle* z)
 
 
   // right hand site
-  
-  double za = angle(from_vertical, from_to); 
+
+  double za = angle(from_vertical, from_to);
 
   /************************************************************/
   /*          !!! add refraction correction here !!!          */

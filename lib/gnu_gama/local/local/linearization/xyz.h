@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -31,7 +31,7 @@ void LocalLinearization::x(const X* obs) const
    // Double p = M_0 / stdDev();
 
    // Double w = p*p;                          // weight
-   rhs = (obs->value() - point.x())*1e3;       // abs. term in millimetres  
+   rhs = (obs->value() - point.x())*1e3;       // abs. term in millimetres
 
    size = 0;
    if (point.free_xy())
@@ -51,7 +51,7 @@ void LocalLinearization::y(const Y* obs) const
    // Double p = M_0 / stdDev();
 
    // Double w = p*p;                          // weight
-   rhs = (obs->value() - point.y())*1e3;       // abs. term in millimetres  
+   rhs = (obs->value() - point.y())*1e3;       // abs. term in millimetres
 
    size = 0;
    if (point.free_xy())
@@ -71,7 +71,7 @@ void LocalLinearization::z(const Z* obs) const
    // Double p = M_0 / stdDev();
 
    // Double w = p*p;                          // weight
-   rhs = (obs->value() - point.z())*1e3;       // abs. term in millimetres  
+   rhs = (obs->value() - point.z())*1e3;       // abs. term in millimetres
 
    size = 0;
    if (point.free_z())

@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -34,12 +34,12 @@ namespace GNU_gama {  namespace g3 {
 
   class Point : public ParXML {
   public:
-  
+
     typedef std::string   Name;
     typedef Model         Common;
 
     Name    name;
-    Common* common; 
+    Common* common;
 
     Linear    N;
     Linear    E;
@@ -89,8 +89,8 @@ namespace GNU_gama {  namespace g3 {
     void set_geoid(double);
 
     bool has_position() const { return has_xyz_ || has_blh_; }
-    bool has_xyz()      const { return has_xyz_;    } 
-    bool has_blh()      const { return has_blh_;    } 
+    bool has_xyz()      const { return has_xyz_;    }
+    bool has_blh()      const { return has_blh_;    }
     bool has_height()   const { return has_height_; }
     bool has_geoid()    const { return has_geoid_;  }
 
@@ -125,9 +125,9 @@ namespace GNU_gama {  namespace g3 {
       constr_h_pos_    = 16 + free_position_,
       constr_height_   = 32 + free_height_,
       constr_position_ = constr_h_pos_ + constr_height_,
-      h_pos_           = fixed_h_pos_  + free_h_pos_, 
+      h_pos_           = fixed_h_pos_  + free_h_pos_,
       hheight_         = fixed_height_ + free_height_,
-      position_        = h_pos_ + hheight_  
+      position_        = h_pos_ + hheight_
     };
 
     friend class Model;
@@ -140,7 +140,7 @@ namespace GNU_gama {  namespace g3 {
     // Cartesian coordinates (NEU --> XYZ)
 
     double   r11, r12, r13,   r21, r22, r23,   r31, r32, r33;
-    double   dX, dY, dZ ; 
+    double   dX, dY, dZ ;
     bool     has_xyz_, has_blh_, has_height_, has_geoid_;
 
     double   cnn, cne, cnu, cee, ceu, cuu;

@@ -1,9 +1,9 @@
-/*  
+/*
     GNU Gama C++ library
     Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -36,27 +36,27 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
   int prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
-  
+
   int maxkl = 0;
   for (PointData::iterator i=sez.begin(); i!=sez.end(); ++i)
     {
       int k = (*i).first.length();
-      // maxkl = max( maxkl, k);   
+      // maxkl = max( maxkl, k);
       if (k > maxkl) maxkl = k;
     }
-    
+
   {   // for ...
     for (PointData::iterator i=sez.begin(); i!=sez.end(); ++i)
       {
         const PointID& cb  = (*i).first;
         LocalPoint&    bod = (*i).second;
-        
-        
+
+
         str << "<point id=";
         for (int j=cb.length(); j<maxkl; j++)
           str << ' ';
         str << "\"" << cb << "\"";
-        
+
         if (bod.test_xy())
           {
             str.precision(Format::coord_p());
@@ -72,30 +72,30 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
             str.precision(Format::coord_p());
             str << "\"" << bod.z() << "\"";
           }
-        
+
         string fix, adj, axy, az;
 
         if (bod.fixed_xy()      )  fix += "xy";
-        if (bod.fixed_z ()      )  fix += "z" ; 
+        if (bod.fixed_z ()      )  fix += "z" ;
         if (bod.free_xy()       )  axy  = "xy";
         if (bod.constrained_xy())  axy  = "XY";
         if (bod.free_z()        )  az   = "z" ;
         if (bod.constrained_z() )  az   = "Z" ;
         adj = axy + az;
-        
+
         if (fix != "")  str << " fix=\"" << fix << "\"";
         if (adj != "")  str << " adj=\"" << adj << "\"";
 
         str << " />\n";
       }
   }   // for ...
-  
+
   str.precision(prec_p);
   str.flags(flag_p);
-  
+
   return str;
 }
- 
+
 
 
 std::ostream& operator << (std::ostream& str, ObservationData& od)
@@ -104,7 +104,7 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
   int prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
-  
+
   for (ClusterList::iterator c=od.clusters.begin(); c!=od.clusters.end(); ++c)
     {
       bool common_standpoint = true;
@@ -127,7 +127,7 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
           else
             start_tag += ">\n";
 
-          end_tag   = "</obs>\n"; 
+          end_tag   = "</obs>\n";
         }
       else if (dynamic_cast<Coordinates*>(*c))
         {
@@ -141,7 +141,7 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
         }
 
       str << start_tag;
-                   
+
       const ObservationList& ol = (*c)->observation_list;
       for (ObservationList::const_iterator i=ol.begin(); i!=ol.end(); ++i)
         {
@@ -155,7 +155,7 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
           const CovMat& C = (*c)->covariance_matrix;
           Index  dim   = C.dim();
           Index  band  = C.bandWidth();
-          str << "\n<cov-mat dim=\"" << dim 
+          str << "\n<cov-mat dim=\"" << dim
               << "\" band=\"" << band << "\">\n";
           for (Index i=1; i<=dim; i++)
             {
@@ -165,16 +165,16 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
             }
           str << "</cov-mat>\n";
         }
-      
+
       str << end_tag;
     }
-  
+
   str.precision(prec_p);
   str.flags(flag_p);
-  
+
   return str;
 }
- 
+
 }
 
 

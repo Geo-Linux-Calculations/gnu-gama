@@ -1,9 +1,9 @@
-/*  
+/*
     Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU GaMa / GaMaLib C++ Library.
-    
+
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
@@ -33,44 +33,44 @@ namespace GaMaLib {
 class LocalPoint {
 public:
 
-  struct XYZ 
-  { 
-    Double x, y, z; 
+  struct XYZ
+  {
+    Double x, y, z;
     XYZ(Double px, Double py, Double pz) : x(px), y(py), z(pz) {}
   };
-  struct XY  
-  { 
-    Double x, y;    
+  struct XY
+  {
+    Double x, y;
     XY(Double px, Double py) : x(px), y(py) {}
   };
-  struct ZZ   
-  { 
-    Double z; 
+  struct ZZ
+  {
+    Double z;
     ZZ(Double pz) : z(pz) {}
-  }; 
+  };
 
 
   LocalPoint()      : bxy_(false), bz_(false), pst_(unused_) {}
-  LocalPoint(XYZ p) : x_(p.x), y_(p.y), z_(p.z), bxy_(true), bz_(true),  
+  LocalPoint(XYZ p) : x_(p.x), y_(p.y), z_(p.z), bxy_(true), bz_(true),
                       pst_(unused_) {}
   LocalPoint(XY  p) : x_(p.x), y_(p.y), bxy_(true), bz_(false), pst_(unused_){}
   LocalPoint(ZZ  p) : z_(p.z), bxy_(false), bz_(true), pst_(unused_) {}
-  
 
-  Double y() const 
-    { 
+
+  Double y() const
+    {
       if (!bxy_) throw GaMaLib::Exception(T_POBS_bad_data);
-      return y_; 
+      return y_;
     }
-  Double x() const 
-    { 
-      if (!bxy_) throw GaMaLib::Exception(T_POBS_bad_data); 
-      return x_; 
+  Double x() const
+    {
+      if (!bxy_) throw GaMaLib::Exception(T_POBS_bad_data);
+      return x_;
     }
-  Double z() const 
-    { 
-      if (!bz_ ) throw GaMaLib::Exception(T_POBS_bad_data); 
-      return z_; 
+  Double z() const
+    {
+      if (!bz_ ) throw GaMaLib::Exception(T_POBS_bad_data);
+      return z_;
     }
 
   void set_xy  (Double x, Double y) { bxy_ = true; x_ = x; y_ = y; }
@@ -86,10 +86,10 @@ public:
   int index_y() const { return iy_; }
   int index_x() const { return ix_; }
   int index_z() const { return iz_; }
-  
+
   void set_fixed_xy()       { pst_ &= ~active_xy_; pst_ |= xy_fixed_;     }
   void set_free_xy()        { pst_ &= ~active_xy_; pst_ |= xy_adjusted_;  }
-  void set_constrained_xy() { pst_ &= ~active_xy_; 
+  void set_constrained_xy() { pst_ &= ~active_xy_;
                               pst_ |= (xy_adjusted_ | xy_constrained_);   }
   void set_fixed_z()        { pst_ &= ~active_z_;  pst_ |= z_fixed_;      }
   void set_free_z()         { pst_ &= ~active_z_;  pst_ |= z_adjusted_;   }
@@ -98,7 +98,7 @@ public:
   void unused_xy()          { pst_ &= ~active_xy_;                        }
   void unused_z()           { pst_ &= ~active_z_;                         }
   void unused()             { pst_ = unused_;                             }
-  
+
   bool active_xy()      const { return pst_ & active_xy_;      }
   bool fixed_xy()       const { return pst_ & xy_fixed_;       }
   bool free_xy()        const { return pst_ & xy_adjusted_;    }
@@ -126,11 +126,11 @@ private:
   Double  x0_, y0_, z0_;    // initial values of cordinates in adjustment
   int     pst_;             // point status in adjustment
 
-  enum 
-  { 
-    unused_          =  0, 
-    xy_fixed_        =  1, 
-    xy_adjusted_     =  2, 
+  enum
+  {
+    unused_          =  0,
+    xy_fixed_        =  1,
+    xy_adjusted_     =  2,
     xy_constrained_  =  4,
     z_fixed_         =  8,
     z_adjusted_      = 16,
