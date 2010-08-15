@@ -1,10 +1,10 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                   2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,14 +23,14 @@
 
 // PointID - point identification
 
-#ifndef GaMaLib_Point_Identification__h
-#define GaMaLib_Point_Identification__h
+#ifndef gama_local_Point_Identification__h
+#define gama_local_Point_Identification__h
 
 #include <string>
 #include <cstddef>
 #include <gnu_gama/intfloat.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
 
   class PointID
@@ -120,7 +120,7 @@ namespace GaMaLib
     }
 
 
-}      // namespace GaMaLib
+}}      // namespace GNU_gama::local
 
 #endif
 

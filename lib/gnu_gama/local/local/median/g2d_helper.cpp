@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 
 using namespace std;
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
 
 // ** Tolerance for selection of unique solution, see Charamza pp. 152-154 **
@@ -322,6 +322,6 @@ void SimilarityTr2D::calculation()
 
 }  // void SimilarityTr2D::calculation()
 
-} // namespace GaMaLib
+}} // namespace GNU_gama::local
 
 

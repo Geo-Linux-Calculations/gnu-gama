@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,13 +26,13 @@
 #include <gnu_gama/local/local/network.h>
 #include <gnu_gama/local/cluster.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
+void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
   using namespace std;
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
 
@@ -323,7 +323,7 @@ void AdjustedUnknowns(GaMaLib::LocalNetwork* IS, OutStream& out)
     }
 }
 
-}
+}}
 
 #endif
 

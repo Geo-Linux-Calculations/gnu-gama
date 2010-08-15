@@ -19,17 +19,17 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_LocalNetwork_envelope_h
-#define GaMaLib_LocalNetwork_envelope_h
+#ifndef gama_local_LocalNetwork_envelope_h
+#define gama_local_LocalNetwork_envelope_h
 
 #include <gnu_gama/local/local/network.h>
 #include <gnu_gama/adj/adj_envelope.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
   class LocalNetwork_env : public LocalNetwork
     {
-      typedef GNU_gama::AdjEnvelope<Double, Index, GaMaLib::MatVecException> OLS_env;
+      typedef GNU_gama::AdjEnvelope<Double, Index, GNU_gama::local::MatVecException> OLS_env;
       OLS_env* ols_env;
 
     public:
@@ -49,7 +49,7 @@ namespace GaMaLib
 
       const char* const algorithm() const { return "envelope"; }
     };
-}
+}}
 
 #endif
 

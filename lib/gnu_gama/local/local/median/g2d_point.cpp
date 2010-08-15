@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@gama.fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 
 using namespace std;
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   // private
 
@@ -214,21 +214,21 @@ namespace GaMaLib {
     typedef std::list<Observation*> ObservationList;
 
     ObservationList sm_pom;
-    for (GaMaLib::ObservationList::iterator
+    for (GNU_gama::local::ObservationList::iterator
            i=psm_pom.begin(), e=psm_pom.end(); i!=e; ++i)
       {
         sm_pom.push_back(*i);
       }
 
     ObservationList SM_S;
-    for (GaMaLib::ObservationList::iterator
+    for (GNU_gama::local::ObservationList::iterator
            i=ApproxPoint::SM_S.begin(), e=ApproxPoint::SM_S.end(); i!=e; ++i)
       {
         SM_S.push_back(*i);
       }
 
     ObservationList SM_U;
-    for (GaMaLib::ObservationList::iterator
+    for (GNU_gama::local::ObservationList::iterator
            i=ApproxPoint::SM_U.begin(), e=ApproxPoint::SM_U.end(); i!=e; ++i)
       {
         SM_U.push_back(*i);
@@ -420,4 +420,4 @@ namespace GaMaLib {
   }  // void ApproxPoint::ArrangeObservations()
 
 
-}       // namespace GaMaLib
+ }}       // namespace GNU_gama::local

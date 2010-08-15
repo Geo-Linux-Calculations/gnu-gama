@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,17 +19,17 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_LocalNetwork_svd_h
-#define GaMaLib_LocalNetwork_svd_h
+#ifndef gama_local_LocalNetwork_svd_h
+#define gama_local_LocalNetwork_svd_h
 
 #include <gnu_gama/local/local/network.h>
 #include <gnu_gama/adj/adj_svd.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
   class LocalNetwork_svd : public LocalNetwork
     {
-      typedef GNU_gama::AdjSVD<Double, GaMaLib::MatVecException> OLS_svd;
+      typedef GNU_gama::AdjSVD<Double, GNU_gama::local::MatVecException> OLS_svd;
       OLS_svd* ols_svd;
 
     public:
@@ -49,7 +49,7 @@ namespace GaMaLib
 
       const char* const algorithm() const { return "svd"; }
     };
-}
+}}
 
 #endif
 

@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2005  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,17 +19,17 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_LocalNetwork_chol_h
-#define GaMaLib_LocalNetwork_chol_h
+#ifndef gama_local_LocalNetwork_chol_h
+#define gama_local_LocalNetwork_chol_h
 
 #include <gnu_gama/local/local/network.h>
 #include <gnu_gama/adj/adj_chol.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
   class LocalNetwork_chol : public LocalNetwork
     {
-      typedef GNU_gama::AdjCholDec<Double, GaMaLib::MatVecException> OLS_chol;
+      typedef GNU_gama::AdjCholDec<Double, GNU_gama::local::MatVecException> OLS_chol;
       OLS_chol* ols_chol;
 
     public:
@@ -49,7 +49,7 @@ namespace GaMaLib
 
       const char* const algorithm() const { return "cholesky"; }
     };
-}
+}}
 
 #endif
 

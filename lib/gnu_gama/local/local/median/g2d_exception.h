@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,28 +21,28 @@
 */
 
 /******************************************************************
- * local exception for GaMaLib (Median)                           *
+ * local exception for GNU_gama::local (Median)                           *
  ******************************************************************/
 
-#ifndef GaMaLib_g2d_exception_h__GaMaLib_Median_Vyjimky_H
-#define GaMaLib_g2d_exception_h__GaMaLib_Median_Vyjimky_H
+#ifndef gama_local_g2d_exception_h__GNU_gama_local_Median_Vyjimky_H
+#define gama_local_g2d_exception_h__GNU_gama_local_Median_Vyjimky_H
 
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
 
-  class g2d_exc : public GaMaLib::Exception
+  class g2d_exc : public GNU_gama::local::Exception
     {
     public:
       g2d_exc(const std::string& description) :
-        GaMaLib::Exception(T_IE_internal_error+std::string(" ")+description)
+        GNU_gama::local::Exception(T_IE_internal_error+std::string(" ")+description)
         {
         }
     };
 
-}  // GaMaLib
+}}  // GNU_gama::local
 
 #endif
 

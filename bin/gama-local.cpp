@@ -1,8 +1,8 @@
 /*
-    GNU GaMa / C++ GaMaLib Library
+    GNU GaMa / C++ GNU_gama::local Library
     Copyright (C) 1999, 2002  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU GaMa / C++ GaMaLib library.
+    This file is part of the GNU GaMa / C++ GNU_gama::local library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

@@ -31,19 +31,19 @@
 #include <algorithm>
 
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
 bool
-TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
+TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
                   double max_pyx = 0.1500, // suspicious coorection in meters
                   double max_dif = 0.0005  // max. positional difference in mm
                   )
 {
 
   using namespace std;
-  using namespace GaMaLib;
-  using GaMaLib::Double;
+  using namespace GNU_gama::local;
+  using GNU_gama::local::Double;
 
   bool test  = false;     // result of bad linearization test
 
@@ -133,7 +133,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             cx += x(cil .index_x())/1000;
           }
         Double ds, dd;
-        GaMaLib::bearing_distance(sy, sx, cy, cx, ds, dd);
+        GNU_gama::local::bearing_distance(sy, sx, cy, cx, ds, dd);
 
         if (Distance* d = dynamic_cast<Distance*>(pm))
           {
@@ -158,7 +158,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
             Double cy2 = cil2.y() + x(cil2.index_y())/1000;
             Double cx2 = cil2.x() + x(cil2.index_x())/1000;
             Double ds2, dd2;
-            GaMaLib::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
+            GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
             mer = u->value() + v(i)*CC2R - ds2 + ds;
             while (mer >  M_PI) mer -= 2*M_PI;
             while (mer < -M_PI) mer += 2*M_PI;
@@ -334,7 +334,7 @@ TestLinearization(GaMaLib::LocalNetwork* IS, OutStream& out,
   return test;
 }
 
-}
+}}
 
 #endif
 

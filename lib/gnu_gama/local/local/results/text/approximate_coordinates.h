@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,13 +27,13 @@
 #include <cctype>
 #include <iomanip>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-void ApproximateCoordinates(GaMaLib::Acord* acord, OutStream& out)
+void ApproximateCoordinates(GNU_gama::local::Acord* acord, OutStream& out)
 {
    using namespace std;
-   using namespace GaMaLib;
+   using namespace GNU_gama::local;
 
    if (!acord->missing_coordinates          &&
        acord->given_xyz == acord->total_xyz &&
@@ -90,7 +90,7 @@ void ApproximateCoordinates(GaMaLib::Acord* acord, OutStream& out)
    out.flush();
 }
 
-}
+}}
 
 #endif
 

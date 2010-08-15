@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib____ObservationData____and_other_data_objects___h_____
-#define GaMaLib____ObservationData____and_other_data_objects___h_____
+#ifndef gama_local____ObservationData____and_other_data_objects___h_____
+#define gama_local____ObservationData____and_other_data_objects___h_____
 
 #include <gnu_gama/obsdata.h>
 
@@ -35,7 +35,7 @@
 #include <list>
 #include <algorithm>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   typedef std::list<PointID>    PointIDList;
 
@@ -57,7 +57,7 @@ namespace GaMaLib {
     }
 
 
-}   // namepsace GaMaLib
+}}   // namepsace GNU_gama::local
 
 
 

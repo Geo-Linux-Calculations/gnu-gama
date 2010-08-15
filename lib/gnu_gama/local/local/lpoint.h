@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,15 +19,15 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib___class__LocalPoint_h
-#define GaMaLib___class__LocalPoint_h
+#ifndef gama_local___class__LocalPoint_h
+#define gama_local___class__LocalPoint_h
 
 #include <gnu_gama/local/bpoint.h>
 #include <gnu_gama/local/float.h>
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
 class LocalPoint {
@@ -59,17 +59,17 @@ public:
 
   Double y() const
     {
-      if (!bxy_) throw GaMaLib::Exception(T_POBS_bad_data);
+      if (!bxy_) throw GNU_gama::local::Exception(T_POBS_bad_data);
       return y_;
     }
   Double x() const
     {
-      if (!bxy_) throw GaMaLib::Exception(T_POBS_bad_data);
+      if (!bxy_) throw GNU_gama::local::Exception(T_POBS_bad_data);
       return x_;
     }
   Double z() const
     {
-      if (!bz_ ) throw GaMaLib::Exception(T_POBS_bad_data);
+      if (!bz_ ) throw GNU_gama::local::Exception(T_POBS_bad_data);
       return z_;
     }
 
@@ -142,7 +142,7 @@ private:
 
 };
 
-}   // namespace GaMaLib;
+}}   // namespace GNU_gama::local;
 
 #endif
 

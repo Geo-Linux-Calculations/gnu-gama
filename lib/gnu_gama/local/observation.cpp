@@ -22,17 +22,17 @@
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/cluster.h>
 
-namespace GaMaLib
+namespace GNU_gama { namespace local
 {
   // the static member Observation::gons was introduced in 1.7.09 to
   // enable selection between grades and degrees in virtual functions
   // Observation::write() with minimal changes in existing old code of
-  // GaMaLib
+  // GNU_gama::local
 
   bool Observation::gons = true;
-}
+}}
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 using namespace std;
 
 bool  Observation::check_std_dev() const

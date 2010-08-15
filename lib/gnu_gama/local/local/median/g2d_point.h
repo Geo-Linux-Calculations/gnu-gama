@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                   2001  Ales Cepek  <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
  * approximate coordinates of a single point                 *
  *************************************************************/
 
-#ifndef GaMaLib_g2d_point_h__GaMaLib_Median_Pribl_b_H
-#define GaMaLib_g2d_point_h__GaMaLib_Median_Pribl_b_H
+#ifndef gama_local_g2d_point_h__GNU_gama_local_Median_Pribl_b_H
+#define gama_local_g2d_point_h__GNU_gama_local_Median_Pribl_b_H
 
 #include <gnu_gama/local/local/gamadata.h>
 #include <gnu_gama/local/local/pobs/bearing.h>
@@ -33,7 +33,7 @@
 #include <gnu_gama/local/local/median/g2d_helper.h>
 
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   class ApproxPoint
     {
@@ -166,13 +166,7 @@ namespace GaMaLib {
     };
 
 
-} // namespace GaMaLib
+ }} // namespace GNU_gama::local
 
 
 #endif
-
-
-
-
-
-

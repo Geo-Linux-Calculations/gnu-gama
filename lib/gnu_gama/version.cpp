@@ -41,7 +41,7 @@ namespace GNU_gama {
               #endif
               ;
 
-  const char* GNU_gama_year = "2007";
+  const char* GNU_gama_year = "2010";
 
 
   int version(const char* program, const char* copyright_holder)

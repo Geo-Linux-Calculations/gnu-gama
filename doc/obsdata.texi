@@ -53,9 +53,9 @@ template <typename Observation>
   class Cluster 
   {
   public:
-    const ObservationData<Observation>*  observation_data;
-    ObservationList<Observation>         observation_list;
-    GaMaLib::Cov                         covariance_matrix;  
+    const ObservationData<Observation>*     observation_data;
+    ObservationList<Observation>            observation_list;
+    typename Observation::CovarianceMatrix  covariance_matrix;  
     
     Cluster(const ObservationData<Observation>* od);
     virtual ~Cluster();
@@ -65,7 +65,7 @@ template <typename Observation>
     int size() const;
     void update();
     int  activeCount() const;
-    GaMaLib::Cov  activeCov() const; 
+    typename Observation::CovarianceMatrix activeCov() const; 
   };
 
 @end verbatim

@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@
 #include <sstream>
 #include <iomanip>
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
-typedef GNU_gama::Cluster<Observation>  Cluster;
+typedef GNU_gama::Cluster<Observation>  Clust_r;   // 1.11
 
 
 void Orientation::add_all()
@@ -40,12 +40,12 @@ void Orientation::add_all()
   while (iterator != OL.end())
     if (const Direction* direction = dynamic_cast<const Direction*>(*iterator))
       {
-        Cluster* cluster = const_cast<Cluster*>(direction->ptr_cluster());
+	Clust_r* cluster = const_cast<Clust_r*>(direction->ptr_cluster());
         StandPoint* standpoint = static_cast<StandPoint*>(cluster);
         if (standpoint->test_orientation())
           {
-            const Cluster* ca = direction->ptr_cluster();
-            const Cluster* cb = ca;
+            const Clust_r* ca = direction->ptr_cluster();
+            const Clust_r* cb = ca;
             while (iterator != OL.end())
               {
                 cb = (*iterator)->ptr_cluster();
@@ -69,7 +69,7 @@ void Orientation::add_all()
 void Orientation::orientation(ObservationList::const_iterator& mer,
                               Double& z, int& dir_count)
 {
-   const Cluster* current = (*mer)->ptr_cluster();
+   const Clust_r* current = (*mer)->ptr_cluster();
    PointData::const_iterator pa = PL.find( (*mer)->from() );
    if (pa == PL.end() || !(*pa).second.test_xy())
    {
@@ -95,7 +95,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
                 {
                   zn = bearing((*pa).second, (*pb).second);
                 }
-              catch (GaMaLib::Exception e)
+              catch (GNU_gama::local::Exception e)
                 {
                   std::stringstream s;
                   s.precision(5);
@@ -114,7 +114,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
                   s << "  y = " << std::setw(13) << pb->second.y();
                   s << "\n";
 
-                  throw GaMaLib::Exception(s.str());
+                  throw GNU_gama::local::Exception(s.str());
                 }
               catch (...)
                 {

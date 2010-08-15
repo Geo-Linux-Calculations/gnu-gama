@@ -27,9 +27,13 @@
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.09";
+         const char* version = "1.10";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.10  2010-08-14
+ *
+ *       - namespace GNU_gama::local
  *
  * 1.09  2006-08-26
  *
@@ -97,10 +101,10 @@
  *
  * ---------------------------------------------------------------------------
  *
- *   Geodesy and Mapping C++ Library (GaMaLib)
+ *   Geodesy and Mapping C++ Library (GNU_gama::local)
  *   Copyright (C) 2000, 2006  Ales Cepek <cepek@fsv.cvut.cz>
  *
- *   This file is part of the GaMaLib C++ Library.
+ *   This file is part of the GNU_gama::local C++ Library.
  *
  *   This library is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU Library General Public
@@ -315,10 +319,10 @@ int main()
   {
     ofstream out("language.h");
 
-    out << "#ifndef GaMaLib___language__header_file_h\n";
-    out << "#define GaMaLib___language__header_file_h\n\n";
+    out << "#ifndef GNU_gama_local___language__header_file_h\n";
+    out << "#define GNU_gama_local___language__header_file_h\n\n";
 
-    out << "namespace GaMaLib {      /* slovnikar " << version << " */\n\n";
+    out << "namespace GNU_gama { namespace local {      /* slovnikar " << version << " */\n\n";
 
     out << "enum gama_language {";
     for (int N=sizeof(language)/sizeof(const char*)-1, i=0; i<=N; i++)
@@ -334,7 +338,7 @@ int main()
         out << "extern const char* " << (*i).first << ";\n";
       }
 
-    out << "\n}\n\n";
+    out << "\n}}\n\n";
     out << "#endif\n";
   }
 
@@ -389,7 +393,7 @@ int main()
     ofstream out("language.cpp");
     out << "/* slovnikar " << version << " */\n\n"
         << "#include <gamalib/language.h>\n\n"
-        << "namespace GaMaLib {\n\n"
+        << "namespace GNU_gama::local {\n\n"
         << "const char* T_language_cpp_internal_error = "
         << "\" internal error : "
         << "program must call function set_gama_language() \";\n\n";
@@ -423,7 +427,7 @@ int main()
         out << "\treturn;\n\n";
 
       }
-    out << "   }\n\n}\n\n}   // namespace GaMaLib\n\n";
+    out << "   }\n\n}\n\n}   // namespace GNU_gama::local\n\n";
   }
 
   return result;

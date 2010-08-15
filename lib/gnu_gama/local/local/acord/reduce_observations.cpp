@@ -24,7 +24,7 @@
 #include <iostream>
 
 using namespace std;
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 const Double EarthRadius = 6378000;  // [m]
 

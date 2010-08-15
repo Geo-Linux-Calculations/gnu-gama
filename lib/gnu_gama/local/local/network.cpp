@@ -34,11 +34,11 @@
 #include <gnu_gama/version.h>
 
 using namespace std;
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 
 typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
-typedef GNU_gama::Cluster<Observation>                  Cluster;
+typedef GNU_gama::Cluster<Observation>                  Clust_r;  // 1.10
 
 namespace
 {
@@ -368,7 +368,7 @@ void LocalNetwork::project_equations()
     }
   else
     {
-      throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
+      throw GNU_gama::local::Exception(UNKNOWN_ALGORITHM);
     }
 
   //--ofstream opr("A_scaled.bin", ios_base::trunc);
@@ -535,7 +535,7 @@ void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
 void LocalNetwork::conf_pr(Double p)
 {
   if (p <= 0 || p >= 1)
-    throw GaMaLib::Exception(T_LN_undefined_confidence_level);
+    throw GNU_gama::local::Exception(T_LN_undefined_confidence_level);
   konf_pr_ = p;
 }
 
@@ -555,14 +555,14 @@ Double LocalNetwork::m_0()
     }
   else
     {
-      throw GaMaLib::Exception(T_LN_undefined_type_of_actual_sigma);
+      throw GNU_gama::local::Exception(T_LN_undefined_type_of_actual_sigma);
     }
 }
 
 
 Double LocalNetwork::conf_int_coef()
 {
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   Double pravdepodobnost = (1 - konf_pr_)/2;
   if (m_0_apriori())
@@ -577,7 +577,7 @@ Double LocalNetwork::conf_int_coef()
     }
   else
     {
-      throw GaMaLib::Exception(T_LN_undefined_type_of_actual_sigma);
+      throw GNU_gama::local::Exception(T_LN_undefined_type_of_actual_sigma);
     }
 }
 
@@ -711,7 +711,7 @@ Double LocalNetwork::test_abs_term(Index indm)
       }
   }
 
-  throw GaMaLib::Exception("LocalNetwork::test_abs_term() - unknown observation");
+  throw GNU_gama::local::Exception("LocalNetwork::test_abs_term() - unknown observation");
 
 }
 
@@ -917,16 +917,16 @@ void LocalNetwork::prepareProjectEquations()
 
 void LocalNetwork::vyrovnani_()
 {
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
   if (tst_vyrovnani_) return;
 
   project_equations();
   if (sum_unknowns()     == 0)
-    throw GaMaLib::Exception(T_GaMa_No_unknowns_defined);
+    throw GNU_gama::local::Exception(T_GaMa_No_unknowns_defined);
   if (sum_observations() == 0)
-    throw GaMaLib::Exception(T_GaMa_No_observations_available);
+    throw GNU_gama::local::Exception(T_GaMa_No_observations_available);
   if (sum_points()      == 0)
-    throw GaMaLib::Exception(T_GaMa_No_points_available);
+    throw GNU_gama::local::Exception(T_GaMa_No_points_available);
 
   /* least_squares->solve(); ... removed in 1.9.01a */
 
@@ -1026,7 +1026,7 @@ void LocalNetwork::vyrovnani_()
     }
   else
     {
-      throw GaMaLib::Exception(UNKNOWN_ALGORITHM);
+      throw GNU_gama::local::Exception(UNKNOWN_ALGORITHM);
     }
 
 
@@ -1040,7 +1040,7 @@ void LocalNetwork::vyrovnani_()
            cit=OD.clusters.begin(); cit!=OD.clusters.end(); ++cit)
       if (const Index N = (*cit)->activeObs())
         {
-          const Cluster& cluster = *(*cit);
+          const Clust_r& cluster = *(*cit);
           // ??? if (cluster.covariance_matrix.bandWidth())
           // ???   {
           // ???     // vypocet pro korelovana mereni zatim chybi !!!

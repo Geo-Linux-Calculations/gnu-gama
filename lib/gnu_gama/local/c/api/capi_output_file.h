@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib__C_API_internal_output_file_class____capi_output_file__H__
-#define GaMaLib__C_API_internal_output_file_class____capi_output_file__H__
+#ifndef gama_local__C_API_internal_output_file_class____capi_output_file__H__
+#define gama_local__C_API_internal_output_file_class____capi_output_file__H__
 
 
 #ifdef __cplusplus
@@ -28,7 +28,7 @@
 #include <fstream>
 #include <gnu_gama/local/local/network.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   class C_API_output_file {
   public:
@@ -47,7 +47,7 @@ namespace GaMaLib {
 
   };
 
-}
+}}
 
 #endif
 

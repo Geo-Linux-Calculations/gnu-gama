@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Acord___accord___header___h
-#define GaMaLib_Acord___accord___header___h
+#ifndef gama_local_Acord___accord___header___h
+#define gama_local_Acord___accord___header___h
 
 #include <gnu_gama/local/local/gamadata.h>
 #include <gnu_gama/local/local/acord/reduce_observations.h>
@@ -30,7 +30,7 @@
 #include <list>
 #include <set>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
   class Acord
@@ -54,7 +54,7 @@ namespace GaMaLib {
       std::set<PointID> set_xyz, set_xy, set_z;
     };
 
-}   // namespace GaMaLib
+}}   // namespace GNU_gama::local
 
 #endif
 

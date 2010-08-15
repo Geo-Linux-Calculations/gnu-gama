@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_GaMa_XML_Data_Object__object___h_
-#define GaMaLib_GaMa_XML_Data_Object__object___h_
+#ifndef gama_local_GaMa_XML_Data_Object__object___h_
+#define gama_local_GaMa_XML_Data_Object__object___h_
 
 #include <string>
 #include <sstream>

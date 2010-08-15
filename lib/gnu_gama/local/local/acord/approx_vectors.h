@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,14 +19,14 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_acord___ApproximateVectors__header___h
-#define GaMaLib_acord___ApproximateVectors__header___h
+#ifndef gama_local_acord___ApproximateVectors__header___h
+#define gama_local_acord___ApproximateVectors__header___h
 
 #include <gnu_gama/local/local/gamadata.h>
 #include <algorithm>
 #include <vector>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
     class ApproximateVectors
@@ -90,7 +90,7 @@ namespace GaMaLib {
 
 	};
 
-}   // namespace GaMaLib
+ }}   // namespace GNU_gama::local
 
 #endif
 

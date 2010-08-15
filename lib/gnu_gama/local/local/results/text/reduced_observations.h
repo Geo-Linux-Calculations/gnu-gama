@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2002, 2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
                         2003  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_local_results_text_reduced_observations_h
-#define GaMaLib_local_results_text_reduced_observations_h
+#ifndef gama_local_local_results_text_reduced_observations_h
+#define gama_local_local_results_text_reduced_observations_h
 
 #include <gnu_gama/local/local/results/text/underline.h>
 #include <gnu_gama/local/local/network.h>
@@ -30,14 +30,15 @@
 #include <cctype>
 #include <iomanip>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
-    	                GaMaLib::ReducedObservations* reduced, OutStream& out)
+void ReducedObservationsText(GNU_gama::local::LocalNetwork* IS,
+                             GNU_gama::local::ReducedObservations* reduced,
+                             OutStream& out)
 {
    using namespace std;
-   using namespace GaMaLib;
+   using namespace GNU_gama::local;
 
    if ( !reduced->size() )
        return;
@@ -214,7 +215,7 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
           }
         else
           {
-            throw GaMaLib::Exception("review/reduced_observations.h - "
+            throw GNU_gama::local::Exception("review/reduced_observations.h - "
                                      "unknown observation type");
           }
       }   // ***************************************************
@@ -231,7 +232,7 @@ void ReducedObservationsText(GaMaLib::LocalNetwork* IS,
    out.flush();
 }
 
-}
+}}
 
 #endif
 

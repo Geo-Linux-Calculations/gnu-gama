@@ -1,5 +1,5 @@
 /*
-    Geodesy and Mapping C++ Library (GNU Gama)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.

@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,25 +19,25 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_GKF__XML__parser__h_
-#define GaMaLib_GKF__XML__parser__h_
+#ifndef gama_local_GKF__XML__parser__h_
+#define gama_local_GKF__XML__parser__h_
 
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/dataobject.h>
 #include <gnu_gama/local/local/gamadata.h>
 
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
-  class ParserException : public GaMaLib::Exception
+  class ParserException : public GNU_gama::local::Exception
   {
   public:
 
     int line, error_code;
 
     ParserException(std::string s, int r, int c)
-      : GaMaLib::Exception(s), line(r), error_code(c)
+      : GNU_gama::local::Exception(s), line(r), error_code(c)
       {
       }
 
@@ -48,7 +48,7 @@ namespace GaMaLib {
     {
     public:
 
-      GKFparser(GaMaLib::PointData& sb, GaMaLib::ObservationData& od);
+      GKFparser(GNU_gama::local::PointData& sb, GNU_gama::local::ObservationData& od);
       ~GKFparser();
 
       int characterDataHandler(const char* s, int len);
@@ -86,8 +86,8 @@ namespace GaMaLib {
 
     private:
 
-      GaMaLib::PointData&       SB;        // point list
-      GaMaLib::ObservationData& OD;        // observation list
+      GNU_gama::local::PointData&       SB;        // point list
+      GNU_gama::local::ObservationData& OD;        // observation list
 
       enum gkf_tag {
         tag_unknown,
@@ -231,7 +231,7 @@ namespace GaMaLib {
       bool  obsolete_attribute;
 
     };  // class GKFparser
-}       // namespace GaMaLib
+}}       // namespace GNU_gama::local
 
 
 #endif

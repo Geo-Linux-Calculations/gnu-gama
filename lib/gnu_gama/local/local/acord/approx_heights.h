@@ -1,9 +1,9 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,15 +20,15 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_acord___ApproximateHeights_ApproxHeights___header___h
-#define GaMaLib_acord___ApproximateHeights_ApproxHeights___header___h
+#ifndef gama_local_acord___ApproximateHeights_ApproxHeights___header___h
+#define gama_local_acord___ApproximateHeights_ApproxHeights___header___h
 
 #include <gnu_gama/local/local/gamadata.h>
 #include <fstream>
 #include <algorithm>
 #include <list>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
   class ApproximateHeights
@@ -58,11 +58,6 @@ namespace GaMaLib {
       void print(std::ostream&);
     };
 
-}   // namespace GaMaLib
+ }}   // namespace GNU_gama::local
 
 #endif
-
-
-
-
-

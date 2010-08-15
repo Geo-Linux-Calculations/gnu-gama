@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Bod_Mer_Mereni_H
-#define GaMaLib_Bod_Mer_Mereni_H
+#ifndef gama_local_Bod_Mer_Mereni_H
+#define gama_local_Bod_Mer_Mereni_H
 
 #ifdef _MSC_VER
       #define CLONE(ptr) Observation*
@@ -41,7 +41,7 @@
 #include <gnu_gama/obsdata.h>
 #include <gnu_gama/local/matvec.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   class PointData;
   class Observation;
@@ -61,14 +61,14 @@ namespace GaMaLib {
 
     public:
 
-      typedef GaMaLib::CovMat CovarianceMatrix;
+      typedef GNU_gama::local::CovMat CovarianceMatrix;
 
       Observation(const PointID& s, const PointID& c, Double m)
         :
         cluster(0), from_(s), to_(c), value_(m), active_(true),
         from_dh_(0), to_dh_(0)
         {
-          if (s == c) throw GaMaLib::Exception(T_GaMa_from_equals_to);
+          if (s == c) throw GNU_gama::local::Exception(T_GaMa_from_equals_to);
         }
       virtual ~Observation() {}
 
@@ -151,7 +151,7 @@ namespace GaMaLib {
         : Observation(s, c, d)
         {
           if (d <= 0)
-            throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
+            throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
         }
       ~Distance() {}
 
@@ -198,7 +198,7 @@ namespace GaMaLib {
            * not an realistic case but it's useful in g2d_point.h:67
            * and should not cause a trouble elsewhere */
           if (s == f)
-            throw GaMaLib::Exception(T_GaMa_from_equals_to);
+            throw GNU_gama::local::Exception(T_GaMa_from_equals_to);
           norm_rad_val();
         }
       ~Angle() {}
@@ -227,7 +227,7 @@ namespace GaMaLib {
         : Observation(s, c, dh), dist_(d)
         {
           if (d < 0)   // zero distance is legal in H_Diff
-            throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
+            throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
         }
       ~H_Diff() {}
 
@@ -238,7 +238,7 @@ namespace GaMaLib {
       void   set_dist(Double d)
         {
           if (d < 0)    // zero distance is legal in H_Diff
-            throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
+            throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           dist_ = d;
         }
       Double dist() const { return dist_; }
@@ -329,7 +329,7 @@ namespace GaMaLib {
         : Observation(s, c, d)
         {
           if (d <= 0)
-            throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
+            throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
         }
       ~S_Distance() {}
 
@@ -346,7 +346,7 @@ namespace GaMaLib {
         : Observation(s, c, d)
         {
           if (d <= 0)
-            throw GaMaLib::Exception(T_POBS_zero_or_negative_distance);
+            throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
         }
       ~Z_Angle() {}
 
@@ -356,7 +356,7 @@ namespace GaMaLib {
     };
 
 
-}   // namespace GaMaLib
+}}   // namespace GNU_gama::local
 
 #undef CLONE
 

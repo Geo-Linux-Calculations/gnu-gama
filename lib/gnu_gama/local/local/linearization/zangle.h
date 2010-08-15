@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Jan Pytel <pytel@gama.fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include <gnu_gama/local/local/linearization.h>
 // #include <gnu_gama/local/local/pobs/bearing.h>
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 using namespace std;
 
 
@@ -42,7 +42,7 @@ void LocalLinearization::z_angle(const Z_Angle* obs) const
    Double d  = sqrt(d2);
    Double sd = sqrt(d2 + dz*dz);
    if (d == 0 || sd == 0)
-     throw GaMaLib::Exception(T_POBS_zero_or_negative_zenith_angle);
+     throw GNU_gama::local::Exception(T_POBS_zero_or_negative_zenith_angle);
 
    Double k  = 10*R2G/(d*sd*sd);
 

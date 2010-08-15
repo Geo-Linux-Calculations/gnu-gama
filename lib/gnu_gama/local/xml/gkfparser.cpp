@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ namespace {
 }
 
 using namespace std;
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
   int GKFparser::characterDataHandler(const char* s, int len)
@@ -752,7 +752,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, false));
       }
-    catch (const /*GaMaLib::*/Exception &e)
+    catch (const /*GNU_gama::local::*/Exception &e)
       {
         return error(e.text);
       }
@@ -827,7 +827,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, degrees));
       }
-    catch (const /*GaMaLib::*/Exception &e)
+    catch (const /*GNU_gama::local::*/Exception &e)
       {
         error(e.text);
       }
@@ -887,7 +887,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, false));
       }
-    catch (const /*GaMaLib::*/Exception &e)
+    catch (const /*GNU_gama::local::*/Exception &e)
       {
         return error(e.text);
       }
@@ -951,7 +951,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(dv, degrees));
       }
-    catch (const /*GaMaLib::*/Exception &e)
+    catch (const /*GNU_gama::local::*/Exception &e)
       {
         return error(e.text);
       }
@@ -1095,7 +1095,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( d );
         sigma.push_back(DB_pair(ds, degrees));
       }
-    catch (const /*GaMaLib::*/Exception &e)
+    catch (const /*GNU_gama::local::*/Exception &e)
       {
         error(e.text);
       }
@@ -1150,7 +1150,7 @@ namespace GaMaLib {
         standpoint->observation_list.push_back( hd );
         sigma.push_back(DB_pair(ds, false));
       }
-    catch  (const /*GaMaLib::*/Exception &e)
+    catch  (const /*GNU_gama::local::*/Exception &e)
       {
         error(e.text);
       }
@@ -1394,7 +1394,7 @@ namespace GaMaLib {
         heightdifferences->observation_list.push_back( hd );
         sigma.push_back(DB_pair(ds, false));
       }
-    catch  (const /*GaMaLib::*/Exception &e)
+    catch  (const /*GNU_gama::local::*/Exception &e)
       {
         error(e.text);
       }
@@ -1504,7 +1504,7 @@ namespace GaMaLib {
         vectors->observation_list.push_back( ydiff );
         vectors->observation_list.push_back( zdiff );
       }
-    catch  (const /*GaMaLib::*/Exception &e)
+    catch  (const /*GNU_gama::local::*/Exception &e)
       {
         error(e.text);
       }
@@ -1512,18 +1512,18 @@ namespace GaMaLib {
     return 0;
   }
 
-}   // namespace GaMaLib
+}}   // namespace GNU_gama::local
 
 
 // #########################################################################
 
-#ifdef GaMaLib_GKFparser_demo
+#ifdef gama_local_GKFparser_demo
 
 #include <fstream>
 #include <gnu_gama/version.h>
 #include <gnu_gama/local/local/pobs/format.h>
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 int main(int argc, char* argv[])
 {
@@ -1577,7 +1577,7 @@ int main(int argc, char* argv[])
          << "</network>\n"
          << "</gama-local>\n";
   }
-  catch (GaMaLib::Exception e) {
+  catch (GNU_gama::local::Exception e) {
     cout << "\nException : " << e.text << "\n\n";
     // cout << "line = " << gp.errLineNumber
     //      << " expat error code = " << gp.errCode << "\n\n";

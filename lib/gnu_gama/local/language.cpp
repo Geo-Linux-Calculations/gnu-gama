@@ -2,7 +2,7 @@
 
 #include <gnu_gama/local/language.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 const char* T_language_cpp_internal_error = " internal error : program must call function set_gama_language() ";
 
@@ -2333,5 +2333,4 @@ void set_gama_language(gama_language lang)
 
 }
 
-}   // namespace GaMaLib
-
+}}   // namespace GNU_gama::local

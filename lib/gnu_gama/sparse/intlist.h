@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
-#define GNU_gama___GaMaLib_Integer_list____GaMaLib_Integer_list
+#ifndef GNU_gama___gama_local_Integer_list____GNU_gama_local_Integer_list
+#define GNU_gama___gama_local_Integer_list____GNU_gama_local_Integer_list
 
 #include <cstddef>
 

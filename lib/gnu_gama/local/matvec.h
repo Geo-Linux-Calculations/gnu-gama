@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,20 +19,20 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Bod_Mer_MatVec_H
-#define GaMaLib_Bod_Mer_MatVec_H
+#ifndef gama_local_Bod_Mer_MatVec_H
+#define gama_local_Bod_Mer_MatVec_H
 
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/float.h>
 #include <matvec/svd.h>
 #include <matvec/covmat.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
-  class MatVecException : public GaMaLib::Exception {
+  class MatVecException : public GNU_gama::local::Exception {
   public:
     const int error;
-    MatVecException(int e, const char *s) : GaMaLib::Exception(s), error(e) {}
+    MatVecException(int e, const char *s) : GNU_gama::local::Exception(s), error(e) {}
   };
 
   typedef GNU_gama::Index Index;
@@ -42,7 +42,7 @@ namespace GaMaLib {
   typedef GNU_gama::SVD   <double, MatVecException>   SVD;
   typedef GNU_gama::CovMat<double, MatVecException>   CovMat;  // covariances
 
-}      // GaMaLib
+}}      // GNU_gama::local
 
 #endif
 

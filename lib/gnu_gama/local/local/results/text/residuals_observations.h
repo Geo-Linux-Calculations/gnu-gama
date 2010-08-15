@@ -41,31 +41,31 @@ static float ResidualsObservations_N01(float x)   // local helper function
 
 class StOpSort {
 
-  GaMaLib::LocalNetwork* IS;
+  GNU_gama::local::LocalNetwork* IS;
 
 public:
 
-  StOpSort(GaMaLib::LocalNetwork* is) : IS(is) {}
+  StOpSort(GNU_gama::local::LocalNetwork* is) : IS(is) {}
   bool operator()(int a, int b)
     {
       using namespace std;
-      GaMaLib::Double sa = fabs(IS->studentized_residual(a));
-      GaMaLib::Double sb = fabs(IS->studentized_residual(b));
+      GNU_gama::local::Double sa = fabs(IS->studentized_residual(a));
+      GNU_gama::local::Double sb = fabs(IS->studentized_residual(b));
       return sa > sb;
     }
 };
 
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
+void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
   if(IS->degrees_of_freedom() <= 1) return;
 
   using namespace std;
-  using namespace GaMaLib;
-  using GaMaLib::Double;
+  using namespace GNU_gama::local;
+  using GNU_gama::local::Double;
 
   const Vec&    v      = IS->residuals();
   const int     pocmer = IS->sum_observations();
@@ -202,7 +202,7 @@ void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
             }
           else
             {
-            throw GaMaLib::Exception("review/residuals_observations.h - "
+            throw GNU_gama::local::Exception("review/residuals_observations.h - "
                                      "unknown observation type");
             }
 
@@ -266,7 +266,7 @@ void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
 
   if (pocmer >= 30)
     {
-      using namespace GaMaLib;
+      using namespace GNU_gama::local;
 
       out << "\n\n"
           << T_GaMa_resobs_normality_test << "\n"
@@ -320,7 +320,7 @@ void ResidualsObservations(GaMaLib::LocalNetwork* IS, OutStream& out)
   out.flush();
 }
 
-}
+}}
 
 #endif
 

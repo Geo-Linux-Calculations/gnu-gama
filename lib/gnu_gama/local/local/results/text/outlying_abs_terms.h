@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,13 +28,13 @@
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
+void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
   using namespace std;
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   if (!IS->huge_abs_terms()) return;
 
@@ -187,7 +187,7 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
               }
             else
               {
-                throw GaMaLib::Exception(
+                throw GNU_gama::local::Exception(
                    "GaMa internal error - unknown observation\n");
               }
           }   // ************************************************
@@ -202,7 +202,7 @@ void OutlyingAbsoluteTerms(GaMaLib::LocalNetwork* IS, OutStream& out)
   out << "\n\n";
 }
 
-}
+}}
 
 #endif
 

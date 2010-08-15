@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 
 
 using namespace std;
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 extern "C" {
 
@@ -78,7 +78,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         *of << string;
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -98,7 +98,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         AdjustedObservations(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -117,7 +117,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         AdjustedUnknowns(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -139,7 +139,7 @@ extern "C" {
         acord.execute();
         ApproximateCoordinates(&acord, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -158,7 +158,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         ErrorEllipses(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -177,7 +177,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         FixedPoints(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -198,7 +198,7 @@ extern "C" {
         GNU_gama::OutStream output(of);
         return GeneralParameters(ln, output);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -218,7 +218,7 @@ extern "C" {
         const std::string st(text);
         NetworkDescription(st, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -237,7 +237,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         OutlyingAbsoluteTerms(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -256,7 +256,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         ResidualsObservations(ln, *of);
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -275,7 +275,7 @@ extern "C" {
         std::ofstream* of = capiof->out;
         return TestLinearization(ln, *of) ? 1 : 0;
       }
-    catch(const GaMaLib::Exception& e)
+    catch(const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }

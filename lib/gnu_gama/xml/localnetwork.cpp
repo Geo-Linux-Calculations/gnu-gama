@@ -31,23 +31,23 @@
 
 using namespace std;
 using GNU_gama::LocalNetworkXML;
-using GaMaLib::PointData;
-using GaMaLib::LocalPoint;
-using GaMaLib::StandPoint;
-using GaMaLib::PointID;
-using GaMaLib::Observation;
-using GaMaLib::Distance;
-using GaMaLib::Direction;
-using GaMaLib::X;
-using GaMaLib::Y;
-using GaMaLib::Z;
-using GaMaLib::Angle;
-using GaMaLib::H_Diff;
-using GaMaLib::Z_Angle;
-using GaMaLib::S_Distance;
-using GaMaLib::Xdiff;
-using GaMaLib::Ydiff;
-using GaMaLib::Zdiff;
+using GNU_gama::local::PointData;
+using GNU_gama::local::LocalPoint;
+using GNU_gama::local::StandPoint;
+using GNU_gama::local::PointID;
+using GNU_gama::local::Observation;
+using GNU_gama::local::Distance;
+using GNU_gama::local::Direction;
+using GNU_gama::local::X;
+using GNU_gama::local::Y;
+using GNU_gama::local::Z;
+using GNU_gama::local::Angle;
+using GNU_gama::local::H_Diff;
+using GNU_gama::local::Z_Angle;
+using GNU_gama::local::S_Distance;
+using GNU_gama::local::Xdiff;
+using GNU_gama::local::Ydiff;
+using GNU_gama::local::Zdiff;
 
 
 namespace
@@ -315,7 +315,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out.setf(ios_base::fixed, ios_base::floatfield);
   out.precision(6);
 
-  const GaMaLib::Vec& X = netinfo->solve();
+  const GNU_gama::local::Vec& X = netinfo->solve();
   std::vector<Index> ind(netinfo->sum_unknowns() + 1);
   Index dim = 0;
 
@@ -502,7 +502,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
 {
   out << "\n<orientation-shifts>\n";
 
-  const GaMaLib::Vec& X = netinfo->solve();
+  const GNU_gama::local::Vec& X = netinfo->solve();
   //const double scale    = netinfo->gons() ? 1.0 : 0.324;
   const int    y_sign   = GaMaConsistent(netinfo->PD) ? +1 : -1;
   //const double kki      = netinfo->conf_int_coef();
@@ -551,10 +551,10 @@ void LocalNetworkXML::observations(std::ostream& out) const
   out << "\n<observations>\n\n";
 
    using namespace std;
-   // using namespace GaMaLib;
+   // using namespace GNU_gama::local;
 
    const int      y_sign = GaMaConsistent(netinfo->PD) ? +1 : -1;
-   const GaMaLib::Vec& v = netinfo->residuals();
+   const GNU_gama::local::Vec& v = netinfo->residuals();
    const int      pocmer = netinfo->sum_observations();
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;
    const double   kki    = netinfo->conf_int_coef();
@@ -691,7 +691,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
          }
        else
          {
-           throw GaMaLib::Exception("review/adjusted_observations.h - "
+           throw GNU_gama::local::Exception("review/adjusted_observations.h - "
                                     "unknown observation type");
          }
 

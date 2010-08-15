@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,15 +19,15 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Bod_Mer_VYPORPOS_H
-#define GaMaLib_Bod_Mer_VYPORPOS_H
+#ifndef gama_local_Bod_Mer_VYPORPOS_H
+#define gama_local_Bod_Mer_VYPORPOS_H
 
 #include <functional>
 #include <vector>
 #include <gnu_gama/local/local/pobs/bearing.h>
 #include <gnu_gama/local/local/gamadata.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 class Orientation {
 
@@ -45,5 +45,5 @@ public:
    void add_all();
 };
 
-}
+}}
 #endif

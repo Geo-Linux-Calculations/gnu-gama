@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,13 +19,13 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_SkipComments_h
-#define GaMaLib_SkipComments_h
+#ifndef gama_local_SkipComments_h
+#define gama_local_SkipComments_h
 #include <iostream>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 std::istream& SkipComments(std::istream&);
 
-}
+}}
 #endif

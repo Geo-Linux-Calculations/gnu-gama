@@ -57,7 +57,7 @@
 int help()
 {
   using namespace std;
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   cerr << "\n"
        << "Adjustment of local geodetic network"
@@ -93,7 +93,7 @@ int help()
 int GaMa_Main(int argc, char **argv)
 {
   using namespace std;
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   string description;
   const char* c;
@@ -248,7 +248,7 @@ int GaMa_Main(int argc, char **argv)
     }
     catch (...) {
       throw
-        GaMaLib::Exception(T_GaMa_exception_1);
+        GNU_gama::local::Exception(T_GaMa_exception_1);
     }
 
 
@@ -322,12 +322,12 @@ int GaMa_Main(int argc, char **argv)
     }
 
   }
-  catch (const GaMaLib::ParserException& v) {
+  catch (const GNU_gama::local::ParserException& v) {
     cerr << "\n" << T_GaMa_exception_2a << "\n\n"
          << T_GaMa_exception_2b << v.line << " : " << v.text << endl;
     return 3;
   }
-  catch (const GaMaLib::Exception& v) {
+  catch (const GNU_gama::local::Exception& v) {
     cerr << "\n" <<T_GaMa_exception_2a << "\n"
          << "\n***** " << v.text << "\n\n";
     return 2;
@@ -352,10 +352,10 @@ int GaMa_Main(int argc, char **argv)
     }
 
     if (IS->PD.empty())
-      throw GaMaLib::Exception(T_GaMa_No_points_available);
+      throw GNU_gama::local::Exception(T_GaMa_No_points_available);
 
     if (IS->OD.clusters.empty())
-      throw GaMaLib::Exception(T_GaMa_No_observations_available);
+      throw GNU_gama::local::Exception(T_GaMa_No_observations_available);
 
     try
       {
@@ -377,7 +377,7 @@ int GaMa_Main(int argc, char **argv)
         ApproximateCoordinates(&acord, cout);
 
       }
-    catch(GaMaLib::Exception e)
+    catch(GNU_gama::local::Exception e)
       {
         cerr << e.text << endl;
         return 1;
@@ -392,7 +392,7 @@ int GaMa_Main(int argc, char **argv)
 
     if (IS->sum_points() == 0 || IS->sum_unknowns() == 0)
       {
-        throw GaMaLib::Exception(T_GaMa_No_network_points_defined);
+        throw GNU_gama::local::Exception(T_GaMa_No_network_points_defined);
       }
     else
       {
@@ -469,7 +469,7 @@ int GaMa_Main(int argc, char **argv)
     return 0;
 
   }
-  catch (const GaMaLib::Exception& V)
+  catch (const GNU_gama::local::Exception& V)
     {
       cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
            << "****** " << V.text << "\n\n";

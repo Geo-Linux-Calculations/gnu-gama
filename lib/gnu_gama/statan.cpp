@@ -1,5 +1,5 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
@@ -273,6 +273,6 @@ float Chi_square(float p, int n)
    return f*z*z*z;
 }
 
-}   // namespace GaMaLib
+}   // namespace GNU_gama::local
 
 //---------------------------------------------------------------------------

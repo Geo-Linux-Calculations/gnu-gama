@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ extern "C" {
 
   void Cgama_init(int lang)
   {
-    using namespace GaMaLib;
+    using namespace GNU_gama::local;
     set_gama_language(gama_language(lang));
   }
 
@@ -96,15 +96,15 @@ extern "C" {
 
 // -----  private functions  -----------------------------------------------
 
-void Cgama_private_set_exception(const GaMaLib::Exception& e)
+void Cgama_private_set_exception(const GNU_gama::local::Exception& e)
 {
   c_api_data.clean();
   strncpy(c_api_data.text, e.text.c_str(),256);
   c_api_data.text[255] = 0;
 
-  using namespace GaMaLib;
-  if (const GaMaLib::ParserException*
-      g = dynamic_cast<const GaMaLib::ParserException*>(&e))
+  using namespace GNU_gama::local;
+  if (const GNU_gama::local::ParserException*
+      g = dynamic_cast<const GNU_gama::local::ParserException*>(&e))
     {
       c_api_data.xml_line = g->line;
     }

@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_GaMa__XML__BASE_Base_base__PARSER_Parser_parser__h_
-#define GaMaLib_GaMa__XML__BASE_Base_base__PARSER_Parser_parser__h_
+#ifndef gama_local_GaMa__XML__BASE_Base_base__PARSER_Parser_parser__h_
+#define gama_local_GaMa__XML__BASE_Base_base__PARSER_Parser_parser__h_
 
 
 // BaseParser is just a simple C++ wrapper for XML parser expat

@@ -29,13 +29,13 @@
 #include <gnu_gama/local/local/results/text/underline.h>
 #include <cstring>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 template <typename OutStream>
-bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
+bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
   using namespace std;
-  using namespace GaMaLib;
+  using namespace GNU_gama::local;
 
   IS->null_space();   // triggers adjusment; needed for printing removed points
 
@@ -474,7 +474,7 @@ bool GeneralParameters(GaMaLib::LocalNetwork* IS, OutStream& out)
   return true;
 }
 
-}
+}}
 
 #endif
 

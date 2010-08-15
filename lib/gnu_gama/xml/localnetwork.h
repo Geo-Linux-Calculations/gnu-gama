@@ -36,12 +36,12 @@ namespace GNU_gama
 
     std::string description;
 
-    LocalNetworkXML(GaMaLib::LocalNetwork* ln) : netinfo(ln) {}
+    LocalNetworkXML(GNU_gama::local::LocalNetwork* ln) : netinfo(ln) {}
     void write(std::ostream&) const;
 
   private:
 
-    GaMaLib::LocalNetwork* netinfo;
+    GNU_gama::local::LocalNetwork* netinfo;
 
     void coordinates_summary (std::ostream&) const;
     void observations_summary(std::ostream&) const;

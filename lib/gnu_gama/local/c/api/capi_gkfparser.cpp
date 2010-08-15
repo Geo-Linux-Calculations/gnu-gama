@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #include <cstring>
 using namespace std;
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 extern "C" {
 
@@ -41,7 +41,7 @@ extern "C" {
         /* constructed for point data and observation data objects*/
         return new GKFparser(ln->PD, ln->OD);
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -61,7 +61,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         delete gp;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -80,7 +80,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(p);
         gp->xml_parse(text, len, isFinal);
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -96,7 +96,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->m0_apr;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -113,7 +113,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->konf_pr;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -130,7 +130,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->tol_abs;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -147,7 +147,7 @@ extern "C" {
         GKFparser* gp = static_cast<GKFparser*>(parser);
         return gp->typ_m0_apriorni ? 1 : 0;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -170,7 +170,7 @@ extern "C" {
 
         return text;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }

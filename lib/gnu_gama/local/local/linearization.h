@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,13 +19,13 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib__LocalLinearization______GaMaLib___Local___Linearization_____
-#define GaMaLib__LocalLinearization______GaMaLib___Local___Linearization_____
+#ifndef gama_local__LocalLinearization__GNU_gama_local_Local_Linearization
+#define gama_local__LocalLinearization__GNU_gama_local_Local_Linearization
 
 #include <gnu_gama/local/linearization.h>
 #include <gnu_gama/local/local/gamadata.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   class LocalLinearization : public Linearization
     {
@@ -85,22 +85,6 @@ namespace GaMaLib {
       void zdiff      (const Zdiff      *obs) const;
     };
 
-}
+}}
 
 #endif
-
-
-
-/*
- *{
- *  obs->linearization(PD, maxn, m0);
- *  rhs  = obs->rhs();
- *  size = obs->ncoef();
- *  for (size_t i=1; i<=size; i++)
- *    {
- *      coeff[i-1] = obs->coef(i+1); // WARNING: coefficients are shifted by 1!
- *      index[i-1] = obs->indx(i);
- *    }
- *}
- */
-

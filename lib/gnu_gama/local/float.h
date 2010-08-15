@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,12 +19,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib___Float_h
-#define GaMaLib___Float_h
+#ifndef gama_local___Float_h
+#define gama_local___Float_h
 
 #include <cmath>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 typedef double Double;
 typedef double Float;
@@ -34,10 +34,8 @@ inline double max(double x, double y) { return x >= y ? x : y; }
 inline double min(double x, double y) { return x <= y ? x : y; }
 
 
-#ifdef _MSC_VER
-   #ifndef M_PI
-   #define M_PI 3.14159265358979323846
-   #endif
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
 #endif
 
 #define R2G  200.0/M_PI
@@ -45,7 +43,7 @@ inline double min(double x, double y) { return x <= y ? x : y; }
 #define R2CC 200.0E4/M_PI
 #define CC2R M_PI/200.0E4
 
-}   // namespace GaMaLib
+}}   // namespace GNU_gama::local
 
 #endif
 

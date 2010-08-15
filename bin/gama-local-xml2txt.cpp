@@ -11,7 +11,7 @@
 #include <gnu_gama/outstream.h>
 
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 typedef GNU_gama::LocalNetworkAdjustmentResults Adjustment;
 typedef GNU_gama::OutStream                     OutStream;
@@ -1307,16 +1307,16 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
 
   // class StOpSort {
   //
-  //   GaMaLib::LocalNetwork* IS;
+  //   GNU_gama::local::LocalNetwork* IS;
   //
   // public:
   //
-  //   StOpSort(GaMaLib::LocalNetwork* is) : IS(is) {}
+  //   StOpSort(GNU_gama::local::LocalNetwork* is) : IS(is) {}
   //   bool operator()(int a, int b)
   //     {
   //       using namespace std;
-  //       GaMaLib::Double sa = fabs(IS->studentized_residual(a));
-  //       GaMaLib::Double sb = fabs(IS->studentized_residual(b));
+  //       GNU_gama::local::Double sa = fabs(IS->studentized_residual(a));
+  //       GNU_gama::local::Double sb = fabs(IS->studentized_residual(b));
   //       return sa > sb;
   //     }
   // };

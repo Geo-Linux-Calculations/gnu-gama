@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Cluster_of_observations__h
-#define GaMaLib_Cluster_of_observations__h
+#ifndef gama_local_Cluster_of_observations__h
+#define gama_local_Cluster_of_observations__h
 
 #include <gnu_gama/obsdata.h>
 
@@ -29,7 +29,7 @@
 #include <vector>
 #include <cmath>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 
   // simple observation types: horizontal directions, distances and
@@ -58,7 +58,7 @@ namespace GaMaLib {
 
     double orientation() const
       {
-        if (!test_or) throw GaMaLib::Exception(T_POBS_bad_data);
+        if (!test_or) throw GNU_gama::local::Exception(T_POBS_bad_data);
         return attr_or;
       }
     void   set_orientation(Double p) { attr_or = p; test_or = true; }
@@ -124,7 +124,7 @@ namespace GaMaLib {
   };
 
 
-}   // namespace GaMaLib
+}}   // namespace GNU_gama::local
 
 #endif
 

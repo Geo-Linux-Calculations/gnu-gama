@@ -25,7 +25,7 @@
 #include <gnu_gama/local/local/pobs/format.h>
 #include <gnu_gama/local/observation.h>
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
 typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
 
@@ -175,11 +175,4 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
   return str;
 }
 
-}
-
-
-
-
-
-
-
+}}

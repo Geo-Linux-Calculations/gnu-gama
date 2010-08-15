@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,11 +19,11 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GaMaLib_Revision_______GaMaLib_____Revision__
-#define GaMaLib_Revision_______GaMaLib_____Revision__
+#ifndef gama_local_Revision_______GNU_gama_local_____Revision__
+#define gama_local_Revision_______GNU_gama_local_____Revision__
 
 
-namespace GaMaLib {
+namespace GNU_gama { namespace local {
 
   class Observation;
 
@@ -36,6 +36,6 @@ namespace GaMaLib {
     virtual bool revision (const Observation*) const = 0;
   };
 
-}
+}}
 
 #endif

@@ -1,8 +1,8 @@
 /*
-    Geodesy and Mapping C++ Library (GNU GaMa / GaMaLib)
+    GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU GaMa / GaMaLib C++ Library.
+    This file is part of the GNU Gama C++ library.
 
     This library is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include <gnu_gama/local/local/network_svd.h>
 #include <gnu_gama/local/local/network_gso.h>
 
-using namespace GaMaLib;
+using namespace GNU_gama::local;
 
 extern "C" {
 
@@ -37,7 +37,7 @@ extern "C" {
       {
         return new LocalNetwork_svd;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -53,7 +53,7 @@ extern "C" {
       {
         return new LocalNetwork_gso;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -73,7 +73,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         delete locnet;
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -92,7 +92,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->algorithm();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -110,7 +110,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         locnet->apriori_m_0(p);
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -126,7 +126,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         locnet->conf_pr(p);
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -142,7 +142,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         locnet->tol_abs(p);
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -161,7 +161,7 @@ extern "C" {
         else
           locnet->set_m_0_aposteriori();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -177,7 +177,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->PD.empty();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -194,7 +194,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->OD.clusters.empty();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -211,7 +211,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->sum_points();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -228,7 +228,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->sum_unknowns();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -245,7 +245,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         return locnet->huge_abs_terms();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -262,7 +262,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         locnet->remove_huge_abs_terms();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
@@ -279,7 +279,7 @@ extern "C" {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
         locnet->refine_approx();
       }
-    catch (const GaMaLib::Exception& e)
+    catch (const GNU_gama::local::Exception& e)
       {
         Cgama_private_set_exception(e);
       }
