@@ -4,6 +4,9 @@
 	* all CVS $Id: comments deleted
 	* directory structure simplified to a single tree
 	* namespace GaMaLib renamed to GNU_gama::local
+	* source codes scattered around directories local/revision/ and
+	  local/linearization/ were joined together into a single file
+	  local/observation_local.cpp
 
 1.10 2010-07-23  Ales Cepek  <cepek@gnu.org>
 

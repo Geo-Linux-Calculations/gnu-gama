@@ -110,15 +110,7 @@ libgama_src = \
    gnu_gama/local/acord/reduce_to_ellipsoid.h \
    gnu_gama/local/gamadata.h \
    gnu_gama/local/lcoords.h \
-   gnu_gama/local/linearization/angle.h \
-   gnu_gama/local/linearization/direction.h \
-   gnu_gama/local/linearization/distance.h \
    gnu_gama/local/local_linearization.h \
-   gnu_gama/local/linearization/hdiff.h \
-   gnu_gama/local/linearization/sdistance.h \
-   gnu_gama/local/linearization/xyzdiff.h \
-   gnu_gama/local/linearization/xyz.h \
-   gnu_gama/local/linearization/zangle.h \
    gnu_gama/local/lpoint.h \
    gnu_gama/local/median/g2d_cogo.cpp \
    gnu_gama/local/median/g2d_cogo.h \
@@ -156,15 +148,7 @@ libgama_src = \
    gnu_gama/local/results/text/test_linearization.h \
    gnu_gama/local/results/text/underline.cpp \
    gnu_gama/local/results/text/underline.h \
-   gnu_gama/local/revision/angle.h \
-   gnu_gama/local/revision/direction.h \
-   gnu_gama/local/revision/distance.h \
    gnu_gama/local/local_revision.h \
-   gnu_gama/local/revision/hdiff.h \
-   gnu_gama/local/revision/sdistance.h \
-   gnu_gama/local/revision/xyzdiff.h \
-   gnu_gama/local/revision/xyz.h \
-   gnu_gama/local/revision/zangle.h \
    gnu_gama/local/matvec.h \
    gnu_gama/local/medianf.h \
    gnu_gama/local/observation.cpp \
