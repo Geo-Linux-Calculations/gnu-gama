@@ -24,7 +24,7 @@
 
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/dataobject.h>
-#include <gnu_gama/local/local/gamadata.h>
+#include <gnu_gama/local/gamadata.h>
 
 
 namespace GNU_gama { namespace local {

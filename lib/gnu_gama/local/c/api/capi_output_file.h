@@ -26,7 +26,7 @@
 #ifdef __cplusplus
 
 #include <fstream>
-#include <gnu_gama/local/local/network.h>
+#include <gnu_gama/local/network.h>
 
 namespace GNU_gama { namespace local {
 

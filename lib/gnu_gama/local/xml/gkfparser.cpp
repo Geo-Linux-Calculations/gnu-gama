@@ -1521,7 +1521,7 @@ namespace GNU_gama { namespace local {
 
 #include <fstream>
 #include <gnu_gama/version.h>
-#include <gnu_gama/local/local/pobs/format.h>
+#include <gnu_gama/local/pobs/format.h>
 
 using namespace GNU_gama::local;
 

@@ -30,26 +30,26 @@
 #include <gnu_gama/xml/localnetwork.h>
 
 #include <gnu_gama/local/language.h>
-#include <gnu_gama/local/local/gamadata.h>
+#include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/xml/gkfparser.h>
-#include <gnu_gama/local/local/network_svd.h>
-#include <gnu_gama/local/local/network_gso.h>
-#include <gnu_gama/local/local/network_chol.h>
-#include <gnu_gama/local/local/network_env.h>
-#include <gnu_gama/local/local/acord.h>
+#include <gnu_gama/local/network_svd.h>
+#include <gnu_gama/local/network_gso.h>
+#include <gnu_gama/local/network_chol.h>
+#include <gnu_gama/local/network_env.h>
+#include <gnu_gama/local/acord.h>
 
-#include <gnu_gama/local/local/results/text/approximate_coordinates.h>
-#include <gnu_gama/local/local/results/text/network_description.h>
-#include <gnu_gama/local/local/results/text/general_parameters.h>
-#include <gnu_gama/local/local/results/text/fixed_points.h>
-#include <gnu_gama/local/local/results/text/adjusted_observations.h>
-#include <gnu_gama/local/local/results/text/adjusted_unknowns.h>
-#include <gnu_gama/local/local/results/text/outlying_abs_terms.h>
-#include <gnu_gama/local/local/results/text/reduced_observations.h>
-#include <gnu_gama/local/local/results/text/reduced_observations_to_ellipsoid.h>
-#include <gnu_gama/local/local/results/text/residuals_observations.h>
-#include <gnu_gama/local/local/results/text/error_ellipses.h>
-#include <gnu_gama/local/local/results/text/test_linearization.h>
+#include <gnu_gama/local/results/text/approximate_coordinates.h>
+#include <gnu_gama/local/results/text/network_description.h>
+#include <gnu_gama/local/results/text/general_parameters.h>
+#include <gnu_gama/local/results/text/fixed_points.h>
+#include <gnu_gama/local/results/text/adjusted_observations.h>
+#include <gnu_gama/local/results/text/adjusted_unknowns.h>
+#include <gnu_gama/local/results/text/outlying_abs_terms.h>
+#include <gnu_gama/local/results/text/reduced_observations.h>
+#include <gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h>
+#include <gnu_gama/local/results/text/residuals_observations.h>
+#include <gnu_gama/local/results/text/error_ellipses.h>
+#include <gnu_gama/local/results/text/test_linearization.h>
 
 
 //---------------------------------------------------------------------------

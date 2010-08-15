@@ -26,16 +26,16 @@
 #include <gnu_gama/version.h>
 #include <gnu_gama/local/exception.h>
 
-#include <gnu_gama/local/local/results/text/adjusted_observations.h>
-#include <gnu_gama/local/local/results/text/adjusted_unknowns.h>
-#include <gnu_gama/local/local/results/text/approximate_coordinates.h>
-#include <gnu_gama/local/local/results/text/error_ellipses.h>
-#include <gnu_gama/local/local/results/text/fixed_points.h>
-#include <gnu_gama/local/local/results/text/general_parameters.h>
-#include <gnu_gama/local/local/results/text/network_description.h>
-#include <gnu_gama/local/local/results/text/outlying_abs_terms.h>
-#include <gnu_gama/local/local/results/text/residuals_observations.h>
-#include <gnu_gama/local/local/results/text/test_linearization.h>
+#include <gnu_gama/local/results/text/adjusted_observations.h>
+#include <gnu_gama/local/results/text/adjusted_unknowns.h>
+#include <gnu_gama/local/results/text/approximate_coordinates.h>
+#include <gnu_gama/local/results/text/error_ellipses.h>
+#include <gnu_gama/local/results/text/fixed_points.h>
+#include <gnu_gama/local/results/text/general_parameters.h>
+#include <gnu_gama/local/results/text/network_description.h>
+#include <gnu_gama/local/results/text/outlying_abs_terms.h>
+#include <gnu_gama/local/results/text/residuals_observations.h>
+#include <gnu_gama/local/results/text/test_linearization.h>
 
 
 using namespace std;

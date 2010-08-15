@@ -22,7 +22,7 @@
 #include <iostream>
 #include <iomanip>
 #include <gnu_gama/local/observation.h>
-#include <gnu_gama/local/local/pobs/format.h>
+#include <gnu_gama/local/pobs/format.h>
 
 using namespace GNU_gama::local;
 using namespace std;

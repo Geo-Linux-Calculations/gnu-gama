@@ -21,9 +21,9 @@
 
 #include <gnu_gama/local/c/api/capi_locnet.h>
 #include <gnu_gama/local/c/api/capi_private_exception.h>
-#include <gnu_gama/local/local/network.h>
-#include <gnu_gama/local/local/network_svd.h>
-#include <gnu_gama/local/local/network_gso.h>
+#include <gnu_gama/local/network.h>
+#include <gnu_gama/local/network_svd.h>
+#include <gnu_gama/local/network_gso.h>
 
 using namespace GNU_gama::local;
 

@@ -22,7 +22,7 @@
 #include <gnu_gama/local/c/api/capi_gkfparser.h>
 #include <gnu_gama/local/c/api/capi_exception.h>
 #include <gnu_gama/local/c/api/capi_private_exception.h>
-#include <gnu_gama/local/local/network.h>
+#include <gnu_gama/local/network.h>
 #include <gnu_gama/local/xml/gkfparser.h>
 
 #include <cstdlib>

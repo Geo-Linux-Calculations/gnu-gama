@@ -5,7 +5,7 @@
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/local/language.h>
-#include <gnu_gama/local/local/results/text/underline.h>
+#include <gnu_gama/local/results/text/underline.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/outstream.h>
