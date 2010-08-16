@@ -28,10 +28,10 @@
 #include <gnu_gama/version.h>
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/xml/localnetwork.h>
+#include <gnu_gama/xml/gkfparser.h>
 
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/gamadata.h>
-#include <gnu_gama/local/xml/gkfparser.h>
 #include <gnu_gama/local/network_svd.h>
 #include <gnu_gama/local/network_gso.h>
 #include <gnu_gama/local/network_chol.h>

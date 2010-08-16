@@ -79,6 +79,8 @@ libgama_src = \
    gnu_gama/xml/localnetwork.h \
    gnu_gama/xml/localnetwork_adjustment_results.cpp \
    gnu_gama/xml/localnetwork_adjustment_results.h \
+   gnu_gama/xml/gkfparser.cpp \
+   gnu_gama/xml/gkfparser.h \
    gnu_gama/local/angobs.h \
    gnu_gama/local/bpoint.h \
    gnu_gama/local/c/api/capi_exception.cpp \
@@ -166,9 +168,7 @@ libgama_src = \
    gnu_gama/local/readsabw.h \
    gnu_gama/local/revision.h \
    gnu_gama/local/skipcomm.cpp \
-   gnu_gama/local/skipcomm.h \
-   gnu_gama/local/xml/gkfparser.cpp \
-   gnu_gama/local/xml/gkfparser.h 
+   gnu_gama/local/skipcomm.h
 
 matvec_src = \
    matvec/array.h \

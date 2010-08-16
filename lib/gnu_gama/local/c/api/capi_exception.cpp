@@ -23,7 +23,7 @@
 #include <gnu_gama/local/c/api/capi_private_exception.h>
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>
-#include <gnu_gama/local/xml/gkfparser.h>
+#include <gnu_gama/xml/gkfparser.h>
 #include <cstring>
 
 // exception data is accessible only through the selected functions
