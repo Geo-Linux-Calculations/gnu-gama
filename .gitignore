@@ -16,6 +16,7 @@ config.status
 configure
 stamp-h1
 #
+doc/version.texi
 doc/gama.info
 doc/stamp-vti
 doc/manual/

@@ -1,6 +1,6 @@
 /*
     GNU Gama C++ library
-    Copyright (C) 1999, 2002, 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2002, 2003, 2010  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -18,9 +18,6 @@
     along with this library; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-#ifndef GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
-#define GAMA_MAIN__gama_main__gm_mn__g_m__g______________________________h___
 
 #include <gnu_gama/outstream.h>
 
@@ -50,9 +47,6 @@
 #include <gnu_gama/local/results/text/residuals_observations.h>
 #include <gnu_gama/local/results/text/error_ellipses.h>
 #include <gnu_gama/local/results/text/test_linearization.h>
-
-
-//---------------------------------------------------------------------------
 
 int help()
 {
@@ -90,7 +84,7 @@ int help()
 }
 
 
-int GaMa_Main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   using namespace std;
   using namespace GNU_gama::local;
@@ -98,7 +92,6 @@ int GaMa_Main(int argc, char **argv)
   string description;
   const char* c;
   const char* argv_1 = 0;
-  // const char* argv_2 = 0;    *** version 1.9.01 ***
   const char* argv_algo = 0;
   const char* argv_lang = 0;
   const char* argv_enc  = 0;
@@ -123,10 +116,6 @@ int GaMa_Main(int argc, char **argv)
               argv_1 = c;
               continue;
             }
-          // if (!argv_2) {     *** only one parameter and options ***
-          //     argv_2 = c;    *** since version 1.9.01           ***
-          //     continue;
-          // }
           return help();
         }
 
@@ -317,7 +306,7 @@ int GaMa_Main(int argc, char **argv)
         }
       catch (...)
         {
-          throw;         // should be added later ???
+          throw;
         }
     }
 
@@ -336,7 +325,6 @@ int GaMa_Main(int argc, char **argv)
     {
       cerr << "\n" << T_GaMa_exception_2a << "\n\n";
       throw;
-      // return 3;
     }
 
 
@@ -486,14 +474,4 @@ int GaMa_Main(int argc, char **argv)
 
   return 1;
 }
-
-//---------------------------------------------------------------------------
-
-#endif
-
-
-
-
-
-
 
