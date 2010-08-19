@@ -15,7 +15,6 @@ gama_TEXINFOS =           \
    gama-local.texi        \
    gama-local-input.texi  \
    obsdata.texi           \
-   version.texi	          \
    xyz2blh.texi
 
 #gama_TEXINFOS = gpl.texi
