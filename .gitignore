@@ -1,6 +1,7 @@
 #
 *.[oa]
 *~
+\#*\#
 gama-*.*.tar.gz
 #
 aclocal.m4
@@ -24,6 +25,7 @@ doc/manual/
 bin/gama-g3
 bin/gama-local
 bin/gama-local-xml2txt
+bin/gama-local-xml2sql
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar

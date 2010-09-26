@@ -111,6 +111,8 @@ libgama_src = \
    gnu_gama/local/acord/reduce_to_ellipsoid.cpp \
    gnu_gama/local/acord/reduce_to_ellipsoid.h \
    gnu_gama/local/gamadata.h \
+   gnu_gama/local/gkf2sql.cpp \
+   gnu_gama/local/gkf2sql.h \
    gnu_gama/local/lcoords.h \
    gnu_gama/local/local_linearization.h \
    gnu_gama/local/lpoint.h \

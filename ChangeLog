@@ -1,3 +1,10 @@
+2010-09-10  Ales Cepek  <cepek@gnu.org>
+
+	* added a new class Gkf2sql and a new program gama-local-xml2sql
+	* added SQL DB schema xml/gama-local-schema.sql
+
+	Tested with sqlite3 3.7.2 and postgresql 8.4.4-2
+
 2010-08-13  Ales Cepek  <cepek@gnu.org>
 
 	* all calls to typeid() replaced by dynamic_cast<>()
