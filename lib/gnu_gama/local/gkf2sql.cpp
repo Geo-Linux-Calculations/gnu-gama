@@ -1,6 +1,7 @@
 /*
     GNU Gama -- adjudstment of geodetic networks
-    Copyright (C) 2010  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2010  Ales Cepek <cepek@gnu.org>, 2010 Jiri Novak
+    <jiri.novak@petriny.net>
 
     This file is part of the GNU Gama C++ library.
 
@@ -66,7 +67,7 @@ void Gkf2sql::write(std::ostream& ostr)
        << "begin;\n\n";     // begin transaction
  
   ostr << "insert into gnu_gama_local_configurations (conf_id, conf_name) values ("
-       << "(select coalesce(max(conf_id), 0)+1 from gnu_gama_local_configurations),"
+       << "(select new_id from (select coalesce(max(conf_id), 0)+1 as new_id from gnu_gama_local_configurations)x),"
        << " '" + config +"');\n";
 
 
@@ -256,7 +257,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		if      (const Distance*   m = dynamic_cast<const Distance*  >(*b)) 
                 {
 		  ostr << "insert into gnu_gama_local_obs "
-		       << "(conf_id, cluster, indx, tag, from_id, to_id, "
+		       << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 		       << "val, from_dh, to_dh, rejected) values (" 
                        << cnfg() << ", " << cluster << ", "
 		       << index++ << ", 'distance', '"
@@ -269,7 +270,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		else if (const Direction*  m = dynamic_cast<const Direction* >(*b))
 		{
 		  ostr << "insert into gnu_gama_local_obs "
-		       << "(conf_id, cluster, indx, tag, from_id, to_id, "
+		       << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 		       << "val, from_dh, to_dh, rejected) values (" 
                        << cnfg() << ", " << cluster << ", "
 		       << index++ << ", 'direction', '"
@@ -282,7 +283,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		else if (const S_Distance* m = dynamic_cast<const S_Distance*>(*b))
 		{
 		  ostr << "insert into gnu_gama_local_obs "
-		       << "(conf_id, cluster, indx, tag, from_id, to_id, "
+		       << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 		       << "val, from_dh, to_dh, rejected) values (" 
                        << cnfg() << ", " << cluster << ", "
 		       << index++ << ", 's-distance', '"
@@ -295,7 +296,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		else if (const Z_Angle*    m = dynamic_cast<const Z_Angle*   >(*b))
 		{
 		  ostr << "insert into gnu_gama_local_obs "
-		       << "(conf_id, cluster, indx, tag, from_id, to_id, "
+		       << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 		       << "val, from_dh, to_dh, rejected) values (" 
                        << cnfg() << ", " << cluster << ", "
 		       << index++ << ", 'z-angle', '"
@@ -308,7 +309,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		else if (const Angle*      m = dynamic_cast<const Angle*     >(*b)) 
 		  {
 		    ostr << "insert into gnu_gama_local_obs "
-			 << "(conf_id, cluster, indx, tag, from_id, to_id, to_id2, "
+			 << "(conf_id, ccluster, indx, tag, from_id, to_id, to_id2, "
 			 << "val, from_dh, to_dh, to_dh2, rejected) values (" 
 			 << cnfg() << ", " << cluster << ", "
 			 << index++ << ", 'angle', '"
@@ -323,7 +324,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		  {
 		    const H_Diff* m = dynamic_cast<const H_Diff*>(*b);
 		    ostr << "insert into gnu_gama_local_obs "
-			 << "(conf_id, cluster, indx, tag, from_id, to_id, "
+			 << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 			 << "val, dist, rejected) values (" << cnfg() << ", " << cluster << ", "
 			 << index++ << ", 'dh', '"
 			 << m->from() << "', '" << m->to() << "', "
@@ -350,7 +351,7 @@ void Gkf2sql::write(std::ostream& ostr)
 	      {
 		const H_Diff* hd = dynamic_cast<const H_Diff*>(*b);
 		ostr << "insert into gnu_gama_local_obs "
-		     << "(conf_id, cluster, indx, tag, from_id, to_id, "
+		     << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 		     << "val, dist, rejected) values (" << cnfg() << ", " << cluster << ", "
 		     << index++ << ", 'dh', '"
 		     << hd->from() << "', '" << hd->to() << "', "
@@ -411,7 +412,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		    rejected_point = rejected(zcoord);
 		  }
 		ostr << "insert into gnu_gama_local_coordinates "
-		     << "(conf_id, cluster, indx, id" << ats 
+		     << "(conf_id, ccluster, indx, id" << ats
 		     << ", rejected) "
 		     << "values (" << cnfg() << ", " << cluster << ", "
 		     << index << ", '" << pointid << "'" 
@@ -435,7 +436,7 @@ void Gkf2sql::write(std::ostream& ostr)
 		if (rejected(yd)) rejected_point = rejected(yd);
 		if (rejected(zd)) rejected_point = rejected(zd);
 		ostr << "insert into gnu_gama_local_vectors "
-		     << "(conf_id, cluster, indx, from_id, to_id, "
+		     << "(conf_id, ccluster, indx, from_id, to_id, "
 		     << "dx, dy, dz, from_dh, to_dh, rejected) values ("
 		     << cnfg() << ", " << cluster << ", " << index << ", '" 
 		     << xd->from().str() << "', '" << xd->to().str() << "', " 
@@ -466,7 +467,7 @@ void Gkf2sql::write_cluster(std::ostream& ostr, const Cluster* c,
   Index band = covmat.bandWidth(); 
   
   ostr << "\ninsert into gnu_gama_local_clusters "
-       << "(conf_id, cluster, dim, band, tag) "
+       << "(conf_id, ccluster, dim, band, tag) "
        << "values (" << cnfg() << ", "
        << cluster << ", " << dim << ", " << band << ", '" << tag
        << "');\n";
@@ -475,7 +476,7 @@ void Gkf2sql::write_cluster(std::ostream& ostr, const Cluster* c,
     for (Index j=i; j<=i+band && j <= dim; j++)
       {
 	ostr << "insert into gnu_gama_local_covmat "
-	     << "(conf_id, cluster, rind, cind, val) "
+	     << "(conf_id, ccluster, rind, cind, val) "
 	     << "values (" << cnfg() << ", " << cluster 
 	     << ", " << i << ", " << j << "," << covmat(i,j) << ");\n";
       }

@@ -1,6 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2010  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2010 Ales Cepek <cepek@gnu.org>, 2010 Jiri Novak
+    <jiri.novak@petriny.net>, 2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -23,17 +24,17 @@
 create table gnu_gama_local_configurations (
    conf_id   integer primary key,
    conf_name varchar(60) not null unique,
-   sigma_apr double precision not null default 10.0 check (sigma_apr > 0),
-   conf_pr   double precision not null default 0.95 check (conf_pr > 0 and conf_pr <1),
-   tol_abs   double precision not null default 1000 check (tol_abs > 0),
-   sigma_act varchar(11) not null default 'aposteriori' check (sigma_act in ('apriori', 'aposteriori')),
-   update_cc varchar(3)  not null default 'no' check (update_cc in ('yes', 'no')),
-   axes_xy   varchar(2)  not null default 'ne' check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
-   angles    varchar(12) not null default 'right-handed' check (angles in ('left-handed', 'right-handed')),
-   epoch     double precision not null default 0.0,
-   algorithm varchar(12) not null default 'svd' check (algorithm in ('svd', 'gso', 'cholesky', 'sm-env')),
-   ang_units int not null default 400 check (ang_units in (400, 360)),
-   latitude  double precision not null default 50,
+   sigma_apr double precision default 10.0 not null check (sigma_apr > 0),
+   conf_pr   double precision default 0.95 not null check (conf_pr > 0 and conf_pr <1),
+   tol_abs   double precision default 1000 not null check (tol_abs > 0),
+   sigma_act varchar(11) default 'aposteriori' not null check (sigma_act in ('apriori', 'aposteriori')),
+   update_cc varchar(3) default 'no' not null check (update_cc in ('yes', 'no')),
+   axes_xy   varchar(2) default 'ne' not null check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
+   angles    varchar(12) default 'right-handed' not null check (angles in ('left-handed', 'right-handed')),
+   epoch     double precision default 0.0 not null,
+   algorithm varchar(12) default 'svd' not null check (algorithm in ('svd', 'gso', 'cholesky', 'sm-env')),
+   ang_units int default 400 not null check (ang_units in (400, 360)),
+   latitude  double precision default 50 not null,
    ellipsoid varchar(20)
 );
 
@@ -43,7 +44,6 @@ create table gnu_gama_local_descriptions (
    text      varchar(1000) not null,	     
    primary key (conf_id, indx)
 );
-
 
 create table gnu_gama_local_points (
    conf_id   integer references gnu_gama_local_configurations,
@@ -56,37 +56,31 @@ create table gnu_gama_local_points (
    primary key (conf_id, id)
 );
 
-
 create table gnu_gama_local_clusters (
    conf_id   integer references gnu_gama_local_configurations,
-   cluster   integer check (cluster > 0),
+   ccluster  integer check (ccluster > 0),
    dim       integer not null check (dim > 0),
-   band      integer not null check (band between 0 and dim-1), 
-   tag       varchar(18) check (tag in ('obs', 'coordinates', 'vectors',
-                                        'height-differences')) not null,
-   primary key (conf_id, cluster)
+   band      integer not null,
+   tag       varchar(18) not null check (tag in ('obs', 'coordinates', 'vectors', 'height-differences')),
+   check (band between 0 and dim-1),
+   primary key (conf_id, ccluster)
 );
-
-
 -- upper triangular variance-covariance band-matrix (0 <= bandwidth < dim)
 
 create table gnu_gama_local_covmat (
    conf_id   integer,
-   cluster   integer,
+   ccluster  integer,
    rind      integer check (rind > 0),
    cind      integer check (cind > 0),
    val       double precision not null,       
-   foreign key (conf_id, cluster) references gnu_gama_local_clusters
+   foreign key (conf_id, ccluster) references gnu_gama_local_clusters
 );
-
 
 create table gnu_gama_local_obs (
    conf_id   integer references gnu_gama_local_configurations,
-   cluster   integer check (cluster > 0),
+   ccluster  integer check (ccluster > 0),
    indx      integer check (indx > 0),
-   tag       varchar(10) check (tag in ('direction', 'distance',
-                                        'angle', 's-distance',
-                                        'z-angle', 'dh')),
+   tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'dh')),
    from_id   varchar(80) not null,
    to_id     varchar(80) not null,
    to_id2    varchar(80),
@@ -96,29 +90,28 @@ create table gnu_gama_local_obs (
    to_dh     double precision,
    to_dh2    double precision,
    dist      double precision, -- dh dist 
-   rejected  integer not null default 0,
-   primary key (conf_id, cluster, indx),
-   foreign key (conf_id, cluster) references gnu_gama_local_clusters,
+   rejected  integer default 0 not null,
+   primary key (conf_id, ccluster, indx),
+   foreign key (conf_id, ccluster) references gnu_gama_local_clusters,
    check (tag <> 'angle' or to_id2 is not null),
    check (tag = 'dh' or (tag <> 'dh' and dist is null))
 );
 
-
 create table gnu_gama_local_coordinates (
    conf_id   integer references gnu_gama_local_configurations,
-   cluster   integer check (cluster > 0),
+   ccluster  integer check (ccluster > 0),
    indx      integer check (indx > 0),
    id        varchar(80),
    x         double precision,   
    y         double precision,   
    z         double precision,
-   rejected  integer not null default 0,
-   primary key (conf_id, cluster, indx)
+   rejected  integer default 0 not null,
+   primary key (conf_id, ccluster, indx)
 );
 
 create table gnu_gama_local_vectors (
    conf_id   integer references gnu_gama_local_configurations,
-   cluster   integer check (cluster > 0),
+   ccluster  integer check (ccluster > 0),
    indx      integer check (indx > 0),
    from_id   varchar(80),
    to_id     varchar(80),
@@ -127,7 +120,6 @@ create table gnu_gama_local_vectors (
    dz        double precision,   
    from_dh   double precision,
    to_dh     double precision,
-   rejected  integer not null default 0,
-   primary key (conf_id, cluster, indx)
+   rejected  integer default 0 not null,
+   primary key (conf_id, ccluster, indx)
 );
-

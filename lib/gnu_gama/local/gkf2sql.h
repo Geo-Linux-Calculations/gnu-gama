@@ -56,12 +56,11 @@ namespace GNU_gama { namespace local
     std::string cnfg() const 
       {
 	return 
-	  "(select conf_id from gnu_gama_local_configurations "
-	  "where conf_name='" + config + "')";
+	  "(select new_id from (select conf_id as new_id from gnu_gama_local_configurations "
+	  "where conf_name='" + config + "')x)";
       }
   };
 
 }}
 
 #endif
-
