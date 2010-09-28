@@ -1,27 +1,27 @@
 GNU Gama is developed and tested under Debian GNU/Linux
-(@uref{http://www.debian.org/}).@footnote{Under MS Windows start
-Visual Studio .NET Command prompt, change to the directory @code{lib},
-rename file @code{config.h-win32-msvc} to @code{config.h} and run
-@code{nmake -f Makefile-all-win32-msvc}. A static library
-@code{libgama.lib} and executables are build in the @code{lib} folder.
-Please mind, that Windows version of Gama is not maintained and
-tested.}  You can compile Gama easily yourself if you download the
+(@uref{http://www.debian.org/}).  A static library @code{libgama.lib}
+and executables are build in folders @code{lib} and @code{bin}.
+You can compile Gama easily yourself if you download the
 sources.  If @code{expat} XML parser is installed on your system,
 change to the directory of Gama project and issue the following
 commands at the shell prompt
-@c
+
 @example
 $ ./configure
 $ make
 @end example
-@c
-@noindent to compile and build all binaries. Run
+
+@noindent If the script @code{configure} is not available (which is the
+case when you download source codes from a git server), you have to
+generate it using auxiliary script @code{autogen.sh}.  To compile and
+build all binaries. Run
+
 @example
 $ ./configure [--bindir=DIR --infodir=DIR]
 $ make install
 @end example
-@c
-@noindent if you want also install the binaries. You can use configure 
+
+@noindent if you want also to install the binaries. You can use configure 
 pararameters if you need to change directories where user executables
 and info dosumentation should be installed.
 

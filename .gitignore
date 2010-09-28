@@ -21,6 +21,16 @@ doc/version.texi
 doc/gama.info
 doc/stamp-vti
 doc/manual/
+doc/gama.aux
+doc/gama.cp
+doc/gama.cps
+doc/gama.fn
+doc/gama.ky
+doc/gama.log
+doc/gama.pg
+doc/gama.toc
+doc/gama.tp
+doc/gama.vr
 #
 bin/gama-g3
 bin/gama-local
