@@ -99,7 +99,7 @@ create table gnu_gama_local_obs (
 );
 
 create table gnu_gama_local_coordinates (
-   conf_id   integer references gnu_gama_local_configurations,
+   conf_id   integer,
    ccluster  integer check (ccluster > 0),
    indx      integer check (indx > 0),
    id        varchar(80),
@@ -107,11 +107,12 @@ create table gnu_gama_local_coordinates (
    y         double precision,   
    z         double precision,
    rejected  integer default 0 not null,
+   foreign key (conf_id, ccluster) references gnu_gama_local_clusters,
    primary key (conf_id, ccluster, indx)
 );
 
 create table gnu_gama_local_vectors (
-   conf_id   integer references gnu_gama_local_configurations,
+   conf_id   integer,
    ccluster  integer check (ccluster > 0),
    indx      integer check (indx > 0),
    from_id   varchar(80),
@@ -122,5 +123,6 @@ create table gnu_gama_local_vectors (
    from_dh   double precision,
    to_dh     double precision,
    rejected  integer default 0 not null,
+   foreign key (conf_id, ccluster) references gnu_gama_local_clusters,
    primary key (conf_id, ccluster, indx)
 );
