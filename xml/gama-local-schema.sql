@@ -73,7 +73,8 @@ create table gnu_gama_local_covmat (
    rind      integer check (rind > 0),
    cind      integer check (cind > 0),
    val       double precision not null,       
-   foreign key (conf_id, ccluster) references gnu_gama_local_clusters
+   foreign key (conf_id, ccluster) references gnu_gama_local_clusters,
+   primary key (conf_id, ccluster, rind, cind)
 );
 
 create table gnu_gama_local_obs (
