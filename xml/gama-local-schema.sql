@@ -78,8 +78,8 @@ create table gnu_gama_local_covmat (
 );
 
 create table gnu_gama_local_obs (
-   conf_id   integer references gnu_gama_local_configurations,
-   ccluster  integer check (ccluster > 0),
+   conf_id   integer,
+   ccluster  integer,
    indx      integer check (indx > 0),
    tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'dh')),
    from_id   varchar(80) not null,
