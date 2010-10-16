@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2004, 2010  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -24,6 +24,7 @@
 #include <sstream>
 #include <iomanip>
 #include <cctype>
+#include <cmath>
 
 using namespace std;
 
@@ -108,5 +109,37 @@ namespace GNU_gama {
 
     return true;
   }
+
+double dms2rad(double dms)
+{
+    double sgn = 1;
+    if (dms < 0)
+        {
+            dms = -dms;
+            sgn = -1;
+        }
+
+    double d = int(dms);  dms -= d;  dms *= 100;
+    double m = int(dms);  dms -= m;  dms *= 100;
+
+    double r = sgn*(d/180.0 + m/10800.0 + dms/648000.0) * M_PI;
+    double z = 2*M_PI;
+    while (r >= z) r -= z;
+    while (r <  0) r += z;
+
+    return r;
+}
+
+double rad2dms(double rad)
+{
+    rad *= 180/M_PI;
+    while (rad >= 360) rad -= 360;
+    while (rad <   0 ) rad += 360;
+
+    double d = int(rad);  rad -= d;  rad *= 60;
+    double m = int(rad);  rad -= m;  rad *= 60;
+
+    return d + m/100 + rad/10000;
+}
 
 }

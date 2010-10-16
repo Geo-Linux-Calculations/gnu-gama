@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2004, 2010  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -35,6 +35,8 @@ namespace GNU_gama {
 
   bool        deg2gon(std::string, double &);
 
+  double dms2rad(double);
+  double rad2dms(double);
 }
 
 
