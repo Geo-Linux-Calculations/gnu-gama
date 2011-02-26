@@ -47,7 +47,12 @@ namespace GNU_gama {
         StreamError
       };
 
-    class base : public std::exception {};
+    class base : public std::exception
+    {
+    public:
+      virtual base* clone() const = 0;
+      virtual void  raise() const = 0;
+    };
 
     class matvec : public base
     {
@@ -55,9 +60,10 @@ namespace GNU_gama {
       const int    error;
       const char*  description;
 
-      matvec(int e, const char* t) : error(e), description(t)
-      {
-      }
+      matvec(int e, const char* t) : error(e), description(t) {}
+
+      matvec* clone() const { return new matvec(*this); }
+      void    raise() const { throw *this; }
 
       const char* what() const throw()
       {

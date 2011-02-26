@@ -40,9 +40,12 @@ namespace GNU_gama { namespace local
         GNU_gama::local::Exception(T_IE_internal_error+std::string(" ")+description)
         {
         }
+
+    g2d_exc* clone() const { return new g2d_exc(*this); }
+    void     raise() const { throw *this; }
+
     };
 
 }}  // GNU_gama::local
 
 #endif
-

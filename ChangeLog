@@ -8,6 +8,8 @@
 	GNU_gama::Exception::string, GNU_gama::Exception::parser and
 	GNU_gama::Exception::matvec respectively.
 
+	* added virtual functions clone() and raise() to all exceptions
+
 2010-09-27  Jiri Novak  <jiri.novak@petriny.net>
 
 	* a patch by Jiri Novak for xml/gama-local-schema.sql and Gkf2sql

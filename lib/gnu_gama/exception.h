@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -49,6 +49,9 @@ namespace GNU_gama { namespace Exception {
     string(const std::string& s) : str(s) {}
     ~string() throw() {}
 
+    string* clone() const { return new string(*this); }
+    void    raise() const { throw *this; }
+
     const char* what() const throw() { return str.c_str(); }
   };
 
@@ -57,6 +60,9 @@ namespace GNU_gama { namespace Exception {
   public:
 
     adjustment(const char* s) : string(s) {}
+
+    adjustment* clone() const { return new adjustment(*this); }
+    void        raise() const { throw *this; }
   };
 
 
@@ -69,6 +75,9 @@ namespace GNU_gama { namespace Exception {
       : string(s), line(r), error_code(c)
       {
       }
+
+    parser* clone() const { return new parser(*this); }
+    void    raise() const { throw *this; }
   };
 
 
