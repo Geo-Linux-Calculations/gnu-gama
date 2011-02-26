@@ -99,7 +99,7 @@ extern "C" {
 void Cgama_private_set_exception(const GNU_gama::local::Exception& e)
 {
   c_api_data.clean();
-  strncpy(c_api_data.text, e.text.c_str(),256);
+  strncpy(c_api_data.text, e.what(),256);
   c_api_data.text[255] = 0;
 
   using namespace GNU_gama::local;

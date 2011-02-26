@@ -1,3 +1,13 @@
+2011-02-25  Ales Cepek  <cepek@gnu.org>
+
+	* redefined the tree structure of GNU Gama exception classes to
+	have a common base class GNU_gama::Exception::base (derived from
+	std::exceptions). Removed classes GNU_gama::local::Exception,
+	GNU_gama::local::ParserException and
+	GNU_gama::local::MatVecException are only typedefs to
+	GNU_gama::Exception::string, GNU_gama::Exception::parser and
+	GNU_gama::Exception::matvec respectively.
+
 2010-09-27  Jiri Novak  <jiri.novak@petriny.net>
 
 	* a patch by Jiri Novak for xml/gama-local-schema.sql and Gkf2sql

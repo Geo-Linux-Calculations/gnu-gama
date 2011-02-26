@@ -313,12 +313,12 @@ int main(int argc, char **argv)
   }
   catch (const GNU_gama::local::ParserException& v) {
     cerr << "\n" << T_GaMa_exception_2a << "\n\n"
-         << T_GaMa_exception_2b << v.line << " : " << v.text << endl;
+         << T_GaMa_exception_2b << v.line << " : " << v.what() << endl;
     return 3;
   }
   catch (const GNU_gama::local::Exception& v) {
     cerr << "\n" <<T_GaMa_exception_2a << "\n"
-         << "\n***** " << v.text << "\n\n";
+         << "\n***** " << v.what() << "\n\n";
     return 2;
   }
   catch (...)
@@ -367,7 +367,7 @@ int main(int argc, char **argv)
       }
     catch(GNU_gama::local::Exception e)
       {
-        cerr << e.text << endl;
+        cerr << e.what() << endl;
         return 1;
       }
     catch(...)
@@ -457,15 +457,15 @@ int main(int argc, char **argv)
     return 0;
 
   }
-  catch (const GNU_gama::local::Exception& V)
-    {
-      cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
-           << "****** " << V.text << "\n\n";
-    }
   catch(const GNU_gama::Exception::adjustment& choldec)
     {
       cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
            << "****** " << choldec.str << "\n\n";
+    }
+  catch (const GNU_gama::local::Exception& V)
+    {
+      cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
+           << "****** " << V.what() << "\n\n";
     }
   catch(...)
     {

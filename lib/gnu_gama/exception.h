@@ -27,11 +27,19 @@
 
 namespace GNU_gama { namespace Exception {
 
-  //---  class base {
-  //---  public:
-  //---   virtual ~base() {}
-  //---  };
-
+   /** \section GNU gama exceptions
+   *
+   * \a Exception::base and \a Exception::matvec are defined in
+   * <lib/matvec/inderr>
+   *
+   * Classes \a GNU_gama::local::Exception,
+   * GNU_gama::local::ParserException and
+   * GNU_gama::local::MatVecException are only typedefs to \a
+   * Exception::string, \a Exception::parser and
+   * GNU_gama::Exception::matvec respectively.
+   *
+   * Class \a g2d_exc is limited to Median namespace usage.
+  */
 
   class string : public base {
   public:
@@ -39,6 +47,9 @@ namespace GNU_gama { namespace Exception {
     const std::string  str;
 
     string(const std::string& s) : str(s) {}
+    ~string() throw() {}
+
+    const char* what() const throw() { return str.c_str(); }
   };
 
 
@@ -47,15 +58,6 @@ namespace GNU_gama { namespace Exception {
 
     adjustment(const char* s) : string(s) {}
   };
-
-
-  //---  class matvec : public string {
-  //---  public:
-  //---
-  //---    const int error;
-  //---
-  //---    matvec(int e, const char* s) : string(s), error(e) {}
-  //---  };
 
 
   class parser : public string {

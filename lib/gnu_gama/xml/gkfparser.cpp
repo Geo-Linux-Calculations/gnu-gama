@@ -754,7 +754,7 @@ namespace GNU_gama { namespace local {
       }
     catch (const /*GNU_gama::local::*/Exception &e)
       {
-        return error(e.text);
+        return error(e.what());
       }
 
     return 0;
@@ -829,7 +829,7 @@ namespace GNU_gama { namespace local {
       }
     catch (const /*GNU_gama::local::*/Exception &e)
       {
-        error(e.text);
+        error(e.what());
       }
 
     return 0;
@@ -889,7 +889,7 @@ namespace GNU_gama { namespace local {
       }
     catch (const /*GNU_gama::local::*/Exception &e)
       {
-        return error(e.text);
+        return error(e.what());
       }
 
     return 0;
@@ -953,7 +953,7 @@ namespace GNU_gama { namespace local {
       }
     catch (const /*GNU_gama::local::*/Exception &e)
       {
-        return error(e.text);
+        return error(e.what());
       }
 
     return 0;
@@ -1097,7 +1097,7 @@ namespace GNU_gama { namespace local {
       }
     catch (const /*GNU_gama::local::*/Exception &e)
       {
-        error(e.text);
+        error(e.what());
       }
 
     return 0;
@@ -1152,7 +1152,7 @@ namespace GNU_gama { namespace local {
       }
     catch  (const /*GNU_gama::local::*/Exception &e)
       {
-        error(e.text);
+        error(e.what());
       }
 
     return 0;
@@ -1396,7 +1396,7 @@ namespace GNU_gama { namespace local {
       }
     catch  (const /*GNU_gama::local::*/Exception &e)
       {
-        error(e.text);
+        error(e.what());
       }
 
     return 0;
@@ -1506,7 +1506,7 @@ namespace GNU_gama { namespace local {
       }
     catch  (const /*GNU_gama::local::*/Exception &e)
       {
-        error(e.text);
+        error(e.what());
       }
 
     return 0;
@@ -1578,7 +1578,7 @@ int main(int argc, char* argv[])
          << "</gama-local>\n";
   }
   catch (GNU_gama::local::Exception e) {
-    cout << "\nException : " << e.text << "\n\n";
+    cout << "\nException : " << e.what() << "\n\n";
     // cout << "line = " << gp.errLineNumber
     //      << " expat error code = " << gp.errCode << "\n\n";
     return 2;

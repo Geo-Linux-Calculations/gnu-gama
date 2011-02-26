@@ -22,18 +22,24 @@
 #ifndef gama_local_Bod_Mer_MatVec_H
 #define gama_local_Bod_Mer_MatVec_H
 
-#include <gnu_gama/local/exception.h>
+#include <matvec/inderr.h>
 #include <gnu_gama/local/float.h>
 #include <matvec/svd.h>
 #include <matvec/covmat.h>
 
 namespace GNU_gama { namespace local {
 
-  class MatVecException : public GNU_gama::local::Exception {
-  public:
-    const int error;
-    MatVecException(int e, const char *s) : GNU_gama::local::Exception(s), error(e) {}
-  };
+    /** A removed class \a MatVecException has been replaced by a typedef to
+	\a GNU_gama::Exception::matvec.
+     */
+
+    typedef GNU_gama::Exception::matvec MatVecException;
+
+  // class MatVecException : public GNU_gama::local::Exception {
+  // public:
+  //   const int error;
+  //   MatVecException(int e, const char *s) : GNU_gama::local::Exception(s), error(e) {}
+  // };
 
   typedef GNU_gama::Index Index;
 

@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -23,6 +23,7 @@
 #define GNU_gama_gMatVec__IndexErr__h_
 
 #include <cstddef>
+#include <exception>
 
 namespace GNU_gama {
 
@@ -46,12 +47,7 @@ namespace GNU_gama {
         StreamError
       };
 
-    class base {
-    public:
-      virtual ~base()
-      {
-      }
-    };
+    class base : public std::exception {};
 
     class matvec : public base
     {
@@ -61,6 +57,11 @@ namespace GNU_gama {
 
       matvec(int e, const char* t) : error(e), description(t)
       {
+      }
+
+      const char* what() const throw()
+      {
+	return description;
       }
     };
   }

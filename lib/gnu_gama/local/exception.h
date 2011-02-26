@@ -22,19 +22,28 @@
 #ifndef gama_local_Exception__h_
 #define gama_local_Exception__h_
 
-#include <string>
+#include <gnu_gama/exception.h>
 
 namespace GNU_gama { namespace local {
 
-class Exception {
-public:
+    /** A removed class Exception has been replaced by a typedef to
+     * GNU_gama::Exception::string.
+     *
+     * All references to former attribute text were replaced by calls
+     * to the virtual class mebmer what().
+     */
 
-   const std::string text;
+    typedef GNU_gama::Exception::string Exception;
 
-   Exception(const std::string& t) : text(t) {}
-   virtual ~Exception() {}
-
-};
+    // class Exception {
+    // public:
+    //
+    //    const std::string text;
+    //
+    //    Exception(const std::string& t) : text(t) {}
+    //    virtual ~Exception() {}
+    //
+    // };
 
 }}
 

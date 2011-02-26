@@ -99,7 +99,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
                 {
                   std::stringstream s;
                   s.precision(5);
-                  s << e.text << "\n\n";
+                  s << e.what() << "\n\n";
 
                   s.precision(5);
                   s.setf(std::ios_base::fixed, std::ios_base::floatfield);

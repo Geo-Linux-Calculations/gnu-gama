@@ -29,19 +29,24 @@
 
 namespace GNU_gama { namespace local {
 
+    /** A removed class ParserException has been replaced by a typedef
+	to GNU_gama::Exception::parser;
+     */
 
-  class ParserException : public GNU_gama::local::Exception
-  {
-  public:
+    typedef GNU_gama::Exception::parser ParserException;
 
-    int line, error_code;
-
-    ParserException(std::string s, int r, int c)
-      : GNU_gama::local::Exception(s), line(r), error_code(c)
-      {
-      }
-
-  };
+  // class ParserException : public GNU_gama::local::Exception
+  // {
+  // public:
+  //
+  //   int line, error_code;
+  //
+  //   ParserException(std::string s, int r, int c)
+  //     : GNU_gama::local::Exception(s), line(r), error_code(c)
+  //     {
+  //     }
+  //
+  // };
 
 
   class GKFparser : public GNU_gama::BaseParser<ParserException>

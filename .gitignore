@@ -39,4 +39,8 @@ bin/gama-local-xml2sql
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar
+#
+# doxygen
+html
+latex
 

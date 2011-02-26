@@ -1,39 +1,38 @@
 /** \mainpage GNU Gama classes and functions
 
-GNU Gama is a package for adjustment of geodetic networks.
+GNU Gama http://www.gnu.org/software/gama is a project dedicated to
+adjustment of geodetic networks. It is intended for use with
+traditional geodetic surveyings which are still used and needed in
+special measurements (e.g., underground or high precision engineering
+measurements) where the Global Positioning System (GPS) cannot be
+used.
 
-To get an anonymous read-only access to the CVS repository for the
+Adjustment in local Cartesian coordinate systems is fully supported by
+a command-line program gama-local that adjusts geodetic (free)
+networks of observed distances, directions, angles, height
+differences, 3D vectors and observed coordinates (coordinates with
+given variance-covariance matrix). Adjustment in global coordinate
+systems is supported only partly as a gama-g3 program.
+
+
+GNU Gama can be found in the subdirectory /gnu/gama/ on any of GNU FTP
+server mirrors http://ftpmirror.gnu.org/gama or checked-out from the
+GIT server. See our project page at
+http://savannah.gnu.org/projects/gama/ for more information.
+
+To get an anonymous read-only access to the GIT repository for the
 latest GNU Gama source, issue the following command
 
 \verbatim
-   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co -P gama
+git clone git://git.sv.gnu.org/gama.git
 \endverbatim
 
-You can later update your sources by running
+The collection of sample networks is available separetely. To checkout
+the gama-local examples from GIT use the command
 
 \verbatim
-   cvs update -dPA
+git clone git://git.sv.gnu.org/gama/examples.git
 \endverbatim
-
-To download from CVS only the matrix/vector C++ template library matvec issue
-
-\verbatim
-   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co gama/lib/matvec
-\endverbatim
-
-The collection of sample networks is available as a separete CVS module. To checkout the gama-local examples from CVS use the command
-
-\verbatim
-   cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/gama co examples
-\endverbatim
-
-
-
-
-\namespace GNU_gama \brief The main namespace used in the GNU Gama project.
-
-Apart from GNU_gama, a second namespace GaMaLib is used for deprecated
-objects related to gama-local program.
 
 
 \namespace GaMaLib  \brief Deprecated
@@ -43,5 +42,11 @@ only in gama-local program. Object from GaMaLib namespace are
 deprecated.
 
 The main namespace of GNU Gama project is GNU_gama.
+
+\namespace GNU_gama \brief GNU gama main namespace
+
+GNU_gama is the main project namespace
+
+\namespace GNU_gama::local \brief Local network adjustemnt
 
 */
