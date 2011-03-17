@@ -1,3 +1,7 @@
+2011-03-17  Ales Cepek  <cepek@gnu.org>
+
+	* description added as a public atribute to the LocalNetwork class
+
 2011-02-25  Ales Cepek  <cepek@gnu.org>
 
 	* redefined the tree structure of GNU Gama exception classes to

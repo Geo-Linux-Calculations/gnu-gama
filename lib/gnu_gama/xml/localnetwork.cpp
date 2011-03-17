@@ -62,7 +62,7 @@ void LocalNetworkXML::write(std::ostream& out) const
       << "<!DOCTYPE gama-local-adjustment SYSTEM \"gama-local-adjustment.dtd\">\n"
       << "\n<gama-local-adjustment version=\"" << VERSION << "\">\n";
 
-  out << "\n<description>" << description << "</description>\n";
+  out << "\n<description>" << netinfo->description << "</description>\n";
 
   {
     {

@@ -42,7 +42,7 @@ namespace GNU_gama { namespace local
 
   class LocalNetwork
   {
-    typedef std::vector<GNU_gama::local::Observation*>               RevisedObsList;
+    typedef std::vector<GNU_gama::local::Observation*>       RevisedObsList;
     typedef GNU_gama::AdjBase<Double, Index, Vec>            AdjBase;
     typedef GNU_gama::AdjBaseFull<Double, MatVecException>   AdjBaseFull;
     typedef GNU_gama::AdjBaseSparse<Double, Index, Vec,
@@ -61,6 +61,7 @@ namespace GNU_gama { namespace local
     PointData        PD;      // point list
     ObservationData  OD;      // observation list
 
+    std::string   description;
     double        epoch;
 
 
