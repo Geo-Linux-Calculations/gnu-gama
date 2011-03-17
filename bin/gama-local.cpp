@@ -1,6 +1,6 @@
 /*
     GNU Gama C++ library
-    Copyright (C) 1999, 2002, 2003, 2010  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2002, 2003, 2010, 2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -18,6 +18,10 @@
     along with this library; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+#ifdef   GNU_GAMA_LOCAL_SQLITE_READER
+#include "sqlitereader.h"
+#endif
 
 #include <gnu_gama/outstream.h>
 
@@ -48,6 +52,7 @@
 #include <gnu_gama/local/results/text/error_ellipses.h>
 #include <gnu_gama/local/results/text/test_linearization.h>
 
+namespace {
 int help()
 {
   using namespace std;
@@ -59,10 +64,14 @@ int help()
        << " / " << GNU_gama::GNU_gama_compiler << "\n"
        << "************************************\n"
        << "http://www.gnu.org/software/gama/\n\n"
-       << "Usage: " << /*argv[0]*/"gama-local"
-       << "  input.xml "
-       << " [options]\n\n";
-  cerr << "Options:\n"
+       << "Usage: " << /*argv[0]*/"gama-local" << "  input.xml " << " [options]\n";
+
+#ifdef   GNU_GAMA_LOCAL_SQLITE_READER
+  cerr << "       " << /*argv[0]*/"gama-local" << "  sqlite.db "
+       << " --configuration name " << " [options]\n";
+#endif
+
+  cerr << "\nOptions:\n"
        << "\n";
   cerr << "--algorithm  svd | gso | cholesky | envelope\n"
        << "--language   en | ca | cz | du | fi | fr | hu | ru | ua \n"
@@ -82,6 +91,7 @@ int help()
   cerr << endl;
   return 1;
 }
+}
 
 
 int main(int argc, char **argv)
@@ -89,9 +99,8 @@ int main(int argc, char **argv)
   using namespace std;
   using namespace GNU_gama::local;
 
-  string description;
   const char* c;
-  const char* argv_1 = 0;
+  const char* argv_1 = 0;           // xml input or sqlite db name
   const char* argv_algo = 0;
   const char* argv_lang = 0;
   const char* argv_enc  = 0;
@@ -102,6 +111,10 @@ int main(int argc, char **argv)
   const char* argv_xmlout = 0;
   const char* argv_obsout = 0;
   const char* argv_covband = 0;
+
+#ifdef GNU_GAMA_LOCAL_SQLITE_READER
+  const char* argv_confname = 0;
+#endif
 
   bool correction_to_ellipsoid = false;
   GNU_gama::Ellipsoid el;
@@ -139,6 +152,9 @@ int main(int argc, char **argv)
       else if (name == "xml"       ) argv_xmlout = c;
       else if (name == "obs"       ) argv_obsout = c;
       else if (name == "cov-band"  ) argv_covband = c;
+#ifdef GNU_GAMA_LOCAL_SQLITE_READER
+      else if (name == "configuration") argv_confname = c;
+#endif
       else
           return help();
     }
@@ -161,7 +177,6 @@ int main(int argc, char **argv)
       else return help();
     }
 
-  LocalNetwork* IS;
   ostream* output = 0;
 
   ofstream fcout;
@@ -196,22 +211,98 @@ int main(int argc, char **argv)
         return help();
     }
 
+  LocalNetwork* IS = 0;
 
   try {
 
     try {
 
-      if (!argv_algo)
-        {
-          IS = new LocalNetwork_svd;        // implicit algorithm
-        }
-      else {
+      if (argv_algo) {
         if (     !strcmp("svd",      argv_algo)) IS = new LocalNetwork_svd;
         else if (!strcmp("gso",      argv_algo)) IS = new LocalNetwork_gso;
         else if (!strcmp("cholesky", argv_algo)) IS = new LocalNetwork_chol;
         else if (!strcmp("envelope", argv_algo)) IS = new LocalNetwork_env;
         else return help();
       }
+
+#ifdef GNU_GAMA_LOCAL_SQLITE_READER
+          if (argv_confname) try {
+                  GNU_gama::local::sqlite_db::SqliteReader reader(argv_1);
+                  if (IS == 0) {
+                          IS = new LocalNetwork_svd;
+                      }
+                  reader.retrieve(IS, argv_confname);
+              }
+          catch(...)
+              {
+                  throw;
+              }
+          else
+#endif
+          {
+            if (IS == 0) IS = new LocalNetwork_svd;        // implicit algorithm
+
+            ifstream soubor(argv_1);
+            GKFparser gkf(IS->PD, IS->OD);
+            try
+              {
+                char c;
+                int  n, konec = 0;
+                string radek;
+                do
+                  {
+                    radek = "";
+                    n     = 0;
+                    while (soubor.get(c))
+                      {
+                        radek += c;
+                        n++;
+                        if (c == '\n') break;
+                      }
+                    if (!soubor) konec = 1;
+
+                    gkf.xml_parse(radek.c_str(), n, konec);
+                  }
+                while (!konec);
+
+                IS->apriori_m_0(gkf.m0_apr );
+                IS->conf_pr    (gkf.konf_pr);
+                IS->tol_abs    (gkf.tol_abs);
+
+                IS->update_constrained_coordinates(gkf.update_constr);
+
+                if (gkf.typ_m0_apriorni)
+                  IS->set_m_0_apriori();
+                else
+                  IS->set_m_0_aposteriori();
+
+                IS->description = gkf.description;
+                IS->epoch = gkf.epoch;
+              }
+            catch (...)
+              {
+                throw;
+              }
+          }
+
+        }
+        catch (const GNU_gama::local::ParserException& v) {
+          cerr << "\n" << T_GaMa_exception_2a << "\n\n"
+               << T_GaMa_exception_2b << v.line << " : " << v.what() << endl;
+          return 3;
+        }
+        catch (const GNU_gama::local::Exception& v) {
+          cerr << "\n" <<T_GaMa_exception_2a << "\n"
+               << "\n***** " << v.what() << "\n\n";
+          return 2;
+        }
+        catch (...)
+          {
+            cerr << "\n" << T_GaMa_exception_2a << "\n\n";
+            throw;
+          }
+      //###########-----
+
 
       if (argv_angles)
         {
@@ -262,69 +353,6 @@ int main(int argc, char **argv)
             return help();
 
 	correction_to_ellipsoid = true;
-    }
-
-
-    ifstream soubor(argv_1);
-
-    {
-      GKFparser gkf(IS->PD, IS->OD);
-      try
-        {
-          char c;
-          int  n, konec = 0;
-          string radek;
-          do
-            {
-              radek = "";
-              n     = 0;
-              while (soubor.get(c))
-                {
-                  radek += c;
-                  n++;
-                  if (c == '\n') break;
-                }
-              if (!soubor) konec = 1;
-
-              gkf.xml_parse(radek.c_str(), n, konec);
-            }
-          while (!konec);
-
-          IS->apriori_m_0(gkf.m0_apr );
-          IS->conf_pr    (gkf.konf_pr);
-          IS->tol_abs    (gkf.tol_abs);
-
-          IS->update_constrained_coordinates(gkf.update_constr);
-
-          if (gkf.typ_m0_apriorni)
-            IS->set_m_0_apriori();
-          else
-            IS->set_m_0_aposteriori();
-
-          description = gkf.description;
-          IS->epoch = gkf.epoch;
-        }
-      catch (...)
-        {
-          throw;
-        }
-    }
-
-  }
-  catch (const GNU_gama::local::ParserException& v) {
-    cerr << "\n" << T_GaMa_exception_2a << "\n\n"
-         << T_GaMa_exception_2b << v.line << " : " << v.what() << endl;
-    return 3;
-  }
-  catch (const GNU_gama::local::Exception& v) {
-    cerr << "\n" <<T_GaMa_exception_2a << "\n"
-         << "\n***** " << v.what() << "\n\n";
-    return 2;
-  }
-  catch (...)
-    {
-      cerr << "\n" << T_GaMa_exception_2a << "\n\n";
-      throw;
     }
 
 
@@ -395,7 +423,7 @@ int main(int argc, char **argv)
         if (!IS->connected_network())
           cout  << T_GaMa_network_not_connected << "\n\n\n";
 
-        NetworkDescription(description, cout);
+        NetworkDescription(IS->description, cout);
         if (GeneralParameters(IS, cout))
           {
             int iterace = 0;
@@ -438,7 +466,6 @@ int main(int argc, char **argv)
             IS->set_gons();
 
             GNU_gama::LocalNetworkXML xml(IS);
-            xml.description = description;
 
             if (!strcmp(argv_xmlout, "-"))
               {
