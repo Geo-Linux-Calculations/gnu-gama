@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
-   cz="Nekonzistentní souřadnice a úhly: \ninterní změna znaménka všech souřadnic Y" />
+   cz="NekonzistentnĂ­ souĹadnice a Ăşhly: \ninternĂ­ zmÄna znamĂŠnka vĹĄech souĹadnic Y" />
 
 <e id="T_GaMa_point"
    EN="point"
@@ -15,31 +15,31 @@
 
 <e id="T_GaMa_target"
    EN="target"
-   cz="cíl" />
+   cz="cĂ­l" />
 
 <e id="T_GaMa_network_description"
    EN="Network description"
-   cz="Popis sítě" />
+   cz="Popis sĂ­tÄ" />
 
 <e id="T_GaMa_General_solution_parameters"
    EN="General parameters of the adjustment"
-   cz="Základní parametry vyrovnání" />
+   cz="ZĂĄkladnĂ­ parametry vyrovnĂĄnĂ­" />
 
 <e id="T_GaMa_gpar1_coordinates"
    EN="Coordinates"
-   cz="Souřadnice" />
+   cz="SouĹadnice" />
 
 <e id="T_GaMa_gpar1_adjusted_coordinates"
    EN="Adjusted"
-   cz="Vyrovnané" />
+   cz="VyrovnanĂŠ" />
 
 <e id="T_GaMa_gpar1_constrained_coordinates"
    EN="Constrained  * "
-   cz="Opěrné  * " />
+   cz="OpÄrnĂŠ  * " />
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   cz="Pevné" />   
+   cz="PevnĂŠ" />   
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -47,103 +47,103 @@
 
 <e id="T_GaMa_gpar1_computed_points"
    EN="Total of adjusted points"
-   cz="Počet určovaných bodů" />
+   cz="PoÄet urÄovanĂ˝ch bodĹŻ" />
 
 <e id="T_GaMa_gpar2_constrained_points"
    EN="Constrained points"
-   cz="Opěrné body" />
+   cz="OpÄrnĂŠ body" />
 
 <e id="T_GaMa_gpar1_fixed_points"
    EN="Number of fixed points"
-   cz="Počet pevných bodů" />
+   cz="PoÄet pevnĂ˝ch bodĹŻ" />
 
 <e id="T_GaMa_gpar1_computed_heights"
    EN="Number of computed heights"
-   cz="Počet určovaných výšek" />
+   cz="PoÄet urÄovanĂ˝ch vĂ˝ĹĄek" />
 
 <e id="T_GaMa_gpar2_constrained_heights"
    EN="Constrained heights"
-   cz="Opěrné výšky" />
+   cz="OpÄrnĂŠ vĂ˝ĹĄky" />
 
 <e id="T_GaMa_gpar1_fixed_heights"
    EN="Number of fixed heights"
-   cz="Počet daných výšek" />
+   cz="PoÄet danĂ˝ch vĂ˝ĹĄek" />
 
 <e id="T_GaMa_gpar1_points_total"
    EN="Total of points"
-   cz="Bodů celkem" />
+   cz="BodĹŻ celkem" />
 
 <e id="T_GaMa_gpar1_directions"
    EN="Number of directions"
-   cz="Počet směrů" />
+   cz="PoÄet smÄrĹŻ" />
 
 <e id="T_GaMa_gpar2_bearings"
    EN="Number of bearings"
-   cz="Počet osnov" />
+   cz="PoÄet osnov" />
 
 <e id="T_GaMa_gpar1_angles"
    EN="Number of angles"
-   cz="Počet úhlů" />
+   cz="PoÄet ĂşhlĹŻ" />
 
 <e id="T_GaMa_gpar1_distances"
    EN="Number of distances"
-   cz="Počet délek" />
+   cz="PoÄet dĂŠlek" />
 
 <e id="T_GaMa_gpar1_observed_coords"
    EN="Coordinates"
-   cz="Souřadnice" />
+   cz="SouĹadnice" />
 
 <e id="T_GaMa_gpar1_leveling_diffs"
    EN="Leveling differences"
-   cz="Nivelační převýšení" />
+   cz="NivelaÄnĂ­ pĹevĂ˝ĹĄenĂ­" />
 
 <e id="T_GaMa_gpar1_z_angles"
    EN="Zenith angles"
-   cz="Zenitové úhly" />
+   cz="ZenitovĂŠ Ăşhly" />
 
 <e id="T_GaMa_gpar1_s_dists"
    EN="Slope distances"
-   cz="Šikmé délky" />
+   cz="Ĺ ikmĂŠ dĂŠlky" />
 
 <e id="T_GaMa_gpar1_obs_total"
    EN="Total of observations"
-   cz="Celkem pozorování" />
+   cz="Celkem pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_gpar1_equations"
    EN="Number of project equations"
-   cz="Počet rovnic oprav" />
+   cz="PoÄet rovnic oprav" />
 
 <e id="T_GaMa_gpar2_number_of_unknowns"
    EN="Number of unknowns"
-   cz="Počet neznámých" />
+   cz="PoÄet neznĂĄmĂ˝ch" />
 
 <e id="T_GaMa_gpar1_redundancy"
    EN="Degrees of freedom"
-   cz="Počet nadbyt. pozorování" />
+   cz="PoÄet nadbyt. pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_gpar2_network_defect"
    EN="Network defect"
-   cz="Defekt sítě" />
+   cz="Defekt sĂ­tÄ" />
 
 <e id="T_GaMa_not_enough_constrained_points"
    EN="Not enough constrained points defined"
-   cz="Nebyl definován dostatečný počet opěrných bodů" />
+   cz="Nebyl definovĂĄn dostateÄnĂ˝ poÄet opÄrnĂ˝ch bodĹŻ" />
 
 <e id="T_GaMa_Free_network"
    EN="Free network"
-   cz="Volná síť" />
+   cz="VolnĂĄ sĂ­ĹĽ" />
 
 <e id="T_GaMa_Free_network_defect_is"
    EN="Free network defect is "
-   cz="Defekt volné sítě je " />
+   cz="Defekt volnĂŠ sĂ­tÄ je " />
 
 <e id="T_GaMa_Given_network_configuration_can_not_be_adjusted"
    EN="Given network configuration can not be adjusted"
-   cz="Zadanou konfiguraci sítě nelze vyrovnat" />
+   cz="Zadanou konfiguraci sĂ­tÄ nelze vyrovnat" />
 
 <e id="T_GaMa_detected_singular_variables"
    EN="The following unknowns have been detected as linearly dependent"
-   cz="Jako lineárně závislé byly určeny následující proměnné" />
+   cz="Jako lineĂĄrnÄ zĂĄvislĂŠ byly urÄeny nĂĄsledujĂ­cĂ­ promÄnnĂŠ" />
 
 <e id="T_GaMa_index_type_point"
    EN="  index type point"
@@ -151,31 +151,31 @@
 
 <e id="T_GaMa_m0_apriori"
    EN="m0  apriori    "
-   cz="m0  apriorní    " />
+   cz="m0  apriornĂ­    " />
 
 <e id="T_GaMa_m0_empirical"
    EN="m0\' aposteriori"
-   cz="m0\' aposteriorní" />
+   cz="m0\' aposteriornĂ­" />
 
 <e id="T_GaMa_During_statistical_analysis_we_work"
    EN="During statistical analysis we work"
-   cz="Při statistické analýze se pracuje" />
+   cz="PĹi statistickĂŠ analĂ˝ze se pracuje" />
 
 <e id="T_GaMa_statan_with_empirical_standard_deviation"
    EN="- with aposteriori standard deviation "
-   cz="- s aposteriorní jednotkovou střední chybou " />
+   cz="- s aposteriornĂ­ jednotkovou stĹednĂ­ chybou " />
 
 <e id="T_GaMa_statan_with_apriori_standard_deviation"
    EN="- with apriori standard deviation "
-   cz="- s apriorní jednotkovou střední chybou " />
+   cz="- s apriornĂ­ jednotkovou stĹednĂ­ chybou " />
 
 <e id="T_GaMa_statan_with_confidence_level"
    EN="- with confidence level "
-   cz="- s konfidenční pravděpodobností " />
+   cz="- s konfidenÄnĂ­ pravdÄpodobnostĂ­ " />
 
 <e id="T_GaMa_Ratio_empirical_to_apriori"
    EN="Ratio m0\' aposteriori / m0 apriori: "
-   cz="Poměr m0\' aposteriorní / m0 apriorní: " />
+   cz="PomÄr m0\' aposteriornĂ­ / m0 apriornĂ­: " />
 
 <e id="T_GaMa_interval"
    EN="interval"
@@ -191,39 +191,39 @@
 
 <e id="T_GaMa_m0_distances"
    EN="m0\'/m0 (distances): "
-   cz="m0\'/m0 (délky): " />
+   cz="m0\'/m0 (dĂŠlky): " />
 
 <e id="T_GaMa_m0_directions"
    EN="m0\'/m0 (directions): "
-   cz="m0\'/m0 (směry): " />
+   cz="m0\'/m0 (smÄry): " />
 
 <e id="T_GaMa_m0_angles"
    EN="m0\'/m0 (angles): "
-   cz="m0\'/m0 (úhly): " />
+   cz="m0\'/m0 (Ăşhly): " />
 
 <e id="T_GaMa_m0_dirs_angs"
    EN="m0\'/m0 (directions/angles): "
-   cz="m0\'/m0 (směry/úhly): " />
+   cz="m0\'/m0 (smÄry/Ăşhly): " />
 
 <e id="T_GaMa_Maximal_decrease_of_m0"
    EN="Maximal decrease of m0\'\'/m0 on elimination of one observation: "
-   cz="Maximální pokles m0\'\'/m0 při vyloučení jednoho pozorování: " />
+   cz="MaximĂĄlnĂ­ pokles m0\'\'/m0 pĹi vylouÄenĂ­ jednoho pozorovĂĄnĂ­: " />
 
 <e id="T_GaMa_Maximal_normalized_residual"
    EN="Maximal normalized residual "
-   cz="Maximální normovaná oprava " />
+   cz="MaximĂĄlnĂ­ normovanĂĄ oprava " />
 
 <e id="T_GaMa_genpar_Maximal_studentized_residual"
    EN="Maximal studentized residual "
-   cz="Maximální studentizovaná oprava " />
+   cz="MaximĂĄlnĂ­ studentizovanĂĄ oprava " />
 
 <e id="T_GaMa_genpar_exceeds"
    EN=" exceeds"
-   cz=" přesahuje" />
+   cz=" pĹesahuje" />
 
 <e id="T_GaMa_genpar_doesnt_exceed"
    EN=" does not exceed"
-   cz=" nepřesahuje" />
+   cz=" nepĹesahuje" />
 
 <e id="T_GaMa_genpar_critical_value"
    EN=" critical value "
@@ -231,15 +231,15 @@
 
 <e id="T_GaMa_genpar_on_significance_level"
    EN="on significance level "
-   cz="na hladině významnosti " />
+   cz="na hladinÄ vĂ˝znamnosti " />
 
 <e id="T_GaMa_genpar_for_observation_ind"
    EN=" % for observation #"
-   cz=" % pro pozorování #" />
+   cz=" % pro pozorovĂĄnĂ­ #" />
 
 <e id="T_GaMa_Review_of_fixed_points"
    EN="Fixed points"
-   cz="Pevné body" />
+   cz="PevnĂŠ body" />
 
 <e id="T_GaMa_point"
    EN="point"
@@ -247,23 +247,23 @@
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_coordidantes"
    EN="Adjusted coordinates"
-   cz="Vyrovnané souřadnice" />
+   cz="VyrovnanĂŠ souĹadnice" />
 
 <e id="T_GaMa_adjunk_mean_position_error_maximal"
    EN="Maximal mean position error is "
-   cz="Maximální střední polohová chyba je " />
+   cz="MaximĂĄlnĂ­ stĹednĂ­ polohovĂĄ chyba je " />
 
 <e id="T_GaMa_adjunk_mean_position_error_on_point"
    EN=" mm on point "
-   cz=" mm na bodě " />
+   cz=" mm na bodÄ " />
 
 <e id="T_GaMa_adjunk_mean_position_error_average"
    EN="Average mean position error is "
-   cz="Průměrná polohová chyba je " />
+   cz="PrĹŻmÄrnĂĄ polohovĂĄ chyba je " />
 
 <e id="T_GaMa_adjunk_header1"
    EN="    approximate  correction  adjusted    std.dev conf.i.\n"
-   cz="     približná    korekce    vyrovnaná   stř.ch. konf.i.\n" />
+   cz="     pribliĹžnĂĄ    korekce    vyrovnanĂĄ   stĹ.ch. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header2"
    EN="====== value ====== [m] ====== value ========== [mm] ===\n\n"
@@ -271,15 +271,15 @@
 
 <e id="T_GaMa_adjunk_constrained"
    EN="constrained"
-   cz="opěrný" />
+   cz="opÄrnĂ˝" />
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_bearings"
    EN="Adjusted orientation unknowns"
-   cz="Vyrovnané orientační posuny" />
+   cz="VyrovnanĂŠ orientaÄnĂ­ posuny" />
 
 <e id="T_GaMa_adjunk_header3"
    EN="   approximate  correction  adjusted   std.dev conf.i.\n"
-   cz="     priblizna    korekce   vyrovnana  stř.ch. konf.i.\n" />
+   cz="     priblizna    korekce   vyrovnana  stĹ.ch. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header4"
    EN="==== value [g] ==== [g] === value [g] ======= [cc] ===\n\n"
@@ -287,11 +287,11 @@
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_heights"
    EN="Adjusted heights"
-   cz="Vyrovnané výšky" />
+   cz="VyrovnanĂŠ vĂ˝ĹĄky" />
 
 <e id="T_GaMa_adjunk_header5"
    EN="     approximate  correction  adjusted    std.dev conf.i.\n"
-   cz="      přibližná    korekce    vyrovnaná   stř.ch. konf.i.\n" />
+   cz="      pĹibliĹžnĂĄ    korekce    vyrovnanĂĄ   stĹ.ch. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header6"
    EN="======= value ====== [m] ====== value ========== [mm] ===\n\n"
@@ -307,7 +307,7 @@
 
 <e id="T_GaMa_tstlin_Differences"
    EN="Diffs in adj. observations from residuals and from adjusted coordinates"
-   cz="Diference výpočtu vyrovnaných měření z oprav a z vyrovnaných souřadnic"
+   cz="Diference vĂ˝poÄtu vyrovnanĂ˝ch mÄĹenĂ­ z oprav a z vyrovnanĂ˝ch souĹadnic"
    />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
@@ -320,19 +320,19 @@
 
 <e id="T_GaMa_distance"
    EN=" dist. "
-   cz=" délka " />
+   cz=" dĂŠlka " />
 
 <e id="T_GaMa_direction"
    EN=" dir.  "
-   cz=" směr  " />
+   cz=" smÄr  " />
 
 <e id="T_GaMa_angle"
    EN=" angle "
-   cz=" úhel  " />
+   cz=" Ăşhel  " />
 
 <e id="T_GaMa_s_distance"
    EN=" slope "
-   cz=" šikmá " />
+   cz=" ĹĄikmĂĄ " />
 
 <e id="T_GaMa_z_angle"
    EN=" zenit "
@@ -352,7 +352,7 @@
 
 <e id="T_GaMa_levell"
    EN=" h dif "
-   cz=" přev. " />
+   cz=" pĹev. " />
 
 <e id="T_GaMa_xdiff"
    EN=" x dif "
@@ -368,7 +368,7 @@
 
 <e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
    EN="Mean errors and parameters of error ellipses"
-   cz="Střední chyby a parametry elips chyb" />
+   cz="StĹednĂ­ chyby a parametry elips chyb" />
 
 <e id="T_GaMa_errell_header1"
    EN="    mp      mxy      mean error ellipse  conf.err. ellipse   g\n"
@@ -380,19 +380,19 @@
 
 <e id="T_GaMa_adjobs_Adjusted_observations"
    EN="Adjusted observations"
-   cz="Vyrovnaná pozorování" />
+   cz="VyrovnanĂĄ pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_adjobs_observed"
    EN="observed"
-   cz="měřená" />
+   cz="mÄĹenĂĄ" />
 
 <e id="T_GaMa_adjobs_adjusted"
    EN="adjusted"
-   cz="vyrovnaná" />
+   cz="vyrovnanĂĄ" />
 
 <e id="T_GaMa_adjobs_header1"
    EN=" std.dev conf.i.\n"
-   cz=" stř.ch. konf.i.\n" />
+   cz=" stĹ.ch. konf.i.\n" />
 
 <e id="T_GaMa_adjobs_value"
    EN="== value "
@@ -400,11 +400,11 @@
 
 <e id="T_GaMa_resobs_Review_of_residuals_analysis_obs"
    EN="Residuals and analysis of observations"
-   cz="Opravy a analýza pozorování" />
+   cz="Opravy a analĂ˝za pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_resobs_Outlying_observations"
    EN="Outlying observations"
-   cz="Odlehlá pozorování" />
+   cz="OdlehlĂĄ pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_resobs_header1"
    EN="        f[%]        v    |v'|     e-obs.  e-adj.\n"
@@ -436,23 +436,23 @@
 
 <e id="T_GaMa_resobs_normality_test"
    EN="Test of normality of homogenised residuals"
-   cz="Oveření normálního rozdělení homogenizovaných oprav" />
+   cz="OveĹenĂ­ normĂĄlnĂ­ho rozdÄlenĂ­ homogenizovanĂ˝ch oprav" />
 
 <e id="T_GaMa_resobs_condition_number"
    EN="Condition number        : "
-   cz="Číslo podmíněnosti      : " />
+   cz="ÄĂ­slo podmĂ­nÄnosti      : " />
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
    en="Reduced observations" 
-   cz="Redukovaná pozorování" />
+   cz="RedukovanĂĄ pozorovĂĄnĂ­" />
 
 <e id="T_GaMa_reduced_observed"
    en="observed" 
-   cz="měřená" />
+   cz="mÄĹenĂĄ" />
 
 <e id="T_GaMa_reduced_reduced" 
    en="reduced" 
-   cz="redukovaná" />
+   cz="redukovanĂĄ" />
 
 <e id="T_GaMa_reduced_header1"
    en="  diff dh\n" 
@@ -465,23 +465,23 @@
 
 <e id="T_GaMa_approx_Review_of_approximate_coordinates"
    EN="Approximate coordinates"
-   cz="Přibližné souřadnice" />
+   cz="PĹibliĹžnĂŠ souĹadnice" />
 
 <e id="T_GaMa_approx_observations"
    EN="observations: "
-   cz="měření      : " />
+   cz="mÄĹenĂ­      : " />
 
 <e id="T_GaMa_approx_header1"
    EN="coordinates   "
-   cz="souřadnice    " />
+   cz="souĹadnice    " />
 
 <e id="T_GaMa_approx_given_coordinates"
    EN="given       : "
-   cz="dané        : " />
+   cz="danĂŠ        : " />
 
 <e id="T_GaMa_approx_computed_coordinates"
    EN="computed    : "
-   cz="vypočtené   : " />
+   cz="vypoÄtenĂŠ   : " />
 
 <e id="T_GaMa_approx_total"
    EN="total       : "
@@ -493,19 +493,19 @@
 
 <e id="T_GaMa_missing_coordinates"
    EN="Missing coordinates"
-   cz="Chybějící souřadnice" />
+   cz="ChybÄjĂ­cĂ­ souĹadnice" />
 
 <e id="T_GaMa_abstrm_Review_of_outlying_abs_terms"
    EN="Outlying absolute terms in project equations"
-   cz="Vybočujících absolutních členů rovnic oprav" />
+   cz="VyboÄujĂ­cĂ­ch absolutnĂ­ch ÄlenĹŻ rovnic oprav" />
 
 <e id="T_GaMa_abstrm_header1"
    EN="           observed     absolute\n"
-   cz="             meřená    absolutní\n" />
+   cz="             meĹenĂĄ    absolutnĂ­\n" />
 
 <e id="T_GaMa_abstrm_header2"
    EN="== value ===== term ==\n\n"
-   cz=" hodnota ===== člen ==\n\n" />
+   cz=" hodnota ===== Älen ==\n\n" />
 
 </entries>
 

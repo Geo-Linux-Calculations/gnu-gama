@@ -27,6 +27,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/bearing.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/utf8.h>
 #include <cmath>
 #include <algorithm>
 
@@ -231,13 +232,12 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
             PointID cs = pm->from();
             out.width(IS->maxw_id());
             if (cs != predcs)
-              out << cs.c_str();
+              out << Utf8::leftPad(cs.str(), IS->maxw_id());
             else
               out << " ";
             out << " ";
             PointID cc = pm->to();
-            out.width(IS->maxw_id());
-            out << cc.c_str();
+            out << Utf8::leftPad(cc.str(), IS->maxw_id());
             out.setf(ios_base::fixed, ios_base::floatfield);
 
             bool dms = false;
@@ -259,8 +259,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
               {
                 dms = IS->degrees();
                 out << '\n';
-                out.width(IS->maxw_obs() + 2 + 2*(IS->maxw_id()));
-                out << (u->fs()).c_str();
+                const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
+                out << Utf8::leftPad((u->fs()).str(), w);
                 out << T_GaMa_angle;
                 mer = (u->value())*R2G;
                 out.precision(6);

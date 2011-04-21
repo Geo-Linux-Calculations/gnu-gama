@@ -1,9 +1,9 @@
-#ifndef gama_local___language__header_file_h
-#define gama_local___language__header_file_h
+#ifndef GNU_gama_local___language__header_file_h
+#define GNU_gama_local___language__header_file_h
 
-namespace GNU_gama { namespace local {      /* slovnikar 1.09 */
+namespace GNU_gama { namespace local {      /* slovnikar 1.11 */
 
-enum gama_language { en, ca, cz, du, fi, fr, hu, ru, ua };
+enum gama_language { en, ca, cz, du, es, fi, fr, hu, ru, ua };
 void set_gama_language(gama_language);
 
 extern const char* T_GKF_bad_angle;

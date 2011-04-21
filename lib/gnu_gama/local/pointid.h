@@ -3,6 +3,7 @@
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                   2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
+                  2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -28,97 +29,38 @@
 
 #include <string>
 #include <cstddef>
-#include <gnu_gama/intfloat.h>
 
 namespace GNU_gama { namespace local
 {
 
   class PointID
     {
-
-      int          iid;   // positive integer representation if available or 0
+      typedef int PointInt;
+      PointInt     iid;   // positive integer representation if available or 0
       std::string  sid;
+
+      void init(const std::string& s);
 
     public:
 
-      PointID()
-        {
-        }
+      PointID()                     { init(std::string("")); }
+      PointID(const char* c)        { init(std::string(c)); }
+      PointID(const std::string& s) { init(s); }
 
-      PointID(const char* c)
-        {
-          if (c == 0)
-            {
-              PointID t(std::string(""));
-              iid = t.iid;
-              sid = t.sid;
-            }
-          else
-            {
-              const std::string s(c);
-              PointID t(s);
-              iid = t.iid;
-              sid = t.sid;
-            }
-        }
+      bool operator==(const PointID& p) const;
+      bool operator!=(const PointID& p) const;
+      bool operator< (const PointID& p) const;
 
-      PointID(const std::string& s);
+      std::string str() const       { return sid; }
+      std::size_t lengthUtf8() const;
 
-      bool operator==(const PointID& p) const
-      {
-        return iid == p.iid && sid == p.sid;
-      }
-
-      bool operator!=(const PointID& p) const
-      {
-        return iid != p.iid || sid != p.sid;
-      }
-
-      bool operator< (const PointID& p) const
-        {
-          if      (iid != 0 && p.iid != 0) return iid < p.iid;
-          else if (iid != 0 && p.iid == 0) return true;
-          else if (iid == 0 && p.iid != 0) return false;
-          else
-            return sid < p.sid;
-        }
-
-      std::string str() const
-        {
-          return sid;
-        }
-
-      const char* c_str()  const
-        {
-          return sid.c_str();
-        }
-
-      #ifndef _MSC_VER
-      std::
-      #endif
-           size_t length() const
-        {
-          return sid.length();
-        }
-
-    };   // class PointID
+    };
 
 
   inline std::ostream& operator<<(std::ostream& ostr, const PointID& p)
     {
-      return ostr << p.c_str();
+      return ostr << p.str();
     }
-
-  inline std::string operator+(const char* s, const PointID& p)
-    {
-      return std::string(s)+p.c_str();
-    }
-
-  inline std::string operator+(const PointID& p, const char* s)
-    {
-      return p.c_str()+std::string(s);
-    }
-
 
 }}      // namespace GNU_gama::local
 

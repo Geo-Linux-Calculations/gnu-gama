@@ -43,4 +43,5 @@ scripts/slovnikar
 # doxygen
 html
 latex
-
+#
+lib/gnu_gama/local/language.html

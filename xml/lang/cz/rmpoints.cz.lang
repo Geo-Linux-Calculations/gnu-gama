@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_LN_rm_removed_points"
    EN="Removed points and coordinates"
-   cz="Vyloučené body a suřadnice" />
+   cz="VylouÄenĂŠ body a suĹadnice" />
 
 <e id="T_LN_rm_missing_xyz"
    EN="missing coordiantes xyz"
-   cz="chybí souřadnice xyz" />
+   cz="chybĂ­ souĹadnice xyz" />
 
 <e id="T_LN_rm_missing_xy"
    EN="missing coordiantes xy"
-   cz="chybí souřadnice xy" />
+   cz="chybĂ­ souĹadnice xy" />
 
 <e id="T_LN_rm_missing_z"
    EN="missing coordiantes z"
-   cz="chybí souřadnice z" />
+   cz="chybĂ­ souĹadnice z" />
 
 <e id="T_LN_rm_singular_xy"
    EN="singular coordiantes xy"
-   cz="singulární souřadnice xy" />
+   cz="singulĂĄrnĂ­ souĹadnice xy" />
 
 <e id="T_LN_rm_singular_z"
    EN="singular coordiante z"
-   cz="singulární souřadnice z" />
+   cz="singulĂĄrnĂ­ souĹadnice z" />
 
 <e id="T_LN_rm_huge_cov_xyz"
    EN="indeterminable coordinates xyz"
-   cz="neurčitelné souřadnice xyz" />
+   cz="neurÄitelnĂŠ souĹadnice xyz" />
 
 <e id="T_LN_rm_huge_cov_xy"
    EN="indeterminable coordinates xy"
-   cz="neurčitelné souřadnice xy" />
+   cz="neurÄitelnĂŠ souĹadnice xy" />
 
 <e id="T_LN_rm_huge_cov_z"
    EN="indeterminable coordinate z"
-   cz="neurčitelná souřadnice z" />
+   cz="neurÄitelnĂĄ souĹadnice z" />
 
 </entries>

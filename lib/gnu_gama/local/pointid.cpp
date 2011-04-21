@@ -3,6 +3,7 @@
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                   2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
+                  2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -21,37 +22,57 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <cstdlib>
+#include <gnu_gama/intfloat.h>
 #include <gnu_gama/local/pointid.h>
-
-// typedef std::string PointID;
-
+#include <gnu_gama/utf8.h>
+#include <cstdlib>
+#include <sstream>
 
 using namespace GNU_gama::local;
 
-PointID::PointID(const std::string& s)
+void PointID::init(const std::string& s)
 {
-  using namespace std;
-
-  string::const_iterator b=s.begin(), e=s.end();
+  std::string::const_iterator b=s.begin();
+  std::string::const_iterator e=s.end();
   GNU_gama::TrimWhiteSpaces(b, e);
   sid = std::string(b,e);
-  iid = std::atoi(sid.c_str());
+  iid = 0;
 
-  if (iid < 0) iid = 0;
+  if ( !GNU_gama::IsInteger(b, e) ) return;
 
-  int m10, tmp=iid;
-  const std::string& cid = sid;
-  const char ctab[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-  for (string::const_reverse_iterator i=cid.rbegin(); i!=cid.rend(); ++i)
-    {
-      m10  = tmp % 10;
-      if (tmp == 0 || ctab[m10] != *i)   // check for long int overlow
-        {
-          iid = 0;
-          return;
-        }
-      tmp /= 10;
-    }
+  PointInt tmp = -1;
+  std::istringstream inp(sid);
+  inp >> tmp;
+  if (tmp < 0) return;
+
+  std::ostringstream out;
+  out << tmp;
+  if (out.str() != sid) return;
+
+  iid = tmp;      // numeric ID
 }
 
+std::size_t PointID::lengthUtf8() const
+{
+  return GNU_gama::Utf8::length(sid);
+}
+
+
+bool PointID::operator==(const PointID& p) const
+{
+  return iid == p.iid && sid == p.sid;
+}
+
+bool PointID::operator!=(const PointID& p) const
+{
+  return iid != p.iid || sid != p.sid;
+}
+
+bool PointID::operator< (const PointID& p) const
+{
+  if      (iid != 0 && p.iid != 0) return iid < p.iid;
+  else if (iid != 0 && p.iid == 0) return true;
+  else if (iid == 0 && p.iid != 0) return false;
+  else
+    return sid < p.sid;
+}

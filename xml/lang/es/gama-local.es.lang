@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<entries>
+
+<e id="T_GaMa_Adjustment_of_geodetic_network"   
+   EN="Adjustment of local geodetic network"
+   es="Ajuste de red geodésica local" />
+
+<e id="T_GaMa_version"
+   EN="version: "
+   es="versión: " />
+
+<e id="T_GaMa_exception_1"
+   EN="Error during creation of InfoSit object"
+   es="Error durante la creación de objeto InfoSit" />
+
+<e id="T_GaMa_exception_2a"
+   EN="GNU Gama - error on reading XML input configuration file!"
+   es="¡GNU Gama - error en la lectura del fichero XML de entrada!" />
+
+<e id="T_GaMa_exception_2b"
+   EN="On line number "
+   es="En línea número " />
+
+<e id="T_GaMa_No_points_available"
+   EN="No points available"
+   es="No hay puntos disponibles" />
+
+<e id="T_GaMa_No_observations_available"
+   EN="No observations available"
+   es="No hay observaciones disponibles" />
+
+<e id="T_GaMa_No_network_points_defined"
+   EN="No network points defined"
+   es="No hay puntos de red disponibles" />
+
+<e id="T_GaMa_No_unknowns_defined"
+   EN="No unknowns have been defined"
+   es="No hay incógnitas disponibles" />
+
+<e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
+   EN="Observations with outlying absolute terms removed"
+   es="Observaciones con errores groseros eliminadas" />
+
+<e id="T_GaMa_adjustment_iteration"
+   EN=" - adjustment iteration"
+   es=" - iteración del ajuste" />
+
+<e id="T_GaMa_Approximate_coordinates_replaced"
+   EN="Approximate coordinates of computed points replaced by adjusted"
+   es="Las coordenadas aproximadas de los puntos calculados reemplazadas por las ajustadas" />
+
+<e id="T_GaMa_solution_ended_with_error"
+   EN="GNU Gama - solution ended with error!"
+   es="¡GNU Gama - la solución ha terminado con un error!" />
+
+<e id="T_GaMa_internal_program_error"
+   EN="GNU Gama - internal program error!"
+   es="¡GNU Gama - error interno del programa!" />
+  
+</entries>   
+

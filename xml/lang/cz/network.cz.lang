@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_LN_undefined_confidence_level"
    EN="undefined confidence level"
-   cz="nedefinovaná hodnota pravděpodobnosti" />
+   cz="nedefinovanĂĄ hodnota pravdÄpodobnosti" />
 
 <e id="T_LN_undefined_type_of_actual_sigma"
    EN="Type of actual sigma is not defined (apriori / aposteriori)"
-   cz="Není definován typ aktuální jednotkové střední chyby (apriorní / aposteriorní)" />
+   cz="NenĂ­ definovĂĄn typ aktuĂĄlnĂ­ jednotkovĂŠ stĹednĂ­ chyby (apriornĂ­ / aposteriornĂ­)" />
 
 </entries>

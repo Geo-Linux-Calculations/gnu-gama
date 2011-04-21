@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_GaMa_Adjustment_of_geodetic_network"   
    EN="Adjustment of local geodetic network"
-   cz="Vyrovnání místní geodetické sítě"  /> 
+   cz="VyrovnĂĄnĂ­ mĂ­stnĂ­ geodetickĂŠ sĂ­tÄ"  />
 
 <e id="T_GaMa_version"
    EN="version: "
@@ -11,51 +11,51 @@
 
 <e id="T_GaMa_exception_1"
    EN="Error during creation of InfoSit object"
-   cz="Chyba při vytváření objektu InfoSit"  />
+   cz="Chyba pĹi vytvĂĄĹenĂ­ objektu InfoSit"  />
 
 <e id="T_GaMa_exception_2a"
    EN="GNU Gama - error on reading XML input configuration file!"
-   cz="GNU Gama - chyba při čtení XML konfiguračního souboru!" />
+   cz="GNU Gama - chyba pĹi ÄtenĂ­ XML konfiguraÄnĂ­ho souboru!" />
 
 <e id="T_GaMa_exception_2b"
    EN="On line number "
-   cz="Na řádku číslo " />
+   cz="Na ĹĂĄdku ÄĂ­slo " />
 
 <e id="T_GaMa_No_points_available"
    EN="No points available"
-   cz="Nebyly zadány žádné body" />
+   cz="Nebyly zadĂĄny ĹžĂĄdnĂŠ body" />
 
 <e id="T_GaMa_No_observations_available"
    EN="No observations available"
-   cz="Nebyla zadána žádná měření" />
+   cz="Nebyla zadĂĄna ĹžĂĄdnĂĄ mÄĹenĂ­" />
 
 <e id="T_GaMa_No_network_points_defined"
    EN="No network points defined"
-   cz="Nebyly zadány žádné body sítě" />
+   cz="Nebyly zadĂĄny ĹžĂĄdnĂŠ body sĂ­tÄ" />
 
 <e id="T_GaMa_No_unknowns_defined"
    EN="No unknowns have been defined"
-   cz="Nejsou definovány žádné neznámé" />
+   cz="Nejsou definovĂĄny ĹžĂĄdnĂŠ neznĂĄmĂŠ" />
 
 <e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
    EN="Observations with outlying absolute terms removed"
-   cz="Měření s vybočujícími absolutními členy vyloučena" />
+   cz="MÄĹenĂ­ s vyboÄujĂ­cĂ­mi absolutnĂ­mi Äleny vylouÄena" />
 
 <e id="T_GaMa_adjustment_iteration"
    EN=" - adjustment iteration"
-   cz=". opakované vyrovnání" />
+   cz=". opakovanĂŠ vyrovnĂĄnĂ­" />
 
 <e id="T_GaMa_Approximate_coordinates_replaced"
    EN="Approximate coordinates of computed points replaced by adjusted"
-   cz="Přibližné souřadnice určovaných bodů nahrazeny vyrovnanými" />
+   cz="PĹibliĹžnĂŠ souĹadnice urÄovanĂ˝ch bodĹŻ nahrazeny vyrovnanĂ˝mi" />
 
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"
-   cz="GNU Gama - výpočet skončil chybou!" />
+   cz="GNU Gama - vĂ˝poÄet skonÄil chybou!" />
 
 <e id="T_GaMa_internal_program_error"
    EN="GNU Gama - internal program error!"
-   cz="GNU Gama - interní chyba programu!" />
+   cz="GNU Gama - internĂ­ chyba programu!" />
   
 </entries>   
 

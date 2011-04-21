@@ -24,6 +24,7 @@
 
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/utf8.h>
 #include <cmath>
 
 namespace GNU_gama { namespace local {
@@ -97,8 +98,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
            if ((*point).second.index_x())
              {
                const PointID point_id  = (*point).first;
-               out.width(IS->maxw_id());
-               out << point_id.c_str() << ' ';
+               out << Utf8::leftPad(point_id.str(), IS->maxw_id()) << ' ';
 
                const LocalPoint& p = (*point).second;
                Double my = IS->unknown_stdev(p.index_y());

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<entries>
+
+<e id="T_POBS_computation_of_bearing_for_identical_points"
+   EN="Computation of bearing for identical points"
+   es="Cálculo del rumbo para puntos idénticos" />
+
+<e id="T_POBS_bad_data"
+   EN="bad data"
+   es="datos erróneos" />
+
+<e id="T_POBS_zero_or_negative_distance"
+   EN="zero or negative distance"
+   es="distancia nula o negativa" />
+
+<e id="T_POBS_zero_or_negative_slope_distance"
+   EN="zero or negative slope distance"
+   es="distancia inclinada nula o negativa" />
+
+<e id="T_POBS_zero_or_negative_zenith_angle"
+   EN="zero or negative zenith angle"
+   es="ángulo cenital nulo o negativo" />
+
+</entries>

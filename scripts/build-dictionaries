@@ -1,26 +1,20 @@
+#!/bin/bash
 #
-# builds dictionaris for GaMaLib
+# builds dictionaris for GNU Gama
 # 
+
+echo
+echo Building dictionaries
+echo
 
 if pwd | grep /scripts$; then cd ..; fi
 
-echo
-echo "Building dictionaries"
-echo
+SLOVNIKAR=$(pwd)/scripts/slovnikar
 
-cd lib/gamalib
-
-FILES=$(find ../.. -name *.lang)
+# source directory for language.{h|cpp}
+cd lib/gnu_gama/local
+FILES=$(find ../../../xml/lang -name *.lang)
 
 echo input files: $FILES
-echo $FILES | ../../scripts/slovnikar
-
-
-# ------------------------------------------------------------------------
-
-
-
-
-
-
-
+echo
+echo $FILES | $SLOVNIKAR

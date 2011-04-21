@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2011 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,40 +16,25 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  $
 */
 
+#ifndef Utf8___LENGTH_UTF8__Length_utf8__length_utf8__lengthutf8__h
+#define Utf8___LENGTH_UTF8__Length_utf8__length_utf8__lengthutf8__h
+
 #include <string>
-#include <gnu_gama/local/results/text/underline.h>
-#include <gnu_gama/xml/encoding.h>
 
-namespace GNU_gama { namespace local {
+namespace GNU_gama {
 
-std::string underline(std::string text, char c)
-{
-  int i;
-  std::string s;
-  unsigned char* p = (unsigned char*)text.c_str();
-  while (*p)
-    {
-      p += GNU_gama::Utf8Decode(i, p);
-      s += c;
-    }
-  return s;
-}
+  class Utf8 {
+  public:
 
-std::string set_width(std::string s, int n)
-{
-  int N=0, i;
-  unsigned char* p = (unsigned char*)s.c_str();
-  while (*p)
-    {
-      p += GNU_gama::Utf8Decode(i, p);
-      N++;
-    }
-  std::string t(s);
-  while (n-- > N) t += ' ';
-  return t;
-}
+    static std::size_t length  (std::string);
+    static std::string leftPad (std::string, std::size_t, char=' ');
+    static std::string rightPad(std::string, std::size_t, char=' ');
 
-}}
+  };
+
+}  // namespace Utf8
+
+#endif

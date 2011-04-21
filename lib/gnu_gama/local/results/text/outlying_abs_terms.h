@@ -27,6 +27,7 @@
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
+#include <gnu_gama/utf8.h>
 
 namespace GNU_gama { namespace local {
 
@@ -66,14 +67,13 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           PointID cs = pm->from();
           out.width(IS->maxw_id());
           if (cs != predcs)
-            out << cs.c_str();
+            out << Utf8::leftPad(cs.str(), IS->maxw_id());
           else
             out << " ";
           out << " ";
 
           PointID cc = pm->to();
-          out.width(IS->maxw_id());
-          out << cc.c_str();
+          out << Utf8::leftPad(cc.str(), IS->maxw_id());
           out.setf(ios_base::fixed, ios_base::floatfield);
 
           {   // ************************************************
@@ -100,7 +100,7 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               {
                 out << '\n';
                 out.width(IS->maxw_obs() + 2 + 2*(IS->maxw_id()));
-                out << (u->fs()).c_str();
+                out << Utf8::leftPad(u->fs().str(), IS->maxw_id());
                 out << T_GaMa_angle;
                 out.precision(6);
                 out.width(12);

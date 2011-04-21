@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_IE_internal_error"
    EN="internal error"
-   cz="interní chyba" />
+   cz="internĂ­ chyba" />
 
 <e id="T_GaMa_from_equals_to"
    EN="station and target are identical"
-   cz="stanovisko je totožné s cílem" />
+   cz="stanovisko je totoĹžnĂŠ s cĂ­lem" />
 
 </entries>   
 

@@ -23,6 +23,8 @@ libgama_src = \
    gnu_gama/rand.h \
    gnu_gama/statan.cpp \
    gnu_gama/statan.h \
+   gnu_gama/utf8.cpp \
+   gnu_gama/utf8.h \
    gnu_gama/version.cpp \
    gnu_gama/version.h \
    gnu_gama/xml_expat.h \
@@ -170,7 +172,11 @@ libgama_src = \
    gnu_gama/local/readsabw.h \
    gnu_gama/local/revision.h \
    gnu_gama/local/skipcomm.cpp \
-   gnu_gama/local/skipcomm.h
+   gnu_gama/local/skipcomm.h \
+   gnu_gama/local/sqlitereader.h \
+   gnu_gama/local/sqlitereader.cpp \
+   gnu_gama/local/newnetwork.h \
+   gnu_gama/local/newnetwork.cpp
 
 matvec_src = \
    matvec/array.h \
@@ -241,4 +247,5 @@ expat_extra = \
 noinst_LIBRARIES  = libgama.a
 libgama_a_SOURCES = $(libgama_src) $(matvec_src)
 
-EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
+EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra) \
+   gnu_gama/local/language.html

@@ -255,12 +255,12 @@ void SimilarityTr2D::transformation_key(PointData::iterator& b1,
   pom = SB.find((*b1).first);
   if(pom == SB.end())
     throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
-                   " in target coordinate system - "+(*b1).first);
+		  " in target coordinate system - "+(*b1).first.str());
   kam1 = (*pom).second;
   pom = SB.find((*b2).first);
   if(pom == SB.end())
     throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
-                   " in target coordinate system - "+(*b2).first);
+		  " in target coordinate system - "+(*b2).first.str());
   kam2 = (*pom).second;
   Double dy1, dy2, dx1, dx2;
   dy1 = odkud2.y() - odkud1.y();

@@ -1,5 +1,5 @@
 /* Slovnikar (lexicographer) is a simple program to compile `dictionaries'
- * used in the GNU GaMa project.
+ * used in the GNU Gama project.
  * ==========================================================================
  *
  * Program reads series of file names from standard input. Input files
@@ -22,14 +22,18 @@
  *
  * ------------------------------------------------------------------------ */
 
-         const char* language[] = { "en", "ca", "cz", "du", "fi", "fr",
-                                    "hu", "ru", "ua" };
+         const char* language[] = { "en", "ca", "cz", "du", "es",
+                                    "fi", "fr", "hu", "ru", "ua" };
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.10";
+         const char* version = "1.11";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.11  2011-04-12
+ *
+ *       - added Spanish (switch "es")
  *
  * 1.10  2010-08-14
  *
@@ -353,10 +357,10 @@ int main()
       "<html xmlns=\"http://www.w3.org/1999/xhtml\""
       " xml:lang=\"en\" lang=\"en\">\n"
       "  <head>\n"
-      "    <title>GaMa lang</title>\n"
+      "    <title>GNU Gama lang</title>\n"
       "  </head>\n"
       "<body>\n\n"
-      "<h1>GaMa lang</h1>\n\n"
+      "<h1>GNU Gama lang</h1>\n\n"
       "<table border=\"1\">\n\n";
 
       for (Dictionary::const_iterator i=dict.begin(); i!=dict.end(); ++i)
@@ -392,8 +396,8 @@ int main()
   {
     ofstream out("language.cpp");
     out << "/* slovnikar " << version << " */\n\n"
-        << "#include <gamalib/language.h>\n\n"
-        << "namespace GNU_gama::local {\n\n"
+        << "#include <gnu_gama/local/language.h>\n\n"
+        << "namespace GNU_gama { namespace local {\n\n"
         << "const char* T_language_cpp_internal_error = "
         << "\" internal error : "
         << "program must call function set_gama_language() \";\n\n";
@@ -427,17 +431,8 @@ int main()
         out << "\treturn;\n\n";
 
       }
-    out << "   }\n\n}\n\n}   // namespace GNU_gama::local\n\n";
+    out << "   }\n\n}\n\n}}   // namespace GNU_gama::local\n";
   }
 
   return result;
 }
-
-
-
-
-
-
-
-
-

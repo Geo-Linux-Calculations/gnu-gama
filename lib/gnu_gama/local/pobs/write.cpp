@@ -40,7 +40,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
   int maxkl = 0;
   for (PointData::iterator i=sez.begin(); i!=sez.end(); ++i)
     {
-      int k = (*i).first.length();
+      int k = (*i).first.lengthUtf8();
       // maxkl = max( maxkl, k);
       if (k > maxkl) maxkl = k;
     }
@@ -53,7 +53,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 
 
         str << "<point id=";
-        for (int j=cb.length(); j<maxkl; j++)
+        for (int j=cb.lengthUtf8(); j<maxkl; j++)
           str << ' ';
         str << "\"" << cb << "\"";
 
@@ -123,7 +123,7 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
                 break;
               }
           if (common_standpoint)
-            start_tag += " from=\"" + first_id + "\">\n";
+            start_tag += " from=\"" + first_id.str() + "\">\n";
           else
             start_tag += ">\n";
 

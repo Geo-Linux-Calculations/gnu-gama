@@ -1,22 +1,22 @@
 /*
-    GNU Gama C++ library
-    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+  GNU Gama C++ library
+  Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #ifndef GaMa_GaMaProg_Zakladni_Parametry_h_
@@ -26,6 +26,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/utf8.h>
 #include <gnu_gama/local/results/text/underline.h>
 #include <cstring>
 
@@ -50,7 +51,8 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         for (PointIDList::const_iterator i =IS->removed_points.begin();
              i!=IS->removed_points.end(); ++i, ++c)
           {
-            out << setw(IS->maxw_id()) << (*i).c_str() << "   ";
+            // out << setw(IS->maxw_id()) << (*i).c_str() << "   ";
+            out << Utf8::leftPad((*i).str(),IS->maxw_id()) << "   ";
             switch ( *c )
               {
               case LocalNetwork::rm_missing_xyz :
@@ -111,11 +113,11 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
     int w1 = 0, w_ = 8;
     {
       int n;
-      n = strlen(T_GaMa_gpar1_coordinates);              if (n > w1) w1 = n;
-      n = strlen(T_GaMa_gpar1_adjusted_coordinates);     if (n > w1) w1 = n;
-      n = strlen(T_GaMa_gpar1_constrained_coordinates);  if (n > w1) w1 = n;
-      n = strlen(T_GaMa_gpar1_fixed_coordinates);        if (n > w1) w1 = n;
-      n = strlen(T_GaMa_gpar1_total);                    if (n > w1) w1 = n;
+      n = Utf8::length(T_GaMa_gpar1_coordinates);            if (n > w1) w1 = n;
+      n = Utf8::length(T_GaMa_gpar1_adjusted_coordinates);   if (n > w1) w1 = n;
+      n = Utf8::length(T_GaMa_gpar1_constrained_coordinates);if (n > w1) w1 = n;
+      n = Utf8::length(T_GaMa_gpar1_fixed_coordinates);      if (n > w1) w1 = n;
+      n = Utf8::length(T_GaMa_gpar1_total);                  if (n > w1) w1 = n;
     }
 
     out.setf(ios_base::left,  ios_base::adjustfield);
@@ -126,21 +128,21 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         << setw(w_)   << "z"  << "\n\n";
 
     out.setf(ios_base::left,  ios_base::adjustfield);
-    out << setw(w1) << T_GaMa_gpar1_adjusted_coordinates << ":";
+    out << Utf8::rightPad(T_GaMa_gpar1_adjusted_coordinates, w1) << ":";
     out.setf(ios_base::right, ios_base::adjustfield);
     out << setw(w_)  << a_xyz
         << setw(w_)  << a_xy
         << setw(w_)  << a_z
         << '\n';
     out.setf(ios_base::left,  ios_base::adjustfield);
-    out << setw(w1) << T_GaMa_gpar1_constrained_coordinates << ":";
+    out << Utf8::rightPad(T_GaMa_gpar1_constrained_coordinates, w1) << ":";
     out.setf(ios_base::right, ios_base::adjustfield);
     out << setw(w_)  << c_xyz
         << setw(w_)  << c_xy
         << setw(w_)  << c_z
         << '\n';
     out.setf(ios_base::left,  ios_base::adjustfield);
-    out << setw(w1) << T_GaMa_gpar1_fixed_coordinates << ":";
+    out << Utf8::rightPad(T_GaMa_gpar1_fixed_coordinates, w1) << ":";
     out.setf(ios_base::right, ios_base::adjustfield);
     out << setw(w_)  << f_xyz
         << setw(w_)  << f_xy
@@ -150,7 +152,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
     for (int ii=0; ii<w1+1+3*w_+1; ii++) out << '-'; out << "\n";
 
     out.setf(ios_base::left,  ios_base::adjustfield);
-    out << setw(w1) << T_GaMa_gpar1_total << ":";
+    out << Utf8::rightPad(T_GaMa_gpar1_total, w1) << ":";
     out.setf(ios_base::right, ios_base::adjustfield);
     out << setw(w_)  << (a_xyz + f_xyz)
         << setw(w_)  << (a_xy  + f_xy )
@@ -161,34 +163,36 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   int w1 = 0;
   {
     int n;
-    // n = strlen(T_GaMa_gpar1_computed_points);  if (n > w1) w1 = n;
-    // n = strlen(T_GaMa_gpar1_fixed_points);     if (n > w1) w1 = n;
-    // n = strlen(T_GaMa_gpar1_computed_heights); if (n > w1) w1 = n;
-    // n = strlen(T_GaMa_gpar1_fixed_heights);    if (n > w1) w1 = n;
-    // n = strlen(T_GaMa_gpar1_points_total);     if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_directions);       if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_angles);           if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_distances);        if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_observed_coords);  if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_leveling_diffs);  if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_z_angles);         if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_s_dists);          if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_obs_total);        if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_equations);        if (n > w1) w1 = n;
-    n = strlen(T_GaMa_gpar1_redundancy);       if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_directions);       if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_angles);           if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_distances);        if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_observed_coords);  if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_leveling_diffs);   if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_z_angles);         if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_s_dists);          if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_obs_total);        if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_equations);        if (n > w1) w1 = n;
+    n = Utf8::length(T_GaMa_gpar1_redundancy);       if (n > w1) w1 = n;
   }
+
+  int pocosn = 0;
+  for (int i=1; i<=IS->sum_unknowns(); i++)
+    if (IS->unknown_type(i) == 'R')
+      pocosn++;
+
   int w2 = 0;
   {
     int n;
-    // n = strlen(T_GaMa_gpar2_constrained_points);  if (n > w2) w2 = n;
-    // n = strlen(T_GaMa_gpar2_constrained_heights); if (n > w2) w2 = n;
-    n = strlen(T_GaMa_gpar2_bearings);            if (n > w2) w2 = n;
-    n = strlen(T_GaMa_gpar2_number_of_unknowns);  if (n > w2) w2 = n;
-    n = strlen(T_GaMa_gpar2_network_defect);      if (n > w2) w2 = n;
+    if (pocosn)
+      {
+        n = Utf8::length(T_GaMa_gpar2_bearings);        if (n > w2) w2 = n;
+      }
+    n = Utf8::length(T_GaMa_gpar2_number_of_unknowns);  if (n > w2) w2 = n;
+    n = Utf8::length(T_GaMa_gpar2_network_defect);      if (n > w2) w2 = n;
   }
   const char* tab_sep = "            ";
 
-  int pocsmer=0, pocosn=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
+  int pocsmer=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
       poczeni=0, pocsikm=0;
   {   // for ...
     for (int i=1; i<=IS->sum_observations(); i++)
@@ -204,9 +208,6 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       else if (dynamic_cast<S_Distance*>(IS->ptr_obs(i))) pocsikm++;
     // *****************************************************
   }   // for ...
-  for (int i=1; i<=IS->sum_unknowns(); i++)
-    if (IS->unknown_type(i) == 'R')
-      pocosn++;
 
   if (pocosn)
     {
@@ -477,11 +478,3 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 }}
 
 #endif
-
-
-
-
-
-
-
-

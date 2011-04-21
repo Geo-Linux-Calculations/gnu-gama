@@ -25,6 +25,7 @@
 #include <iomanip>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/format.h>
+#include <gnu_gama/utf8.h>
 
 namespace GNU_gama { namespace local {
 
@@ -83,8 +84,9 @@ void FixedPoints(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       {
         if ((*i).second.fixed_xy() || (*i).second.fixed_z())
           {
-            out.width(IS->maxw_id());
-            out << ((*i).first).c_str();
+            // out.width(IS->maxw_id());
+            // out << ((*i).first).c_str();
+	    out << Utf8::leftPad(i->first.str(), IS->maxw_id());
           }
         if ((*i).second.fixed_xy())
           {

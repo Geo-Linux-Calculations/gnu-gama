@@ -78,7 +78,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               out << " " << " ";
               out.width(IS->maxw_id());
               if (prev_id != point_id)
-                out << point_id.c_str();
+                out << Utf8::leftPad(point_id.str(), IS->maxw_id());
               else
                 out << " ";
               prev_id = point_id;
@@ -140,7 +140,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                   out << " " << " ";
                   out.width(IS->maxw_id());
                   if (prev_id != point_id)
-                    out << point_id.c_str();
+                    out << Utf8::leftPad(point_id.str(), IS->maxw_id());
                   else
                     out << " ";
                   out << '\n';
@@ -224,7 +224,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               out << i << " " ;
               out.width(IS->maxw_id());
               const PointID cb = IS->unknown_pointid(i);
-              out << cb.c_str() << "  ";
+              out << Utf8::leftPad(cb.str(), IS->maxw_id()) << "  ";
               StandPoint* k = IS->unknown_standpoint(i);
               Double z = y_sign*( k->orientation() )*R2G;
               if (z <  0 ) z += 400;
@@ -297,7 +297,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
             out.width(IS->maxw_unk());
             out << i << " ";
             out.width(IS->maxw_id());
-            out << cb.c_str();
+            out << Utf8::leftPad(cb.str(), IS->maxw_id());
             if (b.constrained_z())
               out << " * ";
             else

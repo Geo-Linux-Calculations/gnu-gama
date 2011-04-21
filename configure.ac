@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.65)
-AC_INIT([gama], [1.10c], [bug-gama@gnu.org])
+AC_INIT([gama], [1.10g], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -19,7 +19,13 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
 # Checks for libraries.
-AC_CHECK_LIB([expat], [main])
+AC_CHECK_LIB([expat], [XML_ParserCreate])
+AC_CHECK_LIB([sqlite3], [sqlite3_open])
+AC_CHECK_LIB([sqlite3], [sqlite3_open],
+                AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],,
+                          [Conditional support for sqlite3 databases])
+                AC_SUBST([CPPFLAGS],[-DGNU_GAMA_LOCAL_SQLITE_READER $CPPFLAGS])
+            )
 
 # Checks for header files.
 AC_HEADER_STDC

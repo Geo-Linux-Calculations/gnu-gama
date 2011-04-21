@@ -1,22 +1,22 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
+  C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
+  Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ Matrix/Vector template library.
+  This file is part of the GNU Gama C++ Matrix/Vector template library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #ifndef GNU_gama_gMatVec_MatSVD__h_
@@ -54,6 +54,8 @@ namespace GNU_gama {
      C     bidiagonalization and a variant of the QR algorithm are used.
 
      -------------------------------------------------------------------------
+
+.....2011-04-17  (AC) suppressed g++ optimization (volatile variables)
 
      2001-02-30  (AC) Occasional problems with SVD convergence:
 
@@ -138,7 +140,7 @@ namespace GNU_gama {
       Index decomposed;
       void svd();
 
-      Float W_tol;
+      volatile Float W_tol;
       Vec<Float, Exc> inv_W_;
       void set_inv_W();
 
@@ -158,7 +160,7 @@ namespace GNU_gama {
     };      /* class SVD */
 
 
-  // --------- Exception::Singular Value Decompiosition member functions -------------
+  // ------ Exception::Singular Value Decompiosition member functions --------
 
 
   template <typename T> inline const T ABS(const T& x)
@@ -171,7 +173,7 @@ namespace GNU_gama {
     {
       if (W_tol == 0)
         {             // if not defined set W_tol to 1000*comp_epsilon
-          Float  eps, eps_1, eps_min, eps_max, sum;
+          volatile Float  eps, eps_1, eps_min, eps_max, sum;
           const Float one = 1;
 
           eps_min = Float();
@@ -189,7 +191,7 @@ namespace GNU_gama {
           W_tol = 1000*eps;
         }
 
-      Float vmax = Float();
+      volatile Float vmax = Float();
       for (Index k = 1; k <= W_.dim(); k++) if (W[k] > vmax) vmax = W[k];
       const Float vmin = W_tol * vmax;
       defect = 0;
@@ -207,7 +209,7 @@ namespace GNU_gama {
 
   template <typename Float> inline Float PYTHAG( Float a, Float b )
     {
-      Float at, bt, ct;
+      volatile Float at, bt, ct;
 
       return
         (( at = ABS(a) )  > ( bt = ABS(b) ) )     ?
@@ -227,9 +229,9 @@ namespace GNU_gama {
       const Float TWO  = 2;
 
       Index  i, i1, its, j, k, k1, L, L1;
-      Float  c, f, h, s, x, y, z ;
-      Float  s1=ZERO, g=ZERO, scale=ZERO, r, s2;
-      Float  tmp1;
+      volatile Float  c, f, h, s, x, y, z ;
+      volatile Float  s1=ZERO, g=ZERO, scale=ZERO, r, s2;
+      volatile Float  tmp1;
       Index  mn;
 
       reset_UWV();
@@ -499,7 +501,7 @@ namespace GNU_gama {
                            const Vec<Float, Exc>& w)
     {
       reset(A);
-      Float wi;
+      volatile Float wi;
       for (Index i = 1; i <= A.rows(); i++)
         {
           wi = w(i);
@@ -560,7 +562,7 @@ namespace GNU_gama {
       // A = U*W*trans(V)
       // Covariance = V * inv_W * trans(inv_W) * trans(V);
       if (!decomposed) svd();
-      Float c = Float();
+      volatile Float c = Float();
       for (Index k = 1; k <= n; k++)
         c += V[i][k] * inv_W[k] * inv_W[k] * V[j][k];
       return c;
@@ -575,7 +577,7 @@ namespace GNU_gama {
       // A = U*W*trans(V)
       // Covariance = U * trans(U);
       if (!decomposed) svd();
-      Float c = Float();
+      volatile Float c = Float();
       for (Index k = 1; k <= n; k++)
         if (inv_W[k] != 0)
           c += U[i][k] * U[j][k];
@@ -591,7 +593,7 @@ namespace GNU_gama {
       // A = U*W*trans(V)
       // Covariance = U * trans(V);
       if (!decomposed) svd();
-      Float c = Float();
+      volatile Float c = Float();
       for (Index k = 1; k <= n; k++)
         c += U[i][k] * inv_W[k] * V[j][k];
       return c;
@@ -646,11 +648,11 @@ namespace GNU_gama {
         throw Exc(Exception::BadRegularization, "void SVD::min_subset_x()");
 
       Index im;
-      Float s;
+      volatile Float s;
       for (Index k = 1; k <= n; k++)
         if (inv_W[k] == 0)
           {
-            Float Vimk;
+            volatile Float Vimk;
             s = Float();
             for (Index i = 0; i < n_min; i++) {
               im = list_min[i];
@@ -659,7 +661,8 @@ namespace GNU_gama {
             }
             s = std::sqrt(s);
             if (s == 0)
-              throw Exc(Exception::BadRegularization, "void SVD::min_subset_x()");
+              throw Exc(Exception::BadRegularization,
+                        "void SVD::min_subset_x()");
             { for (Index i = 1; i <= n; i++) V[i][k] /= s; }   // for ...
 
             for (Index j = 1; j <= n; j++)
@@ -686,7 +689,7 @@ namespace GNU_gama {
       Vec<Float, Exc> t_(n);
       typename Vec<Float, Exc>::const_iterator b = rhs.begin();
       typename Vec<Float, Exc>::iterator t = t_.begin();
-      Float s;
+      volatile Float s;
 
       // t = trans(U)*b*inv(W);
       {   // for ...

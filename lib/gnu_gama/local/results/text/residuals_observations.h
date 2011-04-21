@@ -24,6 +24,7 @@
 
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/utf8.h>
 #include <algorithm>
 
 static float ResidualsObservations_N01(float x)   // local helper function
@@ -140,13 +141,12 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           PointID cs = pm->from();
           out.width(IS->maxw_id());
           if (cs != predcs)
-            out << cs.c_str();
+            out << Utf8::leftPad(cs.str(), IS->maxw_id());
           else
             out << " ";
           out << " ";
           PointID cc = pm->to();
-          out.width(IS->maxw_id());
-          out << cc.c_str();
+          out << Utf8::leftPad(cc.str(), IS->maxw_id());
           out.setf(ios_base::fixed, ios_base::floatfield);
 
           if (dynamic_cast<Distance*>(pm))
@@ -160,8 +160,8 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           else if (Angle* u = dynamic_cast<Angle*>(pm))
             {
               out << '\n';
-              out.width(IS->maxw_obs() + 2 + 2*(IS->maxw_id()));
-              out << (u->fs()).c_str();
+              const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
+              out << Utf8::leftPad((u->fs()).str(), w);
               out << T_GaMa_angle;
             }
           else if (dynamic_cast<S_Distance*>(pm))

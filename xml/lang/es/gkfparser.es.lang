@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<entries>
+
+<e id="T_GKF_illegal_text"
+   EN="illegal text"
+   es="texto no permitido" />
+
+<e id="T_GKF_must_start_with_gama_xml"
+   EN="document must start with tag &lt;gama-local&gt;"
+   es="el documento debe comenzar con la etiqueta &lt;gama-local&gt;" />
+
+<e id="T_GKF_undefined_value_of_attribute"
+   EN="illegal value of the attribute: "
+   es="valor no permitido del atributo: " />
+
+<e id="T_GKF_illegal_value_of_gama_xml_version"
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   es="valor no permitido del atributo \'version\' de l\'etiqueta &lt;gama-local&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_gama_xml"
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   es="valor no definido del atributo &lt;gama-local&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_vectors"
+   EN="undefined attribute of tag &lt;vectors&gt;: "
+   es="valor no definido del atributo para la etiqueta &lt;vectors&gt;: " />
+
+<e id ="T_GKF_missing_tag_network"
+   EN="missing tag &lt;network&gt;"
+   es="falta la etiqueta  &lt;network&gt;" />
+
+<e id="T_GKF_e01a_illegal_tag"
+   EN="illegal_tag &lt;"
+   es="etiqueta no permitida &lt;" />
+
+<e id="T_GKF_e01b_after_tag"
+   EN="&gt; after tag"
+   es="&gt; después de la etiqueta" />
+
+<e id="T_GKF_error_on_reading_of_standard_deviation"
+   EN="error on reading of standard deviation"
+   es="error al leer la desviación típica" />
+
+<e id="T_GKF_error_on_reading_of_confidence_probability"
+   EN="error on reading of confidence probability"
+   es="error al leer el nivel de confianza estadístico" />
+
+<e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
+   EN="error on reading of tolerance for identification of outlying absolute terms"
+   es="error al leer la tleracia para la identificación de las observaciones groseras" />
+
+<e id="T_GKF_wrong_type_of_standard_deviation"
+   EN="wrong type of standard deviation" 
+   es="tipo de desviación típica incorrecto" />
+
+<e id="T_GKF_bad_network_configuration_unknown_parameter"
+   EN="bad network configuration - unknown parameter: "
+   es="mala configuración de la red - parámetro desconocido " />
+
+<e id="T_GKF_bad_attribute_distance_dev"
+   EN="bad attribute distance-stdev: "
+   es="atributo erróneo distancia-stddev: " />
+
+<e id="T_GKF_bad_attribute_direction_dev"
+   EN="bad attribute direction-stdev: "
+   es="atributo erróneo dirección-stddev: " />
+
+<e id="T_GKF_bad_attribute_angle_dev"
+   EN="bad attribute angle-stdev: "
+   es="atributo erróneo ángulo-stddev: " />
+
+<e id="T_GKF_undefined_attribute_of_points_observations"
+   EN="undefined attribute of &lt;points-observations&gt;: " 
+   es="atributo no definido de &lt;points-observations&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_points"
+   EN="undefined attribute of &lt;point&gt;: " 
+   es="atributo no definido de &lt;point&gt;: " />
+
+<e id="T_GKF_missing_point_ID"
+   EN="missing point ID"
+   es="falta la identificación del punto" />
+
+<e id="T_GKF_missing_from_ID"
+   EN="missing point ID (attribute from=\&quot;...\&quot;)"
+   es="falta la identificación del punto (atribut from=\&quot;...\&quot;)" />
+
+<e id="T_GKF_missing_to_ID"
+   EN="missing point ID (attribute to=\&quot;...\&quot;)"
+   es="falta la identificación del punto (atribut to=\&quot;...\&quot;)" />
+
+<e id="T_GKF_multiple_definition_of_xy_in_tag_point"
+   EN="multiple dexinition of coordinates xy in tag &lt;point&gt;"
+   es="definición de múltiples coordenades xy para la etiqueta &lt;point&gt;" />
+
+<e id="T_GKF_multiple_definition_of_z_in_tag_point"
+   EN="multiple definition of coordinate z in tag &lt;point&gt;"
+   es="definición de múltiples coordenadas z a l\'etiqueta &lt;point&gt;" />
+
+<e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
+   EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
+   es="la etiqueta &lt;point /&gt; ha de definir coordenades xy i/o z dentro de la etiqueta &lt;coordinates&gt;" />
+
+<e id="T_GKF_coordinate_x_is_not_defined"
+   EN="coordinate x is not defined"
+   es="coordenada x no definida" />
+
+<e id="T_GKF_coordinate_y_is_not_defined"
+   EN="coordinate y is not defined"
+   es="coordenada y no definida" />
+
+<e id="T_GKF_bad_coordinate_x"
+   EN="bad coordinate x: "
+   es="coordenada x errónea: " />
+
+<e id="T_GKF_bad_coordinate_y"
+   EN="bad coordinate y: "
+   es="coordenada y errónea: " />
+
+<e id="T_GKF_bad_height"
+   EN="bad height: "
+   es="altitud errónea: " />
+
+<e id="T_GKF_undefined_point_type"
+   EN="undefined point type: "
+   es="tipo de punto no definido: " />
+
+<e id="T_GKF_undefined_height_type"
+   EN="undefined height type: "
+   es="tipo de altitud no definido: " />
+
+<e id="T_GKF_undefined_attribute_of_distance"
+   EN="undefined attribute of &lt;distance&gt;: " 
+   es="atributo no definit para la &lt;distance&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_slopedist"
+   EN="undefined attribute of &lt;s-distance&gt;: " 
+   es="atributo no definido de la &lt;s-distance&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_zangle"
+   EN="undefined attribute of &lt;z-angle&gt;: " 
+   es="atributo no definido de la &lt;z-angle&gt;: " />
+
+<e id="T_GKF_missing_standpoint_id"
+   EN="missing standpoint ID"
+   es="falta la identificación de la base" />
+
+<e id="T_GKF_missing_forepoint_id"
+   EN="missing forepoint ID"
+   es="falta la identificación del punto observado" />
+
+<e id="T_GKF_missing_observed_value"
+   EN="missing observed value"
+   es="falta el valor de la observación" />
+
+<e id="T_GKF_bad_distance"
+   EN="bad distance: "
+   es="distancia errónea: " />
+
+<e id="T_GKF_illegal_standard_deviation"
+   EN="illegal standard deviation"
+   es="desviación típica no permitida" />
+
+<e id="T_GKF_undefined_attribute_of_angle"
+   EN="undefined attribute of &lt;angle&gt;: " 
+   es="atributo no definido de &lt;angle&gt;: " />
+
+<e id="T_GKF_missing_left_forepoint_id"
+   EN="missing left forepoint ID"
+   es="falta la identificación del punto observado a la izquierda" />
+
+<e id="T_GKF_missing_right_forepoint_id"
+   EN="missing right forepoint ID"
+   es="falta la identificación del punto observado a la derecha" />
+
+<e id="T_GKF_bad_angle"
+   EN="bad angle: "
+   es="ángulo erróneo: " />
+
+<e id="T_GKF_undefined_attribute_of_obs"
+   EN="undefined attribute of &lt;obs&gt;: "
+   es="atributo no definido de &lt;obs&gt;: " />
+
+<e id="T_GKF_bad_instrument_reflector_height"
+   EN="bad instrument/reflector height: "
+   es="altura del instrument/prisma errónea: " />
+
+<e id="T_GKF_bad_orientation_angle"
+   EN="bad orientation angle: "
+   es="ángulo de orientación erróneo: " />
+
+<e id="T_GKF_undefined_attribute_of_direction"
+   EN="undefined attribute of &lt;direction&gt;: "
+   es="atributo no definid de &lt;direction&gt;: " />
+
+<e id="T_GKF_bad_direction"
+   EN="bad direction: "
+   es="dirección errónea: " />
+
+<e id="T_GKF_bad_height_diff"
+   EN="bad height difference: "
+   es="desnivel erróneo: " />
+
+<e id="T_GKF_undefined_attribute_of_cov_mat"
+   EN="undefined attribute of &lt;cov-mat&gt;: "
+   es="atributo no definido de &lt;cov-mat&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_coordinates"
+   EN="undefined attribute of &lt;coordinates&gt;: "
+   es="atributo no definido de &lt;coordinates&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_height_differences"
+   EN="undefined attribute of &lt;height-differences&gt;: " 
+   es="atributo no definido de &lt;height-differences&gt;:" />
+
+<e id="T_GKF_cov_mat_missing_dim"
+   EN="missing dimension of covariance matrix"
+   es="faltan las dimensiones de la matriz varianza-covarianza" />
+
+<e id="T_GKF_cov_mat_missing_band_width"
+   EN="missing band-width of covariance matrix"
+   es="falta el ancho de banda de la matriz d varianza-covarianza" />
+
+<e id="T_GKF_covariance_matrix_is_not_positive_definite"
+   EN="variance-covariance matrix is not positive definite"
+   es="matriz de variances-covariances no definida positiva" />
+
+<e id="T_GKF_cov_mat_bad_dim"
+   EN="bad dimension of covariance matrix: "
+   es="dimensiones erróneas de la matriz varianza-covarianza: " />
+
+<e id="T_GKF_cov_mat_bad_band_width"
+   EN="missing band-width of covariance matrix: "
+   es="falta el ancho de banda de la matriz d varianza-covarianza: " />
+
+<e id="T_GKF_cov_mat_bad_dim_too_many_elements"
+   EN="bad dimension of covariance matrix - too many elements"
+   es="dimensiones erróneas de la matriz varianza-covarianza - demasiados elementos" />
+
+<e id="T_GKF_cov_mat_bad_dim_not_enough_elements"
+   EN="bad dimension of covariance matrix - not enough elements"
+   es="dimensiones erróneas de la matriz varianza-covarianza - no hay elementos suficientes" />
+
+<e id="T_GKF_cov_mat_bad_element"
+   EN="bad covariance matrix element: "
+   es="element erròni a la matriu de covariances: " />
+
+<e id="T_GKF_no_observations_after_cov_mat"
+   EN="observations can not come after covariance matrix"
+   es="no pueden definirse observacionestras la matriz de varianza-covarianza" />
+
+<e id="T_GKF_coordinates_without_covariance_matrix"
+   EN="coordinates without covariance matrix"
+   es="coordenades sin matriz de varianza-covarianza" />
+
+<e id="T_GKF_cov_dim_differs_from_number_of_coordinates"
+   EN="covariance matrix dimension differs from the number of coordinates"
+   es="las dimensiones de la matriz varianza-covarianza no son consistentes con el número de coordenadas" />
+
+<e id="T_GKF_vectors_without_covariance_matrix"
+   EN="vectors without covariance matrix"
+   es="vectores sin matriz varianza-covarianza" />
+
+<e id="T_GKF_cov_dim_differs_from_number_of_vectors"
+   EN="covariance matrix dimension differs from the number of vectors"
+   es="las dimensiones de matriz varianza-covarianza difiere del número de vectores" />
+
+<e id="T_GKF_bad_vector_data"
+   EN="bad vector data"
+   es="datos erróneos del vector" />
+
+</entries>
+
+

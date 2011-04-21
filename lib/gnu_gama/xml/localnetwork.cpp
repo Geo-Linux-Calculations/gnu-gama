@@ -513,7 +513,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
       {
         out << "   <orientation> ";
         const PointID cb = netinfo->unknown_pointid(i);
-        tagsp(out, "id", cb.c_str());
+        tagsp(out, "id", cb.str().c_str());
 
         StandPoint* k = netinfo->unknown_standpoint(i);
         ind[++dim] =  k->index_orientation();

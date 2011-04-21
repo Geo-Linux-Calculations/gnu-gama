@@ -1,26 +1,34 @@
 /*
-    GNU Gama --- Geodesy and Mapping C++ library
-    Copyright (C) 1999, 2003, 2005  Ales Cepek <cepek@gnu.org>
+  GNU Gama --- Geodesy and Mapping C++ library
+  Copyright (C) 1999, 2003, 2005, 2011  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <gnu_gama/version.h>
+/* The macro VERSION is normally defined in <config.h> created by autoconf.
+
+   The #ifndef preprocessor command is used here to enable Qt builds
+   to define their own VERSION number without explicit use of <config.h>
+ */
+#ifndef VERSION
 #include <config.h>
+#endif
+
+#include <gnu_gama/version.h>
 #include <iostream>
 
 namespace GNU_gama {
@@ -41,16 +49,19 @@ namespace GNU_gama {
               #endif
               ;
 
-  const char* GNU_gama_year = "2010";
+  const char* GNU_gama_year = "2011";
 
 
   int version(const char* program, const char* copyright_holder)
   {
-    std::cout << program << " (GNU Gama) " << GNU_gama_version << "\n";
-    std::cout << "Copyright (C) " << GNU_gama_year << " " << copyright_holder << "\n";
-    std::cout << "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n";
-    std::cout << "This is free software: you are free to change and redistribute it.\n";
-    std::cout << "There is NO WARRANTY, to the extent permitted by law.\n";
+    std::cout
+      << program << " (GNU Gama) " << GNU_gama_version << "\n"
+      << "Copyright (C) " << GNU_gama_year << " "
+      << copyright_holder << "\n" <<
+      "License GPLv3+: GNU GPL version 3 or later "
+      "<http://gnu.org/licenses/gpl.html>\n"
+      "This is free software: you are free to change and redistribute it.\n"
+      "There is NO WARRANTY, to the extent permitted by law.\n";
 
     return 0;
   }
@@ -72,4 +83,3 @@ namespace GNU_gama {
  * and linking the program gama-local expect Expat 1.1 library to be
  * in the same directory as GNU Gama
  */
-

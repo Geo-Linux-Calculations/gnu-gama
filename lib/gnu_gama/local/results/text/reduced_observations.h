@@ -27,6 +27,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/acord.h>
 #include <gnu_gama/gon2deg.h>
+#include <gnu_gama/utf8.h>
 #include <cctype>
 #include <iomanip>
 
@@ -151,13 +152,12 @@ void ReducedObservationsText(GNU_gama::local::LocalNetwork* IS,
       PointID cs = pm->from();
       out.width(IS->maxw_id());
       if (cs != predcs)
-         out << cs.c_str();
+         out << Utf8::leftPad(cs.str(), IS->maxw_id());
       else
          out << " ";
       out << " ";
       PointID cc = pm->to();
-      out.width(IS->maxw_id());
-      out << cc.c_str();
+      out << Utf8::leftPad(cc.str(), IS->maxw_id());
       out.setf(ios_base::fixed, ios_base::floatfield);
 
       string str_nonexist("");
