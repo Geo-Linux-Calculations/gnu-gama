@@ -50,9 +50,9 @@ namespace {
   const char* T_gamalite_unknown_exception_in_callback =
     "unknown exception in SqliteReader's callback"; ///< error message, used in callbacks' catch(...)
   const char* T_gamalite_stand_point_cluster_with_multi_dir_sets =
-    "StandPoint cluster with multiple directions sets"; ///< error message, used in #readObservations
+    "StandPoint cluster with multiple directions sets"; ///< error message, used in #sqlite_db_readObservations
   const char* T_gamalite_configuration_not_found =
-    "configuration not found"; ///< error message, used in #GNU_gama::local::sqlite_db::SqliteReader::readLocalNetwork
+    "configuration not found"; ///< error message, used in #GNU_gama::local::sqlite_db::SqliteReader::retrieve
 }
 
 extern "C" {
@@ -120,56 +120,58 @@ extern "C" {
     /**
       \brief Reads configuration description from table \c gnu_gama_local_descriptions.
       #GNU_gama::local::sqlite_db::ReaderData::configurationId has to be set before calling this function.
-      \copydetails readConfigurationInfo()
+
+     \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readConfigurationText(void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads points from table \c gnu_gama_local_points.
 
-      \copydetails readConfigurationInfo()
+
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readPoints           (void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads clusters from table \c gnu_gama_local_clusters.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readClusters         (void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads observations from table \c gnu_gama_local_obs.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readObservations     (void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads vectors from table \c gnu_gama_local_vectors.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readVectors          (void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads HeightDifferences from table \c gnu_gama_local_vectors.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readCoordinates      (void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads vectors from table \c gnu_gama_local_vectors.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readHeightDifferences(void* data, int argc, char** argv, char**);
 
     /**
       \brief Reads covariance matrix from table \c gnu_gama_local_covmat.
 
-      \copydetails readConfigurationInfo()
+      \sa sqlite_db_readConfigurationInfo()
       */
     int sqlite_db_readCovarianceMatrix (void* data, int argc, char** argv, char**);
 
@@ -217,9 +219,9 @@ namespace GNU_gama { namespace local { namespace sqlite_db {
    Functions outside this file can't access this structure because they know only forward declaration
    and #GNU_gama::local::sqlite_db::SqliteReader has declared pointer to this struct private of course.
    However, there are some problems with callbacks visibility
-   (see #SqliteReaderCallbackType or #readConfigurationInfo for details).
+   (see #SqliteReaderCallbackType or #sqlite_db_readConfigurationInfo for details).
 
-   Callbacks #readObservations, ... and #readCovarianceMatrix have to share data between it's invocations.
+   Callbacks #sqlite_db_readObservations, ... and #sqlite_db_readCovarianceMatrix have to share data between it's invocations.
    So they needs access to the same \c StandPoint, \c Vectors, etc.
    They also needs access to #exception.
    This is the reason why ReaderData contains pointer to \c StandPoint etc.
@@ -902,7 +904,7 @@ int sqlite_db_readCoordinates(void* data, int argc, char** argv, char**)
             x = new GNU_gama::local::X(id, ToDouble(argv[2]));
             y = new GNU_gama::local::Y(id, ToDouble(argv[3]));
             if (reject)
-              { 
+              {
                 x->set_passive();
                 y->set_passive();
              }
@@ -912,9 +914,9 @@ int sqlite_db_readCoordinates(void* data, int argc, char** argv, char**)
           {
             z = new GNU_gama::local::Z(id, ToDouble(argv[4]));
             if (reject)
-              { 
+              {
                 z->set_passive();
-              }            
+              }
           }
 
         if (x) d->currentCoordinates->observation_list.push_back(x);

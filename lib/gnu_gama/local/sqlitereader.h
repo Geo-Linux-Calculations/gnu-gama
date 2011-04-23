@@ -104,11 +104,14 @@ public:
       */
     ~SqliteReader();
 
-    /** Read configuration \a configuration from database.
-        \returns pointer to new LocalNetwork
+    /** \brief Reads configuration \a configuration from database.
+
+        If \a lnet is a \c NULL pointer new \c LocalNetwork is created.
+        Type of network depends on algorithm fetched from database.
+
         \throws #GNU_gama::Exception::sqlitexc
       */
-    void retrieve (LocalNetwork*& lnet, const std::string& configuration);
+    void retrieve(LocalNetwork*& lnet, const std::string& configuration);
 
 private:
     /** disabled copy constructor */
