@@ -27,7 +27,7 @@ latest GNU Gama source, issue the following command
 git clone git://git.sv.gnu.org/gama.git
 \endverbatim
 
-The collection of sample networks is available separetely. To checkout
+The collection of sample networks is available separately. To checkout
 the gama-local examples from GIT use the command
 
 \verbatim
@@ -47,6 +47,6 @@ The main namespace of GNU Gama project is GNU_gama.
 
 GNU_gama is the main project namespace
 
-\namespace GNU_gama::local \brief Local network adjustemnt
+\namespace GNU_gama::local \brief Local network adjustment
 
 */
