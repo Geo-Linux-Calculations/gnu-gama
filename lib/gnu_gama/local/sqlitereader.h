@@ -97,7 +97,7 @@ public:
       \brief Opens a database connection.
       \param fileName name of database file
       */
-    SqliteReader(const std::string &fileName);
+    explicit SqliteReader(const std::string &fileName);
 
     /**
       \brief Closes a database connection.
