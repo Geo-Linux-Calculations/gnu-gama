@@ -94,6 +94,39 @@ namespace GNU_gama {
   };
 
 
+  /** Helper intermediate template class Accept defines method
+   *  accept() for derived observational classes.
+   *
+   * Example:
+   *
+   * \code
+   *  //  g3 distance class
+   *
+   *  class Distance : public Accept<Distance, Observation>,
+   *                   public FromTo, public Value {
+   *  public:
+   *
+   *    Distance() {}
+   *    Distance(double d) : Value(d) {}
+   *
+   *    int dimension() const { return 1; }
+   *  };
+   * \endcode
+   */
+
+  template <typename Derived, typename Observation>
+    class Accept : public Observation {
+  public:
+    void accept(ObservationVisitor* visitor)
+    {
+      if (Visitor<Derived>* v = dynamic_cast<Visitor<Derived>*>(visitor))
+        {
+          v->visit(static_cast<Derived*>(this));
+        }
+    }
+  };
+
+
   /** Base template class Model (mathematical model of geodetic
    *  adjustment)
    */

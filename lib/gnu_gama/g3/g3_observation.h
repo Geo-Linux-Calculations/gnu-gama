@@ -71,73 +71,46 @@ namespace GNU_gama {  namespace g3 {
 
   /** g3 distance class. */
 
-  class Distance : public Observation, public FromTo, public Value {
+  class Distance : public Accept<Distance, Observation>,
+                   public FromTo, public Value {
   public:
 
     Distance() {}
     Distance(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<Distance>*
-          lv = dynamic_cast<Visitor<Distance>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 
   /** g3 zenith angle class. */
 
-  class ZenithAngle : public Observation, public FromTo, public Value {
+  class ZenithAngle : public Accept<ZenithAngle, Observation>,
+                      public FromTo, public Value {
   public:
 
     ZenithAngle() {}
     ZenithAngle(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<ZenithAngle>*
-          lv = dynamic_cast<Visitor<ZenithAngle>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 
   /** g3 azimuth class. */
 
-  class Azimuth : public Observation, public FromTo, public Value {
+  class Azimuth : public Accept<Azimuth, Observation>,
+                  public FromTo, public Value {
   public:
 
     Azimuth() {}
     Azimuth(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<Azimuth>*
-          lv = dynamic_cast<Visitor<Azimuth>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 
   /** g3 vector class. */
 
-  class Vector : public Observation, public FromTo {
+  class Vector : public Accept<Vector, Observation>, public FromTo {
   public:
 
     Vector()
@@ -158,15 +131,6 @@ namespace GNU_gama {  namespace g3 {
     double dy() const { return dy_; }
     double dz() const { return dz_; }
 
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<Vector>*
-          lv = dynamic_cast<Visitor<Vector>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
 
   private:
     double dx_, dy_, dz_;
@@ -175,7 +139,7 @@ namespace GNU_gama {  namespace g3 {
 
   /** g3 observed coordinates class. */
 
-  class XYZ : public Observation {
+  class XYZ : public Accept<XYZ, Observation> {
   public:
 
     Point::Name id;
@@ -198,15 +162,6 @@ namespace GNU_gama {  namespace g3 {
     double y() const { return y_; }
     double z() const { return z_; }
 
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<XYZ>*
-          lv = dynamic_cast<Visitor<XYZ>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
 
   private:
     double x_, y_, z_;
@@ -215,29 +170,20 @@ namespace GNU_gama {  namespace g3 {
 
   /** g3 height difference class. */
 
-  class HeightDiff : public Observation, public FromTo, public Value {
+  class HeightDiff : public Accept<HeightDiff, Observation>,
+                     public FromTo, public Value {
   public:
 
     HeightDiff() {}
     HeightDiff(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<HeightDiff>*
-          lv = dynamic_cast<Visitor<HeightDiff>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 
   /** g3 observed height class. */
 
-  class Height : public Observation, public Value {
+  class Height : public Accept<Height, Observation>, public Value {
   public:
 
     Point::Name id;
@@ -246,22 +192,12 @@ namespace GNU_gama {  namespace g3 {
     Height(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<Height>*
-          lv = dynamic_cast<Visitor<Height>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 
   /** g3 horizontal angle class. */
 
-  class Angle : public Observation, public Value {
+  class Angle : public Accept<Angle, Observation>, public Value {
   public:
 
     Point::Name from;
@@ -274,19 +210,8 @@ namespace GNU_gama {  namespace g3 {
     Angle(double d) : Value(d) {}
 
     int dimension() const { return 1; }
-
-    void accept(ObservationVisitor* visitor)
-    {
-      if (Visitor<Angle>*
-          lv = dynamic_cast<Visitor<Angle>*>(visitor))
-        {
-          lv->visit(this);
-        }
-    }
-
   };
 
 }}
 
 #endif
-

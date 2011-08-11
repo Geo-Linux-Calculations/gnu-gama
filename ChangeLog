@@ -1,10 +1,17 @@
 next release 1.11
 #################
 
-2011-04-17  Ales Cepek  <cepek@biggy>
+2011-08-11  Ales Cepek  <cepek@biggy>
 
-	* SVD class (matvec/svd.h) internal data members and variables
-	declared volatile to suppress g++ optimization
+	* added a new intermediate helper template class Accept (in
+	model.h) to unify definiton of accept() method in observational
+	classes in gama-g3. Function accept(ObservationVisitor*) is a pure
+	virtual method defined in the base Observation class.
+
+2011-04-17  Ales Cepek  <cepek@gnu.org>
+
+	* SVD class (matvec/svd.h) selected internal data members and
+	variables declared volatile to suppress g++ optimization
 
 2011-04-12  Ales Cepek  <cepek@gnu.org>
 
