@@ -37,18 +37,18 @@ namespace GNU_gama {
   // visitor' pattern, where Model objects are visiting Observation
   // objects.
 
-  // ObservationVisitor is a completely degenerated class having only
+  // BaseVisitor is a completely degenerated class having only
   // the virtual destructor.
 
 
-  /** ObservationVisitor is a completely degenerated class having only
+  /** BaseVisitor is a completely degenerated class having only
    *  the virtual destructor.
    */
 
-  class ObservationVisitor
+  class BaseVisitor
   {
   public:
-    virtual ~ObservationVisitor() {}
+    virtual ~BaseVisitor() {}
   };
 
 
@@ -68,7 +68,7 @@ namespace GNU_gama {
     virtual ~Observation() {}
 
     virtual int  dimension() const = 0;
-    virtual void accept(ObservationVisitor* visitor) = 0;
+    virtual void accept(BaseVisitor* visitor) = 0;
 
     bool active() const     { return  active_;      }
     bool set_active(bool b) { return (active_ = b); }
@@ -95,7 +95,7 @@ namespace GNU_gama {
 
 
   /** Helper intermediate template class Accept defines method
-   *  accept() for derived observational classes.
+   *  accept() for derived element classes in acyclic visitor pattern.
    *
    * Example:
    *
@@ -114,10 +114,10 @@ namespace GNU_gama {
    * \endcode
    */
 
-  template <typename Derived, typename Observation>
-    class Accept : public Observation {
+  template <typename Derived, typename Base>
+    class Accept : public Base {
   public:
-    void accept(ObservationVisitor* visitor)
+    void accept(BaseVisitor* visitor)
     {
       if (Visitor<Derived>* v = dynamic_cast<Visitor<Derived>*>(visitor))
         {

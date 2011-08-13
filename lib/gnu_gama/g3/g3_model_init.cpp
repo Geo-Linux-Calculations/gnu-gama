@@ -40,7 +40,7 @@ typedef GNU_gama::List<Observation*>  ObsList;
 namespace
 {
   class Init :
-    public GNU_gama::ObservationVisitor,
+    public GNU_gama::BaseVisitor,
     public GNU_gama::Visitor<Height>,
     public GNU_gama::Visitor<Vector>,
     public GNU_gama::Visitor<XYZ>

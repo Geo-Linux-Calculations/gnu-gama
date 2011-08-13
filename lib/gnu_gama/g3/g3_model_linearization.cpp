@@ -34,7 +34,7 @@ using namespace GNU_gama::g3;
 namespace
 {
   class Linearization :
-    public GNU_gama::ObservationVisitor,
+    public GNU_gama::BaseVisitor,
     public GNU_gama::Visitor<Angle>,
     public GNU_gama::Visitor<Azimuth>,
     public GNU_gama::Visitor<Distance>,

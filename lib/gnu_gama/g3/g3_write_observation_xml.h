@@ -34,7 +34,7 @@ namespace GNU_gama { namespace g3 {
   /** g3 visitor class for writing observation data in XML. */
 
   class WriteObservationXML :
-    public GNU_gama::ObservationVisitor,
+    public GNU_gama::BaseVisitor,
     public GNU_gama::Visitor<Angle>,
     public GNU_gama::Visitor<Azimuth>,
     public GNU_gama::Visitor<Distance>,
