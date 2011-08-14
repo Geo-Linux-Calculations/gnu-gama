@@ -212,7 +212,7 @@ expat_src = \
    expat/xmltok/xmlrole.c \
    expat/xmlwf/codepage.c \
    expat/xmlparse/xmlparse.c \
-   expat/xmlparse/hashtable.c 
+   expat/xmlparse/hashtable.c
 
 expat_extra = \
    expat/Makefile \
@@ -242,10 +242,9 @@ expat_extra = \
    expat/xmltok/nametab.h \
    expat/expat.html \
    expat/xmlparse/hashtable.h \
-   expat/xmlparse/xmlparse.h 
+   expat/xmlparse/xmlparse.h
 
 noinst_LIBRARIES  = libgama.a
 libgama_a_SOURCES = $(libgama_src) $(matvec_src)
 
-EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra) \
-   gnu_gama/local/language.html
+EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
