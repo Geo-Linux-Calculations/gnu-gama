@@ -86,11 +86,11 @@ namespace GNU_gama {
   /** Abstract visitor class (design pattern 'acyclic visitor')
    */
 
-  template <typename Observation> class Visitor
+  template <typename Element> class Visitor
   {
   public:
     virtual ~Visitor() {}
-    virtual void visit(Observation* observation) = 0;
+    virtual void visit(Element* element) = 0;
   };
 
 

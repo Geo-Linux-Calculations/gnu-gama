@@ -1,13 +1,14 @@
-next release 1.11
-#################
+1.11 2011-08-14  Ales Cepek  <cepek@gnu.org>
 
-2011-08-13  Ales Cepek  <cepek@biggy>
+	* new release 1.11
+
+2011-08-13  Ales Cepek  <cepek@gnu.org>
 
 	* class ObservationVisitor renamed to BaseVisitor (possible use of
 	abstract base visitor class in acyclic visitor pattern is not
 	limited to observations)
 
-2011-08-11  Ales Cepek  <cepek@biggy>
+2011-08-11  Ales Cepek  <cepek@gnu.org>
 
 	* added a new intermediate helper template class Accept (in
 	model.h) to unify definiton of accept() method in observational
