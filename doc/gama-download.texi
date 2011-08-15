@@ -19,11 +19,10 @@ git clone git://git.sv.gnu.org/gama.git
 @subsection Examples
 @cindex     examples
 
-The collection of sample networks is available as a separete CVS
-module. To checkout the @code{gama-local} examples from CVS use the
-command
+The collection of sample networks is available separetely. To checkout
+the @code{gama-local} examples from GIT use the command
 
 @example
-git clone git://git.sv.gnu.org/gama/example.git
+git clone git://git.sv.gnu.org/gama/examples.git
 @end example
 
