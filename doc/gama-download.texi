@@ -11,15 +11,8 @@ latest GNU Gama source, issue the following command
 git clone git://git.sv.gnu.org/gama.git
 @end example
 
-@menu
-* Examples::
-@end menu
 
-@node       Examples
-@subsection Examples
-@cindex     examples
-
-The collection of sample networks is available separetely. To checkout
+@noindent The collection of sample networks is available separetely. To checkout
 the @code{gama-local} examples from GIT use the command
 
 @example

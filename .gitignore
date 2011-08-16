@@ -21,6 +21,7 @@ doc/version.texi
 doc/gama.info
 doc/stamp-vti
 doc/manual/
+doc/gendocs.sh
 doc/gama.aux
 doc/gama.cp
 doc/gama.cps
