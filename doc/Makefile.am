@@ -41,8 +41,10 @@ EXTRA_DIST =                         \
 download-gendocs.sh:
 	rm -f gendocs.sh*
 	wget http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~/texinfo/texinfo/util/gendocs.sh
+	wget http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~/texinfo/texinfo/util/gendocs_template
 	chmod +x gendocs.sh
 
 run-gendocs.sh:
+	make info
 	rm -rf manual
 	./gendocs.sh --email cepek@gnu.org gama "GNU Gama manual"
