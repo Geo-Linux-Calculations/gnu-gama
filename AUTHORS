@@ -13,7 +13,10 @@ Developers:
     Jan Pytel <jan.pytel@fsv.cvut.cz>
         - linearization of slope observation types and GUI Rocinante
           (now distributed separately from sourceforge.net)
-   
+
+    Vaclav Petras <vaclav.petras@fsv.cvut.cz>
+        - class SqliteReader
+
 Contributors:
 
     Chuck Ghilani (Surveying Program Chair, Penn State Wilkes-Barre)
