@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2005, 2011  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -46,7 +46,7 @@ namespace GNU_gama { namespace g3 {
   {
   private:
 
-    mutable std::ostream& out;
+    std::ostream& out;
 
   public:
 

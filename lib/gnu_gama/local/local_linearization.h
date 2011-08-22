@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2001, 2011  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -67,7 +67,7 @@ namespace GNU_gama { namespace local {
 
     private:
 
-      mutable PointData&   PD;
+      PointData&           PD;
       mutable int          maxn;
       double               m0;
 

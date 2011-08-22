@@ -130,8 +130,8 @@ to GNU Gama project:
 @c
 Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
-Diego Berge, Boris Pihtin, Stephane Kaloustian, Anton Horpynich,
-Claudio Fontana, Brona Koska and Martin Beckett.
+Diego Berge, Boris Pihtin, Stephane Kaloustian, Siki Zoltan, Anton
+Horpynich, Claudio Fontana, Brona Koska and Martin Beckett.
 
 
 @node     Reporting bugs

@@ -1,3 +1,30 @@
+2011-08-22  Ales Cepek  <cepek@gnu.org>
+
+	* two syntax errors reported by Siki Zoltan
+		lib/gnu_gama/g3/g3_write_observation_xml.h
+			@@ -46,7 +46,7 @@ namespace GNU_gama { namespace g3 {
+			   {
+			   private:
+
+			-    mutable std::ostream& out;
+			+    std::ostream& out;
+		lib/gnu_gama/local/local_linearization.h
+			@@ -67,7 +67,7 @@ namespace GNU_gama { namespace local {
+
+			private:
+
+			-      mutable PointData&   PD;
+			+      PointData&           PD;
+
+	The C++ Standard (7.1.1 Declarations, paragraph 8): The mutable
+	specifier can be applied only to names of class data members and
+	cannot be applied to names declared const or static, and cannot be
+	applied to reference members.
+
+
+............................................
+
+
 1.11 2011-08-14  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.11
