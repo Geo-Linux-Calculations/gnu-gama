@@ -70,6 +70,7 @@ Free Documentation License''.
 @menu
 * Introduction::                
 * XML input data format for gama-local::
+* SQL schema SQLite and gama-local::
 * Network adjustment with gama-local::
 * Data structures and algorithms::  
 
@@ -91,8 +92,8 @@ Free Documentation License''.
 * Download::
 * Install::
 * Program gama-local::
-* Contributors::                
 * Reporting bugs::              
+* Contributors::
 @end menu
 
 
@@ -120,20 +121,6 @@ Free Documentation License''.
 @c @include gama-g3.texi
 
 
-@node     Contributors
-@section  Contributors
-@cindex   contributors
-
-
-The following persons (in chronological order) have made contributions
-to GNU Gama project: 
-@c
-Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
-Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
-Diego Berge, Boris Pihtin, Stephane Kaloustian, Siki Zoltan, Anton
-Horpynich, Claudio Fontana, Brona Koska and Martin Beckett.
-
-
 @node     Reporting bugs
 @section  Reporting bugs
 @cindex   Reporting bugs
@@ -148,7 +135,24 @@ please send a bug report to
 @noindent
 We will try to be as quick as possible in fixing the bugs and
 redistributing the fixes. If you prefere, you can always write
-directly to @uref{mailto:cepek@@gnu.org, Ales Cepek}.
+directly to @uref{mailto:cepek@@gnu.org, Ale@v{s} @v{C}epek}.
+
+@node     Contributors
+@section  Contributors
+@cindex   contributors
+
+
+The following persons (in chronological order) have made contributions
+to GNU Gama project:
+@c
+Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
+Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
+Diego Berge, Boris Pihtin, Stephane Kaloustian, Siki Zoltan, Anton
+Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiri
+Novak and Vaclav Petras.
+
+Vaclav Petras is the author of @ref{SQL schema SQLite and gama-local}.
+
 
 @c ----------------------------------------------------------------------
 
@@ -156,6 +160,13 @@ directly to @uref{mailto:cepek@@gnu.org, Ales Cepek}.
 @node    XML input data format for gama-local
 @chapter XML input data format for @code{gama-local}
 @include gama-local-input.texi
+
+@c Unfortunately, you cannot use periods, commas, colons or
+@c parentheses within a node name; these confuse the Texinfo
+@c processors.
+@node    SQL schema SQLite and gama-local
+@chapter SQL schema, SQLite and @code{gama-local}
+@include gama-local-sql.texi
 
 @node    Network adjustment with gama-local
 @chapter Network adjustment with @code{gama-local}

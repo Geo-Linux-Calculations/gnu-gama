@@ -32,7 +32,7 @@ number of orientations is not limited to one for a point.
 
 This organisation of observational information has proved to be
 effective.  Template classes @code{ObservationData} and @code{Cluster}
-are used as base classes both in @code{gama-local} and @code{gama-w3}
+are used as base classes both in @code{gama-local} and @code{gama-g3}
 
 @verbatim
 template <typename Observation>
@@ -72,7 +72,7 @@ template <typename Observation>
 
 @noindent
 The following template class @code{PointBase} for handling point
-information is used in @code{gama-w3}. The template class
+information is used in @code{gama-g3}. The template class
 @code{PointBase} relies internally on @code{std::map} container but
 comes with its own interface (in @code{gama-local} @code{std::map}
 was used directly for storing points).

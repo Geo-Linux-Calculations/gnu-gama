@@ -25,6 +25,14 @@
    to define their own VERSION number without explicit use of <config.h>
  */
 #ifndef VERSION
+
+// macro GNU_GAMA_LOCAL_SQLITE_READER is defined both as a C++ -D
+// parameter and in <config.h>. This is the only file where this
+// should trigger warning message
+#ifdef GNU_GAMA_LOCAL_SQLITE_READER
+#undef GNU_GAMA_LOCAL_SQLITE_READER
+#endif
+
 #include <config.h>
 #endif
 

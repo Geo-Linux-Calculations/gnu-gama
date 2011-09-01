@@ -1,6 +1,6 @@
 Program @code{gama-local} is a simple command line tool for adjustment
 of geodetic @emph{free networks.} It is available for GNU Linux (the
-main platform on which project GNU Gama is being developped) or for MS
+main platform on which project GNU Gama is being developed) or for MS
 Windows (tested with Borland compiler from Borland free command line
 tools and with Microsoft Visual C++ compiler; support for Windows
 platform is currently limited to maintaing compatibility with the two
@@ -14,7 +14,7 @@ with extension@code{.txt} is used.
 @c
 If development files for Sqlite3 (package @code{libsqlite3-dev}) are
 installed during the build, @code{gama-local} also supports reading
-adjustment input datata from an sqlite3 database.
+adjustment input data from an sqlite3 database.
 @c
 If run without arguments @code{gama-local}
 prints a short help
@@ -61,7 +61,7 @@ Option @code{--algorithm} enables to select numerical method used for
 solution of the adjustment. Implicitly is used Singular Value
 Decomposition (@code{svd}), alternatively user can decide for block
 matrix algorithm GSO by Frantisek Charamza, based on Gram-Schmidt
-ortogonalization. In both these cases, project equations are solved directly
+orthogonalization. In both these cases, project equations are solved directly
 without forming @emph{normal equations}.  Third possibility is to
 select Cholesky decomposition of semidefinite matrix of normal
 equations (@code{cholesky}).
@@ -78,8 +78,8 @@ diacritics), cp-1250 (MS-EE encoding) cp-12251 (Russian encoding).
 Option @code{--angles} selects angular units to be used in output.
 
 Options @code{--latitude} and/or @code{--ellipsoid} are used when
-observed vertical and/or zenith angles need to be transfromed into the
-projection plane. If none of theese two options is explicitly used, no
+observed vertical and/or zenith angles need to be transformed into the
+projection plane. If none of these two options is explicitly used, no
 corrections are added to horizontal and/or zenith angles. If only one
 of these options is used, then implicit value for @code{--latitude} is
 45 degrees (50 gons) and implicit ellipsoid is WGS84. 
@@ -93,13 +93,13 @@ output.
 
 Option @code{--cov-band} is used to reduce the number of computed
 covariances (cofactors) in XML adjustment output. Implicitly full
-matrix is written to XML output, which could degrade time eficiency
+matrix is written to XML output, which could degrade time efficiency
 for the @code{envelope} algorithm for sparse matrix solution. Explicit
 option for full covariance matrix is @code{--cov-band -1}, option
 @code{--cov-band 0} means that only a diagonal of covariance matrix is
 written to XML output, @code{--cov-band 1} results in computing the
 main diagonal and first codiagonal etc. If higher rank is specified then
-available, it si reduced do maximum possible value @code{dim-1}.
+available, it is reduced do maximum possible value @code{dim-1}.
 
 
 @menu
@@ -182,7 +182,7 @@ $$
 @end tex
 
 @noindent
-Comparing theese expresions  with first members of Taylor series  
+Comparing these expressions  with first members of Taylor series
 @tex
 $$ 
    f(x) \approx f(x^0) +  {{{ \rm d}f(x^0)}\over{{\rm d}x}}
