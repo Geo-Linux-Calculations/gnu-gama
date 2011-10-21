@@ -22,9 +22,37 @@ $ make install
 @end example
 
 @noindent if you want also to install the binaries. You can use configure 
-pararameters if you need to change directories where user executables
-and info dosumentation should be installed.
+parameters if you need to change directories where user executables
+and info documentation should be installed.
 
+Typically, if you want to download (@pxref{Download}) and compile sources,
+you will run following commands:
+@example
+$ git clone git://git.sv.gnu.org/gama.git gama
+$ cd gama
+$ ./autogen.sh
+$ ./configure
+$ make
+@end example
+You should have @code{expat} XML parser and SQLite library already installed
+on your system.
+For example to be able to compile Gama on Ubuntu 10.04 you have to install
+following packages:
+@example
+make doxygen git automake autoconf libexpat1-dev libsqlite3-dev
+@end example
 
-
-
+To compile user documentation in various formats (PDF, HTML, @dots{}) run
+the following commands (before you have to run at least @code{./configure}).
+@example
+$ cd doc/
+$ make download-gendocs.sh
+$ make run-gendocs.sh
+@end example
+The documentation should be in @code{doc/manual} directory.
+To compile API documentation run
+@example
+$ doxygen
+@end example
+in your @code{gama} directory.
+Doxygen output will be in the @code{doxygen} directory.

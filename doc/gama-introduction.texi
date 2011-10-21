@@ -40,9 +40,9 @@ The GNU Gama home page is
 
 @noindent and the project is hosted on
 
-            @center   @uref{http://savannah.gnu.org/cvs/?group=gama}
+            @center   @uref{http://savannah.gnu.org/git/?group=gama}
 
-GNU Gama is released under the GNU General Public Licence and is based
+GNU Gama is released under the GNU General Public License and is based
 on a C++ library of geodetic classes and functions and a small C++
 template matrix library @code{matvec}. For parsing XML documents GNU
 Gama calls the @code{expat} parser version 1.1, written by James

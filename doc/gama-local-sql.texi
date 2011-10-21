@@ -1,0 +1,740 @@
+@comment setfilename gama-local-sql.info
+
+@c author: Vaclav Petras
+
+@c TODO: example for coordinates and vectors, more obs examples
+
+The input data for a local geodetic network adjustment (program
+@code{gama-local}) can be strored in SQLite 3 database file.
+The general information about SQLite can be found at
+
+@center     @uref{http://www.sqlite.org/}
+
+@noindent
+Input data (points, observations and other related information)
+are stored in SQLite database file.
+Native SQLite C/C++ API is used for reading SQLite database file.
+It is described at
+
+@center     @uref{http://www.sqlite.org/c3ref/intro.html}
+
+@noindent
+Please note if you compile GNU Gama as described in @ref{Install}
+and SQLite library is not installed on your system, GNU Gama would be compiled
+without SQLite support.
+
+SQL schema (@code{CREATE} statements) is in @code{gama-local-schema.sql} file
+which is part of GNU Gama distribution and is in the @code{xml} directory.
+
+All tables for @code{gama-local} are prefixed with @code{gnu_gama_local_}.
+In the documentation table names are referred without this prefix.
+For example table @code{gnu_gama_local_points} is referred as @code{points}.
+
+Database scheme used for SQLite database is also valid in other SQL database
+systems. Almost every column has some constraint to ensure correctness.
+
+You can convert existing XML input file to SQL commands with
+program @code{gama-local-xml2sql}, for example
+@example
+$ gama-local-xml2sql geodet-pc geodet-pc-123.gkf geodet-pc.sql
+@end example
+
+
+@c At the end of this chapter an example of the SQL SELECT statements to fill
+@c @code{gama-local} input database file is given.
+
+
+@menu
+* Working with SQLite database::      Working with SQLite database
+* Units in SQL tables::               Units of values in SQL tables
+* Network SQL definition::            Tables @code{configurations} and @code{description}
+* Table points::                      Table @code{points}
+* Table clusters::                    Table @code{clusters}
+* Table covmat::                      Table @code{covmat}
+* Table obs::                         Table @code{obs}
+* Table coordinates::                 Table @code{coordinates}
+* Table vectors::                     Table @code{vectors}
+* Example of network in SQL::         Obtaining example of local geodetic network in SQL
+@end menu
+
+
+@c % ======================================================================
+@node     Working with SQLite database
+@section  Working with SQLite database
+@c @cindex
+
+First of all you have to create tables for GNU Gama in SQLite database file
+(here with @code{db} extension, but you can choose your own, e.g. @code{sqlite}).
+@example
+$ sqlite3 gama.db < gama-local-schema.sql
+@end example
+You can check created tables by following commands
+(fist in command line, second in SQLite command line).
+@example
+$ sqlite3 gama.db
+sqlite> .tables
+@end example
+Output should look like this:
+@example
+gnu_gama_local_clusters        gnu_gama_local_descriptions
+gnu_gama_local_configurations  gnu_gama_local_obs
+gnu_gama_local_coordinates     gnu_gama_local_points
+gnu_gama_local_covmat          gnu_gama_local_vectors
+@end example
+
+When you have created tables you can import data.
+One way is to process file with SQL statements.
+@example
+$ sqlite3 gama.db < geodet-pc.sql
+@end example
+Another way can be filing database file in another program.
+
+For using @code{sqlite3} command you need a command line
+interface for SQLite 3 installed on your system (e.g. @code{sqlite3} package).
+
+@c % ======================================================================
+@node     Units in SQL tables
+@section  Units in SQL tables
+@c @cindex
+In the @code{gama-local} SQLite database, distances are given in meters
+and their standard deviations (rms errors) in millimeters.
+Angular values are given in radians as well as their standard deviations.
+@c @pxref{Angular units} ?
+
+Conversions between radians, gons and degrees:
+@c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@tex
+$$    \hbox{rad} = \hbox{gon} \cdot {\pi \over 200}
+    = \hbox{deg} \cdot {\pi \over 180} $$
+@end tex
+@c % ......................................................................
+@ifnottex
+
+@example
+    rad = gon * pi / 200
+    rad = deg * pi / 180
+    gon = rad * 200 / pi
+    deg = rad * 180 / pi
+@end example
+
+@end ifnottex
+@c % ----------------------------------------------------------------------
+
+
+
+
+
+@c % ======================================================================
+@node     Network SQL definition
+@section  Network SQL definition
+@c @cindex
+
+Network definitions are stored in the @code{configurations} table.
+@c One network is one configuration.
+This table contains all parameters for each network such as value of a
+priori reference standard deviation or orientation of the @code{xy}
+orthogonal coordinate system axes.
+
+It is obvious that in one database file can be stored more networks
+(configurations).
+
+Configuration descriptions (annotation or comments) are stored separately
+in table @code{descriptions}.
+The description is split to many records because of compatibility with various
+databases (not all databases implements type @code{TEXT}).
+
+Field (attribute) @code{conf_id} identifies a configuration in the database.
+Field @code{conf_name} is used to identify configuration outside the database
+(e.g. parameter in command-line when reading data from database
+to @code{gama-local}).
+
+Table @code{configurations} contains all parameters specified in
+tag  @code{<parameters />} (@pxref{Network parameters}) and also
+@code{gama-local} command line parameters (@pxref{Program gama-local}).
+The list of all table attributes (parameters) follows.
+
+@itemize @bullet
+@item
+@code{sigma_apr}  value of a priori reference standard deviation---square
+root of reference variance (default value 10)
+
+@item
+@code{conf_pr}   confidence probability used in statistical tests
+(dafault value 0.95)
+
+@item
+@code{tol_abs}       tolerance for identification of gross
+absolute terms in project equations (default value 1000 mm)
+
+@item
+@code{sigma_act}  actual type of reference standard deviation
+use in statistical tests (@code{aposteriori | apriori}); default value
+is @code{aposteriori}
+
+@item
+@code{update_cc} enables user to control
+if coordinates of constrained points are updated in iterative
+adjustment. If test on linerarization fails (@pxref{Linearization}),
+Gama tries to improve approximate coordinates of adjusted points and
+repeats the whole adjustment. Coordinates of constrained points are
+implicitly not changed during iterations.
+Acceptable values are @code{yes}, @code{no}, default value
+is @code{no}.
+
+@item
+@code{axes_xy}
+orientation of axes @code{x} and @code{y}; value
+@code{ne} implies that axis @code{x} is oriented north and axis @code{y}
+is oriented east. Acceptable values are @code{ne}, @code{sw},
+@code{es}, @code{wn} for left-handed coordinate systems and @code{en},
+@code{nw}, @code{se}, @code{ws} for right-handed coordinate systems
+(default value is @code{ne}).
+
+@item
+@code{angles} @code{right-handed} defines counterclockwise observed angles
+and/or directions, value @code{left-handed} defines clockwise observed
+angles and/or directions (default value is @code{right-handed}).
+
+@c    epoch     double precision default 0.0 not null,
+@item
+@code{epoch}
+is measurement epoch.
+It is floating point number
+(default value is @code{0.0}).
+@c tak to nevim co to je.
+
+
+@c    algorithm varchar(12) default 'svd' not null check (algorithm in
+@c    ('svd', 'gso', 'cholesky', 'sm-env')),
+@item
+@code{algorithm}
+specifies numerical method used for solution of the adjustment.
+For Singular Value Decomposition set value to @code{svd}.
+Value @code{gso} stands for block matrix algorithm GSO by Frantisek Charamza
+based on Gram-Schmidt orthogonalization,
+value @code{cholesky} for Cholesky decomposition of semidefinite matrix
+of normal equations
+and value @code{envelope} for a Cholesky decomposition with
+@emph{envelope} reduction of the sparse matrix.
+@c jak se jmenuje ten algoritmus?
+@c co takhle seznam algoritmu?
+Default value is @code{svd}.
+
+@item
+@code{ang_units}
+Angular units of angles in @code{gama-local} output.
+Value @code{400} stands for gons and value @code{360} for degrees
+(default value is @code{400}).
+Note that this doesn't effect units of angles in database.
+For further information about angular units see @ref{Angular units}.
+
+@c    latitude  double precision default 50 not null,
+@item
+@code{latitude}
+is mean latitude in network area.
+Default value is @code{50} (gons).
+@c jak je to s lat a elipsoidem? Funguje to vubec v local?
+@c v kodu SqliteReader se vzdy nastavy d->correction_to_ellipsoid = true;
+@c jak tedy korekce potlacit?
+@c v cmd line par se proste zadny nenastavy, ale tady je default
+@c odebrat default nebo zavest dalsi atribut?
+@c proc vlastne neni default u elipsoidu? kvuli nejasnemu jmenu?
+
+@c    ellipsoid varchar(20)
+@item
+@code{ellipsoid}
+is name of ellipsoid (@pxref{Supported ellipsoids}).
+
+@end itemize
+
+All fields are mandatory except @code{ellipsoid} field.
+For additional information about handling geodetic systems in @code{gama-local}
+see @ref{Network definition}.
+
+Example (@code{configuration} table contents):
+@example
+conf_id|conf_name|sigma_apr|conf_pr|tol_abs|sigma_act  |update_cc|...
+---------------------------------------------------------------------
+1      |geodet-pc|10.0     |0.95   |1000.0 |aposteriori|no       |...
+
+... axes_xy|angles      |epoch|algorithm|ang_units|latitude|ellipsoid
+---------------------------------------------------------------------
+... ne     |right-handed|0.0  |svd      |400      |50.0    |
+@end example
+
+The list of @code{description} table attributes follows.
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which description (text) belongs to.
+
+@item
+@code{id}
+identifies text in a database.
+
+@item
+@code{text}
+is part of configuration description.
+Its SQL type is @code{VARCHAR(1000)}.
+
+@end itemize
+
+There can be more than one text for one configuration.
+All texts related to one configuration are concatenated to one description.
+
+Example (@code{description} table contents):
+@example
+conf_id|indx|text
+-----------------------------------------------
+1      |1   |Frantisek Charamza: GEODET/PC, ...
+@end example
+
+
+@c % ======================================================================
+@node     Table points
+@section  Table @code{points}
+@c @cindex
+
+
+@itemize @bullet
+@item
+@code{conf_id}
+is id of configuration which points belongs to.
+
+@item
+@code{id}
+identifies point in a database and also in an output.
+It is mandatory and it is character string (SQL type is @code{VARCHAR(80)}).
+Point @code{id} has to be unique within one configuration.
+In documentation it is referred as point identification or point id.
+@c v jakych tabulkach se pouziva
+
+@item
+@code{x}, @code{y} and @code{z}
+coordinates of a point.
+Coordinate @code{z} is considered as height.
+
+@item
+@code{txy} and @code{tz}
+specify the type of coordinates @code{x}, @code{y} and @code{z}.
+Acceptable values are @code{fixed}, @code{adjusted} and @code{constrained}
+(there is no default value).
+For details see @ref{Points}.
+
+@end itemize
+
+Example (table contents):
+@example
+conf_id|id |x       |y      |z|txy     |tz
+------------------------------------------
+1      |201|78594.91|9498.26| |fixed   |
+1      |205|78907.88|7206.65| |fixed   |
+1      |206|76701.57|6633.27| |fixed   |
+1      |207|        |       | |adjusted|
+@end example
+
+@c % ======================================================================
+@node     Table clusters
+@section  Table @code{clusters}
+@c @cindex
+
+The cluster is a group of observations with the common covariance matrix.
+The covariance matrix allows to express any combination of correlations
+among observations in cluster (including uncorrelated observations,
+where covariance matrix is diagonal).
+For explanation see @ref{Observation data and points}.
+
+In the database observations are stored in three tables:
+@code{obs}, @code{coordinates} and @code{vectors}.
+Cluster's covariance matrix is stored in table @code{covmat}.
+Every observation, vector or coordinate in database has to be in some cluster.
+
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which cluster belongs to.
+
+@item
+@code{ccluster}
+identifies a cluster within one configuration.
+
+@item
+@code{dim} and @code{band}
+specify dimension and bandwidth of covariance matrix.
+The bandwidth of the diagonal matrix is equal to 0 and a
+fully-populated covariance matrix has a bandwidth of @code{dim-1}
+(@code{band} maximum possible value is @code{dim-1}).
+
+@c replace band-width by bandwidth
+
+
+@item
+@code{tag}
+specifies type of observations in cluster which also implies the table
+where they are stored in.
+@code{obs} and @code{height-differences} stand for @code{obs} table,
+@code{coordinates} and @code{vectors} stand for @code{coordinates} table
+and @code{vectors} table respectively.
+
+@end itemize
+
+Observations, vectors and coordinates are identified by
+configuration id (@code{conf_id}), cluster id @code{ccluster}
+and theirs index (@code{indx}).
+Observation index (@code{indx}) has to be unique within observations
+of one cluster (which belongs to one configuration).
+The same applies for vectors and coordinates.
+
+@macro salso{ref}
+See also @ref{\ref\}.
+@end macro
+
+@salso{Set of observations}
+
+Example (table contents):
+@example
+conf_id|ccluster|dim|band|tag
+-----------------------------
+1      |1       |3  |0   |obs
+1      |4       |4  |0   |obs
+@end example
+
+
+@c % ======================================================================
+@node     Table covmat
+@section  Table @code{covmat}
+@c @cindex
+
+Values of cluster covariance matrix are stored
+in @code{covmat} table.
+Attributes @code{conf_id}, @code{ccluster} identifies covariance matrix.
+Value position in matrix is specified by @code{rind} and @code{cind} fields.
+
+
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which cluster belongs to.
+
+@item
+@code{ccluster}
+is id of cluster which matrix belongs to.
+
+@item
+@code{rind}
+is row number in covariance matrix
+
+@item
+@code{cind}
+is column number covariance matrix
+
+@item
+@code{val}
+is value itself (variance or covariance).
+
+@end itemize
+
+Values @code{rind} and @code{cind} have to respect @code{dim} and @code{band}
+specified in table @code{clusters}.
+If value in covariance matrix is not specified (record is missing),
+it is considered to be zero. @c overit
+
+Example (table contents):
+@example
+conf_id|ccluster|rind|cind|val
+--------------------------------
+1      |1       |1   |1   |400.0
+1      |1       |2   |2   |400.0
+1      |1       |3   |3   |400.0
+1      |4       |1   |1   |400.0
+1      |4       |2   |2   |400.0
+1      |4       |3   |3   |400.0
+1      |4       |4   |4   |400.0
+@end example
+
+
+@c % ======================================================================
+@node     Table obs
+@section  Table @code{obs}
+@c @cindex
+
+Table @code{obs} contains simple observations like direction or distance.
+
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which cluster belongs to.
+
+@item
+@code{ccluster}
+is id of cluster which observation belongs to.
+
+@item
+@code{indx}
+identifies observation within cluster.
+It has to be positive integer. @c proc? predpoklada se interni pouziti?
+
+@item
+@code{tag}
+specifies a type of an observation.
+Allowed @code{tag}s follows.
+
+@itemize @bullet
+@item
+@code{direction}
+for directions.
+
+@item
+@code{distance}
+for horizontal distances.
+
+@item
+@code{angle}
+for angles.
+
+@item
+@code{s-distance}
+for slope distances (space distances).
+
+@item
+@code{z-angle}
+for zenith angles.
+
+@item
+@code{dh}
+for leveling height differences.
+
+@end itemize
+
+@item
+@code{from_id}
+is stand point identification.
+It is mandatory and it must not differ within one cluster for observations
+with @code{tag = 'direction'} .
+@c yes, it is redundant
+
+@item
+@code{to_id}
+is target identification (mandatory).
+
+@item
+@code{to_id2}
+is second target identification.
+It is valid and mandatory only for angles (@code{tag = 'angle'}).
+
+@item
+@code{val}
+is observation value.
+It is mandatory for all observation types.
+
+@item
+@code{stdev}
+is value of standard deviation.
+It is used when variance in covariance matrix is not specified.
+
+@item
+@code{from_dh}
+is value of instrument height (optional).
+
+@item
+@code{to_dh}
+is value of reflector/target height (optional).
+
+@item
+@code{to_dh2}
+is value of second reflector/target height (optional).
+It is valid only for angles.
+
+@item
+@code{dist}
+is distance of leveling section. @c units? (in kilometers)
+It is valid only for height-differences (@code{tag = 'dh'}).
+
+
+@item
+@code{rejected}
+specifies whether observation is rejected (passive) or not.
+Value @code{0} stand for not rejected, value @code{1} for rejected.
+It is mandatory. Default value is @code{0}.
+
+@c    primary key (conf_id, ccluster, indx),
+@c    foreign key (conf_id, ccluster) references gnu_gama_local_clusters,
+@c    check (tag <> 'angle' or to_id2 is not null),
+@c    check (tag = 'dh' or (tag <> 'dh' and dist is null))
+
+@end itemize
+
+@c note for angles:
+
+Example (table contents without empty columns):
+@example
+conf_id|ccluster|indx|tag      |from_id|to_id|val           |rejected
+---------------------------------------------------------------------
+1      |1       |1   |direction|201    |202  |0.0           |0
+1      |1       |2   |direction|201    |207  |0.817750284544|0
+1      |1       |3   |direction|201    |205  |2.020073921388|0
+@end example
+
+
+@c % ======================================================================
+@node     Table coordinates
+@section  Table @code{coordinates}
+@c @cindex
+
+Table @code{coordinates} contains control (known) coordinates.
+
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which cluster belongs to.
+
+@item
+@code{ccluster}
+is id of cluster which coordinates belongs to.
+
+@item
+@code{indx}
+identifies coordinates within cluster.
+It has to be positive integer. @c proc? predpoklada se interni pouziti?
+
+@item
+@code{id}
+is point identification.
+@c neni NOT NULL?
+
+@item
+@code{x},
+@code{y}
+and
+@code{z}
+are coordinates.
+
+@item
+@code{rejected} specifies whether observation is rejected (passive) or not.
+Value @code{0} stand for not rejected, value @code{1} for rejected.
+Default value is @code{0}.
+
+@end itemize
+
+@salso{Control coordinates}
+
+@c Example (table contents):
+@c @example
+
+@c @end example
+
+
+@c % ======================================================================
+@node     Table vectors
+@section  Table @code{vectors}
+@c @cindex
+
+Table @code{vectors} contains coordinate differences (vectors).
+
+@itemize @bullet
+
+@item
+@code{conf_id}
+is id of configuration which cluster belongs to.
+
+@item
+@code{ccluster}
+is id of cluster which vector belongs to.
+
+@item
+@code{indx}
+identifies vector within cluster.
+It has to be positive integer. @c proc? predpoklada se interni pouziti?
+
+@item
+@code{from_id}
+is point identification.
+It identifies initial point.
+
+@item
+@code{to_id}
+is point identification.
+It identifies terminal point.
+
+@item
+@code{dx},
+@code{dy}
+and
+@code{dz}
+are coordinate differences.
+
+@item
+@code{from_dh}
+is value of initial point height.
+It is optional.
+
+@item
+@code{to_dh}
+is value of terminal point height.
+It is optional.
+
+@item
+@code{rejected}  integer default 0 not null,
+
+@end itemize
+
+@salso{Coordinate differences}
+
+@c Example (table contents):
+@c @example
+
+@c @end example
+
+
+
+@c % ======================================================================
+@node     Example of network in SQL
+@section  Example of local geodetic network in SQL
+@c @cindex
+
+Providing complete example would be reasonable because of its extent.
+However, you can obtain example by following these instructions:
+
+Create a file with XML representation of network by copy and paste example
+from @ref{Example} to a new file.
+Note that file should start with @code{<?xml version="1.0" ?>} (no whitespace).
+Alternatively you can use existing XML file from collection of sample networks
+(see @ref{Download}).
+Then you can convert your XML file (here @code{example_network.xml})
+to SQL statements by program @code{gama-local-xml2sql}
+(the path depends on your Gama installation).
+@example
+$ gama-local-xml2sql example_net example_network.xml example_network.sql
+@end example
+Now you have example network (configuration @code{example_net})
+in the form of SQL @code{INSERT} statements
+in the file @code{example_network.sql}.
+
+Another representations you can create and fill SQLite database
+(for details see @ref{Working with SQLite database}):
+@example
+$ sqlite3 examples.db < gama-local-schema.sql
+$ sqlite3 examples.db < example_network.sql
+$ sqlite3 examples.db
+@end example
+Once you have SQLite database, you can work with it from SQLite command line.
+You can get nice output by executing following commands.
+@example
+sqlite> .mode column
+sqlite> .nullvalue NULL
+sqlite> SELECT * FROM gnu_gama_local_configurations;
+sqlite> SELECT * FROM gnu_gama_local_points;
+sqlite> SELECT * FROM gnu_gama_local_clusters;
+sqlite> SELECT * FROM gnu_gama_local_covmat;
+sqlite> SELECT * FROM gnu_gama_local_obs;
+@end example
+Or you can get database dump (@code{CREATE} and @code{INSERT} statements) by
+@example
+sqlite> .dump
+@end example
+If it is not enough for you, you can try one of GUI tools for SQLite.

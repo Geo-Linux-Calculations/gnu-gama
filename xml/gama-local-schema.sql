@@ -32,7 +32,7 @@ create table gnu_gama_local_configurations (
    axes_xy   varchar(2) default 'ne' not null check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
    angles    varchar(12) default 'right-handed' not null check (angles in ('left-handed', 'right-handed')),
    epoch     double precision default 0.0 not null,
-   algorithm varchar(12) default 'svd' not null check (algorithm in ('svd', 'gso', 'cholesky', 'sm-env')),
+   algorithm varchar(12) default 'svd' not null check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
    ang_units int default 400 not null check (ang_units in (400, 360)),
    latitude  double precision default 50 not null,
    ellipsoid varchar(20)

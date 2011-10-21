@@ -40,16 +40,16 @@ instead.
 
 In the @code{gama-local} XML input, distances are given in meters,
 angular values in centigrades and their standard deviations (rms
-errors) in millimetres or centigrade seconds, respectively.
+errors) in millimeters or centigrade seconds, respectively.
 Alternatively angular values in @code{gama-local} XML input can be
 given in degrees and seconds (@pxref{Angular units}).  At the end of
-this document an example of the @code{gama-local} XML input data
+this chapter an example of the @code{gama-local} XML input data
 object is given.
 
 
 @menu
 * Angular units::             Angular units
-* Prolog::                    XML declaration
+* Prologue::                    XML declaration
 * Network definition::        Tags @code{<gama-local>} and @code{<network>} 
 * Network description::       Tag  @code{<description>}
 * Network parameters::        Tag  @code{<parameters />}
@@ -96,14 +96,14 @@ the string. Gons and degrees may be mixed in a single XML document but
 one should be careful to supply the information on standard deviations
 and/or covariances in the proper corresponding units.
 
-Internaly @code{gama-local} works with gons but output can be
+Internally @code{gama-local} works with gons but output can be
 transformed to degrees using the option @code{--angles 360}.
 
 
 
-@node     Prolog
-@section  Prolog
-@cindex   prolog
+@node     Prologue
+@section  Prologue
+@cindex   prologue
 
 
 XML documents may, and should, begin with an XML declaration that
@@ -246,7 +246,7 @@ deviation---square root of reference variance (default value 10)
 tests (dafault value 0.95)
 
 @item 
-@code{tol-abs = "1000"}       tollerance for identification of gross 
+@code{tol-abs = "1000"}       tolerance for identification of gross
 absolute terms in project equations (default value 1000 mm)
 
 @item 

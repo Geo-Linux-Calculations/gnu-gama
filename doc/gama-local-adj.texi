@@ -107,7 +107,7 @@ of all selected unknowns.
 @end ifnottex
 @c % -----------------------
 Geometrically this criterion is equivalent to adjustment of the network
-according to (2) with simultaneous transformatin to the selected set of
+according to (2) with simultaneous transformation to the selected set of
 fiducial points.  This transformation does not change the shape of
 adjusted network.
 
