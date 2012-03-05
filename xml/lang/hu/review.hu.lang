@@ -39,7 +39,7 @@
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   hu="Fix" />   
+   hu="Rögzített" />   
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -55,7 +55,7 @@
 
 <e id="T_GaMa_gpar1_fixed_points"
    EN="Number of fixed points"
-   hu="Fix pontok" />
+   hu="Rögzített pontok" />
 
 <e id="T_GaMa_gpar1_computed_heights"
    EN="Number of computed heights"
@@ -67,7 +67,7 @@
 
 <e id="T_GaMa_gpar1_fixed_heights"
    EN="Number of fixed heights"
-   hu="Fix magasságok" />
+   hu="Rögzített magasságok" />
 
 <e id="T_GaMa_gpar1_points_total"
    EN="Total of points"
@@ -183,7 +183,7 @@
 
 <e id="T_GaMa_interval_contains"
    EN="contains value m0\'/m0"
-   hu="m0\'/m0 értket tartalmazza" />
+   hu="m0\'/m0 értéket tartalmazza" />
 
 <e id="T_GaMa_interval_doesnt_contain"
    EN="does not contain value m0\'/m0" 
@@ -207,11 +207,11 @@
 
 <e id="T_GaMa_Maximal_decrease_of_m0"
    EN="Maximal decrease of m0\'\'/m0 on elimination of one observation: "
-   hu="Egy mérés elhagyásávaki elérhetõ maximális csökkenés az m0\'\'/m0 értékben : " />
+   hu="Egy mérés elhagyásával elérhetõ maximális csökkenés az m0\'\'/m0 értékben: " />
 
 <e id="T_GaMa_Maximal_normalized_residual"
    EN="Maximal normalized residual "
-   hu="Maximális normalizált javítás" />
+   hu="Maximális normalizált javítás " />
 
 <e id="T_GaMa_genpar_Maximal_studentized_residual"
    EN="Maximal studentized residual "
@@ -231,15 +231,15 @@
 
 <e id="T_GaMa_genpar_on_significance_level"
    EN="on significance level "
-   hu="szignifikancia szinten " />
+   hu="szignifikancia szint: " />
 
 <e id="T_GaMa_genpar_for_observation_ind"
    EN=" % for observation #"
-   hu=" % az észlelésnél #" />
+   hu=" % észlelés: #" />
 
 <e id="T_GaMa_Review_of_fixed_points"
    EN="Fixed points"
-   hu="Fix pontok" />
+   hu="Rögzített pontok" />
 
 <e id="T_GaMa_point"
    EN="point"
