@@ -115,9 +115,9 @@ void Gkf2sql::write(std::ostream& ostr)
       ostr << "update gnu_gama_local_configurations set axes_xy = "
 	   << lcs << " where conf_id = " << cnfg() << ";\n";
     
-    if (!points.right_handed_angles)
+    // if (points.right_handed_angles())
       ostr << "update gnu_gama_local_configurations set angles = "
-	   << (points.right_handed_angles ? "'right-handed'" : "'left-handed'") 
+	   << (points.right_handed_angles() ? "'right-handed'" : "'left-handed'") 
 	   << " where conf_id = " << cnfg() << ";\n";
 
     if (gkfparser->epoch)

@@ -1,7 +1,14 @@
 <!-- ****************************************************************
 
-gama-local.dtd                     version 2.0.15  2010-08-09
+gama-local.dtd                     version 2.1  2012-03-16
 ==============
+
+2.1.    2012-03-16
+
+      - fixed a bug in the definition of angular observations reported
+	by Anna Kratochvilova <anna.kratochvilova@fsv.cvut.cz> and
+	Vaclav Petras <vaclav.petras@fsv.cvut.cz>. Implicit value of
+	angular orientation is left-handed
 
 2.0.15  2010-08-09
 
@@ -187,7 +194,7 @@ information visit
 
    axes-xy (ne | sw | es | wn | 
             en | nw | se | ws )          "ne"
-   angles  (right-handed | left-handed)  "right-handed" 
+   angles  (left-handed | right-handed)  "left-handed" 
    epoch    NMTOKEN                      "0.0" >
 
 <!ATTLIST parameters 

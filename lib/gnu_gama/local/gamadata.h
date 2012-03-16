@@ -52,8 +52,8 @@ namespace GNU_gama { namespace local {
   inline bool GaMaConsistent(const PointData& lcs)
     {
       return
-        (lcs. left_handed_coordinates() &&  lcs.right_handed_angles) ||
-        (lcs.right_handed_coordinates() && !lcs.right_handed_angles) ;
+        (lcs. left_handed_coordinates() && lcs. left_handed_angles()) ||
+        (lcs.right_handed_coordinates() && lcs.right_handed_angles());
     }
 
 

@@ -437,8 +437,8 @@ namespace GNU_gama { namespace local {
           }
         else if (nam == "angles")
           {
-            if      (val == "right-handed") SB.right_handed_angles = true;
-            else if (val == "left-handed" ) SB.right_handed_angles = false;
+            if      (val == "right-handed") SB.setAngularObservations_Righthanded();
+            else if (val == "left-handed" ) SB.setAngularObservations_Lefthanded();
             else
               return error(T_GKF_undefined_value_of_attribute
                            + nam + " = " + val);

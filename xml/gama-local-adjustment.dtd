@@ -1,5 +1,5 @@
 <!-- 
-        gama-local-adjustment.dtd          version 0.5  2007-01-27
+        gama-local-adjustment.dtd          version 0.6  2012-03-16
         =========================
 
         http://www.gnu.org/software/gama/gama-local-adjustment.dtd
@@ -24,7 +24,7 @@
         gama-local-compiler                   ( #CDATA )
         axes-xy (ne | sw | es | wn |
                  en | nw | se | ws )          "ne"
-        angles  (right-handed | left-handed)  "right-handed"
+        angles  (left-handed | right-handed)  "left-handed"
         epoch    NMTOKEN                      "0.0" >
 
 <!ELEMENT network-processing-summary ( 

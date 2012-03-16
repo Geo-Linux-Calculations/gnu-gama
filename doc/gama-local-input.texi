@@ -164,7 +164,7 @@ is oriented east. Acceptable values are @code{ne}, @code{sw},
 @item 
 @code{angles="right-handed"} defines counterclockwise observed angles
 and/or directions, value @code{left-handed} defines clockwise observed
-angles and/or directions (default value is @code{right-handed}).
+angles and/or directions (default value is @code{left-handed}).
 
 @end itemize
 

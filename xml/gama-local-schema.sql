@@ -30,7 +30,7 @@ create table gnu_gama_local_configurations (
    sigma_act varchar(11) default 'aposteriori' not null check (sigma_act in ('apriori', 'aposteriori')),
    update_cc varchar(3) default 'no' not null check (update_cc in ('yes', 'no')),
    axes_xy   varchar(2) default 'ne' not null check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
-   angles    varchar(12) default 'right-handed' not null check (angles in ('left-handed', 'right-handed')),
+   angles    varchar(12) default 'left-handed' not null check (angles in ('left-handed', 'right-handed')),
    epoch     double precision default 0.0 not null,
    algorithm varchar(12) default 'svd' not null check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
    ang_units int default 400 not null check (ang_units in (400, 360)),

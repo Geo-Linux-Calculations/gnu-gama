@@ -1,3 +1,9 @@
+2012-03-16  Ales Cepek  <cepek@biggy>
+
+	* fixed a bug in the definition of angular observations reported
+	by Anna Kratochvilova <anna.kratochvilova@fsv.cvut.cz> and Vaclav
+	Petras <vaclav.petras@fsv.cvut.cz>
+
 2012-03-05  Ales Cepek  <cepek@gnu.org>
 
 	* updated version of review.hu.lang by Siki Zoltan, some

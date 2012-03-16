@@ -17,7 +17,7 @@ variant: two fixed points, others adjusted
    gama-local-compiler="GNU g++"
    epoch="0.0000000"
    axes-xy="ne"
-   angles="right-handed"
+   angles="left-handed"
 />
 
 <network-processing-summary>

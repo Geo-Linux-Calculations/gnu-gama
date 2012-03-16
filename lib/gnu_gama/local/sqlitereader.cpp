@@ -492,7 +492,12 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         else if (val == "ws") lcs = LocalCoordinateSystem::WS;
         else lcs = LocalCoordinateSystem::NE;
 
-        d->lnet->PD.right_handed_angles = (std::string(argv[8]) == "right-handed");
+        // d->lnet->PD.right_handed_angles = (std::string(argv[8]) == "right-handed");
+	if (std::string(argv[8]) == "right-handed")
+	  d->lnet->PD.setAngularObservations_Righthanded();
+	else
+	  d->lnet->PD.setAngularObservations_Lefthanded();
+
         d->lnet->epoch = ToDouble(argv[9]);
 
         if (std::string(argv[10]) == "400")

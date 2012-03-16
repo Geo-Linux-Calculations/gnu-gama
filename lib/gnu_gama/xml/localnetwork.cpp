@@ -95,7 +95,7 @@ void LocalNetworkXML::write(std::ostream& out) const
       out << "\"\n";
 
       out << "   angles=\""
-          << (netinfo->PD.right_handed_angles ?
+          << (netinfo->PD.right_handed_angles() ?
                                 "right-handed" : "left-handed")
           << "\"\n";
 

@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2001, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -28,13 +28,19 @@ namespace GNU_gama { namespace local {
   class AngularObservations {
   public:
 
-    bool right_handed_angles;
-
-    AngularObservations(bool rha=true)
-      : right_handed_angles(rha)
+  AngularObservations()
+      : left_handed_(true)
       {
       }
 
+    void setAngularObservations_Lefthanded () { left_handed_ = true;  }
+    void setAngularObservations_Righthanded() { left_handed_ = false; }
+
+    bool left_handed_angles () const { return  left_handed_; }
+    bool right_handed_angles() const { return !left_handed_; }
+
+  private:
+    bool left_handed_;
   };
 
 }}   // namespace GNU_gama::local
