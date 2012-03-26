@@ -517,7 +517,7 @@ interval} in which its real value is located with the probability
 
 
 Null hypothesis @gmat{H_0: @mnapr{} = @mnemp{}} is tested versus
-alternative hypothesis @gmat{H_1: @mnapr{} \ne @mnemp{}}. 
+alternative hypothesis @gmat{H_1: @mnapr{} \neq @mnemp{}}. 
 Test criterion is ratio of a posteriori estimate of
 reference standard deviation
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
