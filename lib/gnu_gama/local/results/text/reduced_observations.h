@@ -20,6 +20,13 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file reduced_observations.h
+ * \brief Function for writing reduced observations
+ *
+ * \author Jan Pytel
+ * \author Ales Cepek
+ */
+
 #ifndef gama_local_local_results_text_reduced_observations_h
 #define gama_local_local_results_text_reduced_observations_h
 
@@ -33,6 +40,10 @@
 
 namespace GNU_gama { namespace local {
 
+/** \brief
+ *
+ * \todo Use visitor pattern for writing S_Distance, Z_Angle and H_Diff.
+ */
 template <typename OutStream>
 void ReducedObservationsText(GNU_gama::local::LocalNetwork* IS,
                              GNU_gama::local::ReducedObservations* reduced,

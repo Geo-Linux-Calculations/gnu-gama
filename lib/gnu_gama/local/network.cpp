@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library
 
@@ -18,6 +19,13 @@
     along with this library; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+/** \file network.cpp
+ * \brief #GNU_gama::local::LocalNetwork class implementation
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
 
 #include <fstream>
 #include <iomanip>
@@ -44,6 +52,150 @@ namespace
 {
   const char* UNKNOWN_ALGORITHM="### network.cpp : unknown algorithm ###";
 }
+
+/** \brief %Visitor for absolute term testing.
+ *
+ * Visit methods determine absolute term.
+ * Computed value is accessible through method value().
+ *
+ * \note Before first (and probably each) visit
+ * setIndex() and setFromTo() should be called.
+ *
+ * Example:
+ * \code
+ * // ...
+ * TestAbsTermVisitor testVisitor(b, tolerance);
+ * // ... get observation
+ * // set index and observation from and to
+ * testVisitor.setIndex(indm);
+ * testVisitor.setFromTo(stan, cil);
+ * // do visit
+ * m->accept(&testVisitor);
+ * // use result value
+ * Double myValue = testVisitor.value();
+ * \endcode
+ *
+ */
+class TestAbsTermVisitor : public GNU_gama::local::AllObservationsVisitor
+{
+public:
+    /**
+     *
+     * \note Before first (and probably each) visit
+     * setIndex() and setFromTo() should be called.
+     */
+    TestAbsTermVisitor(const Vec& bVector, Double tolerance)
+        : indm(0), stan(0), cil(0),
+          b(bVector), tol_abs_(tolerance),
+          val(0), d0(0)
+    {
+    }
+
+    /** Result value of last visited observation. */
+    Double value() { return val; }
+
+    /** Sets observation index in vector \a b (given in constructor). */
+    void setIndex(Index observationIndex)
+    {
+        indm = observationIndex;
+    }
+
+    /** Sets from point and to point. */
+    void setFromTo(const LocalPoint& from, const LocalPoint& to)
+    {
+        stan = &from;
+        cil = &to;
+
+        Double dx, dy;
+        if (stan->test_xy() && cil->test_xy())
+            {
+                dy = stan->y() - cil->y();
+                dx = stan->x() - cil->x();
+                d0 = sqrt(dy*dy + dx*dx);
+            }
+    }
+
+    void visit(Distance* obs)
+    {
+        check(fabs(obs->value() - d0)*1000);
+    }
+    void visit(Direction* obs)
+    {
+        check(fabs(b(indm)*d0/(10*R2G)));
+    }
+    void visit(Angle* obs)
+    {
+        check(fabs(b(indm)*d0/(10*R2G)));
+    }
+    void visit(H_Diff* obs)
+    {
+        const Double h0 = cil->z() - stan->z();
+        check(fabs(obs->value() - h0)*1000);
+    }
+
+    void visit(S_Distance* obs)
+    {
+        Double dz = stan->z() - cil->z();
+        Double d3 = sqrt(dz*dz + d0*d0);
+        check(fabs(d3 - obs->value())*1000);
+    }
+
+    void visit(Z_Angle* obs)
+    {
+        Double dz = stan->z() - cil->z();
+        Double d3 = sqrt(dz*dz + d0*d0);
+        check(fabs(b(indm)*d3/(10*R2G)));
+    }
+
+    void visit(X* obs)
+    {
+        check(fabs(stan->x() - obs->value())*1000);
+    }
+
+    void visit(Y* obs)
+    {
+        check(fabs(stan->y() - obs->value())*1000);
+    }
+    void visit(Z* obs)
+    {
+        check(fabs(stan->z() - obs->value())*1000);
+    }
+
+    void visit(Xdiff* obs)
+    {
+        const Double dx = cil->x() - stan->x();
+        check(fabs(dx - obs->value())*1000);
+    }
+
+    void visit(Ydiff* obs)
+    {
+        const Double dy = cil->y() - stan->y();
+        check(fabs(dy - obs->value())*1000);
+    }
+
+    void visit(Zdiff* obs)
+    {
+        const Double dz = cil->z() - stan->z();
+        check(fabs(dz - obs->value())*1000);
+    }
+
+private:
+    Index indm;
+    const LocalPoint* stan;
+    const LocalPoint* cil;
+    const Vec& b;
+    Double tol_abs_;
+    Double val;
+    Double d0;
+
+    void check(Double value)
+    {
+        if (value > tol_abs_)
+            val = b(indm);
+        else
+            val = 0;
+    }
+};
 
 LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
@@ -123,11 +275,11 @@ void LocalNetwork::revision_observations()
   if (!tst_redbod_) revision_points();
 
   {
-    const LocalRevision local_rev(PD);
+    LocalRevision local_rev(PD);
     for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
       {
         Observation* m = *i;
-        if (!m->revision(&local_rev)) m->set_passive();
+        m->accept(&local_rev);
       }
   }
 
@@ -221,7 +373,8 @@ void LocalNetwork::project_equations()
     pocet_neznamych_ = 0;
     for (RevisedObsList::iterator m=RSM.begin(); m!=RSM.end(); ++m)
       {
-        (*m)->linearization(&loclin);
+        Observation* obs = *m;
+        obs->accept(&loclin);
         b(++r)  = loclin.rhs;
         rhs_(r) = loclin.rhs;
         tmp->new_row();
@@ -594,10 +747,9 @@ void LocalNetwork::update(Update etapa)
     }
 }
 
-
 Double LocalNetwork::test_abs_term(Index indm)
 {
-  const Observation* m = RSM[indm-1];
+  Observation* m = RSM[indm-1];
 
   // 2005-12-28 added test for coordinates and vectors
   //
@@ -607,112 +759,13 @@ Double LocalNetwork::test_abs_term(Index indm)
   const LocalPoint& stan = PD[m->from()];
   const LocalPoint& cil  = PD[m->to()];   // ignoring second angle target here
 
-  if (const H_Diff* h = dynamic_cast<const H_Diff*>(m))
-    {
-      const Double h0 = cil.z() - stan.z();
-      if (fabs(h->value() - h0)*1000 > tol_abs_)
-        return b(indm);
-      else
-        return 0;
-    }
+  TestAbsTermVisitor testVisitor(b, tol_abs_);
+  testVisitor.setIndex(indm);
+  testVisitor.setFromTo(stan, cil);
 
-  {
-    Double dx, dy, d0;
-    if (stan.test_xy() && cil.test_xy())
-      {
-        dy = stan.y() - cil.y();
-        dx = stan.x() - cil.x();
-        d0 = sqrt(dy*dy + dx*dx);
-      }
+  m->accept(&testVisitor);
 
-    if (dynamic_cast<const Distance*>(m))
-      {
-        if (fabs(m->value() - d0)*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Direction*>(m))
-      {
-        if (fabs(b(indm)*d0/(10*R2G)) > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Angle*>(m))
-      {
-        if (fabs(b(indm)*d0/(10*R2G)) > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Z_Angle*>(m))
-      {
-        Double dz = stan.z() - cil.z();
-        Double d3 = sqrt(dz*dz + d0*d0);
-        if (fabs(b(indm)*d3/(10*R2G)) > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const S_Distance*>(m))
-      {
-        Double dz = stan.z() - cil.z();
-        Double d3 = sqrt(dz*dz + d0*d0);
-        if (fabs(d3 - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Xdiff*>(m))
-      {
-        const Double dx = cil.x() - stan.x();
-        if (fabs(dx - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Ydiff*>(m))
-      {
-        const Double dy = cil.y() - stan.y();
-        if (fabs(dy - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Zdiff*>(m))
-      {
-        const Double dz = cil.z() - stan.z();
-        if (fabs(dz - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const X*>(m))
-      {
-        if (fabs(stan.x() - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Y*>(m))
-      {
-        if (fabs(stan.y() - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-    else if (dynamic_cast<const Z*>(m))
-      {
-        if (fabs(stan.z() - m->value())*1000 > tol_abs_)
-          return b(indm);
-        else
-          return 0;
-      }
-  }
-
-  throw GNU_gama::local::Exception("LocalNetwork::test_abs_term() - unknown observation");
-
+  return testVisitor.value();
 }
 
 

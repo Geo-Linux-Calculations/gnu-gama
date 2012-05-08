@@ -19,6 +19,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file reduced_observations_to_ellipsoid.h
+ * \brief Function for writing reduced observations to elipsoid
+ *
+ * \author Jan Pytel
+ */
+
 #ifndef gama_local_local_results_text_reduced_observations_to_ellipsoid_h
 #define gama_local_local_results_text_reduced_observations_to_ellipsoid_h
 
@@ -33,6 +39,10 @@
 
 namespace GNU_gama { namespace local {
 
+/** \brief
+ *
+ * \todo Consider using visitor pattern for writing S_Distance, Z_Angle and H_Diff.
+ */
 template <typename OutStream>
 void ReducedObservationsToEllipsoidText(GNU_gama::local::LocalNetwork* IS,
                            const ReduceToEllipsoid::ObsMap& reduced, OutStream& out)

@@ -1,6 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library.
 
@@ -19,18 +20,175 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file outlying_abs_terms.h
+ * \brief Function and visitor class for writing outlying absolute terms table
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #ifndef GaMa_GaMaProg_Vybocujici_Absolutni_Cleny_h_
 #define GaMa_GaMaProg_Vybocujici_Absolutni_Cleny_h_
 
 #include <iomanip>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/format.h>
+#include <gnu_gama/local/observation.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/utf8.h>
 
 namespace GNU_gama { namespace local {
 
+/** \brief Visitor class for writing 'value' column in 'Outlying absolute terms' table.
+ *
+ * \tparam OutStream output stream type
+ */
+template <typename OutStream>
+class OutlyingAbsoluteTermsVisitor : public AllObservationsVisitor
+{
+private:
+    OutStream& out;
+    GNU_gama::local::LocalNetwork* IS;
+    static const int width = 12;
+    static const int distPrecision = 5;
+    static const int angularPrecision = 6;
+    static const int coordPrecision = 5;
+
+public:
+    /**
+     * \param localNetwork pointer to local network
+     * \param outStream reference to output stream
+     */
+    OutlyingAbsoluteTermsVisitor(GNU_gama::local::LocalNetwork* localNetwork, OutStream& outStream)
+        : IS(localNetwork), out(outStream)
+    {}
+
+    void  visit(Distance* obs)
+    {
+        out << T_GaMa_distance;
+        out.precision(distPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Direction* obs)
+    {
+        out << T_GaMa_direction;
+        out.precision(angularPrecision);
+        out.width(width);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+
+    void  visit(Angle* obs)
+    {
+        out << '\n';
+        out.width(IS->maxw_obs() + 2 + 2*(IS->maxw_id()));
+        out << Utf8::leftPad(obs->fs().str(), IS->maxw_id());
+        out << T_GaMa_angle;
+        out.precision(angularPrecision);
+        out.width(width);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+
+    void  visit(H_Diff* obs)
+    {
+        out << T_GaMa_levell;
+        out.precision(distPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(S_Distance* obs)
+    {
+        out << T_GaMa_s_distance;
+        out.precision(distPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Z_Angle* obs)
+    {
+        out << T_GaMa_z_angle;
+        out.precision(angularPrecision);
+        out.width(width);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+
+    void  visit(X* obs)
+    {
+        out << T_GaMa_x;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Y* obs)
+    {
+        out << T_GaMa_y;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Z* obs)
+    {
+        out << T_GaMa_z;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Xdiff* obs)
+    {
+        out << T_GaMa_xdiff;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Ydiff* obs)
+    {
+        out << T_GaMa_ydiff;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+    void  visit(Zdiff* obs)
+    {
+        out << T_GaMa_zdiff;
+        out.precision(coordPrecision);
+        out.width(width);
+        Double m = obs->value();
+        out << m << " ";
+    }
+
+};
+
+/** \brief Writes 'Outlying absolute terms' table.
+ *
+ */
 template <typename OutStream>
 void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
@@ -56,6 +214,9 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   out.flush();
 
   PointID predcs = "";   // previous standpoint ID
+
+  OutlyingAbsoluteTermsVisitor<OutStream> visitor(IS, out);
+
   for (int i=1; i<=IS->sum_observations(); i++)
     {
       Observation* pm = IS->ptr_obs(i);
@@ -76,121 +237,7 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           out << Utf8::leftPad(cc.str(), IS->maxw_id());
           out.setf(ios_base::fixed, ios_base::floatfield);
 
-          {   // ************************************************
-            if (Distance* d = dynamic_cast<Distance*>(pm))
-              {
-                out << T_GaMa_distance;
-                out.precision(5);
-                out.width(12);
-                Double m = d->value();
-                out << m << " ";
-              }
-            else if (Direction* s = dynamic_cast<Direction*>(pm))
-              {
-                out << T_GaMa_direction;
-                out.precision(6);
-                out.width(12);
-                Double m = R2G*(s->value());
-		if (IS->gons())
-		    out << m << " ";
-		else
-		    out << GNU_gama::gon2deg(m, 0, 2) << " ";
-              }
-            else if (Angle* u = dynamic_cast<Angle*>(pm))
-              {
-                out << '\n';
-                out.width(IS->maxw_obs() + 2 + 2*(IS->maxw_id()));
-                out << Utf8::leftPad(u->fs().str(), IS->maxw_id());
-                out << T_GaMa_angle;
-                out.precision(6);
-                out.width(12);
-                Double m = R2G*(u->value());
-		if (IS->gons())
-		    out << m << " ";
-		else
-		    out << GNU_gama::gon2deg(m, 0, 2) << " ";
-              }
-            else if (Z_Angle* z = dynamic_cast<Z_Angle*>(pm))
-              {
-                out << T_GaMa_z_angle;
-                out.precision(6);
-                out.width(12);
-                Double m = R2G*(z->value());
-		if (IS->gons())
-		    out << m << " ";
-		else
-		    out << GNU_gama::gon2deg(m, 0, 2) << " ";
-              }
-            else if (S_Distance* p = dynamic_cast<S_Distance*>(pm))
-              {
-                out << T_GaMa_s_distance;
-                out.precision(5);
-                out.width(12);
-                Double m = p->value();
-                out << m << " ";
-              }
-            else if (H_Diff* h = dynamic_cast<H_Diff*>(pm))
-              {
-                out << T_GaMa_levell;
-                out.precision(5);
-                out.width(12);
-                Double m = h->value();
-                out << m << " ";
-              }
-            else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
-              {
-                out << T_GaMa_xdiff;
-                out.precision(5);
-                out.width(12);
-                Double m = dx->value();
-                out << m << " ";
-              }
-            else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
-              {
-                out << T_GaMa_ydiff;
-                out.precision(5);
-                out.width(12);
-                Double m = dy->value();
-                out << m << " ";
-              }
-            else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
-              {
-                out << T_GaMa_zdiff;
-                out.precision(5);
-                out.width(12);
-                Double m = dz->value();
-                out << m << " ";
-              }
-            else if (X* x = dynamic_cast<X*>(pm))
-              {
-                out << T_GaMa_x;
-                out.precision(5);
-                out.width(12);
-                Double m = x->value();
-                out << m << " ";
-              }
-            else if (Y* y = dynamic_cast<Y*>(pm))
-              {
-                out << T_GaMa_y;
-                out.precision(5);
-                out.width(12);
-                Double m = y->value();
-                out << m << " ";
-              }
-            else if (Z* z = dynamic_cast<Z*>(pm))
-              {
-                out << T_GaMa_z;
-                out.precision(5);
-                out.width(12);
-                Double m = z->value();
-                out << m << " ";
-              }
-            else
-              {
-                throw GNU_gama::local::Exception(
-                   "GaMa internal error - unknown observation\n");
-              }
-          }   // ************************************************
+          pm->accept(&visitor);
 
           out << setiosflags(ios_base::scientific) << setprecision(5);
           out << setw(13) << IS->rhs(i);       // 1.1.56 << pm->rhs();

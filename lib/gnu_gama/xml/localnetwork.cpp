@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library
 
@@ -18,6 +19,13 @@
     along with this library; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+/** \file localnetwork.cpp
+ * \brief #GNU_gama::LocalNetworkXML implementation
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
 
 #include <vector>
 #include <iomanip>
@@ -55,6 +63,189 @@ namespace
   const char* const VERSION = "0.5";
 }
 
+/** \brief Writes observations XML representation to stream.
+ *
+ * \todo Remove secondary output stream.
+ */
+class WriteXMLVisitor : public GNU_gama::local::AllObservationsVisitor
+{
+private:
+    std::ostream& out;
+    std::ostream* ostr;
+    std::string tag;
+    const int linear;
+    const int angular;
+    const GNU_gama::local::Vec& v;
+    GNU_gama::Index i;
+    const int y_sign;
+public:
+    WriteXMLVisitor(std::ostream& outStream, int linearOutputPrecision, int angularOutputPrecision,
+                    const GNU_gama::local::Vec& residuals, int ySign)
+        : out(outStream), ostr(&outStream),
+          linear(linearOutputPrecision), angular(angularOutputPrecision),
+          v(residuals), y_sign(ySign)
+    {
+    }
+
+    std::string lastTag() const { return tag; }
+
+    /** \brief Sets index of observation which will be used in the next visit. */
+    void setObservationIndex(GNU_gama::Index index) { i = index; }
+
+    /** If secondary output stream is not specified output stream given in constructor is used. */
+    void setSecondaryOutStream(std::ostream& outStream) { ostr = &outStream; }
+
+    void visit(Distance* obs)
+    {
+      out << "<" << (tag="distance") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(Direction* obs)
+    {
+      out << "<" << (tag="direction") << ">";
+      ostr->precision(angular);
+      double m = R2G*(obs->value());
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/10000;
+      if (m < 0) m += 400;
+      if (m >= 400) m -= 400;
+      *ostr << " <adj>" <<  m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(Angle* obs)
+    {
+      out << "<" << (tag="angle") << ">";
+      ostr->precision(angular);
+      double m = R2G*(obs->value());
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/10000;
+      if (m < 0) m += 400;
+      if (m >= 400) m -= 400;
+      *ostr << "<adj>" << m << "</adj>";
+
+      out << " <from>"  << obs->from() << "</from>"
+          << " <left>"  << obs->bs()   << "</left>"
+          << " <right>" << obs->fs()   << "</right>\n";
+    }
+    void visit(H_Diff* obs)
+    {
+      out << "<" << (tag="height-diff") << ">";
+      ostr->precision(linear);
+      double m =obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(S_Distance* obs)
+    {
+      out << "<" << (tag="slope-distance") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(Z_Angle* obs)
+    {
+      out << "<" << (tag="zenith-angle") << ">";
+      ostr->precision(angular);
+      double m = R2G*(obs->value());
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/10000;
+      *ostr << "<adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(X* obs)
+    {
+      out << "<" << (tag="coordinate-x") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << "<adj>" << m << "</adj>";
+
+      tag_id(obs);
+    }
+    void visit(Y* obs)
+    {
+      out << "<" << (tag="coordinate-y") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << y_sign*m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << y_sign*m << "</adj>";
+
+      tag_id(obs);
+    }
+    void visit(Z* obs)
+    {
+      out << "<" << (tag="coordinate-z") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_id(obs);
+    }
+    void visit(Xdiff* obs)
+    {
+      out << "<" << (tag="dx") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(Ydiff* obs)
+    {
+      out << "<" << (tag="dy") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << y_sign*m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << y_sign*m << "</adj>";
+
+      tag_from_to(obs);
+    }
+    void visit(Zdiff* obs)
+    {
+      out << "<" << (tag="dz") << ">";
+      ostr->precision(linear);
+      double m = obs->value();
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/1000;
+      *ostr << " <adj>" << m << "</adj>";
+
+      tag_from_to(obs);
+    }
+
+    void tag_id(const GNU_gama::local::Observation* obs)
+    {
+        out << " <id>" << obs->from() << "</id>\n";
+    }
+
+    void tag_from_to(const GNU_gama::local::Observation* obs)
+    {
+        out << " <from>" << obs->from() << "</from>"
+            << " <to>"   << obs->to()   << "</to>\n";
+    }
+
+};
 
 void LocalNetworkXML::write(std::ostream& out) const
 {
@@ -179,31 +370,50 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
 {
   out << "\n<observations-summary>\n";
 
-  int dirs=0,  angles=0, dists=0, coords=0,
-    hdiffs = 0, zangles=0, chords=0, vectors=0;
+  /** Local helper visitor class for counting observations.
+    *
+    * \todo Consider generalizing
+    * (constructor can take parameters which determines observations kinds).
+    * It  can be used in function GeneralParameters.
+    */
+  class ObservationSummaryCounter : public GNU_gama::local::AllObservationsVisitor
+  {
+  public:
+      ObservationSummaryCounter() :
+          dirs(0),  angles(0), dists(0), coords(0),
+              hdiffs(0), zangles(0), chords(0), vectors(0)
+      {}
+
+      void visit(Direction*)  { dirs++; }
+      void visit(Distance*)   { dists++; }
+      void visit(Angle*)      { angles++; }
+      void visit(H_Diff*)     { hdiffs++; }
+      void visit(S_Distance*) { chords++; }
+      void visit(Z_Angle*)    { zangles++; }
+      void visit(X*)          { coords++; }
+      void visit(Y*)          { }
+      void visit(Z*)          { }
+      void visit(Xdiff*)      { vectors++; }
+      void visit(Ydiff*)      { }
+      void visit(Zdiff*)      { }
+
+      int dirs,  angles, dists, coords,
+        hdiffs, zangles, chords, vectors;
+  };
+
+  ObservationSummaryCounter counter;
 
   for (int i=1; i<=netinfo->sum_observations(); i++)
-    if      (dynamic_cast<Distance*  >(netinfo->ptr_obs(i))) dists++;
-    else if (dynamic_cast<Direction* >(netinfo->ptr_obs(i))) dirs++;
-    else if (dynamic_cast<Angle*     >(netinfo->ptr_obs(i))) angles++;
-    else if (dynamic_cast<X*         >(netinfo->ptr_obs(i))) coords++;
-  //else if (dynamic_cast<Y*         >(netinfo->ptr_obs(i))) coords++;
-  //else if (dynamic_cast<Z*         >(netinfo->ptr_obs(i))) coords++;
-    else if (dynamic_cast<H_Diff*    >(netinfo->ptr_obs(i))) hdiffs++;
-    else if (dynamic_cast<Z_Angle*   >(netinfo->ptr_obs(i))) zangles++;
-    else if (dynamic_cast<S_Distance*>(netinfo->ptr_obs(i))) chords++;
-    else if (dynamic_cast<Xdiff*     >(netinfo->ptr_obs(i))) vectors++;
-  //else if (dynamic_cast<Ydiff*     >(netinfo->ptr_obs(i))) vectors++;
-  //else if (dynamic_cast<Zdiff*     >(netinfo->ptr_obs(i))) vectors++;
+      netinfo->ptr_obs(i)->accept(&counter);
 
-  tagnl(out, "distances",  dists);
-  tagnl(out, "directions", dirs);
-  tagnl(out, "angles",     angles);
-  tagnl(out, "xyz-coords", coords);
-  tagnl(out, "h-diffs",    hdiffs);
-  tagnl(out, "z-angles",   zangles);
-  tagnl(out, "s-dists",    chords);
-  tagnl(out, "vectors",    vectors);
+  tagnl(out, "distances",  counter.dists);
+  tagnl(out, "directions", counter.dirs);
+  tagnl(out, "angles",     counter.angles);
+  tagnl(out, "xyz-coords", counter.coords);
+  tagnl(out, "h-diffs",    counter.hdiffs);
+  tagnl(out, "z-angles",   counter.zangles);
+  tagnl(out, "s-dists",    counter.chords);
+  tagnl(out, "vectors",    counter.vectors);
 
   out << "</observations-summary>\n";
 
@@ -559,6 +769,13 @@ void LocalNetworkXML::observations(std::ostream& out) const
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;
    const double   kki    = netinfo->conf_int_coef();
 
+
+   const int linear  =  6;    // output precision
+   const int angular =  7;    // output precision
+
+
+   WriteXMLVisitor writeVisitor(out, linear, angular, v, y_sign);
+
    PointID predcs = "";   // provious standpoint ID
    for (int i=1; i<=pocmer; i++)
      {
@@ -568,155 +785,25 @@ void LocalNetworkXML::observations(std::ostream& out) const
        Angle* u = 0;
        bool xyz = false;
        const char* tag = 0;
+
        ostringstream ostr;
        ostr.setf(ios_base::fixed, ios_base::floatfield);
 
-       const int linear  =  6;    // output precision
-       const int angular =  7;    // output precision
+       writeVisitor.setSecondaryOutStream(ostr);
+       writeVisitor.setObservationIndex(i);
 
-       if (Distance* d = dynamic_cast<Distance*>(pm))
-         {
-           out << "<" << (tag="distance") << ">";
-           ostr.precision(linear);
-           double m = d->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else if (Direction* s = dynamic_cast<Direction*>(pm))
-         {
-           out << "<" << (tag="direction") << ">";
-           ostr.precision(angular);
-           double m = R2G*(s->value());
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/10000;
-           if (m < 0) m += 400;
-           if (m >= 400) m -= 400;
-           ostr << " <adj>" <<  m << "</adj>";
-         }
-       else if ( (u = dynamic_cast<Angle*>(pm)) )
-         {
-           out << "<" << (tag="angle") << ">";
-           ostr.precision(angular);
-           double m = R2G*(u->value());
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/10000;
-           if (m < 0) m += 400;
-           if (m >= 400) m -= 400;
-           ostr << "<adj>" << m << "</adj>";
-         }
-       else if (S_Distance* sd = dynamic_cast<S_Distance*>(pm))
-         {
-           out << "<" << (tag="slope-distance") << ">";
-           ostr.precision(linear);
-           double m = sd->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else if (Z_Angle* za = dynamic_cast<Z_Angle*>(pm))
-         {
-           out << "<" << (tag="zenith-angle") << ">";
-           ostr.precision(angular);
-           double m = R2G*(za->value());
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/10000;
-           ostr << "<adj>" << m << "</adj>";
-         }
-       else if (X* x = dynamic_cast<X*>(pm))
-         {
-           xyz = true;
-           out << "<" << (tag="coordinate-x") << ">";
-           ostr.precision(linear);
-           double m = x->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << "<adj>" << m << "</adj>";
-         }
-       else if (Y* y = dynamic_cast<Y*>(pm))
-         {
-           xyz = true;
-           out << "<" << (tag="coordinate-y") << ">";
-           ostr.precision(linear);
-           double m = y->value();
-           ostr << " <obs>" << y_sign*m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << y_sign*m << "</adj>";
-         }
-       else if (Z* z = dynamic_cast<Z*>(pm))
-         {
-           xyz = true;
-           out << "<" << (tag="coordinate-z") << ">";
-           ostr.precision(linear);
-           double m = z->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else if (H_Diff* h = dynamic_cast<H_Diff*>(pm))
-         {
-           out << "<" << (tag="height-diff") << ">";
-           ostr.precision(linear);
-           double m = h->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
-         {
-           out << "<" << (tag="dx") << ">";
-           ostr.precision(linear);
-           double m = dx->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
-         {
-           out << "<" << (tag="dy") << ">";
-           ostr.precision(linear);
-           double m = dy->value();
-           ostr << " <obs>" << y_sign*m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << y_sign*m << "</adj>";
-         }
-       else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
-         {
-           out << "<" << (tag="dz") << ">";
-           ostr.precision(linear);
-           double m = dz->value();
-           ostr << " <obs>" << m << "</obs>";
-           m += v(i)/1000;
-           ostr << " <adj>" << m << "</adj>";
-         }
-       else
-         {
-           throw GNU_gama::local::Exception("review/adjusted_observations.h - "
-                                    "unknown observation type");
-         }
-
-       if (u)
-         {
-           out << " <from>"  << u->from() << "</from>"
-               << " <left>"  << u->bs()   << "</left>"
-               << " <right>" << u->fs()   << "</right>\n";
-         }
-       else if (xyz)
-         {
-           out << " <id>" << pm->from() << "</id>\n";
-         }
-       else
-         {
-           out << " <from>" << pm->from() << "</from>"
-               << " <to>"   << pm->to()   << "</to>\n";
-         }
+       pm->accept(&writeVisitor);
 
        out << "  " << ostr.str();
+       //out << "\n";
 
        out.setf(ios_base::fixed, ios_base::floatfield);
        out.precision(3);
        out.width(7);
+
+
        double ml = netinfo->stdev_obs(i);
+
        if (dynamic_cast<Direction*>(pm))
          ml *= scale;
        else if (dynamic_cast<Angle*>(pm))
@@ -751,9 +838,9 @@ void LocalNetworkXML::observations(std::ostream& out) const
              }
          }
 
-       out << "\n   </" << tag << ">\n";
+       out << "\n   </" << writeVisitor.lastTag() << ">\n";
 
-   }
+   } // end for
 
   out << "\n</observations>\n";
 }

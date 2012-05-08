@@ -1,3 +1,36 @@
+2012-05-08  Vaclav Petras  <wenzeslaus@gmail.com>
+
+	* class BaseVisitor and related classes moved to separete file visitor.h
+
+	* local Observation has protected init method and non-parametric constructor
+	Code in local Observation was reorganized and some atributes are not const.
+
+	* local observations are visitable (base is Accept<>)
+			-  class Direction : public Observation
+			+  class Direction : public Accept<Direction, Observation>
+
+	* local observations' write methods moved to WriteVisitor
+
+	* LocalRevision and LocalLinearization are now visitors
+
+	* base classes Revision and Linearization removed from local
+
+	* method observations_summary in LocalNetworkXML uses visitor for counting
+
+	* method observations in LocalNetworkXML uses visitor for writing
+
+	* function OutlyingAbsoluteTerms uses visitor for writing
+
+	* method test_abs_term in LocalNetwork uses visitor for test
+
+	* local Observation set_passive and set_active methods are now non-const
+
+	* function AdjustedObservations uses visitor for writing part of table row
+
+	* function TestLinearization uses visitor for computing and writing
+
+	* function ResidualsObservations uses visitor writing observation name
+
 2012-03-16  Ales Cepek  <cepek@biggy>
 
 	* fixed a bug in the definition of angular observations reported

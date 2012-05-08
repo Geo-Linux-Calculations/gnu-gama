@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library
 
@@ -19,11 +20,19 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file write.cpp
+ * \brief output operators
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #include <iostream>
 #include <iomanip>
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/local/observation.h>
+#include <gnu_gama/local/observation/write/writevisitor.h>
 
 namespace GNU_gama { namespace local {
 
@@ -97,7 +106,9 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 }
 
 
-
+/**
+ * \todo Consider using visitor pattern for clusters.
+ */
 std::ostream& operator << (std::ostream& str, ObservationData& od)
 {
   using namespace std;
@@ -142,11 +153,12 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
 
       str << start_tag;
 
-      const ObservationList& ol = (*c)->observation_list;
-      for (ObservationList::const_iterator i=ol.begin(); i!=ol.end(); ++i)
+      WriteVisitor<std::ostream> write_wisitor(str, !common_standpoint);
+      ObservationList& ol = (*c)->observation_list;
+      for (ObservationList::iterator i=ol.begin(); i!=ol.end(); ++i)
         {
           str << "   ";
-          (*i)->write(str, !common_standpoint);
+          (*i)->accept(&write_wisitor);
           str << "\n";
         }
 

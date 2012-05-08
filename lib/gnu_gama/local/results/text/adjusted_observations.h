@@ -1,6 +1,7 @@
 /*
     Geodesy and Mapping C++ library (GNU GaMa)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library.
 
@@ -19,6 +20,13 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file adjusted_observations.h
+ * \brief Function for writing adjusted observations
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #ifndef GaMa_GaMaProg_Vyrovnana_Pozorovani_h_
 #define GaMa_GaMaProg_Vyrovnana_Pozorovani_h_
 
@@ -28,6 +36,216 @@
 #include <gnu_gama/utf8.h>
 
 namespace GNU_gama { namespace local {
+
+
+/** \brief Writes part of row in table 'Adjusted observations'.
+ *
+ * \warning Index of observation has to be specified before each visit.
+ * \sa setObservationIndex()
+ */
+template <typename OutStream>
+class AdjustedObservationsTextVisitor : public AllObservationsVisitor
+{
+private:
+    OutStream& out;
+    GNU_gama::local::LocalNetwork* IS;
+    const int maxval;
+    const GNU_gama::local::Vec& v; ///< residuals
+    GNU_gama::Index i;
+    const int y_sign;
+
+    static const int distPrecision = 5;
+    static const int angularPrecision = 6;
+    static const int coordPrecision = 5;
+
+public:
+    /**
+     * \param localNetwork pointer to local network
+     * \param outStream reference to output stream
+     * \param residuals vector of residuals
+     * \param ySign sing of y coordinates
+     * \param columnWidth width of column with values
+     */
+    AdjustedObservationsTextVisitor(GNU_gama::local::LocalNetwork* localNetwork,
+                                    OutStream& outStream,
+                                    const GNU_gama::local::Vec& residuals,
+                                    int ySign,
+                                    int columnWidth)
+        : IS(localNetwork), out(outStream), maxval(columnWidth),
+          v(residuals), y_sign(ySign)
+    {}
+
+    /** \brief Sets index of observation which will be used in the next visit. */
+    void setObservationIndex(GNU_gama::Index index) { i = index; }
+
+    void visit(Distance* obs)
+    {
+        out << T_GaMa_distance;
+        out.precision(distPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+
+    void visit(Direction* obs)
+    {
+        out << T_GaMa_direction;
+        out.precision(angularPrecision);
+        out.width(maxval);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+        out.width(maxval);
+        m += v(i)/10000;
+        if (m < 0) m += 400;
+        if (m >= 400) m -= 400;
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+
+    void visit(Angle* obs)
+    {
+        out << '\n';
+        const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
+        out << Utf8::leftPad(obs->fs().str(), w);
+        out << T_GaMa_angle;
+        out.precision(angularPrecision);
+        out.width(maxval);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+        out.width(maxval);
+        m += v(i)/10000;
+        if (m < 0) m += 400;
+        if (m >= 400) m -= 400;
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+
+    void visit(H_Diff* obs)
+    {
+        out << T_GaMa_levell;
+        out.precision(distPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+
+    void visit(S_Distance* obs)
+    {
+        out << T_GaMa_s_distance;
+        out.precision(distPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+
+    void visit(Z_Angle* obs)
+    {
+        out << T_GaMa_z_angle;
+        out.precision(angularPrecision);
+        out.width(maxval);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+        out.width(maxval);
+        m += v(i)/10000;
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
+    void visit(X* obs)
+    {
+        out << T_GaMa_x;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+    void visit(Y* obs)
+    {
+        out << T_GaMa_y;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << y_sign*m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << y_sign*m << " ";
+    }
+
+    void visit(Z* obs)
+    {
+        out << T_GaMa_z;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+    void visit(Xdiff* obs)
+    {
+        out << T_GaMa_xdiff;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+
+    void visit(Ydiff* obs)
+    {
+        out << T_GaMa_ydiff;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << y_sign*m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << y_sign*m << " ";
+    }
+
+    void visit(Zdiff* obs)
+    {
+        out << T_GaMa_zdiff;
+        out.precision(coordPrecision);
+        out.width(maxval);
+        Double m = obs->value();
+        out << m << " ";
+        out.width(maxval);
+        m += v(i)/1000;
+        out << m << " ";
+    }
+
+};
+
 
 template <typename OutStream>
 void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
@@ -49,7 +267,7 @@ void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
    {
      for (int i=1; i<=pocmer; i++)
        {
-         Observation* pm = IS->ptr_obs(i);
+         const Observation* pm = IS->ptr_obs(i);
          int z = 0;
          double d = pm->value();
          if (d < 0)
@@ -92,6 +310,8 @@ void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
      out << "==== [m|d] ====== [mm|ss] ==\n\n";
    out.flush();
 
+   AdjustedObservationsTextVisitor<OutStream> textVisitor(IS, out, v, y_sign, maxval);
+
    PointID predcs = "";   // provious standpoint ID
    for (int i=1; i<=pocmer; i++)
    {
@@ -109,170 +329,8 @@ void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       out << Utf8::leftPad(cc.str(), IS->maxw_id());
       out.setf(ios_base::fixed, ios_base::floatfield);
 
-      {   // ***************************************************
-        if (Distance* d = dynamic_cast<Distance*>(pm))
-          {
-            out << T_GaMa_distance;
-            out.precision(5);
-            out.width(maxval);
-            Double m = d->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (Direction* s = dynamic_cast<Direction*>(pm))
-          {
-            out << T_GaMa_direction;
-            out.precision(6);
-            out.width(maxval);
-            Double m = R2G*(s->value());
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-            out.width(maxval);
-            m += v(i)/10000;
-            if (m < 0) m += 400;
-            if (m >= 400) m -= 400;
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-          }
-        else if (Angle* u = dynamic_cast<Angle*>(pm))
-          {
-            out << '\n';
-            const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
-            out << Utf8::leftPad(u->fs().str(), w);
-            out << T_GaMa_angle;
-            out.precision(6);
-            out.width(maxval);
-            Double m = R2G*(u->value());
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-            out.width(maxval);
-            m += v(i)/10000;
-            if (m < 0) m += 400;
-            if (m >= 400) m -= 400;
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-          }
-        else if (S_Distance* sd = dynamic_cast<S_Distance*>(pm))
-          {
-            out << T_GaMa_s_distance;
-            out.precision(5);
-            out.width(maxval);
-            Double m = sd->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (Z_Angle* za = dynamic_cast<Z_Angle*>(pm))
-          {
-            out << T_GaMa_z_angle;
-            out.precision(6);
-            out.width(maxval);
-            Double m = R2G*(za->value());
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-            out.width(maxval);
-            m += v(i)/10000;
-            if (IS->gons())
-              out << m << " ";
-            else
-              out << GNU_gama::gon2deg(m, 0, 2) << " ";
-          }
-        else if (X* x = dynamic_cast<X*>(pm))
-          {
-            out << T_GaMa_x;
-            out.precision(5);
-            out.width(maxval);
-            Double m = x->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (Y* y = dynamic_cast<Y*>(pm))
-          {
-            out << T_GaMa_y;
-            out.precision(5);
-            out.width(maxval);
-            Double m = y->value();
-            out << y_sign*m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << y_sign*m << " ";
-          }
-        else if (Z* z = dynamic_cast<Z*>(pm))
-          {
-            out << T_GaMa_z;
-            out.precision(5);
-            out.width(maxval);
-            Double m = z->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (H_Diff* h = dynamic_cast<H_Diff*>(pm))
-          {
-            out << T_GaMa_levell;
-            out.precision(5);
-            out.width(maxval);
-            Double m = h->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (Xdiff* dx = dynamic_cast<Xdiff*>(pm))
-          {
-            out << T_GaMa_xdiff;
-            out.precision(5);
-            out.width(maxval);
-            Double m = dx->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else if (Ydiff* dy = dynamic_cast<Ydiff*>(pm))
-          {
-            out << T_GaMa_ydiff;
-            out.precision(5);
-            out.width(maxval);
-            Double m = dy->value();
-            out << y_sign*m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << y_sign*m << " ";
-          }
-        else if (Zdiff* dz = dynamic_cast<Zdiff*>(pm))
-          {
-            out << T_GaMa_zdiff;
-            out.precision(5);
-            out.width(maxval);
-            Double m = dz->value();
-            out << m << " ";
-            out.width(maxval);
-            m += v(i)/1000;
-            out << m << " ";
-          }
-        else
-          {
-            throw GNU_gama::local::Exception("review/adjusted_observations.h - "
-                                     "unknown observation type");
-          }
-      }   // ***************************************************
+      textVisitor.setObservationIndex(i);
+      pm->accept(&textVisitor);
 
       out.precision(1);
       out.width(7);

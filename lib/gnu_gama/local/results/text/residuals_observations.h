@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library
 
@@ -19,10 +20,18 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file residuals_observations.h
+ * \brief Function for writing residuals observations
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #ifndef GaMa_GaMaProg_Opravy_Pozorovani__h_
 #define GaMa_GaMaProg_Opravy_Pozorovani__h_
 
 #include <gnu_gama/local/network.h>
+#include <gnu_gama/local/observation.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/utf8.h>
 #include <algorithm>
@@ -56,8 +65,32 @@ public:
     }
 };
 
-
 namespace GNU_gama { namespace local {
+
+/** \brief Writes observation short name to output stream. */
+template <typename OutStream>
+class WriteShortObservationName : public GNU_gama::local::AllObservationsVisitor
+{
+private:
+    OutStream& out;
+public:
+    WriteShortObservationName(OutStream& outStream) : out(outStream)
+    {}
+
+    void visit(Distance* obs) { out << T_GaMa_distance; }
+    void visit(Direction* obs) { out << T_GaMa_direction; }
+    void visit(Angle* obs) { out << T_GaMa_angle; }
+    void visit(H_Diff* obs) { out << T_GaMa_levell; }
+    void visit(S_Distance* obs) { out << T_GaMa_s_distance; }
+    void visit(Z_Angle* obs) { out << T_GaMa_z_angle; }
+    void visit(X* obs) { out << T_GaMa_x; }
+    void visit(Y* obs) { out << T_GaMa_y; }
+    void visit(Z* obs) { out << T_GaMa_z; }
+    void visit(Xdiff* obs) { out << T_GaMa_xdiff; }
+    void visit(Ydiff* obs) { out << T_GaMa_ydiff; }
+    void visit(Zdiff* obs) { out << T_GaMa_zdiff; }
+
+};
 
 template <typename OutStream>
 void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
@@ -129,6 +162,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         out << "======== [mm|ss] =========== [mm|ss] ===\n\n";
       out.flush();
 
+      WriteShortObservationName<OutStream> nameVisitor(out);
 
       PointID predcs = "";   // previous standpoint ID
       int max_ii = pruchod==1 ? pocmer : odlehla.size();
@@ -149,62 +183,15 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           out << Utf8::leftPad(cc.str(), IS->maxw_id());
           out.setf(ios_base::fixed, ios_base::floatfield);
 
-          if (dynamic_cast<Distance*>(pm))
-            {
-              out << T_GaMa_distance;
-            }
-          else if (dynamic_cast<Direction*>(pm))
-            {
-              out << T_GaMa_direction;
-            }
-          else if (Angle* u = dynamic_cast<Angle*>(pm))
+          // special case for angle (before calling name visitor)
+          if (Angle* u = dynamic_cast<Angle*>(pm))
             {
               out << '\n';
               const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
               out << Utf8::leftPad((u->fs()).str(), w);
-              out << T_GaMa_angle;
             }
-          else if (dynamic_cast<S_Distance*>(pm))
-            {
-              out << T_GaMa_s_distance;
-            }
-          else if (dynamic_cast<Z_Angle*>(pm))
-            {
-              out << T_GaMa_z_angle;
-            }
-          else if (dynamic_cast<X*>(pm))
-            {
-              out << T_GaMa_x;
-            }
-          else if (dynamic_cast<Y*>(pm))
-            {
-              out << T_GaMa_y;
-            }
-          else if (dynamic_cast<Z*>(pm))
-            {
-              out << T_GaMa_z;
-            }
-          else if (dynamic_cast<H_Diff*>(pm))
-            {
-              out << T_GaMa_levell;
-            }
-          else if (dynamic_cast<Xdiff*>(pm))
-            {
-              out << T_GaMa_xdiff;
-            }
-          else if (dynamic_cast<Ydiff*>(pm))
-            {
-              out << T_GaMa_ydiff;
-            }
-          else if (dynamic_cast<Zdiff*>(pm))
-            {
-              out << T_GaMa_zdiff;
-            }
-          else
-            {
-            throw GNU_gama::local::Exception("review/residuals_observations.h - "
-                                     "unknown observation type");
-            }
+
+          pm->accept(&nameVisitor);
 
           Double f  = IS->obs_control(i);
           out.precision(1);

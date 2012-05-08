@@ -1,6 +1,7 @@
 /*
   GNU Gama C++ library
   Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                2011  Vaclav Petras <wenzeslaus@gmail.com>
 
   This file is part of the GNU Gama C++ library
 
@@ -19,10 +20,18 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file general_parameters.h
+ * \brief Function for writing general network parameters
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #ifndef GaMa_GaMaProg_Zakladni_Parametry_h_
 #define GaMa_GaMaProg_Zakladni_Parametry_h_
 
 #include <iomanip>
+#include <gnu_gama/local/observation/write/writevisitor.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/statan.h>
@@ -32,6 +41,11 @@
 
 namespace GNU_gama { namespace local {
 
+/** \brief
+ *
+ * \todo Use visitor for counting.
+ * \todo Replace \c dynamic_cast by visitor and consider why other observation types are ignored.
+ */
 template <typename OutStream>
 bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
@@ -463,7 +477,8 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               << setprecision(0) << (1 - IS->conf_pr())*100
               << T_GaMa_genpar_for_observation_ind
               << imax << "\n";
-          ptr->write(out.std_stream(), true);
+          WriteVisitor<OutStream> write_visitor(out, true);
+          ptr->accept(&write_visitor);
           out << "\n";
         }
 

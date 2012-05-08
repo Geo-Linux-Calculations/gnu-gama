@@ -27,6 +27,7 @@ libgama_src = \
    gnu_gama/utf8.h \
    gnu_gama/version.cpp \
    gnu_gama/version.h \
+   gnu_gama/visitor.h \
    gnu_gama/xml_expat.h \
    gnu_gama/adj/adj_base.h \
    gnu_gama/adj/adj_basefull.h \
@@ -101,7 +102,6 @@ libgama_src = \
    gnu_gama/local/itstream.h \
    gnu_gama/local/language.cpp \
    gnu_gama/local/language.h \
-   gnu_gama/local/linearization.h \
    gnu_gama/local/acord/approx_heights.cpp \
    gnu_gama/local/acord/approx_heights.h \
    gnu_gama/local/acord/approx_vectors.cpp \
@@ -159,18 +159,10 @@ libgama_src = \
    gnu_gama/local/medianf.h \
    gnu_gama/local/observation.cpp \
    gnu_gama/local/observation.h \
-   gnu_gama/local/observation/write/angle.cpp \
-   gnu_gama/local/observation/write/direction.cpp \
-   gnu_gama/local/observation/write/distance.cpp \
-   gnu_gama/local/observation/write/hdiff.cpp \
-   gnu_gama/local/observation/write/sdistance.cpp \
-   gnu_gama/local/observation/write/xyz.cpp \
-   gnu_gama/local/observation/write/xyzdiff.cpp \
-   gnu_gama/local/observation/write/zangle.cpp \
+   gnu_gama/local/observation/write/writevisitor.h \
    gnu_gama/local/pointid.cpp \
    gnu_gama/local/pointid.h \
    gnu_gama/local/readsabw.h \
-   gnu_gama/local/revision.h \
    gnu_gama/local/skipcomm.cpp \
    gnu_gama/local/skipcomm.h \
    gnu_gama/local/sqlitereader.h \

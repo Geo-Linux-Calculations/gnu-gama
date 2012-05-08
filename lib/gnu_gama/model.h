@@ -23,7 +23,7 @@
 #define GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
 
 #include <gnu_gama/obsdata.h>
-
+#include <gnu_gama/visitor.h>
 
 namespace GNU_gama {
 
@@ -39,18 +39,6 @@ namespace GNU_gama {
 
   // BaseVisitor is a completely degenerated class having only
   // the virtual destructor.
-
-
-  /** BaseVisitor is a completely degenerated class having only
-   *  the virtual destructor.
-   */
-
-  class BaseVisitor
-  {
-  public:
-    virtual ~BaseVisitor() {}
-  };
-
 
   /** Base observation class.
    */
@@ -77,53 +65,6 @@ namespace GNU_gama {
   private:
 
     bool active_;
-  };
-
-
-  // .....................................................................
-
-
-  /** Abstract visitor class (design pattern 'acyclic visitor')
-   */
-
-  template <typename Element> class Visitor
-  {
-  public:
-    virtual ~Visitor() {}
-    virtual void visit(Element* element) = 0;
-  };
-
-
-  /** Helper intermediate template class Accept defines method
-   *  accept() for derived element classes in acyclic visitor pattern.
-   *
-   * Example:
-   *
-   * \code
-   *  //  g3 distance class
-   *
-   *  class Distance : public Accept<Distance, Observation>,
-   *                   public FromTo, public Value {
-   *  public:
-   *
-   *    Distance() {}
-   *    Distance(double d) : Value(d) {}
-   *
-   *    int dimension() const { return 1; }
-   *  };
-   * \endcode
-   */
-
-  template <typename Derived, typename Base>
-    class Accept : public Base {
-  public:
-    void accept(BaseVisitor* visitor)
-    {
-      if (Visitor<Derived>* v = dynamic_cast<Visitor<Derived>*>(visitor))
-        {
-          v->visit(static_cast<Derived*>(this));
-        }
-    }
   };
 
 

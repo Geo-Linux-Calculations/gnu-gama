@@ -23,6 +23,7 @@
 #include <gnu_gama/g3/g3_cluster.h>
 #include <gnu_gama/outstream.h>
 #include <gnu_gama/adj/adj.h>
+#include <gnu_gama/visitor.h>
 #include <iomanip>
 #include <algorithm>
 

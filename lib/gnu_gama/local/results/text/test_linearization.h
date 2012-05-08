@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                  2011  Vaclav Petras <wenzeslaus@gmail.com>
 
     This file is part of the GNU Gama C++ library
 
@@ -19,6 +20,13 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/** \file test_linearization.h
+ * \brief Function and visitor for linearization testing
+ *
+ * \author Ales Cepek
+ * \author Vaclav Petras (acyclic visitor pattern)
+ */
+
 #ifndef GaMa_GaMaProg_Prehled_Test_Chyby_z_Linearizace_h_
 #define GaMa_GaMaProg_Prehled_Test_Chyby_z_Linearizace_h_
 
@@ -28,12 +36,192 @@
 #include <gnu_gama/local/pobs/bearing.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/utf8.h>
+#include <gnu_gama/visitor.h>
 #include <cmath>
 #include <algorithm>
 
 
 namespace GNU_gama { namespace local {
 
+
+class TestLinearizationVisitor : public AllObservationsVisitor
+{
+private:
+    GNU_gama::local::LocalNetwork* IS;
+    const GNU_gama::local::Vec& v; ///< residuals
+    const GNU_gama::local::Vec& x; ///< unknowns
+    GNU_gama::Index i;
+    Double pol;
+    Double mer;
+public:
+    TestLinearizationVisitor(GNU_gama::local::LocalNetwork* localNetwork,
+                             const GNU_gama::local::Vec& residuals,
+                             const GNU_gama::local::Vec& unknowns)
+        : IS(localNetwork), v(residuals), x(unknowns)
+
+    {}
+
+    /** \brief Sets index of observation which will be used in the next visit. */
+    void setObservationIndex(GNU_gama::Index index) { i = index; }
+
+    Double getPol() { return  pol; }
+    Double getMer() { return  mer; }
+
+    void visit(Distance* obs)
+    {
+        Double ds, dd;
+        computeBearingAndDistance(obs, ds, dd);
+        mer  = obs->value() + v(i)/1000;
+        mer -= dd;
+        mer *= 1000;
+        pol  = mer;
+    }
+
+    void visit(Direction* obs)
+    {
+        Double ds, dd;
+        computeBearingAndDistance(obs, ds, dd);
+        Double orp = obs->orientation();
+        mer = obs->value() + v(i)*CC2R + orp + x(obs->index_orientation())*CC2R;
+        mer -= ds;
+        while (mer >  M_PI) mer -= 2*M_PI;
+        while (mer < -M_PI) mer += 2*M_PI;
+        pol  = mer*dd*1000;
+        mer *= R2CC;
+    }
+
+    void visit(Angle* obs)
+    {
+        Double ds, dd;
+        computeBearingAndDistance(obs, ds, dd);
+
+        Double sx, sy, cx, cy;
+        computeFromTo(obs, sx, sy, cx, cy);
+
+        const LocalPoint& cil2 = IS->PD[obs->fs() ];
+        Double cy2 = cil2.y() + x(cil2.index_y())/1000;
+        Double cx2 = cil2.x() + x(cil2.index_x())/1000;
+        Double ds2, dd2;
+        GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
+        mer = obs->value() + v(i)*CC2R - ds2 + ds;
+        while (mer >  M_PI) mer -= 2*M_PI;
+        while (mer < -M_PI) mer += 2*M_PI;
+        pol  = mer*max(dd,dd2)*1000;
+        mer *= R2CC;
+    }
+
+    void visit(H_Diff*)     { mer = 0; pol = 0; }
+    void visit(S_Distance*) { mer = 0; pol = 0; }
+    void visit(Z_Angle*)    { mer = 0; pol = 0; }
+    void visit(X*)          { mer = 0; pol = 0; }
+    void visit(Y*)          { mer = 0; pol = 0; }
+    void visit(Z*)          { mer = 0; pol = 0; }
+    void visit(Xdiff*)      { mer = 0; pol = 0; }
+    void visit(Ydiff*)      { mer = 0; pol = 0; }
+    void visit(Zdiff*)      { mer = 0; pol = 0; }
+
+private:
+    void computeBearingAndDistance(const Observation* pm, Double& ds, Double& dd)
+    {
+        Double sx;
+        Double sy;
+        Double cx;
+        Double cy;
+        computeFromTo(pm, sx, sy, cx, cy);
+        GNU_gama::local::bearing_distance(sy, sx, cy, cx, ds, dd);
+    }
+
+    void computeFromTo(const Observation* pm, Double& sx, Double& sy, Double& cx, Double& cy)
+    {
+        const LocalPoint& stan = IS->PD[pm->from()];
+        const LocalPoint& cil  = IS->PD[pm->to() ];
+        sy = stan.y();
+        sx = stan.x();
+        if (stan.free_xy())
+          {
+            sy += x(stan.index_y())/1000;
+            sx += x(stan.index_x())/1000;
+          }
+        cy = cil .y();
+        cx = cil .x();
+        if (cil.free_xy())
+          {
+            cy += x(cil .index_y())/1000;
+            cx += x(cil .index_x())/1000;
+          }
+    }
+
+};
+
+/** \brief Writes observation name and gets values of observation value.
+ *
+ * \todo Enhance functions to do more.
+ */
+template <typename OutStream>
+class TestLinearizationWriteVisitor : public AllObservationsVisitor
+{
+private:
+    OutStream& out;
+    GNU_gama::local::LocalNetwork* IS;
+    Double dms;
+    Double mer;
+
+    static const int distPrecision = 5;
+    static const int angularPrecision = 6;
+
+public:
+    TestLinearizationWriteVisitor(OutStream& outStream,
+                                  GNU_gama::local::LocalNetwork* localNetwork)
+        : out(outStream), IS(localNetwork)
+    {}
+
+    ///* \brief Sets index of observation which will be used in the next visit. */
+    //void setObservationIndex(GNU_gama::Index index) { i = index; }
+
+    Double getDms() { return  dms; }
+    Double getMer() { return  mer; }
+
+    void visit(Distance* obs)
+      {
+        dms = false;
+        out << T_GaMa_distance;
+        mer = obs->value();
+        out.precision(distPrecision);
+      }
+    void visit(Direction* obs)
+      {
+        dms = IS->degrees();
+        out << T_GaMa_direction;
+        mer = (obs->value())*R2G;
+        out.precision(angularPrecision);
+      }
+    void visit(Angle* obs)
+      {
+        dms = IS->degrees();
+        out << '\n';
+        const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
+        out << Utf8::leftPad((obs->fs()).str(), w);
+        out << T_GaMa_angle;
+        mer = (obs->value())*R2G;
+        out.precision(angularPrecision);
+      }
+
+    void visit(H_Diff*)     { mer = 0; dms = false; }
+    void visit(S_Distance*) { mer = 0; dms = false; }
+    void visit(Z_Angle*)    { mer = 0; dms = false; }
+    void visit(X*)          { mer = 0; dms = false; }
+    void visit(Y*)          { mer = 0; dms = false; }
+    void visit(Z*)          { mer = 0; dms = false; }
+    void visit(Xdiff*)      { mer = 0; dms = false; }
+    void visit(Ydiff*)      { mer = 0; dms = false; }
+    void visit(Zdiff*)      { mer = 0; dms = false; }
+
+};
+
+/** \brief
+ *
+ * \todo Reorganize code by moving some observation dependent code to TestLinearizationWriteVisitor.
+ */
 template <typename OutStream>
 bool
 TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
@@ -96,6 +284,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
     const Vec& v = IS->residuals();
     const Vec& x = IS->solve();
 
+    TestLinearizationVisitor testVisitor(IS, v, x);
+
     for (int i=1; i<=M; i++)
       {
         dif_m(i) = 0;
@@ -103,73 +293,23 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
         // if (IS->obs_control(i) < 0.1) continue;  // uncontrolled observation
         // if (IS->obs_control(i) < 5.0) continue;  // weakly controlled obs.
 
-        Double  mer, pol;
+        Double  mer = 0, pol = 0;
 
         Observation* pm = IS->ptr_obs(i);
-        if (dynamic_cast<const H_Diff*>(pm))
-          {
-            dif_m(i) = dif_p(i) = 0;
-            continue;
-          }
+
+        // special case for coordinates
         if (dynamic_cast<const Coordinates*>(pm->ptr_cluster()))
           {
             dif_m(i) = dif_p(i) = 0;
             continue;
           }
 
-        const LocalPoint& stan = IS->PD[pm->from()];
-        const LocalPoint& cil  = IS->PD[pm->to() ];
-        Double sy = stan.y();
-        Double sx = stan.x();
-        if (stan.free_xy())
-          {
-            sy += x(stan.index_y())/1000;
-            sx += x(stan.index_x())/1000;
-          }
-        Double cy = cil .y();
-        Double cx = cil .x();
-        if (cil.free_xy())
-          {
-            cy += x(cil .index_y())/1000;
-            cx += x(cil .index_x())/1000;
-          }
-        Double ds, dd;
-        GNU_gama::local::bearing_distance(sy, sx, cy, cx, ds, dd);
+        // other observations by visitor or by default values
+        testVisitor.setObservationIndex(i);
+        pm->accept(&testVisitor);
 
-        if (Distance* d = dynamic_cast<Distance*>(pm))
-          {
-            mer  = d->value() + v(i)/1000;
-            mer -= dd;
-            mer *= 1000;
-            pol  = mer;
-          }
-        else if (Direction* s = dynamic_cast<Direction*>(pm))
-          {
-            Double orp = s->orientation();
-            mer = s->value() + v(i)*CC2R + orp + x(s->index_orientation())*CC2R;
-            mer -= ds;
-            while (mer >  M_PI) mer -= 2*M_PI;
-            while (mer < -M_PI) mer += 2*M_PI;
-            pol  = mer*dd*1000;
-            mer *= R2CC;
-          }
-        else if (Angle* u = dynamic_cast<Angle*>(pm))
-          {
-            const LocalPoint& cil2 = IS->PD[u->fs() ];
-            Double cy2 = cil2.y() + x(cil2.index_y())/1000;
-            Double cx2 = cil2.x() + x(cil2.index_x())/1000;
-            Double ds2, dd2;
-            GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
-            mer = u->value() + v(i)*CC2R - ds2 + ds;
-            while (mer >  M_PI) mer -= 2*M_PI;
-            while (mer < -M_PI) mer += 2*M_PI;
-            pol  = mer*max(dd,dd2)*1000;
-            mer *= R2CC;
-          }
-        else
-          {
-            mer = pol = 0;
-          }
+        mer = testVisitor.getMer();
+        pol = testVisitor.getPol();
 
         dif_m(i) = mer;
         dif_p(i) = pol;
@@ -220,6 +360,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
         // print table
         // -----------
 
+        TestLinearizationWriteVisitor<OutStream> writeVisitor(out, IS);
+
         PointID predcs;   // previous standpoint ID
 
         for (int i=1; i<=M; i++)
@@ -241,30 +383,12 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
             out.setf(ios_base::fixed, ios_base::floatfield);
 
             bool dms = false;
-            Double mer;
-            if (Distance* d = dynamic_cast<Distance*>(pm))
-              {
-                out << T_GaMa_distance;
-                mer = d->value();
-                out.precision(5);
-              }
-            else if (Direction* s = dynamic_cast<Direction*>(pm))
-              {
-                dms = IS->degrees();
-                out << T_GaMa_direction;
-                mer = (s->value())*R2G;
-                out.precision(6);
-              }
-            else if (Angle* u = dynamic_cast<Angle*>(pm))
-              {
-                dms = IS->degrees();
-                out << '\n';
-                const int w = IS->maxw_obs() + 2 + 2*(IS->maxw_id());
-                out << Utf8::leftPad((u->fs()).str(), w);
-                out << T_GaMa_angle;
-                mer = (u->value())*R2G;
-                out.precision(6);
-              }
+            Double mer = 0;
+
+            pm->accept(&writeVisitor);
+
+            mer = writeVisitor.getMer();
+            dms = writeVisitor.getDms();
 
             if (!dms)
               {
