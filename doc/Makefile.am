@@ -15,7 +15,8 @@ gama_TEXINFOS =           \
    gama-local.texi        \
    gama-local-input.texi  \
    obsdata.texi           \
-   xyz2blh.texi
+   xyz2blh.texi           \
+   gama-local-sql.texi
 
 EXTRA_DIST =                         \
    fig/gama-local-adj-ellipse-g.eps  \
