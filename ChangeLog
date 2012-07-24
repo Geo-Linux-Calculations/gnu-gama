@@ -1,3 +1,12 @@
+
+
+............................................
+
+
+2012-07-24  Ales Cepek  <cepek@gnu.org>
+
+	* new release 1.12
+
 2012-05-08  Vaclav Petras  <wenzeslaus@gmail.com>
 
 	* class BaseVisitor and related classes moved to separete file visitor.h
