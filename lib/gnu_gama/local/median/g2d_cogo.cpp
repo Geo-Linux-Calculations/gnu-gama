@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2012  Ales Cepek  <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -45,6 +45,25 @@ using namespace std;
 namespace GNU_gama { namespace local {
 
 
+    double CoordinateGeometry2D::small_angle_limit_    = 0;
+    bool   CoordinateGeometry2D::small_angle_detected_ = false;
+
+    double CoordinateGeometry2D::small_angle_limit()
+    {
+      return small_angle_limit_;
+    }
+    bool CoordinateGeometry2D::small_angle_detected()
+    {
+      return small_angle_detected_;
+    }
+    void CoordinateGeometry2D::set_small_angle_limit(double sal)
+    {
+      if (sal <= 0)  sal = 0.15;
+      small_angle_limit_ = sal;
+      small_angle_detected_ = false;
+    }
+
+
   // ************** Distance_distance *********************
 
   void Distance_distance::observation_check(Observation* m1, Observation* m2)
@@ -82,8 +101,11 @@ namespace GNU_gama { namespace local {
       Double g = (s1+f)*(s1-f);
       if(g < 0)                     // intersection doesn't exist
         return;
-      if(sqrt(g) < (0.15*s1*s2))    // intersection angle < 10 gon
-        return;
+      if(sqrt(g) < (small_angle_limit_*s1*s2))    // intersection angle < 10 gon
+        {
+          small_angle_detected_ = true;
+          return;
+        }
       point1->set_xy(B1.x()+dx*f-dy*sqrt(g), B1.y()+dy*f+dx*sqrt(g));
       number_of_solutions_ = 1;
       if(g > 0)
@@ -136,8 +158,11 @@ namespace GNU_gama { namespace local {
       const LocalPoint B2 = (*(SB->find(h2->from()))).second;
       Double jmen = cos(h1->value())*sin(h2->value())
         -sin(h1->value())*cos(h2->value());
-      if(fabs(jmen) < 0.15)       // unreliable intersection
-        return;
+      if(fabs(jmen) < small_angle_limit_)       // unreliable intersection
+        {
+          small_angle_detected_ = true;
+          return;
+        }
       Double dy = (sin(h1->value())*sin(h2->value())*(B2.x()-B1.x())-
                    cos(h1->value())*sin(h2->value())*(B2.y()-B1.y()))/jmen;
       /*
@@ -219,8 +244,11 @@ namespace GNU_gama { namespace local {
       Double x1 = sqrt(g2d_sqr(r)-g2d_sqr(yp));
       if(x1 <= xp)     // semi-line outside circle; intersection doesn't exist
         return;
-      if(x1 < (0.15*r))      // intersection angle < 10 gon
-        return;
+      if(x1 < (small_angle_limit_*r))      // intersection angle < 10 gon
+        {
+          small_angle_detected_ = true;
+          return;
+        }
       point1->set_xy(B2.x()+x1*cos(h1->value())-yp*sin(h1->value()),
                      B2.y()+yp*cos(h1->value())+x1*sin(h1->value()));
       number_of_solutions_ = 1;
@@ -506,9 +534,12 @@ namespace GNU_gama { namespace local {
     try {
 
       number_of_solutions_ = 0;       // -1 when computation not done
-      Double u = h1->value();	     // just to spare typing h1->value()
-      if(fabs(sin(u)) < 0.15)        // small angle
-        return;
+      Double u = h1->value();
+      if(fabs(sin(u)) < small_angle_limit_)        // small angle
+        {
+          small_angle_detected_ = true;
+          return;
+        }
       B1 = (*(SB->find(h1->bs()))).second;
       B2 = (*(SB->find(h1->fs()))).second;
       Double sm, d;

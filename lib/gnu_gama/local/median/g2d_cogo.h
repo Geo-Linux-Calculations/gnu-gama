@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2012  Ales Cepek  <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -51,11 +51,27 @@ namespace GNU_gama { namespace local {
       PointData*   SB;
       virtual void observation_check(Observation*, Observation*) = 0;
 
+      static double small_angle_limit_;
+      static bool   small_angle_detected_;
+
+    private:
+
+      friend class  ApproximateCoordinates;
+      static double small_angle_limit();
+      static bool   small_angle_detected();
+      static void   set_small_angle_limit(double sal=0);
+
     public:
       CoordinateGeometry2D(PointData* sb) : number_of_solutions_(-1), SB(sb)
         {
           point1 = new LocalPoint;
           point2 = new LocalPoint;
+
+	  // Implicit value 0.15 for detecting small angles is ~ 10 gons.
+	  // Static variable small_angle_limit_ is by default set to 0,
+	  // CoordinateGeometry2D constructor must guarantee that the value
+	  // is initialized properly.
+	  if (small_angle_limit_ <= 0) set_small_angle_limit();
         }
       virtual ~CoordinateGeometry2D()
         {

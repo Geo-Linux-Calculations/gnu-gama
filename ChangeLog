@@ -1,6 +1,26 @@
+2012-07-26  Ales Cepek  <cepek@gnu.org>
 
+	* Fixed a bug reported by Anton Horpynich <anton@vingeo.com>
 
-............................................
+	The computation of approximate coordinates failed if an angle
+	needed for computing of an intersection was smaller than 0.15
+	radians / 10 gons (implicit testing criterion). Although this is a
+	reasonable limit for standard surveying networks, in a batch
+	computation of approximate coordinates a much smaller value can be
+	sometimes acceptable. It is more or less a matter of personal
+	opinion if this is to be supposed a bug or not.
+
+	Gama newly solves approximate coordinates in two main loops.
+	During the first loop the default value 0.15 in class Acord is
+	used.  If afterwards there are still some coordinates remain
+	missing Gama starts a second loop with series of iterations in
+	which firstly tries to find a solution with the default value
+	then secondly with a very tiny limit of 0.0015 radians.
+
+	In most cases all coordinates are solved in the first loop with
+	the default small angle limit 10 gons.
+
+	............................................
 
 
 2012-07-24  Ales Cepek  <cepek@gnu.org>

@@ -389,7 +389,7 @@ int main(int argc, char **argv)
       {
         if (!GaMaConsistent(IS->PD))
           {
-            cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
+            // cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
           }
         Acord acord(IS->PD, IS->OD);
         acord.execute();

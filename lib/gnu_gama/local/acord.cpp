@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2001, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -21,6 +21,7 @@
 
 #include <gnu_gama/local/acord.h>
 #include <gnu_gama/local/orientation.h>
+#include <gnu_gama/local/median/g2d_cogo.h>
 #include <gnu_gama/local/median/g2d_coordinates.h>
 #include <gnu_gama/local/acord/approx_heights.h>
 #include <gnu_gama/local/acord/approx_vectors.h>
@@ -94,6 +95,7 @@ void Acord::execute()
       // ReducedObservations RO(PD, OD);
       RO.execute();
 
+      for (int loop=1; loop<=2; loop++)
       do {
         all = total_z + total_xy + total_xyz;
 
@@ -123,7 +125,8 @@ void Acord::execute()
               PointID from = s->from();
               PointID to   = s->to();
 
-              // look for a zenith angle corresponding to the given slope distance
+              // look for a zenith angle corresponding to the given
+              // slope distance
               ObservationList::iterator i   = c->observation_list.begin();
               ObservationList::iterator end = c->observation_list.end();
               for ( ;i!=end; ++i)
@@ -131,7 +134,9 @@ void Acord::execute()
                   if (from == z->from() && to == z->to())
                     {
                       // ... and fake a horizontal distance
-                      standpoint->observation_list.push_back(new Distance(from, to, s->value()*fabs(sin(z->value()))));
+                      Distance* d = new Distance(from, to,
+                                        s->value()*fabs(sin(z->value())));
+                      standpoint->observation_list.push_back(d);
                       continue;
                     }
 
@@ -143,12 +148,27 @@ void Acord::execute()
 
           ApproximateCoordinates ps(PD, OD);
           ps.calculation();
+          // intersections with very small angles only in the second loop
+          if (loop == 2 && ps.small_angle_detected())
+            {
+              for (PointData::const_iterator i=PD.begin(); i!=PD.end(); ++i)
+                {
+                  const LocalPoint& p = (*i).second;
+                  if (p.active_xy() && !p.test_xy()) // missing coordinates xy
+                    {
+                      double limit = ps.small_angle_limit() / 100;
+                      ps.set_small_angle_limit(limit);
+                      ps.calculation();
+                      break;
+                    }
+                }
+            }
 
           OD.clusters.pop_back();
           delete standpoint;
         }
 
-	RO.execute();
+        RO.execute();
 
         ObservationList local;
         for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
@@ -199,19 +219,13 @@ void Acord::execute()
               }
           }
 
-      } while ((all != (total_z + total_xy + total_xyz)) && missing_coordinates);
+        if (!missing_coordinates) return;  // enable exit from loop 1
+
+      } while (all != (total_z + total_xy + total_xyz));
     }
   catch(...)
     {
-      // we must handle the case when there are no observations here
+      // we must handle the case where there are no observations here
       throw;
     }
 }
-
-
-
-
-
-
-
-

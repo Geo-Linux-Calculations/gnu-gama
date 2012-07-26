@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2012  Ales Cepek  <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -33,6 +33,7 @@
 #include <algorithm>
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/median/g2d_helper.h>
+#include <gnu_gama/local/median/g2d_cogo.h>
 
 
 namespace GNU_gama { namespace local {
@@ -138,9 +139,16 @@ namespace GNU_gama { namespace local {
       ApproximateCoordinates(PointData& b, ObservationData& m)
         : SB(b), OD(m),  depth(0)
         {
+          set_small_angle_limit();
+
           copy_horizontal(OD, SM);
           reset();
         }
+
+      bool small_angle_detected() const
+      {
+         return CoordinateGeometry2D::small_angle_detected_;
+      }
 
       // one point (even if already solved); true - succeeded to get
       // coordinates
@@ -209,6 +217,15 @@ namespace GNU_gama { namespace local {
         {
           return known_coordinates_;
         }
+
+      double small_angle_limit() const
+      {
+        return CoordinateGeometry2D::small_angle_limit();
+      }
+      void set_small_angle_limit(double sal=0)
+      {
+        CoordinateGeometry2D::set_small_angle_limit(sal);
+      }
 
     };
 
