@@ -102,6 +102,8 @@ libgama_src = \
    gnu_gama/local/itstream.h \
    gnu_gama/local/language.cpp \
    gnu_gama/local/language.h \
+   gnu_gama/local/svg.cpp \
+   gnu_gama/local/svg.h \
    gnu_gama/local/acord/approx_heights.cpp \
    gnu_gama/local/acord/approx_heights.h \
    gnu_gama/local/acord/approx_vectors.cpp \
