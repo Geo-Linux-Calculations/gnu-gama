@@ -1,25 +1,21 @@
-/*
-    GNU Gama C++ library
-    Copyright (C) 1999, 2002, 2003, 2010, 2011,
-                  2012  Ales Cepek <cepek@gnu.org>
+/* GNU Gama C++ library
+   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+   This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+   This library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor,
-    Boston, MA  02110-1301  USA
-*/
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
 #include <gnu_gama/local/sqlitereader.h>
@@ -37,6 +33,7 @@
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/newnetwork.h>
 #include <gnu_gama/local/acord.h>
+#include <gnu_gama/local/svg.h>
 
 #include <gnu_gama/local/results/text/approximate_coordinates.h>
 #include <gnu_gama/local/results/text/network_description.h>
@@ -78,6 +75,7 @@ int help()
     "--ellipsoid  <ellipsoid name>\n"
     "--text       adjustment_results.txt\n"
     "--xml        adjustment_results.xml\n"
+    "--svg        network_configuration.svg\n"
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
     "             n  = -1  for full covariance matrix (implicit value)\n"
     "             n >=  0  covariances are computed only for bandwidth n\n"
@@ -105,6 +103,7 @@ int help()
     "--ellipsoid  <ellipsoid name>\n"
     "--text       adjustment_results.txt\n"
     "--xml        adjustment_results.xml\n"
+    "--svg        network_configuration.svg\n"
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
     "             n  = -1  for full covariance matrix (implicit value)\n"
     "             n >=  0  covariances are computed only for bandwidth n\n"
@@ -135,6 +134,7 @@ int main(int argc, char **argv)
     const char* argv_latitude = 0;
     const char* argv_txtout = 0;
     const char* argv_xmlout = 0;
+    const char* argv_svgout = 0;
     const char* argv_obsout = 0;
     const char* argv_covband = 0;
 
@@ -179,6 +179,7 @@ int main(int argc, char **argv)
         else if (name == "latitude"  ) argv_latitude = c;
         else if (name == "text"      ) argv_txtout = c;
         else if (name == "xml"       ) argv_xmlout = c;
+        else if (name == "svg"       ) argv_svgout = c;
         else if (name == "obs"       ) argv_obsout = c;
         else if (name == "cov-band"  ) argv_covband = c;
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
@@ -466,6 +467,20 @@ int main(int argc, char **argv)
             AdjustedObservations (IS, cout);
             ResidualsObservations(IS, cout);
           }
+
+	if (argv_svgout)
+	  {
+	    GamaLocalSVG svg(IS);
+	    if (!strcmp(argv_svgout, "-"))
+              {
+                svg.write(std::cout);
+              }
+            else
+              {
+		ofstream file(argv_svgout);
+		svg.write(file);
+	      }
+	  }
 
         if (argv_obsout)
           {

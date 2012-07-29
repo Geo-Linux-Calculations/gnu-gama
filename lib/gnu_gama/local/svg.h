@@ -3,7 +3,7 @@
 
    This file is part of the GNU Gama C++ library.
 
-   This program is free software; you can redistribute it and/or modify
+   This library is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 3, or (at your option)
    any later version.
@@ -21,7 +21,7 @@
 #ifndef GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
 #define GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
 
-#include <gnu_gama/local/gamadata.h>
+#include <gnu_gama/xml/localnetwork.h>
 #include <string>
 #include <ostream>
 
@@ -30,12 +30,13 @@ namespace GNU_gama { namespace local {
     class GamaLocalSVG {
     public:
 
-    GamaLocalSVG(PointData& pd, ObservationData& od) : PD(pd), OD(od) {}
+    GamaLocalSVG(const LocalNetwork* is) : IS(*is), PD(is->PD), OD(is->OD) {}
 
       std::string string() const;
       void write(std::ostream& str) const;
 
     private:
+      const LocalNetwork&    IS;
       const PointData&       PD;
       const ObservationData& OD;
     };
