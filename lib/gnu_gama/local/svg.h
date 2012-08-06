@@ -30,17 +30,37 @@ namespace GNU_gama { namespace local {
     class GamaLocalSVG {
     public:
 
-    GamaLocalSVG(const LocalNetwork* is) : IS(*is), PD(is->PD), OD(is->OD) {}
+      GamaLocalSVG(LocalNetwork* is);
 
       std::string string() const;
-      void write(std::ostream& str) const;
+      void draw(std::ostream& output_stream) const;
 
     private:
-      const LocalNetwork&    IS;
+      LocalNetwork&          IS;
       const PointData&       PD;
       const ObservationData& OD;
-    };
+      const double ysign;    // consistent coordinates +1, inconsistent -1
 
+      mutable std::ostream*  svg;
+
+      // SVG coordinates bounding box and offset
+      mutable int  minx, maxx, miny, maxy, offset, fontsize_;
+      mutable double ab_median;
+      void svg_xy(const LocalPoint& point, double& x, double& y) const;
+      void svg_draw_point  (const PointID& pid, const LocalPoint& point) const;
+      void svg_point_shape (std::string type, int shape,
+                            std::string fillColor) const;
+      void svg_init        () const;
+      void svg_symbols     () const;
+      void svg_axes_xy     () const;
+      void svg_points      () const;
+      void svg_observations() const;
+
+    protected:
+      mutable int fontsize;
+      mutable bool tst_draw_axes, tst_draw_point_symbols, tst_draw_point_ids,
+        tst_draw_ellipses, tst_draw_observations;
+    };
 }}
 
 #endif

@@ -468,19 +468,19 @@ int main(int argc, char **argv)
             ResidualsObservations(IS, cout);
           }
 
-	if (argv_svgout)
-	  {
-	    GamaLocalSVG svg(IS);
-	    if (!strcmp(argv_svgout, "-"))
+        if (argv_svgout)
+          {
+            GamaLocalSVG svg(IS);
+            if (!strcmp(argv_svgout, "-"))
               {
-                svg.write(std::cout);
+                svg.draw(std::cout);
               }
             else
               {
-		ofstream file(argv_svgout);
-		svg.write(file);
-	      }
-	  }
+                ofstream file(argv_svgout);
+                svg.draw(file);
+              }
+          }
 
         if (argv_obsout)
           {
