@@ -1,3 +1,37 @@
+2012-08-10  Ales Cepek  <cepek@gnu.org>
+
+	* Fixed a bug reported by Jacques Beilin <jacques.beilin@ensg.eu>
+
+	Function NormalDistribution ended in an endless loop for high
+	values of input argument x.
+
+diff --git a/lib/gnu_gama/statan.cpp b/lib/gnu_gama/statan.cpp
+index 4da4a3b..bc2255c 100644
+--- a/lib/gnu_gama/statan.cpp
++++ b/lib/gnu_gama/statan.cpp
+@@ -21,7 +21,7 @@
+
+ #include <gnu_gama/statan.h>
+ #include <gnu_gama/radian.h>
+-
++#include <cfloat>
+
+ using namespace std;
+
+@@ -211,7 +211,10 @@ void NormalDistribution(double x, double& D, double& f)
+       D = p2/q2;
+       if (!typv)
+          D = 1 - D;
+-      } while ( (r-D) != 0 || (s-D) != 0);
++   } while (std::abs(r - D) > DBL_EPSILON);
++
++   if (s - D) return;
++   if (typv) D = 0; else D = 1;
+ }
+
+ // Kolmogorov-Smirnov probability function
+
+
 2012-07-26  Ales Cepek  <cepek@gnu.org>
 
 	* Fixed a bug reported by Anton Horpynich <anton@vingeo.com>
