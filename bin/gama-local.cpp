@@ -440,29 +440,55 @@ int main(int argc, char **argv)
         if (!IS->connected_network())
           cout  << T_GaMa_network_not_connected << "\n\n\n";
 
-        NetworkDescription(IS->description, cout);
-        if (GeneralParameters(IS, cout))
+        bool network_can_be_adjusted;
+        {
+          std::ostringstream tmp_out;
+          if (!(network_can_be_adjusted = GeneralParameters(IS, tmp_out)))
+            {
+              NetworkDescription(IS->description, cout);
+              cout << tmp_out.str();
+            }
+        }
+
+        if (network_can_be_adjusted)
           {
-            int iterace = 0;
+            int iteration = 0;
             do
               {
-                if(++iterace > 1)
+                if(++iteration > 1)
                   {
-                    cout << "\n         ******  "
-                         << iterace << T_GaMa_adjustment_iteration
-                         << "  ******\n\n"
-                         << T_GaMa_Approximate_coordinates_replaced << "\n"
-                         << underline(T_GaMa_Approximate_coordinates_replaced,
-                                      '*') << "\n\n\n";
+                    // removed in version 1.13
+                    // cout << "\n         ******  "
+                    //     << iteration << T_GaMa_adjustment_iteration
+                    //     << "  ******\n\n"
+                    //     << T_GaMa_Approximate_coordinates_replaced << "\n"
+                    //     << underline(T_GaMa_Approximate_coordinates_replaced,
+                    //                  '*') << "\n\n\n";
 
                     IS->refine_approx();
-                    GeneralParameters(IS, cout);
+                    // GeneralParameters(IS, cout);
                   }
-                FixedPoints     (IS, cout);
-                AdjustedUnknowns(IS, cout);
+                // FixedPoints     (IS, cout);
+                // AdjustedUnknowns(IS, cout);
               }
-            while (TestLinearization(IS, cout) && iterace < 3);
+            while (TestLinearization(IS) && iteration < 5);
 
+            // from version 1.13 running results are not printed
+            if (iteration > 1)
+              {
+                cout << T_GaMa_Approximate_coordinates_replaced << "\n"
+                     << underline(T_GaMa_Approximate_coordinates_replaced,'*')
+                     << "\n\n"
+                     << T_GaMa_Number_of_linearization_iterations
+                     << iteration << "\n\n";
+
+                if (!TestLinearization(IS, cout)) cout << "\n";
+              }
+
+            NetworkDescription   (IS->description, cout);
+            GeneralParameters    (IS, cout);
+            FixedPoints          (IS, cout);
+            AdjustedUnknowns     (IS, cout);
             ErrorEllipses        (IS, cout);
             AdjustedObservations (IS, cout);
             ResidualsObservations(IS, cout);

@@ -89,6 +89,7 @@ const char* T_GaMa_No_network_points_defined = T_language_cpp_internal_error;
 const char* T_GaMa_No_observations_available = T_language_cpp_internal_error;
 const char* T_GaMa_No_points_available = T_language_cpp_internal_error;
 const char* T_GaMa_No_unknowns_defined = T_language_cpp_internal_error;
+const char* T_GaMa_Number_of_linearization_iterations = T_language_cpp_internal_error;
 const char* T_GaMa_Observatios_with_outlying_absolute_terms_removed = T_language_cpp_internal_error;
 const char* T_GaMa_Ratio_empirical_to_apriori = T_language_cpp_internal_error;
 const char* T_GaMa_Review_of_fixed_points = T_language_cpp_internal_error;
@@ -325,6 +326,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="No observations available";
 	T_GaMa_No_points_available="No points available";
 	T_GaMa_No_unknowns_defined="No unknowns have been defined";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Observations with outlying absolute terms removed";
 	T_GaMa_Ratio_empirical_to_apriori="Ratio m0\' aposteriori / m0 apriori: ";
 	T_GaMa_Review_of_fixed_points="Fixed points";
@@ -557,6 +559,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="No s\'ha trobat cap observació";
 	T_GaMa_No_points_available="No s\'ha trobat cap punt";
 	T_GaMa_No_unknowns_defined="No s\'ha definit cap incògnita";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="S\'han exclós observacions amb termes absoluts fora de rang";
 	T_GaMa_Ratio_empirical_to_apriori="Ràtio m0\' a posteriori / m0 a priori: ";
 	T_GaMa_Review_of_fixed_points="Punts fixes";
@@ -789,6 +792,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Nebyla zadána žádná měření";
 	T_GaMa_No_points_available="Nebyly zadány žádné body";
 	T_GaMa_No_unknowns_defined="Nejsou definovány žádné neznámé";
+	T_GaMa_Number_of_linearization_iterations="Počet iterací linearizace: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Měření s vybočujícími absolutními členy vyloučena";
 	T_GaMa_Ratio_empirical_to_apriori="Poměr m0\' aposteriorní / m0 apriorní: ";
 	T_GaMa_Review_of_fixed_points="Pevné body";
@@ -1021,6 +1025,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Geen observaties beschikbaar";
 	T_GaMa_No_points_available="Geen punten beschikbaar";
 	T_GaMa_No_unknowns_defined="Er zijn geen onbekenden gedefinieerd";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Verworpen observaties met afwijkende absolute condities";
 	T_GaMa_Ratio_empirical_to_apriori="Ratio m0\' a posteriori / m0 a priori: ";
 	T_GaMa_Review_of_fixed_points="Vaste punten";
@@ -1253,6 +1258,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="No hay observaciones disponibles";
 	T_GaMa_No_points_available="No hay puntos disponibles";
 	T_GaMa_No_unknowns_defined="No hay incógnitas disponibles";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Observaciones con errores groseros eliminadas";
 	T_GaMa_Ratio_empirical_to_apriori="Cociente m0\' a posteriori / m0 a priori: ";
 	T_GaMa_Review_of_fixed_points="Puntos fijas";
@@ -1485,6 +1491,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Havaintoja ei ole";
 	T_GaMa_No_points_available="Pisteitä ei ole";
 	T_GaMa_No_unknowns_defined="Tuntemattomia ei ole määritelty";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Havaintoja, joiden absoluutisessa termissä on karkeita virheitä on poistettu";
 	T_GaMa_Ratio_empirical_to_apriori="Suhdeluku m0\' aposteriori / m0 apriori: ";
 	T_GaMa_Review_of_fixed_points="Kiintopisteet";
@@ -1717,6 +1724,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Aucune observation disponible";
 	T_GaMa_No_points_available="Aucun point disponible";
 	T_GaMa_No_unknowns_defined="Aucune inconnue n\'a été déclarée";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Les observations comportant des termes absolus trop éloignés ont été supprimées";
 	T_GaMa_Ratio_empirical_to_apriori="Rapport m0\' à postériori / m0 à priori: ";
 	T_GaMa_Review_of_fixed_points="Points fixés";
@@ -1949,6 +1957,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Nincsenek észlelések";
 	T_GaMa_No_points_available="Nincsenek pontok";
 	T_GaMa_No_unknowns_defined="Nincsenek ismeretlenek";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Hibahatáron kívül eső észlelések eltávolítva";
 	T_GaMa_Ratio_empirical_to_apriori="m0' aposteriori / m0 apriori: ";
 	T_GaMa_Review_of_fixed_points="Rögzített pontok";
@@ -2181,6 +2190,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Нет доступных наблюдений";
 	T_GaMa_No_points_available="Нет доступных точек";
 	T_GaMa_No_unknowns_defined="Не определены неизвестные";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Наблюдения с абсолютными ошибками, превышающими предельные ошибки, исключены";
 	T_GaMa_Ratio_empirical_to_apriori="Отношение m0' aposteriori / m0 apriori: ";
 	T_GaMa_Review_of_fixed_points="Жесткие точки";
@@ -2413,6 +2423,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_No_observations_available="Немає доступних спостережень";
 	T_GaMa_No_points_available="Немає доступних точок";
 	T_GaMa_No_unknowns_defined="Не вказані невідомі";
+	T_GaMa_Number_of_linearization_iterations="Number of linearization iterations: ";
 	T_GaMa_Observatios_with_outlying_absolute_terms_removed="Спостереження з абсолютними помилками, що перевищують граничні помилки, виключені";
 	T_GaMa_Ratio_empirical_to_apriori="Відношення m0' апостеріорі / m0 апріорі: ";
 	T_GaMa_Review_of_fixed_points="Жорсткі точки";

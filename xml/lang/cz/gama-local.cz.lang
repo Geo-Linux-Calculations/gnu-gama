@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
-<e id="T_GaMa_Adjustment_of_geodetic_network"   
+<e id="T_GaMa_Adjustment_of_geodetic_network"
    EN="Adjustment of local geodetic network"
    cz="Vyrovnání místní geodetické sítě"  />
 
@@ -49,6 +49,10 @@
    EN="Approximate coordinates of computed points replaced by adjusted"
    cz="Přibližné souřadnice určovaných bodů nahrazeny vyrovnanými" />
 
+<e id="T_GaMa_Number_of_linearization_iterations"
+   en="Number of linearization iterations: "
+   cz="Počet iterací linearizace: " />
+
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"
    cz="GNU Gama - výpočet skončil chybou!" />
@@ -56,10 +60,5 @@
 <e id="T_GaMa_internal_program_error"
    EN="GNU Gama - internal program error!"
    cz="GNU Gama - interní chyba programu!" />
-  
-</entries>   
 
-
-
-
-
+</entries>

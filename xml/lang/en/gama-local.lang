@@ -37,6 +37,9 @@
 <e id="T_GaMa_Approximate_coordinates_replaced"
    en="Approximate coordinates of computed points replaced by adjusted" />
 
+<e id="T_GaMa_Number_of_linearization_iterations"
+   en="Number of linearization iterations: " />
+
 <e id="T_GaMa_solution_ended_with_error"
    en="GNU Gama - solution ended with error!" />
 

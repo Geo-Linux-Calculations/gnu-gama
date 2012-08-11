@@ -89,6 +89,7 @@ extern const char* T_GaMa_No_network_points_defined;
 extern const char* T_GaMa_No_observations_available;
 extern const char* T_GaMa_No_points_available;
 extern const char* T_GaMa_No_unknowns_defined;
+extern const char* T_GaMa_Number_of_linearization_iterations;
 extern const char* T_GaMa_Observatios_with_outlying_absolute_terms_removed;
 extern const char* T_GaMa_Ratio_empirical_to_apriori;
 extern const char* T_GaMa_Review_of_fixed_points;

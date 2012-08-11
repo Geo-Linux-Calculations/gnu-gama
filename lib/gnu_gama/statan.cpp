@@ -25,8 +25,6 @@ using namespace std;
 
 namespace GNU_gama {
 
-// Vypocet kritickych hodnot Studentova rozdeleni
-
 float Student(float palfa, int N)
 {
    float alfa = palfa;
@@ -83,8 +81,6 @@ float Student(float palfa, int N)
 
 }
 
-// Vypocet kritickych hodnot normalniho rozdeleni
-
 double Normal(double alfa)
 {
    double a = alfa;
@@ -103,20 +99,8 @@ double Normal(double alfa)
    return norm_;
 }
 
-// Vypocet hodnoty distribucni a frekvencni funkce normalniho rozdeleni
-
-
 void NormalDistribution(double x, double& D, double& f)
 {
-/*
-   Funkce pocita v danem bode x hodnotu D(x) distribucni
-   funkce normovaneho normalniho rozdeleni a hodnotu
-   frekvencni funkce normovaneho normalniho rozdeleni.
-
-   x      - argument funkce rozdeleni
-   D      - hodnota distribucni funkce.
-   f      - hodnota frekvencni funkce
-*/
    const double maxd = 1e30;
    const double mind = 1e-30;
    double s;
@@ -215,13 +199,6 @@ void NormalDistribution(double x, double& D, double& f)
    if (typv) D = 0; else D = 1;
 }
 
-// Kolmogorov-Smirnov probability function
-
-/*
-   Based on formula given in "Numerical Recipes in C", (2nd ed.,
-   Cambridge University Press, 1992, ISBN 0 521 43108 5, p. 624)
-*/
-
 float KSprob(float lambda)
 {
    const float eps = 1.0e-8;
@@ -237,8 +214,6 @@ float KSprob(float lambda)
 
    return j<100 ? 2*sum : 1;
 }
-
-// Kriticke hodnoty rozdeleni chi-kvadrat
 
 float Chi_square(float p, int n)
 {
@@ -275,5 +250,3 @@ float Chi_square(float p, int n)
 }
 
 }   // namespace GNU_gama::local
-
-//---------------------------------------------------------------------------

@@ -1,24 +1,23 @@
-/*
-    GNU Gama C++ library
-    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
-                  2011  Vaclav Petras <wenzeslaus@gmail.com>
+/* GNU Gama -- adjustment of geodetic networks
+   Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                 2011  Vaclav Petras <wenzeslaus@gmail.com>
+                 2012  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+   This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+   This library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
 /** \file test_linearization.h
  * \brief Function and visitor for linearization testing
@@ -61,7 +60,8 @@ public:
 
     {}
 
-    /** \brief Sets index of observation which will be used in the next visit. */
+    /** \brief Sets index of observation which will be used in the
+	next visit. */
     void setObservationIndex(GNU_gama::Index index) { i = index; }
 
     Double getPol() { return  pol; }
@@ -222,6 +222,91 @@ public:
  *
  * \todo Reorganize code by moving some observation dependent code to TestLinearizationWriteVisitor.
  */
+
+bool
+TestLinearization(GNU_gama::local::LocalNetwork* IS,
+                  double max_pyx = 0.1500, // suspicious coorection in meters
+                  double max_dif = 0.0005  // max. positional difference in mm
+                  )
+{
+  using namespace std;
+  using namespace GNU_gama::local;
+  using GNU_gama::local::Double;
+
+  bool test  = false;     // result of bad linearization test
+
+  // difference in adjusted observations computed from residuals and
+  // from adjusted coordinates
+  // ===============================================================
+  {
+    const int M = IS->sum_observations();
+
+    Vec dif_m(M);   // difference in computation of adjusted observation
+    Vec dif_p(M);   //               corresponds to positional shift
+
+    const Vec& v = IS->residuals();
+    const Vec& x = IS->solve();
+
+    TestLinearizationVisitor testVisitor(IS, v, x);
+
+    for (int i=1; i<=M; i++)
+      {
+        dif_m(i) = 0;
+        dif_p(i) = 0;
+        // if (IS->obs_control(i) < 0.1) continue;  // uncontrolled observation
+        // if (IS->obs_control(i) < 5.0) continue;  // weakly controlled obs.
+
+        Double  mer = 0, pol = 0;
+
+        Observation* pm = IS->ptr_obs(i);
+
+        // special case for coordinates
+        if (dynamic_cast<const Coordinates*>(pm->ptr_cluster()))
+          {
+            dif_m(i) = dif_p(i) = 0;
+            continue;
+          }
+
+        // other observations by visitor or by default values
+        testVisitor.setObservationIndex(i);
+        pm->accept(&testVisitor);
+
+        mer = testVisitor.getMer();
+        pol = testVisitor.getPol();
+
+        dif_m(i) = mer;
+        dif_p(i) = pol;
+      }
+
+    Double max_pol = 0;
+    {
+      for (Vec::iterator i=dif_p.begin(); i != dif_p.end(); ++i)
+        if (fabs(*i) > max_pol)
+          max_pol = fabs(*i);
+    }
+    if (max_pol >= max_dif) test = true;
+
+    if (test && !(IS->update_constrained_coordinates()))
+      {
+        // if all adjusted points are constrained, adjustment is never
+        // repeated (unless explicitly asked for)
+        // ------------------------------------------------------
+
+        test = false;
+        for (PointData::const_iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
+          {
+            const LocalPoint& b = (*i).second;
+            if (b.free_xy() && !b.constrained_xy())
+              {
+                test = true;
+                break;
+              }
+          }
+      }
+  }
+  return test;
+}
+
 template <typename OutStream>
 bool
 TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
@@ -235,42 +320,6 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
   using GNU_gama::local::Double;
 
   bool test  = false;     // result of bad linearization test
-
-  // const char hlavicka[] = "Bad linearization test\n"
-  //                        "***********************\n";
-
-  /****************************  test removed  **************************
-  * // repeat adjustment if suspiciously large corrections of coordinates
-  * // ==================================================================
-  * {
-  *   const int N = IS->sum_unknowns();
-  *
-  *   const Vec& x = IS->solve();
-  *   Double pyx = 0;
-  *   for (int i=1; i<=N; i++)
-  *     if (IS->typ_neznama(i) == 'X')
-  *       {
-  *         const PointID cb = IS->bod_neznama(i);
-  *         const LocalPoint&  b = IS->PD[cb];
-  *         if (!b.constrained_xy())
-  *           {
-  *             Double dx = x(i++)/1000;
-  *             Double dy = x(i  )/1000;
-  *             pyx = max(pyx, dy*dy + dx*dx);
-  *           }
-  *       }
-  *   pyx = sqrt(pyx);
-  *   if (pyx >= max_pyx)
-  *     {
-  *       if (!test) out << hlavicka;
-  *       test  = true;
-  *       out.setf(ios_base::fixed, ios_base::floatfield);
-  *       out.precision(3);
-  *       out << "\nMaximal correction of point " << pyx
-  *           << " is greater then " << max_pyx << " [m]\n";
-  *     }
-  * }
-  ******************************************************************/
 
   // difference in adjusted observations computed from residuals and
   // from adjusted coordinates

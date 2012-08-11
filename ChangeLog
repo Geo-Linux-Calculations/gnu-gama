@@ -1,3 +1,11 @@
+2012-08-11  Ales Cepek  <cepek@gnu.org>
+
+	* In gama-local suppressed output of running results during
+	linearization iterations
+
+	* added doxygen documentation into statan.h, removed forgotten
+	Czech comments from statan.cpp
+
 2012-08-10  Ales Cepek  <cepek@gnu.org>
 
 	* Fixed a bug reported by Jacques Beilin <jacques.beilin@ensg.eu>
