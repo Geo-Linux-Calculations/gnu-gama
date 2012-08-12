@@ -31,7 +31,7 @@
 #define GaMa_GaMaProg_Zakladni_Parametry_h_
 
 #include <iomanip>
-#include <gnu_gama/local/observation/write/writevisitor.h>
+#include <gnu_gama/local/writevisitor.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/statan.h>

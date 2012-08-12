@@ -32,7 +32,7 @@
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/pobs/format.h>
 #include <gnu_gama/local/observation.h>
-#include <gnu_gama/local/observation/write/writevisitor.h>
+#include <gnu_gama/local/writevisitor.h>
 
 namespace GNU_gama { namespace local {
 

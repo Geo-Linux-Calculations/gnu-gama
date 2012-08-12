@@ -161,7 +161,6 @@ libgama_src = \
    gnu_gama/local/medianf.h \
    gnu_gama/local/observation.cpp \
    gnu_gama/local/observation.h \
-   gnu_gama/local/observation/write/writevisitor.h \
    gnu_gama/local/pointid.cpp \
    gnu_gama/local/pointid.h \
    gnu_gama/local/readsabw.h \
@@ -170,7 +169,8 @@ libgama_src = \
    gnu_gama/local/sqlitereader.h \
    gnu_gama/local/sqlitereader.cpp \
    gnu_gama/local/newnetwork.h \
-   gnu_gama/local/newnetwork.cpp
+   gnu_gama/local/newnetwork.cpp \
+   gnu_gama/local/writevisitor.h 
 
 matvec_src = \
    matvec/array.h \
