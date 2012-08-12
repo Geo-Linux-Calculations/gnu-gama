@@ -17,6 +17,11 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
+/** \file svg.cpp
+ * \brief #GNU_gama::local::GamaLocalSVG class implementation
+ *
+ * \author Ales Cepek
+ */
 
 #include <gnu_gama/local/svg.h>
 #include <gnu_gama/radian.h>
@@ -207,7 +212,6 @@ void GamaLocalSVG::draw(std::ostream& output_stream) const
        << "style='fill:grey;stroke:black;stroke-width:5;opacity:0.1' />\n";
 #endif
 
-  svg_symbols();
   svg_axes_xy();
   svg_observations();
   svg_points();
@@ -215,38 +219,29 @@ void GamaLocalSVG::draw(std::ostream& output_stream) const
   *svg << "</svg>\n";
 }
 
-void GamaLocalSVG::svg_symbols() const
-{
-  *svg << "<defs>\n";
-
-  // shape: 0 - triangle, 1 - circle
-  svg_point_shape("Fixed",       0, "blue");
-  svg_point_shape("Constrained", 1, "green");
-  svg_point_shape("Free",        1, "yellow");
-
-  *svg << "</defs>\n";
-}
-
-void GamaLocalSVG::svg_point_shape (std::string type, // Fixed Constrained Free
+void GamaLocalSVG::svg_point_shape (double x, double y,
+				    std::string type, // Fixed Constrained Free
                                     int shape,        // 0-triangle, 1-circle
-                                    std::string fillColor) const
+                                    std::string fillColor
+				    ) const
 {
-  *svg << "<symbol id='symbol" << type << "Point' overflow='visible'>\n";
   if (shape == 0)
     {
+      Point P(x, y);
+
       *svg << "<polyline points='"
-           << Point(-0.5, 0.28868) * (1.2*fontsize)
-           << Point( 0.5, 0.28868) * (1.2*fontsize)
-           << Point( 0.0,-0.57735) * (1.2*fontsize)
-           << Point(-0.5, 0.28868) * (1.2*fontsize) << "'";
+           << P + Point(-0.5, 0.28868) * (1.2*fontsize)
+           << P + Point( 0.5, 0.28868) * (1.2*fontsize)
+           << P + Point( 0.0,-0.57735) * (1.2*fontsize)
+           << P + Point(-0.5, 0.28868) * (1.2*fontsize) << "' ";
     }
   else
     {
-      *svg <<  "<circle cx='" << 0 << "' cy='" << 0 << "' "
+      *svg <<  "<circle cx='" << x << "' cy='" << y << "' "
            << "r='" << 0.5*fontsize << "' ";
     }
-  *svg << " style='" << "stroke:black;fill:" << fillColor << "'/>\n"
-       << "</symbol>\n";
+ 
+  *svg << " style='" << "stroke:black;fill:" << fillColor << "'/>\n";
 }
 
 void GamaLocalSVG::svg_axes_xy() const
@@ -414,13 +409,12 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
 
       if (tst_draw_point_symbols)
         {
-          *svg << "<use id='" << pid << "' x='" << x << "' y='" << y << "'";
           if (point.fixed_xy())
-            *svg << " xlink:href='#symbolFixedPoint' />";
+	    svg_point_shape(x, y, "Fixed",       0, "blue");  
           else if (point.constrained_xy())
-            *svg << " xlink:href='#symbolConstrainedPoint' />";
+	    svg_point_shape(x, y, "Constrained", 1, "green"); 
           else
-            *svg << " xlink:href='#symbolFreePoint' />";
+	    svg_point_shape(x, y, "Free",        1, "yellow");
         }
 
       if (tst_draw_point_ids)

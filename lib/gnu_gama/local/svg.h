@@ -17,6 +17,11 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
+/** \file svg.h
+ * \brief #GNU_gama::local::GamaLocalSVG class header file
+ *
+ * \author Ales Cepek
+ */
 
 #ifndef GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
 #define GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
@@ -27,12 +32,18 @@
 
 namespace GNU_gama { namespace local {
 
+    /** Simple class for generating schema of a given local network in
+     *  SVG subset implemented on Qt platform
+     */
     class GamaLocalSVG {
     public:
 
-      GamaLocalSVG(LocalNetwork* is);
+      /** \param lnet pointer to local network object */
+      GamaLocalSVG(LocalNetwork* lnet);
 
+      /** Returns SVG image as a std::string. */
       std::string string() const;
+      /** Writes SVG image on to a standard streem */
       void draw(std::ostream& output_stream) const;
 
     private:
@@ -48,10 +59,10 @@ namespace GNU_gama { namespace local {
       mutable double ab_median;
       void svg_xy(const LocalPoint& point, double& x, double& y) const;
       void svg_draw_point  (const PointID& pid, const LocalPoint& point) const;
-      void svg_point_shape (std::string type, int shape,
+      void svg_point_shape (double x, double y, 
+			    std::string type, int shape,
                             std::string fillColor) const;
       void svg_init        () const;
-      void svg_symbols     () const;
       void svg_axes_xy     () const;
       void svg_points      () const;
       void svg_observations() const;
