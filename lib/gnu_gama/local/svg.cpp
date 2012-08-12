@@ -464,6 +464,6 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
                << "rx='" << a << "' ry='" << b << "' "
                << "transform='translate(" << x << " " << y << ") "
                << "rotate("<< alpha << ")' "
-               << "style='stroke:grey;fill:none;' />";
+               << "style='stroke:grey;fill:none;' />\n";
         }
 }
