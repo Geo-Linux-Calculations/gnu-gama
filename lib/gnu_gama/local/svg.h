@@ -46,6 +46,76 @@ namespace GNU_gama { namespace local {
       /** Writes SVG image on to a standard streem */
       void draw(std::ostream& output_stream) const;
 
+      /** Draw point symbols. */
+      bool drawPointSymbols() { return tst_draw_point_symbols; }
+      /** Set drawing of point symbols. */
+      void setDrawPointSymbols(bool p) {tst_draw_point_symbols = p; }
+
+      /** Draw point IDs. */
+      bool drawPoinsIDs() const { return tst_draw_point_ids; }
+      /** Set drawing of point IDs. */
+      void setDrawPointIDs(bool p) {tst_draw_point_ids = p; }
+
+      /** Draw ellipses. */
+      bool drawEllipses() const { return tst_draw_ellipses; }
+      /** Set drawing of ellipses. */
+      void setDrawEllipses(bool p) {tst_draw_ellipses = p; }
+
+      /** Draw observations. */
+      bool drawPoinsObservations() const { return tst_draw_observations; }
+      /** Set drawing of point symbols. */
+      void setDrawObservations(bool p) {tst_draw_observations = p; }
+
+      /** Draw axes. */
+      bool drawAxes() const { return tst_draw_axes; }
+      /** Set drawing of exes. */
+      void setDrawAxes(bool p) {tst_draw_axes = p; }
+
+      /** Font size. */
+      int fontSize() const { return fontsize; }
+      /** Set font size */
+      void setFontSize(int p) { fontsize = p;}
+
+      /** Symbol size. */
+      int symbolSize() const { return symbolsize; }
+      /** Set symbol size */
+      void setSymbolSize(int p) { symbolsize = p;}
+
+      /** SVG stroke width. */
+      int strokeWidth() const { return strokewidth; }
+      /** Set SVG stroke size */
+      void setStrokeWidth(int p) { strokewidth = p;}
+
+      /** Fixed points' symbol. */
+      std::string fixedSymbol() const { return fixedsymbol; }
+      /** Set symbol for fixed points */
+      void setFixedSymbol(std::string p) { fixedsymbol = p;}
+
+      /** Constrained points' symbol. */
+      std::string constrainedSymbol() const { return constrainedsymbol; }
+      /** Set symbol for fixed points */
+      void setConstrainedSymbol(std::string p) { constrainedsymbol = p;}
+
+      /** Free points' symbol. */
+      std::string freeSymbol() const { return freesymbol; }
+      /** Set symbol for fixed points */
+      void setFreeSymbol(std::string p) { freesymbol = p;}
+
+      /** Fixed points' fill. */
+      std::string fixedFill() const { return fixedfill; }
+      /** Set fill for fixed points */
+      void setFixedFill(std::string p) { fixedfill = p;}
+
+      /** Constrained points' fill. */
+      std::string constrainedFill() const { return constrainedfill; }
+      /** Set fill for constrained points */
+      void setConstrainedFill(std::string p) { constrainedfill = p;}
+
+      /** Free points' fill. */
+      std::string freeFill() const { return freefill; }
+      /** Set symbol for fixed points */
+      void setFreeFill(std::string p) { freefill = p;}
+
     private:
       LocalNetwork&          IS;
       const PointData&       PD;
@@ -55,22 +125,24 @@ namespace GNU_gama { namespace local {
       mutable std::ostream*  svg;
 
       // SVG coordinates bounding box and offset
-      mutable int  minx, maxx, miny, maxy, offset, fontsize_;
+      mutable bool not_in_constructor;
+      mutable int  minx, maxx, miny, maxy, offset;
       mutable double ab_median;
       void svg_xy(const LocalPoint& point, double& x, double& y) const;
       void svg_draw_point  (const PointID& pid, const LocalPoint& point) const;
-      void svg_point_shape (double x, double y, 
-			    std::string type, int shape,
+      void svg_point_shape (double x, double y,
+                std::string type, std::string shape,
                             std::string fillColor) const;
       void svg_init        () const;
       void svg_axes_xy     () const;
       void svg_points      () const;
       void svg_observations() const;
 
-    protected:
-      mutable int fontsize;
+      mutable int fontsize, symbolsize, strokewidth;
       mutable bool tst_draw_axes, tst_draw_point_symbols, tst_draw_point_ids,
         tst_draw_ellipses, tst_draw_observations;
+      mutable std::string  fixedsymbol, fixedfill, constrainedsymbol,
+        constrainedfill, freesymbol, freefill;
     };
 }}
 

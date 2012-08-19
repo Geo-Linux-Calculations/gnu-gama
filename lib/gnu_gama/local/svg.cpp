@@ -76,13 +76,12 @@ using namespace GNU_gama::local;
 GamaLocalSVG::GamaLocalSVG(LocalNetwork* is)
   : IS(*is), PD(is->PD), OD(is->OD),
     ysign(GaMaConsistent(PD) ? +1 : -1),
+    not_in_constructor(false),
     tst_draw_axes(true), tst_draw_point_symbols(true),
     tst_draw_point_ids(true), tst_draw_ellipses(true),
     tst_draw_observations(true)
 {
   svg_init();
-
-  fontsize = fontsize_;
 }
 
 void GamaLocalSVG::svg_init() const
@@ -165,7 +164,21 @@ void GamaLocalSVG::svg_init() const
   maxx = std::abs(tmaxx-tminx);
   maxy = std::abs(tmaxy-tminy);
   offset = (maxx + maxy)/2*0.05;
-  fontsize_ = offset*0.4;
+
+  // font and symbol sizes must be initialized only once
+  // int the constructer, otherwise they could not be setup
+  // by the interface
+  if (not_in_constructor) return;
+  not_in_constructor = true;
+
+  fontsize = offset*0.4;
+  if (fontsize == 0) fontsize = 1;
+  symbolsize  = fontsize;
+  strokewidth = 1;
+
+  fixedsymbol = "triangle";     fixedfill = "blue";
+  constrainedsymbol = "circle"; constrainedfill = "green";
+  freesymbol = "circle";        freefill = "yellow";
 }
 
 void GamaLocalSVG::svg_xy(const LocalPoint& point, double& x, double& y) const
@@ -205,11 +218,13 @@ void GamaLocalSVG::draw(std::ostream& output_stream) const
   *svg << "<rect x='0' y='0' "
        << "width ='" << wmaxx << "' "
        << "height='" << wmaxy << "' "
-       << "style='fill:none;stroke:blue;stroke-width:5' />\n";
+       << "style='fill:none;stroke:blue;stroke-width:"
+       << strokewidth << ";' />\n";
 
   *svg << "<rect x='" << 2*offset << "' y='" << 2*offset << "' "
        << "width ='" << maxx << "' " << "height='" << maxy << "' "
-       << "style='fill:grey;stroke:black;stroke-width:5;opacity:0.1' />\n";
+       << "style='fill:grey;stroke:black;stroke-width:"
+       << strokewidth << ";opacity:0.1' />\n";
 #endif
 
   svg_axes_xy();
@@ -220,28 +235,29 @@ void GamaLocalSVG::draw(std::ostream& output_stream) const
 }
 
 void GamaLocalSVG::svg_point_shape (double x, double y,
-				    std::string type, // Fixed Constrained Free
-                                    int shape,        // 0-triangle, 1-circle
+                                    std::string type,  // Fixed Constrained Free
+                                    std::string shape, // triangle, circle
                                     std::string fillColor
-				    ) const
+                                    ) const
 {
-  if (shape == 0)
-    {
+   if (shape == "triangle")
+   {
       Point P(x, y);
 
       *svg << "<polyline points='"
-           << P + Point(-0.5, 0.28868) * (1.2*fontsize)
-           << P + Point( 0.5, 0.28868) * (1.2*fontsize)
-           << P + Point( 0.0,-0.57735) * (1.2*fontsize)
-           << P + Point(-0.5, 0.28868) * (1.2*fontsize) << "' ";
-    }
-  else
-    {
+           << P + Point(-0.5, 0.28868) * (1.2*symbolsize)
+           << P + Point( 0.5, 0.28868) * (1.2*symbolsize)
+           << P + Point( 0.0,-0.57735) * (1.2*symbolsize)
+           << P + Point(-0.5, 0.28868) * (1.2*symbolsize) << "' ";
+   }
+   else if (shape == "circle")
+   {
       *svg <<  "<circle cx='" << x << "' cy='" << y << "' "
-           << "r='" << 0.5*fontsize << "' ";
-    }
- 
-  *svg << " style='" << "stroke:black;fill:" << fillColor << "'/>\n";
+           << "r='" << 0.5*symbolsize << "' ";
+   }
+
+   *svg << " style='" << "stroke:black;fill:" << fillColor
+        << ";stroke-width:" << strokewidth<< ";'/>\n";
 }
 
 void GamaLocalSVG::svg_axes_xy() const
@@ -297,7 +313,7 @@ void GamaLocalSVG::svg_axes_xy() const
       alignx = "text-anchor: middle;";
     }
 
-  *svg << "<g style='stroke:black;stroke-width:1;'>\n";
+  *svg << "<g style='stroke:black;stroke-width:" << strokewidth << ";'>\n";
 
   // axes
   *svg << "<polyline points='"
@@ -395,7 +411,7 @@ void GamaLocalSVG::svg_observations() const
       svg_xy(B, x2, y2);
 
       *svg << "<line x1='"<<x1<<"' y1='"<<y1<<"' x2='"<<x2<<"' y2='"<<y2<<"' "
-           << "style='stroke:black' />\n";
+           << "style='stroke:black;stroke-width:" << strokewidth << ";' />\n";
     }
 }
 
@@ -410,11 +426,12 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
       if (tst_draw_point_symbols)
         {
           if (point.fixed_xy())
-	    svg_point_shape(x, y, "Fixed",       0, "blue");  
+            svg_point_shape(x, y, "Fixed", fixedsymbol, fixedfill);
           else if (point.constrained_xy())
-	    svg_point_shape(x, y, "Constrained", 1, "green"); 
+            svg_point_shape(x, y, "Constrained",
+                            constrainedsymbol, constrainedfill);
           else
-	    svg_point_shape(x, y, "Free",        1, "yellow");
+            svg_point_shape(x, y, "Free",  freesymbol,  freefill);
         }
 
       if (tst_draw_point_ids)
@@ -464,6 +481,7 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
                << "rx='" << a << "' ry='" << b << "' "
                << "transform='translate(" << x << " " << y << ") "
                << "rotate("<< alpha << ")' "
-               << "style='stroke:grey;fill:none;' />\n";
+               << "style='stroke:grey;stroke-width:"
+               << strokewidth << ";fill:none;' />\n";
         }
 }
