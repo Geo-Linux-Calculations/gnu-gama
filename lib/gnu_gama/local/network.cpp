@@ -577,7 +577,15 @@ bool LocalNetwork::singular_coords(const Mat& A)
   for (PointData::iterator i=PD.begin(); i!=PD.end(); ++i)
     {
       LocalPoint&  p  = (*i).second;
-      if (!p.free_xy() || p.index_x()==0) continue;
+      if (p.fixed_xy() || !p.active_xy()) continue;
+
+      if(p.index_x() == 0 || p.index_y() == 0)
+      {
+          result = true;
+          p.unused_xy();
+          removed( (*i).first, rm_singular_xy );
+          continue;
+      }
 
       indx = p.index_x();
       indy = p.index_y();
