@@ -55,8 +55,6 @@ namespace GNU_gama { namespace local
     LocalNetwork();
     virtual ~LocalNetwork();
 
-    bool is_adjusted() const { return tst_vyrovnani_; }
-
     void set_algorithm(AdjBase* adjb) { least_squares = adjb; }
 
     PointData        PD;      // point list
