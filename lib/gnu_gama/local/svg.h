@@ -43,7 +43,7 @@ namespace GNU_gama { namespace local {
 
       /** Returns SVG image as a std::string. */
       std::string string() const;
-      /** Writes SVG image on to a standard streem */
+      /** Writes SVG image on to a standard stream */
       void draw(std::ostream& output_stream) const;
 
       /** Draw point symbols. */
