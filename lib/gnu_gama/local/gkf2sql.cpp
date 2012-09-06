@@ -322,7 +322,6 @@ void Gkf2sql::write(std::ostream& ostr)
 		  }
 		else if (const H_Diff*     m = dynamic_cast<const H_Diff*    >(*b)) 
 		  {
-		    const H_Diff* m = dynamic_cast<const H_Diff*>(*b);
 		    ostr << "insert into gnu_gama_local_obs "
 			 << "(conf_id, ccluster, indx, tag, from_id, to_id, "
 			 << "val, dist, rejected) values (" << cnfg() << ", " << cluster << ", "

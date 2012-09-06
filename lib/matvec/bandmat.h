@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -40,7 +40,7 @@ namespace GNU_gama {   /** \brief Symmetric Band Matrix */
 
 
 template <typename Float=double, typename Exc=Exception::matvec>
-class BandMat : public MatBase<Float, Exc>, public CholDec<Float, Exc> {
+class BandMat : public MatBase<Float, Exc>, public CholDecLD<Float, Exc> {
 public:
 
    BandMat() : band_(0) {}
@@ -85,8 +85,8 @@ private:
    Float  absa, absb, absq;
    Float  pythag(Float  a, Float  b)
      {
-       absa = Abs(a);
-       absb = Abs(b);
+       absa = this->Abs(a);
+       absb = this->Abs(b);
        if (absa > absb)
          {
            absq = absb/absa;
@@ -164,7 +164,7 @@ void BandMat<Float, Exc>::cholDec()
 
    Float *b = this->begin();
    Float *p;
-   const Float  Tol = Abs(*b*this->cholTol());
+   const Float  Tol = this->Abs(*b*this->cholTol());
    const Index bw1 = band_ + 1;
    Index i, k, l, m, n;
    Float   q, b0;
@@ -527,8 +527,8 @@ void BandMat<Float, Exc>::eigenVal(Vec<Float, Exc>& eigvals)
       for (m=l; m<=n; m++)
         {
           if (m == n) break;
-          tst1 = Abs(d[m])+Abs(d[m+1]);
-          tst2 = tst1 + Abs(e[m]);
+          tst1 = this->Abs(d[m])+this->Abs(d[m+1]);
+          tst2 = tst1 + this->Abs(e[m]);
           if (tst1 == tst2) break;
         }
       p = d[l];
@@ -546,7 +546,7 @@ void BandMat<Float, Exc>::eigenVal(Vec<Float, Exc>& eigvals)
 
       g = (d[l+1] - p)/(Float(2.0)*e[l]);
       r = pythag(g,Float(1.0));
-      g = d[m] - p + e[l]/(g+Sign(r,g));
+      g = d[m] - p + e[l]/(g+this->Sign(r,g));
       s = c = Float(1.0);
       p = Float(0.0);
       for (i=m-1; i>=l; i--)

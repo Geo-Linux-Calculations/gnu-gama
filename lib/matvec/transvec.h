@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -43,13 +43,13 @@ public:
   TransVec(const VecBase<Float, Exc>& v) : VecBase<Float, Exc>(v) {}
 
   TransVec operator*(Float f) const {
-      TransVec t(this->dim()); mul(f, t); return t;
+      TransVec t(this->dim()); this->mul(f, t); return t;
     }
   TransVec operator+(const TransVec &x) const {
-    TransVec t(this->dim()); add(x, t); return t;
+    TransVec t(this->dim()); this->add(x, t); return t;
   }
   TransVec operator-(const TransVec &x) const {
-    TransVec t(this->dim()); sub(x, t); return t;
+    TransVec t(this->dim()); this->sub(x, t); return t;
   }
 
 };

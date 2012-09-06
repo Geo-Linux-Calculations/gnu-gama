@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 2002, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -136,7 +136,7 @@ namespace GNU_gama {
     for (Index j=1; j<=idim; j++)
       {
         tx = x(j);
-        dh = tx + ( use_h ? h(j) : scale*(Float(1.0) + Abs(x(j))) );
+        dh = tx + ( use_h ? h(j) : scale*(Float(1.0) + this->Abs(x(j))) );
         dh = dh - tx;
 
         c    = degree/2;

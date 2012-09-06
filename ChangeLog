@@ -1,3 +1,8 @@
+2012-09-06  Ales Cepek  <cepek@gnu.org>
+
+	* Fixed templates lookup name syntax errors reported by Brandon
+	Invergo <brandon@invergo.net> (detected by compiler g++-4.7)
+
 2012-08-11  Ales Cepek  <cepek@gnu.org>
 
 	* In gama-local suppressed output of running results during

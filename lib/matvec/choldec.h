@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -45,6 +45,24 @@ public:
 
   CholDec(Float t=1e-8) : tol_(t) {}
   virtual ~CholDec() {}
+
+  Float  cholTol() const  { return tol_; }
+  Float  cholTol(Float t) { tol_ = t; return tol_; }
+
+  virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
+  virtual void solve(Vec<Float, Exc>& rhs) const = 0;
+};
+
+
+template <typename Float=double, typename Exc=Exception::matvec>
+class CholDecLD {
+
+  Float  tol_;
+
+public:
+
+  CholDecLD(Float t=1e-8) : tol_(t) {}
+  virtual ~CholDecLD() {}
 
   Float  cholTol() const  { return tol_; }
   Float  cholTol(Float t) { tol_ = t; return tol_; }

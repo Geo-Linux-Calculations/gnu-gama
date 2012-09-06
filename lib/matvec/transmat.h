@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -67,7 +67,7 @@ public:
       throw Exc(Exception::BadRank, "TransMat operator+(const TransMat& M) const");
 
     TransMat T(this->rows(), this->cols());
-    add(M, T);
+    this->add(M, T);
     return T;
   }
   TransMat operator-(const TransMat& M) const {
@@ -75,7 +75,7 @@ public:
       throw Exc(Exception::BadRank, "TransMat operator-(const TransMat& M) const");
 
     TransMat T(this->rows(), this->cols());
-    sub(M, T);
+    this->sub(M, T);
     return T;
   }
 
@@ -153,7 +153,7 @@ operator-(const Mat<Float, Exc> &A, const TransMat<Float, Exc> &B)
     typename Mat<Float, Exc>::const_iterator b=A.begin();
     typename Mat<Float, Exc>::const_iterator e=A.end();
 
-    while (b != e)  *t = *b++ - *t++;
+    while (b != e)  { *t = *b++ - *t; t++; }
 
     return T;
   }

@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2005, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -38,7 +38,7 @@ bool GNU_gama::SparseMatrixGraph<Float, Index>::connected() const
       Index x = stack.top();           // pop a node
       stack.pop();
 
-      for (const_iterator b=begin(x), e=end(x); b!=e; ++b)
+      for (const_iterator b=this->begin(x), e=this->end(x); b!=e; ++b)
         {
           Index y = *b;                // for all neighbors y of node x
           if (tag(y) == 0)

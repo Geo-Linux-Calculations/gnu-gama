@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -20,6 +20,7 @@
 */
 
 #include <gnu_gama/list.h>
+#include <cmath>
 
 #ifndef GNU_gama__obsdata_h_gnugamaobsdata_observation_data__gnu_gama_obsdata
 #define GNU_gama__obsdata_h_gnugamaobsdata_observation_data__gnu_gama_obsdata
@@ -53,7 +54,7 @@ namespace GNU_gama {
 
       double stdDev(int i) const
         {
-          i++; using namespace std; return sqrt(covariance_matrix(i,i));
+          i++; return std::sqrt(covariance_matrix(i,i));
         }
       int size() const
         {

@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -75,14 +75,14 @@ public:
   }
 
   Mat operator*(Float f) const {
-    Mat t(this->rows(), this->cols()); mul(f, t); return t;
+    Mat t(this->rows(), this->cols()); this->mul(f, t); return t;
   }
   Mat operator+(const Mat& M) const {
     if (this->rows() != M.rows() || this->cols() != M.cols())
       throw Exc(Exception::BadRank, "Mat::operator+(const Mat& M) const");
 
     Mat T(this->rows(), this->cols());
-    add(M, T);
+    this->add(M, T);
     return T;
   }
   Mat operator-(const Mat& M) const {
@@ -90,7 +90,7 @@ public:
       throw Exc(Exception::BadRank, "Mat::operator-(const Mat& M) const");
 
     Mat T(this->rows(), this->cols());
-    sub(M, T);
+    this->sub(M, T);
     return T;
   }
 
@@ -99,7 +99,7 @@ public:
 
   typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
   {
-    return list_init(x);
+    return this->list_init(x);
   }
 
 private:
@@ -228,7 +228,7 @@ void Mat<Float, Exc>::invert()
           for (jj=step; jj<N; jj++)
             {
               e = entry(i, indc[jj]);
-              if (Abs(e) > Abs(pivot))
+              if (this->Abs(e) > this->Abs(pivot))
                 {
                   pivot = e; p_row = ii; p_col = jj;
                 }

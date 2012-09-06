@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
-    Copyright (C) 1999, 2006, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2006, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -98,26 +98,26 @@ public:
   void invert();
 
   SymMat operator*(Float f) const {
-    SymMat t(dim()); mul(f, t); return t;
+    SymMat t(dim()); this->mul(f, t); return t;
   }
   SymMat operator+(const SymMat& M) const {
     if (dim() != M.dim())
       throw Exc(Exception::BadRank, "SymMat::operator+(const SymMat&) const");
      SymMat T(dim());
-     add(M, T);
+     this->add(M, T);
      return T;
   }
   SymMat operator-(const SymMat& M) const {
     if (dim() != M.dim())
       throw Exc(Exception::BadRank, "SymMat::operator-(const SymMat&) const");
      SymMat T(dim());
-     sub(M, T);
+     this->sub(M, T);
      return T;
   }
 
   typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
   {
-    return list_init(x);
+    return this->list_init(x);
   }
 
 };       // template <Float, Exc> class SymMat;

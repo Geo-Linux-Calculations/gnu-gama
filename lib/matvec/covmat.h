@@ -45,7 +45,7 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
 
 
   template <typename Float=double, typename Exc=Exception::matvec>
-  class CovMat : public MatBase<Float, Exc>, public CholDec<Float, Exc> {
+  class CovMat : public MatBase<Float, Exc>, public CholDecLD<Float, Exc> {
   public:
 
     CovMat() : band_(0), band_1(0), dim_b(0)
@@ -172,7 +172,7 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
     Index  N = dim();
     Index  W = bandWidth();
 
-    const  Float  Tol = Abs(*B*this->cholTol());
+    const  Float  Tol = this->Abs(*B*this->cholTol());
     Float *p;
     Index  row, k, l, n;
     Float  pivot, q;

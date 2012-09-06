@@ -59,7 +59,6 @@ Mat<Float, Exc> pinv(const Mat<Float, Exc>& A)
   const Mat<Float, Exc>& V = svd.SVD_V();
 
   Vec<Float,Exc> W_inv(N);
-  Float t = svd.tol();
   for (Index k=1; k<=N; k++)
     if (!svd.lindep(k))
       W_inv(k) = 1 / W(k);
