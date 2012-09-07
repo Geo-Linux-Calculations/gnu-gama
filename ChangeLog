@@ -1,7 +1,17 @@
+2012-09-07  Ales Cepek  <cepek@biggy>
+
+	* new release 1.13
+
+2012-09-07  Ales Cepek  <cepekgnu.org>
+
+	* removed matvec constructors with variable number of parameters
+	(direct initializaion of Mat / Vec elements).
+
 2012-09-06  Ales Cepek  <cepek@gnu.org>
 
 	* Fixed templates lookup name syntax errors reported by Brandon
-	Invergo <brandon@invergo.net> (detected by compiler g++-4.7)
+	Invergo <brandon@invergo.net> (detected by compiler g++-4.7).
+	Many thanks for your patch, Brandon.
 
 2012-08-11  Ales Cepek  <cepek@gnu.org>
 

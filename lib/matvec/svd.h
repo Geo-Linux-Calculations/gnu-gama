@@ -1,5 +1,5 @@
 /*
-  C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
+  C++ Matrix/Vector templates (GNU Gama / matvec)
   Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -97,7 +97,7 @@ namespace GNU_gama {
       SVD(const Mat<Float, Exc>& A) : m(A.rows()), n(A.cols()), U_(A),
       W_(n), V_(n, n), decomposed(0), W_tol(0), inv_W_(n),
       minx(all), list_min(0), minV(), U(0), V(0) {}
-      virtual ~SVD()
+      ~SVD()
       {
         delete[] list_min;
         delete[] U;

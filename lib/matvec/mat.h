@@ -1,5 +1,5 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
+    C++ Matrix/Vector templates (GNU Gama / matvec)
     Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -23,7 +23,6 @@
 #define GNU_gama_gMatVec_Mat__h_
 
 #include <iostream>
-#include <cstdarg>
 #include <matvec/matbase.h>
 #include <matvec/array.h>
 
@@ -45,25 +44,6 @@ public:
   Mat() {}
   Mat(Index r, Index c) : MatBase<Float, Exc>(r, c, r*c) {}
   Mat(const TransMat<Float, Exc>&);
-  Mat(Index r, Index c, Float m11 ...) : MatBase<Float, Exc>(r, c, r*c)
-    {
-      using namespace std;
-      iterator p=this->begin();
-      iterator e=this->end();
-      if (p == e)
-        throw Exc(Exception::BadRank, "Mat::Mat(Index, Float ...)");
-      *p = m11;
-      ++p;
-
-      va_list  ap;
-      va_start(ap, m11);
-      while (p!=e)
-        {
-          *p = va_arg(ap, Float);
-          ++p;
-        }
-      va_end(ap);
-    }
 
   Float& operator()(Index r, Index c) {
     Float *m = this->begin();
@@ -121,7 +101,8 @@ Mat<Float, Exc>
 operator* (const MatBase<Float, Exc> &A, const MatBase<Float, Exc> &B)
   {
     if (A.cols() != B.rows())
-      throw Exc(Exception::BadRank, "Mat operator* (const MatBase&, const MatBase&)");
+      throw Exc(Exception::BadRank,
+                "Mat operator* (const MatBase&, const MatBase&)");
 
     Mat<Float, Exc> C(A.rows(), B.cols());
     typename Mat<Float, Exc>::iterator c = C.begin();
@@ -144,7 +125,8 @@ Mat<Float, Exc>
 operator+(const MatBase<Float, Exc> &A,const MatBase<Float, Exc> &B)
   {
     if (A.rows() != B.rows() || A.cols() != B.cols())
-      throw Exc(Exception::BadRank, "Mat operator+(const MatBase &A, const MatBase &B)");
+      throw Exc(Exception::BadRank,
+                "Mat operator+(const MatBase &A, const MatBase &B)");
 
     Mat<Float, Exc> C(A.rows(), A.cols());
     for (Index i=1; i<=A.rows(); i++)
@@ -160,7 +142,8 @@ Mat<Float, Exc>
 operator-(const MatBase<Float, Exc> &A, const MatBase<Float, Exc> &B)
   {
     if (A.rows() != B.rows() || A.cols() != B.cols())
-      throw Exc(Exception::BadRank, "Mat operator-(const MatBase &A,const MatBase &B)");
+      throw Exc(Exception::BadRank,
+                "Mat operator-(const MatBase &A,const MatBase &B)");
 
     Mat<Float, Exc> C(A.rows(), A.cols());
     for (Index i=1; i<=A.rows(); i++)

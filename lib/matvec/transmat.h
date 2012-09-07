@@ -1,5 +1,5 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
+    C++ Matrix/Vector templates (GNU Gama / matvec)
     Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -23,7 +23,6 @@
 #define GNU_gama_gMatVec_TransMat__h_
 
 #include <iostream>
-#include <cstdarg>
 #include <matvec/mat.h>
 #include <matvec/vec.h>
 #include <matvec/transvec.h>

@@ -1,5 +1,5 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec 1.0.01)
+    C++ Matrix/Vector templates (GNU Gama / matvec)
     Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -23,7 +23,6 @@
 #define GNU_gama_gMatVec_Vec__h_
 
 #include <iostream>
-#include <cstdarg>
 #include <cmath>
 #include <matvec/vecbase.h>
 
@@ -41,25 +40,6 @@ public:
   Vec() {}
   Vec(Index nsz) : VecBase<Float, Exc>(nsz) {}
   Vec(const VecBase<Float, Exc>& v) : VecBase<Float, Exc>(v) {}
-  Vec(Index nsz, Float m11 ...) : VecBase<Float, Exc>(nsz)
-    {
-         using namespace std;
-         iterator p=this->begin();
-         iterator e=this->end();
-         if (p == e)
-            throw Exc(Exception::BadRank, "Vec::Vec(Index, Float ...)");
-         *p = m11;
-         ++p;
-
-         va_list  ap;
-         va_start(ap, m11);
-         while (p!=e)
-            {
-               *p = va_arg(ap, Float);
-               ++p;
-            }
-         va_end(ap);
-    }
 
   Vec operator*(Float f) const {
     Vec t(this->dim()); this->mul(f, t); return t;
