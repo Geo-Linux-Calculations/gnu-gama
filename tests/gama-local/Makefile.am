@@ -9,7 +9,7 @@ CLEANFILES = $(noinst_SCRIPTS)
 EXTRA_DIST = $(scripts)/gama-local-version.in \
              $(scripts)/gama-local-adjustment.in \
              input/gama-local.gkf \
-             input/tst-tetrahedron-2
+             input/tst-tetrahedron-2.gkf
 
 do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
                -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
