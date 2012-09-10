@@ -11,6 +11,12 @@ $ ./configure
 $ make
 @end example
 
+To run tests from the Gama test suite try
+
+@example
+$ make check
+@end example
+
 @noindent If the script @code{configure} is not available (which is the
 case when you download source codes from a git server), you have to
 generate it using auxiliary script @code{autogen.sh}.  To compile and

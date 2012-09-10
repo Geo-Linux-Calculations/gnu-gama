@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo verze @PACKAGE_VERSION@
+@top_builddir@/bin/gama-local --version

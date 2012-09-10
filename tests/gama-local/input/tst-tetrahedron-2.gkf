@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
+
+<gama-local version="2.0">
+<network>
+
+<description>
+Tetrahedron
+</description>
+
+<parameters
+   sigma-act = "aposteriori"
+/>
+
+<points-observations>
+
+<point id="1" x="   0.000" y="   0.000" z="   0.000" fix="xy" adj="Z"/>
+<point id="2" x="3000.000" y="   0.000" z="   0.000" adj="XYZ" />
+<point id="3" x="1500.000" y="2598.076" z="   0.000" fix="xy" adj="z" />
+<point id="4"                                        adj="xyz" />
+
+
+<obs from="1">
+     <direction   to="2" val="  0.000062" stdev="5.1" />
+     <direction   to="3" val=" 66.666614" stdev="5.1" />
+     <direction   to="4" val=" 33.328943" stdev="5.1" />
+
+     <s-distance  to="2" val="3000.005"   stdev="6.2" />
+     <s-distance  to="3" val="2999.987"   stdev="6.2" />
+     <s-distance  to="4" val="3000.037"   stdev="6.2" />
+
+     <distance    to="2" val="3000.006"   stdev="4.0" />
+
+     <z-angle     to="2" val=" 99.998830" stdev="7.3" />
+     <z-angle     to="3" val=" 99.996608" stdev="7.3" />
+     <z-angle     to="4" val=" 39.181085" stdev="7.3" />
+</obs>
+
+
+<obs from="2">
+     <direction   to="1" val="199.999759" stdev="5.1" />
+     <direction   to="3" val="133.333457" stdev="5.1" />
+     <direction   to="4" val="166.670169" stdev="5.1" />
+
+     <s-distance  to="3" val="2999.992"   stdev="6.2" />
+     <s-distance  to="4" val="2999.970"   stdev="6.2" />
+
+     <z-angle     to="1" val="100.001167" stdev="7.3" />
+     <z-angle     to="3" val=" 99.997811" stdev="7.3" />
+     <z-angle     to="4" val=" 39.181028" stdev="7.3" />
+</obs>
+
+<obs from="3">
+     <direction   to="1" val="266.666543" stdev="5.1" />
+     <direction   to="2" val="333.333488" stdev="5.1" />
+     <direction   to="4" val="300.000463" stdev="5.1" />
+
+     <s-distance  to="4" val="2999.990"   stdev="6.2" />
+
+     <z-angle     to="1" val="100.003388" stdev="7.3" />
+     <z-angle     to="2" val="100.002062" stdev="7.3" />
+     <z-angle     to="4" val=" 39.185237" stdev="7.3" />
+</obs>
+
+<obs from="4">
+     <direction   to="1" val="233.327126" stdev="5.1" />
+     <direction   to="2" val="366.668098" stdev="5.1" />
+     <direction   to="3" val=" 99.998746" stdev="5.1" />
+
+     <z-angle     to="1" val="160.819022" stdev="7.3" />
+     <z-angle     to="2" val="160.818669" stdev="7.3" />
+     <z-angle     to="3" val="160.814358" stdev="7.3" />
+</obs>
+
+<height-differences>
+     <dh from="1" to="2" val="0.061" stdev="3.9" />
+      <!-- blunder -->   <dh from="1" to="2" val="1500.025" stdev="3.9" />
+     <dh from="2" to="3" val="0.100" stdev="3.9" />
+     <dh from="3" to="1" val="-0.160" stdev="3.9" />
+</height-differences>
+
+<vectors>
+     <vec from="1" to="4" dx="1500.013" dy=" 866.031" dz="2449.488" />
+     <vec from="1" to="3" dx="1499.990" dy="2598.072" dz="   0.006" />
+
+     <cov-mat dim="6" band="2">
+          25  5 -7
+             24 -1  0
+                23  0  0
+                   24 -6  7
+                      25 -6
+                         26   
+     </cov-mat>
+</vectors>
+
+</points-observations>
+
+</network>
+</gama-local>
+
+
+
+
+
+
+

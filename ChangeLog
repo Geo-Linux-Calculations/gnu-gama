@@ -1,4 +1,8 @@
-2012-09-07  Ales Cepek  <cepek@biggy>
+2012-09-10  Ales Cepek  <cepek@gnu.org>
+
+	* added basic test suite for gama-local (make check)
+
+2012-09-07  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.13
 

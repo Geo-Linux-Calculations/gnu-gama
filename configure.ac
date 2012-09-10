@@ -55,5 +55,7 @@ AC_OUTPUT([Makefile
            scripts/Makefile          
            doc/Makefile
            xml/Makefile
+	   tests/Makefile
+	   tests/gama-local/Makefile
           ])
 
