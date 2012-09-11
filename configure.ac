@@ -49,13 +49,14 @@ AC_FUNC_REALLOC
 AC_FUNC_SETVBUF_REVERSED
 AC_CHECK_FUNCS([memmove memset munmap pow sqrt])
 
-AC_OUTPUT([Makefile 
+AC_OUTPUT([Makefile
            lib/Makefile
            bin/Makefile
-           scripts/Makefile          
+           scripts/Makefile
            doc/Makefile
            xml/Makefile
-	   tests/Makefile
-	   tests/gama-local/Makefile
+           tests/Makefile
+           tests/gama-local/Makefile
+           tests/gama-local/input/Makefile
+           tests/gama-local/scripts/Makefile
           ])
-
