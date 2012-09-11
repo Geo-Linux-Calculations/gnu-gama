@@ -1039,7 +1039,7 @@ Residuals and analysis of observations
 @comment this section is not included in texinfo
 @comment ***************************************
 
-@tex
+@iftex
 
 @subsection Test on normal distribution of homogenized residuals
 
@@ -1106,7 +1106,7 @@ Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \cr
 \noalign{\hrule}
 }}
 $$
-@end tex
+@end iftex
 
 
 @ignore
