@@ -1,5 +1,7 @@
 
-* added basic test suite for gama-local (make check)
+* added basic test suite for gama-local (make check).
+  Many thanks to Greg Troxel <gdt@work.lexort.com> for help, guidance and
+  several fixes.
 
 
 Changes from 1.9.00 to 1.9.01

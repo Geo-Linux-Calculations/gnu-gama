@@ -8,6 +8,7 @@ aclocal.m4
 autom4te.cache/
 #
 .deps
+INSTALL
 Makefile
 Makefile.in
 config.h
@@ -16,6 +17,12 @@ config.log
 config.status
 configure
 stamp-h1
+scripts/config.aux/
+#
+tests/gama-local/gama-local-adjustment
+tests/gama-local/gama-local-algorithms
+tests/gama-local/gama-local-version
+tests/gama-local/scripts/check_algorithms
 #
 doc/version.texi
 doc/gama.info
