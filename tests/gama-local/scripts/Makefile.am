@@ -1,6 +1,7 @@
 EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-algorithms.in  \
              gama-local-equivalents.in \
+             gama-local-xml-results.in \
              gama-local-version.in
 
 check_PROGRAMS = check_algorithms check_equivalents check_xml_results
