@@ -23,8 +23,10 @@ tests/gama-local/gama-local-adjustment
 tests/gama-local/gama-local-algorithms
 tests/gama-local/gama-local-equivalents
 tests/gama-local/gama-local-version
+tests/gama-local/gama-local-xml-results
 tests/gama-local/scripts/check_algorithms
 tests/gama-local/scripts/check_equivalents
+tests/gama-local/scripts/check_xml_results
 #
 doc/version.texi
 doc/gama.info
