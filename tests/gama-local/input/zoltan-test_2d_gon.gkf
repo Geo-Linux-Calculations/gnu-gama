@@ -1,0 +1,309 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
+<gama-local version="2.0">
+<network axes-xy="ne">
+<description>
+test_2d_gon
+</description>
+<parameters
+   sigma-apr="10"
+   conf-pr="0.95"
+   tol-abs="1000"
+   sigma-act="apriori"
+/>
+<points-observations distance-stdev="5.0" direction-stdev="10.0">
+<point id= "04-1053" x="62405.35" y="586852.05" fix="xy" />
+<point id= "04-1054" x="61544.55" y="585391.14" fix="xy" />
+<point id= "04-1057" x="60225.47" y="585567.01" fix="xy" />
+<point id= "04-1057/1" x="60221.49" y="585536.61" fix="xy" />
+<point id= "04-1061" x="56907.54" y="586738.79" fix="xy" />
+<point id= "04-1062" x="56496.31" y="591667.35" fix="xy" />
+<point id= "04-1121" x="60095.04" y="583805.48" fix="xy" />
+<point id= "04-1123" x="59455.19" y="581147.73" fix="xy" />
+<point id= "04-1125" x="59132.07" y="586366.72" fix="xy" />
+<point id= "04-1137" x="57618.60" y="583035.66" fix="xy" />
+<point id= "04-1138" x="57508.33" y="584950.36" fix="xy" />
+<point id= "04-1223" x="59591.62" y="589888.25" fix="xy" />
+<point id= "504" x="60752.89" y="588145.85" fix="xy" />
+<point id= "1001" adj="xy" />
+<point id= "1002" adj="xy" />
+<point id= "1003" adj="xy" />
+<point id= "1004" adj="xy" />
+<point id= "1005" adj="xy" />
+<point id= "1006" adj="xy" />
+<point id= "1007" adj="xy" />
+<point id= "1008" adj="xy" />
+<point id= "1009" adj="xy" />
+<point id= "1010" adj="xy" />
+<point id= "1011" adj="xy" />
+<point id= "1012" adj="xy" />
+<point id= "1013" adj="xy" />
+<point id= "1014" adj="xy" />
+<point id= "1015" adj="xy" />
+<point id= "1016" adj="xy" />
+<point id= "1017" adj="xy" />
+<point id= "1018" adj="xy" />
+<point id= "1019" adj="xy" />
+<point id= "1020" adj="xy" />
+<point id= "1021" adj="xy" />
+<obs from="1001">
+ <direction to= "04-1061" val= "399.9969135802" />
+ <direction to= "04-1138" val= "39.6929012346" />
+ <direction to= "04-1123" val= "152.7932098765" />
+ <direction to= "04-1057" val= "285.1904320988" />
+ <direction to= "504" val= "317.3493827160" />
+ <direction to= "04-1223" val= "340.3179012346" />
+</obs>
+<obs from="04-1125">
+ <direction to= "04-1062" val= "399.9990740741" />
+ <direction to= "04-1061" val= "60.0685185185" />
+ <direction to= "04-1138" val= "116.2885802469" />
+ <direction to= "04-1123" val= "174.5561728395" />
+ <direction to= "1002" val= "237.3771604938" />
+ <distance to= "1002" val= "730.4090" />
+ <direction to= "1003" val= "232.8956790123" />
+ <distance to= "1003" val= "1007.3602" />
+</obs>
+<obs from="04-1125">
+ <direction to= "504" val= "0.0006172840" />
+ <direction to= "04-1062" val= "76.4172839506" />
+ <direction to= "04-1061" val= "136.4882716049" />
+ <direction to= "04-1138" val= "192.7160493827" />
+ <direction to= "1004" val= "285.8416666667" />
+ <distance to= "1004" val= "413.5127" />
+</obs>
+<obs from="1004">
+ <direction to= "04-1125" val= "0.0123456790" />
+ <direction to= "04-1061" val= "43.2762345679" />
+ <direction to= "04-1138" val= "94.5956790123" />
+ <direction to= "04-1223" val= "357.5308641975" />
+ <direction to= "04-1125" val= "0.0138888889" />
+ <distance to= "04-1125" val= "413.5098" />
+ <direction to= "1005" val= "204.1271604938" />
+ <distance to= "1005" val= "255.5986" />
+</obs>
+<obs from="1004">
+ <direction to= "04-1125" val= "0.0509259259" />
+ <distance to= "04-1125" val= "413.5079" />
+ <direction to= "04-1061" val= "43.3148148148" />
+ <direction to= "04-1138" val= "94.6333333333" />
+ <direction to= "04-1223" val= "357.5500000000" />
+</obs>
+<obs from="1005">
+ <direction to= "504" val= "0.0021604938" />
+ <direction to= "1004" val= "73.8540123457" />
+ <distance to= "1004" val= "255.6007" />
+ <direction to= "1006" val= "225.6580246914" />
+ <distance to= "1006" val= "200.6585" />
+</obs>
+<obs from="1006">
+ <direction to= "1005" val= "1.0817901235" />
+ <distance to= "1005" val= "200.6582" />
+ <direction to= "04-1061" val= "80.7237654321" />
+ <direction to= "1007" val= "197.4033950617" />
+ <distance to= "1007" val= "130.3980" />
+</obs>
+<obs from="1007">
+ <direction to= "1006" val= "0.0046296296" />
+ <distance to= "1006" val= "130.4031" />
+ <direction to= "04-1061" val= "80.5253086420" />
+ <direction to= "1008" val= "203.4089506173" />
+ <distance to= "1008" val= "235.1831" />
+</obs>
+<obs from="1008">
+ <direction to= "504" val= "0.0006172840" />
+ <direction to= "1007" val= "21.0330246914" />
+ <distance to= "1007" val= "235.1851" />
+ <direction to= "1009" val= "240.8919753086" />
+ <distance to= "1009" val= "217.7311" />
+</obs>
+<obs from="1009">
+ <direction to= "04-1223" val= "399.9984567901" />
+ <direction to= "1008" val= "15.1966049383" />
+ <distance to= "1008" val= "217.7404" />
+ <direction to= "1010" val= "198.7969135802" />
+ <distance to= "1010" val= "169.2748" />
+</obs>
+<obs from="1009">
+ <direction to= "04-1062" val= "399.9990740741" />
+ <direction to= "1010" val= "170.5669753086" />
+ <distance to= "1010" val= "169.2719" />
+ <direction to= "1008" val= "386.9706790123" />
+ <distance to= "1008" val= "217.7373" />
+</obs>
+<obs from="1010">
+ <direction to= "504" val= "0.0006172840" />
+ <direction to= "1009" val= "20.9459876543" />
+ <distance to= "1009" val= "169.2711" />
+ <direction to= "1011" val= "158.5253086420" />
+ <distance to= "1011" val= "216.9368" />
+</obs>
+<obs from="1011">
+ <direction to= "1010" val= "399.9984567901" />
+ <distance to= "1010" val= "216.9396" />
+ <direction to= "04-1062" val= "89.3709876543" />
+ <direction to= "1001" val= "161.3679012346" />
+ <distance to= "1001" val= "237.2129" />
+</obs>
+<obs from="1011">
+ <direction to= "1001" val= "0.0015432099" />
+ <distance to= "1001" val= "237.2051" />
+ <direction to= "1012" val= "201.6003086420" />
+ <distance to= "1012" val= "244.0249" />
+ <direction to= "1010" val= "238.6287037037" />
+ <distance to= "1010" val= "216.9365" />
+ <direction to= "504" val= "277.8185185185" />
+</obs>
+<obs from="1012">
+ <direction to= "1011" val= "399.9969135802" />
+ <distance to= "1011" val= "244.0265" />
+ <direction to= "1013" val= "79.9243827160" />
+ <distance to= "1013" val= "128.6557" />
+ <direction to= "504" val= "280.2521604938" />
+ <direction to= "1010" val= "330.8302469136" />
+ <distance to= "1010" val= "134.7141" />
+</obs>
+<obs from="1013">
+ <direction to= "1012" val= "0.0015432099" />
+ <distance to= "1012" val= "128.6517" />
+ <direction to= "04-1062" val= "47.6172839506" />
+ <direction to= "1014" val= "215.7330246914" />
+ <distance to= "1014" val= "216.8938" />
+</obs>
+<obs from="1014">
+ <direction to= "504" val= "0.0015432099" />
+ <direction to= "1013" val= "14.5623456790" />
+ <distance to= "1013" val= "216.8979" />
+ <direction to= "04-1138" val= "104.1626543210" />
+ <direction to= "1015" val= "121.7546296296" />
+ <distance to= "1015" val= "190.4556" />
+</obs>
+<obs from="1015">
+ <direction to= "504" val= "0.0061728395" />
+ <direction to= "04-1062" val= "47.0231481481" />
+ <direction to= "1001" val= "59.2984567901" />
+ <distance to= "1001" val= "424.8902" />
+ <direction to= "04-1138" val= "105.2824074074" />
+ <direction to= "1014" val= "324.6209876543" />
+ <distance to= "1014" val= "190.4570" />
+</obs>
+<obs from="1001">
+ <direction to= "1015" val= "0.0030864198" />
+ <distance to= "1015" val= "424.8889" />
+ <direction to= "1011" val= "60.8734567901" />
+ <distance to= "1011" val= "237.2115" />
+ <direction to= "04-1223" val= "157.8811728395" />
+ <direction to= "04-1138" val= "257.2515432099" />
+ <direction to= "04-1123" val= "370.3540123457" />
+</obs>
+<obs from="04-1057/1">
+ <direction to= "04-1053" val= "399.9959876543" />
+ <direction to= "504" val= "52.6975308642" />
+ <direction to= "04-1057" val= "57.2654320988" />
+ <distance to= "04-1057" val= "30.5901" />
+ <direction to= "1016" val= "184.3293209877" />
+ <distance to= "1016" val= "66.1503" />
+ <direction to= "04-1123" val= "254.4805555556" />
+ <direction to= "04-1121" val= "260.8456790123" />
+</obs>
+<obs from="04-1057/1">
+ <direction to= "04-1054" val= "256.7629629630" />
+ <direction to= "504" val= "350.9419753086" />
+ <direction to= "1016" val= "82.5817901235" />
+ <distance to= "1016" val= "66.1515" />
+ <direction to= "04-1137" val= "112.4620370370" />
+</obs>
+<obs from="1016">
+ <direction to= "04-1057/1" val= "0.0015432099" />
+ <distance to= "04-1057/1" val= "66.1506" />
+ <direction to= "04-1062" val= "115.3564814815" />
+ <direction to= "04-1138" val= "194.5808641975" />
+ <direction to= "04-1121" val= "278.8209876543" />
+</obs>
+<obs from="04-1125">
+ <direction to= "504" val= "0.0000000000" />
+ <direction to= "04-1061" val= "136.4907407407" />
+ <direction to= "04-1138" val= "192.7067901235" />
+ <direction to= "04-1123" val= "250.9753086420" />
+ <direction to= "1003" val= "309.3117283951" />
+ <distance to= "1003" val= "1007.3685" />
+ <direction to= "1002" val= "313.7932098765" />
+ <distance to= "1002" val= "730.4140" />
+</obs>
+<obs from="1002">
+ <direction to= "04-1125" val= "0.0046296296" />
+ <distance to= "04-1125" val= "730.4117" />
+ <direction to= "04-1138" val= "61.0200617284" />
+ <direction to= "1003" val= "183.9197530864" />
+ <distance to= "1003" val= "283.4514" />
+ <direction to= "504" val= "305.7623456790" />
+</obs>
+<obs from="1003">
+ <direction to= "04-1125" val= "0.0006172840" />
+ <distance to= "04-1125" val= "1007.3571" />
+ <direction to= "04-1138" val= "58.9953703704" />
+ <direction to= "04-1062" val= "371.7592592593" />
+</obs>
+<obs from="1006">
+ <direction to= "04-1061" val= "0.0006172840" />
+ <direction to= "1017" val= "213.4290123457" />
+ <distance to= "1017" val= "180.5689" />
+ <direction to= "1016" val= "214.8663580247" />
+ <direction to= "504" val= "296.5114197531" />
+</obs>
+<obs from="1017">
+ <direction to= "1006" val= "0.0006172840" />
+ <distance to= "1006" val= "180.5699" />
+ <direction to= "1018" val= "208.4074074074" />
+ <distance to= "1018" val= "165.6634" />
+</obs>
+<obs from="1018">
+ <direction to= "504" val= "0.0015432099" />
+ <direction to= "04-1061" val= "97.6975308642" />
+ <direction to= "1017" val= "117.6404320988" />
+ <distance to= "1017" val= "165.6644" />
+ <direction to= "1019" val= "222.2669753086" />
+ <distance to= "1019" val= "204.8139" />
+</obs>
+<obs from="1019">
+ <direction to= "1018" val= "399.9913580247" />
+ <distance to= "1018" val= "204.8087" />
+ <direction to= "04-1062" val= "30.4475308642" />
+ <direction to= "04-1138" val= "110.6858024691" />
+ <direction to= "04-1137" val= "150.6518518519" />
+ <direction to= "1020" val= "155.1543209877" />
+ <distance to= "1020" val= "378.1765" />
+</obs>
+<obs from="1020">
+ <direction to= "1019" val= "0.0092592593" />
+ <distance to= "1019" val= "378.1759" />
+ <direction to= "504" val= "21.3904320988" />
+ <direction to= "04-1062" val= "72.2336419753" />
+ <direction to= "1021" val= "322.1342592593" />
+ <distance to= "1021" val= "362.1810" />
+</obs>
+<obs from="1021">
+ <direction to= "1020" val= "399.9990740741" />
+ <distance to= "1020" val= "362.1793" />
+ <direction to= "04-1138" val= "22.3000000000" />
+ <direction to= "04-1121" val= "129.4706790123" />
+ <distance to= "04-1121" val= "1167.8070" />
+ <direction to= "04-1061" val= "388.3740740741" />
+</obs>
+<obs from="1003">
+ <direction to= "1002" val= "399.9589506173" />
+ <distance to= "1002" val= "283.4419" />
+ <direction to= "04-1125" val= "11.5663580247" />
+ <distance to= "04-1125" val= "1007.3406" />
+ <direction to= "04-1138" val= "70.5623456790" />
+ <direction to= "04-1062" val= "383.3225308642" />
+</obs>
+<obs from="1003">
+ <direction to= "04-1125" val= "0.0006172840" />
+ <distance to= "04-1125" val= "1007.3571" />
+ <direction to= "04-1138" val= "58.9953703704" />
+ <direction to= "04-1062" val= "371.7592592593" />
+</obs>
+</points-observations>
+</network>
+</gama-local>

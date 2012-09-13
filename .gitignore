@@ -21,8 +21,10 @@ scripts/config.aux/
 #
 tests/gama-local/gama-local-adjustment
 tests/gama-local/gama-local-algorithms
+tests/gama-local/gama-local-equivalents
 tests/gama-local/gama-local-version
 tests/gama-local/scripts/check_algorithms
+tests/gama-local/scripts/check_equivalents
 #
 doc/version.texi
 doc/gama.info

@@ -1,0 +1,372 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
+<gama-local version="2.0">
+<network axes-xy="ne">
+<description>
+test_3d_dms
+</description>
+<parameters
+   sigma-apr="10"
+   conf-pr="0.95"
+   tol-abs="1000"
+   sigma-act="apriori"
+/>
+<points-observations 
+      distance-stdev="5.0" 
+      direction-stdev="3.24"
+      angle-stdev="3.24" 
+      zenith-angle-stdev = "3.24" >
+<point id= "04-1053" x="62405.350" y="586852.050" z="209.400" fix="xyz" />
+<point id= "04-1054" x="61544.550" y="585391.140" z="184.500" fix="xyz" />
+<point id= "04-1057" x="60225.470" y="585567.010" z="272.530" fix="xyz" />
+<point id= "04-1057/1" x="60221.490" y="585536.610" z="269.830" fix="xyz" />
+<point id= "04-1061" x="56907.540" y="586738.790" z="122.200" fix="xyz" />
+<point id= "04-1062" x="56496.310" y="591667.350" z="149.200" fix="xyz" />
+<point id= "04-1121" x="60095.040" y="583805.480" z="210.110" fix="xyz" />
+<point id= "04-1123" x="59455.190" y="581147.730" z="131.580" fix="xyz" />
+<point id= "04-1125" x="59132.070" y="586366.720" z="108.810" fix="xyz" />
+<point id= "04-1137" x="57618.600" y="583035.660" z="119.180" fix="xyz" />
+<point id= "04-1138" x="57508.330" y="584950.360" z="128.590" fix="xyz" />
+<point id= "04-1223" x="59591.620" y="589888.250" z="197.060" fix="xyz" />
+<point id= "504" x="60752.890" y="588145.850" fix="xy" adj="z" />
+<point id= "1001" adj="xyz" />
+<point id= "1002" adj="xyz" />
+<point id= "1003" adj="xyz" />
+<point id= "1004" adj="xyz" />
+<point id= "1005" adj="xyz" />
+<point id= "1006" adj="xyz" />
+<point id= "1007" adj="xyz" />
+<point id= "1008" adj="xyz" />
+<point id= "1009" adj="xyz" />
+<point id= "1010" adj="xyz" />
+<point id= "1011" adj="xyz" />
+<point id= "1012" adj="xyz" />
+<point id= "1013" adj="xyz" />
+<point id= "1014" adj="xyz" />
+<point id= "1015" adj="xyz" />
+<point id= "1016" adj="xyz" />
+<point id= "1017" adj="xyz" />
+<point id= "1018" adj="xyz" />
+<point id= "1019" adj="xyz" />
+<point id= "1020" adj="xyz" />
+<point id= "1021" adj="xyz" />
+<obs from="1001">
+ <direction to= "04-1061" val= "359-59-50.00" />
+ <direction to= "04-1138" val= "35-43-25.00" />
+ <direction to= "04-1123" val= "137-30-50.00" />
+ <direction to= "04-1057" val= "256-40-17.00" />
+ <direction to= "504" val= "285-36-52.00" />
+ <direction to= "04-1223" val= "306-17-10.00" />
+</obs>
+<obs from="04-1125">
+ <direction to= "04-1062" val= "359-59-57.00" />
+ <direction to= "04-1061" val= "54-3-42.00" />
+ <direction to= "04-1138" val= "104-39-35.00" />
+ <direction to= "04-1123" val= "157-6-2.00" />
+ <direction to= "1002" val= "213-38-22.00" />
+ <s-distance to= "1002" val= "730.7580" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1002" val= "88-13-45.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1003" val= "209-36-22.00" />
+ <s-distance to= "1003" val= "1008.8320" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1003" val= "86-54-17.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="04-1125">
+ <direction to= "504" val= "0-0-2.00" />
+ <direction to= "04-1062" val= "68-46-32.00" />
+ <direction to= "04-1061" val= "122-50-22.00" />
+ <direction to= "04-1138" val= "173-26-40.00" />
+ <direction to= "1004" val= "257-15-27.00" />
+ <s-distance to= "1004" val= "413.5570" from_dh ="1.200" to_dh ="1.500" />
+ <z-angle to= "1004" val= "89-9-42.00" from_dh ="1.200" to_dh ="1.500" />
+</obs>
+<obs from="1004">
+ <direction to= "04-1125" val= "0-0-40.00" />
+ <direction to= "04-1061" val= "38-56-55.00" />
+ <direction to= "04-1138" val= "85-8-10.00" />
+ <direction to= "04-1223" val= "321-46-40.00" />
+ <direction to= "04-1125" val= "0-0-45.00" />
+ <s-distance to= "04-1125" val= "413.5530" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "90-49-42.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1005" val= "183-42-52.00" />
+ <s-distance to= "1005" val= "255.6950" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1005" val= "88-25-35.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1004">
+ <direction to= "04-1125" val= "0-2-45.00" />
+ <s-distance to= "04-1125" val= "413.5510" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "90-49-37.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1061" val= "38-59-0.00" />
+ <direction to= "04-1138" val= "85-10-12.00" />
+ <direction to= "04-1223" val= "321-47-42.00" />
+</obs>
+<obs from="1005">
+ <direction to= "504" val= "0-0-7.00" />
+ <direction to= "1004" val= "66-28-7.00" />
+ <s-distance to= "1004" val= "255.6970" from_dh ="1.600" to_dh ="1.600" />
+ <z-angle to= "1004" val= "91-34-22.00" from_dh ="1.600" to_dh ="1.600" />
+ <direction to= "1006" val= "203-5-32.00" />
+ <s-distance to= "1006" val= "200.6630" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1006" val= "90-23-0.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1006">
+ <direction to= "1005" val= "0-58-25.00" />
+ <s-distance to= "1005" val= "200.6630" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1005" val= "89-36-17.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1061" val= "72-39-5.00" />
+ <direction to= "1007" val= "177-39-47.00" />
+ <s-distance to= "1007" val= "130.4040" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1007" val= "90-33-2.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1007">
+ <direction to= "1006" val= "0-0-15.00" />
+ <s-distance to= "1006" val= "130.4100" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1006" val= "89-24-37.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1061" val= "72-28-22.00" />
+ <direction to= "1008" val= "183-4-5.00" />
+ <s-distance to= "1008" val= "235.1840" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1008" val= "90-9-42.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1008">
+ <direction to= "504" val= "0-0-2.00" />
+ <direction to= "1007" val= "18-55-47.00" />
+ <s-distance to= "1007" val= "235.1860" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1007" val= "89-50-20.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1009" val= "216-48-10.00" />
+ <s-distance to= "1009" val= "217.7670" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1009" val= "88-57-37.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1009">
+ <direction to= "04-1223" val= "359-59-55.00" />
+ <direction to= "1008" val= "13-40-37.00" />
+ <s-distance to= "1008" val= "217.7760" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1008" val= "91-2-12.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1010" val= "178-55-2.00" />
+ <s-distance to= "1010" val= "169.2780" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1010" val= "89-39-0.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1009">
+ <direction to= "04-1062" val= "359-59-57.00" />
+ <direction to= "1010" val= "153-30-37.00" />
+ <s-distance to= "1010" val= "169.2750" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1010" val= "89-39-7.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1008" val= "348-16-25.00" />
+ <s-distance to= "1008" val= "217.7720" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1008" val= "91-1-22.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1010">
+ <direction to= "504" val= "0-0-2.00" />
+ <direction to= "1009" val= "18-51-5.00" />
+ <s-distance to= "1009" val= "169.2740" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1009" val= "90-20-5.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1011" val= "142-40-22.00" />
+ <s-distance to= "1011" val= "217.1510" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1011" val= "92-32-42.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1011">
+ <direction to= "1010" val= "359-59-55.00" />
+ <s-distance to= "1010" val= "217.1550" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1010" val= "87-26-52.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1062" val= "80-26-2.00" />
+ <direction to= "1001" val= "145-13-52.00" />
+ <s-distance to= "1001" val= "237.2920" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1001" val= "91-28-45.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1011">
+ <direction to= "1001" val= "0-0-5.00" />
+ <s-distance to= "1001" val= "237.2820" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1001" val= "91-27-30.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1012" val= "181-26-25.00" />
+ <s-distance to= "1012" val= "244.1740" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1012" val= "87-59-52.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1010" val= "214-45-57.00" />
+ <s-distance to= "1010" val= "217.1550" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1010" val= "87-25-47.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "504" val= "250-2-12.00" />
+</obs>
+<obs from="1012">
+ <direction to= "1011" val= "359-59-50.00" />
+ <s-distance to= "1011" val= "244.1730" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1011" val= "91-59-5.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1013" val= "71-55-55.00" />
+ <s-distance to= "1013" val= "128.6830" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1013" val= "88-49-10.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "504" val= "252-13-37.00" />
+ <direction to= "1010" val= "297-44-50.00" />
+ <s-distance to= "1010" val= "134.7210" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1010" val= "89-25-10.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1013">
+ <direction to= "1012" val= "0-0-5.00" />
+ <s-distance to= "1012" val= "128.6790" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1012" val= "91-10-50.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1062" val= "42-51-20.00" />
+ <direction to= "1014" val= "194-9-35.00" />
+ <s-distance to= "1014" val= "216.8940" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1014" val= "89-55-50.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1014">
+ <direction to= "504" val= "0-0-5.00" />
+ <direction to= "1013" val= "13-6-22.00" />
+ <s-distance to= "1013" val= "216.8980" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1013" val= "90-4-2.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1138" val= "93-44-47.00" />
+ <direction to= "1015" val= "109-34-45.00" />
+ <s-distance to= "1015" val= "190.7530" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1015" val= "93-12-0.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1015">
+ <direction to= "504" val= "0-0-20.00" />
+ <direction to= "04-1062" val= "42-19-15.00" />
+ <direction to= "1001" val= "53-22-7.00" />
+ <s-distance to= "1001" val= "424.9440" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1001" val= "90-54-42.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1138" val= "94-45-15.00" />
+ <direction to= "1014" val= "292-9-32.00" />
+ <s-distance to= "1014" val= "190.7560" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1014" val= "86-47-30.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1001">
+ <direction to= "1015" val= "0-0-10.00" />
+ <s-distance to= "1015" val= "424.9430" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1015" val= "89-5-10.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1011" val= "54-47-10.00" />
+ <s-distance to= "1011" val= "237.2880" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1011" val= "88-32-42.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1223" val= "142-5-35.00" />
+ <direction to= "04-1138" val= "231-31-35.00" />
+ <direction to= "04-1123" val= "333-19-7.00" />
+</obs>
+<obs from="04-1057/1">
+ <direction to= "04-1053" val= "359-59-47.00" />
+ <direction to= "504" val= "47-25-40.00" />
+ <direction to= "04-1057" val= "51-32-20.00" />
+ <s-distance to= "04-1057" val= "30.6100" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "04-1057" val= "87-56-2.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1016" val= "165-53-47.00" />
+ <s-distance to= "1016" val= "66.7300" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1016" val= "97-33-27.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1123" val= "229-1-57.00" />
+ <direction to= "04-1121" val= "234-45-40.00" />
+</obs>
+<obs from="04-1057/1">
+ <direction to= "04-1054" val= "231-5-12.00" />
+ <direction to= "504" val= "315-50-52.00" />
+ <direction to= "1016" val= "74-19-25.00" />
+ <s-distance to= "1016" val= "66.7310" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1016" val= "97-33-22.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1137" val= "101-12-57.00" />
+</obs>
+<obs from="1016">
+ <direction to= "04-1057/1" val= "0-0-5.00" />
+ <s-distance to= "04-1057/1" val= "66.7310" from_dh ="1.600" to_dh ="1.600" />
+ <z-angle to= "04-1057/1" val= "82-26-15.00" from_dh ="1.600" to_dh ="1.600" />
+ <direction to= "04-1062" val= "103-49-15.00" />
+ <direction to= "04-1138" val= "175-7-22.00" />
+ <direction to= "04-1121" val= "250-56-20.00" />
+</obs>
+<obs from="04-1125">
+ <direction to= "504" val= "0-0-0.00" />
+ <direction to= "04-1061" val= "122-50-30.00" />
+ <direction to= "04-1138" val= "173-26-10.00" />
+ <direction to= "04-1123" val= "225-52-40.00" />
+ <direction to= "1003" val= "278-22-50.00" />
+ <s-distance to= "1003" val= "1008.8250" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1003" val= "86-55-15.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "1002" val= "282-24-50.00" />
+ <s-distance to= "1002" val= "730.7570" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1002" val= "88-14-40.00" from_dh ="1.600" to_dh ="1.500" />
+</obs>
+<obs from="1002">
+ <direction to= "04-1125" val= "0-0-15.00" />
+ <s-distance to= "04-1125" val= "730.7560" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "91-45-32.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "04-1138" val= "54-55-5.00" />
+ <direction to= "1003" val= "165-31-40.00" />
+ <s-distance to= "1003" val= "285.2360" from_dh ="1.600" to_dh ="1.500" />
+ <z-angle to= "1003" val= "83-35-15.00" from_dh ="1.600" to_dh ="1.500" />
+ <direction to= "504" val= "275-11-10.00" />
+</obs>
+<obs from="1003">
+ <direction to= "04-1125" val= "0-0-2.00" />
+ <s-distance to= "04-1125" val= "1008.8180" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "93-5-2.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1138" val= "53-5-45.00" />
+ <direction to= "04-1062" val= "334-35-0.00" />
+</obs>
+<obs from="1006">
+ <direction to= "04-1061" val= "0-0-2.00" />
+ <direction to= "1017" val= "192-5-10.00" />
+ <s-distance to= "1017" val= "180.9870" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1017" val= "86-6-17.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "1016" val= "193-22-47.00" />
+ <direction to= "504" val= "266-51-37.00" />
+</obs>
+<obs from="1017">
+ <direction to= "1006" val= "0-0-2.00" />
+ <s-distance to= "1006" val= "180.9890" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1006" val= "93-54-0.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "1018" val= "187-33-60.00" />
+ <s-distance to= "1018" val= "166.9330" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1018" val= "82-55-45.00" from_dh ="1.500" to_dh ="1.500" />
+</obs>
+<obs from="1018">
+ <direction to= "504" val= "0-0-5.00" />
+ <direction to= "04-1061" val= "87-55-40.00" />
+ <direction to= "1017" val= "105-52-35.00" />
+ <s-distance to= "1017" val= "166.9340" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1017" val= "97-4-15.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "1019" val= "200-2-25.00" />
+ <s-distance to= "1019" val= "204.8140" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1019" val= "90-3-37.00" from_dh ="1.500" to_dh ="1.500" />
+</obs>
+<obs from="1019">
+ <direction to= "1018" val= "359-59-32.00" />
+ <s-distance to= "1018" val= "204.8090" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1018" val= "89-54-27.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1062" val= "27-24-10.00" />
+ <direction to= "04-1138" val= "99-37-2.00" />
+ <direction to= "04-1137" val= "135-35-12.00" />
+ <direction to= "1020" val= "139-38-20.00" />
+ <s-distance to= "1020" val= "379.0430" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1020" val= "93-52-30.00" from_dh ="1.500" to_dh ="1.500" />
+</obs>
+<obs from="1020">
+ <direction to= "1019" val= "0-0-30.00" />
+ <s-distance to= "1019" val= "379.0410" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1019" val= "86-7-42.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "504" val= "19-15-5.00" />
+ <direction to= "04-1062" val= "65-0-37.00" />
+ <direction to= "1021" val= "289-55-15.00" />
+ <s-distance to= "1021" val= "364.0470" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1021" val= "84-11-47.00" from_dh ="1.500" to_dh ="1.500" />
+</obs>
+<obs from="1021">
+ <direction to= "1020" val= "359-59-57.00" />
+ <s-distance to= "1020" val= "364.0510" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1020" val= "95-48-45.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1138" val= "20-4-12.00" />
+ <direction to= "04-1121" val= "116-31-25.00" />
+ <s-distance to= "04-1121" val= "1168.6870" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "04-1121" val= "87-46-35.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1061" val= "349-32-12.00" />
+</obs>
+<obs from="1003">
+ <direction to= "1002" val= "359-57-47.00" />
+ <s-distance to= "1002" val= "285.2420" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "1002" val= "96-26-25.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1125" val= "10-24-35.00" />
+ <s-distance to= "04-1125" val= "1008.8160" from_dh ="1.500" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "93-5-57.00" from_dh ="1.500" to_dh ="1.500" />
+ <direction to= "04-1138" val= "63-30-22.00" />
+ <direction to= "04-1062" val= "344-59-25.00" />
+</obs>
+<obs from="1003">
+ <direction to= "04-1125" val= "0-0-2.00" />
+ <s-distance to= "04-1125" val= "1008.8180" from_dh ="1.500" to_dh ="0.001" />
+ <z-angle to= "04-1125" val= "93-5-2.00" from_dh ="1.500" to_dh ="0.001" />
+ <direction to= "04-1138" val= "53-5-45.00" />
+ <direction to= "04-1062" val= "334-35-0.00" />
+</obs>
+</points-observations>
+</network>
+</gama-local>

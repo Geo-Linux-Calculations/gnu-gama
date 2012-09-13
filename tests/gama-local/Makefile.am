@@ -1,9 +1,14 @@
-TESTS = gama-local-version gama-local-adjustment gama-local-algorithms
+TESTS = gama-local-version gama-local-adjustment gama-local-algorithms \
+	gama-local-equivalents
 
 SUBDIRS = scripts input
 
 INPUT_FILES = gama-local \
-              tst-tetrahedron-2
+              tst-tetrahedron-2 \
+              zoltan-test_2d_dms \
+              zoltan-test_2d_gon \
+              zoltan-test_3d_dms \
+              zoltan-test_3d_gon
 
 GAMA_SCRIPT = $(srcdir)/scripts
 GAMA_INPUT = $(srcdir)/input
@@ -31,3 +36,8 @@ gama-local-algorithms: $(GAMA_SCRIPT)/gama-local-algorithms.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-algorithms.in \
 				> gama-local-algorithms
 	chmod +x gama-local-algorithms
+
+gama-local-equivalents: $(GAMA_SCRIPT)/gama-local-equivalents.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/gama-local-equivalents.in \
+				> gama-local-equivalents
+	chmod +x gama-local-equivalents

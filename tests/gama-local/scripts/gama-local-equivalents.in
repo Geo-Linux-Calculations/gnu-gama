@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# testing equivalent adjustment input data (like two configurations,
+# one in degrees and the other one in gons]
+
+a=zoltan-test_2d_dms; b=zoltan-test_2d_gon
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf 
+
+a=zoltan-test_3d_dms; b=zoltan-test_3d_gon
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf 
+
