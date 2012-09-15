@@ -86,6 +86,8 @@ libgama_src = \
    gnu_gama/xml/gkfparser.h \
    gnu_gama/local/angobs.h \
    gnu_gama/local/bpoint.h \
+   gnu_gama/local/html.cpp \
+   gnu_gama/local/html.h \
    gnu_gama/local/c/api/capi_exception.cpp \
    gnu_gama/local/c/api/capi_exception.h \
    gnu_gama/local/c/api/capi_gkfparser.cpp \
