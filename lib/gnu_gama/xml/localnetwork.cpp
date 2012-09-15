@@ -2,6 +2,7 @@
     GNU Gama C++ library
     Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -61,6 +62,9 @@ using GNU_gama::local::Zdiff;
 namespace
 {
   const char* const VERSION = "0.5";
+
+  // maximal possible precision needed by 'make check' test rule
+  int make_check_precision(int) { return 16; }
 }
 
 /** \brief Writes observations XML representation to stream.
@@ -604,6 +608,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out << "\n<!-- capital X,Y,Z denote constrained coordinates -->\n"
       << "<adjusted>\n";
 
+  out.precision(make_check_precision(6));
+
   for (PointData::const_iterator
          i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
     {
@@ -769,9 +775,8 @@ void LocalNetworkXML::observations(std::ostream& out) const
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;
    const double   kki    = netinfo->conf_int_coef();
 
-
-   const int linear  =  6;    // output precision
-   const int angular =  7;    // output precision
+   const int linear  =  make_check_precision(6);    // output precision
+   const int angular =  make_check_precision(7);    // output precision
 
 
    WriteXMLVisitor writeVisitor(out, linear, angular, v, y_sign);
@@ -811,7 +816,9 @@ void LocalNetworkXML::observations(std::ostream& out) const
        else if (dynamic_cast<Z_Angle*>(pm))
          ml *= scale;
 
+       out.precision(make_check_precision(3));
        out << " <stdev>" << ml << "</stdev>\n";
+       out.precision(3);
 
        // weight coefficient of the residual
        double qrr = netinfo->wcoef_res(i);

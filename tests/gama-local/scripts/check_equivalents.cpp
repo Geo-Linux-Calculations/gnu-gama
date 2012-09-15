@@ -29,7 +29,7 @@ using GNU_gama::local::LocalNetwork;
 
 int main(int argc, char* argv[])
 {
-  if (argc != 5) 
+  if (argc != 5)
     {
       std::cout << "   #### " << argv[0] << " wrong number of arguments\n";
       return 1;
@@ -43,14 +43,14 @@ int main(int argc, char* argv[])
 
   double maxdiff = xyzMaxDiff(aln,bln);
   bool failed = std::abs(maxdiff) >= 1e-5;
-  
+
   std::cout << "max.diff"
 	    << std::scientific << std::setprecision(3) << std::setw(11)
 	    << maxdiff << "[m] "
 	    << aconf << " " << bconf;
-  
+
   if (failed) std::cout << "  !!!";
 
-  std::cout << "\n";  
+  std::cout << "\n";
   return failed;
 }

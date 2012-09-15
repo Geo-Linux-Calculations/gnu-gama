@@ -12,7 +12,7 @@ variant: two fixed points, others adjusted
 </description>
 
 <network-general-parameters
-   gama-local-version="1.13"
+   gama-local-version="1.13a"
    gama-local-algorithm="gso"
    gama-local-compiler="GNU g++"
    epoch="0.0000000"
@@ -86,16 +86,16 @@ variant: two fixed points, others adjusted
 
 <!-- capital X,Y,Z denote constrained coordinates -->
 <adjusted>
-   <point> <id>403</id> <x>1054612.595217</x> <y>644373.608482</y> </point>
-   <point> <id>407</id> <x>1054821.163144</x> <y>644025.975421</y> </point>
-   <point> <id>409</id> <x>1054703.670300</x> <y>643769.618153</y> </point>
-   <point> <id>411</id> <x>1054614.588716</x> <y>643487.045497</y> </point>
-   <point> <id>413</id> <x>1054700.743544</x> <y>643249.947256</y> </point>
-   <point> <id>416</id> <x>1054931.433693</x> <y>643315.193515</y> </point>
-   <point> <id>418</id> <x>1055216.472347</x> <y>643580.486995</y> </point>
-   <point> <id>420</id> <x>1055139.898861</x> <y>643814.894551</y> </point>
-   <point> <id>422</id> <x>1055167.222373</x> <y>644041.461419</y> </point>
-   <point> <id>424</id> <x>1055205.411422</x> <y>644318.242998</y> </point>
+   <point> <id>403</id> <x>1054612.5952165836934000</x> <y>644373.6084815649082884</y> </point>
+   <point> <id>407</id> <x>1054821.1631435942836106</x> <y>644025.9754207303049043</y> </point>
+   <point> <id>409</id> <x>1054703.6703003484290093</x> <y>643769.6181532434420660</y> </point>
+   <point> <id>411</id> <x>1054614.5887163816951215</x> <y>643487.0454972716979682</y> </point>
+   <point> <id>413</id> <x>1054700.7435438758693635</x> <y>643249.9472561457660049</y> </point>
+   <point> <id>416</id> <x>1054931.4336934285238385</x> <y>643315.1935145920142531</y> </point>
+   <point> <id>418</id> <x>1055216.4723469212185591</x> <y>643580.4869949516141787</y> </point>
+   <point> <id>420</id> <x>1055139.8988612296525389</x> <y>643814.8945506674936041</y> </point>
+   <point> <id>422</id> <x>1055167.2223731880076230</x> <y>644041.4614194186870009</y> </point>
+   <point> <id>424</id> <x>1055205.4114224002696574</x> <y>644318.2429975247941911</y> </point>
 </adjusted>
 
 <orientation-shifts>
@@ -335,347 +335,347 @@ variant: two fixed points, others adjusted
 <observations>
 
 <direction> <from>1</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>0.0009170</adj> <stdev>5.069</stdev>
+   <obs>0.0000000000000000</obs> <adj>0.0009170368334139</adj> <stdev>5.0691550278733359</stdev>
    <qrr>0.723</qrr> <f>47.394</f> <std-residual>1.119</std-residual>
    <err-obs>12.679</err-obs> <err-adj>3.509</err-adj>
    </direction>
 <direction> <from>1</from> <to>422</to>
-   <obs>28.2057000</obs> <adj>28.2056127</adj> <stdev>5.104</stdev>
+   <obs>28.2057000000000002</obs> <adj>28.2056127218121127</adj> <stdev>5.1039213023854657</stdev>
    <qrr>0.719</qrr> <f>47.033</f> <std-residual>0.107</std-residual>
    <err-obs>-1.213</err-obs> <err-adj>-0.340</err-adj>
    </direction>
 <direction> <from>1</from> <to>424</to>
-   <obs>60.4906000</obs> <adj>60.4913588</adj> <stdev>6.715</stdev>
+   <obs>60.4905999999999935</obs> <adj>60.4913587558103245</adj> <stdev>6.7149491929689091</stdev>
    <qrr>0.514</qrr> <f>30.315</f> <std-residual>1.098</std-residual>
    <err-obs>14.750</err-obs> <err-adj>7.163</err-adj>
    </direction>
 <direction> <from>1</from> <to>403</to>
-   <obs>324.3662000</obs> <adj>324.3654114</adj> <stdev>6.801</stdev>
+   <obs>324.3661999999999352</obs> <adj>324.3654113563725900</adj> <stdev>6.8005195098650786</stdev>
    <qrr>0.502</qrr> <f>29.427</f> <std-residual>1.155</std-residual>
    <err-obs>-15.712</err-obs> <err-adj>-7.826</err-adj>
    </direction>
 <direction> <from>1</from> <to>407</to>
-   <obs>382.8182000</obs> <adj>382.8174001</adj> <stdev>5.172</stdev>
+   <obs>382.8181999999999334</obs> <adj>382.8174001291714603</adj> <stdev>5.1720100104555815</stdev>
    <qrr>0.712</qrr> <f>46.327</f> <std-residual>0.984</std-residual>
    <err-obs>-11.235</err-obs> <err-adj>-3.237</err-adj>
    </direction>
 <distance> <from>1</from> <to>2</to>
-   <obs>845.777000</obs> <adj>845.778324</adj> <stdev>0.000</stdev>
+   <obs>845.7770000000000437</obs> <adj>845.7783241546808313</adj> <stdev>0.0000000000000000</stdev>
    <qrr>0.250</qrr> <f>100.000</f> <std-residual>0.275</std-residual>
    <err-obs>1.324</err-obs> <err-adj>0.000</err-adj>
    </distance>
 <distance> <from>1</from> <to>422</to>
-   <obs>493.793000</obs> <adj>493.799311</adj> <stdev>2.548</stdev>
+   <obs>493.7930000000000064</obs> <adj>493.7993106350820653</adj> <stdev>2.5482491630039670</stdev>
    <qrr>0.180</qrr> <f>47.110</f> <std-residual>1.543</std-residual>
    <err-obs>8.762</err-obs> <err-adj>2.451</err-adj>
    </distance>
 <distance> <from>1</from> <to>424</to>
-   <obs>288.301000</obs> <adj>288.300861</adj> <stdev>3.626</stdev>
+   <obs>288.3009999999999877</obs> <adj>288.3008613369208888</adj> <stdev>3.6263934562279099</stdev>
    <qrr>0.108</qrr> <f>24.733</f> <std-residual>0.044</std-residual>
    <err-obs>-0.320</err-obs> <err-adj>-0.181</err-adj>
    </distance>
 <distance> <from>1</from> <to>403</to>
-   <obs>388.536000</obs> <adj>388.538977</adj> <stdev>3.912</stdev>
+   <obs>388.5360000000000014</obs> <adj>388.5389772024190620</adj> <stdev>3.9117447936555534</stdev>
    <qrr>0.085</qrr> <f>18.810</f> <std-residual>1.058</std-residual>
    <err-obs>8.735</err-obs> <err-adj>5.758</err-adj>
    </distance>
 <distance> <from>1</from> <to>407</to>
-   <obs>498.750000</obs> <adj>498.746103</adj> <stdev>2.362</stdev>
+   <obs>498.7500000000000000</obs> <adj>498.7461034352031675</adj> <stdev>2.3619434759620099</stdev>
    <qrr>0.190</qrr> <f>50.977</f> <std-residual>0.928</std-residual>
    <err-obs>-5.129</err-obs> <err-adj>-1.233</err-adj>
    </distance>
 <direction> <from>2</from> <to>1</to>
-   <obs>0.0000000</obs> <adj>399.9992916</adj> <stdev>5.109</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9992915754417027</adj> <stdev>5.1088450232372953</stdev>
    <qrr>0.719</qrr> <f>46.982</f> <std-residual>0.867</std-residual>
    <err-obs>-9.854</err-obs> <err-adj>-2.770</err-adj>
    </direction>
 <direction> <from>2</from> <to>407</to>
-   <obs>22.2376000</obs> <adj>22.2384216</adj> <stdev>5.331</stdev>
+   <obs>22.2376000000000005</obs> <adj>22.2384216468703748</adj> <stdev>5.3309940966256955</stdev>
    <qrr>0.694</qrr> <f>44.677</f> <std-residual>1.024</std-residual>
    <err-obs>11.840</err-obs> <err-adj>3.624</err-adj>
    </direction>
 <direction> <from>2</from> <to>409</to>
-   <obs>73.8984000</obs> <adj>73.8982887</adj> <stdev>6.431</stdev>
+   <obs>73.8983999999999810</obs> <adj>73.8982886772411263</adj> <stdev>6.4312793317781214</stdev>
    <qrr>0.555</qrr> <f>33.258</f> <std-residual>0.155</std-residual>
    <err-obs>-2.007</err-obs> <err-adj>-0.894</err-adj>
    </direction>
 <direction> <from>2</from> <to>411</to>
-   <obs>134.2090000</obs> <adj>134.2090467</adj> <stdev>6.305</stdev>
+   <obs>134.2090000000000032</obs> <adj>134.2090466618194853</adj> <stdev>6.3048992201213423</stdev>
    <qrr>0.572</qrr> <f>34.570</f> <std-residual>0.064</std-residual>
    <err-obs>0.816</err-obs> <err-adj>0.349</err-adj>
    </direction>
 <direction> <from>2</from> <to>416</to>
-   <obs>203.0706000</obs> <adj>203.0702422</adj> <stdev>6.464</stdev>
+   <obs>203.0706000000000131</obs> <adj>203.0702422257760134</adj> <stdev>6.4643730807300104</stdev>
    <qrr>0.550</qrr> <f>32.915</f> <std-residual>0.501</std-residual>
    <err-obs>-6.505</err-obs> <err-adj>-2.928</err-adj>
    </direction>
 <direction> <from>2</from> <to>418</to>
-   <obs>287.2951000</obs> <adj>287.2961504</adj> <stdev>6.747</stdev>
+   <obs>287.2950999999999908</obs> <adj>287.2961504180519228</adj> <stdev>6.7467021698814733</stdev>
    <qrr>0.510</qrr> <f>29.985</f> <std-residual>1.527</std-residual>
    <err-obs>20.605</err-obs> <err-adj>10.101</err-adj>
    </direction>
 <direction> <from>2</from> <to>420</to>
-   <obs>345.6928000</obs> <adj>345.6934358</adj> <stdev>6.012</stdev>
+   <obs>345.6927999999999201</obs> <adj>345.6934358383950325</adj> <stdev>6.0122063285878138</stdev>
    <qrr>0.611</qrr> <f>37.607</f> <std-residual>0.844</std-residual>
    <err-obs>10.411</err-obs> <err-adj>4.053</err-adj>
    </direction>
 <direction> <from>2</from> <to>422</to>
-   <obs>368.9908000</obs> <adj>368.9894230</adj> <stdev>4.998</stdev>
+   <obs>368.9907999999999788</obs> <adj>368.9894229564042121</adj> <stdev>4.9982896982654825</stdev>
    <qrr>0.731</qrr> <f>48.129</f> <std-residual>1.671</std-residual>
    <err-obs>-18.839</err-obs> <err-adj>-5.069</err-adj>
    </direction>
 <distance> <from>2</from> <to>407</to>
-   <obs>388.562000</obs> <adj>388.558710</adj> <stdev>2.355</stdev>
+   <obs>388.5620000000000118</obs> <adj>388.5587103686383443</adj> <stdev>2.3547224243149296</stdev>
    <qrr>0.190</qrr> <f>51.127</f> <std-residual>0.783</std-residual>
    <err-obs>-4.322</err-obs> <err-adj>-1.032</err-adj>
    </distance>
 <distance> <from>2</from> <to>409</to>
-   <obs>257.498000</obs> <adj>257.496314</adj> <stdev>2.679</stdev>
+   <obs>257.4979999999999905</obs> <adj>257.4963137790070959</adj> <stdev>2.6788990467041733</stdev>
    <qrr>0.173</qrr> <f>44.399</f> <std-residual>0.421</std-residual>
    <err-obs>-2.441</err-obs> <err-adj>-0.755</err-adj>
    </distance>
 <distance> <from>2</from> <to>411</to>
-   <obs>360.282000</obs> <adj>360.283254</adj> <stdev>2.801</stdev>
+   <obs>360.2819999999999823</obs> <adj>360.2832538472917463</adj> <stdev>2.8011734971289792</stdev>
    <qrr>0.165</qrr> <f>41.861</f> <std-residual>0.320</std-residual>
    <err-obs>1.894</err-obs> <err-adj>0.640</err-adj>
    </distance>
 <distance> <from>2</from> <to>416</to>
-   <obs>338.919000</obs> <adj>338.915753</adj> <stdev>2.851</stdev>
+   <obs>338.9189999999999827</obs> <adj>338.9157532552932253</adj> <stdev>2.8514251450680734</stdev>
    <qrr>0.162</qrr> <f>40.818</f> <std-residual>0.836</std-residual>
    <err-obs>-4.997</err-obs> <err-adj>-1.750</err-adj>
    </distance>
 <distance> <from>2</from> <to>418</to>
-   <obs>292.094000</obs> <adj>292.099490</adj> <stdev>2.787</stdev>
+   <obs>292.0939999999999941</obs> <adj>292.0994900418432394</adj> <stdev>2.7873096006926885</stdev>
    <qrr>0.166</qrr> <f>42.148</f> <std-residual>1.397</std-residual>
    <err-obs>8.252</err-obs> <err-adj>2.762</err-adj>
    </distance>
 <distance> <from>2</from> <to>420</to>
-   <obs>261.408000</obs> <adj>261.401787</adj> <stdev>2.694</stdev>
+   <obs>261.4080000000000155</obs> <adj>261.4017871050666031</adj> <stdev>2.6944404993499376</stdev>
    <qrr>0.172</qrr> <f>44.076</f> <std-residual>1.555</std-residual>
    <err-obs>-9.040</err-obs> <err-adj>-2.827</err-adj>
    </distance>
 <distance> <from>2</from> <to>422</to>
-   <obs>452.249000</obs> <adj>452.253946</adj> <stdev>2.514</stdev>
+   <obs>452.2490000000000236</obs> <adj>452.2539463321688231</adj> <stdev>2.5138834028707686</stdev>
    <qrr>0.182</qrr> <f>47.824</f> <std-residual>1.203</std-residual>
    <err-obs>6.797</err-obs> <err-adj>1.850</err-adj>
    </distance>
 <direction> <from>403</from> <to>1</to>
-   <obs>0.0000000</obs> <adj>0.0002473</adj> <stdev>7.686</stdev>
+   <obs>0.0000000000000000</obs> <adj>0.0002473301756452</adj> <stdev>7.6864323746765120</stdev>
    <qrr>0.364</qrr> <f>20.233</f> <std-residual>0.426</std-residual>
    <err-obs>6.800</err-obs> <err-adj>4.327</err-adj>
    </direction>
 <direction> <from>403</from> <to>407</to>
-   <obs>313.5542000</obs> <adj>313.5539527</adj> <stdev>7.686</stdev>
+   <obs>313.5541999999999234</obs> <adj>313.5539526698242980</adj> <stdev>7.6864323746765120</stdev>
    <qrr>0.364</qrr> <f>20.233</f> <std-residual>0.426</std-residual>
    <err-obs>-6.800</err-obs> <err-adj>-4.327</err-adj>
    </direction>
 <distance> <from>403</from> <to>407</to>
-   <obs>405.403000</obs> <adj>405.400204</adj> <stdev>3.730</stdev>
+   <obs>405.4030000000000200</obs> <adj>405.4002036496064534</adj> <stdev>3.7301442119989003</stdev>
    <qrr>0.100</qrr> <f>22.580</f> <std-residual>0.917</std-residual>
    <err-obs>-6.980</err-obs> <err-adj>-4.184</err-adj>
    </distance>
 <direction> <from>407</from> <to>1</to>
-   <obs>0.0000000</obs> <adj>399.9992089</adj> <stdev>5.969</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9992088686107650</adj> <stdev>5.9694943303980299</stdev>
    <qrr>0.616</qrr> <f>38.051</f> <std-residual>1.046</std-residual>
    <err-obs>-12.838</err-obs> <err-adj>-4.927</err-adj>
    </direction>
 <direction> <from>407</from> <to>403</to>
-   <obs>55.1013000</obs> <adj>55.1009254</adj> <stdev>7.109</stdev>
+   <obs>55.1013000000000019</obs> <adj>55.1009254354605531</adj> <stdev>7.1093229326546421</stdev>
    <qrr>0.456</qrr> <f>26.222</f> <std-residual>0.576</std-residual>
    <err-obs>-8.220</err-obs> <err-adj>-4.474</err-adj>
    </direction>
 <direction> <from>407</from> <to>409</to>
-   <obs>193.3410000</obs> <adj>193.3397085</adj> <stdev>6.934</stdev>
+   <obs>193.3409999999999798</obs> <adj>193.3397084515119957</adj> <stdev>6.9335755869139524</stdev>
    <qrr>0.482</qrr> <f>28.046</f> <std-residual>1.930</std-residual>
    <err-obs>-26.781</err-obs> <err-adj>-13.866</err-adj>
    </direction>
 <direction> <from>407</from> <to>2</to>
-   <obs>239.4204000</obs> <adj>239.4218558</adj> <stdev>6.046</stdev>
+   <obs>239.4204000000000008</obs> <adj>239.4218558477013232</adj> <stdev>6.0464258456948317</stdev>
    <qrr>0.606</qrr> <f>37.252</f> <std-residual>1.940</std-residual>
    <err-obs>24.013</err-obs> <err-adj>9.455</err-adj>
    </direction>
 <direction> <from>407</from> <to>422</to>
-   <obs>323.5443000</obs> <adj>323.5453014</adj> <stdev>6.221</stdev>
+   <obs>323.5442999999999643</obs> <adj>323.5453013967153311</adj> <stdev>6.2213825213046015</stdev>
    <qrr>0.583</qrr> <f>35.437</f> <std-residual>1.361</std-residual>
    <err-obs>17.172</err-obs> <err-adj>7.158</err-adj>
    </direction>
 <distance> <from>407</from> <to>409</to>
-   <obs>281.997000</obs> <adj>281.999321</adj> <stdev>3.112</stdev>
+   <obs>281.9970000000000141</obs> <adj>281.9993205387626176</adj> <stdev>3.1123249718694392</stdev>
    <qrr>0.146</qrr> <f>35.403</f> <std-residual>0.631</std-residual>
    <err-obs>3.982</err-obs> <err-adj>1.662</err-adj>
    </distance>
 <distance> <from>407</from> <to>422</to>
-   <obs>346.415000</obs> <adj>346.405552</adj> <stdev>2.951</stdev>
+   <obs>346.4150000000000205</obs> <adj>346.4055521023204847</adj> <stdev>2.9511498101458153</stdev>
    <qrr>0.156</qrr> <f>38.748</f> <std-residual>2.481</std-residual>
    <err-obs>-15.121</err-obs> <err-adj>-5.673</err-adj>
    </distance>
 <direction> <from>409</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>399.9999050</adj> <stdev>7.052</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9999049737088512</adj> <stdev>7.0523431028306280</stdev>
    <qrr>0.464</qrr> <f>26.813</f> <std-residual>0.145</std-residual>
    <err-obs>-2.046</err-obs> <err-adj>-1.096</err-adj>
    </direction>
 <direction> <from>409</from> <to>407</to>
-   <obs>102.2575000</obs> <adj>102.2578905</adj> <stdev>7.792</stdev>
+   <obs>102.2574999999999932</obs> <adj>102.2578905471488753</adj> <stdev>7.7923110850548882</stdev>
    <qrr>0.346</qrr> <f>19.134</f> <std-residual>0.689</std-residual>
    <err-obs>11.285</err-obs> <err-adj>7.380</err-adj>
    </direction>
 <direction> <from>409</from> <to>411</to>
-   <obs>310.1751000</obs> <adj>310.1748045</adj> <stdev>7.697</stdev>
+   <obs>310.1750999999999863</obs> <adj>310.1748044791422103</adj> <stdev>7.6971797133767890</stdev>
    <qrr>0.362</qrr> <f>20.121</f> <std-residual>0.510</std-residual>
    <err-obs>-8.165</err-obs> <err-adj>-5.210</err-adj>
    </direction>
 <distance> <from>409</from> <to>411</to>
-   <obs>296.281000</obs> <adj>296.281681</adj> <stdev>3.402</stdev>
+   <obs>296.2810000000000059</obs> <adj>296.2816809992826279</adj> <stdev>3.4021086941789909</stdev>
    <qrr>0.125</qrr> <f>29.388</f> <std-residual>0.200</std-residual>
    <err-obs>1.358</err-obs> <err-adj>0.677</err-adj>
    </distance>
 <direction> <from>411</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>0.0002088</adj> <stdev>6.123</stdev>
+   <obs>0.0000000000000000</obs> <adj>0.0002087888483752</adj> <stdev>6.1231379550749239</stdev>
    <qrr>0.596</qrr> <f>36.456</f> <std-residual>0.281</std-residual>
    <err-obs>3.502</err-obs> <err-adj>1.414</err-adj>
    </direction>
 <direction> <from>411</from> <to>409</to>
-   <obs>49.8647000</obs> <adj>49.8643503</adj> <stdev>7.038</stdev>
+   <obs>49.8646999999999991</obs> <adj>49.8643503097033118</adj> <stdev>7.0376264864764790</stdev>
    <qrr>0.467</qrr> <f>26.966</f> <std-residual>0.531</std-residual>
    <err-obs>-7.494</err-obs> <err-adj>-3.998</err-adj>
    </direction>
 <direction> <from>411</from> <to>413</to>
-   <obs>291.4953000</obs> <adj>291.4946610</adj> <stdev>7.566</stdev>
+   <obs>291.4952999999999861</obs> <adj>291.4946609824182246</adj> <stdev>7.5663469055317867</stdev>
    <qrr>0.383</qrr> <f>21.479</f> <std-residual>1.071</std-residual>
    <err-obs>-16.665</err-obs> <err-adj>-10.275</err-adj>
    </direction>
 <direction> <from>411</from> <to>416</to>
-   <obs>337.6667000</obs> <adj>337.6674799</adj> <stdev>6.282</stdev>
+   <obs>337.6666999999999916</obs> <adj>337.6674799190300860</adj> <stdev>6.2815750727288657</stdev>
    <qrr>0.575</qrr> <f>34.812</f> <std-residual>1.067</std-residual>
    <err-obs>13.563</err-obs> <err-adj>5.763</err-adj>
    </direction>
 <distance> <from>411</from> <to>413</to>
-   <obs>252.266000</obs> <adj>252.266189</adj> <stdev>3.427</stdev>
+   <obs>252.2659999999999911</obs> <adj>252.2661892630149509</adj> <stdev>3.4271213555526159</stdev>
    <qrr>0.124</qrr> <f>28.869</f> <std-residual>0.056</std-residual>
    <err-obs>0.383</err-obs> <err-adj>0.194</err-adj>
    </distance>
 <distance> <from>411</from> <to>416</to>
-   <obs>360.449000</obs> <adj>360.449502</adj> <stdev>2.920</stdev>
+   <obs>360.4490000000000123</obs> <adj>360.4495018773076254</adj> <stdev>2.9203730700619368</stdev>
    <qrr>0.158</qrr> <f>39.387</f> <std-residual>0.131</std-residual>
    <err-obs>0.793</err-obs> <err-adj>0.291</err-adj>
    </distance>
 <direction> <from>413</from> <to>411</to>
-   <obs>0.0000000</obs> <adj>399.9997599</adj> <stdev>8.231</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9997599091079223</adj> <stdev>8.2314623547106969</stdev>
    <qrr>0.270</qrr> <f>14.577</f> <std-residual>0.479</std-residual>
    <err-obs>-8.883</err-obs> <err-adj>-6.482</err-adj>
    </direction>
 <direction> <from>413</from> <to>416</to>
-   <obs>295.3582000</obs> <adj>295.3584401</adj> <stdev>8.231</stdev>
+   <obs>295.3582000000000107</obs> <adj>295.3584400908920884</adj> <stdev>8.2314623547106969</stdev>
    <qrr>0.270</qrr> <f>14.577</f> <std-residual>0.479</std-residual>
    <err-obs>8.883</err-obs> <err-adj>6.482</err-adj>
    </direction>
 <distance> <from>413</from> <to>416</to>
-   <obs>239.745000</obs> <adj>239.739482</adj> <stdev>3.449</stdev>
+   <obs>239.7450000000000045</obs> <adj>239.7394822204072113</adj> <stdev>3.4494821357123473</stdev>
    <qrr>0.122</qrr> <f>28.405</f> <std-residual>1.640</std-residual>
    <err-obs>-11.321</err-obs> <err-adj>-5.803</err-adj>
    </distance>
 <direction> <from>416</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>399.9999338</adj> <stdev>6.207</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9999338003034950</adj> <stdev>6.2070846932761086</stdev>
    <qrr>0.585</qrr> <f>35.585</f> <std-residual>0.090</std-residual>
    <err-obs>-1.131</err-obs> <err-adj>-0.469</err-adj>
    </direction>
 <direction> <from>416</from> <to>411</to>
-   <obs>68.8065000</obs> <adj>68.8060094</adj> <stdev>6.335</stdev>
+   <obs>68.8064999999999998</obs> <adj>68.8060093665287127</adj> <stdev>6.3348663063972355</stdev>
    <qrr>0.568</qrr> <f>34.259</f> <std-residual>0.676</std-residual>
    <err-obs>-8.641</err-obs> <err-adj>-3.734</err-adj>
    </direction>
 <direction> <from>416</from> <to>413</to>
-   <obs>117.9922000</obs> <adj>117.9918706</adj> <stdev>7.644</stdev>
+   <obs>117.9921999999999969</obs> <adj>117.9918706117010174</adj> <stdev>7.6435931621038229</stdev>
    <qrr>0.371</qrr> <f>20.677</f> <std-residual>0.561</std-residual>
    <err-obs>-8.883</err-obs> <err-adj>-5.589</err-adj>
    </direction>
 <direction> <from>416</from> <to>418</to>
-   <obs>348.1606000</obs> <adj>348.1614862</adj> <stdev>6.914</stdev>
+   <obs>348.1605999999999881</obs> <adj>348.1614862214667596</adj> <stdev>6.9144544504203225</stdev>
    <qrr>0.485</qrr> <f>28.244</f> <std-residual>1.320</std-residual>
    <err-obs>18.268</err-obs> <err-adj>9.406</err-adj>
    </direction>
 <distance> <from>416</from> <to>418</to>
-   <obs>389.397000</obs> <adj>389.393971</adj> <stdev>3.472</stdev>
+   <obs>389.3969999999999914</obs> <adj>389.3939709569351635</adj> <stdev>3.4723997551734991</stdev>
    <qrr>0.120</qrr> <f>27.929</f> <std-residual>0.907</std-residual>
    <err-obs>-6.303</err-obs> <err-adj>-3.274</err-adj>
    </distance>
 <direction> <from>418</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>399.9995518</adj> <stdev>6.600</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9995517923393322</adj> <stdev>6.6002368678664549</stdev>
    <qrr>0.531</qrr> <f>31.505</f> <std-residual>0.638</std-residual>
    <err-obs>-8.443</err-obs> <err-adj>-3.961</err-adj>
    </direction>
 <direction> <from>418</from> <to>416</to>
-   <obs>63.9347000</obs> <adj>63.9351960</adj> <stdev>7.221</stdev>
+   <obs>63.9346999999999994</obs> <adj>63.9351960212266022</adj> <stdev>7.2213788156353012</stdev>
    <qrr>0.438</qrr> <f>25.059</f> <std-residual>0.777</std-residual>
    <err-obs>11.315</err-obs> <err-adj>6.355</err-adj>
    </direction>
 <direction> <from>418</from> <to>420</to>
-   <obs>336.3190000</obs> <adj>336.3189522</adj> <stdev>7.508</stdev>
+   <obs>336.3190000000000168</obs> <adj>336.3189521864340463</adj> <stdev>7.5077485681177469</stdev>
    <qrr>0.393</qrr> <f>22.087</f> <std-residual>0.079</std-residual>
    <err-obs>-1.217</err-obs> <err-adj>-0.739</err-adj>
    </direction>
 <distance> <from>418</from> <to>420</to>
-   <obs>246.594000</obs> <adj>246.597650</adj> <stdev>3.325</stdev>
+   <obs>246.5939999999999941</obs> <adj>246.5976497579612214</adj> <stdev>3.3250338934794463</stdev>
    <qrr>0.131</qrr> <f>30.988</f> <std-residual>1.047</std-residual>
    <err-obs>6.969</err-obs> <err-adj>3.319</err-adj>
    </distance>
 <direction> <from>420</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>399.9998361</adj> <stdev>7.341</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9998361371060582</adj> <stdev>7.3408975002903398</stdev>
    <qrr>0.420</qrr> <f>23.819</f> <std-residual>0.263</std-residual>
    <err-obs>-3.905</err-obs> <err-adj>-2.266</err-adj>
    </direction>
 <direction> <from>420</from> <to>418</to>
-   <obs>77.9221000</obs> <adj>77.9219511</adj> <stdev>7.672</stdev>
+   <obs>77.9221000000000004</obs> <adj>77.9219511108577052</adj> <stdev>7.6715815484676089</stdev>
    <qrr>0.366</qrr> <f>20.387</f> <std-residual>0.255</std-residual>
    <err-obs>-4.066</err-obs> <err-adj>-2.577</err-adj>
    </direction>
 <direction> <from>420</from> <to>422</to>
-   <obs>250.1804000</obs> <adj>250.1807128</adj> <stdev>8.154</stdev>
+   <obs>250.1803999999999633</obs> <adj>250.1807127520361860</adj> <stdev>8.1544413463547869</stdev>
    <qrr>0.284</qrr> <f>15.376</f> <std-residual>0.609</std-residual>
    <err-obs>11.017</err-obs> <err-adj>7.890</err-adj>
    </direction>
 <distance> <from>420</from> <to>422</to>
-   <obs>228.207000</obs> <adj>228.208502</adj> <stdev>3.182</stdev>
+   <obs>228.2069999999999936</obs> <adj>228.2085018211352292</adj> <stdev>3.1818196901981306</stdev>
    <qrr>0.141</qrr> <f>33.960</f> <std-residual>0.415</std-residual>
    <err-obs>2.663</err-obs> <err-adj>1.162</err-adj>
    </distance>
 <direction> <from>422</from> <to>2</to>
-   <obs>0.0000000</obs> <adj>399.9991759</adj> <stdev>5.605</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9991758572792833</adj> <stdev>5.6049049677656857</stdev>
    <qrr>0.662</qrr> <f>41.834</f> <std-residual>1.051</std-residual>
    <err-obs>-12.455</err-obs> <err-adj>-4.214</err-adj>
    </direction>
 <direction> <from>422</from> <to>420</to>
-   <obs>26.8834000</obs> <adj>26.8840654</adj> <stdev>6.841</stdev>
+   <obs>26.8834000000000017</obs> <adj>26.8840653542001888</adj> <stdev>6.8412621929464414</stdev>
    <qrr>0.496</qrr> <f>29.004</f> <std-residual>0.980</std-residual>
    <err-obs>13.416</err-obs> <err-adj>6.762</err-adj>
    </direction>
 <direction> <from>422</from> <to>424</to>
-   <obs>225.7964000</obs> <adj>225.7959985</adj> <stdev>7.109</stdev>
+   <obs>225.7963999999999771</obs> <adj>225.7959985304656527</adj> <stdev>7.1094440363421709</stdev>
    <qrr>0.456</qrr> <f>26.221</f> <std-residual>0.617</std-residual>
    <err-obs>-8.811</err-obs> <err-adj>-4.796</err-adj>
    </direction>
 <direction> <from>422</from> <to>1</to>
-   <obs>259.2124000</obs> <adj>259.2137402</adj> <stdev>5.820</stdev>
+   <obs>259.2124000000000024</obs> <adj>259.2137401612955045</adj> <stdev>5.8202750294608645</stdev>
    <qrr>0.635</qrr> <f>39.599</f> <std-residual>1.745</std-residual>
    <err-obs>21.099</err-obs> <err-adj>7.698</err-adj>
    </direction>
 <direction> <from>422</from> <to>407</to>
-   <obs>337.3724000</obs> <adj>337.3716201</adj> <stdev>5.968</stdev>
+   <obs>337.3724000000000274</obs> <adj>337.3716200967594432</adj> <stdev>5.9681325339673865</stdev>
    <qrr>0.616</qrr> <f>38.065</f> <std-residual>1.031</std-residual>
    <err-obs>-12.653</err-obs> <err-adj>-4.853</err-adj>
    </direction>
 <distance> <from>422</from> <to>424</to>
-   <obs>279.405000</obs> <adj>279.403732</adj> <stdev>3.472</stdev>
+   <obs>279.4049999999999727</obs> <adj>279.4037319660105254</adj> <stdev>3.4719466619055379</stdev>
    <qrr>0.120</qrr> <f>27.939</f> <std-residual>0.380</std-residual>
    <err-obs>-2.638</err-obs> <err-adj>-1.370</err-adj>
    </distance>
 <direction> <from>424</from> <to>1</to>
-   <obs>0.0000000</obs> <adj>399.9994938</adj> <stdev>8.326</stdev>
+   <obs>0.0000000000000000</obs> <adj>399.9994938324140321</adj> <stdev>8.3264135082908197</stdev>
    <qrr>0.253</qrr> <f>13.591</f> <std-residual>1.044</std-residual>
    <err-obs>-19.979</err-obs> <err-adj>-14.917</err-adj>
    </direction>
 <direction> <from>424</from> <to>422</to>
-   <obs>134.2955000</obs> <adj>134.2960062</adj> <stdev>8.326</stdev>
+   <obs>134.2955000000000041</obs> <adj>134.2960061675859720</adj> <stdev>8.3264135082908197</stdev>
    <qrr>0.253</qrr> <f>13.591</f> <std-residual>1.044</std-residual>
    <err-obs>19.979</err-obs> <err-adj>14.917</err-adj>
    </direction>

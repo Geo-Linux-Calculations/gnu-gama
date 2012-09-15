@@ -26,6 +26,7 @@
 #include <gnu_gama/xml/gkfparser.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/acord.h>
+#include <gnu_gama/local/results/text/test_linearization.h>
 
 double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
 		  GNU_gama::local::LocalNetwork* lnet2)
@@ -37,7 +38,7 @@ double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
   const Vec&    x1 = lnet1->solve();
   const Vec&    x2 = lnet2->solve();
 
-  for (PointData::const_iterator 
+  for (PointData::const_iterator
 	 ii=lnet1->PD.begin(); ii!=lnet1->PD.end(); ii++)
     {
       const PointID point_id = (*ii).first;
@@ -202,8 +203,14 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
       }
 
       lnet->solve();
+      if (lnet->huge_abs_terms()) lnet->remove_huge_abs_terms();
+
+      int iteration = 0;
+      do
+        {
+          if (++iteration > 1) lnet->refine_approx();
+        }
+      while (GNU_gama::local::TestLinearization(lnet) && iteration < 5);
 
   return lnet;
 }
-
-

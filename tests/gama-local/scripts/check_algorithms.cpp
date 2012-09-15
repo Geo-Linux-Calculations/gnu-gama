@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
   std::ifstream inp(argv[3]);
   if (!inp)
     {
-      std::cout << "\n   ####  ERROR ON OPENING FILE " << argv[3] << "\n";
+      std::cout << "   ####  ERROR ON OPENING FILE " << argv[3] << "\n";
       return 1;
     }
 
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 
         std::cout << "  max.diff"
                   << std::scientific << std::setprecision(3) << std::setw(11)
-                  << maxdiff << "[m] "
+                  << maxdiff << " [m] "
                   << algname[i] << algname[j] << "  " << netconfig;
 
         if (ok)
