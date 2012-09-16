@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<entries>
+
+<e id="T_HTML_adjusted"
+   en="adjusted" />
+<e id="T_HTML_adjusted_observations"
+   en="Adjusted observations" />
+<e id="T_HTML_approximate"
+   en="approximate" />
+<e id="T_HTML_cc"
+   en="[cc]" />
+<e id="T_HTML_ss"
+   en="[ss]" />
+<e id="T_HTML_d"
+   en="[d]" />
+<e id="T_HTML_confidence"
+   en="confidence" />
+<e id="T_HTML_correction"
+   en="correction" />
+<e id="T_HTML_e_obs_adj"
+   en="e&amp;minus;obs&amp;nbsp;e&amp;minus;adj" />
+<e id="T_HTML_f_proc"
+   en="f[%]" />
+<e id="T_HTML_g"
+   en="[g]" />
+<e id="T_HTML_m"
+   en="[m]" />
+<e id="T_HTML_mean_error_ellipse"
+   en="mean error ellipse" />
+<e id="T_HTML_md"
+   en="[m|d]" />
+<e id="T_HTML_mg"
+   en="[m|g]" />
+<e id="T_HTML_mm"
+   en="[mm]" />
+<e id="T_HTML_mmcc"
+   en="[mm|cc]" />
+<e id="T_HTML_mmss"
+   en="[mm|ss]" />
+<e id="T_HTML_mp"
+   en="mp" />
+<e id="T_HTML_mxy"
+   en="mxy" />
+<e id="T_HTML_observations"
+   en="Observations" />
+<e id="T_HTML_observed"
+   en="observed" />
+<e id="T_HTML_points"
+   en="Points" />
+<e id="T_HTML_rejected"
+   en="Rejected" />
+<e id="T_HTML_r"
+   en="r" />
+<e id="T_HTML_rstud"
+   en="|r'|" />
+<e id="T_HTML_stddev_confi"
+   en="std.dev&amp;nbsp;conf.i." />
+<e id="T_HTML_value"
+   en="value" />
+<e id="T_HTML_value_d"
+   en="value [d]" />
+<e id="T_HTML_value_g"
+   en="value [g]" />
+
+</entries>

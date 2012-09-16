@@ -12,6 +12,7 @@ do
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
 	--algorithm $a \
 	--text results/@PACKAGE_VERSION@-$g-$a.txt \
+	--html results/@PACKAGE_VERSION@-$g-$a.html \
 	--xml  results/@PACKAGE_VERSION@-$g-$a.xml \
 	--svg  results/@PACKAGE_VERSION@-$g-$a.svg
 done

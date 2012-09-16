@@ -34,6 +34,7 @@
 #include <gnu_gama/local/newnetwork.h>
 #include <gnu_gama/local/acord.h>
 #include <gnu_gama/local/svg.h>
+#include <gnu_gama/local/html.h>
 
 #include <gnu_gama/local/results/text/approximate_coordinates.h>
 #include <gnu_gama/local/results/text/network_description.h>
@@ -74,6 +75,7 @@ int help()
     "--latitude   <latitude>\n"
     "--ellipsoid  <ellipsoid name>\n"
     "--text       adjustment_results.txt\n"
+    "--html       adjustment_results.html\n"
     "--xml        adjustment_results.xml\n"
     "--svg        network_configuration.svg\n"
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
@@ -102,6 +104,7 @@ int help()
     "--latitude   <latitude>\n"
     "--ellipsoid  <ellipsoid name>\n"
     "--text       adjustment_results.txt\n"
+    "--html       adjustment_results.html\n"
     "--xml        adjustment_results.xml\n"
     "--svg        network_configuration.svg\n"
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
@@ -133,6 +136,7 @@ int main(int argc, char **argv)
     const char* argv_ellipsoid = 0;
     const char* argv_latitude = 0;
     const char* argv_txtout = 0;
+    const char* argv_htmlout = 0;
     const char* argv_xmlout = 0;
     const char* argv_svgout = 0;
     const char* argv_obsout = 0;
@@ -178,6 +182,7 @@ int main(int argc, char **argv)
         else if (name == "ellipsoid" ) argv_ellipsoid = c;
         else if (name == "latitude"  ) argv_latitude = c;
         else if (name == "text"      ) argv_txtout = c;
+        else if (name == "html"      ) argv_htmlout = c;
         else if (name == "xml"       ) argv_xmlout = c;
         else if (name == "svg"       ) argv_svgout = c;
         else if (name == "obs"       ) argv_obsout = c;
@@ -515,7 +520,23 @@ int main(int argc, char **argv)
           }
 
         // implicit output
-        if (!argv_txtout && !argv_xmlout) argv_xmlout = "-";
+        if (!argv_txtout && !argv_htmlout && !argv_xmlout) argv_xmlout = "-";
+
+        if (argv_htmlout)
+          {
+            GNU_gama::local::GamaLocalHTML html(IS);
+            html.exec();
+
+            if (!strcmp(argv_htmlout, "-"))
+              {
+                html.html(std::cout);
+              }
+            else
+              {
+                ofstream file(argv_htmlout);
+                html.html(file);
+              }
+          }
 
         if (argv_xmlout)
           {

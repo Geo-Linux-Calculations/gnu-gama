@@ -27,16 +27,13 @@
 #include <gnu_gama/statan.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/writevisitor.h>
+#include <gnu_gama/local/language.h>
 
 #include <sstream>
 
 namespace {
 
 using namespace GNU_gama::local;
-
-template <typename T>
-T& LANG(T& t) { std::cerr << "LANG " << t << "\n"; return t; }
-
 
 class HtmlStringStream {
 public:
@@ -263,18 +260,18 @@ public:
         << "<th>" << T_GaMa_standpoint << tdSpace(2) << "</th>"
         << "<th>" << T_GaMa_target << tdSpace(2) << "</th>"
         << "<th></th>"
-        << "<th>" << LANG("observed") << "</th>"
-        << "<th>" << LANG("adjusted") << "</th>"
-        << "<th colspan='2'>" << LANG("std.dev conf.i") << "</th>"
+        << "<th>" << T_HTML_observed << "</th>"
+        << "<th>" << T_HTML_adjusted << "</th>"
+        << "<th colspan='2'>" << T_HTML_stddev_confi << "</th>"
         << "</tr>\n";
     out << "<tr><th colspan='4'></th>"
-        << "<th>" << LANG("value") << "</th>";
+        << "<th>" << T_HTML_value << "</th>";
     if (lnet->gons())
-      out << "<th>" << LANG("[m|g]") << "</th>"
-          << "<th colspan='2'>" << LANG("[mm|cc]") << "</th>";
+      out << "<th>" << T_HTML_mg << "</th>"
+          << "<th colspan='2'>" << T_HTML_mmcc << "</th>";
     else
-      out << "<th>" << LANG("[m|d]") << "</th>"
-          << "<th colspan='2'>" << LANG("[mm|ss]") << "</th>";
+      out << "<th>" << T_HTML_md << "</th>"
+          << "<th colspan='2'>" << T_HTML_mmss << "</th>";
     out << "</tr>";
   }
 
@@ -336,19 +333,19 @@ public:
         << "<th>" << T_GaMa_standpoint << tdSpace(2) << "</th>"
         << "<th>" << T_GaMa_target << tdSpace(2) << "</th>"
         << "<th></th>"
-        << "<th>" << LANG("f[%]") << "</th><th></th>"
-        << "<th>" << LANG("r") << "</th>"
-        << "<th>" << LANG("|r'|") << "</th><th></th>"
+        << "<th>" << T_HTML_f_proc << "</th><th></th>"
+        << "<th>" << T_HTML_r      << "</th>"
+        << "<th>" << T_HTML_rstud  << "</th><th></th>"
         << "<th colspan='2'>"
-        << LANG("e&minus;obs&nbsp;e&minus;adj") << "</th>"
+        << T_HTML_e_obs_adj << "</th>"
         << "</tr>\n";
     out << "<tr><th colspan='6'></th>";
     if (lnet->gons())
-      out << "<th>" << LANG("[mm|cc]") << "</th><th colspan='2'></th>"
-          << "<th colspan='2'>"<< LANG("[mm|cc]") << "</th>";
+      out << "<th>" << T_HTML_mmcc << "</th><th colspan='2'></th>"
+          << "<th colspan='2'>"<< T_HTML_mmcc << "</th>";
     else
-      out << "<th>" << LANG("[mm|ss]") << "</th><th colspan='2'></th>"
-          << "<th colspan='2'>"<< LANG("[mm|ss]") << "</th>";
+      out << "<th>" << T_HTML_mmss << "</th><th colspan='2'></th>"
+          << "<th colspan='2'>"<< T_HTML_mmss << "</th>";
     out << "</tr>";
 
     init_studres();
@@ -941,7 +938,7 @@ void GamaLocalHTML::htmlUnknowns()
 
   HtmlStringStream out(str);
 
-  out << "<h2>" << LANG("Points") << "</h2>\n";
+  out << "<h2>" << T_HTML_points << "</h2>\n";
 
   // fixed points
   {
@@ -1013,17 +1010,17 @@ void GamaLocalHTML::htmlUnknowns()
           << "<th>i</th>"
           << "<th>" << T_GaMa_point        << "</th>"
           << "<th></th>"    // '*' for constrained points
-          << "<th>" << LANG("approximate") << "</th>"
-          << "<th>" << LANG("correction")  << "</th>"
-          << "<th>" << LANG("adjusted")    << "</th>"
-          << "<th colspan='2'>" << LANG("std.dev&nbsp;conf.i.") << "</th>"
+          << "<th>" << T_HTML_approximate << "</th>"
+          << "<th>" << T_HTML_correction  << "</th>"
+          << "<th>" << T_HTML_adjusted    << "</th>"
+          << "<th colspan='2'>" << T_HTML_stddev_confi << "</th>"
           << "</tr>\n"
           << "<tr>"
           << "<th colspan='3'>&nbsp;</th>"
-          << "<th>" << LANG("value") << "</th>"
-          << "<th>" << LANG("[m]")   << "</th>"
-          << "<th>" << LANG("value") << "</th>"
-          << "<th colspan='2'>" << LANG("[mm]") << "</th>"
+          << "<th>" << T_HTML_value << "</th>"
+          << "<th>" << T_HTML_m     << "</th>"
+          << "<th>" << T_HTML_value << "</th>"
+          << "<th colspan='2'>" << T_HTML_mm << "</th>"
           << "</tr>\n";
     }
 
@@ -1061,7 +1058,8 @@ void GamaLocalHTML::htmlUnknowns()
                 double my = lnet->unknown_stdev(b.index_y());
                 out << "<td colspan='5'></td></tr>\n";
 
-                out << "<tr>" << tdRight(b.index_x(),0,2);
+                out << "<tr>"
+                    << tdRight(b.index_x(),0,2);
                 if (b.constrained_xy())
                   out << tdRight("X") << tdRight("*");
                 else
@@ -1074,7 +1072,8 @@ void GamaLocalHTML::htmlUnknowns()
                 out << tdRight(mx*kki, 'F', 1, 2,2+4);
                 out << "</tr>\n";
 
-                out << "<tr>" << tdRight(b.index_y(),0,2);
+                out << "<tr>"
+                    << tdRight(b.index_y(),0,2);
                 if (b.constrained_xy())
                   out << tdRight("Y") << tdRight("*");
                 else
@@ -1101,7 +1100,8 @@ void GamaLocalHTML::htmlUnknowns()
                   }
 
                 prev_id = point_id;
-                out << "<tr>" << tdRight(b.index_z(), 0,2);
+                out << "<tr>"
+                    << tdRight(b.index_z(), 0,2);
                 if (b.constrained_z())
                   out << tdRight("Z") << tdRight("*");
                 else
@@ -1143,23 +1143,23 @@ void GamaLocalHTML::htmlUnknowns()
             << "<tr>"
             << "<th>i</th>"
             << "<th>" << T_GaMa_point << "</th>"
-            << "<th>" << LANG("approximate") << "</th>"
-            << "<th>" << LANG("correction")  << "</th>"
-            << "<th>" << LANG("adjusted")    << "</th>"
-            << "<th colspan='2'>" << LANG("std.dev&nbsp;conf.i.") << "</th>"
+            << "<th>" << T_HTML_approximate << "</th>"
+            << "<th>" << T_HTML_correction  << "</th>"
+            << "<th>" << T_HTML_adjusted    << "</th>"
+            << "<th colspan='2'>" << T_HTML_stddev_confi << "</th>"
             << "</tr>\n";
         out << "<tr>"
             << "<th colspan='2'></th>";
         if (lnet->gons())
-          out << "<th>" << LANG("value [g]") << "</th>"
-              << "<th>" << LANG("[g]") << "</th>"
-              << "<th>" << LANG("value [g]") << "</th>"
-              << "<th colspan='2'>" << LANG("[cc]") << "</th>";
+          out << "<th>" << T_HTML_value_g << "</th>"
+              << "<th>" << T_HTML_g       << "</th>"
+              << "<th>" << T_HTML_value_g << "</th>"
+              << "<th colspan='2'>" << T_HTML_cc << "</th>";
         else
-          out << "<th>" << LANG("value [d]") << "</th>"
-              << "<th>" << LANG("[d]") << "</th>"
-              << "<th>" << LANG("value [d]") << "</th>"
-              << "<th colspan='2'>" << LANG("[ss]") << "</th>";
+          out << "<th>" << T_HTML_value_d << "</th>"
+              << "<th>" << T_HTML_d       << "</th>"
+              << "<th>" << T_HTML_value_d << "</th>"
+              << "<th colspan='2'>" << T_HTML_ss << "</th>";
         out << "</tr>\n";
 
         for (int i=1; i<=pocnez; i++)
@@ -1303,10 +1303,10 @@ void GamaLocalHTML::htmlUnknowns()
 
         out << "<tr>"
             << "<th>" << T_GaMa_point << "</th>"
-            << "<th>" << LANG("mp")  << "</th>"
-            << "<th>" << LANG("mxy") << "</th>"
-            << "<th colspan='3'>" << LANG("mean error ellipse") << "</th>"
-            << "<th colspan='2'>" << LANG("confidence") << "</th>"
+            << "<th>" << T_HTML_mp    << "</th>"
+            << "<th>" << T_HTML_mxy   << "</th>"
+            << "<th colspan='3'>" << T_HTML_mean_error_ellipse << "</th>"
+            << "<th colspan='2'>" << T_HTML_confidence << "</th>"
             << "<th>g</th>"
             << "</tr>\n";
 
@@ -1403,9 +1403,9 @@ void GamaLocalHTML::htmlObservations()
 
   HtmlStringStream out(str);
 
-  out << "<h2>" << LANG("Observations") << "</h2>\n";
+  out << "<h2>" << T_HTML_observations << "</h2>\n";
 
-  out << "<h3>" << LANG("Adjusted observations") << "</h3>\n";
+  out << "<h3>" << T_HTML_adjusted_observations << "</h3>\n";
   out << "<table id='adjusted-observations'>\n";
 
   HtmlAdjustedObservationsVisitor visitor(out, lnet);
@@ -1462,11 +1462,11 @@ void GamaLocalHTML::htmlRejected()
   bool obs    =  lnet->sum_rejected_observations().size() > 0;
   if (!points && !obs) return;
 
-  str  = "<h2>Rejected</h2>\n";
+  str  = "<h2>" + std::string(T_HTML_rejected) + "</h2>\n";
 
   if (points)
     {
-      str += "<h3>Points</h3>\n";
+      str += "<h3>" + std::string(T_HTML_points) + "</h3>\n";
       str += "<table id='rejected-points'>\n";
 
       const char* codes[] = { "missing xyz",
@@ -1497,7 +1497,7 @@ void GamaLocalHTML::htmlRejected()
 
   if (obs)
     {
-      str += "<h3>Observations</h3>\n";
+      str += "<h3>" + std::string(T_HTML_observations) + "</h3>\n";
       str += "<table id='rejected-observations'>\n";
 
       for (ObservationList::const_iterator
