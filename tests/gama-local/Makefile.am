@@ -1,5 +1,5 @@
 TESTS = gama-local-version gama-local-adjustment gama-local-algorithms \
-        gama-local-equivalents gama-local-xml-results
+        gama-local-equivalents gama-local-xml-results gama-local-html
 
 SUBDIRS = scripts input
 
@@ -46,3 +46,8 @@ gama-local-xml-results: $(GAMA_SCRIPT)/gama-local-xml-results.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-results.in \
 				> gama-local-xml-results
 	chmod +x gama-local-xml-results
+
+gama-local-html: $(GAMA_SCRIPT)/gama-local-html.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/gama-local-html.in \
+				> gama-local-html
+	chmod +x gama-local-html

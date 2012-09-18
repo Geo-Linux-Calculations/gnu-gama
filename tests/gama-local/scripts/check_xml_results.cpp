@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
     if (!inp_xml)
       {
         std::cout << "   ####  ERROR ON OPENING FILE " << argv[3] << "\n";
-        return false;
+        return 1;
       }
 
     adjres->read_xml(inp_xml);

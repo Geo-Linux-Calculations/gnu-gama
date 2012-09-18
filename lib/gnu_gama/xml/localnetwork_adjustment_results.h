@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2006, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -39,7 +39,8 @@ namespace GNU_gama
 
     LocalNetworkAdjustmentResults() { init(); }
 
-    void read_xml(std::istream&) throw(Exception::parser);
+    void read_xml (std::istream&) throw(Exception::parser);
+    void read_html(std::istream&) throw(Exception::parser);
 
     bool gons;
     std::string description;
@@ -179,58 +180,9 @@ namespace GNU_gama
 
   private:
 
-    void init()
-    {
-      gons = true;
+    friend class HtmlParser;
 
-      network_general_parameters.gama_local_version.  clear();
-      network_general_parameters.gama_local_algorithm.clear();
-      network_general_parameters.gama_local_compiler. clear();
-      network_general_parameters.epoch.  clear();
-      network_general_parameters.axes_xy.clear();
-      network_general_parameters.angles. clear();
-
-      coordinates_summary.adjusted.xyz = 0;
-      coordinates_summary.adjusted.xy  = 0;
-      coordinates_summary.adjusted.z   = 0;
-      coordinates_summary.constrained.xyz = 0;
-      coordinates_summary.constrained.xy  = 0;
-      coordinates_summary.constrained.z   = 0;
-      coordinates_summary.fixed.xyz = 0;
-      coordinates_summary.fixed.xy  = 0;
-      coordinates_summary.fixed.z   = 0;
-
-      observations_summary.distances = 0;
-      observations_summary.directions = 0;
-      observations_summary.angles = 0;
-      observations_summary.xyz_coords = 0;
-      observations_summary.h_diffs = 0;
-      observations_summary.z_angles = 0;
-      observations_summary.s_dists = 0;
-      observations_summary.vectors = 0;
-
-      project_equations.equations = 0;
-      project_equations.unknowns = 0;
-      project_equations.degrees_of_freedom = 0;
-      project_equations.defect = 0;
-      project_equations.sum_of_squares = 0;
-      project_equations.connected_network = true;
-
-      standard_deviation.apriori = 0;
-      standard_deviation.aposteriori = 0;
-      standard_deviation.using_aposteriori = true;
-      standard_deviation.probability = 0;
-      standard_deviation.ratio = 0;
-      standard_deviation.lower = 0;
-      standard_deviation.upper = 0;
-      standard_deviation.passed = false;
-      standard_deviation.confidence_scale = 0;
-
-      fixed_points      .clear();
-      approximate_points.clear();
-      adjusted_points   .clear();
-    }
-
+    void init();
 
     // ----------------------------------------------------------------------
 

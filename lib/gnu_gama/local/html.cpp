@@ -23,7 +23,7 @@
  * \author Ales Cepek
  */
 
-#include "html.h"
+#include <gnu_gama/local/html.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/writevisitor.h>
@@ -561,13 +561,13 @@ void GamaLocalHTML::htmlInfo()
 
   if (!lnet->description.empty())
     {
-      str += "<h2>" + std::string(T_GaMa_network_description) + "</h2>\n";
+      out << "<h2>" << T_GaMa_network_description << "</h2>\n";
 
       if (lnet->description[0] == '<') // description in HTML
-        str += lnet->description;
+        out << lnet->description;
       else
         {
-          str += "<p id='description'>";
+          out << "<p id='description'>";
           int N = lnet->description.length();
           while (N > 0 && lnet->description[N-1] == '\n') N--;
           int br=2;
@@ -576,19 +576,21 @@ void GamaLocalHTML::htmlInfo()
               char c = lnet->description[i];
               if (c == '\n')
                 {
-                  if (br++ < 2) str += "<br/>\n";
+                  if (br++ < 2) out << "<br/>\n";
                 }
               else
                 {
-                  str += c;
+                  std::string t;
+                  t += c;
+                  out << t;
                   br = 0;
                 }
             }
-          str += "</p>\n";
+          out << "</p>\n";
         }
     }
 
-  str += "<h2>" + std::string(T_GaMa_General_solution_parameters) + "</h2>";
+  out << "<h2>" << T_GaMa_General_solution_parameters << "</h2>";
 
   // summary of coordinates in adjustment
 
@@ -615,7 +617,7 @@ void GamaLocalHTML::htmlInfo()
 
   {
     const int N = 3;
-    out << "<table id='coordinates-counts'>\n";
+    out << "<table id='coordinates_summary'>\n";
     out << "<tr><th align='left'>" << T_GaMa_gpar1_coordinates << "</th>"
         << "<th>xyz</th>" << "<th>xy</th>" << "<th>z</th>" <<  "</tr>\n";
     out << "<tr>" << tdLeft(T_GaMa_gpar1_adjusted_coordinates,0,N)
@@ -639,7 +641,7 @@ void GamaLocalHTML::htmlInfo()
       pocosn++;
 
   int pocsmer=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
-    poczeni=0, pocsikm=0;
+    poczeni=0, pocsikm=0, pocvec=0;
   for (int i=1; i<=lnet->sum_observations(); i++)
     {
       if      (dynamic_cast<Distance*  >(lnet->ptr_obs(i))) pocdel++;
@@ -651,49 +653,57 @@ void GamaLocalHTML::htmlInfo()
       else if (dynamic_cast<H_Diff*    >(lnet->ptr_obs(i))) pocnivp++;
       else if (dynamic_cast<Z_Angle*   >(lnet->ptr_obs(i))) poczeni++;
       else if (dynamic_cast<S_Distance*>(lnet->ptr_obs(i))) pocsikm++;
+      else if (dynamic_cast<Xdiff*     >(lnet->ptr_obs(i))) pocvec++;
+      //else if (dynamic_cast<Ydiff*     >(lnet->ptr_obs(i))) pocvec++;
+      ///else if (dynamic_cast<Zdiff*     >(lnet->ptr_obs(i))) pocvec++;
     }
 
   if (lnet->sum_observations() > 0 && pocnivp != lnet->sum_observations())
   {
-    str += "<table id='observations-counts'>\n";
+    out << "<table id='observations_summary'>\n";
     if (pocsmer)
       {
-        str += "<tr id='count-dir'>" + tdLeft(T_GaMa_gpar1_directions,0,2)
-          + tdRight(pocsmer, 0,8)
-          + tdLeft(T_GaMa_gpar2_bearings,0,2)
-          + tdRight(pocosn) + "</tr>\n";
+        out << "<tr id='count_dir'>" << tdLeft(T_GaMa_gpar1_directions,0,2)
+            << tdRight(pocsmer, 0,8)
+            << tdLeft(T_GaMa_gpar2_bearings,0,2)
+            << tdRight(pocosn) + "</tr>\n";
       }
     if (pocuhl)
       {
-        str += "<tr id='count-ang'>" + tdLeft(T_GaMa_gpar1_angles,0,2)
-          + tdRight(pocuhl,  0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_ang'>" << tdLeft(T_GaMa_gpar1_angles,0,2)
+            << tdRight(pocuhl,  0,8) << "<td/><td/></tr>\n";
       }
     if (pocdel)
       {
-        str += "<tr id='count-dist'>" + tdLeft(T_GaMa_gpar1_distances,0,2)
-          + tdRight(pocdel,  0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_dist'>" << tdLeft(T_GaMa_gpar1_distances,0,2)
+            << tdRight(pocdel,  0,8) << "<td/><td/></tr>\n";
       }
     if (pocsour)
       {
-        str += "<tr id='count-coord'>"
-          + tdLeft(T_GaMa_gpar1_observed_coords,0,2)
-          + tdRight(pocsour, 0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_coord'>"
+            << tdLeft(T_GaMa_gpar1_observed_coords,0,2)
+            << tdRight(pocsour, 0,8) << "<td/><td/></tr>\n";
       }
     if (pocnivp) // && (pocnivp != lnet->sum_observations()))
       {
-        str += "<tr id='count-level'>"
-          + tdLeft(T_GaMa_gpar1_leveling_diffs,0,2)
-          + tdRight(pocnivp, 0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_level'>"
+            << tdLeft(T_GaMa_gpar1_leveling_diffs,0,2)
+            << tdRight(pocnivp, 0,8) << "<td/><td/></tr>\n";
       }
     if (poczeni)
       {
-        str += "<tr id='count-zang'>" + tdLeft(T_GaMa_gpar1_z_angles,0,2)
-          + tdRight(poczeni, 0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_zang'>" << tdLeft(T_GaMa_gpar1_z_angles,0,2)
+            << tdRight(poczeni, 0,8) << "<td/><td/></tr>\n";
       }
     if (pocsikm)
       {
-        str += "<tr id='count-sdist'>" + tdLeft(T_GaMa_gpar1_s_dists,0,2)
-          + tdRight(pocsikm, 0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_sdist'>" << tdLeft(T_GaMa_gpar1_s_dists,0,2)
+            << tdRight(pocsikm, 0,8) << "<td/><td/></tr>\n";
+      }
+    if (pocvec)
+      {
+        out << "<tr id='count_vect'>" << tdLeft("Coordinate differences",0,2)
+            << tdRight(pocvec, 0,8) << "<td/><td/></tr>\n";
       }
 
     int types = 0;
@@ -704,12 +714,13 @@ void GamaLocalHTML::htmlInfo()
     if (pocnivp) types++;
     if (poczeni) types++;
     if (pocsikm) types++;
+    if (pocvec)  types++;
     if (types != 1)
       {
-        str += "<tr id='count-total'>" + tdLeft(T_GaMa_gpar1_obs_total,0,2)
-          + tdRight(lnet->sum_observations(),0,8) + "<td/><td/></tr>\n";
+        out << "<tr id='count_total'>" << tdLeft(T_GaMa_gpar1_obs_total,0,2)
+            << tdRight(lnet->sum_observations(),0,8) << "<td/><td/></tr>\n";
       }
-    str += "</table>\n";
+    out << "</table>\n";
   }
 
   // *********  singular free networks  *********
@@ -725,69 +736,78 @@ void GamaLocalHTML::htmlInfo()
       {
         if (vs.error != GNU_gama::Exception::BadRegularization) throw;
 
-        str += "<h3>" + std::string(T_GaMa_Free_network) + "</h3>\n";
+        out << "<h3>" << T_GaMa_Free_network << "</h3>\n";
 
-        str += "<p>";
-        str += T_GaMa_Free_network_defect_is + int2str(d) + std::string(". ");
-        str += T_GaMa_Given_network_configuration_can_not_be_adjusted
-          + std::string(".\n");
+        out << "<p>";
+        out << T_GaMa_Free_network_defect_is << int2str(d) << ". ";
+        out << T_GaMa_Given_network_configuration_can_not_be_adjusted
+            << std::string(".\n");
         if (lnet->min_n() < d)
-          str += T_GaMa_not_enough_constrained_points + std::string(".");
-        str += "</p>";
+          out << T_GaMa_not_enough_constrained_points + std::string(".");
+        out << "</p>";
 
-        str += "<h4>" + std::string(T_GaMa_detected_singular_variables)
-          + "</h4>";
-        str += "<table><caption id='caption'>";
-        str += T_GaMa_index_type_point;
-        str += "</caption>\n";
+        out << "<h4>" << T_GaMa_detected_singular_variables << "</h4>";
+        out << "<table><caption id='caption'>";
+        out << T_GaMa_index_type_point;
+        out << "</caption>\n";
 
         for (int i=1; i<=lnet->sum_unknowns(); i++)
           if (lnet->lindep(i))
             {
-              str += "<tr>" + tdRight(i, 2, 2)
-                + tdRight(lnet->unknown_type(i), 0,2)
-                + tdRight(lnet->unknown_pointid(i).str()) + "</tr>\n";
+              out << "<tr>" << tdRight(i, 2, 2)
+                  << tdRight(lnet->unknown_type(i), 0,2)
+                  << tdRight(lnet->unknown_pointid(i).str()) << "</tr>\n";
             }
-        str += "</table>\n";
+        out << "</table>\n";
 
         return; // *********  network can not be adjusted  *********
       }
   }  // free networks section
 
-  str += "<table id='count-project-equations'>\n";
-  str += "<tr>" + tdLeft(T_GaMa_gpar1_equations)
-    + tdRight(lnet->sum_observations(), 2,8)
-    + tdLeft(T_GaMa_gpar2_number_of_unknowns)
-    + tdRight(lnet->sum_unknowns(), 2,0) + "</tr>\n";
-  str += "<tr>" + tdLeft(T_GaMa_gpar1_redundancy)
-    + tdRight(lnet->degrees_of_freedom(),2,8)
-    + tdLeft(T_GaMa_gpar2_network_defect)
-    + tdRight(lnet->null_space(),2,0) + "</tr>\n";
-  str += "</table>\n";
+  out << "<table id='project_equations'>\n";
+  out << "<tr"
+      << (lnet->connected_network() ?
+          " id='connected_network'" :
+          " id='disconnected_network'")
+      << "><td>" << T_GaMa_gpar1_equations << "</td>"
+      << tdRight(lnet->sum_observations(), 2,8)
+      << tdLeft(T_GaMa_gpar2_number_of_unknowns)
+      << tdRight(lnet->sum_unknowns(), 2,0) << "</tr>\n";
+  out << "<tr>" << tdLeft(T_GaMa_gpar1_redundancy)
+      << tdRight(lnet->degrees_of_freedom(),2,8)
+      << tdLeft(T_GaMa_gpar2_network_defect)
+      << tdRight(lnet->null_space(),2,0) + "</tr>\n";
+  out << "</table>\n";
 
-  str += "<table id='stdevs-sum-of-squares'>\n";
-  str += "<tr>" + tdLeft(T_GaMa_m0_apriori)
-    + tdRight(lnet->apriori_m_0(), 'F',2, 2,8)
-    + "<td>&nbsp;</td><td>&nbsp;</td></tr>\n"
-    + "<tr>" + tdLeft(T_GaMa_m0_empirical)
-    + tdRight((lnet->degrees_of_freedom() > 0 ?
+  out << "<table id='sum_of_squares'>\n";
+  out << "<tr>" + tdLeft(T_GaMa_m0_apriori)
+      << tdRight(lnet->apriori_m_0(), 'F',2, 2,8)
+      << "<td>&nbsp;</td><td>&nbsp;</td></tr>\n"
+      << "<tr>" + tdLeft(T_GaMa_m0_empirical)
+      << tdRight((lnet->degrees_of_freedom() > 0 ?
         sqrt(lnet->trans_VWV()/lnet->degrees_of_freedom()) : 0), 'F',2, 2,8)
-    + tdLeft("[pvv]",5,2)
-    + tdRight(lnet->trans_VWV(), 'E', 5)
-    + "</tr>\n";
-  str += "</table>\n";
+      << tdLeft("[pvv]",5,2)
+      << tdRight(lnet->trans_VWV(), 'E', 5)
+      << "</tr>\n";
+  out << "</table>\n";
 
-  str += "<table id='statan-pars'>\n";
-  str += "<tr>" + tdLeft(T_GaMa_During_statistical_analysis_we_work) + "</tr>";
-  str += "<tr>" + tdLeft((lnet->m_0_aposteriori() ?
-                  std::string(T_GaMa_statan_with_empirical_standard_deviation) :
-                  std::string(T_GaMa_statan_with_apriori_standard_deviation))
-                         + double2str(lnet->m_0(), 'F', 2), 3, 0) + "</tr>\n";
+  out << "<table id='standard_deviation'>\n";
+  out << "<tr>" + tdLeft(T_GaMa_During_statistical_analysis_we_work) + "</tr>";
+  out << "<tr id="
+      << std::string(lnet->m_0_aposteriori()
+                     ? "'a_posteriori'>" : "'a_priori'>")
+      << tdLeft((lnet->m_0_aposteriori() ?
+              std::string(T_GaMa_statan_with_empirical_standard_deviation) :
+              std::string(T_GaMa_statan_with_apriori_standard_deviation)),3,0)
+      <<  tdRight(double2str(lnet->m_0(), 'F', 2))
+      << "</tr>\n";
 
-  str += "<tr>" + tdLeft(std::string(T_GaMa_statan_with_confidence_level)
-                         + double2str(lnet->conf_pr()*100, 'F', 0) + "%", 3, 0)
-    + "</tr>\n";
-  str += "</table>\n";
+  out << "<tr>"
+      << tdLeft(std::string(T_GaMa_statan_with_confidence_level), 3,0)
+      << tdRight(double2str(lnet->conf_pr()*100, 'F', 0))
+      << "<td>%</td>"
+      << "</tr>\n";
+  out << "</table>\n";
 
 
   const int nadb = lnet->degrees_of_freedom();
@@ -797,22 +817,28 @@ void GamaLocalHTML::htmlInfo()
       if (lnet->m_0_aposteriori())
         {
           double testm0 = lnet->m_0() / lnet->apriori_m_0();
-          double dolni = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
-          double horni = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
+          double dolni  = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
+          double horni  = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
+          bool   passed = dolni<testm0 && horni>testm0;
 
-          str += "<table id='ratio-intervals'><tr><td>"
-            + std::string(T_GaMa_Ratio_empirical_to_apriori)
-            + double2str(testm0, 'F',3)
-            + "</td></tr>\n<tr><td>"
-            + double2str(lnet->conf_pr()*100, 'F', 0)
-            + " % " + T_GaMa_interval + " ("
-            + double2str(dolni, 'F',3)
-            + ", " + double2str(horni, 'F',3)
-            + ") "
-            + (dolni<testm0 && horni>testm0 ?
-               T_GaMa_interval_contains :
-               T_GaMa_interval_doesnt_contain)
-            + "</td></tr>\n";
+          out << "<table id='standard_deviation_2'><tr><td>"
+              << T_GaMa_Ratio_empirical_to_apriori
+              << "</td><td></td>"
+              << tdLeft(double2str(testm0, 'F',3))
+              << "</tr>\n"
+              << "<tr id="
+              << (passed ? "'test_m0_passed'" : "'test_m0_failed'")
+              << "><td>"
+              << double2str(lnet->conf_pr()*100, 'F', 0)
+              << " % " << T_GaMa_interval << " "
+              << (passed ?
+                  T_GaMa_interval_contains :
+                  T_GaMa_interval_doesnt_contain)
+              << "</td>"
+              << "<td>(</td><td>" << double2str(dolni, 'F',3)
+              << "</td><td>,</td>"
+              << "<td>" << double2str(horni, 'F',3)
+              << "</td><td>)</td></tr>\n";
 
           float m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
           float sqd=0, sqs=0, squ=0;   // sum of weight coefficients
@@ -844,24 +870,34 @@ void GamaLocalHTML::htmlInfo()
           if (its + itu) m0s = sqrt((m0s+m0u)/(sqs+squ));
           if (itd+its+itu > 1)
             {
-              str += "<tr><td>";
               double ma = lnet->apriori_m_0();
               if (itd)
-                str += T_GaMa_m0_distances + tdSpace()
-                  + double2str(m0d/ma, 'F', 3) + tdSpace(8);
+                out << "<tr>" << tdLeft(T_GaMa_m0_distances)
+                    << "<td></td>"
+                    << tdLeft(double2str(m0d/ma, 'F', 3))
+                    << "</tr>\n";
               if (its+itu)
                 {
+                  out << "<tr><td>";
                   switch (its+itu) {
-                  case 1: str += T_GaMa_m0_directions; break;
-                  case 2: str += T_GaMa_m0_angles; break;
-                  case 3: str += T_GaMa_m0_dirs_angs; break;
+                  case 1: out << T_GaMa_m0_directions; break;
+                  case 2: out << T_GaMa_m0_angles; break;
+                  case 3: out << T_GaMa_m0_dirs_angs; break;
                   }
-                  str += double2str(m0s/ma, 'F', 3) + "</td></tr>";
+                  out << "</td><td colspan='1'></td>"
+                      << tdLeft(double2str(m0s/ma, 'F', 3))
+                      << "</tr>";
                 }
             }
-          str += "</table>\n";
-        }
+          out << "<tr id='confidence_scale'>"
+              << tdLeft("Confidence coeficient:")
+              << "<td colspan='1'></td>"
+              << "<td colspan='5' align='left'>"
+              << double2str(lnet->conf_int_coef(), 'F', 5)
+              << "</td></tr>\n";
 
+          out << "</table>\n";
+        }
 
       Observation* ptr;
       double stud_opr;
@@ -895,37 +931,37 @@ void GamaLocalHTML::htmlInfo()
           double v = lnet->residuals()(imax);
           double q = lnet->wcoef_res(imax);
           double m_0_red = sqrt(fabs(lnet->trans_VWV()-v*v/q)/(nadb-1));
-          str += "<p>" + std::string(T_GaMa_Maximal_decrease_of_m0)
-            + double2str(m_0_red/lnet->apriori_m_0(), 'F', 3)
-            + "</p>";
+          out << "<p>" << T_GaMa_Maximal_decrease_of_m0
+              << double2str(m_0_red/lnet->apriori_m_0(), 'F', 3)
+              << "</p>";
         }
 
       if (imax > 0)
         {
-          str += "<p id='max-decrease'>";
-          if (aprm0) str += T_GaMa_Maximal_normalized_residual;
-          else       str += T_GaMa_genpar_Maximal_studentized_residual;
+          out << "<p id='max_decrease'>";
+          if (aprm0) out << T_GaMa_Maximal_normalized_residual;
+          else       out << T_GaMa_genpar_Maximal_studentized_residual;
 
-          str += double2str(max_stud, 'F', 2);
+          out << double2str(max_stud, 'F', 2);
 
-          if (max_stud > krit_opr) str += T_GaMa_genpar_exceeds;
-          else                     str += T_GaMa_genpar_doesnt_exceed;
+          if (max_stud > krit_opr) out << T_GaMa_genpar_exceeds;
+          else                     out << T_GaMa_genpar_doesnt_exceed;
 
-          str += T_GaMa_genpar_critical_value
-            +  double2str(krit_opr, 'F', 2) + "<br/>"
-            + T_GaMa_genpar_on_significance_level
-            + double2str( (1 - lnet->conf_pr())*100, 'F', 0 )
-            + T_GaMa_genpar_for_observation_ind
-            + int2str(imax) + "<br/>";
+          out << T_GaMa_genpar_critical_value
+              <<  double2str(krit_opr, 'F', 2) + "<br/>"
+              << T_GaMa_genpar_on_significance_level
+              << double2str( (1 - lnet->conf_pr())*100, 'F', 0 )
+              << T_GaMa_genpar_for_observation_ind
+              << int2str(imax) + "<br/>";
 
-          std::ostringstream out;
-          out.setf(std::ios_base::fixed, std::ios_base::floatfield);
-          out.precision(4);
-          WriteVisitor<std::ostringstream> write_visitor(out, true);
+          std::ostringstream outv;
+          outv.setf(std::ios_base::fixed, std::ios_base::floatfield);
+          outv.precision(4);
+          WriteVisitor<std::ostringstream> write_visitor(outv, true);
           ptr->accept(&write_visitor);
-          str += str2html(out.str());
+          out << str2html(outv.str());
 
-          str += "</p>\n";
+          out << "</p>\n";
         }
     }  // end of redundant observation processing
 }
@@ -960,7 +996,7 @@ void GamaLocalHTML::htmlUnknowns()
       {
         out << "<h3>" << T_GaMa_Review_of_fixed_points << "</h3>\n";
 
-        out << "<table id='fixed-points'>\n";
+        out << "<table id='fixed_points'>\n";
         out << "<tr><th>" << T_GaMa_point << tdSpace(N_fixed) << "</th>";
         if (pocpevb) out << "<th>x</th><th>y</th>";
         if (pocpevv) out << "<th>z</th>";
@@ -1036,7 +1072,7 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_coordidantes
             << "</h3>\n";
 
-        out << "<table id='adjusted-coordinates'>\n";
+        out << "<table id='adjusted_coordinates'>\n";
         out << coordinates_table_header;
 
         PointID prev_id;
@@ -1139,7 +1175,7 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_bearings
             << "</h3>\n";
 
-        out << "<table id='unknown-bearings'>"
+        out << "<table id='unknown_bearings'>"
             << "<tr>"
             << "<th>i</th>"
             << "<th>" << T_GaMa_point << "</th>"
@@ -1219,7 +1255,7 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_heights
             << "</h3>\n";
 
-        out << "<table id='unknown-heights'>\n";
+        out << "<table id='unknown_heights'>\n";
         out << coordinates_table_header;
 
         for (int i=1; i<=pocnez; i++)
@@ -1299,7 +1335,7 @@ void GamaLocalHTML::htmlUnknowns()
             << T_GaMa_errell_review_of_mean_errors_and_error_ellipses
             << "</h3>\n";
 
-        out << "<table id='error-ellipses'>\n";
+        out << "<table id='error_ellipses'>\n";
 
         out << "<tr>"
             << "<th>" << T_GaMa_point << "</th>"
@@ -1406,7 +1442,7 @@ void GamaLocalHTML::htmlObservations()
   out << "<h2>" << T_HTML_observations << "</h2>\n";
 
   out << "<h3>" << T_HTML_adjusted_observations << "</h3>\n";
-  out << "<table id='adjusted-observations'>\n";
+  out << "<table id='adjusted_observations'>\n";
 
   HtmlAdjustedObservationsVisitor visitor(out, lnet);
   for (int i=1; i<=lnet->sum_observations(); i++)
@@ -1440,7 +1476,7 @@ void GamaLocalHTML::htmlResiduals()
   if (const int M = index.size())
     {
       out << "<h3>" << T_GaMa_resobs_Outlying_observations << "</h3>\n";
-      out << "<table id='outlying-observations'>\n";
+      out << "<table id='outlying_observations'>\n";
 
       HtmlAdjustedResidualsVisitor rvis(out, lnet);
       for (int m=0; m<M; m++)
@@ -1467,7 +1503,7 @@ void GamaLocalHTML::htmlRejected()
   if (points)
     {
       str += "<h3>" + std::string(T_HTML_points) + "</h3>\n";
-      str += "<table id='rejected-points'>\n";
+      str += "<table id='rejected_points'>\n";
 
       const char* codes[] = { "missing xyz",
                               "missing xy",
@@ -1498,7 +1534,7 @@ void GamaLocalHTML::htmlRejected()
   if (obs)
     {
       str += "<h3>" + std::string(T_HTML_observations) + "</h3>\n";
-      str += "<table id='rejected-observations'>\n";
+      str += "<table id='rejected_observations'>\n";
 
       for (ObservationList::const_iterator
              i = lnet->sum_rejected_observations().begin(),

@@ -78,6 +78,8 @@ libgama_src = \
    gnu_gama/xml/encoding.cpp \
    gnu_gama/xml/encoding.h \
    gnu_gama/xml/encoding_unknown_handler.cpp \
+   gnu_gama/xml/htmlparser.cpp \
+   gnu_gama/xml/htmlparser.h \
    gnu_gama/xml/localnetwork.cpp \
    gnu_gama/xml/localnetwork.h \
    gnu_gama/xml/localnetwork_adjustment_results.cpp \
