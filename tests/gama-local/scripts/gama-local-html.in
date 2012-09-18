@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for g in @INPUT_FILES@
+do
+    scripts/check_html $g \
+        results/@PACKAGE_VERSION@-$g-gso.html \
+        @GAMA_INPUT@/$g.xml
+done
