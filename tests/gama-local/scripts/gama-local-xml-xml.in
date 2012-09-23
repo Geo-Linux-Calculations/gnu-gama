@@ -1,0 +1,20 @@
+#!/bin/sh
+
+RES=results/@PACKAGE_VERSION@
+
+a=gso
+b=svd
+c=cholesky
+d=envelope
+
+for z in @INPUT_FILES@
+do
+    scripts/check_xml_xml "$a $b $z" $RES-$z-$a.xml $RES-$z-$b.xml
+    scripts/check_xml_xml "$a $c $z" $RES-$z-$a.xml $RES-$z-$c.xml
+    scripts/check_xml_xml "$a $d $z" $RES-$z-$a.xml $RES-$z-$d.xml
+
+    scripts/check_xml_xml "$b $c $z" $RES-$z-$b.xml $RES-$z-$c.xml
+    scripts/check_xml_xml "$b $d $z" $RES-$z-$b.xml $RES-$z-$d.xml
+
+    scripts/check_xml_xml "$c $d $z" $RES-$z-$c.xml $RES-$z-$d.xml
+done

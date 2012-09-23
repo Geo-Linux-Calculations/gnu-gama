@@ -1,24 +1,29 @@
-TESTS = gama-local-version gama-local-adjustment gama-local-algorithms \
-        gama-local-equivalents gama-local-xml-results gama-local-html
+TESTS = gama-local-version \
+	gama-local-adjustment \
+	gama-local-algorithms \
+	gama-local-xml-xml \
+	gama-local-html \
+	gama-local-equivalents \
+	gama-local-xml-results
 
 SUBDIRS = scripts input
 
 INPUT_FILES = gama-local \
-              zoltan-test_2d_dms \
-              zoltan-test_2d_gon \
-              zoltan-test_3d_dms \
-              zoltan-test_3d_gon \
-              tst-tetrahedron-2 \
-              tst-tetrahedron-3-deg \
-              tst-tetrahedron-3-gon
+	      zoltan-test_2d_dms \
+	      zoltan-test_2d_gon \
+	      zoltan-test_3d_dms \
+	      zoltan-test_3d_gon \
+	      tst-tetrahedron-2 \
+	      tst-tetrahedron-3-deg \
+	      tst-tetrahedron-3-gon
 
 GAMA_SCRIPT = $(srcdir)/scripts
 GAMA_INPUT = $(srcdir)/input
 
 do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
-               -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
-               -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
-               -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g'
+	       -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
+	       -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
+	       -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
@@ -53,3 +58,8 @@ gama-local-html: $(GAMA_SCRIPT)/gama-local-html.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-html.in \
 				> gama-local-html
 	chmod +x gama-local-html
+
+gama-local-xml-xml: $(GAMA_SCRIPT)/gama-local-xml-xml.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-xml.in \
+				> gama-local-xml-xml
+	chmod +x gama-local-xml-xml
