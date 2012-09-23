@@ -17,7 +17,8 @@ check_equivalents_SOURCES  = check_equivalents.cpp \
 check_equivalents_LDADD    = $(top_builddir)/lib/libgama.a
 check_equivalents_CPPFLAGS = -I $(top_srcdir)/lib
 
-check_html_SOURCES  = check_html.cpp
+check_html_SOURCES  = check_html.cpp compare_xml_adjustment.h \
+                      compare_xml_adjustment.cpp
 check_html_LDADD    = $(top_builddir)/lib/libgama.a
 check_html_CPPFLAGS = -I $(top_srcdir)/lib
 

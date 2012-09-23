@@ -68,7 +68,7 @@ int help()
 
     "Options:\n\n"
 
-    "--algorithm  svd | gso | cholesky | envelope\n"
+    "--algorithm  gso | svd | cholesky | envelope\n"
     "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua \n"
     "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
     "--angles     400 | 360\n"
@@ -97,7 +97,7 @@ int help()
 
     "Options:\n\n"
 
-    "--algorithm  svd | gso | cholesky | envelope\n"
+    "--algorithm  gso | svd | cholesky | envelope\n"
     "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua \n"
     "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
     "--angles     400 | 360\n"
@@ -260,8 +260,8 @@ int main(int argc, char **argv)
     if (argv_algo)
       {
         const std::string algorithm = argv_algo;
-        if (algorithm != "svd"      &&
-            algorithm != "gso"      &&
+        if (algorithm != "gso"      &&
+            algorithm != "svd"      &&
             algorithm != "cholesky" &&
             algorithm != "envelope" ) return help();
 

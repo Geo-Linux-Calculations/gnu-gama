@@ -1,6 +1,8 @@
-EXTRA_DIST = gama-local.gkf         gama-local.xml         \
-             tst-tetrahedron-2.gkf  tst-tetrahedron-2.xml  \
-             zoltan-test_2d_dms.gkf zoltan-test_2d_dms.xml \
-             zoltan-test_2d_gon.gkf zoltan-test_2d_gon.xml \
-             zoltan-test_3d_dms.gkf zoltan-test_3d_dms.xml \
-             zoltan-test_3d_gon.gkf zoltan-test_3d_gon.xml
+EXTRA_DIST = gama-local.gkf            gama-local.xml \
+             tst-tetrahedron-2.gkf     tst-tetrahedron-2.xml \
+             tst-tetrahedron-3-deg.gkf tst-tetrahedron-3-deg.xml \
+             tst-tetrahedron-3-gon.gkf tst-tetrahedron-3-gon.xml \
+             zoltan-test_2d_dms.gkf    zoltan-test_2d_dms.xml \
+             zoltan-test_2d_gon.gkf    zoltan-test_2d_gon.xml \
+             zoltan-test_3d_dms.gkf    zoltan-test_3d_dms.xml \
+             zoltan-test_3d_gon.gkf    zoltan-test_3d_gon.xml

@@ -1,6 +1,6 @@
 /*
   GNU Gama C++ library
-  Copyright (C) 2011  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2011, 2012  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -32,12 +32,12 @@ namespace GNU_gama { namespace local {
     {
       LocalNetwork* lnet = 0;
 
-      if (     algorithm == "svd"     ) lnet = new LocalNetwork_svd;
-      else if (algorithm == "gso"     ) lnet = new LocalNetwork_gso;
+      if      (algorithm == "gso"     ) lnet = new LocalNetwork_gso;
+      else if (algorithm == "svd"     ) lnet = new LocalNetwork_svd;
       else if (algorithm == "cholesky") lnet = new LocalNetwork_chol;
       else if (algorithm == "envelope") lnet = new LocalNetwork_env;
 
-      if (lnet == 0) lnet = newLocalNetwork("svd");
+      if (lnet == 0) lnet = newLocalNetwork("gso");
 
       return lnet;
     }

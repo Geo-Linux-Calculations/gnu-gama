@@ -4,11 +4,13 @@ TESTS = gama-local-version gama-local-adjustment gama-local-algorithms \
 SUBDIRS = scripts input
 
 INPUT_FILES = gama-local \
-              tst-tetrahedron-2 \
               zoltan-test_2d_dms \
               zoltan-test_2d_gon \
               zoltan-test_3d_dms \
-              zoltan-test_3d_gon
+              zoltan-test_3d_gon \
+              tst-tetrahedron-2 \
+              tst-tetrahedron-3-deg \
+              tst-tetrahedron-3-gon
 
 GAMA_SCRIPT = $(srcdir)/scripts
 GAMA_INPUT = $(srcdir)/input

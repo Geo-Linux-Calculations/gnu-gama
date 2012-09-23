@@ -162,7 +162,7 @@ public:
   }
   void visit(GNU_gama::local::Angle* element)
   {
-    out << "</tr>\n<tr><td colspan='2'></td>"
+    out << "</tr>\n<tr><td></td><td></td>"
         << tdRight(element->fs().str(), 2,2)
         << tdLeft(T_GaMa_angle);
     angular();
@@ -296,7 +296,7 @@ private:
   void angular()
   {
     double val = R2G*obs->value();
-    double adj = val + lnet->residuals()(index)/1000;
+    double adj = val + lnet->residuals()(index)/10000;
     if (adj < 0) adj += 400;
     if (adj >= 400) adj -= 400;
     if (lnet->gons())
@@ -1175,7 +1175,7 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_bearings
             << "</h3>\n";
 
-        out << "<table id='unknown_bearings'>"
+        out << "<table id='orientation_unknowns'>"
             << "<tr>"
             << "<th>i</th>"
             << "<th>" << T_GaMa_point << "</th>"

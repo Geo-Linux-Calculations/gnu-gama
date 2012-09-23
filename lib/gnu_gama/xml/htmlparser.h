@@ -31,7 +31,6 @@
 #include <gnu_gama/exception.h>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 
-
 namespace GNU_gama {
 
 class HtmlParser : public GNU_gama::BaseParser<GNU_gama::Exception::parser>
@@ -51,22 +50,39 @@ class HtmlParser : public GNU_gama::BaseParser<GNU_gama::Exception::parser>
 
   // tables
   bool coordinates_summary, observations_summary, project_equations, 
-    sum_of_squares, standard_deviation, standard_deviation_2;
-  int  table_row, table_col;
-  std::string trat;  // startElement attribute
+    sum_of_squares, standard_deviation, standard_deviation_2, fixed_points,
+    adjusted_coordinates, orientation_unknowns, adjusted_observations,
+    residuals;
+  int   table_row, table_col;
+  bool  has_xy;        // fixed points has x,y
+  bool  adj_new;       // new adjusted point
+  int   adj_ind;       // adjusted coordinates index
+  enum {adj_x, adj_y, adj_z} adj_xyz;
+  std::string trat;   // startElement attribute
   std::string data;
+  std::string obs_point, obs_left, obs_target;   // observations' points id
 
   void close_table();
+
   template<typename T, typename U> void set(int row, int col, T& a, U b)
     {
       if (table_row == row && table_col == col) a = b;
     }
+
+
+  void trim_white_spaces();
+
   void table_coordinates_summary();
   void table_observations_summary();
   void table_project_equations();
   void table_sum_of_squares();
   void table_standard_deviation();
   void table_standard_deviation_2();
+  void table_fixed_points();
+  void table_adjusted_coordinates();
+  void table_orientation_unknowns();
+  void table_adjusted_observations();
+  void table_residuals();
 };
 
 } // namespace GNU_gama

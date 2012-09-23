@@ -164,7 +164,11 @@ int main(int argc, char* argv[])
             A.xml_tag == "zenith-angle")
           {
             GNU_gama::local::LocalPoint F = lnet->PD[A.from];
-            GNU_gama::local::LocalPoint T = lnet->PD[A.to];
+            GNU_gama::local::LocalPoint T;
+            if (A.xml_tag == "angle")
+              T = lnet->PD[A.left];
+            else
+              T = lnet->PD[A.to];
             double dx = F.x() - T.x();
             double dy = F.y() - T.y();
             double D  = std::sqrt(dx*dx + dy*dy);
