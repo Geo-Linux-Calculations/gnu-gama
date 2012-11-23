@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2010  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2010, 2012  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -19,45 +19,47 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  $
 */
 
-#ifndef GNU_gama_localnetwork_read_gkf__gnugamalocalnetworkreadgkf_h
-#define GNU_gama_localnetwork_read_gkf__gnugamalocalnetworkreadgkf_h
+#ifndef GNU_gama_localnetwork_2_sql__gnugamalocalnetwork2sql_h
+#define GNU_gama_localnetwork_2_sql__gnugamalocalnetwork2sql_h
 
 #include <istream>
 #include <string>
-#include <gnu_gama/xml/gkfparser.h>
+
+#include <gnu_gama/local/network.h>
 
 namespace GNU_gama { namespace local
 {
-  class Gkf2sql {
+  class LocalNetwork2sql {
   public:
-    
-    Gkf2sql(std::string conf) : config(conf) 
-    {
-      gkfparser = new GNU_gama::local::GKFparser(points, observations);
-    }
 
-    void run(std::istream& istr, std::ostream& ostr);
+    LocalNetwork2sql(LocalNetwork& lnet);
+
+    void readGkf(std::istream& istr);
+    void write  (std::ostream& ostr, std::string conf);
+    void setDelete(bool del) { delrec = del;  }
+    bool getDelete() const   { return delrec; }
 
   private:
-    const std::string        config;
-    GNU_gama::local::PointData       points;
-    GNU_gama::local::ObservationData observations;
-    GNU_gama::local::GKFparser*      gkfparser;
+    GNU_gama::local::LocalNetwork&    localNetwork;
+    GNU_gama::local::PointData&       points;
+    GNU_gama::local::ObservationData& observations;
+    std::string config;
+    bool        delrec;
 
     typedef GNU_gama::Cluster<GNU_gama::local::Observation> Cluster;
 
-    void write(std::ostream& ostr);
-    void write_cluster(std::ostream& ostr, const Cluster* c, 
+    void write_cluster(std::ostream& ostr, const Cluster* c,
                        int cluster, std::string tag);
     int  rejected(const GNU_gama::local::Observation* m) const
       {
-	return m->active() ? 0 : 1;
+        return m->active() ? 0 : 1;
       }
-    std::string cnfg() const 
+    std::string cnfg() const
       {
-	return 
-	  "(select new_id from (select conf_id as new_id from gnu_gama_local_configurations "
-	  "where conf_name='" + config + "')x)";
+        return
+          "(select new_id from (select conf_id as new_id"
+          " from gnu_gama_local_configurations"
+          " where conf_name='" + config + "')x)";
       }
   };
 

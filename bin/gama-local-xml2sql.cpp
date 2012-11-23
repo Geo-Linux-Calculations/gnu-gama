@@ -19,9 +19,10 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  $
 */
 
-#include <gnu_gama/local/gkf2sql.h>
+#include <gnu_gama/local/localnetwork2sql.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/exception.h>
+#include <gnu_gama/local/network_gso.h>
 #include <iostream>
 #include <fstream>
 
@@ -70,16 +71,19 @@ int parameters(int argc, char* argv[], std::istream*& xml, std::ostream*& sql)
 
 int main(int argc, char* argv[])
 {
-  std::string   conf;
   std::istream* inp;
   std::ostream* out;
+
+  GNU_gama::local::LocalNetwork_gso lnet;
 
   try
     {
       if (const int k = parameters(argc, argv, inp, out)) return k;
 
-      GNU_gama::local::Gkf2sql t(argv[1]);
-      t.run(*inp, *out);
+      GNU_gama::local::LocalNetwork2sql ln2sql(lnet);
+      ln2sql.readGkf(*inp);
+      ln2sql.write  (*out, argv[1]);
+      out->flush(); 
    }
   catch (GNU_gama::Exception::parser perr)
     {
