@@ -1,3 +1,8 @@
+2012-11-24  Ales Cepek  <cepek@gnu.org>
+
+	* class Gkf2sql (used in gama-local-gkf2sl) updated to be a genral
+	export class and renamed to LocalNetword2sql
+
 2012-09-10  Ales Cepek  <cepek@gnu.org>
 
 	* added basic test suite for gama-local (make check)
