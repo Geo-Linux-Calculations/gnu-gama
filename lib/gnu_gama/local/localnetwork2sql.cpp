@@ -23,6 +23,7 @@
 
 #include "localnetwork2sql.h"
 #include <gnu_gama/xml/gkfparser.h>
+#include <gnu_gama/local/gamadata.h>
 #include <sstream>
 
 using namespace GNU_gama::local;
@@ -102,68 +103,41 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
            << "DELETE FROM gnu_gama_local_configurations WHERE conf_id = " << cnfg() << ";\n\n";
     }
 
-  ostr << "insert into gnu_gama_local_configurations"
-       << " (conf_id, conf_name) values ("
-       << "(select new_id from (select coalesce(max(conf_id), 0)+1 as "
-       << "new_id from gnu_gama_local_configurations)x),"
-       << " '" + config +"');\n";
-
-  /* <parameters> atributes */
+  std::string axes = "ne";
+  switch(localNetwork.PD.local_coordinate_system)
   {
-    if (localNetwork.apriori_m_0() != 10.0)
-    ostr << "update gnu_gama_local_configurations  set sigma_apr = "
-         << localNetwork.apriori_m_0()
-         << " where conf_id = " << cnfg() << ";\n";
-    if (localNetwork.conf_pr() != 0.95)
-    ostr << "update gnu_gama_local_configurations set conf_pr = "
-         << localNetwork.conf_pr() << " where conf_id = " << cnfg() << ";\n";
-    if (localNetwork.tol_abs() != 1000.0)
-    ostr << "update gnu_gama_local_configurations set tol_abs = "
-         << localNetwork.tol_abs() << " where conf_id = " << cnfg() << ";\n";
-    //if (localNetwork.update_constrained_coordinates())
-    ostr << "update gnu_gama_local_configurations set update_cc = "
-         << (localNetwork.update_constrained_coordinates() ? "'yes'" : "'no'")
-         << " where conf_id = " << cnfg() << ";\n";
-    //if (localNetwork.m_0_apriori())
-    ostr << "update gnu_gama_local_configurations set sigma_act = "
-         << (localNetwork.m_0_apriori() ? "'apriori'" : "'aposteriori'")
-         << " where conf_id = " << cnfg() << ";\n";
+      case LocalCoordinateSystem::EN: axes = "'en', "; break;
+      case LocalCoordinateSystem::NW: axes = "'nw', "; break;
+      case LocalCoordinateSystem::SE: axes = "'se', "; break;
+      case LocalCoordinateSystem::WS: axes = "'ws', "; break;
+      case LocalCoordinateSystem::NE: axes = "'ne', "; break;
+      case LocalCoordinateSystem::SW: axes = "'sw', "; break;
+      case LocalCoordinateSystem::ES: axes = "'es', "; break;
+      case LocalCoordinateSystem::WN: axes = "'wn', "; break;
+      default:
+             axes =  "'ne', "; //break;*/
   }
 
-
-  /* <network> atributes */
-  {
-    // EN= 1, NW= 2, SE= 4, WS=  8,        plane right-handed systems
-    // NE=16, SW=32, ES=64, WN=128,        plane left-handed  systems
-
-    std::string lcs="'ne'";
-    switch (points.local_coordinate_system)
-      {
-      case   1: lcs = "'en'"; break;
-      case   2: lcs = "'nw'"; break;
-      case   4: lcs = "'se'"; break;
-      case   8: lcs = "'ws'"; break;
-      case  16: lcs = "'ne'"; break;
-      case  32: lcs = "'sw'"; break;
-      case  64: lcs = "'es'"; break;
-      case 128: lcs = "'wn'"; break;
-      default:  lcs = "'ne'";
-      }
-    if (lcs != "'ne'")
-      ostr << "update gnu_gama_local_configurations set axes_xy = "
-           << lcs << " where conf_id = " << cnfg() << ";\n";
-
-    // if (points.right_handed_angles())
-      ostr << "update gnu_gama_local_configurations set angles = "
-           << (points.right_handed_angles() ?
-               "'right-handed'" : "'left-handed'")
-           << " where conf_id = " << cnfg() << ";\n";
-
-    if (localNetwork.epoch)
-      ostr << "update gnu_gama_local_configurations set epoch = "
-           << localNetwork.epoch << " where conf_id = " << cnfg() << ";\n";
-  }
-
+  ostr <<  "insert into gnu_gama_local_configurations"
+       <<  " (conf_id, conf_name, sigma_apr, conf_pr, tol_abs, sigma_act,"
+       <<  " update_cc, axes_xy, angles, epoch, algorithm, ang_units,"
+       <<  " latitude, ellipsoid) values ("
+       <<  "(select new_id from (select coalesce(max(conf_id), 0)+1 as "
+       <<  "new_id from gnu_gama_local_configurations)x),"
+       <<  " '" + config +"', "
+       <<  localNetwork.apriori_m_0() << ", "
+       <<  localNetwork.conf_pr() << ", "
+       <<  localNetwork.tol_abs() << ", "
+       << (localNetwork.m_0_apriori() ? "'apriori'" : "'aposteriori'") << ", "
+       << (localNetwork.update_constrained_coordinates() ? "'yes'" : "'no'") << ", "
+       <<  axes
+       << (localNetwork.PD.left_handed_angles() ? "'left-handed'" : "'right-handed;") << ", "
+       <<  localNetwork.epoch << ", "
+       << "'" << localNetwork.algorithm() << "', "
+       << (localNetwork.gons() ? 400 : 300) << ", "
+       << "50, "    // latitude
+       << "NULL"    // ellipsoid
+       << ");\n";
 
   /* <points-observations> atributes */
   // {
