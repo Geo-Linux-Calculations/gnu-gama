@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_LN_undefined_confidence_level"
+   EN="undefined confidence level"
+   zh="未定义置信度" />
+
+<e id="T_LN_undefined_type_of_actual_sigma"
+   EN="Type of actual sigma is not defined (apriori / aposteriori)"
+   zh="未定义sigma-act类型(apriori / aposteriori)" />
+
+</entries>

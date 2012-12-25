@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_GKF_illegal_text"
+   EN="illegal text"
+   zh="非法文本" />
+
+<e id="T_GKF_must_start_with_gama_xml"
+   EN="document must start with tag &lt;gama-local&gt;"
+   zh="文档必须以标签&lt;gama-local&gt;开始" />
+
+<e id="T_GKF_undefined_value_of_attribute"
+   EN="illegal value of the attribute: "
+   zh="非法属性值：" />
+
+<e id="T_GKF_illegal_value_of_gama_xml_version"
+   EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
+   zh="标签&lt;gama-local&gt;'version'值非法：" />
+
+<e id="T_GKF_undefined_attribute_of_gama_xml"
+   EN="undefined attribute of tag &lt;gama-local&gt;: "
+   zh="未定义标签&lt;gama-local&gt;值：" />
+
+<e id="T_GKF_undefined_attribute_of_vectors"
+   EN="undefined attribute of tag &lt;vectors&gt;: "
+   zh="未定义标签&lt;vectors&gt;值：" />
+
+<e id ="T_GKF_missing_tag_network"
+   EN="missing tag &lt;network&gt;"
+   zh="标签&lt;network&gt;缺失" />
+
+<e id="T_GKF_e01a_illegal_tag"
+   EN="illegal_tag &lt;"
+   zh="非法标签&lt;" />
+
+<e id="T_GKF_e01b_after_tag"
+   EN="&gt; after tag"
+   zh="&gt;结束标签" />
+
+<e id="T_GKF_error_on_reading_of_standard_deviation"
+   EN="error on reading of standard deviation"
+   zh="读取中误差出错" />
+
+<e id="T_GKF_error_on_reading_of_confidence_probability"
+   EN="error on reading of confidence probability"
+   zh="读取置信概率出错" />
+
+<e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
+   EN="error on reading of tolerance for identification of outlying absolute terms"
+   zh="读取偏差绝对值大的标记出错" />
+
+<e id="T_GKF_wrong_type_of_standard_deviation"
+   EN="wrong type of standard deviation" 
+   zh="中误差格式错误" />
+
+<e id="T_GKF_bad_network_configuration_unknown_parameter"
+   EN="bad network configuration - unknown parameter: "
+   zh="不合格网形 - 参数错误：" />
+
+<e id="T_GKF_bad_attribute_distance_dev"
+   EN="bad attribute distance-stdev: "
+   zh="distance-stdev属性不合格: " />
+
+<e id="T_GKF_bad_attribute_direction_dev"
+   EN="bad attribute direction-stdev: "
+   zh="direction-stdev属性不合格: " />
+
+<e id="T_GKF_bad_attribute_angle_dev"
+   EN="bad attribute angle-stdev: "
+   zh="angle-stdev属性不合格: " />
+
+<e id="T_GKF_undefined_attribute_of_points_observations"
+   EN="undefined attribute of &lt;points-observations&gt;: " 
+   zh="未定义属性&lt;points-observations&gt;: " />
+
+<e id="T_GKF_undefined_attribute_of_points"
+   EN="undefined attribute of &lt;point&gt;: " 
+   zh="未定义属性&lt;point&gt;: " />
+
+<e id="T_GKF_missing_point_ID"
+   EN="missing point ID"
+   zh="点号缺失" />
+
+<e id="T_GKF_missing_from_ID"
+   EN="missing point ID (attribute from=\&quot;...\&quot;)"
+   zh="缺失点号(attribute from=\&quot;...\&quot;)" />
+
+<e id="T_GKF_missing_to_ID"
+   EN="missing point ID (attribute to=\&quot;...\&quot;)"
+   zh="缺失点号(attribute to=\&quot;...\&quot;)" />
+
+<e id="T_GKF_multiple_definition_of_xy_in_tag_point"
+   EN="multiple definition of coordinates xy in tag &lt;point&gt;"
+   zh="xy坐标在标签&lt;point&gt;重定义" />
+
+<e id="T_GKF_multiple_definition_of_z_in_tag_point"
+   EN="multiple definition of coordinate z in tag &lt;point&gt;"
+   zh="z坐标在标签&lt;point&gt;重定义" />
+
+<e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
+   EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
+   zh="标签&lt;point /&gt;必须在标签&lt;coordinates&gt;中定义坐标xy及(或)z" />
+
+<e id="T_GKF_coordinate_x_is_not_defined"
+   EN="coordinate x is not defined"
+   zh="x坐标未定义" />
+
+<e id="T_GKF_coordinate_y_is_not_defined"
+   EN="coordinate y is not defined"
+   zh="y坐标未定义" />
+
+<e id="T_GKF_bad_coordinate_x"
+   EN="bad coordinate x: "
+   zh="x坐标不合格：" />
+
+<e id="T_GKF_bad_coordinate_y"
+   EN="bad coordinate y: "
+   zh="y坐标不合格：" />
+
+<e id="T_GKF_bad_height"
+   EN="bad height: "
+   zh="高程不合格：" />
+
+<e id="T_GKF_undefined_point_type"
+   EN="undefined point type: "
+   zh="点类型未定义：" />
+
+<e id="T_GKF_undefined_height_type"
+   EN="undefined height type: "
+   zh="高程类型未定义" />
+
+<e id="T_GKF_undefined_attribute_of_distance"
+   EN="undefined attribute of &lt;distance&gt;: " 
+   zh="&lt;distance&gt;属性值未定义：" />
+
+<e id="T_GKF_undefined_attribute_of_slopedist"
+   EN="undefined attribute of &lt;s-distance&gt;: " 
+   zh="&lt;s-distance&gt;属性值未定义：" />
+
+<e id="T_GKF_undefined_attribute_of_zangle"
+   EN="undefined attribute of &lt;z-angle&gt;: " 
+   zh="&lt;z-angle&gt;属性值未定义：" />
+
+<e id="T_GKF_missing_standpoint_id"
+   EN="missing standpoint ID"
+   zh="缺少测站点点号" />
+
+<e id="T_GKF_missing_forepoint_id"
+   EN="missing forepoint ID"
+   zh="缺少前视点点号" />
+
+<e id="T_GKF_missing_observed_value"
+   EN="missing observed value"
+   zh="缺少观测值" />
+
+<e id="T_GKF_bad_distance"
+   EN="bad distance: "
+   zh="视距不合格：" />
+
+<e id="T_GKF_bad_zangle"
+   EN="bad zenith angle: "
+   zh="天顶角不合格：" />
+
+<e id="T_GKF_illegal_standard_deviation"
+   EN="illegal standard deviation"
+   zh="中误差非法" />
+
+<e id="T_GKF_undefined_attribute_of_angle"
+   EN="undefined attribute of &lt;angle&gt;: " 
+   zh="&lt;angle&gt;属性值未定义：" />
+
+<e id="T_GKF_missing_left_forepoint_id"
+   EN="missing left forepoint ID"
+   zh="缺少左前视点号" />
+
+<e id="T_GKF_missing_right_forepoint_id"
+   EN="missing right forepoint ID"
+   zh="缺少右前视点号" />
+
+<e id="T_GKF_bad_angle"
+   EN="bad angle: "
+   zh="水平角不合格：" />
+
+<e id="T_GKF_undefined_attribute_of_obs"
+   EN="undefined attribute of &lt;obs&gt;: " 
+   zh="&lt;obs&gt;属性值未定义" />
+
+<e id="T_GKF_bad_instrument_reflector_height"
+   EN="bad instrument/reflector height: "
+   zh="仪器/镜高不合格：" />
+
+<e id="T_GKF_bad_orientation_angle"
+   EN="bad orientation angle: "
+   zh="方位角不合格：" />
+
+<e id="T_GKF_undefined_attribute_of_direction"
+   EN="undefined attribute of &lt;direction&gt;: " 
+   zh="&lt;direction&gt;属性值未定义：" />
+
+<e id="T_GKF_bad_direction"
+   EN="bad direction: "
+   zh="方向不合格：" />
+
+<e id="T_GKF_bad_height_diff"
+   EN="bad height difference: "
+   zh="高差不合格：" />
+
+<e id="T_GKF_undefined_attribute_of_cov_mat"
+   EN="undefined attribute of &lt;cov-mat&gt;: " 
+   zh="&lt;cov-mat&gt;属性值未定义: " />
+
+<e id="T_GKF_undefined_attribute_of_coordinates"
+   EN="undefined attribute of &lt;coordinates&gt;: " 
+   zh="&lt;coordinates&gt;属性值未定义: " />
+
+<e id="T_GKF_undefined_attribute_of_height_differences"
+   EN="undefined attribute of &lt;height-differences&gt;: " 
+   zh="&lt;height-differences&gt;属性值未定义: " />
+
+<e id="T_GKF_cov_mat_missing_dim"
+   EN="missing dimension of covariance matrix"
+   zh="缺失协方差矩阵维数" />
+
+<e id="T_GKF_cov_mat_missing_band_width"
+   EN="missing band-width of covariance matrix"
+   zh="缺少协方差矩阵带宽" />
+
+<e id="T_GKF_covariance_matrix_is_not_positive_definite"
+   EN="variance-covariance matrix is not positive definite"
+   zh="方差协方差矩阵非正定" />
+
+<e id="T_GKF_cov_mat_bad_dim"
+   EN="bad dimension of covariance matrix: "
+   zh="协方差矩阵维数不合格：" />
+
+<e id="T_GKF_cov_mat_bad_band_width"
+   EN="missing band-width of covariance matrix: "
+   zh="缺少协方差矩阵带宽：" />
+
+<e id="T_GKF_cov_mat_bad_dim_too_many_elements"
+   EN="bad dimension of covariance matrix - too many elements"
+   zh="协方差矩阵维数不合格 - 元素过多" />
+
+<e id="T_GKF_cov_mat_bad_dim_not_enough_elements"
+   EN="bad dimension of covariance matrix - not enough elements"
+   zh="协方差矩阵维数不合格 - 缺少元素" />
+
+<e id="T_GKF_cov_mat_bad_element"
+   EN="bad covariance matrix element: "
+   zh="协方差矩阵元素不合格：" />
+
+<e id="T_GKF_no_observations_after_cov_mat"
+   EN="observations can not come after covariance matrix"
+   zh="观测值不能放在协方差矩阵之后" />
+
+<e id="T_GKF_coordinates_without_covariance_matrix"
+   EN="coordinates without covariance matrix"
+   zh="坐标没有协方差矩阵" />
+
+<e id="T_GKF_cov_dim_differs_from_number_of_coordinates"
+   EN="covariance matrix dimension differs from the number of coordinates"
+   zh="协方差矩阵维数与坐标数不符" />
+
+<e id="T_GKF_vectors_without_covariance_matrix"
+   EN="vectors without covariance matrix"
+   zh="坐标差没有协方差" />
+
+<e id="T_GKF_cov_dim_differs_from_number_of_vectors"
+   EN="covariance matrix dimension differs from the number of vectors"
+   zh="协方差矩阵维数与坐标差数不符" />
+
+<e id="T_GKF_bad_vector_data"
+   EN="bad vector data"
+   zh="坐标差数据不合格" />
+
+</entries>   
+
+
+
+
+
+

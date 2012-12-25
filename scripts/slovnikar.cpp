@@ -22,14 +22,20 @@
  *
  * ------------------------------------------------------------------------ */
 
-         const char* language[] = { "en", "ca", "cz", "du", "es",
-                                    "fi", "fr", "hu", "ru", "ua" };
+         const char* language[] = { "en", 
+                                    "ca", "cz", "du", "es", "fi",
+                                    "fr", "hu", "ru", "ua", "zh" };
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.11";
+         const char* version = "1.12";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.12  2011-07-10
+ *
+ *       - added Chinese translation in GBK encoding (switch "zh")
+ *         by 薇 <trackv1@qq.com>
  *
  * 1.11  2011-04-12
  *
@@ -106,7 +112,7 @@
  * ---------------------------------------------------------------------------
  *
  *   Geodesy and Mapping C++ Library (GNU_gama::local)
- *   Copyright (C) 2000, 2006  Ales Cepek <cepek@fsv.cvut.cz>
+ *   Copyright (C) 2000, 2006, 2012  Ales Cepek <cepek@gnu.org>
  *
  *   This file is part of the GNU_gama::local C++ Library.
  *

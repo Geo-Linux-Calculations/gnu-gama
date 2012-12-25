@@ -64,5 +64,13 @@ EXTRA_DIST = gama-local.dtd \
       lang/ua/gamalib.ua.lang \
       lang/ua/review.ua.lang \
       lang/ua/pobs.ua.lang \
-      lang/ua/network.ua.lang
+      lang/ua/network.ua.lang \
+      lang/zh/gamalib.zh.lang \
+      lang/zh/gama-local.zh.lang \
+      lang/zh/gkfparser.zh.lang \
+      lang/zh/network.zh.lang \
+      lang/zh/pobs.zh.lang \
+      lang/zh/review.zh.lang \
+      lang/zh/rmpoints.zh.lang
+
 

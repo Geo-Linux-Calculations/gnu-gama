@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_LN_rm_removed_points"
+   EN="Removed points and coordinates"
+   zh="删除的点和坐标" />
+
+<e id="T_LN_rm_missing_xyz"
+   EN="missing coordiantes xyz"
+   zh="xyz坐标缺失" />
+
+<e id="T_LN_rm_missing_xy"
+   EN="missing coordiantes xy"
+   zh="xy坐标缺失" />
+
+<e id="T_LN_rm_missing_z"
+   EN="missing coordiantes z"
+   zh="z坐标缺失" />
+
+<e id="T_LN_rm_singular_xy"
+   EN="singular coordinates xy"
+   zh="奇异坐标xy" />
+
+<e id="T_LN_rm_singular_z"
+   EN="singular coordiante z"
+   zh="奇异坐标z" />
+
+<e id="T_LN_rm_huge_cov_xyz"
+   EN="indeterminable coordinates xyz"
+   zh="xyz坐标不确定" />
+
+<e id="T_LN_rm_huge_cov_xy"
+   EN="indeterminable coordinates xy"
+   zh="xy坐标不确定" />
+
+<e id="T_LN_rm_huge_cov_z"
+   EN="indeterminable coordinate z"
+   zh="z坐标不确定" />
+
+</entries>

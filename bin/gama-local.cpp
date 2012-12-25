@@ -69,7 +69,7 @@ int help()
     "Options:\n\n"
 
     "--algorithm  gso | svd | cholesky | envelope\n"
-    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua \n"
+    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh\n"
     "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
     "--angles     400 | 360\n"
     "--latitude   <latitude>\n"
@@ -98,7 +98,7 @@ int help()
     "Options:\n\n"
 
     "--algorithm  gso | svd | cholesky | envelope\n"
-    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua \n"
+    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh\n"
     "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
     "--angles     400 | 360\n"
     "--latitude   <latitude>\n"
@@ -216,6 +216,7 @@ int main(int argc, char **argv)
         else if (!strcmp("hu", argv_lang)) set_gama_language(hu);
         else if (!strcmp("ru", argv_lang)) set_gama_language(ru);
         else if (!strcmp("ua", argv_lang)) set_gama_language(ua);
+        else if (!strcmp("zh", argv_lang)) set_gama_language(zh);
         else return help();
       }
 

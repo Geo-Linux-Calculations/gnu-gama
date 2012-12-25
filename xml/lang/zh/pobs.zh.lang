@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_POBS_computation_of_bearing_for_identical_points"
+   EN="Computation of bearing for identical points"
+   zh="同一点方位计算" />
+
+<e id="T_POBS_bad_data"
+   EN="bad data"
+   zh="数据不合格" />
+
+<e id="T_POBS_zero_or_negative_distance"
+   EN="zero or negative distance"
+   zh="零或者负平距" />
+
+<e id="T_POBS_zero_or_negative_slope_distance"
+   EN="zero or negative slope distance"
+   zh="零或者负斜距" />
+
+<e id="T_POBS_zero_or_negative_zenith_angle"
+   EN="zero or negative zenith angle"
+   zh="零或者负天顶角" />
+
+</entries>

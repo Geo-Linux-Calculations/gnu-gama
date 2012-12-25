@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_GaMa_inconsistent_coordinates_and_angles"
+   EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
+   zh="不一致的坐标和角度: \n内部改变所有Y坐标符号" />
+
+<e id="T_GaMa_point"
+   EN="point"
+   zh="点" />
+
+<e id="T_GaMa_standpoint"
+   EN="standpoint"
+   zh="测站点" />
+
+<e id="T_GaMa_target"
+   EN="target"
+   zh="目标" />
+
+<e id="T_GaMa_network_description"
+   EN="Network description"
+   zh="网形描述" />
+
+<e id="T_GaMa_General_solution_parameters"
+   EN="General parameters of the adjustment"
+   zh="平差常规参数" />
+
+<e id="T_GaMa_gpar1_coordinates"
+   EN="Coordinates"
+   zh="坐标" />
+
+<e id="T_GaMa_gpar1_adjusted_coordinates"
+   EN="Adjusted"
+   zh="平差的" />
+
+<e id="T_GaMa_gpar1_constrained_coordinates"
+   EN="Constrained  * "
+   zh="约束的" />
+
+<e id="T_GaMa_gpar1_fixed_coordinates"
+   EN="Fixed"
+   zh="固定的" />
+
+<e id="T_GaMa_gpar1_total"
+   EN="Total"
+   zh="总计" />
+
+<e id="T_GaMa_gpar1_computed_points"
+   EN="Total of adjusted points"
+   zh="平差点总数" />
+
+<e id="T_GaMa_gpar2_constrained_points"
+   EN="Constrained points"
+   zh="约束点" />
+
+<e id="T_GaMa_gpar1_fixed_points"
+   EN="Number of fixed points"
+   zh="固定点总数" />
+
+<e id="T_GaMa_gpar1_computed_heights"
+   EN="Number of computed heights"
+   zh="计算的高程数" />
+
+<e id="T_GaMa_gpar2_constrained_heights"
+   EN="Constrained heights"
+   zh="约束高程" />
+
+<e id="T_GaMa_gpar1_fixed_heights"
+   EN="Number of fixed heights"
+   zh="固定高程数" />
+
+<e id="T_GaMa_gpar1_points_total"
+   EN="Total of points"
+   zh="总点数" />
+
+<e id="T_GaMa_gpar1_directions"
+   EN="Number of directions"
+   zh="方向个数" />
+
+<e id="T_GaMa_gpar2_bearings"
+   EN="Number of bearings"
+   zh="方位角个数" />
+
+<e id="T_GaMa_gpar1_angles"
+   EN="Number of angles"
+   zh="水平角个数" />
+
+<e id="T_GaMa_gpar1_distances"
+   EN="Number of distances"
+   zh="水平距离个数" />
+
+<e id="T_GaMa_gpar1_observed_coords"
+   EN="Coordinates"
+   zh="坐标" />
+
+<e id="T_GaMa_gpar1_leveling_diffs"
+   EN="Leveling differences"
+   zh="高差" />
+
+<e id="T_GaMa_gpar1_z_angles"
+   EN="Zenith angles"
+   zh="天顶角" />
+
+<e id="T_GaMa_gpar1_s_dists"
+   EN="Slope distances"
+   zh="斜距" />
+
+<e id="T_GaMa_gpar1_obs_total"
+   EN="Total of observations"
+   zh="总观测值个数" />
+
+<e id="T_GaMa_gpar1_equations"
+   EN="Number of project equations"
+   zh="项目方程个数" />
+
+<e id="T_GaMa_gpar2_number_of_unknowns"
+   EN="Number of unknowns"
+   zh="未知数个数" />
+
+<e id="T_GaMa_gpar1_redundancy"
+   EN="Degrees of freedom"
+   zh="自由度" />
+
+<e id="T_GaMa_gpar2_network_defect"
+   EN="Network defect"
+   zh="秩亏网" />
+
+<e id="T_GaMa_not_enough_constrained_points"
+   EN="Not enough constrained points defined"
+   zh="定义的约束点不足" />
+
+<e id="T_GaMa_Free_network"
+   EN="Free network"
+   zh="自由网" />
+
+<e id="T_GaMa_Free_network_defect_is"
+   EN="Free network defect is "
+   zh="秩亏自由网是" />
+
+<e id="T_GaMa_Given_network_configuration_can_not_be_adjusted"
+   EN="Given network configuration can not be adjusted"
+   zh="给出的网形不能平差" />
+
+<e id="T_GaMa_detected_singular_variables"
+   EN="The following unknowns have been detected as linearly dependent"
+   zh="以下的未知数检测到是线性相关" />
+
+<e id="T_GaMa_index_type_point"
+   EN="  index type point"
+   zh="	 点类型索引" />
+
+<e id="T_GaMa_m0_apriori"
+   EN="m0  apriori    "
+   zh="m0  验前    " />
+
+<e id="T_GaMa_m0_empirical"
+   EN="m0\' aposteriori"
+   zh="m0\' 验后" />
+
+<e id="T_GaMa_During_statistical_analysis_we_work"
+   EN="During statistical analysis we work"
+   zh="在统计分析工作中" />
+
+<e id="T_GaMa_statan_with_empirical_standard_deviation"
+   EN="- with aposteriori standard deviation "
+   zh="- 用验后中误差" />
+
+<e id="T_GaMa_statan_with_apriori_standard_deviation"
+   EN="- with apriori standard deviation "
+   zh="- 用验前中误差" />
+
+<e id="T_GaMa_statan_with_confidence_level"
+   EN="- with confidence level "
+   zh="- 用置信度" />
+
+<e id="T_GaMa_Ratio_empirical_to_apriori"
+   EN="Ratio m0\' aposteriori / m0 apriori: "
+   zh="比率  m0\'验后 / m0验前: " />
+
+<e id="T_GaMa_interval"
+   EN="interval"
+   zh="区间" />
+
+<e id="T_GaMa_interval_contains"
+   EN="contains value m0\'/m0"
+   zh="包含值m0\'/m0" />
+
+<e id="T_GaMa_interval_doesnt_contain"
+   EN="does not contain value m0\'/m0"
+   zh="不包含值m0\'/m0" />
+
+<e id="T_GaMa_m0_distances"
+   EN="m0\'/m0 (distances): "
+   zh="m0\'/m0 (平距): " />
+
+<e id="T_GaMa_m0_directions"
+   EN="m0\'/m0 (directions): "
+   zh="m0\'/m0 (方向): " />
+
+<e id="T_GaMa_m0_angles"
+   EN="m0\'/m0 (angles): "
+   zh="m0\'/m0 (水平角): " />
+
+<e id="T_GaMa_m0_dirs_angs"
+   EN="m0\'/m0 (directions/angles): "
+   zh="m0\'/m0 (方向/水平角): " />
+
+<e id="T_GaMa_Maximal_decrease_of_m0"
+   EN="Maximal decrease of m0\'\'/m0 on elimination of one observation: "
+   zh="去除一个观测值极大地减小m0\'\'/m0：" />
+
+<e id="T_GaMa_Maximal_normalized_residual"
+   EN="Maximal normalized residual "
+   zh="最大归一化残余" />
+
+<e id="T_GaMa_genpar_Maximal_studentized_residual"
+   EN="Maximal studentized residual "
+   zh="最大学术化残差" />
+
+<e id="T_GaMa_genpar_exceeds"
+   EN=" exceeds"
+   zh=" 超逾" />
+
+<e id="T_GaMa_genpar_doesnt_exceed"
+   EN=" does not exceed"
+   zh="未超逾" />
+
+<e id="T_GaMa_genpar_critical_value"
+   EN=" critical value "
+   zh=" 临界值" />
+
+<e id="T_GaMa_genpar_on_significance_level"
+   EN="on significance level "
+   zh="显著性水平" />
+
+<e id="T_GaMa_genpar_for_observation_ind"
+   EN=" % for observation #"
+   zh=" % 为观测值# " />
+
+<e id="T_GaMa_Review_of_fixed_points"
+   EN="Fixed points"
+   zh="固定点" />
+
+<e id="T_GaMa_point"
+   EN="point"
+   zh="点" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_coordidantes"
+   EN="Adjusted coordinates"
+   zh="平差后坐标" />
+
+<e id="T_GaMa_adjunk_mean_position_error_maximal"
+   EN="Maximal mean position error is "
+   zh="最大点位中误差是 " />
+
+<e id="T_GaMa_adjunk_mean_position_error_on_point"
+   EN=" mm on point "
+   zh=" mm 在点" />
+
+<e id="T_GaMa_adjunk_mean_position_error_average"
+   EN="Average mean position error is "
+   zh="点位中误差平均值是 " />
+
+<e id="T_GaMa_adjunk_header1"
+   EN="    approximate  correction  adjusted    std.dev conf.i.\n"
+   zh="	   近似的	改正数	    平差后	中误差	置信区间.\n" />
+
+<e id="T_GaMa_adjunk_header2"
+   EN="====== value ====== [m] ====== value ========== [mm] ===\n\n"
+   zh="======   值  ====== [m] ======  值  ========== [mm] ===\n\n" />
+
+<e id="T_GaMa_adjunk_constrained"
+   EN="constrained"
+   zh="约束的" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_bearings"
+   EN="Adjusted orientation unknowns"
+   zh="平差后定向未知" />
+
+<e id="T_GaMa_adjunk_header3"
+   EN="   approximate  correction  adjusted   std.dev conf.i.\n"
+   zh="	   近似值	   改正数	   平差后     中误差 置信区间.\n" />
+
+<e id="T_GaMa_adjunk_header4"
+   EN="==== value [g] ==== [g] === value [g] ======= [cc] ===\n\n"
+   zh="====   值  [g] ==== [g] ===   值 [g]  ======= [cc] ===\n\n" />
+
+<e id="T_GaMa_adjunk_Review_of_unknowns_heights"
+   EN="Adjusted heights"
+   zh="平差后高程" />
+
+<e id="T_GaMa_adjunk_header5"
+   EN="     approximate  correction  adjusted    std.dev conf.i.\n"
+   zh="		 近似的	     改正数	     平差后	     标准差	 置信区间.\n" />
+
+<e id="T_GaMa_adjunk_header6"
+   EN="======= value ====== [m] ====== value ========== [mm] ===\n\n"
+   zh="=======  值   ====== [m] ======   值  ========== [mm] ===\n\n" />
+
+<e id="T_GaMa_tstlin_header_value"
+   EN="======= value "
+   zh="======== 值 " />
+
+<e id="T_GaMa_tstlin_Test_of_linearization_error"
+   EN="Test of linearization error"
+   zh="线性化误差的测试" />
+
+<e id="T_GaMa_tstlin_Differences"
+   EN="Diffs in adj. observations from residuals and from adjusted coordinates"
+   zh="观测值残差改正和平差后坐标的差值" />
+
+<e id="T_GaMa_tstlin_obs_r_diff"
+   EN="      observed     r        difference"
+   zh="		 观测值	      r		     差值" />
+
+<e id="T_GaMa_tstlin_header1"
+   EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"
+   zh="======  值  === [mm|cc] == [cc] == [mm] =\n\n" />
+
+<e id="T_GaMa_distance"
+   EN=" dist. "
+   zh=" 平距 " />
+
+<e id="T_GaMa_direction"
+   EN=" dir.  "
+   zh=" 方向 " />
+
+<e id="T_GaMa_angle"
+   EN=" angle "
+   zh=" 水平角 " />
+
+<e id="T_GaMa_s_distance"
+   EN=" slope "
+   zh=" 斜距 " />
+
+<e id="T_GaMa_z_angle"
+   EN=" zenit "
+   zh=" 天顶角 " />
+
+<e id="T_GaMa_x"
+   EN=" x     "
+   zh=" x     " />
+
+<e id="T_GaMa_y"
+   EN=" y     "
+   zh=" y     " />
+
+<e id="T_GaMa_z"
+   EN=" z     "
+   zh=" z     " />
+
+<e id="T_GaMa_levell"
+   EN=" h dif "
+   zh=" h 差 " />
+
+<e id="T_GaMa_xdiff"
+   EN=" x dif "
+   zh=" x 差 " />
+
+<e id="T_GaMa_ydiff"
+   EN=" y dif "
+   zh=" y 差 " />
+
+<e id="T_GaMa_zdiff"
+   EN=" z dif "
+   zh=" z 差 " />
+
+<e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
+   EN="Mean errors and parameters of error ellipses"
+   zh="中误差和误差椭圆参数" />
+
+<e id="T_GaMa_errell_header1"
+   EN="    mp      mxy      mean error ellipse  conf.err. ellipse   g\n"
+   zh="    mp      mxy      中误差椭圆  		置信误差椭圆   	    g\n" />
+
+<e id="T_GaMa_errell_header2"
+   EN="== [mm] == [mm] ==== a [mm] b  alpha[g] ==== a' [mm] b' ========"
+   zh="== [mm] == [mm] ==== a [mm] b   α角[g] ===== a' [mm] b' ========" />
+
+<e id="T_GaMa_adjobs_Adjusted_observations"
+   EN="Adjusted observations"
+   zh="平差后的观测值" />
+
+<e id="T_GaMa_adjobs_observed"
+   EN="observed"
+   zh="观测" />
+
+<e id="T_GaMa_adjobs_adjusted"
+   EN="adjusted"
+   zh="平差" />
+
+<e id="T_GaMa_adjobs_header1"
+   EN=" std.dev conf.i.\n"
+   zh=" 中误差 置信区间\n" />
+
+<e id="T_GaMa_adjobs_value"
+   EN="== value "
+   zh="== 值 " />
+
+<e id="T_GaMa_resobs_Review_of_residuals_analysis_obs"
+   EN="Residuals and analysis of observations"
+   zh="残差和观测值分析" />
+
+<e id="T_GaMa_resobs_Outlying_observations"
+   EN="Outlying observations"
+   zh="异常观测值" />
+
+<e id="T_GaMa_resobs_header1"
+   EN="        f[%]        v    |v'|     e-obs.  e-adj.\n"
+   zh="        f[%]        v    |v'|     观测值误差  平差误差\n" />
+
+<!-- removed in 1.7.09 : e id="T_GaMa_resobs_header2"
+   EN="======== [mm|cc] =========== [mm|cc] ===\n\n"
+   zh="======== [mm|cc] =========== [mm|cc] ===\n\n" / -->
+
+<e id="T_GaMa_resobs_no_control"
+   EN=" u"
+   zh=" 失控" />
+
+<e id="T_GaMa_resobs_weak_control"
+   EN=" w"
+   zh="弱控制" />
+
+<e id="T_GaMa_resobs_mc_max_critical"
+   EN=" mc"
+   zh="最大临界值" />
+
+<e id="T_GaMa_resobs_mc_max"
+   EN=" m "
+   zh="最大归一化或学术化残差" />
+
+<e id="T_GaMa_resobs_mc_critical"
+   EN=" c "
+   zh="临界值" />
+
+<e id="T_GaMa_resobs_normality_test"
+   EN="Test of normality of homogenised residuals"
+   zh="均值化残差的常态性测试" />
+
+<e id="T_GaMa_resobs_condition_number"
+   EN="Condition number        : "
+   zh="条件数" />
+
+<e id="T_GaMa_reduced_Review_of_reduced_observations"
+   en="Reduced observations"
+   zh="减少的观测值" />
+
+<e id="T_GaMa_reduced_observed"
+   en="observed"
+   zh="观测" />
+
+<e id="T_GaMa_reduced_reduced"
+   en="reduced"
+   zh="减少" />
+
+<e id="T_GaMa_reduced_header1"
+   en="  diff dh\n"
+   zh="	 dh差值 \n" />
+
+<e id="T_GaMa_reduced_value"
+   en="== value "
+   zh="== 值 " />
+
+<e id="T_GaMa_approx_Review_of_approximate_coordinates"
+   EN="Approximate coordinates"
+   zh="近似坐标" />
+
+<e id="T_GaMa_approx_observations"
+   EN="observations: "
+   zh="观测值：" />
+
+<e id="T_GaMa_approx_header1"
+   EN="coordinates   "
+   zh="坐标	     " />
+
+<e id="T_GaMa_approx_given_coordinates"
+   EN="given       : "
+   zh="已知 	   ：" />
+
+<e id="T_GaMa_approx_computed_coordinates"
+   EN="computed    : "
+   zh="计算的	   ：" />
+
+<e id="T_GaMa_approx_total"
+   EN="total       : "
+   zh="总计	   ：" />
+
+<e id="T_GaMa_approx_separator"
+   EN="---------------------------------------------"
+   zh="---------------------------------------------" />
+
+<e id="T_GaMa_missing_coordinates"
+   EN="Missing coordinates"
+   zh="缺少坐标" />
+
+<e id="T_GaMa_abstrm_Review_of_outlying_abs_terms"
+   EN="Outlying absolute terms in project equations"
+   zh="方程中的异常绝对项" />
+
+<e id="T_GaMa_abstrm_header1"
+   EN="           observed     absolute\n"
+   zh="		      观测 		   绝对\n" />
+
+<e id="T_GaMa_abstrm_header2"
+   EN="== value ===== term ==\n\n"
+   zh="=== 值 =======  项  ==\n\n" />
+
+</entries>

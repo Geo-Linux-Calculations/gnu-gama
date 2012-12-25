@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<entries>
+
+<e id="T_GaMa_Adjustment_of_geodetic_network"   
+   EN="Adjustment of local geodetic network"
+   zh="大地网平差"  />
+
+<e id="T_GaMa_version"
+   EN="version: "
+   zh="版本: " />
+
+<e id="T_GaMa_exception_1"
+   EN="Error during creation of InfoSit object"
+   zh="建立InfoSit对象出错"  />
+
+<e id="T_GaMa_exception_2a"
+   EN="GNU Gama - error on reading XML input configuration file!"
+   zh="GNU Gama - 读取输入配置XML文件出错!" />
+
+<e id="T_GaMa_exception_2b"
+   EN="On line number "
+   zh="行号 " />
+
+<e id="T_GaMa_No_points_available"
+   EN="No points available"
+   zh="无可用点" />
+
+<e id="T_GaMa_No_observations_available"
+   EN="No observations available"
+   zh="无可用观测值" />
+
+<e id="T_GaMa_No_network_points_defined"
+   EN="No network points defined"
+   zh="网形中未定义点" />
+
+<e id="T_GaMa_No_unknowns_defined"
+   EN="No unknowns have been defined"
+   zh="未定义未知点" />
+
+<e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
+   EN="Observations with outlying absolute terms removed"
+   zh="除去偏差绝对值大的观测值" />
+
+<e id="T_GaMa_adjustment_iteration"
+   EN=" - adjustment iteration"
+   zh="	- 迭代平差" />
+
+<e id="T_GaMa_Approximate_coordinates_replaced"
+   EN="Approximate coordinates of computed points replaced by adjusted"
+   zh="平差后的坐标代替近似坐标" />
+
+<e id="T_GaMa_solution_ended_with_error"
+   EN="GNU Gama - solution ended with error!"
+   zh="GNU Gama - 求解出错!" />
+
+<e id="T_GaMa_internal_program_error"
+   EN="GNU Gama - internal program error!"
+   zh="GNU Gama - 内部程序出错!" />
+  
+</entries>   
+
+
+
+
+
