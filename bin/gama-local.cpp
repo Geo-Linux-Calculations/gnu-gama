@@ -213,6 +213,7 @@ int main(int argc, char **argv)
         else if (!strcmp("du", argv_lang)) set_gama_language(du);
         else if (!strcmp("es", argv_lang)) set_gama_language(es);
         else if (!strcmp("fr", argv_lang)) set_gama_language(fr);
+        else if (!strcmp("fi", argv_lang)) set_gama_language(fi);
         else if (!strcmp("hu", argv_lang)) set_gama_language(hu);
         else if (!strcmp("ru", argv_lang)) set_gama_language(ru);
         else if (!strcmp("ua", argv_lang)) set_gama_language(ua);
