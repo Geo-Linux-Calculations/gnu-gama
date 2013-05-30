@@ -400,12 +400,15 @@ void general_parameters(Stream& cout, const Adjustment& adj)
   if (const int nadb = adj.project_equations.degrees_of_freedom)
     {
       const double alfa_pul = (1 - adj.standard_deviation.probability)/2;
-      if (adj.standard_deviation.using_aposteriori)
+      //if (adj.standard_deviation.using_aposteriori)
         {
-          float testm0 = adj.standard_deviation.aposteriori
-            / adj.standard_deviation.apriori;
-          float lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
-          float upper = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
+          //float testm0 = adj.standard_deviation.aposteriori
+          //  / adj.standard_deviation.apriori;
+          //float lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
+          //float upper = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
+          float testm0 = adj.standard_deviation.ratio;
+          float lower = adj.standard_deviation.lower;
+          float upper = adj.standard_deviation.upper;
 
           cout << T_GaMa_Ratio_empirical_to_apriori << setprecision(3)
                << testm0 << '\n'
@@ -463,7 +466,7 @@ void general_parameters(Stream& cout, const Adjustment& adj)
                   }
                   cout << m0s/ma;
                 }
-              cout << '\n';
+              cout << "\n\n";
             }
         }
 

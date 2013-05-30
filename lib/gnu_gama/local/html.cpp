@@ -814,9 +814,9 @@ void GamaLocalHTML::htmlInfo()
   if (nadb)
     {
       const double alfa_pul = (1 - lnet->conf_pr())/2;
-      if (lnet->m_0_aposteriori())
+      //if (lnet->m_0_aposteriori())
         {
-          double testm0 = lnet->m_0() / lnet->apriori_m_0();
+          double testm0 = lnet->m_0_aposteriori_value() / lnet->apriori_m_0();
           double dolni  = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
           double horni  = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
           bool   passed = dolni<testm0 && horni>testm0;

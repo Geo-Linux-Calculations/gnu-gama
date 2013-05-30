@@ -254,6 +254,7 @@ namespace GNU_gama { namespace local
 
     bool m_0_apriori    () const { return typ_m_0_ == apriorni_;  }
     bool m_0_aposteriori() const { return typ_m_0_ == empiricka_; }
+    Double m_0_aposteriori_value();
 
     void set_m_0_apriori    ()   { typ_m_0_ = apriorni_; }
     void set_m_0_aposteriori()   { typ_m_0_ = empiricka_; }

@@ -720,6 +720,17 @@ Double LocalNetwork::m_0()
 }
 
 
+Double LocalNetwork::m_0_aposteriori_value()
+{
+  vyrovnani_();
+  const int nadb = degrees_of_freedom();
+  if (nadb > 0)
+    return sqrt(trans_VWV()/nadb);
+  else
+    return 0;
+}
+
+
 Double LocalNetwork::conf_int_coef()
 {
   using namespace GNU_gama::local;

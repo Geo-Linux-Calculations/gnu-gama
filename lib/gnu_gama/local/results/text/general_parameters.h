@@ -354,9 +354,9 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   if (nadb)
     {
       const double alfa_pul = (1 - IS->conf_pr())/2;
-      if (IS->m_0_aposteriori())
+      //if (IS->m_0_aposteriori())
         {
-          float testm0 = IS->m_0() / IS->apriori_m_0();
+          float testm0 = IS->m_0_aposteriori_value() / IS->apriori_m_0();
           float dolni = sqrt(GNU_gama::Chi_square(1-alfa_pul,nadb)/nadb);
           float horni = sqrt(GNU_gama::Chi_square(  alfa_pul,nadb)/nadb);
 
