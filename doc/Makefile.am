@@ -40,7 +40,7 @@ EXTRA_DIST =                         \
    fig/xyz2blh-fig.txt
 
 download-gendocs.sh:
-	rm -f gendocs.sh*
+	rm -f gendocs.sh* gendocs_template*
 	wget http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~/texinfo/texinfo/util/gendocs.sh
 	wget http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~/texinfo/texinfo/util/gendocs_template
 	chmod +x gendocs.sh
@@ -48,4 +48,4 @@ download-gendocs.sh:
 run-gendocs.sh:
 	make info
 	rm -rf manual
-	./gendocs.sh --email cepek@gnu.org gama "GNU Gama manual"
+	./gendocs.sh --texi2html --email cepek@gnu.org gama "GNU Gama manual"
