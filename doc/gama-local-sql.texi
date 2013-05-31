@@ -1,6 +1,6 @@
 @comment setfilename gama-local-sql.info
 
-@c author: Vaclav Petras
+@c author: Václav Petráš
 
 @c TODO: example for coordinates and vectors, more obs examples
 

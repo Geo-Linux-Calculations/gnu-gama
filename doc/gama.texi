@@ -24,7 +24,7 @@
 @ifinfo
 This is a documentation version of GNU Gama @value{VERSION}.
 
-Copyright @copyright{} 2003 Ales Cepek.
+Copyright @copyright{} 2003, 2013 Aleš Čepek.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.1 or
@@ -42,12 +42,12 @@ Free Documentation License''.
 @title GNU Gama @value{VERSION}
 @subtitle Adjustment of geodetic networks
 @subtitle Edition @value{EDITION} (@value{UPDATED})
-@author   Ale@v{s} @v{C}epek
+@author   Aleš Čepek
 
 @c The following two commands start the copyright page.
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 2003 Ales Cepek.
+Copyright @copyright{} 2003, 2013 Aleš Čepek.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.1 or
@@ -135,7 +135,7 @@ please send a bug report to
 @noindent
 We will try to be as quick as possible in fixing the bugs and
 redistributing the fixes. If you prefere, you can always write
-directly to @uref{mailto:cepek@@gnu.org, Ale@v{s} @v{C}epek}.
+directly to @uref{mailto:cepek@@gnu.org, Aleš Čepek}.
 
 @node     Contributors
 @section  Contributors
@@ -145,13 +145,13 @@ directly to @uref{mailto:cepek@@gnu.org, Ale@v{s} @v{C}epek}.
 The following persons (in chronological order) have made contributions
 to GNU Gama project:
 @c
-Ales Cepek, Jiri Vesely, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
+Aleš Čepek, Jiří Veselý, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stephane Kaloustian, Siki Zoltan, Anton
-Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiri
-Novak and Vaclav Petras.
+Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
+Novák, Václav Petráš and Tomáš Kubín.
 
-Vaclav Petras is the author of @ref{SQL schema SQLite and gama-local}.
+Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 
 
 @c ----------------------------------------------------------------------
