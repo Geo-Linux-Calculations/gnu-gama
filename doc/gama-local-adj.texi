@@ -1604,7 +1604,7 @@ Diffs in adj. obs from residuals and from adjusted coordinates
 **************************************************************
  
  i standpoint     target          observed     r        difference
-================================= hodnota = [mm|cc] = [cc] == [mm]=
+=================================   value  = [mm|cc] = [cc] == [mm]=
 
  2 3022184030 3022724008 dist.   28.39200    -7.070          -0.003
  3            3022724002 dist.   72.30700   -18.815          -0.001

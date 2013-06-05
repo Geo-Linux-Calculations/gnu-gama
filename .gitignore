@@ -33,6 +33,7 @@ tests/gama-local/scripts/check_xml_results
 tests/gama-local/scripts/check_xml_xml
 #
 doc/version.texi
+doc/gama.html
 doc/gama.info
 doc/stamp-vti
 doc/manual/

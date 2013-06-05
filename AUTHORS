@@ -4,7 +4,7 @@ Developers:
         - adjustment etc.
 
     Jiri Vesely <vesely@gama.fsv.cvut.cz>
-        - classes for computaion of approximate coordinates 
+        - classes for computaion of approximate coordinates
 
     Petr Doubrava <petr@gepro.cz>
         - support for iso-885902 and windows-1250 encoding for Expat
@@ -23,11 +23,11 @@ Contributors:
          - revision of documentation of XML input data and many
            comments and suggestions
 
-    Dan Haggman <dhaggman@cc.hut.fi> 
-	- Finish translation
+    Dan Haggman <dhaggman@cc.hut.fi>
+        - Finish translation
 
-    Mauri Vaisanen <mauri.vaisanen@hut.fi>
-	- Finish translation    
+    Mauri Väisänen <mauri.vaisanen@hut.fi>
+        - Finish translation
 
     John Dedrum <ddrum66@hotmail.com>
         - Dutch translation
@@ -35,7 +35,7 @@ Contributors:
     Boris Pihtin <cyb@bendery.md>
         - Russian translation
 
-    Stephane Kaloustian <stephane.kaloustian@laposte.net>
+    Stéphane Kaloustian <stephane.kaloustian@laposte.net>
         - French translation
 
     Anton Horpynich <anton@vingeo.com>
@@ -49,5 +49,8 @@ Contributors:
 
     Siki Zoltan <siki@agt.bme.hu> Budapest University of Technology
     and Economist (BME), Department of Geodesy and Surveying
-	- Hungarian translationary
-	- binary builds for MS Windows http://www.agt.bme.hu/php/browse.php?/foss
+        - Hungarian translationary
+        - binary builds for MS Windows
+                http://www.agt.bme.hu/php/browse.php?/foss
+    Tomas Kubin <tomas.kubin@fsv.cvut.cz>
+        - update of output of a posteriori standard deviation Chi-Square test

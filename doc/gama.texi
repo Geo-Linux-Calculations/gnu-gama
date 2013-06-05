@@ -146,8 +146,8 @@ The following persons (in chronological order) have made contributions
 to GNU Gama project:
 @c
 Aleš Čepek, Jiří Veselý, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
-Haggman, Mauri Vaisanen, John Dedrum, Jim Sutherland, Zoltan Faludi,
-Diego Berge, Boris Pihtin, Stephane Kaloustian, Siki Zoltan, Anton
+Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
+Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
 Novák, Václav Petráš and Tomáš Kubín.
 
