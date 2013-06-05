@@ -149,7 +149,7 @@ Aleš Čepek, Jiří Veselý, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
-Novák, Václav Petráš and Tomáš Kubín.
+Novák, Václav Petráš, Jokin Zurutuza and Tomáš Kubín.
 
 Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 
