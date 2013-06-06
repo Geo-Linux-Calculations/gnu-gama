@@ -1,9 +1,9 @@
 Developers:
 
-    Ales Cepek <cepek@fsv.cvut.cz>
+    Aleš Čepek <cepek@fsv.cvut.cz>
         - adjustment etc.
 
-    Jiri Vesely <vesely@gama.fsv.cvut.cz>
+    Jiří Veselý <vesely@gama.fsv.cvut.cz>
         - classes for computaion of approximate coordinates
 
     Petr Doubrava <petr@gepro.cz>
@@ -14,7 +14,7 @@ Developers:
         - linearization of slope observation types and GUI Rocinante
           (now distributed separately from sourceforge.net)
 
-    Vaclav Petras <vaclav.petras@fsv.cvut.cz>
+    Václav Petráš <vaclav.petras@fsv.cvut.cz>
         - class SqliteReader
 
 Contributors:
@@ -52,5 +52,9 @@ Contributors:
         - Hungarian translationary
         - binary builds for MS Windows
                 http://www.agt.bme.hu/php/browse.php?/foss
-    Tomas Kubin <tomas.kubin@fsv.cvut.cz>
+
+    项维 (Vim Xiang) <vimxiang@gmail.com>
+        - Chinese translation in GBK encoding
+
+    Tomáš Kubín <tomas.kubin@fsv.cvut.cz>
         - update of output of a posteriori standard deviation Chi-Square test
