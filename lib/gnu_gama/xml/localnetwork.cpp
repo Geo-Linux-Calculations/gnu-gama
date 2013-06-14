@@ -58,6 +58,10 @@ using GNU_gama::local::Xdiff;
 using GNU_gama::local::Ydiff;
 using GNU_gama::local::Zdiff;
 
+// undefine macro VERSION defined in gama-q2 project
+#ifdef VERSION
+#undef VERSION
+#endif
 
 namespace
 {
