@@ -5,4 +5,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              zoltan-test_2d_dms.gkf    zoltan-test_2d_dms.xml \
              zoltan-test_2d_gon.gkf    zoltan-test_2d_gon.xml \
              zoltan-test_3d_dms.gkf    zoltan-test_3d_dms.xml \
-             zoltan-test_3d_gon.gkf    zoltan-test_3d_gon.xml
+             zoltan-test_3d_gon.gkf    zoltan-test_3d_gon.xml \
+             scale-cov-gon.gkf \
+             scale-cov-dms.gkf

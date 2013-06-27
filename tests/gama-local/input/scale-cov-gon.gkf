@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
+
+<gama-local version="2.0">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Variant A (gons)
+----------------
+
+This is a dummy network to verify algorithm of scaling of covariance
+matrix when angular observations are given in DMS (degrees / minutes /
+seconds)
+
+----------------
+The test is derived from the example network from:
+
+   Frantisek Charamza: GEODET/PC, Users' Guide, Zdiby 1990, 
+   Program GETU03 for Adjustment of Local Trigonometric Networks
+   Example: page. 218, Network ZDIBY / 15-F
+</description>
+
+<parameters
+   sigma-apr ="5"
+   conf-pr="0.95"
+   tol-abs="1000"
+   sigma-act ="aposteriori"
+/>
+
+<points-observations>
+
+<point id="1783" y="453500.000"  x="104500.000" adj="xy" />
+<point id="2044" y="461000.000"  x="101000.000" fix="xy" />
+<point id="2505" y="451000.000"  x="101000.000" fix="xy" />
+<point id= "351" y="459000.000"  x="105000.000" adj="xy" />
+<point id= "462" y="456000.000"  x="101000.000" adj="xy" />
+<point id= "776" y="456000.000"  x="109500.000" fix="xy" />
+
+<obs from="1783">
+   <direction to= "776" val= "29.51661" stdev="2.0" />
+   <direction to= "351" val= "94.22790" stdev="2.0" />
+   <direction to= "462" val="160.51318" stdev="2.0" />
+   <direction to="2505" val="239.48577" stdev="2.0" />
+</obs>
+
+<obs from="462">
+   <direction  to="2505" val="299.99973" stdev= "2.0" />
+   <distance to="1783" val= "4301.163" stdev="10.0" />
+   <direction  to="1783" val="360.51390" stdev= "2.0" />
+   <direction  to= "351" val="40.966290" stdev= "2.0" />
+   <direction  to="2044" val="100.00102" stdev= "2.0" />
+</obs>
+
+<obs from="351">
+   <direction  to="2044" val="170.48370" stdev= "2.0" />
+   <distance to= "462" val= "4999.984"   stdev="10.0" />
+   <direction  to= "462" val="240.96667" stdev= "2.0" />
+   <distance to="1783" val= "5522.668"   stdev="10.0" />
+   <direction  to="1783" val="294.22817" stdev= "2.0" />
+   <direction  to= "776" val="362.56667" stdev= "2.0" />
+
+   <cov-mat dim="6" band="3">
+      4.4   -0.7    0.6   -0.5
+           102.0   -9.0    8.0   -7.0
+                    4.3   -0.4    0.3   -0.2
+                         101.0   -6.0    5.0
+                                  4.2   -0.1
+                                         4.1
+   </cov-mat>
+</obs>
+
+
+</points-observations>
+
+</network>
+</gama-local>

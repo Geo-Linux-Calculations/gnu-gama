@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
+
+<gama-local version="2.0">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Variant B (dms)
+----------------
+
+This is a dummy network to verify algorithm of scaling of covariance
+matrix when angular observations are given in DMS (degrees / minutes /
+seconds)
+
+----------------
+The test is derived from the example network from:
+
+   Frantisek Charamza: GEODET/PC, Users' Guide, Zdiby 1990, 
+   Program GETU03 for Adjustment of Local Trigonometric Networks
+   Example: page. 218, Network ZDIBY / 15-F
+</description>
+
+<parameters
+   sigma-apr ="5"
+   conf-pr="0.95"
+   tol-abs="1000"
+   sigma-act ="aposteriori"
+/>
+
+<points-observations>
+
+<point id="1783" y="453500.000"  x="104500.000" adj="xy" />
+<point id="2044" y="461000.000"  x="101000.000" fix="xy" />
+<point id="2505" y="451000.000"  x="101000.000" fix="xy" />
+<point id= "351" y="459000.000"  x="105000.000" adj="xy" />
+<point id= "462" y="456000.000"  x="101000.000" adj="xy" />
+<point id= "776" y="456000.000"  x="109500.000" fix="xy" />
+
+<obs from="1783">
+   <direction to= "776" val= "26-33-53.8164" stdev="0.648" />
+   <direction to= "351" val= "84-48-18.3960" stdev="0.648" />
+   <direction to= "462" val="144-27-42.7032" stdev="0.648" />
+   <direction to="2505" val="215-32-13.8948" stdev="0.648" />
+</obs>
+
+<obs from="462">
+   <direction  to="2505" val="269-59-59.1252" stdev= "0.648" />
+   <distance   to="1783" val= "4301.163"      stdev="10.0" />
+   <direction  to="1783" val="324-27-45.0360" stdev= "0.648" />
+   <direction  to= "351" val=" 36-52-10.7796" stdev= "0.648" />
+   <direction  to="2044" val=" 90-00-03.3048" stdev= "0.648" />
+</obs>
+
+<obs from="351">
+   <direction  to="2044"  val="153-26-07.1880" />
+   <distance   to= "462"  val="4999.984"       />
+   <direction  to= "462"  val="216-52-12.0108" />
+   <distance   to="1783"  val="5522.668"       />
+   <direction  to="1783"  val="264-48-19.2708" />
+   <direction  to= "776"  val="326-18-36.0108" />
+
+   <!--  4.4   -0.7    0.6   -0.5
+              101.0   -9.0    8.0   -7.0
+                       4.3   -0.4    0.3   -0.2
+                            101.0   -6.0    5.0
+                                     4.2   -0.1
+                                            4.1 -->
+   <cov-mat dim="6" band="3">
+   .4618944  -0.2268   0.0629856  -0.162
+              102.0   -2.916       8.0     -2.268
+                       0.4513968  -0.1296   0.0314928  -0.0209952
+                                   101.0   -1.944       1.62
+                                            0.4408992  -0.0104976
+                                                        0.4304016
+   </cov-mat>
+</obs>
+
+
+</points-observations>
+
+</network>
+</gama-local>
