@@ -244,7 +244,6 @@ public:
     }
     void visit(Azimuth* obs)
     {
-      /*
       out << "<" << (tag="azimuth") << ">";
       ostr->precision(angular);
       double m = R2G*(obs->value());
@@ -255,7 +254,6 @@ public:
       *ostr << " <adj>" <<  m << "</adj>";
 
       tag_from_to(obs);
-      */
     }
 
     void tag_id(const GNU_gama::local::Observation* obs)
@@ -440,8 +438,7 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
   tagnl(out, "z-angles",   counter.zangles);
   tagnl(out, "s-dists",    counter.chords);
   tagnl(out, "vectors",    counter.vectors);
-  std::cerr << "doplnit zpracovani azimuth" << __FILE__ << __LINE__ << "\n";
-  // ######## tagnl(out, "azimuth",    counter.gnorth);
+  tagnl(out, "azimuths",   counter.azimuth);
 
   out << "</observations-summary>\n";
 

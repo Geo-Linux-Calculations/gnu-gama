@@ -74,17 +74,18 @@ namespace GNU_gama { namespace local {
 
       double epoch;                     // implicitly 0;
 
-      double implicit_stdev_direction() const { return smer_str; }
-      double implicit_stdev_angle()    const { return uhel_str; }
-      double implicit_stdev_zangle()   const { return z_uhel_str; }
+      double implicit_stdev_direction() const { return direction_stdev_; }
+      double implicit_stdev_angle()     const { return angle_stdev_;     }
+      double implicit_stdev_zangle()    const { return zenith_stdev_;    }
+      double implicit_stdev_azimuth()   const { return azimuth_stdev_;   }
       double implicit_stdev_distance(double d) const
         {
           using namespace std;
-          return delka_str + delka_str_km * pow(d/1000, delka_str_exp);
+          return distance_stdev_ + distance_stdev_km_ * pow(d/1000, distance_stdev_exp_);
         }
-      double implicit_stdev_distance_a() const { return delka_str;     }
-      double implicit_stdev_distance_b() const { return delka_str_km;  }
-      double implicit_stdev_distance_c() const { return delka_str_exp; }
+      double implicit_stdev_distance_a() const { return distance_stdev_;     }
+      double implicit_stdev_distance_b() const { return distance_stdev_km_;  }
+      double implicit_stdev_distance_c() const { return distance_stdev_exp_; }
 
       /* check if covariance matrices are positive-definite */
       void   check_covariances(bool ch=true)   { check_cov_mat = ch;   }
@@ -225,15 +226,16 @@ namespace GNU_gama { namespace local {
       int finish_vectors();
       int process_vec(const char** atts);
 
-      // implicit values of standard deviations
+      // implicit values of standard deviations are initialized in
+      // GKFparser::process_point_obs(const char** atts)
 
-      double delka_str;
-      double delka_str_km;
-      double delka_str_exp;
-      double smer_str;
-      double uhel_str;
-      double z_uhel_str;
-      double g_north;
+      double distance_stdev_;
+      double distance_stdev_km_;
+      double distance_stdev_exp_;
+      double direction_stdev_;
+      double angle_stdev_;
+      double zenith_stdev_;
+      double azimuth_stdev_;
 
       // obsolete XML tags and attributes -- warning messages
 

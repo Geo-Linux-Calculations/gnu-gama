@@ -19,7 +19,8 @@ variant: one fixed point and one azimuth, all other points adjusted
    sigma-act = "aposteriori"
 />
 
-<points-observations distance-stdev='5.0' direction-stdev="10.0">
+<points-observations distance-stdev='5.0' direction-stdev="10.0"
+                     azimuth-stdev="15.0">
 
 <point id=  "1" y=" 644498.590 "  x=" 1054980.484 " fix="xy" />
 <point id=  "2" y=" 643654.101 "  x=" 1054933.801 " adj="xy" />

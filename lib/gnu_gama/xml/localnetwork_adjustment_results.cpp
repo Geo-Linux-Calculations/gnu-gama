@@ -62,6 +62,7 @@ void LocalNetworkAdjustmentResults::init()
   observations_summary.z_angles = 0;
   observations_summary.s_dists = 0;
   observations_summary.vectors = 0;
+  observations_summary.azimuths = 0;
 
   project_equations.equations = 0;
   project_equations.unknowns = 0;
@@ -192,6 +193,7 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_h_diffs_end                        ][t_z_angles                       ] = &Parser::z_angles;
   tagfun[s_z_angles_end                       ][t_s_dists                        ] = &Parser::s_dists;
   tagfun[s_s_dists_end                        ][t_vectors                        ] = &Parser::vectors;
+  tagfun[s_vectors_end                        ][t_azimuths                       ] = &Parser::azimuths;
   tagfun[s_observations_summary_end           ][t_project_equations              ] = &Parser::project_equations;
   tagfun[s_project_equations                  ][t_equations                      ] = &Parser::equations;
   tagfun[s_equations_end                      ][t_unknowns                       ] = &Parser::unknowns;
@@ -288,6 +290,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "aposteriori"               )) return t_aposteriori;
       if (!strcmp(c, "approx"                    )) return t_approx;
       if (!strcmp(c, "approximate"               )) return t_approximate;
+      if (!strcmp(c, "azimuths"                  )) return t_azimuths;
       break;
     case 'b':
       if (!strcmp(c, "band"                      )) return t_band;
@@ -798,6 +801,21 @@ void LocalNetworkAdjustmentResults::Parser::vectors(bool start)
     {
       adj->observations_summary.vectors = get_int();
       set_state(s_vectors_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::azimuths(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::azimuths);
+      set_state(s_azimuths);
+    }
+  else
+    {
+      adj->observations_summary.azimuths = get_int();
+      set_state(s_azimuths_end);
     }
 }
 

@@ -1,5 +1,5 @@
 <!-- 
-        gama-local-adjustment.dtd          version 0.6  2012-03-16
+        gama-local-adjustment.dtd          version 0.7  2013-09-18
         =========================
 
         http://www.gnu.org/software/gama/gama-local-adjustment.dtd
@@ -46,7 +46,8 @@
         h-diffs, 
         z-angles, 
         s-dists, 
-        vectors ) >
+        vectors,
+        azimuths ) >
 
 <!ELEMENT project-equations ( 
         equations, 
@@ -88,6 +89,7 @@
         height-diff | 
         slope-distance | 
         zenith-angle |
+        azimuth |
         dx | 
         dy | 
         dz | 

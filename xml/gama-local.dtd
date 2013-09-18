@@ -1,14 +1,20 @@
 <!-- ****************************************************************
 
-gama-local.dtd                     version 2.1  2012-03-16
+gama-local.dtd                     version 2.2  2013-09-18
 ==============
+
+2.2     2013-09-18
+
+      - new observation tag <azimuth /> with implicit value of
+        standard deviation azimuth-stdev=... in the tag
+        <points-observations />
 
 2.1.    2012-03-16
 
       - fixed a bug in the definition of angular observations reported
-	by Anna Kratochvilova <anna.kratochvilova@fsv.cvut.cz> and
-	Vaclav Petras <vaclav.petras@fsv.cvut.cz>. Implicit value of
-	angular orientation is left-handed
+        by Anna Kratochvilova <anna.kratochvilova@fsv.cvut.cz> and
+        Vaclav Petras <vaclav.petras@fsv.cvut.cz>. Implicit value of
+        angular orientation is left-handed
 
 2.0.15  2010-08-09
 
@@ -49,7 +55,7 @@ gama-local.dtd                     version 2.1  2012-03-16
       - new attributes bs="..." and fs="..." in the definition of <angle />
 
         Chuck Ghilani pointed out that XML description of angles was
-        not natural; thus attribute `to' was renamed to `bs' (backsight) 
+        not natural; thus attribute `to' was renamed to `bs' (backsight)
         and `rs' was renamed to `fs' (foresight)
 
 2.0.09  2002-01-03
@@ -62,7 +68,7 @@ gama-local.dtd                     version 2.1  2012-03-16
 
 2.0.07  2001.06.27
 
-      - removed parameters txt, stx, opr and xy (for the time being 
+      - removed parameters txt, stx, opr and xy (for the time being
         are accepted by gama for backward compatibility)
 
       - introduced new parameters <point fix="..." and adj="..." />
@@ -105,20 +111,20 @@ gama-local.dtd                     version 2.1  2012-03-16
             s/popis/description/g
             s/parametry/parameters/g
             s/body-mereni/points-observations/g
-            
+
             # delka-str-km delka-str-exp  .... removed
             s/str/stdev/g
-            
+
             s/bod/point/g
             s/cislo/id/g
             s/typ/xy/g
             s/or-posun/orientation/g
-            
+
             s/pevny/fixed/g
             s/urcovany/free/g
             s/operny/constrained/g
             s/nepouzit/unused/g
-            
+
             s/konf-pr/conf-pr/g
             s/m0-apr/sigma-apr/g
             s/type-m0/sigma-act/g
@@ -126,13 +132,13 @@ gama-local.dtd                     version 2.1  2012-03-16
             s/apriorni/apriori/g
 
 
-1.03  2000.08.01 preparation for version 2.0 : single distances and 
-      angles cannot be used outside tag <body-mereni>, removed tags 
-      <delka-str-km> and <delka-str-exp> 
+1.03  2000.08.01 preparation for version 2.0 : single distances and
+      angles cannot be used outside tag <body-mereni>, removed tags
+      <delka-str-km> and <delka-str-exp>
 
       added new tags:
       ==============
-        
+
       * tag <cov-mat>       (covariance matrix of observations)
       * tag <coordinates>   (coordinate observations)
 
@@ -163,12 +169,12 @@ information visit
 <!ELEMENT  network      (description | parameters | points-observations)* >
 <!ELEMENT  description  (#PCDATA) >
 <!ELEMENT  parameters   EMPTY >
-<!ELEMENT  points-observations  (point | obs | coordinates | 
+<!ELEMENT  points-observations  (point | obs | coordinates |
                                  height-differences | vectors)* >
 <!ELEMENT  point  EMPTY >
 
-<!ELEMENT  obs ((direction | distance | angle | s-distance | z-angle 
-                | dh)*, cov-mat?) >
+<!ELEMENT  obs ((direction | distance | angle | s-distance | z-angle
+                | azimuth | dh)*, cov-mat?) >
 
 <!ELEMENT  cov-mat  (#PCDATA) >
 
@@ -185,21 +191,21 @@ information visit
 <!ELEMENT  coordinates (point+, cov-mat) >
 
 <!-- observed coordinate differences -->
-<!ELEMENT  vectors     (vec+, cov-mat) >  
-<!ELEMENT  vec          EMPTY > 
+<!ELEMENT  vectors     (vec+, cov-mat) >
+<!ELEMENT  vec          EMPTY >
 
 <!ATTLIST gama-local version NMTOKEN #IMPLIED >
 
 <!ATTLIST network
 
-   axes-xy (ne | sw | es | wn | 
+   axes-xy (ne | sw | es | wn |
             en | nw | se | ws )          "ne"
-   angles  (left-handed | right-handed)  "left-handed" 
+   angles  (left-handed | right-handed)  "left-handed"
    epoch    NMTOKEN                      "0.0" >
 
-<!ATTLIST parameters 
+<!ATTLIST parameters
 
-   sigma-apr  NMTOKEN  "10.0" 
+   sigma-apr  NMTOKEN  "10.0"
    conf-pr    NMTOKEN  "0.95"
    tol-abs    NMTOKEN  "1000.0"
    sigma-act           (aposteriori | apriori) "aposteriori"
@@ -210,7 +216,8 @@ information visit
    distance-stdev      CDATA    #IMPLIED
    direction-stdev     NMTOKEN  #IMPLIED
    angle-stdev         NMTOKEN  #IMPLIED
-   zenith-angle-stdev  NMTOKEN  #IMPLIED  >
+   zenith-angle-stdev  NMTOKEN  #IMPLIED
+   azimuth-stdev       NMTOKEN  #IMPLIED  >
 
 <!ATTLIST point
 
@@ -221,41 +228,41 @@ information visit
    fix (xy | XY | z | Z | xyz | XYZ | XYz | xyZ ) #IMPLIED
    adj (xy | XY | z | Z | xyz | XYZ | XYz | xyZ ) #IMPLIED >
 
-<!ATTLIST obs    
+<!ATTLIST obs
    from         CDATA   #IMPLIED
-   orientation  NMTOKEN #IMPLIED  
+   orientation  NMTOKEN #IMPLIED
    from_dh      NMTOKEN #IMPLIED >
 
 <!ATTLIST cov-mat
    dim   NMTOKEN  #REQUIRED
    band  NMTOKEN  #REQUIRED >
 
-<!ATTLIST direction 
+<!ATTLIST direction
 
    to       CDATA    #REQUIRED
    val      NMTOKEN  #REQUIRED
-   stdev    NMTOKEN  #IMPLIED  
+   stdev    NMTOKEN  #IMPLIED
    from_dh  NMTOKEN  #IMPLIED
    to_dh    NMTOKEN  #IMPLIED  >
 
-<!ATTLIST distance 
+<!ATTLIST distance
 
    from     CDATA    #IMPLIED
    to       CDATA    #REQUIRED
    val      NMTOKEN  #REQUIRED
-   stdev    NMTOKEN  #IMPLIED  
+   stdev    NMTOKEN  #IMPLIED
    from_dh  NMTOKEN  #IMPLIED
    to_dh    NMTOKEN  #IMPLIED >
 
-<!ATTLIST angle 
+<!ATTLIST angle
 
    from     CDATA    #IMPLIED
    bs       CDATA    #REQUIRED
    fs       CDATA    #REQUIRED
    val      NMTOKEN  #REQUIRED
-   stdev    NMTOKEN  #IMPLIED  
+   stdev    NMTOKEN  #IMPLIED
    from_dh  NMTOKEN  #IMPLIED
-   bs_dh    NMTOKEN  #IMPLIED 
+   bs_dh    NMTOKEN  #IMPLIED
    fs_dh    NMTOKEN  #IMPLIED >
 
 <!ATTLIST s-distance
@@ -263,7 +270,7 @@ information visit
    from     CDATA    #IMPLIED
    to       CDATA    #REQUIRED
    val      NMTOKEN  #REQUIRED
-   stdev    NMTOKEN  #IMPLIED  
+   stdev    NMTOKEN  #IMPLIED
    from_dh  NMTOKEN  #IMPLIED
    to_dh    NMTOKEN  #IMPLIED >
 
@@ -272,25 +279,32 @@ information visit
    from     CDATA    #IMPLIED
    to       CDATA    #REQUIRED
    val      NMTOKEN  #REQUIRED
-   stdev    NMTOKEN  #IMPLIED  
+   stdev    NMTOKEN  #IMPLIED
    from_dh  NMTOKEN  #IMPLIED
    to_dh    NMTOKEN  #IMPLIED >
-   
+
+<!ATTLIST azimuth
+
+   to       CDATA    #REQUIRED
+   val      NMTOKEN  #REQUIRED
+   stdev    NMTOKEN  #IMPLIED
+   from_dh  NMTOKEN  #IMPLIED
+   to_dh    NMTOKEN  #IMPLIED  >
+
 <!ATTLIST dh
 
    from   CDATA    #IMPLIED
    to     CDATA    #REQUIRED
    val    NMTOKEN  #REQUIRED
-   stdev  NMTOKEN  #IMPLIED  
+   stdev  NMTOKEN  #IMPLIED
    dist   NMTOKEN  #IMPLIED >
-   
+
 <!ATTLIST vec
 
    from     CDATA    #IMPLIED
    to       CDATA    #REQUIRED
    dx       NMTOKEN  #REQUIRED
    dy       NMTOKEN  #REQUIRED
-   dz       NMTOKEN  #REQUIRED 
+   dz       NMTOKEN  #REQUIRED
    from_dh  NMTOKEN  #IMPLIED
    to_dh    NMTOKEN  #IMPLIED >
-

@@ -313,8 +313,8 @@ private:
 
     double ml = lnet->stdev_obs(index);
 
-    out << tdRight(ml,     'F', 1, 2,1)
-        << tdRight(ml*kki, 'F', 1, 1,2);
+    out << tdRight(ml,     'F', 1, 2,2)
+        << tdRight(ml*kki, 'F', 1, 2,2);
 
     out << "</tr>\n";
   }
@@ -646,7 +646,7 @@ void GamaLocalHTML::htmlInfo()
       pocosn++;
 
   int pocsmer=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
-    poczeni=0, pocsikm=0, pocvec=0;
+    poczeni=0, pocsikm=0, pocvec=0, pocazim=0;
   for (int i=1; i<=lnet->sum_observations(); i++)
     {
       if      (dynamic_cast<Distance*  >(lnet->ptr_obs(i))) pocdel++;
@@ -659,6 +659,7 @@ void GamaLocalHTML::htmlInfo()
       else if (dynamic_cast<Z_Angle*   >(lnet->ptr_obs(i))) poczeni++;
       else if (dynamic_cast<S_Distance*>(lnet->ptr_obs(i))) pocsikm++;
       else if (dynamic_cast<Xdiff*     >(lnet->ptr_obs(i))) pocvec++;
+      else if (dynamic_cast<Azimuth*   >(lnet->ptr_obs(i))) pocazim++;
       //else if (dynamic_cast<Ydiff*     >(lnet->ptr_obs(i))) pocvec++;
       ///else if (dynamic_cast<Zdiff*     >(lnet->ptr_obs(i))) pocvec++;
     }
@@ -710,6 +711,11 @@ void GamaLocalHTML::htmlInfo()
         out << "<tr id='count_vect'>" << tdLeft("Coordinate differences",0,2)
             << tdRight(pocvec, 0,8) << "<td/><td/></tr>\n";
       }
+    if (pocazim)
+      {
+        out << "<tr id='count_azim'>" << tdLeft("Azimuths",0,2)
+            << tdRight(pocazim, 0,8) << "<td/><td/></tr>\n";
+      }
 
     int types = 0;
     if (pocsmer) types++;
@@ -720,6 +726,7 @@ void GamaLocalHTML::htmlInfo()
     if (poczeni) types++;
     if (pocsikm) types++;
     if (pocvec)  types++;
+    if (pocazim) types++;
     if (types != 1)
       {
         out << "<tr id='count_total'>" << tdLeft(T_GaMa_gpar1_obs_total,0,2)

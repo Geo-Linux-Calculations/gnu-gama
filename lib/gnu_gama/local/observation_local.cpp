@@ -489,12 +489,10 @@ void LocalLinearization::angle(const Angle* obs) const
 
 void LocalLinearization::azimuth(const Azimuth* obs) const
 {
-  std::cerr << __FILE__  << " " << __LINE__ << " azimuth(const Azimuth* obs) const\n";
    LocalPoint& sbod = PD[obs->from()];
    LocalPoint& cbod = PD[obs->to()];
    Double s, d;
    bearing_distance(sbod, cbod, s, d);
-   // const Double p = m0 / obs->stdDev();
    const Double K = 10*R2G/d;
    const Double ps = K*sin(s);
    const Double pc = K*cos(s);

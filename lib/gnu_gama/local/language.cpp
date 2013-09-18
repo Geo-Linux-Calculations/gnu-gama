@@ -10,6 +10,7 @@ const char* T_GKF_bad_angle = T_language_cpp_internal_error;
 const char* T_GKF_bad_attribute_angle_dev = T_language_cpp_internal_error;
 const char* T_GKF_bad_attribute_direction_dev = T_language_cpp_internal_error;
 const char* T_GKF_bad_attribute_distance_dev = T_language_cpp_internal_error;
+const char* T_GKF_bad_azimuth = T_language_cpp_internal_error;
 const char* T_GKF_bad_coordinate_x = T_language_cpp_internal_error;
 const char* T_GKF_bad_coordinate_y = T_language_cpp_internal_error;
 const char* T_GKF_bad_direction = T_language_cpp_internal_error;
@@ -59,6 +60,7 @@ const char* T_GKF_must_start_with_gama_xml = T_language_cpp_internal_error;
 const char* T_GKF_no_observations_after_cov_mat = T_language_cpp_internal_error;
 const char* T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates = T_language_cpp_internal_error;
 const char* T_GKF_undefined_attribute_of_angle = T_language_cpp_internal_error;
+const char* T_GKF_undefined_attribute_of_azimuth = T_language_cpp_internal_error;
 const char* T_GKF_undefined_attribute_of_coordinates = T_language_cpp_internal_error;
 const char* T_GKF_undefined_attribute_of_cov_mat = T_language_cpp_internal_error;
 const char* T_GKF_undefined_attribute_of_direction = T_language_cpp_internal_error;
@@ -278,6 +280,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="bad attribute angle-stdev: ";
 	T_GKF_bad_attribute_direction_dev="bad attribute direction-stdev: ";
 	T_GKF_bad_attribute_distance_dev="bad attribute distance-stdev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="bad coordinate x: ";
 	T_GKF_bad_coordinate_y="bad coordinate y: ";
 	T_GKF_bad_direction="bad direction: ";
@@ -327,6 +330,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="observations can not come after covariance matrix";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="tag <point /> must define coordinates xy and/or z inside tag <coordinates>";
 	T_GKF_undefined_attribute_of_angle="undefined attribute of <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="undefined attribute of <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="undefined attribute of <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="undefined attribute of <direction>: ";
@@ -542,6 +546,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="atribut angle-stdev erroni: ";
 	T_GKF_bad_attribute_direction_dev="atribut direction-stdev erroni: ";
 	T_GKF_bad_attribute_distance_dev="atribut distance-stdev erroni: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="coordenada x errònia: ";
 	T_GKF_bad_coordinate_y="coordenada y errònia: ";
 	T_GKF_bad_direction="direcció errònia: ";
@@ -591,6 +596,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="no poden haver-hi observacions després de la matriu de covariances";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="l\'etiqueta <point /> ha de definir coordenades xy i/o z dintre l\'etiqueta <coordinates>";
 	T_GKF_undefined_attribute_of_angle="atribut no definit per a <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="atribut no definit per a <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="atribut no definit per a <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="atribut no definit per a <direction>: ";
@@ -806,6 +812,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="chybný atribut angle-stdev: ";
 	T_GKF_bad_attribute_direction_dev="chybný atribut direction-stdev: ";
 	T_GKF_bad_attribute_distance_dev="chybný atribut distance-stdev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="chybná souřadnice x:";
 	T_GKF_bad_coordinate_y="chybná souřadnice y:";
 	T_GKF_bad_direction="chybný směr: ";
@@ -855,6 +862,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="meření nesmí následovat za kovarianční maticí";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="značka <point /> musí definovat souřadnice xy anebo z uvnitř značky <coordinates>";
 	T_GKF_undefined_attribute_of_angle="nedefinovaný atribut značky <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="nedefinovaný atribut značky <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="nedefinovaný atribut značky <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="nedefinovaný atribut značky <direction>: ";
@@ -1070,6 +1078,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="ongeldige parameter st.afw hoek: ";
 	T_GKF_bad_attribute_direction_dev="ongeldige parameter st.afw richting: ";
 	T_GKF_bad_attribute_distance_dev="ongeldige parameter st.afw afstand: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="ongeldige x coördinaat: ";
 	T_GKF_bad_coordinate_y="ongeldige y coördinaat: ";
 	T_GKF_bad_direction="ongeldige richting: ";
@@ -1119,6 +1128,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="observaties kunnen niet na covariantiematrix gegeven worden";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="tag <point /> moet xy coördinaten krijgen en/of z coördinaat bij tag <coordinates>";
 	T_GKF_undefined_attribute_of_angle="geen attributen gedefinieerd voor tag <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="geen attributen gedefinieerd voor <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="geen attributen gedefinieerd voor <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="geen attributen gedefinieerd voor <direction>: ";
@@ -1334,6 +1344,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="atributo erróneo ángulo-stddev: ";
 	T_GKF_bad_attribute_direction_dev="atributo erróneo dirección-stddev: ";
 	T_GKF_bad_attribute_distance_dev="atributo erróneo distancia-stddev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="coordenada x errónea: ";
 	T_GKF_bad_coordinate_y="coordenada y errónea: ";
 	T_GKF_bad_direction="dirección errónea: ";
@@ -1383,6 +1394,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="no pueden definirse observacionestras la matriz de varianza-covarianza";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="la etiqueta <point /> ha de definir coordenades xy i/o z dentro de la etiqueta <coordinates>";
 	T_GKF_undefined_attribute_of_angle="atributo no definido de <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="atributo no definido de <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="atributo no definido de <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="atributo no definid de <direction>: ";
@@ -1598,6 +1610,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="virheellinen atribuutti angle-stdev: ";
 	T_GKF_bad_attribute_direction_dev="virheellinen atribuuttu direction-stdev: ";
 	T_GKF_bad_attribute_distance_dev="virheellinen atribuutti distance-sdev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="epäkelpo x-koordinaatti: ";
 	T_GKF_bad_coordinate_y="epäkelpo y-koordinaatti: ";
 	T_GKF_bad_direction="epäkelpo suunta: ";
@@ -1647,6 +1660,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="havaintoja ei saa olla kovarianssimatriisin jälkeen";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="tagin <point /> on määritettävä koordinaatit xy ja/tai z tagissa <coordinates>";
 	T_GKF_undefined_attribute_of_angle="määrittämätön atribuutti <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="määrittämätön atribuutti <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="määrittämätön atribuutti <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="määrittämätön atribuutti <direction>: ";
@@ -1862,6 +1876,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="attribut angle-stdev erroné: ";
 	T_GKF_bad_attribute_direction_dev="attribut direction-stdev erroné: ";
 	T_GKF_bad_attribute_distance_dev="attribut distance-stdev erroné: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="mauvaise coordonnée x: ";
 	T_GKF_bad_coordinate_y="mauvaise coordonnée y: ";
 	T_GKF_bad_direction="visée erronée: ";
@@ -1911,6 +1926,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="les observations ne peuvent pas venir après la matrice de covariance";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="la balise <point /> doit définir des coordonnées xy et/ou z à l'intérieur de la balise <coordinates>";
 	T_GKF_undefined_attribute_of_angle="attribut de <angle> indéfini: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="attribut de <coordinates> indéfini: ";
 	T_GKF_undefined_attribute_of_cov_mat="attribut de <cov-mat> indéfini: ";
 	T_GKF_undefined_attribute_of_direction="attribut de <direction> indéfini: ";
@@ -2126,6 +2142,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="hibás szög középhiba érték: ";
 	T_GKF_bad_attribute_direction_dev="hibás irány középhiba érték: ";
 	T_GKF_bad_attribute_distance_dev="hibás távolság középhiba érték: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="hibás X koordináta: ";
 	T_GKF_bad_coordinate_y="hibás Y koordináta: ";
 	T_GKF_bad_direction="hibás irány: ";
@@ -2175,6 +2192,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="a kovariancia mátrix után nem lehetnek észlelések";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="a <point /> címke vízszintes és/vagy magassági koordinátákat kell hogy tartalmazzon a <coordinates> címkében";
 	T_GKF_undefined_attribute_of_angle="nem definiált <angle> érték: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="nem definiált <coordinates> érték: ";
 	T_GKF_undefined_attribute_of_cov_mat="nem definált <cov-mat> érték: ";
 	T_GKF_undefined_attribute_of_direction="nem definiált <direction> érték: ";
@@ -2390,6 +2408,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="плохой атрибут угла-stdev: ";
 	T_GKF_bad_attribute_direction_dev="плохой атрибут направления-stdev: ";
 	T_GKF_bad_attribute_distance_dev="плохой атрибут расстояния-stdev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="неправильная координата x: ";
 	T_GKF_bad_coordinate_y="неправильная координата y: ";
 	T_GKF_bad_direction="неправильное направление: ";
@@ -2439,6 +2458,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="наблюдения не могут идти после ковариационной матрицы";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="тэг <point /> должен определять координаты xy и/или z внутри тэга <coordinates>";
 	T_GKF_undefined_attribute_of_angle="не определен атрибут <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="неопределен атрибут <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="не определен атрибут <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="не определен атрибут <direction>: ";
@@ -2654,6 +2674,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="поганий атрибут кута-stdev: ";
 	T_GKF_bad_attribute_direction_dev="поганий атрибут напрямку-stdev: ";
 	T_GKF_bad_attribute_distance_dev="поганий атрибут відстані-stdev: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="погана координата x: ";
 	T_GKF_bad_coordinate_y="погана координата y: ";
 	T_GKF_bad_direction="не вірний напрямок: ";
@@ -2703,6 +2724,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="спостереження не можуйть йти після коваріаційнної матриці";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="тег <point /> повинен вказувати координати xy та/або z всередині тега <coordinates>";
 	T_GKF_undefined_attribute_of_angle="не вказаний атрибут <angle>: ";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="не вказаний атрибут <coordinates>: ";
 	T_GKF_undefined_attribute_of_cov_mat="не вказаний атрибут <cov-mat>: ";
 	T_GKF_undefined_attribute_of_direction="не вказаний атрибут <direction>: ";
@@ -2918,6 +2940,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_bad_attribute_angle_dev="angle-stdev属性不合格: ";
 	T_GKF_bad_attribute_direction_dev="direction-stdev属性不合格: ";
 	T_GKF_bad_attribute_distance_dev="distance-stdev属性不合格: ";
+	T_GKF_bad_azimuth="bad azimuth: ";
 	T_GKF_bad_coordinate_x="x坐标不合格：";
 	T_GKF_bad_coordinate_y="y坐标不合格：";
 	T_GKF_bad_direction="方向不合格：";
@@ -2967,6 +2990,7 @@ void set_gama_language(gama_language lang)
 	T_GKF_no_observations_after_cov_mat="观测值不能放在协方差矩阵之后";
 	T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates="标签<point />必须在标签<coordinates>中定义坐标xy及(或)z";
 	T_GKF_undefined_attribute_of_angle="<angle>属性值未定义：";
+	T_GKF_undefined_attribute_of_azimuth="undefined attribute of <azimuth>: ";
 	T_GKF_undefined_attribute_of_coordinates="<coordinates>属性值未定义: ";
 	T_GKF_undefined_attribute_of_cov_mat="<cov-mat>属性值未定义: ";
 	T_GKF_undefined_attribute_of_direction="<direction>属性值未定义：";

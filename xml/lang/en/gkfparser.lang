@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_GKF_illegal_text"
@@ -147,7 +147,7 @@
 
 <e id="T_GKF_bad_instrument_reflector_height"
    en="bad instrument/reflector height: "
-   cz="chybná výška přístroje/záměry: " />
+   cz="chybnĂĄ vĂ˝ĹĄka pĹĂ­stroje/zĂĄmÄry: " />
 
 <e id="T_GKF_bad_orientation_angle"
    en="bad orientation angle: " />
@@ -155,8 +155,14 @@
 <e id="T_GKF_undefined_attribute_of_direction"
    en="undefined attribute of &lt;direction&gt;: "  />
 
+<e id="T_GKF_undefined_attribute_of_azimuth"
+   en="undefined attribute of &lt;azimuth&gt;: "  />
+
 <e id="T_GKF_bad_direction"
    en="bad direction: " />
+
+<e id="T_GKF_bad_azimuth"
+   en="bad azimuth: " />
 
 <e id="T_GKF_bad_height_diff"
    en="bad height difference: " />

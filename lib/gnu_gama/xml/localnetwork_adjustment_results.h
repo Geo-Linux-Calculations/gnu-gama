@@ -79,6 +79,7 @@ namespace GNU_gama
       int z_angles;
       int s_dists;
       int vectors;
+      int azimuths;
 
     } observations_summary;
 
@@ -278,6 +279,8 @@ namespace GNU_gama
           s_s_dists_end,
           s_vectors,
           s_vectors_end,
+          s_azimuths,
+          s_azimuths_end,
           s_project_equations,
           s_project_equations_end,
           s_equations,
@@ -466,6 +469,7 @@ namespace GNU_gama
           t_upper,
           t_used,
           t_vectors,
+          t_azimuths,
           t_x,
           t_xyz_coords,
           t_y,
@@ -528,6 +532,7 @@ namespace GNU_gama
       void z_angles(bool);
       void s_dists(bool);
       void vectors(bool);
+      void azimuths(bool);
       void project_equations(bool);
       void equations(bool);
       void unknowns(bool);

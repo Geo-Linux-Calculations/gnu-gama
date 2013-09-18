@@ -533,12 +533,18 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_point_obs(const char** atts)
   {
+    state = state_point_obs;
+
     // setting values of implicit standard deviations to "undefined";
     // on reaching end tag </points-observations> this state is
     // ignored
 
-    string nam, val, sds_abc, sds, sdk, sde, ss="0", su="0", sz="0";
-    state = state_point_obs;
+    // parameters for implicit stdev for distance
+    string nam, val, sds_abc, sds, sdk, sde;
+
+    // implicit standard deviations for direction, angle, zenit-angle, azimuth
+    string str_dir="0", str_ang="0", str_zen="0", str_azi="0";
+
 
     while (*atts)
       {
@@ -560,9 +566,10 @@ namespace GNU_gama { namespace local {
             if (i != val.end())
               return error(T_GKF_bad_attribute_distance_dev + sds_abc);
           }
-        else if (nam == "direction-stdev"   ) ss = val;
-        else if (nam == "angle-stdev"       ) su = val;
-        else if (nam == "zenith-angle-stdev") sz = val;
+        else if (nam == "direction-stdev"   ) str_dir = val;
+        else if (nam == "angle-stdev"       ) str_ang = val;
+        else if (nam == "zenith-angle-stdev") str_zen = val;
+        else if (nam == "azimuth-stdev")      str_azi = val;
         else
           return error(T_GKF_undefined_attribute_of_points_observations
                        + nam + " = " + val);
@@ -571,16 +578,18 @@ namespace GNU_gama { namespace local {
     if (sds == "") sds = "0";
     if (sdk == "") sdk = "0";
     if (sde == "") sde = "1";
-    if (!toDouble(sds, delka_str)    ||
-        !toDouble(sdk, delka_str_km) ||
-        !toDouble(sde, delka_str_exp))
+    if (!toDouble(sds, distance_stdev_)    ||
+        !toDouble(sdk, distance_stdev_km_) ||
+        !toDouble(sde, distance_stdev_exp_))
       return error(T_GKF_bad_attribute_distance_dev  + sds_abc);
-    if (!toDouble(ss, smer_str))
-      return error(T_GKF_bad_attribute_direction_dev + ss );
-    if (!toDouble(su, uhel_str))
-      return error(T_GKF_bad_attribute_angle_dev     + su );
-    if (!toDouble(sz, z_uhel_str))
-      return error(T_GKF_bad_attribute_angle_dev     + sz );
+    if (!toDouble(str_dir, direction_stdev_))
+      return error(T_GKF_bad_attribute_direction_dev + str_dir);
+    if (!toDouble(str_ang, angle_stdev_))
+      return error(T_GKF_bad_attribute_angle_dev     + str_ang);
+    if (!toDouble(str_zen, zenith_stdev_))
+      return error(T_GKF_bad_attribute_angle_dev     + str_zen);
+    if (!toDouble(str_azi, azimuth_stdev_))
+      return error(T_GKF_bad_attribute_angle_dev     + str_azi);
 
     return 0;
   }
@@ -1112,7 +1121,6 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_azimuth(const char** atts)
   {
-    std::cerr << __FILE__ << " " << __LINE__ << " process_azimuth ......... opravit chybove zpravy\n";
     bool degrees = false;
     string nam, val, sc, sm, ss, hf, ht;
     state = state_obs_azimuth;
@@ -1127,7 +1135,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) ss = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
-        else return error(T_GKF_undefined_attribute_of_direction
+        else return error(T_GKF_undefined_attribute_of_azimuth
                           + nam + " = "+val);
       }
 
@@ -1139,9 +1147,9 @@ namespace GNU_gama { namespace local {
     if (GNU_gama::deg2gon(sm, dm))
       degrees = true;
     else
-      if (!toDouble(sm, dm)) return error(T_GKF_bad_direction + sm);
+      if (!toDouble(sm, dm)) return error(T_GKF_bad_azimuth + sm);
 
-    double ds = implicit_stdev_direction();
+    double ds = implicit_stdev_azimuth();
     if (ss != "")
       if (!toDouble(ss, ds)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
@@ -1166,7 +1174,6 @@ namespace GNU_gama { namespace local {
         error(e.what());
       }
 
-    std::cerr << __FILE__ << " " << __LINE__ << " process_azimuth ......... return 0\n";
     return 0;
   }
 
