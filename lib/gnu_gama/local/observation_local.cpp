@@ -2,7 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel <jan.pytel@gmail.com>,
-                  2010  Ales Cepek <cepek@gnu.org>
+                  2010, 2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -487,6 +487,55 @@ void LocalLinearization::angle(const Angle* obs) const
 }
 
 
+void LocalLinearization::azimuth(const Azimuth* obs) const
+{
+  std::cerr << __FILE__  << " " << __LINE__ << " azimuth(const Azimuth* obs) const\n";
+   LocalPoint& sbod = PD[obs->from()];
+   LocalPoint& cbod = PD[obs->to()];
+   Double s, d;
+   bearing_distance(sbod, cbod, s, d);
+   // const Double p = m0 / obs->stdDev();
+   const Double K = 10*R2G/d;
+   const Double ps = K*sin(s);
+   const Double pc = K*cos(s);
+
+   const StandPoint*  csp = static_cast<const StandPoint*>(obs->ptr_cluster());
+   StandPoint* sp = const_cast<StandPoint*>(csp);
+
+   Double a = (obs->value() + PD.xNorthAngle() - s)*R2CC;  // rhs
+
+   while (a > 200e4)
+      a -= 400e4;
+   while (a < -200e4)
+      a += 400e4;
+   rhs = a;          // absolute termm is in cc
+
+   size = 0;
+   if (sbod.free_xy())
+   {
+      if (!sbod.index_x()) sbod.index_x() = ++maxn;
+      if (!sbod.index_y()) sbod.index_y() = ++maxn;
+      index[ size ] = sbod.index_y();
+      coeff[ size ] = -pc;
+      size++;
+      index[ size ] = sbod.index_x();
+      coeff[ size ] = ps;
+      size++;
+   }
+   if (cbod.free_xy())
+   {
+      if (!cbod.index_x()) cbod.index_x() = ++maxn;
+      if (!cbod.index_y()) cbod.index_y() = ++maxn;
+      index[ size ] = cbod.index_y();
+      coeff[ size ] = pc;
+      size++;
+      index[ size ] = cbod.index_x();
+      coeff[ size ] = -ps;
+      size++;
+   }
+}
+
+
 bool LocalRevision::direction(const Direction* obs) const
 {
   if (!obs->active()) return false;
@@ -696,6 +745,24 @@ bool LocalRevision::zdiff(const Zdiff* obs) const
   if (c == PD.end()) return false;
   if (!(*c).second.active_z()) return false;
   if (!(*c).second.test_z()) return false;
+
+  return true;
+}
+
+
+bool LocalRevision::azimuth(const Azimuth* obs) const
+{
+  if (!obs->active()) return false;
+
+  PointData::const_iterator s = PD.find(obs->from());
+  if (s == PD.end()) return false;
+  if (!(*s).second.active_xy()) return false;
+  if (!(*s).second.test_xy()) return false;
+
+  PointData::const_iterator c = PD.find(obs->to());
+  if (c == PD.end()) return false;
+  if (!(*c).second.active_xy()) return false;
+  if (!(*c).second.test_xy()) return false;
 
   return true;
 }

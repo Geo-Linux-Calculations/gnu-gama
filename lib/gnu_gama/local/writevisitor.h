@@ -2,6 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2011  Ales Cepek <cepek@gnu.org>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -56,6 +57,7 @@ public:
     void visit(Ydiff *obs) { write(*obs, out_, print_at_); }
     void visit(Zdiff *obs) { write(*obs, out_, print_at_); }
     void visit(Z_Angle *obs) { write(*obs, out_, print_at_); }
+    void visit(Azimuth *obs) { write(*obs, out_, print_at_); }
 
     void write(const Angle& obs, OutStream& out, bool print_at) const
     {
@@ -199,6 +201,28 @@ public:
       out << " to=\"" << obs.to() << '"' << " val=\"";
       if (Observation::gons)
         out << std::setprecision(Format::gon_p()) << obs.value()*R2G;
+      else
+        out << GNU_gama::gon2deg(obs.value()*R2G, 2, Format::gon_p());
+      out << '"';
+
+      if (obs.check_std_dev())
+        {
+          double stddev = Observation::gons ? obs.stdDev() : obs.stdDev()*0.324;
+          out << " stdev=\"" << std::setprecision(Format::stdev_p()) << stddev << '"';
+        }
+
+      out << " />";
+    }
+
+    void write(const Azimuth& obs, OutStream& out, bool print_at) const
+    {
+      out << "<azimuth";
+      if (print_at)
+        out << " from=\"" << obs.from() << '"';
+
+      out << " to=\"" << obs.to() << '"' << " val=\"";
+      if (Observation::gons)
+        out << std::setprecision(Format::gon_p()  ) << obs.value()*R2G;
       else
         out << GNU_gama::gon2deg(obs.value()*R2G, 2, Format::gon_p());
       out << '"';

@@ -123,6 +123,7 @@ const char* T_GaMa_approx_header1 = T_language_cpp_internal_error;
 const char* T_GaMa_approx_observations = T_language_cpp_internal_error;
 const char* T_GaMa_approx_separator = T_language_cpp_internal_error;
 const char* T_GaMa_approx_total = T_language_cpp_internal_error;
+const char* T_GaMa_azimuth = T_language_cpp_internal_error;
 const char* T_GaMa_detected_singular_variables = T_language_cpp_internal_error;
 const char* T_GaMa_direction = T_language_cpp_internal_error;
 const char* T_GaMa_distance = T_language_cpp_internal_error;
@@ -390,6 +391,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="observations: ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="total       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="The following unknowns have been detected as linearly dependent";
 	T_GaMa_direction=" dir.  ";
 	T_GaMa_distance=" dist. ";
@@ -653,6 +655,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="observacions: ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="total       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Les següents incògnites s'han trobat a ser linealment dependents";
 	T_GaMa_direction=" dir.  ";
 	T_GaMa_distance=" dist. ";
@@ -916,6 +919,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="měření      : ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="celkem      : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Jako lineárně závislé byly určeny následující proměnné";
 	T_GaMa_direction=" směr  ";
 	T_GaMa_distance=" délka ";
@@ -1179,6 +1183,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="observaties: ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="totaal       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="De volgende onbekenden zijn gedetecteerd als lineair afhankelijk";
 	T_GaMa_direction=" richting  ";
 	T_GaMa_distance=" afstand ";
@@ -1442,6 +1447,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="observaciones:";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="total       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Las siguientes incógnitas son linealmente dependientes";
 	T_GaMa_direction=" dir.  ";
 	T_GaMa_distance=" dist. ";
@@ -1705,6 +1711,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="havainnot   : ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="yhteensä    : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Seuraavat tuntemattomat on havaittu lineaarisesti riippuvaisiksi";
 	T_GaMa_direction=" suu.  ";
 	T_GaMa_distance=" vaak. ";
@@ -1968,6 +1975,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="observations: ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="total       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Les inconnues suivantes ont été diagnostiquées comme linéairement dépendantes";
 	T_GaMa_direction=" dir.  ";
 	T_GaMa_distance=" dist. ";
@@ -2231,6 +2239,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="mérések  : ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="összesen    : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="A követhező ismeretlenek linárisan függőként azonosítva";
 	T_GaMa_direction="  ir.  ";
 	T_GaMa_distance="  táv. ";
@@ -2494,6 +2503,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="наблюдений  : ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="всего       : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Нижеупомянутые неизвестные являются линейно зависимыми";
 	T_GaMa_direction=" напр  ";
 	T_GaMa_distance=" расст ";
@@ -2757,6 +2767,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="спостережень: ";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="всього      : ";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="Нижчезгадані невідомі є лінійно залежними";
 	T_GaMa_direction=" напр. ";
 	T_GaMa_distance=" відд. ";
@@ -3020,6 +3031,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_approx_observations="观测值：";
 	T_GaMa_approx_separator="---------------------------------------------";
 	T_GaMa_approx_total="总计    ：";
+	T_GaMa_azimuth=" azim. ";
 	T_GaMa_detected_singular_variables="以下的未知数检测到是线性相关";
 	T_GaMa_direction=" 方向 ";
 	T_GaMa_distance=" 平距 ";

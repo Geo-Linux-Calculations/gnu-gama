@@ -2,6 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -140,6 +141,8 @@ namespace GNU_gama { namespace local {
 
       int     dimension() const { return 1; }
 
+      virtual bool angular() const { return false; }
+
     protected:
 
       /** \brief Constructs only partially initialized object.
@@ -207,6 +210,8 @@ namespace GNU_gama { namespace local {
 
       CLONE(Direction*) clone() const { return new Direction(*this); }
 
+      bool angular() const { return true; }
+
       Double orientation() const;
       void   set_orientation(Double p);
       bool   test_orientation() const;
@@ -237,6 +242,8 @@ namespace GNU_gama { namespace local {
       ~Angle() {}
 
       CLONE(Angle*) clone() const { return new Angle(*this); }
+
+      bool angular() const { return true; }
 
       const PointID& bs() const { return to(); }     // backsight station
       const PointID& fs() const { return fs_;  }     // foresight station
@@ -388,7 +395,26 @@ namespace GNU_gama { namespace local {
       ~Z_Angle() {}
 
       CLONE(Z_Angle*) clone() const { return new Z_Angle(*this); }
+
+      bool angular() const { return true; }
     };
+
+
+  class Azimuth : public Accept<Azimuth, Observation>
+    {
+    public:
+      Azimuth(const PointID& s, const PointID& c,  Double d)
+        {
+          init(s, c, d);
+          norm_rad_val();
+        }
+      ~Azimuth() {}
+
+      CLONE(Azimuth*) clone() const { return new Azimuth(*this); }
+
+      bool angular() const { return true; }
+    };
+
 
   /** \brief Base class for visitors which visit all observations
    *
@@ -431,6 +457,7 @@ namespace GNU_gama { namespace local {
    * void visit(Xdiff* obs)
    * void visit(Ydiff* obs)
    * void visit(Zdiff* obs)
+   * void visit(Azimuth* obs)
    * \endcode
    *
    * \sa BaseVisitor, Visitor
@@ -448,7 +475,8 @@ namespace GNU_gama { namespace local {
           public Visitor<Z>,
           public Visitor<Xdiff>,
           public Visitor<Ydiff>,
-          public Visitor<Zdiff>
+          public Visitor<Zdiff>,
+          public Visitor<Azimuth>
   {
   };
 

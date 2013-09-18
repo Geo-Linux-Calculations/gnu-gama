@@ -2,6 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001, 2011  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -57,6 +58,7 @@ namespace GNU_gama { namespace local {
       void  visit(Xdiff *element)      { xdiff(element); }
       void  visit(Ydiff *element)      { ydiff(element); }
       void  visit(Zdiff *element)      { zdiff(element); }
+      void  visit(Azimuth *element)    { azimuth(element); }
 
       const   long    max_size; ///< maximal number of coefficients
       mutable double  rhs;
@@ -82,6 +84,7 @@ namespace GNU_gama { namespace local {
       void xdiff      (const Xdiff      *obs) const;
       void ydiff      (const Ydiff      *obs) const;
       void zdiff      (const Zdiff      *obs) const;
+      void azimuth    (const Azimuth    *obs) const;
     };
 
 }}

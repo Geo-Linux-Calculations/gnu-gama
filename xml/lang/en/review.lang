@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
@@ -273,6 +273,9 @@
 
 <e id="T_GaMa_zdiff"
    en=" z dif " />
+
+<e id="T_GaMa_azimuth"
+   en=" azim. " />
 
 <e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
    en="Mean errors and parameters of error ellipses" />

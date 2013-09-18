@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012  Ales Cepek <cepek@gnu.org>
+                  2012, 2013  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -176,6 +176,11 @@ public:
     {
         const Double dz = cil->z() - stan->z();
         check(fabs(dz - obs->value())*1000);
+    }
+
+    void visit(Azimuth* obs)
+    {
+        check(fabs(b(indm)*d0/(10*R2G)));
     }
 
 private:

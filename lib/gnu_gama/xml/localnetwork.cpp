@@ -2,7 +2,7 @@
     GNU Gama C++ library
     Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012  Ales Cepek <cepek@gnu.org>
+                  2012, 2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -57,6 +57,7 @@ using GNU_gama::local::S_Distance;
 using GNU_gama::local::Xdiff;
 using GNU_gama::local::Ydiff;
 using GNU_gama::local::Zdiff;
+using GNU_gama::local::Azimuth;
 
 // undefine macro VERSION defined in gama-q2 project
 #ifdef VERSION
@@ -241,6 +242,21 @@ public:
 
       tag_from_to(obs);
     }
+    void visit(Azimuth* obs)
+    {
+      /*
+      out << "<" << (tag="azimuth") << ">";
+      ostr->precision(angular);
+      double m = R2G*(obs->value());
+      *ostr << " <obs>" << m << "</obs>";
+      m += v(i)/10000;
+      if (m < 0) m += 400;
+      if (m >= 400) m -= 400;
+      *ostr << " <adj>" <<  m << "</adj>";
+
+      tag_from_to(obs);
+      */
+    }
 
     void tag_id(const GNU_gama::local::Observation* obs)
     {
@@ -389,7 +405,7 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
   public:
       ObservationSummaryCounter() :
           dirs(0),  angles(0), dists(0), coords(0),
-              hdiffs(0), zangles(0), chords(0), vectors(0)
+          hdiffs(0), zangles(0), chords(0), vectors(0), azimuth(0)
       {}
 
       void visit(Direction*)  { dirs++; }
@@ -404,9 +420,11 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
       void visit(Xdiff*)      { vectors++; }
       void visit(Ydiff*)      { }
       void visit(Zdiff*)      { }
+      void visit(Azimuth*)    { azimuth++; }
 
       int dirs,  angles, dists, coords,
-        hdiffs, zangles, chords, vectors;
+        hdiffs, zangles, chords, vectors,
+        azimuth;
   };
 
   ObservationSummaryCounter counter;
@@ -422,6 +440,8 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
   tagnl(out, "z-angles",   counter.zangles);
   tagnl(out, "s-dists",    counter.chords);
   tagnl(out, "vectors",    counter.vectors);
+  std::cerr << "doplnit zpracovani azimuth" << __FILE__ << __LINE__ << "\n";
+  // ######## tagnl(out, "azimuth",    counter.gnorth);
 
   out << "</observations-summary>\n";
 

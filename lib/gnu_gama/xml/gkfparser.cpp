@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2002, 2013  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -122,6 +122,7 @@ namespace GNU_gama { namespace local {
           case tag_s_distance: return process_sdistance(atts);
           case tag_z_angle   : return process_zangle(atts);
           case tag_dh        : return process_obs_dh(atts);
+          case tag_azimuth   : return process_azimuth(atts);
           case tag_cov_mat   : return process_obs_cov(atts);
           default:
             return error(T_GKF_e01a_illegal_tag + string(cname) +
@@ -214,6 +215,9 @@ namespace GNU_gama { namespace local {
       case state_obs_dh:
         state = state_obs;
         break;
+      case state_obs_azimuth:
+        state = state_obs;
+        break;
       case state_obs_cov:
         state = state_obs_after_cov;
         break;
@@ -301,6 +305,7 @@ namespace GNU_gama { namespace local {
       {
       case 'a':
         if (!strcmp(c, "angle"              )) return tag_angle;
+        if (!strcmp(c, "azimuth"            )) return tag_azimuth;
         break;
       case 'c':
         if (!strcmp(c, "coordinates"        )) return tag_coordinates;
@@ -313,7 +318,7 @@ namespace GNU_gama { namespace local {
         if (!strcmp(c, "distance"           )) return tag_distance;
         break;
       case 'g':
-        if (!strcmp(c, "gama-local"           )) return tag_gama_xml;
+        if (!strcmp(c, "gama-local"         )) return tag_gama_xml;
         break;
       case 'h':
         if (!strcmp(c, "height-differences" )) return tag_height_differences;
@@ -1100,6 +1105,68 @@ namespace GNU_gama { namespace local {
         error(e.what());
       }
 
+    return 0;
+  }
+
+
+
+  int GKFparser::process_azimuth(const char** atts)
+  {
+    std::cerr << __FILE__ << " " << __LINE__ << " process_azimuth ......... opravit chybove zpravy\n";
+    bool degrees = false;
+    string nam, val, sc, sm, ss, hf, ht;
+    state = state_obs_azimuth;
+
+    while (*atts)
+      {
+        nam = string(*atts++);
+        val = string(*atts++);
+
+        if      (nam == "to"     ) sc = val;
+        else if (nam == "val"    ) sm = val;
+        else if (nam == "stdev"  ) ss = val;
+        else if (nam == "from_dh") hf = val;
+        else if (nam == "to_dh"  ) ht = val;
+        else return error(T_GKF_undefined_attribute_of_direction
+                          + nam + " = "+val);
+      }
+
+    if (standpoint_id == "") return error(T_GKF_missing_standpoint_id);
+    if (sc   == "") return error(T_GKF_missing_forepoint_id);
+    if (sm   == "") return error(T_GKF_missing_observed_value);
+
+    double dm;
+    if (GNU_gama::deg2gon(sm, dm))
+      degrees = true;
+    else
+      if (!toDouble(sm, dm)) return error(T_GKF_bad_direction + sm);
+
+    double ds = implicit_stdev_direction();
+    if (ss != "")
+      if (!toDouble(ss, ds)) return error(T_GKF_illegal_standard_deviation);
+    double df = obs_from_dh;
+    if (hf != "")
+      if (!toDouble(hf, df))
+        return error(T_GKF_bad_instrument_reflector_height + hf);
+    double dt = 0;
+    if (ht != "")
+      if (!toDouble(ht, dt))
+        return error(T_GKF_bad_instrument_reflector_height + ht);
+
+    try
+      {
+        Azimuth* d = new Azimuth(standpoint_id, sc, dm*G2R);
+        d->set_from_dh(df);
+        d->set_to_dh(dt);
+        standpoint->observation_list.push_back( d );
+        sigma.push_back(DB_pair(ds, degrees));
+      }
+    catch (const /*GNU_gama::local::*/Exception &e)
+      {
+        error(e.what());
+      }
+
+    std::cerr << __FILE__ << " " << __LINE__ << " process_azimuth ......... return 0\n";
     return 0;
   }
 

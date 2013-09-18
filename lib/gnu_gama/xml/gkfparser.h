@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2002, 2013  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -113,7 +113,8 @@ namespace GNU_gama { namespace local {
         tag_dh,
         tag_coordinates,
         tag_vectors,
-        tag_vec
+        tag_vec,
+        tag_azimuth
       };
 
       gkf_tag tag(const char* cname);
@@ -134,6 +135,7 @@ namespace GNU_gama { namespace local {
         state_obs_sdistance,
         state_obs_zangle,
         state_obs_dh,
+        state_obs_azimuth,
         state_obs_cov,
         state_obs_after_cov,
         state_coords,
@@ -183,6 +185,7 @@ namespace GNU_gama { namespace local {
       int process_sdistance  (const char** atts);
       int process_zangle     (const char** atts);
       int process_obs_dh     (const char** atts);
+      int process_azimuth    (const char** atts);
 
       int process_obs(const char** atts);
       int finish_obs();
@@ -230,6 +233,7 @@ namespace GNU_gama { namespace local {
       double smer_str;
       double uhel_str;
       double z_uhel_str;
+      double g_north;
 
       // obsolete XML tags and attributes -- warning messages
 

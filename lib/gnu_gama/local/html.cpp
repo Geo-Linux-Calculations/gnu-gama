@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2013  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -211,6 +211,11 @@ public:
   {
     out << tdLeft(T_GaMa_zdiff);
     linear();
+  }
+  void visit(GNU_gama::local::Azimuth* /*element*/)
+  {
+    out << tdLeft(T_GaMa_azimuth);
+    angular();
   }
 
   void adjustedObservation(int i)

@@ -2,6 +2,7 @@
     Geodesy and Mapping C++ library (GNU GaMa)
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -244,6 +245,25 @@ public:
         out << m << " ";
     }
 
+    void visit(Azimuth* obs)
+    {
+        out << T_GaMa_azimuth;
+        out.precision(angularPrecision);
+        out.width(maxval);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+        out.width(maxval);
+        m += v(i)/10000;
+        if (m < 0) m += 400;
+        if (m >= 400) m -= 400;
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
 };
 
 

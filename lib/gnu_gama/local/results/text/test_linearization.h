@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                  2011  Vaclav Petras <wenzeslaus@gmail.com>
-                 2012  Ales Cepek <cepek@gnu.org>
+                 2012, 2013  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -62,7 +62,7 @@ public:
     {}
 
     /** \brief Sets index of observation which will be used in the
-	next visit. */
+        next visit. */
     void setObservationIndex(GNU_gama::Index index) { i = index; }
 
     Double getPol() { return  pol; }
@@ -120,6 +120,7 @@ public:
     void visit(Xdiff*)      { mer = 0; pol = 0; }
     void visit(Ydiff*)      { mer = 0; pol = 0; }
     void visit(Zdiff*)      { mer = 0; pol = 0; }
+    void visit(Azimuth*)    { mer = 0; pol = 0; }
 
 private:
     void computeBearingAndDistance(const Observation* pm, Double& ds, Double& dd)
@@ -216,6 +217,7 @@ public:
     void visit(Xdiff*)      { mer = 0; dms = false; }
     void visit(Ydiff*)      { mer = 0; dms = false; }
     void visit(Zdiff*)      { mer = 0; dms = false; }
+    void visit(Azimuth*)    { mer = 0; dms = false; }
 
 };
 
@@ -511,7 +513,3 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
 }}
 
 #endif
-
-
-
-

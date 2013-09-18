@@ -2,6 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -184,6 +185,17 @@ public:
         out << m << " ";
     }
 
+    void  visit(Azimuth* obs)
+    {
+        out << T_GaMa_azimuth;
+        out.precision(angularPrecision);
+        out.width(width);
+        Double m = R2G*(obs->value());
+        if (IS->gons())
+            out << m << " ";
+        else
+            out << GNU_gama::gon2deg(m, 0, 2) << " ";
+    }
 };
 
 /** \brief Writes 'Outlying absolute terms' table.

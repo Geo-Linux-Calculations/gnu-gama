@@ -5,13 +5,16 @@
 
 a=zoltan-test_2d_dms; b=zoltan-test_2d_gon
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
-                          $b @GAMA_INPUT@/$b.gkf 
+                          $b @GAMA_INPUT@/$b.gkf
 
 a=zoltan-test_3d_dms; b=zoltan-test_3d_gon
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
-                          $b @GAMA_INPUT@/$b.gkf 
+                          $b @GAMA_INPUT@/$b.gkf
 
 a=scale-cov-gon; b=scale-cov-dms
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
-                          $b @GAMA_INPUT@/$b.gkf 
+                          $b @GAMA_INPUT@/$b.gkf
 
+a=fixed-constrained; b=fixed-azimuth
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf

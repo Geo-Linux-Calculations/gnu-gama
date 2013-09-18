@@ -2,6 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -58,6 +59,7 @@ namespace GNU_gama { namespace local {
       void  visit(Xdiff *element)      { if (!xdiff(element))      element->set_passive(); }
       void  visit(Ydiff *element)      { if (!ydiff(element))      element->set_passive(); }
       void  visit(Zdiff *element)      { if (!zdiff(element))      element->set_passive(); }
+      void  visit(Azimuth *element)    { if (!azimuth(element))    element->set_passive(); }
 
     private:
 
@@ -75,6 +77,7 @@ namespace GNU_gama { namespace local {
       bool xdiff      (const Xdiff      *obs) const;
       bool ydiff      (const Ydiff      *obs) const;
       bool zdiff      (const Zdiff      *obs) const;
+      bool azimuth    (const Azimuth    *obs) const;
     };
 
 }}

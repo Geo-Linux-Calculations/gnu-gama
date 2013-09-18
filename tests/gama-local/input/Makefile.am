@@ -7,4 +7,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              zoltan-test_3d_dms.gkf    zoltan-test_3d_dms.xml \
              zoltan-test_3d_gon.gkf    zoltan-test_3d_gon.xml \
              scale-cov-gon.gkf \
-             scale-cov-dms.gkf
+             scale-cov-dms.gkf \
+             fixed-constrained.gkf \
+             fixed-azimuth.gkf

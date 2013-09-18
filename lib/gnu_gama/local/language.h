@@ -123,6 +123,7 @@ extern const char* T_GaMa_approx_header1;
 extern const char* T_GaMa_approx_observations;
 extern const char* T_GaMa_approx_separator;
 extern const char* T_GaMa_approx_total;
+extern const char* T_GaMa_azimuth;
 extern const char* T_GaMa_detected_singular_variables;
 extern const char* T_GaMa_direction;
 extern const char* T_GaMa_distance;

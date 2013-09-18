@@ -2,6 +2,7 @@
     GNU Gama C++ library
     Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -89,6 +90,7 @@ public:
     void visit(Xdiff* obs) { out << T_GaMa_xdiff; }
     void visit(Ydiff* obs) { out << T_GaMa_ydiff; }
     void visit(Zdiff* obs) { out << T_GaMa_zdiff; }
+    void visit(Azimuth* obs) { out << T_GaMa_azimuth; }
 
 };
 

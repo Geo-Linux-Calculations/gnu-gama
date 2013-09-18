@@ -43,6 +43,8 @@ namespace GNU_gama { namespace local {
                     public LocalCoordinateSystem,
                     public AngularObservations
     {
+    public:
+      double xNorthAngle() const;
     };
 
 
@@ -55,7 +57,6 @@ namespace GNU_gama { namespace local {
         (lcs. left_handed_coordinates() && lcs. left_handed_angles()) ||
         (lcs.right_handed_coordinates() && lcs.right_handed_angles());
     }
-
 
 }}   // namepsace GNU_gama::local
 
