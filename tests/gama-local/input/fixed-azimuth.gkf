@@ -35,7 +35,7 @@ variant: one fixed point and one azimuth, all other points adjusted
 <point id="424" adj="xy" />
 
 <obs from="1">
-   <azimuth    to=  "2" val= "96.484371" />
+   <azimuth    to=  "2" val= "96.4843705724329794" />
    <direction  to=  "2" val=  "0.0000" />
    <direction  to="422" val= "28.2057" />
    <direction  to="424" val= "60.4906" />
