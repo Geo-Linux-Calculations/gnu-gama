@@ -1,7 +1,8 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2010 Ales Cepek <cepek@gnu.org>, 2010 Jiri Novak
-    <jiri.novak@petriny.net>, 2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>
+    <jiri.novak@petriny.net>, 2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>,
+    2013 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -81,7 +82,7 @@ create table gnu_gama_local_obs (
    conf_id   integer,
    ccluster  integer,
    indx      integer check (indx > 0),
-   tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'dh')),
+   tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'azimuth', 'dh')),
    from_id   varchar(80) not null,
    to_id     varchar(80) not null,
    to_id2    varchar(80),

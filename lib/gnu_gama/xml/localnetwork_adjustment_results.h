@@ -469,6 +469,7 @@ namespace GNU_gama
           t_upper,
           t_used,
           t_vectors,
+          t_azimuth,
           t_azimuths,
           t_x,
           t_xyz_coords,

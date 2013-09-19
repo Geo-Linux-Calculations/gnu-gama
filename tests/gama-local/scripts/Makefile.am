@@ -4,10 +4,11 @@ EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-html.in \
              gama-local-xml-results.in \
              gama-local-xml-xml.in \
+             gama-local-sqlite-reader.in \
              gama-local-version.in
 
 check_PROGRAMS = check_algorithms check_equivalents check_html \
-	check_xml_results check_xml_xml
+	check_xml_results check_xml_xml check_xml_coordinates
 
 check_algorithms_SOURCES  = check_algorithms.cpp \
                             check_xyz.h check_xyz.cpp
@@ -33,3 +34,8 @@ check_xml_xml_SOURCES  = check_xml_xml.cpp compare_xml_adjustment.h \
                       compare_xml_adjustment.cpp
 check_xml_xml_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_xml_CPPFLAGS = -I $(top_srcdir)/lib
+
+check_xml_coordinates_SOURCES  = check_xml_coordinates.cpp
+check_xml_coordinates_LDADD    = $(top_builddir)/lib/libgama.a
+check_xml_coordinates_CPPFLAGS = -I $(top_srcdir)/lib
+

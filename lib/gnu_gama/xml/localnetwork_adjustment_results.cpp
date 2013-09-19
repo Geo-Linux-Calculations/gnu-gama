@@ -259,6 +259,7 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_observations                       ][t_angle                          ] = &Parser::observation;
   tagfun[s_observations                       ][t_slope_distance                 ] = &Parser::observation;
   tagfun[s_observations                       ][t_zenith_angle                   ] = &Parser::observation;
+  tagfun[s_observations                       ][t_azimuth                        ] = &Parser::observation;
   tagfun[s_observations                       ][t_dx                             ] = &Parser::observation;
   tagfun[s_observations                       ][t_dy                             ] = &Parser::observation;
   tagfun[s_observations                       ][t_dz                             ] = &Parser::observation;
@@ -290,6 +291,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "aposteriori"               )) return t_aposteriori;
       if (!strcmp(c, "approx"                    )) return t_approx;
       if (!strcmp(c, "approximate"               )) return t_approximate;
+      if (!strcmp(c, "azimuth"                   )) return t_azimuth;
       if (!strcmp(c, "azimuths"                  )) return t_azimuths;
       break;
     case 'b':

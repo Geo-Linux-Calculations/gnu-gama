@@ -61,6 +61,7 @@ object is given.
 * Angles::                    Tag  @code{<angle />}
 * Slope distances::           Tag  @code{<s-distance />}
 * Zenith angles::             Tag  @code{<z-angle />}
+* Azimuths::                  Tag  @code{<azimuth />}
 * Height differences::        Tag  @code{<height-differences>}
 * Control coordinates::       Tag  @code{<coordinates>}
 * Coordinate differences::    Tag  @code{<vectors>}
@@ -316,6 +317,10 @@ angle (default value is not defined)
 observed zenith angle (default value is not defined)
 
 @item 
+@code{azimuth-stdev = "@dots{}"} defines the implicit value of
+observed azimuth angle (default value is not defined)
+
+@item 
 @code{distance-stdev = "@dots{}"} defines the implicit value of observed
 horizontal distance (default value is not defined)
 @end itemize
@@ -511,12 +516,16 @@ slope distances        @code{<s-distance @dots{}  />}
 zenith angles          @code{<z-angle @dots{} />}
 
 @item 
+azimuths               @code{<azimuth @dots{} />}
+
+@item 
 height differences     @code{<dh />}
 @end itemize
 
 
 
-The band variance-covariance matrix of directions, distances, and angles
+The band variance-covariance matrix of directions, distances, angles
+or other observations
 listed in one @code{<obs>} section may be supplied using a
 @code{<cov-mat>} pair tag with attributes @code{dim} (dimension) and
 @code{band} (bandwidth). The band-width of the diagonal matrix is equal
@@ -876,6 +885,67 @@ angles observed from several standpoints.
 <z-angle to ="422" val="85.4890"  stdev="5.0"  />
 <z-angle to ="408" val="95.7319" />
 @end example
+
+
+@node     Azimuths
+@section  Azimuths
+@cindex   @code{<azimuth />} 
+@cindex   azumuth 
+
+
+The azimuth is defined in GNU Gama as an observed horizontal angle
+measured from the North to the given target. The true north
+orientation is measured by gyrotheodolites, mainly in mine
+surveying. In Gama azimuths' angle can be measured clockwise or
+counterclocwise according to the angle orientation defined in
+@code{<parameters />} tag. 
+
+Azimuths are expressed with the following attributes in an
+empty-element tag @code{<azimuth />} 
+
+@itemize @bullet
+@item 
+@code{from = "@dots{}"}    standpoint identification 
+
+@item 
+@code{to = "@dots{}"}      target point identification 
+
+@item 
+@code{val = "@dots{}"}     observed azimuth;  @pxref{Angular units}
+
+@item 
+@code{stdev = "@dots{}"}   standard deviation (optional)
+
+@item
+@code{from_dh = "@dots{}"} instrument height (optional)
+
+@item
+@code{to_dh = "@dots{}"}   reflector/target height (optional)
+
+@end itemize
+
+
+The standard deviation is an optional attribute. However since all
+observations in the adjustment must have their weights defined, the
+standard deviation must be given either explicitly with the attribute
+@code{stdev="@dots{}"} or implicitly with @code{<points-observation
+azimuth-stdev="@dots{}" >} or with a variance-covariance matrix for
+the given observation set. 
+
+
+
+@heading Example
+
+
+
+@example
+<points-observations azimuth-stdev="15.0">
+
+<azimuth from="1"  to=  "2" val= "96.484371" />
+@end example
+
+
+
 
 
 @node     Height differences

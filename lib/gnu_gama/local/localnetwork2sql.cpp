@@ -2,7 +2,7 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012  Ales Cepek <cepek@gnu.org>
+                  2012, 2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -315,6 +315,19 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
                        << "val, from_dh, to_dh, rejected) values ("
                        << cnfg() << ", " << cluster << ", "
                        << index++ << ", 'z-angle', '"
+                       << m->from() << "', '" << m->to() << "', "
+                       << m->value();
+                  if (m->from_dh()) ostr << ", " << m->from_dh(); else ostr << ", null";
+                  if (m->to_dh()  ) ostr << ", " << m->to_dh();   else ostr << ", null";
+                  ostr  << ", " << rejected(m) << ");\n";
+                }
+                else if (const Azimuth*    m = dynamic_cast<const Azimuth*   >(*b))
+                {
+                  ostr << "insert into gnu_gama_local_obs "
+                       << "(conf_id, ccluster, indx, tag, from_id, to_id, "
+                       << "val, from_dh, to_dh, rejected) values ("
+                       << cnfg() << ", " << cluster << ", "
+                       << index++ << ", 'azimuth', '"
                        << m->from() << "', '" << m->to() << "', "
                        << m->value();
                   if (m->from_dh()) ostr << ", " << m->from_dh(); else ostr << ", null";

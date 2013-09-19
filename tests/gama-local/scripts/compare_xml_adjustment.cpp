@@ -413,7 +413,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
     for (int i=1; i<=dim; i++)
       for (int j=0; j<=band; j++)
-        {
+        if (i+j <= dim) {
           double d = html->cov(i,i+j);
           if (d > dmax) dmax = d;
           

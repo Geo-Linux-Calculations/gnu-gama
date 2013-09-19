@@ -1,6 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2011  Vaclav Petras <vaclav.petras@fsv.cvut.cz>
+                  2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -780,6 +781,10 @@ int sqlite_db_readObservations(void* data, int argc, char** argv, char**)
         else if (tag == "z-angle")
           {
             obs = new GNU_gama::local::Z_Angle   (from, to, val);
+          }
+        else if (tag == "azimuth")
+          {
+            obs = new GNU_gama::local::Azimuth   (from, to, val);
           }
         else if (tag == "dh")
           {

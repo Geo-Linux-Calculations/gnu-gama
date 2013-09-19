@@ -505,6 +505,10 @@ for slope distances (space distances).
 for zenith angles.
 
 @item
+@code{azimuth}
+for azimuth angles.
+
+@item
 @code{dh}
 for leveling height differences.
 

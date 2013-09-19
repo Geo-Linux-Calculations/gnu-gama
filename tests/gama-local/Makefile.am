@@ -1,10 +1,16 @@
-TESTS = gama-local-version \
+TESTA = gama-local-version \
 	gama-local-adjustment \
 	gama-local-algorithms \
 	gama-local-xml-xml \
 	gama-local-html \
 	gama-local-equivalents \
 	gama-local-xml-results
+
+if GNU_GAMA_LOCAL_TEST_SQLITE_READER
+TESTB = gama-local-sqlite-reader
+endif
+
+TESTS = $(TESTA) $(TESTB)
 
 SUBDIRS = scripts input
 
@@ -63,3 +69,8 @@ gama-local-xml-xml: $(GAMA_SCRIPT)/gama-local-xml-xml.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-xml.in \
 				> gama-local-xml-xml
 	chmod +x gama-local-xml-xml
+
+gama-local-sqlite-reader: $(GAMA_SCRIPT)/gama-local-sqlite-reader.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
+				> gama-local-sqlite-reader
+	chmod +x gama-local-sqlite-reader

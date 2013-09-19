@@ -18,6 +18,8 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
+AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
+
 # Checks for libraries.
 AC_CHECK_LIB([expat], [XML_ParserCreate])
 AC_CHECK_LIB([sqlite3], [sqlite3_open])
@@ -25,7 +27,9 @@ AC_CHECK_LIB([sqlite3], [sqlite3_open],
                 AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],,
                           [Conditional support for sqlite3 databases])
                 AC_SUBST([CPPFLAGS],[-DGNU_GAMA_LOCAL_SQLITE_READER $CPPFLAGS])
+                AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
             )
+
 
 # Checks for header files.
 AC_HEADER_STDC
