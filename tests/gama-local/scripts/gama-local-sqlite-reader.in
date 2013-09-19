@@ -1,0 +1,26 @@
+#!/bin/sh
+
+TMP=.
+DB=$TMP/demo.db
+CONF=fixed-azimuth
+a=fixed-azimuth
+b=fixed-constrained
+
+# convert fixed-azimuth to sql
+@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+
+# create Sqlite database (a file), import schema and fixed-azimuth.sql 
+rm -rf  $DB
+sqlite3 $DB < @top_builddir@/xml/gama-local-schema.sql
+sqlite3 $DB < $TMP/$a.sql
+
+# adjust configuration fixed-azimuth from the database
+@top_builddir@/bin/gama-local --sqlitedb demo.db --readonly-configuration \
+    $CONF > $TMP/$a.xml
+
+# adjust equivalent configuration fixed-constrained from an input xml
+@top_builddir@/bin/gama-local @GAMA_INPUT@/$b.gkf > $TMP/$b.xml
+
+# compare resulting coordinates
+scripts/check_xml_coordinates $TMP/$a.xml $TMP/$b.xml
+

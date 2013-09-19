@@ -27,7 +27,7 @@ AC_CHECK_LIB([sqlite3], [sqlite3_open],
                 AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],,
                           [Conditional support for sqlite3 databases])
                 AC_SUBST([CPPFLAGS],[-DGNU_GAMA_LOCAL_SQLITE_READER $CPPFLAGS])
-                AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
+#               AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
             )
 
 
