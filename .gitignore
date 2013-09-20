@@ -24,6 +24,7 @@ tests/gama-local/gama-local-adjustment
 tests/gama-local/gama-local-algorithms
 tests/gama-local/gama-local-equivalents
 tests/gama-local/gama-local-html
+tests/gama-local/gama-local-sqlite-reader
 tests/gama-local/gama-local-version
 tests/gama-local/gama-local-xml-results
 tests/gama-local/gama-local-xml-xml
@@ -33,6 +34,7 @@ tests/gama-local/scripts/check_html
 tests/gama-local/scripts/check_xml_results
 tests/gama-local/scripts/check_xml_xml
 tests/gama-local/scripts/check_xml_coordinates
+tests/gama-local/scripts/sqlite_init_db
 #
 doc/version.texi
 doc/gama.html

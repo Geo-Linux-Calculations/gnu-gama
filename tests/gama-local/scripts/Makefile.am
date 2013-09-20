@@ -7,8 +7,12 @@ EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-sqlite-reader.in \
              gama-local-version.in
 
+if GNU_GAMA_LOCAL_TEST_SQLITE_READER
+SQLITE_READER_PROG = check_xml_coordinates sqlite_init_db
+endif
+
 check_PROGRAMS = check_algorithms check_equivalents check_html \
-	check_xml_results check_xml_xml check_xml_coordinates
+	check_xml_results check_xml_xml $(SQLITE_READER_PROG)
 
 check_algorithms_SOURCES  = check_algorithms.cpp \
                             check_xyz.h check_xyz.cpp
@@ -35,7 +39,12 @@ check_xml_xml_SOURCES  = check_xml_xml.cpp compare_xml_adjustment.h \
 check_xml_xml_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_xml_CPPFLAGS = -I $(top_srcdir)/lib
 
+if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 check_xml_coordinates_SOURCES  = check_xml_coordinates.cpp
 check_xml_coordinates_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_coordinates_CPPFLAGS = -I $(top_srcdir)/lib
 
+sqlite_init_db_SOURCES  = sqlite_init_db.cpp
+#sqlite_init_db_LDADD    = $(top_builddir)/lib/libgama.a
+#sqlite_init_db_CPPFLAGS = -I $(top_srcdir)/lib
+endif

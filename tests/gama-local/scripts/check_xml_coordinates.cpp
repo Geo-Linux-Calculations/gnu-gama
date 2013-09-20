@@ -3,6 +3,20 @@
 #include <fstream>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 
+std::string strip(const char* s)
+{
+  std::string t;
+  while (*s)
+    {
+      if (*s == '.') break;
+      t += *s;
+      if (*s == '/') t.clear();
+      s++;
+    }
+
+  return t;
+}
+
 int main(int argc, char* argv[])
 {
   using namespace GNU_gama;
@@ -14,7 +28,7 @@ int main(int argc, char* argv[])
     }
 
   LocalNetworkAdjustmentResults* xml1 = new LocalNetworkAdjustmentResults;
-  {
+  try {
     std::ifstream inp_xml1(argv[1]);
     if (!inp_xml1) {
       std::cout << "   ####  ERROR ON OPENING FILE " << argv[1] << "\n";
@@ -22,9 +36,14 @@ int main(int argc, char* argv[])
     }
     xml1->read_xml(inp_xml1);
   }
+  catch (GNU_gama::Exception::parser& e)
+    {
+      std::cout  << argv[1] << " "
+                 << e.line << " " << e.error_code << " " << e.what() << "\n";
+    }
 
   LocalNetworkAdjustmentResults* xml2 = new LocalNetworkAdjustmentResults;
-  {
+  try {
     std::ifstream inp_xml2(argv[2]);
     if (!inp_xml2) {
       std::cout << "   ####  ERROR ON OPENING FILE " << argv[2] << "\n";
@@ -32,6 +51,11 @@ int main(int argc, char* argv[])
     }
     xml2->read_xml(inp_xml2);
   }
+  catch (GNU_gama::Exception::parser& e)
+    {
+      std::cout  << argv[2] << " "
+                 << e.line << " " << e.error_code << " " << e.what() << "\n";
+    }
 
   double diff = 0;
   const LocalNetworkAdjustmentResults::PointList& A = xml1->adjusted_points;
@@ -61,8 +85,8 @@ int main(int argc, char* argv[])
     }
 
   std::cout.precision(4);
-  std::cout << "max.diff xyz" << std::setw(11) <<  diff << " [m] "
-            << argv[1] << " " << argv[2] << "\n";
+  std::cout << "         max.diff xyz" << std::setw(11) <<  diff << " [m] "
+            << strip(argv[1]) << " " << strip(argv[2]) << "\n";
 
   if (std::abs(diff) >= 1e-4) return 1;
 }
