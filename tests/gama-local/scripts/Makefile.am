@@ -35,7 +35,7 @@ check_xml_results_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_results_CPPFLAGS = -I $(top_srcdir)/lib
 
 check_xml_xml_SOURCES  = check_xml_xml.cpp compare_xml_adjustment.h \
-                      compare_xml_adjustment.cpp
+                         compare_xml_adjustment.cpp
 check_xml_xml_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_xml_CPPFLAGS = -I $(top_srcdir)/lib
 
@@ -45,6 +45,4 @@ check_xml_coordinates_LDADD    = $(top_builddir)/lib/libgama.a
 check_xml_coordinates_CPPFLAGS = -I $(top_srcdir)/lib
 
 sqlite_init_db_SOURCES  = sqlite_init_db.cpp
-#sqlite_init_db_LDADD    = $(top_builddir)/lib/libgama.a
-#sqlite_init_db_CPPFLAGS = -I $(top_srcdir)/lib
 endif
