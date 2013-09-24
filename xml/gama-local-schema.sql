@@ -22,6 +22,13 @@
 */
 
 
+create table gnu_gama_local_schema_version (
+   major integer default 1 not null check (major = 1),
+   minor integer default 1 not null check (minor = 1),
+   primary key (major, minor)
+);
+insert into gnu_gama_local_schema_version (major, minor) values (1, 1);
+
 create table gnu_gama_local_configurations (
    conf_id   integer primary key,
    conf_name varchar(60) not null unique,
