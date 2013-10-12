@@ -84,6 +84,8 @@ libgama_src = \
    gnu_gama/xml/localnetwork.h \
    gnu_gama/xml/localnetwork_adjustment_results.cpp \
    gnu_gama/xml/localnetwork_adjustment_results.h \
+   gnu_gama/xml/localnetwork_adjustment_results_data.cpp \
+   gnu_gama/xml/localnetwork_adjustment_results_data.h \
    gnu_gama/xml/gkfparser.cpp \
    gnu_gama/xml/gkfparser.h \
    gnu_gama/local/angobs.h \
