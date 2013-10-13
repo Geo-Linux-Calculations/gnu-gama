@@ -80,8 +80,10 @@ libgama_src = \
    gnu_gama/xml/encoding_unknown_handler.cpp \
    gnu_gama/xml/htmlparser.cpp \
    gnu_gama/xml/htmlparser.h \
-   gnu_gama/xml/localnetwork.cpp \
-   gnu_gama/xml/localnetwork.h \
+   gnu_gama/xml/localnetworksql.cpp \
+   gnu_gama/xml/localnetworksql.h \
+   gnu_gama/xml/localnetworkxml.cpp \
+   gnu_gama/xml/localnetworkxml.h \
    gnu_gama/xml/localnetwork_adjustment_results.cpp \
    gnu_gama/xml/localnetwork_adjustment_results.h \
    gnu_gama/xml/localnetwork_adjustment_results_data.cpp \

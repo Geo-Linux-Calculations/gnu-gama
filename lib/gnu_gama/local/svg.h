@@ -26,7 +26,7 @@
 #ifndef GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
 #define GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
 
-#include <gnu_gama/xml/localnetwork.h>
+#include <gnu_gama/xml/localnetworkxml.h>
 #include <string>
 #include <ostream>
 

@@ -21,7 +21,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/** \file localnetwork.cpp
+/** \file localnetworkxml.cpp
  * \brief #GNU_gama::LocalNetworkXML implementation
  *
  * \author Ales Cepek
@@ -33,7 +33,7 @@
 #include <cmath>
 #include <algorithm>
 #include <sstream>
-#include <gnu_gama/xml/localnetwork.h>
+#include <gnu_gama/xml/localnetworkxml.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/version.h>
