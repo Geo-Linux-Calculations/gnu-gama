@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2001, 2012, 2013  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -113,9 +113,19 @@ void Acord::execute()
         {
           // all transformed slope distances go to a single standpoint
           StandPoint* standpoint = new StandPoint(&OD);
+          standpoint->set_orientation(PD.xNorthAngle());
           for (ObservationData::iterator t=OD.begin(), e=OD.end(); t!=e; ++t)
             {
               Observation* obs = *t;
+
+              // azimuths transformed to directions with the given
+              // orientation shift (angle between x-axis and the North)
+              if (Azimuth* a = dynamic_cast<Azimuth*>(obs))
+                {
+                  Direction* d = new Direction(a->from(), a->to(), a->value());
+                  standpoint->observation_list.push_back(d);
+                  continue;
+                }
 
               S_Distance* s = dynamic_cast<S_Distance*>(obs);
               if (s == 0) continue;
@@ -126,7 +136,7 @@ void Acord::execute()
               PointID from = s->from();
               PointID to   = s->to();
 
-              // look for a zenith angle corresponding to the given
+              // search for a zenith angle corresponding to the given
               // slope distance
               ObservationList::iterator i   = c->observation_list.begin();
               ObservationList::iterator end = c->observation_list.end();
