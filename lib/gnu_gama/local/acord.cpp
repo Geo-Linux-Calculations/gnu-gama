@@ -23,7 +23,6 @@
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_cogo.h>
 #include <gnu_gama/local/median/g2d_coordinates.h>
-#include <gnu_gama/local/acord/approx_azimuths.h>
 #include <gnu_gama/local/acord/approx_heights.h>
 #include <gnu_gama/local/acord/approx_vectors.h>
 #include <gnu_gama/local/acord/reduce_observations.h>
@@ -156,9 +155,6 @@ void Acord::execute()
           standpoint->update();
           // insert standpoint into `observation data'
           OD.clusters.push_back(standpoint);
-
-          ApproximateAzimuths az(PD, OD);
-          az.execute();
 
           ApproximateCoordinates ps(PD, OD);
           ps.calculation();
