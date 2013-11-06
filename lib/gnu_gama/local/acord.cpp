@@ -33,6 +33,90 @@
 using namespace std;
 using namespace GNU_gama::local;
 
+namespace {
+
+    // should be handled by ApproximateCoordinates but fails to do so
+    class ApproximateAzimuths
+    {
+    public:
+
+      ApproximateAzimuths(PointData& b, ObservationData& m);
+      void execute();
+      void print(std::ostream&) {}
+
+    private:
+
+      PointData&          PD;
+      ObservationData&    OD;
+
+      typedef std::pair<PointID, PointID> Key;
+      typedef std::map <Key, double>      Map;
+      Map map;
+
+    };
+
+
+    ApproximateAzimuths::ApproximateAzimuths(PointData& pd, ObservationData& od)
+      : PD(pd), OD(od)
+    {
+      for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
+        if (Azimuth* azimuth = dynamic_cast<Azimuth*>(*i))
+          {
+            PointID from = azimuth->from();
+            PointID to   = azimuth->to();
+            PointData::iterator itf = PD.find(from);
+            PointData::iterator itt = PD.find(to);
+            if (itf != PD.end() && itt != PD.end())
+              {
+                bool bf = itf->second.test_xy();
+                bool bt = itt->second.test_xy();
+                if (!bf || !bt) map[Key(from, to)] = azimuth->value();
+              }
+          }
+    }
+
+    void ApproximateAzimuths::execute()
+    {
+      if (map.size() == 0) return;
+
+      bool repeat;
+      do {
+        repeat = false;
+        for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
+          if (Distance* distance = dynamic_cast<Distance*>(*i))
+            {
+              Key key(distance->from(), distance->to());
+              Map::iterator iter = map.find(key);
+              if (iter == map.end()) continue;
+
+              LocalPoint& from = PD[distance->from()];
+              LocalPoint& to   = PD[distance->to()];
+              bool bf = from.test_xy();
+              bool bt = to.test_xy();
+              if (bf == bt) continue;
+
+              double bearing = iter->second + PD.xNorthAngle();
+              double dx = distance->value() * cos(bearing);
+              double dy = distance->value() * sin(bearing);
+              if (bf)
+                {
+                  double x = from.x() + dx;
+                  double y = from.y() + dy;
+                  to.set_xy(x,y);
+                }
+              else
+                {
+                  double x = to.x() - dx;
+                  double y = to.y() - dy;
+                  from.set_xy(x,y);
+                }
+              repeat = true;
+            }
+
+      } while (repeat);
+    }
+}
+
 Acord::Acord(PointData& b, ObservationData& m)
     : PD(b), OD(m), RO(b,m)
 {
@@ -155,6 +239,9 @@ void Acord::execute()
           standpoint->update();
           // insert standpoint into `observation data'
           OD.clusters.push_back(standpoint);
+
+          ApproximateAzimuths az(PD, OD);
+          az.execute();
 
           ApproximateCoordinates ps(PD, OD);
           ps.calculation();
