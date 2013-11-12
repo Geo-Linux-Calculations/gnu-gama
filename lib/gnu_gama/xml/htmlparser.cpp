@@ -471,6 +471,7 @@ void HtmlParser::table_adjusted_observations()
         }
 
       if      (data == "angle") obs.xml_tag = "angle";
+      else if (data == "azim.") obs.xml_tag = "azimuth";
       else if (data == "dir." ) obs.xml_tag = "direction";
       else if (data == "dist.") obs.xml_tag = "distance";
       else if (data == "slope") obs.xml_tag = "slope-distance";

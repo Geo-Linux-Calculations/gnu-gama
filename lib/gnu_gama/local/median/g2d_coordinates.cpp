@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2013  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -80,6 +80,19 @@ bool ApproximateCoordinates::solvable_data(PointData& b)
       i++;
     }
   while(!(second || i == b.end()));
+
+  // give it still a try if there are vectors, observed coordinates or azimuts
+  if (first && !second)
+  {
+      for (ObservationData::
+             const_iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
+        {
+            if (dynamic_cast<const Xdiff*  >(*i)) return true;
+            if (dynamic_cast<const X*      >(*i)) return true;
+            if (dynamic_cast<const Azimuth*>(*i)) return true;
+        }
+  }
+
   return second;
 
 }  // bool ApproximateCoordinates::solvable_data(PointData& b)

@@ -15,13 +15,18 @@ TESTS = $(TESTA) $(TESTB)
 SUBDIRS = scripts input
 
 INPUT_FILES = gama-local \
-	      zoltan-test_2d_dms \
-	      zoltan-test_2d_gon \
-	      zoltan-test_3d_dms \
-	      zoltan-test_3d_gon \
-	      tst-tetrahedron-2 \
-	      tst-tetrahedron-3-deg \
-	      tst-tetrahedron-3-gon
+              zoltan-test_2d_dms \
+              zoltan-test_2d_gon \
+              zoltan-test_3d_dms \
+              zoltan-test_3d_gon \
+              tst-tetrahedron-2 \
+              tst-tetrahedron-3-deg \
+              tst-tetrahedron-3-gon \
+              fixed-azimuth \
+              azimuth-angle \
+              azimuth-azimuth \
+              azimuth-distance
+
 
 GAMA_SCRIPT = $(srcdir)/scripts
 GAMA_INPUT = $(srcdir)/input

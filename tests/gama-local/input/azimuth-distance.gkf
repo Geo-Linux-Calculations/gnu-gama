@@ -40,7 +40,7 @@ variant: one fixed point and one azimuth, all other points adjusted
    <direction  to=  "2" val=  "0.0000" />
    <direction  to="422" val= "28.2057" />
    <direction  to="424" val= "60.4906" />
-   <direction  to="403" val="324.3662" />
+   <azimuth    to="403" val="420.85057" />
    <direction  to="407" val="382.8182" />
    <distance to=  "2" val= "845.777" />
    <distance to="422" val= "493.793" />
@@ -67,15 +67,8 @@ variant: one fixed point and one azimuth, all other points adjusted
    <distance to="422" val= "452.249" />
 </obs>
 
-<obs from="403">
-   <direction  to=  "1" val=  "0.0000" />
-   <direction  to="407" val="313.5542" />
-   <distance to="407" val="405.4030" />
-</obs>
-
 <obs from="407">
    <direction  to=  "1" val=  "0.0000" />
-   <direction  to="403" val= "55.1013" />
    <direction  to="409" val="193.3410" />
    <direction  to=  "2" val="239.4204" />
    <direction  to="422" val="323.5443" />

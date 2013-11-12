@@ -23,7 +23,7 @@ variant: one fixed point and one azimuth, all other points adjusted
                      azimuth-stdev="15.0">
 
 <point id=  "1" y=" 644498.590 "  x=" 1054980.484 " fix="xy" />
-<point id=  "2" adj="xy" />
+<point id=  "2" y=" 643654.101 "  x=" 1054933.801 " adj="xy" />
 <point id="403" adj="xy" />
 <point id="407" adj="xy" />
 <point id="409" adj="xy" />
@@ -40,12 +40,11 @@ variant: one fixed point and one azimuth, all other points adjusted
    <direction  to=  "2" val=  "0.0000" />
    <direction  to="422" val= "28.2057" />
    <direction  to="424" val= "60.4906" />
-   <direction  to="403" val="324.3662" />
+   <azimuth    to="403" val="420.85057" />
    <direction  to="407" val="382.8182" />
    <distance to=  "2" val= "845.777" />
    <distance to="422" val= "493.793" />
    <distance to="424" val= "288.301" />
-   <distance to="403" val= "388.536" />
    <distance to="407" val= "498.750" />
 </obs>
 
@@ -67,15 +66,9 @@ variant: one fixed point and one azimuth, all other points adjusted
    <distance to="422" val= "452.249" />
 </obs>
 
-<obs from="403">
-   <direction  to=  "1" val=  "0.0000" />
-   <direction  to="407" val="313.5542" />
-   <distance to="407" val="405.4030" />
-</obs>
-
 <obs from="407">
    <direction  to=  "1" val=  "0.0000" />
-   <direction  to="403" val= "55.1013" />
+   <azimuth    to="403" val= "334.40294" /> 
    <direction  to="409" val="193.3410" />
    <direction  to=  "2" val="239.4204" />
    <direction  to="422" val="323.5443" />

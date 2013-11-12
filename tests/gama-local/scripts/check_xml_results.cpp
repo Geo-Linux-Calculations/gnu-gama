@@ -160,8 +160,8 @@ int main(int argc, char* argv[])
         std::cout.flush();
         double dfobs = 0;
         double dfstd = 0;
-        if (A.xml_tag == "angle" || A.xml_tag == "direction" ||
-            A.xml_tag == "zenith-angle")
+        if (A.xml_tag == "angle"        || A.xml_tag == "direction" ||
+            A.xml_tag == "zenith-angle" || A.xml_tag == "azimuth")
           {
             GNU_gama::local::LocalPoint F = lnet->PD[A.from];
             GNU_gama::local::LocalPoint T;

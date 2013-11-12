@@ -10,4 +10,7 @@ EXTRA_DIST = gama-local-schema.sql \
              scale-cov-gon.gkf \
              scale-cov-dms.gkf \
              fixed-constrained.gkf \
-             fixed-azimuth.gkf
+             fixed-azimuth.gkf         fixed-azimuth.xml \
+             azimuth-angle.gkf         azimuth-angle.xml \
+             azimuth-azimuth.gkf       azimuth-azimuth.xml \
+             azimuth-distance.gkf      azimuth-distance.xml
