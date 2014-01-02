@@ -2,7 +2,7 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012, 2013  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -131,7 +131,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
        << (localNetwork.m_0_apriori() ? "'apriori'" : "'aposteriori'") << ", "
        << (localNetwork.update_constrained_coordinates() ? "'yes'" : "'no'") << ", "
        <<  axes
-       << (localNetwork.PD.left_handed_angles() ? "'left-handed'" : "'right-handed;") << ", "
+       << (localNetwork.PD.left_handed_angles() ? "'left-handed'" : "'right-handed'") << ", "
        <<  localNetwork.epoch << ", "
        << "'" << localNetwork.algorithm() << "', "
        << (localNetwork.gons() ? 400 : 300) << ", "

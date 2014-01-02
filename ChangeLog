@@ -1,3 +1,14 @@
+2014-01-02  Ales Cepek  <cepek@biggy>
+
+	* fixed a bug reported by Gabriel Gyori <gabriel.gyori@fsv.cvut.cz>
+	  in the class LocalNetwork2sql
+
+2013-11-06  Ales Cepek  <cepek@gnu.org>
+
+	* fixed a bug reported by Dirk Falk in azimuth computations
+	  ApproximateCoordinates fialed to solve azimuth-distance
+	  combinatios in some cases
+
 2013-06-06  Ales Cepek  <cepek@gnu.org>
 
 	* Tae Wong <seotaewong40@gmail.com> contributed with thorough
