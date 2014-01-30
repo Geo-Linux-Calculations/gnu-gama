@@ -2,7 +2,7 @@
     GNU Gama C++ library
     Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -37,6 +37,7 @@
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/version.h>
+#include <gnu_gama/xsd.h>
 
 using namespace std;
 using GNU_gama::LocalNetworkXML;
@@ -269,11 +270,12 @@ public:
 
 };
 
+
 void LocalNetworkXML::write(std::ostream& out) const
 {
-  out << "<?xml version=\"1.0\" ?>\n"
-      << "<!DOCTYPE gama-local-adjustment SYSTEM \"gama-local-adjustment.dtd\">\n"
-      << "\n<gama-local-adjustment version=\"" << VERSION << "\">\n";
+  out << "<?xml version=\"1.0\"?>\n"
+      << "<gama-local-adjustment version=\"" << VERSION << "\"\n  "
+      << "xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n";
 
   out << "\n<description>" << netinfo->description << "</description>\n";
 

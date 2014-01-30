@@ -107,16 +107,19 @@ transformed to degrees using the option @code{--angles 360}.
 @cindex   prologue
 
 
-XML documents may, and should, begin with an XML declaration that
-specifies the version of XML being used (@emph{prolog}).  In the case of
-@code{gama-local}, the XML input data are followed by the XML document type
-declaration:
+XML documents begin with an XML declaration that specifies the version
+of XML being used (@emph{prolog}).  In the case of @code{gama-local}
+follows the root tag @code{<gama-local>} with XML Schema namespace
+defined in attribute @code{xmlns}:
 
 @example
 <?xml version="1.0" ?>
-<!DOCTYPE gama-local 
-  SYSTEM "http://www.gnu.org/software/gama/gama-local.dtd">
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
 @end example
+
+GNU Gama uses non-validating parser and the XML Schema Definition
+namespace is not used in @code{gama-local} but it is essential for
+usage in third party software that might need XML validation.
 
 
 @node     Network definition

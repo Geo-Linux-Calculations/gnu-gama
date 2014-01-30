@@ -1,0 +1,532 @@
+<?xml version="1.0"?>
+
+<xs:schema version="0.90"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.gnu.org/software/gama/gama-local-adjustment"
+  targetNamespace="http://www.gnu.org/software/gama/gama-local-adjustment"
+  elementFormDefault="qualified">
+
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      GNU Gama local adjustment schema
+      http://www.gnu.org/software/gama/gama-local-adjustment.xsd
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="gama-local-adjustment">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="error"/>
+        <xs:sequence>
+          <xs:element ref="description"/>
+          <xs:element ref="network-general-parameters"/>
+          <xs:element ref="network-processing-summary"/>
+          <xs:element ref="coordinates"/>
+          <xs:element ref="observations"/>
+        </xs:sequence>
+      </xs:choice>
+      <xs:attribute name="version" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="error">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="description" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="lineNumber"  type="xs:int"
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="category" use="required">
+        <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="gamaLocalParserError"/>
+          <xs:enumeration value="gamaLocalException"/>
+          <xs:enumeration value="gamaLocalApproximateCoordinates"/>
+          <xs:enumeration value="gamaLocalSqlite"/>
+          <xs:enumeration value="gamaLocalAdjustment"/>
+          <xs:enumeration value="gamaLocalStdException"/>
+          <xs:enumeration value="gamaLocalUnknownException"/>
+        </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="description" type="xs:string"/>
+
+  <xs:element name="network-general-parameters">
+    <xs:complexType>
+      <xs:attribute name="gama-local-version"   use="required"/>
+      <xs:attribute name="gama-local-algorithm" use="required"/>
+      <xs:attribute name="gama-local-compiler"  use="required"/>
+      <xs:attribute name="axes-xy" default="ne">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="ne"/>
+            <xs:enumeration value="sw"/>
+            <xs:enumeration value="es"/>
+            <xs:enumeration value="wn"/>
+            <xs:enumeration value="en"/>
+            <xs:enumeration value="nw"/>
+            <xs:enumeration value="se"/>
+            <xs:enumeration value="ws"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="angles" default="left-handed">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="left-handed"/>
+            <xs:enumeration value="right-handed"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="epoch" default="0.0" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="network-processing-summary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="coordinates-summary"/>
+        <xs:element ref="observations-summary"/>
+        <xs:element ref="project-equations"/>
+        <xs:element ref="standard-deviation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinates-summary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="coordinates-summary-adjusted"/>
+        <xs:element ref="coordinates-summary-constrained"/>
+        <xs:element ref="coordinates-summary-fixed"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="observations-summary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="distances"/>
+        <xs:element ref="directions"/>
+        <xs:element ref="angles"/>
+        <xs:element ref="xyz-coords"/>
+        <xs:element ref="h-diffs"/>
+        <xs:element ref="z-angles"/>
+        <xs:element ref="s-dists"/>
+        <xs:element ref="vectors"/>
+        <xs:element ref="azimuths"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="project-equations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="equations"/>
+        <xs:element ref="unknowns"/>
+        <xs:element ref="degrees-of-freedom"/>
+        <xs:element ref="defect"/>
+        <xs:element ref="sum-of-squares"/>
+        <xs:choice>
+          <xs:element ref="connected-network"/>
+          <xs:element ref="disconnected-network"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="standard-deviation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="apriori"/>
+        <xs:element ref="aposteriori"/>
+        <xs:element name="used">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="apriori"/>
+              <xs:enumeration value="aposteriori"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="probability"/>
+        <xs:element ref="ratio"/>
+        <xs:element ref="lower"/>
+        <xs:element ref="upper"/>
+        <xs:choice>
+          <xs:element ref="failed"/>
+          <xs:element ref="passed"/>
+        </xs:choice>
+        <xs:element ref="confidence-scale"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="fixed"/>
+        <xs:element ref="approximate"/>
+        <xs:element ref="adjusted"/>
+        <xs:element ref="orientation-shifts"/>
+        <xs:element ref="cov-mat"/>
+        <xs:element ref="original-index"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="orientation-shifts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="orientation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="cov-mat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dim"/>
+        <xs:element ref="band"/>
+        <xs:element maxOccurs="unbounded" ref="flt"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="original-index">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ind"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="observations">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="distance"/>
+        <xs:element ref="direction"/>
+        <xs:element ref="angle"/>
+        <xs:element ref="height-diff"/>
+        <xs:element ref="slope-distance"/>
+        <xs:element ref="zenith-angle"/>
+        <xs:element ref="dx"/>
+        <xs:element ref="dy"/>
+        <xs:element ref="dz"/>
+        <xs:element ref="coordinate-x"/>
+        <xs:element ref="coordinate-y"/>
+        <xs:element ref="coordinate-z"/>
+        <xs:element ref="azimuth"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="adjusted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="point"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="constrained">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="point"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="fixed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="point"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="connected-network">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="disconnected-network">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="failed">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="passed">
+    <xs:complexType/>
+  </xs:element>
+
+  <xs:element name="coordinates-summary-adjusted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="count-xyz"/>
+        <xs:element ref="count-xy"/>
+        <xs:element ref="count-z"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinates-summary-constrained">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="count-xyz"/>
+        <xs:element ref="count-xy"/>
+        <xs:element ref="count-z"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinates-summary-fixed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="count-xyz"/>
+        <xs:element ref="count-xy"/>
+        <xs:element ref="count-z"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="count-xyz" type="xs:nonNegativeInteger"/>
+  <xs:element name="count-xy" type="xs:nonNegativeInteger"/>
+  <xs:element name="count-z" type="xs:nonNegativeInteger"/>
+
+  <xs:element name="point">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:sequence minOccurs="0">
+          <xs:choice>
+            <xs:element ref="X"/>
+            <xs:element ref="x"/>
+          </xs:choice>
+          <xs:choice>
+            <xs:element ref="Y"/>
+            <xs:element ref="y"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="Z"/>
+          <xs:element ref="z"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="orientation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="approx"/>
+        <xs:element ref="adj"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="observation-elements">
+    <xs:sequence>
+      <xs:element ref="obs"/>
+      <xs:element ref="adj"/>
+      <xs:element ref="stdev"/>
+      <xs:element ref="qrr"/>
+      <xs:element ref="f"/>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="std-residual"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="err-obs"/>
+          <xs:element ref="err-adj"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:element name="distance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="direction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="angle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="left"/>
+        <xs:element ref="right"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="slope-distance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="zenith-angle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="dx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="dy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="dz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="height-diff">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinate-x">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinate-y">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="coordinate-z">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="azimuth">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="from"/>
+        <xs:element ref="to"/>
+        <xs:group ref="observation-elements"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="id" type="xs:string"/>
+  <xs:element name="from" type="xs:string"/>
+  <xs:element name="to" type="xs:string"/>
+  <xs:element name="left" type="xs:string"/>
+  <xs:element name="right" type="xs:string"/>
+  <xs:element name="X" type="xs:double"/>
+  <xs:element name="x" type="xs:double"/>
+  <xs:element name="Y" type="xs:double"/>
+  <xs:element name="y" type="xs:double"/>
+  <xs:element name="Z" type="xs:double"/>
+  <xs:element name="z" type="xs:double"/>
+  <xs:element name="adj" type="xs:double"/>
+  <xs:element name="angles" type="xs:nonNegativeInteger"/>
+  <xs:element name="aposteriori" type="xs:double"/>
+  <xs:element name="approx" type="xs:double"/>
+
+  <xs:element name="approximate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="point"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="apriori" type="xs:double"/>
+  <xs:element name="azimuths" type="xs:nonNegativeInteger"/>
+  <xs:element name="band" type="xs:nonNegativeInteger"/>
+  <xs:element name="confidence-scale" type="xs:double"/>
+  <xs:element name="defect" type="xs:nonNegativeInteger"/>
+  <xs:element name="degrees-of-freedom" type="xs:nonNegativeInteger"/>
+  <xs:element name="dim" type="xs:nonNegativeInteger"/>
+  <xs:element name="directions" type="xs:nonNegativeInteger"/>
+  <xs:element name="distances" type="xs:nonNegativeInteger"/>
+  <xs:element name="epoch" type="xs:decimal"/>
+  <xs:element name="equations" type="xs:nonNegativeInteger"/>
+  <xs:element name="err-adj" type="xs:double"/>
+  <xs:element name="err-obs" type="xs:double"/>
+  <xs:element name="qrr" type="xs:double"/>
+  <xs:element name="f" type="xs:double"/>
+  <xs:element name="flt" type="xs:double"/>
+  <xs:element name="ind" type="xs:nonNegativeInteger"/>
+  <xs:element name="h-diffs" type="xs:nonNegativeInteger"/>
+  <xs:element name="lower" type="xs:double"/>
+  <xs:element name="obs" type="xs:double"/>
+  <xs:element name="probability" type="xs:double"/>
+  <xs:element name="ratio" type="xs:double"/>
+  <xs:element name="s-dists" type="xs:nonNegativeInteger"/>
+  <xs:element name="std-residual" type="xs:double"/>
+  <xs:element name="stdev" type="xs:double"/>
+  <xs:element name="sum-of-squares" type="xs:double"/>
+  <xs:element name="unknowns" type="xs:nonNegativeInteger"/>
+  <xs:element name="upper" type="xs:double"/>
+  <xs:element name="vectors" type="xs:nonNegativeInteger"/>
+  <xs:element name="xy" type="xs:string"/>
+  <xs:element name="xyz" type="xs:string"/>
+  <xs:element name="xyz-coords" type="xs:nonNegativeInteger"/>
+  <xs:element name="z-angles" type="xs:nonNegativeInteger"/>
+</xs:schema>

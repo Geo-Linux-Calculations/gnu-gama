@@ -27,6 +27,7 @@
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/xml/htmlparser.h>
+#include <gnu_gama/xsd.h>
 
 using namespace std;
 using namespace GNU_gama;
@@ -472,6 +473,29 @@ void LocalNetworkAdjustmentResults::Parser::gama_local_adjustment(bool start)
     {
       stack.push(&Parser::gama_local_adjustment);
       set_state(s_gama_local_adjustment);
+
+      while (*attributes)
+        {
+          string atr = *attributes++;
+          string val = *attributes++;
+
+          if (atr == "version")
+            {
+            }
+          else if (atr == "xmlns")
+            {
+              if (val != XSD_GAMA_LOCAL_ADJUSTMENT)
+                {
+                  error("bad namespace xmlns=\"" + val + "\"");
+                  return;
+                }
+            }
+          else
+            {
+              error("unknown attribute");
+              return;
+            }
+        }
     }
   else
     {

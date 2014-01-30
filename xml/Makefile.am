@@ -1,7 +1,7 @@
 EXTRA_DIST = gama-local.dtd \
       gama-local-schema.sql \
       ellipsoids.xml \
-      gama-local-adjustment.dtd \
+      gama-local-adjustment.xsd \
       lang/ca/rmpoints.ca.lang \
       lang/ca/gkfparser.ca.lang \
       lang/ca/gamalib.ca.lang \
