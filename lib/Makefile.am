@@ -180,7 +180,10 @@ libgama_src = \
    gnu_gama/local/sqlitereader.cpp \
    gnu_gama/local/newnetwork.h \
    gnu_gama/local/newnetwork.cpp \
-   gnu_gama/local/writevisitor.h 
+   gnu_gama/local/writevisitor.h \
+   gnu_gama/local/xmlerror.h \
+   gnu_gama/local/xmlerror.cpp
+
 
 matvec_src = \
    matvec/array.h \

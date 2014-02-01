@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2013  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2013, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -44,6 +44,7 @@ void LocalNetworkAdjustmentResultsData::init()
 {
   gons = true;
 
+  xmlerror.clear();
   description.clear();
 
   network_general_parameters.gama_local_version.  clear();

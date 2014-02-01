@@ -60,9 +60,24 @@ int main(int argc, char* argv[])
 
       adj.read_xml(std::cin);
 
-      general_parameters   (out, adj);
-      adjusted_parameters  (out, adj);
-      adjusted_observations(out, adj);
+      if (adj.xmlerror.isValid())
+        {
+          out << "gama-local adjustment error ("
+              << adj.xmlerror.getCategory() << ")\n";
+
+          const std::vector<std::string>& desc = adj.xmlerror.getDescription();
+          if (!desc.empty()) out << "\n";
+          for (int i=0; i<desc.size(); i++) out << desc[i] << "\n";
+
+          if (adj.xmlerror.hasLineNumber())
+            out << "\nline number : " << adj.xmlerror.getLineNumber() << "\n";
+        }
+      else
+        {
+          general_parameters   (out, adj);
+          adjusted_parameters  (out, adj);
+          adjusted_observations(out, adj);
+        }
     }
   catch (GNU_gama::Exception::parser perr)
     {

@@ -122,6 +122,10 @@ namespace GNU_gama
           s_count_z_end,
           s_description,
           s_description_end,
+          s_error_xml,
+          s_error_xml_end,
+          s_error_xml_description,
+          s_error_xml_line_number,
           s_network_general_parameters,
           s_network_general_parameters_end,
           s_gama_local_adjustment,
@@ -295,6 +299,7 @@ namespace GNU_gama
           t_dy,
           t_dz,
           t_equations,
+          t_error_xml,
           t_err_adj,
           t_err_obs,
           t_f,
@@ -308,6 +313,7 @@ namespace GNU_gama
           t_id,
           t_ind,
           t_left,
+          t_line_number,
           t_lower,
           t_network_general_parameters,
           t_network_processing_summary,
@@ -391,6 +397,9 @@ namespace GNU_gama
       void observations_summary(bool);
       void distances(bool);
       void directions(bool);
+      void error_xml(bool);
+      void error_xml_description(bool);
+      void error_xml_line_number(bool);
       void angles(bool);
       void xyz_coords(bool);
       void id(bool);

@@ -173,6 +173,9 @@ void LocalNetworkAdjustmentResults::Parser::init()
       tagfun[s][t] = &Parser::unknown;
 
   tagfun[s_start                              ][t_gama_local_adjustment          ] = &Parser::gama_local_adjustment;
+  tagfun[s_gama_local_adjustment              ][t_error_xml                      ] = &Parser::error_xml;
+  tagfun[s_error_xml                          ][t_description                    ] = &Parser::error_xml_description;
+  tagfun[s_error_xml                          ][t_line_number                    ] = &Parser::error_xml_line_number;
   tagfun[s_gama_local_adjustment              ][t_description                    ] = &Parser::description;
   tagfun[s_description_end                    ][t_network_general_parameters     ] = &Parser::network_general_parameters;
   tagfun[s_network_general_parameters_end     ][t_network_processing_summary     ] = &Parser::network_processing_summary;
@@ -332,6 +335,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "equations"                 )) return t_equations;
       if (!strcmp(c, "err-adj"                   )) return t_err_adj;
       if (!strcmp(c, "err-obs"                   )) return t_err_obs;
+      if (!strcmp(c, "error"                     )) return t_error_xml;
       break;
     case 'f':
       if (!strcmp(c, "f"                         )) return t_f;
@@ -354,6 +358,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
     case 'l':
       if (!strcmp(c, "left"                      )) return t_left;
       if (!strcmp(c, "lower"                     )) return t_lower;
+      if (!strcmp(c, "lineNumber"                )) return t_line_number;
       break;
     case 'n':
       if (!strcmp(c, "network-general-parameters")) return t_network_general_parameters;
@@ -500,6 +505,68 @@ void LocalNetworkAdjustmentResults::Parser::gama_local_adjustment(bool start)
   else
     {
       set_state(s_stop);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::error_xml(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::error_xml);
+      set_state(s_error_xml);
+
+      adj->xmlerror.clear();
+      while (*attributes)
+        {
+          string atr = *attributes++;
+          string val = *attributes++;
+
+          if (atr == "category")
+            adj->xmlerror.setCategory(val);
+          else
+            {
+              error("bad attribute in <error>");
+              return;
+            }
+        }
+      if (adj->xmlerror.getCategory().empty())
+        {
+          error("Attribute 'category' is not defined in <error>");
+          return;
+        }
+    }
+  else
+    {
+      set_state(s_error_xml_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::error_xml_description(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::error_xml_description);
+    }
+  else
+    {
+      adj->xmlerror.setDescription(data);
+      set_state(s_error_xml);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::error_xml_line_number(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::error_xml_line_number);
+    }
+  else
+    {
+      adj->xmlerror.setLineNumber(get_int());
+      set_state(s_error_xml);
     }
 }
 

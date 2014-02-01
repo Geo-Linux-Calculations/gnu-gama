@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2013  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2013, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -29,6 +29,7 @@
 #include <string>
 #include <vector>
 #include <matvec/covmat.h>
+#include <gnu_gama/local/xmlerror.h>
 
 
 namespace GNU_gama
@@ -38,6 +39,8 @@ namespace GNU_gama
   public:
 
     LocalNetworkAdjustmentResultsData();
+
+    GNU_gama::local::XMLerror xmlerror;
 
     bool gons;
     std::string description;

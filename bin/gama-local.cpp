@@ -48,7 +48,7 @@
 #include <gnu_gama/local/results/text/residuals_observations.h>
 #include <gnu_gama/local/results/text/error_ellipses.h>
 #include <gnu_gama/local/results/text/test_linearization.h>
-#include <gnu_gama/xsd.h>
+#include <gnu_gama/local/xmlerror.h>
 
 namespace {
 int help()
@@ -118,65 +118,7 @@ int help()
   return 1;
 }
 
-const char* argv_xmlout;
-
-class XMLerror {
-public:
-
-  XMLerror() : _hasLineNumber(false) {}
-
-  void setDescription(std::string s) { _strlist.push_back(s); }
-  void setLineNumber (int n)         { _lineNumber = n; _hasLineNumber = true; }
-
-  int  write(std::string category)
-  {
-    _category = category;
-
-    if (argv_xmlout == 0 || !std::strcmp(argv_xmlout, "-"))
-      {
-        write(std::cout);
-      }
-    else
-      {
-        std::ofstream file(argv_xmlout);
-        write(file);
-      }
-
-    return 0;
-  }
-
-private:
-  std::string              _category;
-  std::vector<std::string> _strlist;
-  int                      _lineNumber;
-  bool                     _hasLineNumber;
-
-  void write(std::ostream& ostr)
-  {
-    ostr <<
-      "<?xml version=\"1.0\"?>\n"
-      "<gama-local-adjustment version=\"0.5\"\n"
-      "  xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n\n"
-      "<error category=\"" << _category << "\">\n";
-
-    for (std::vector<std::string>::const_iterator
-           i=_strlist.begin(), e=_strlist.end(); i != e; ++i)
-      {
-        ostr << "<description>" << *i << "</description>\n";
-      }
-
-    if (_hasLineNumber)
-      {
-        ostr << "<lineNumber>" << _lineNumber << "</lineNumber>\n";
-      }
-
-    ostr <<
-      "</error>\n\n"
-      "</gama-local-adjustment>\n";
-  }
-};
-
-XMLerror xmlerr;
+GNU_gama::local::XMLerror xmlerr;
 
 }  // unnamed namespace
 
@@ -200,8 +142,7 @@ int main(int argc, char **argv)
     const char* argv_latitude = 0;
     const char* argv_txtout = 0;
     const char* argv_htmlout = 0;
-    //const char* argv_xmlout = 0;  ... declared globally
-    argv_xmlout = 0;
+    const char* argv_xmlout = 0;
     const char* argv_svgout = 0;
     const char* argv_obsout = 0;
     const char* argv_covband = 0;
@@ -262,6 +203,8 @@ int main(int argc, char **argv)
 
     // implicit output
     if (!argv_txtout && !argv_htmlout && !argv_xmlout) argv_xmlout = "-";
+
+    if (argv_xmlout) xmlerr.setXmlOutput(argv_xmlout);
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     if (argv_confname && argv_readonly) return help();
@@ -389,7 +332,7 @@ int main(int argc, char **argv)
             IS->epoch = gkf.epoch;
           }
         catch (const GNU_gama::local::ParserException& v) {
-          if (argv_xmlout)
+          if (xmlerr.isValid())
             {
               xmlerr.setDescription(T_GaMa_exception_2a);
               std::string t, s = v.what();
@@ -402,7 +345,7 @@ int main(int argc, char **argv)
               xmlerr.setDescription(t);
               xmlerr.setLineNumber (v.line);
               //xmlerr.setDescription(T_GaMa_exception_2b);
-              return xmlerr.write("gamaLocalParserError");
+              return xmlerr.write_xml("gamaLocalParserError");
             }
 
           cerr << "\n" << T_GaMa_exception_2a << "\n\n"
@@ -410,11 +353,11 @@ int main(int argc, char **argv)
           return 3;
         }
         catch (const GNU_gama::local::Exception& v) {
-          if (argv_xmlout)
+          if (xmlerr.isValid())
             {
               xmlerr.setDescription(T_GaMa_exception_2a);
               xmlerr.setDescription(v.what());
-              return xmlerr.write("gamaLocalException");
+              return xmlerr.write_xml("gamaLocalException");
             }
 
           cerr << "\n" <<T_GaMa_exception_2a << "\n"
@@ -510,10 +453,10 @@ int main(int argc, char **argv)
       }
     catch(GNU_gama::local::Exception e)
       {
-        if (argv_xmlout)
+        if (xmlerr.isValid())
           {
             xmlerr.setDescription(e.what());
-            return xmlerr.write("gamaLocalException");
+            return xmlerr.write_xml("gamaLocalException");
           }
 
         cerr << e.what() << endl;
@@ -521,11 +464,11 @@ int main(int argc, char **argv)
       }
     catch(...)
       {
-        if (argv_xmlout)
+        if (xmlerr.isValid())
           {
             xmlerr.setDescription("Gama / Acord: "
                                   "approximate coordinates failed");
-            return xmlerr.write("gamaLocalApproximateCoordinates");
+            return xmlerr.write_xml("gamaLocalApproximateCoordinates");
           }
 
         cerr << "Gama / Acord: approximate coordinates failed\n\n";
@@ -665,10 +608,10 @@ int main(int argc, char **argv)
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
   catch(const GNU_gama::Exception::sqlitexc& gamalite)
     {
-      if (argv_xmlout)
+      if (xmlerr.isValid())
         {
           xmlerr.setDescription(gamalite.what());
-          return xmlerr.write("gamaLocalSqlite");
+          return xmlerr.write_xml("gamaLocalSqlite");
         }
 
       std::cout << "\n" << "****** " << gamalite.what() << "\n\n";
@@ -679,11 +622,11 @@ int main(int argc, char **argv)
     {
       using namespace GNU_gama::local;
 
-      if (argv_xmlout)
+      if (xmlerr.isValid())
         {
           xmlerr.setDescription(T_GaMa_solution_ended_with_error);
           xmlerr.setDescription(choldec.str);
-          return xmlerr.write("gamaLocalAdjustment");
+          return xmlerr.write_xml("gamaLocalAdjustment");
         }
 
       std::cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
@@ -694,11 +637,11 @@ int main(int argc, char **argv)
     {
       using namespace GNU_gama::local;
 
-      if (argv_xmlout)
+      if (xmlerr.isValid())
         {
           xmlerr.setDescription(T_GaMa_solution_ended_with_error);
           xmlerr.setDescription(V.what());
-          return xmlerr.write("gamaLocalException");
+          return xmlerr.write_xml("gamaLocalException");
         }
 
       std::cout << "\n" << T_GaMa_solution_ended_with_error << "\n\n"
@@ -706,10 +649,10 @@ int main(int argc, char **argv)
       return 1;
     }
   catch (std::exception& stde) {
-    if (argv_xmlout)
+    if (xmlerr.isValid())
       {
         xmlerr.setDescription(stde.what());
-        return xmlerr.write("gamaLocalStdException");
+        return xmlerr.write_xml("gamaLocalStdException");
       }
 
     std::cout << "\n" << stde.what() << "\n\n";
@@ -717,9 +660,9 @@ int main(int argc, char **argv)
   catch(...) {
     using namespace GNU_gama::local;
 
-    if (argv_xmlout)
+    if (xmlerr.isValid())
       {
-        return xmlerr.write("gamaLocalUnknownException");
+        return xmlerr.write_xml("gamaLocalUnknownException");
       }
 
     std::cout << "\n" << T_GaMa_internal_program_error << "\n\n";
