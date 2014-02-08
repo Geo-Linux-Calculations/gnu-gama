@@ -484,10 +484,7 @@ void LocalNetworkAdjustmentResults::Parser::gama_local_adjustment(bool start)
           string atr = *attributes++;
           string val = *attributes++;
 
-          if (atr == "version")
-            {
-            }
-          else if (atr == "xmlns")
+          if (atr == "xmlns")
             {
               if (val != XSD_GAMA_LOCAL_ADJUSTMENT)
                 {

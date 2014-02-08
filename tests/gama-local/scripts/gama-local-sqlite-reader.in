@@ -13,7 +13,7 @@ b=fixed-constrained
 
 # create and populate the database
 rm -rf $DB
-scripts/sqlite_init_db $DB @GAMA_INPUT@/gama-local-schema.sql $TMP/$a.sql
+scripts/sqlite_init_db $DB @GAMA_XML@/gama-local-schema.sql $TMP/$a.sql
 
 # adjust configuration fixed-azimuth from the database
 @top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \

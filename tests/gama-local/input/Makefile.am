@@ -1,5 +1,4 @@
-EXTRA_DIST = gama-local-schema.sql \
-             gama-local.gkf            gama-local.xml \
+EXTRA_DIST = gama-local.gkf            gama-local.xml \
              tst-tetrahedron-2.gkf     tst-tetrahedron-2.xml \
              tst-tetrahedron-3-deg.gkf tst-tetrahedron-3-deg.xml \
              tst-tetrahedron-3-gon.gkf tst-tetrahedron-3-gon.xml \

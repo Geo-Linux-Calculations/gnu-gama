@@ -60,15 +60,8 @@ using GNU_gama::local::Ydiff;
 using GNU_gama::local::Zdiff;
 using GNU_gama::local::Azimuth;
 
-// undefine macro VERSION defined in gama-q2 project
-#ifdef VERSION
-#undef VERSION
-#endif
-
 namespace
 {
-  const char* const VERSION = "0.5";
-
   // maximal possible precision needed by 'make check' test rule
   int make_check_precision(int) { return 16; }
 }
@@ -274,7 +267,7 @@ public:
 void LocalNetworkXML::write(std::ostream& out) const
 {
   out << "<?xml version=\"1.0\"?>\n"
-      << "<gama-local-adjustment version=\"" << VERSION << "\"\n  "
+      << "<gama-local-adjustment "
       << "xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n";
 
   out << "\n<description>" << netinfo->description << "</description>\n";

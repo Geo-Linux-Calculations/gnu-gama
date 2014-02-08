@@ -10,7 +10,11 @@ if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader
 endif
 
-TESTS = $(TESTA) $(TESTB)
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+TESTC = xmllint-gama-local-xsd xmllint-gama-local-adjustment-xsd
+endif
+
+TESTS = $(TESTA) $(TESTB) $(TESTC)
 
 SUBDIRS = scripts input
 
@@ -34,7 +38,8 @@ GAMA_INPUT = $(srcdir)/input
 do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
 	       -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
 	       -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
-	       -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g'
+	       -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g' \
+	       -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
@@ -75,7 +80,23 @@ gama-local-xml-xml: $(GAMA_SCRIPT)/gama-local-xml-xml.in Makefile
 				> gama-local-xml-xml
 	chmod +x gama-local-xml-xml
 
+
+if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 gama-local-sqlite-reader: $(GAMA_SCRIPT)/gama-local-sqlite-reader.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
 				> gama-local-sqlite-reader
 	chmod +x gama-local-sqlite-reader
+endif
+
+
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+xmllint-gama-local-xsd: $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in \
+				> xmllint-gama-local-xsd
+	chmod +x xmllint-gama-local-xsd
+
+xmllint-gama-local-adjustment-xsd: $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
+				> xmllint-gama-local-adjustment-xsd
+	chmod +x xmllint-gama-local-adjustment-xsd
+endif

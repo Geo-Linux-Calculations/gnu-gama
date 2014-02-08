@@ -35,6 +35,8 @@ tests/gama-local/scripts/check_xml_results
 tests/gama-local/scripts/check_xml_xml
 tests/gama-local/scripts/check_xml_coordinates
 tests/gama-local/scripts/sqlite_init_db
+tests/gama-local/xmllint-gama-local-xsd
+tests/gama-local/xmllint-gama-local-adjustment-xsd
 #
 doc/version.texi
 doc/gama.html

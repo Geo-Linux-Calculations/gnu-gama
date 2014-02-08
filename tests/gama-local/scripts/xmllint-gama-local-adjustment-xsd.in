@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ ! -d results ]; then
+    mkdir results
+fi;
+
+
+for g in @INPUT_FILES@
+do
+    echo  -n "   xmllint "
+    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+        --xml results/@PACKAGE_VERSION@-adjustment-$g.xml
+    xmllint --schema @GAMA_XML@/gama-local-adjustment.xsd \
+      --noout results/@PACKAGE_VERSION@-adjustment-$g.xml
+done

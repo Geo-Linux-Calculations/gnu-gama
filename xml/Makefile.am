@@ -1,4 +1,5 @@
-EXTRA_DIST = gama-local.dtd \
+EXTRA_DIST = gama-local.xsd \
+      gama-local-adjustment.xsd \
       gama-local-schema.sql \
       ellipsoids.xml \
       gama-local-adjustment.xsd \
@@ -72,5 +73,3 @@ EXTRA_DIST = gama-local.dtd \
       lang/zh/pobs.zh.lang \
       lang/zh/review.zh.lang \
       lang/zh/rmpoints.zh.lang
-
-

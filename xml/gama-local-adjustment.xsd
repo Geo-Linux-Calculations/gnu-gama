@@ -25,7 +25,6 @@
           <xs:element ref="observations"/>
         </xs:sequence>
       </xs:choice>
-      <xs:attribute name="version" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
 

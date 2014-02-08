@@ -1,5 +1,14 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 1.15 February 2014
+
+* DTD replaced with XSD for gama-local.xsd and
+  gama-local-adjustment.xsd. Attribute version describing XML version
+  of input and adjustment outpup XML documents became useles with
+  introduction of XSD a was removed from tags <gama-local> and
+  <gama-local-adjustment>. Some more elements attributes were
+  introduced in revised XML formats which are incompatible with older
+  versions.
 
 Version 1.14 June 2013
 

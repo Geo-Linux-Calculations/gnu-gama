@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
-<!DOCTYPE gama-local SYSTEM "gama-local.dtd">
 
-<gama-local version="2.0">
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
 <network>
 
 <description>

@@ -32,7 +32,7 @@
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/gon2deg.h>
-
+#include <gnu_gama/xsd.h>
 
 namespace {
   typedef std::pair<double, bool> DB_pair;
@@ -393,12 +393,12 @@ namespace GNU_gama { namespace local {
         nam = string(*atts++);
         val = string(*atts++);
 
-        if (nam == "version")
+        if (nam == "xmlns")
           {
-            if (val != "2.0")
-              return error(T_GKF_illegal_value_of_gama_xml_version + val);
-
-            gama_xml_version = val;
+              if (val != XSD_GAMA_LOCAL)
+                {
+                  return error("bad namespace xmlns=\"" + val + "\"");
+                }
           }
         else
           {

@@ -105,8 +105,7 @@ void XMLerror::write(std::ostream& ostr)
 {
   ostr <<
     "<?xml version=\"1.0\"?>\n"
-    "<gama-local-adjustment version=\"0.5\"\n"
-    "  xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n\n"
+    "<gama-local-adjustment xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n\n"
     "<error category=\"" << _category << "\">\n";
 
   for (std::vector<std::string>::const_iterator

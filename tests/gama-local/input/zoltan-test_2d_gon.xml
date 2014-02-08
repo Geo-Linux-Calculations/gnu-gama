@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
-<!DOCTYPE gama-local-adjustment SYSTEM "gama-local-adjustment.dtd">
 
-<gama-local-adjustment version="0.5">
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
 
 <description>
 test_2d_gon

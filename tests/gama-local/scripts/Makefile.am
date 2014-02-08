@@ -5,7 +5,9 @@ EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-xml-results.in \
              gama-local-xml-xml.in \
              gama-local-sqlite-reader.in \
-             gama-local-version.in
+             gama-local-version.in \
+             xmllint-gama-local-xsd.in \
+             xmllint-gama-local-adjustment-xsd.in
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 SQLITE_READER_PROG = check_xml_coordinates sqlite_init_db
