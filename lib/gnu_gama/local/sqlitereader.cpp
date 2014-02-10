@@ -1,7 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2011  Vaclav Petras <vaclav.petras@fsv.cvut.cz>
-                  2013  Ales Cepek <cepek@gnu.org>
+                  2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -24,7 +24,6 @@
 
 #include <gnu_gama/local/sqlitereader.h>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/newnetwork.h>
 #include <gnu_gama/xml/dataobject.h>
 #include <gnu_gama/intfloat.h>
 
@@ -468,7 +467,11 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         using namespace GNU_gama::local;
 
         // create a new local newtwork if not defined
-        if (d->lnet == 0) d->lnet = newLocalNetwork(d->algorithm);
+        if (d->lnet == 0)
+          {
+            d->lnet = new LocalNetwork;
+            d->lnet->set_algorithm(d->algorithm);
+          }
 
         d->lnet->apriori_m_0(ToDouble(argv[2]));
         d->lnet->conf_pr(ToDouble(argv[3]));

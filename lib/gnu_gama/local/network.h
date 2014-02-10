@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2006, 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2006, 2012, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -55,7 +55,8 @@ namespace GNU_gama { namespace local
     LocalNetwork();
     virtual ~LocalNetwork();
 
-    void set_algorithm(AdjBase* adjb) { least_squares = adjb; }
+    std::string algorithm() const;
+    void set_algorithm(std::string alg = std::string());
 
     PointData        PD;      // point list
     ObservationData  OD;      // observation list
@@ -197,9 +198,8 @@ namespace GNU_gama { namespace local
     Double qbb(Index i, Index j) { return least_squares->q_bb(i,j); }
     Double qbx(Index i, Index j) { return least_squares->q_bx(i,j); }
 
-    virtual Double cond() = 0;
-    virtual bool lindep(Index i) = 0;
-    virtual const char* const algorithm() const = 0;
+    Double cond();
+    bool lindep(Index i);
 
     void refine_approx();
 
@@ -288,6 +288,8 @@ namespace GNU_gama { namespace local
 
   private:
 
+    std::string algorithm_;           // algorithm name or empty string
+
     // ObservationList      RSM;      // revised observation list
     RevisedObsList          RSM;
 
@@ -295,7 +297,7 @@ namespace GNU_gama { namespace local
     int pocbod_;
     bool tst_redbod_;
 
-    ObservationList removed_obs;     // revision of observations
+    ObservationList removed_obs;      // revision of observations
     int pocmer_;
     bool tst_redmer_;
 

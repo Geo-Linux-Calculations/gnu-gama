@@ -19,11 +19,8 @@
 
 #include "check_xyz.h"
 
-#include <gnu_gama/local/network_svd.h>
-#include <gnu_gama/local/network_gso.h>
-#include <gnu_gama/local/network_chol.h>
-#include <gnu_gama/local/network_env.h>
 #include <gnu_gama/xml/gkfparser.h>
+#include <gnu_gama/local/network.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/acord.h>
 #include <gnu_gama/local/results/text/test_linearization.h>
@@ -85,20 +82,20 @@ double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
 
 GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
 {
-  GNU_gama::local::LocalNetwork* lnet = 0;
+  GNU_gama::local::LocalNetwork* lnet = new GNU_gama::local::LocalNetwork;
   switch (alg)
     {
     case 0:
-      lnet = new GNU_gama::local::LocalNetwork_svd;
+      lnet->set_algorithm("svd");
       break;
     case 1:
-      lnet = new GNU_gama::local::LocalNetwork_gso;
+      lnet->set_algorithm("gso");
       break;
     case 2:
-      lnet = new GNU_gama::local::LocalNetwork_chol;
+      lnet->set_algorithm("cholesky");
       break;
     case 3:
-      lnet = new GNU_gama::local::LocalNetwork_env;
+      lnet->set_algorithm("envelope");
       break;
     }
 

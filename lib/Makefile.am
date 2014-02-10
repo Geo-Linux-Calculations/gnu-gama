@@ -139,12 +139,8 @@ libgama_src = \
    gnu_gama/local/median/g2d_helper.h \
    gnu_gama/local/median/g2d_point.cpp \
    gnu_gama/local/median/g2d_point.h \
-   gnu_gama/local/network_chol.h \
-   gnu_gama/local/network_env.h \
    gnu_gama/local/network.cpp \
-   gnu_gama/local/network_gso.h \
    gnu_gama/local/network.h \
-   gnu_gama/local/network_svd.h \
    gnu_gama/local/observation_local.cpp \
    gnu_gama/local/orientation.cpp \
    gnu_gama/local/orientation.h \
@@ -178,8 +174,6 @@ libgama_src = \
    gnu_gama/local/skipcomm.h \
    gnu_gama/local/sqlitereader.h \
    gnu_gama/local/sqlitereader.cpp \
-   gnu_gama/local/newnetwork.h \
-   gnu_gama/local/newnetwork.cpp \
    gnu_gama/local/writevisitor.h \
    gnu_gama/local/xmlerror.h \
    gnu_gama/local/xmlerror.cpp

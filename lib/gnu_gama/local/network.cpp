@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -201,6 +201,12 @@ private:
     }
 };
 
+
+
+//##########################################################################
+
+
+
 LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
     m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000),
@@ -221,6 +227,49 @@ LocalNetwork::~LocalNetwork()
 {
   delete[] min_x_;
   delete   Asp;
+}
+
+
+Double LocalNetwork::cond()
+{
+  return least_squares->cond();
+}
+
+
+bool LocalNetwork::lindep(Index i)
+{
+  return least_squares->lindep(i);
+}
+
+
+std::string LocalNetwork::algorithm() const
+{
+  return algorithm_;
+}
+
+
+void LocalNetwork::set_algorithm(std::string alg)
+{
+  typedef GNU_gama::local::MatVecException     MVE;
+  typedef GNU_gama::AdjEnvelope<Double, Index, MVE> OLS_env;
+  typedef GNU_gama::AdjGSO     <Double,        MVE> OLS_gso;
+  typedef GNU_gama::AdjSVD     <Double,        MVE> OLS_svd;
+  typedef GNU_gama::AdjCholDec <Double,        MVE> OLS_chol;
+
+  AdjBase* adjb;
+  if      (alg == "gso" )     adjb = new OLS_gso;
+  else if (alg == "svd" )     adjb = new OLS_svd;
+  else if (alg == "cholesky") adjb = new OLS_chol;
+  else if (alg == "envelope") adjb = new OLS_env;
+  else
+    {
+      alg  = "envelope";
+      adjb = new OLS_env;
+    }
+  algorithm_ = alg;
+
+  if (least_squares != 0) delete least_squares;
+  least_squares = adjb;
 }
 
 
@@ -1153,8 +1202,3 @@ void LocalNetwork::vyrovnani_()
   }
 
 }
-
-
-
-
-

@@ -22,7 +22,6 @@
 #include <gnu_gama/local/localnetwork2sql.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/exception.h>
-#include <gnu_gama/local/network_gso.h>
 #include <iostream>
 #include <fstream>
 
@@ -74,7 +73,7 @@ int main(int argc, char* argv[])
   std::istream* inp;
   std::ostream* out;
 
-  GNU_gama::local::LocalNetwork_gso lnet;
+  GNU_gama::local::LocalNetwork lnet;
 
   try
     {

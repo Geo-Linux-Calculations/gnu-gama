@@ -2,6 +2,5 @@
 
 for g in @INPUT_FILES@
 do
-    echo  -n "   xmllint "
     xmllint --schema @GAMA_XML@/gama-local.xsd @GAMA_INPUT@/$g.gkf --noout
 done

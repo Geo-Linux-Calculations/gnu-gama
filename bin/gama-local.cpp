@@ -31,7 +31,7 @@
 
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/gamadata.h>
-#include <gnu_gama/local/newnetwork.h>
+#include <gnu_gama/local/network.h>
 #include <gnu_gama/local/acord.h>
 #include <gnu_gama/local/svg.h>
 #include <gnu_gama/local/html.h>
@@ -267,8 +267,6 @@ int main(int argc, char **argv)
           return help();
       }
 
-    LocalNetwork* IS = 0;
-
     if (argv_algo)
       {
         const std::string algorithm = argv_algo;
@@ -276,9 +274,9 @@ int main(int argc, char **argv)
             algorithm != "svd"      &&
             algorithm != "cholesky" &&
             algorithm != "envelope" ) return help();
-
-        IS = newLocalNetwork(algorithm);
       }
+
+    LocalNetwork* IS = new LocalNetwork;
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     if (argv_sqlitedb)
@@ -292,8 +290,6 @@ int main(int argc, char **argv)
     else
 #endif
       {
-        if (IS == 0) IS = newLocalNetwork();        // implicit algorithm
-
         ifstream soubor(argv_1);
         GKFparser gkf(IS->PD, IS->OD);
         try
@@ -370,6 +366,14 @@ int main(int argc, char **argv)
             throw;
           }
       }
+
+   if (argv_algo)
+      {
+        IS->set_algorithm(argv_algo);
+      }
+
+   // if algorithm is not explicitly defined implicit algorithm is set
+   if (IS->algorithm().empty()) IS->set_algorithm();
 
     if (argv_angles)
       {

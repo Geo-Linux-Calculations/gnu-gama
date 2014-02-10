@@ -22,8 +22,6 @@
 #include <gnu_gama/local/c/api/capi_locnet.h>
 #include <gnu_gama/local/c/api/capi_private_exception.h>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/network_svd.h>
-#include <gnu_gama/local/network_gso.h>
 
 using namespace GNU_gama::local;
 
@@ -35,7 +33,9 @@ extern "C" {
   {
     try
       {
-        return new LocalNetwork_svd;
+        LocalNetwork* lnet = new LocalNetwork;
+        lnet->set_algorithm("svd");
+        return lnet;
       }
     catch (const GNU_gama::local::Exception& e)
       {
@@ -51,7 +51,9 @@ extern "C" {
   {
     try
       {
-        return new LocalNetwork_gso;
+        LocalNetwork* lnet = new LocalNetwork;
+        lnet->set_algorithm("gso");
+        return lnet;
       }
     catch (const GNU_gama::local::Exception& e)
       {
@@ -90,7 +92,7 @@ extern "C" {
     try
       {
         LocalNetwork* locnet = static_cast<LocalNetwork*>(ptr);
-        return locnet->algorithm();
+        return locnet->algorithm().c_str();
       }
     catch (const GNU_gama::local::Exception& e)
       {

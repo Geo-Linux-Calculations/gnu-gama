@@ -18,9 +18,6 @@
     <xs:complexType>
       <xs:complexContent>
         <xs:extension base="network">
-          <!-- atribute version is not used and is kept only for
-               bacward compatibility -->
-          <!-- xs:attribute name="version" type="xs:NMTOKEN" / -->
         </xs:extension>
       </xs:complexContent>
     </xs:complexType>
