@@ -109,7 +109,7 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
         GNU_gama::local::set_gama_language(GNU_gama::local::en);
 
         std::ifstream soubor(file);
-        GNU_gama::local::GKFparser gkf(lnet->PD, lnet->OD);
+        GNU_gama::local::GKFparser gkf(*lnet);
         try
           {
             char c;
@@ -130,20 +130,6 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
                 gkf.xml_parse(radek.c_str(), n, konec);
               }
             while (!konec);
-
-            lnet->apriori_m_0(gkf.m0_apr );
-            lnet->conf_pr    (gkf.konf_pr);
-            lnet->tol_abs    (gkf.tol_abs);
-
-            lnet->update_constrained_coordinates(gkf.update_constr);
-
-            if (gkf.typ_m0_apriorni)
-              lnet->set_m_0_apriori();
-            else
-              lnet->set_m_0_aposteriori();
-
-            lnet->description = gkf.description;
-            lnet->epoch = gkf.epoch;
           }
         catch (const GNU_gama::local::ParserException& v) {
           cerr << "\n" << T_GaMa_exception_2a << "\n\n"

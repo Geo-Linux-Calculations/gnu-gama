@@ -291,7 +291,7 @@ int main(int argc, char **argv)
 #endif
       {
         ifstream soubor(argv_1);
-        GKFparser gkf(IS->PD, IS->OD);
+        GKFparser gkf(*IS);
         try
           {
             char c;
@@ -312,20 +312,6 @@ int main(int argc, char **argv)
                 gkf.xml_parse(radek.c_str(), n, konec);
               }
             while (!konec);
-
-            IS->apriori_m_0(gkf.m0_apr );
-            IS->conf_pr    (gkf.konf_pr);
-            IS->tol_abs    (gkf.tol_abs);
-
-            IS->update_constrained_coordinates(gkf.update_constr);
-
-            if (gkf.typ_m0_apriorni)
-              IS->set_m_0_apriori();
-            else
-              IS->set_m_0_aposteriori();
-
-            IS->description = gkf.description;
-            IS->epoch = gkf.epoch;
           }
         catch (const GNU_gama::local::ParserException& v) {
           if (xmlerr.isValid())

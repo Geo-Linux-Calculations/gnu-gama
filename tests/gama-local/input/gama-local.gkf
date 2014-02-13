@@ -16,6 +16,8 @@ variant: two fixed points, others adjusted
    conf-pr   = " 0.95 "
    tol-abs   = " 1000 "
    sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
 />
 
 <points-observations distance-stdev='5.0' direction-stdev="10.0">

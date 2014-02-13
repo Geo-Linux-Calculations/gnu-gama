@@ -95,16 +95,6 @@ libgama_src = \
    gnu_gama/local/bpoint.h \
    gnu_gama/local/html.cpp \
    gnu_gama/local/html.h \
-   gnu_gama/local/c/api/capi_exception.cpp \
-   gnu_gama/local/c/api/capi_exception.h \
-   gnu_gama/local/c/api/capi_gkfparser.cpp \
-   gnu_gama/local/c/api/capi_gkfparser.h \
-   gnu_gama/local/c/api/capi_locnet.cpp \
-   gnu_gama/local/c/api/capi_locnet.h \
-   gnu_gama/local/c/api/capi_output_file.cpp \
-   gnu_gama/local/c/api/capi_output_file.h \
-   gnu_gama/local/c/api/capi_private_exception.h \
-   gnu_gama/local/c_api.h \
    gnu_gama/local/cluster.h \
    gnu_gama/local/exception.h \
    gnu_gama/local/float.h \

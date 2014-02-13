@@ -28,6 +28,7 @@
       <xs:element ref="network"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:element name="network">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -60,7 +61,9 @@
       <xs:attribute name="epoch" default="0.0" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="description" type="xs:string"/>
+
   <xs:element name="parameters">
     <xs:complexType>
       <xs:attribute name="sigma-apr" default="10.0" type="xs:double"/>
@@ -129,14 +132,17 @@
         </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="latitude" default="50" type="xs:double"/>
-      <xs:attribute name="ellipsoid"/>
-      <xs:attribute name="text"/>
-      <xs:attribute name="html"/>
-      <xs:attribute name="xml"/>
-      <xs:attribute name="svg"/>
-      <xs:attribute name="cov-band" default="-1" type="xs:integer"/>
+      <xs:attribute name="ellipsoid" type="xs:string"/>
+      <xs:attribute name="cov-band" default="-1">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="-1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="points-observations">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -154,6 +160,7 @@
       <xs:attribute name="azimuth-stdev" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="point">
     <xs:complexType>
       <xs:attribute name="id" use="required"/>
@@ -190,6 +197,7 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="obs">
     <xs:complexType>
       <xs:sequence>
@@ -209,12 +217,14 @@
       <xs:attribute name="from_dh" type="xs:string"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="cov-mat">
     <xs:complexType mixed="true">
       <xs:attribute name="dim" use="required" type="xs:nonNegativeInteger"/>
       <xs:attribute name="band" use="required" type="xs:nonNegativeInteger"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="direction">
     <xs:complexType>
       <xs:attribute name="to" use="required"/>
@@ -224,6 +234,7 @@
       <xs:attribute name="to_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="distance">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -234,6 +245,7 @@
       <xs:attribute name="to_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="angle">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -246,6 +258,7 @@
       <xs:attribute name="fs_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="s-distance">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -256,6 +269,7 @@
       <xs:attribute name="to_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="z-angle">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -266,6 +280,7 @@
       <xs:attribute name="to_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="azimuth">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -276,6 +291,7 @@
       <xs:attribute name="to_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="height-differences">
     <xs:complexType>
       <xs:sequence>
@@ -284,6 +300,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="dh">
     <xs:complexType>
       <xs:attribute name="from"/>
@@ -293,6 +310,7 @@
       <xs:attribute name="dist" type="xs:double"/>
     </xs:complexType>
   </xs:element>
+
   <!-- observed coordinates -->
   <xs:element name="coordinates">
     <xs:complexType>
@@ -302,6 +320,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
   <!-- observed coordinate differences -->
   <xs:element name="vectors">
     <xs:complexType>
@@ -311,6 +330,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="vec">
     <xs:complexType>
       <xs:attribute name="from"/>

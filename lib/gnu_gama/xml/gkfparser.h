@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002, 2013, 2014  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2002, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -25,6 +25,7 @@
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/dataobject.h>
 #include <gnu_gama/local/gamadata.h>
+#include <gnu_gama/local/network.h>
 
 
 namespace GNU_gama { namespace local {
@@ -53,25 +54,12 @@ namespace GNU_gama { namespace local {
     {
     public:
 
-      GKFparser(GNU_gama::local::PointData& sb, GNU_gama::local::ObservationData& od);
+      GKFparser(GNU_gama::local::LocalNetwork& locnet);
       ~GKFparser();
 
       int characterDataHandler(const char* s, int len);
       int startElement(const char *cname, const char **atts);
       int endElement(const char * name);
-
-      // public data members
-
-      std::string description;          // network description
-
-      // adjustment parameters
-
-      std::string   TXT, STX, OPR;      // file names from gkf specification
-      double m0_apr, konf_pr, tol_abs;  // implicitly 10, 0.95, 1000
-      bool   typ_m0_apriorni;           // implicitly false
-      bool   update_constr;             // implicitly false
-
-      double epoch;                     // implicitly 0;
 
       double implicit_stdev_direction() const { return direction_stdev_; }
       double implicit_stdev_angle()     const { return angle_stdev_;     }
@@ -91,8 +79,11 @@ namespace GNU_gama { namespace local {
 
     private:
 
+      GNU_gama::local::LocalNetwork&    lnet;
       GNU_gama::local::PointData&       SB;        // point list
       GNU_gama::local::ObservationData& OD;        // observation list
+
+      std::string description;                     // network description
 
       enum gkf_tag {
         tag_unknown,

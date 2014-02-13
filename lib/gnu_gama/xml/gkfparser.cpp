@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002, 2013  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2002, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -184,6 +184,7 @@ namespace GNU_gama { namespace local {
         state = state_gama_xml;
         break;
       case state_description:
+        lnet.description = description;
         state = state_network;
         break;
       case state_parameters:
@@ -351,16 +352,14 @@ namespace GNU_gama { namespace local {
 
 
 
-  GKFparser::GKFparser(PointData& sb, ObservationData& od)
-    : SB(sb), OD(od)
+  GKFparser::GKFparser(GNU_gama::local::LocalNetwork& locnet)
+    : lnet(locnet), SB(lnet.PD), OD(lnet.OD)
   {
-    // implicit parameters' values
-
-    m0_apr          = 10;
-    konf_pr         = 0.95;
-    tol_abs         = 1000;
-    typ_m0_apriorni = false;
-    update_constr   = false;
+    lnet.apriori_m_0(10);
+    lnet.conf_pr    (0.95);
+    lnet.tol_abs    (1000);
+    lnet.set_m_0_aposteriori();
+    lnet.update_constrained_coordinates(false);
 
     state       = state_start;
     standpoint  = 0;
@@ -417,7 +416,7 @@ namespace GNU_gama { namespace local {
     string  nam, val;
     state = state_network;
 
-    epoch = 0.0;
+    lnet.epoch = 0.0;
 
     while (*atts)
       {
@@ -450,9 +449,11 @@ namespace GNU_gama { namespace local {
           }
         else if (nam == "epoch")
           {
+            double epoch;
             if (!toDouble(val, epoch))
               return error(T_GKF_error_on_reading_of_epoch
                            + nam + " = " + val);
+            lnet.epoch = epoch;
           }
         else
           {
@@ -477,16 +478,14 @@ namespace GNU_gama { namespace local {
         jmeno   = string(*atts++);
         hodnota = string(*atts++);
 
-        if      (jmeno == "txt") TXT = hodnota;
-        else if (jmeno == "stx") STX = hodnota;
-        else if (jmeno == "opr") OPR = hodnota;
-        else if (jmeno == "sigma-apr")
+        if (jmeno == "sigma-apr")
           {
             if (!toDouble(hodnota, dhod))
               return error(T_GKF_error_on_reading_of_standard_deviation);
             if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_standard_deviation);
-            m0_apr = dhod;
+
+            lnet.apriori_m_0(dhod);
           }
         else if (jmeno == "conf-pr")
           {
@@ -494,7 +493,8 @@ namespace GNU_gama { namespace local {
               return error(T_GKF_error_on_reading_of_confidence_probability);
             if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_confidence_probability);
-            konf_pr = dhod;
+
+            lnet.conf_pr(dhod);
           }
         else if (jmeno == "tol-abs")
           {
@@ -502,22 +502,39 @@ namespace GNU_gama { namespace local {
               return error(T_GKF_error_on_reading_of_absolute_terms_tolerance);
             if (dhod <= 0)
               return error(T_GKF_error_on_reading_of_absolute_terms_tolerance);
-            tol_abs = dhod;
+
+            lnet.tol_abs(dhod);
           }
         else if (jmeno == "sigma-act")
           {
-            if      (hodnota == "aposteriori") typ_m0_apriorni = false;
-            else if (hodnota == "apriori"    ) typ_m0_apriorni = true;
+            if (hodnota == "aposteriori")
+              lnet.set_m_0_aposteriori();
+            else if (hodnota == "apriori")
+              lnet.set_m_0_apriori();
             else
               return error(T_GKF_wrong_type_of_standard_deviation);
           }
         else if (jmeno == "update-constrained-coordinates")
           {
-            if      (hodnota == "yes") update_constr = true;
-            else if (hodnota == "no" ) update_constr = false;
+            if (hodnota == "yes")
+              lnet.update_constrained_coordinates(true);
+            else if (hodnota == "no" )
+              lnet.update_constrained_coordinates(false);
             else
             return error(T_GKF_bad_network_configuration_unknown_parameter
                          + jmeno + " = " + hodnota);
+          }
+        else if (jmeno == "algorithm")
+          {
+          }
+        else if (jmeno == "cov-band")
+          {
+          }
+        else if (jmeno == "latitude")
+          {
+          }
+        else if (jmeno == "ellipsiod")
+          {
           }
         else
           {
@@ -1213,7 +1230,7 @@ namespace GNU_gama { namespace local {
     if (sdist != "")
       if (!toDouble(sdist, dd) || dd < 0)
         return error(T_GKF_bad_distance + sdist);
-    double ds = m0_apr * sqrt(dd);
+    double ds = lnet.apriori_m_0() * sqrt(dd);
     if (sstdev != "")
       if (!toDouble(sstdev, ds)) return error(T_GKF_illegal_standard_deviation);
 
@@ -1458,7 +1475,7 @@ namespace GNU_gama { namespace local {
     if (sdist != "")
       if (!toDouble(sdist, dd) || dd < 0)
         return error(T_GKF_bad_distance + sdist);
-    double ds = m0_apr * sqrt(dd);
+    double ds = lnet.apriori_m_0() * sqrt(dd);
     if (sstdev != "")
       if (!toDouble(sstdev, ds)) return error(T_GKF_illegal_standard_deviation);
 
@@ -1587,81 +1604,3 @@ namespace GNU_gama { namespace local {
   }
 
 }}   // namespace GNU_gama::local
-
-
-// #########################################################################
-
-#ifdef gama_local_GKFparser_demo
-
-#include <fstream>
-#include <gnu_gama/version.h>
-#include <gnu_gama/local/pobs/format.h>
-
-using namespace GNU_gama::local;
-
-int main(int argc, char* argv[])
-{
-  if (argc != 2)
-    {
-      cout << "\nusage: demo xml-file.gkf\n\n";
-      return 1;
-    }
-
-  PointData        PData;
-  ObservationData  OData;
-  GKFparser gp(PData, OData);
-
-  try {
-    ifstream inp(argv[1]);
-    string   rad;
-
-    while (getline(inp, rad))
-      {
-        rad += "\n";      // for expat to count lines properly
-        gp.xml_parse(rad.c_str(), rad.length(), 0);
-      }
-    gp.xml_parse(0, 0, 1);
-
-
-    Format::coord_p(5);   // output precision in fixed format
-    Format::gon_p(5);
-    Format::stdev_p (3);
-
-    cout <<
-      "<?xml version=\"1.0\" ?>\n"
-      "<!DOCTYPE gama-local SYSTEM \"http://gama.fsv.cvut.cz/gama-local.dtd\">\n\n"
-
-      "<gama-local version=\"2.0\">\n"
-      "<network>\n\n";
-
-    if (gp.description != "")
-      cout << "<description>" << gp.description << "</description>\n\n";
-
-    cout << "<parameters\n"
-         << "      sigma-apr = \"" << gp.m0_apr  << "\"\n"
-         << "      conf-pr   = \"" << gp.konf_pr << "\"\n"
-         << "      tol-abs   = \"" << gp.tol_abs << "\"\n"
-         << "      sigma-act = \""
-         <<  (gp.typ_m0_apriorni ? "apriori" : "aposteriori") << "\"\n"
-         << "/>\n\n";
-
-    cout << "<points-observations>\n\n"
-         << PData << "\n" << OData
-         << "\n</points-observations>\n"
-         << "</network>\n"
-         << "</gama-local>\n";
-  }
-  catch (GNU_gama::local::Exception e) {
-    cout << "\nException : " << e.what() << "\n\n";
-    // cout << "line = " << gp.errLineNumber
-    //      << " expat error code = " << gp.errCode << "\n\n";
-    return 2;
-  }
-
-  return 0;
-}
-
-
-#endif
-
-

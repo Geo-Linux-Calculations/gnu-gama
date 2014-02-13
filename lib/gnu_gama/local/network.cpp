@@ -270,6 +270,8 @@ void LocalNetwork::set_algorithm(std::string alg)
 
   if (least_squares != 0) delete least_squares;
   least_squares = adjb;
+
+  update(Points);
 }
 
 

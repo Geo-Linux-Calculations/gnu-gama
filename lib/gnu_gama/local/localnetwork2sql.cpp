@@ -40,7 +40,7 @@ void LocalNetwork2sql::readGkf(std::istream& istr)
 {
   try
     {
-      GKFparser gkf(points, observations);
+      GKFparser gkf(localNetwork);
       char c;
       int  n, finish = 0;
       std::string line;
@@ -59,21 +59,6 @@ void LocalNetwork2sql::readGkf(std::istream& istr)
           gkf.xml_parse(line.c_str(), n, finish);
         }
       while (!finish);
-
-      // setting public data mambers from GKFparser
-      localNetwork.apriori_m_0(gkf.m0_apr );
-      localNetwork.conf_pr    (gkf.konf_pr);
-      localNetwork.tol_abs    (gkf.tol_abs);
-
-      localNetwork.update_constrained_coordinates(gkf.update_constr);
-
-      if (gkf.typ_m0_apriorni)
-        localNetwork.set_m_0_apriori();
-      else
-        localNetwork.set_m_0_aposteriori();
-
-      localNetwork.description = gkf.description;
-      localNetwork.epoch = gkf.epoch;
     }
   catch (...)
     {
