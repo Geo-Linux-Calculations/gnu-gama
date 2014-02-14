@@ -1,0 +1,20 @@
+#!/bin/bash
+
+GAMAL=@top_builddir@/bin/gama-local
+TMP=results
+
+rm -f $TMP/par.xml $TMP/nop.xml
+
+$GAMAL @GAMA_INPUT@/gama-local-par.gkf > $TMP/par.xml
+$GAMAL @GAMA_INPUT@/gama-local-nop.gkf > $TMP/nop.xml \
+    --algorithm gso \
+    --cov-band  1 \
+    --ellipsoid wgs84
+
+diff -s $TMP/par.xml $TMP/nop.xml
+
+if test -n "$(diff $TMP/par.xml $TMP/nop.xml)" ; then 
+    exit 1
+fi
+
+rm   -f $TMP/par.xml $TMP/nop.xml
