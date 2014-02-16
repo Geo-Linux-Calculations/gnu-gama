@@ -237,21 +237,15 @@ struct ReaderData
        Strings are initialised by \c "" to satisfied GCC \c -Weffc++ warning options.
       */
 
-  ReaderData() : lnet(0), correction_to_ellipsoid(false), latitude(M_PI/4),
+  ReaderData() : lnet(0),
                  exception(0), sqlite3Handle(0), configurationId(""),
                  currentStandPoint(0), currentVectors(0),
                  currentCoordinates(0), currentHeightDifferences(0),
                  currentCovarianceMatrix(0)
   {
-    set(&ellipsoid, GNU_gama::ellipsoid_wgs84);
   }
 
   GNU_gama::local::LocalNetwork* lnet; ///< pointer to network object
-
-  std::string algorithm;
-  bool   correction_to_ellipsoid;
-  double latitude;
-  GNU_gama::Ellipsoid ellipsoid;
 
   GNU_gama::Exception::base* exception; ///< an exception which was caught in callback or \c NULL if no exception was thrown
   sqlite3*  sqlite3Handle; ///< pointer to \c struct \c sqlite3
@@ -385,7 +379,7 @@ void SqliteReader::retrieve(LocalNetwork*& locnet, const std::string& configurat
   std::string query("select conf_id, "
                     "       algorithm, sigma_apr, conf_pr, tol_abs, sigma_act,"
                     "       update_cc, axes_xy, angles, epoch, ang_units, "
-                    "       latitude, ellipsoid "
+                    "       latitude, ellipsoid, cov_band "
                     "  from gnu_gama_local_configurations "
                     " where conf_name = '" + configuration + "'");
   exec(readerData->sqlite3Handle, query, sqlite_db_readConfigurationInfo, readerData);
@@ -459,10 +453,12 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
   ReaderData* d = static_cast<ReaderData*>(data);
 
   try {
-    if (argc == 13 && argv[0])
+    if (argc == 14 && argv[0])
       {
         d->configurationId = argv[0];
-        d->algorithm = argv[1];
+
+        if (argv[1])
+          d->lnet->set_algorithm(argv[1]);
 
         using namespace GNU_gama::local;
 
@@ -470,7 +466,6 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         if (d->lnet == 0)
           {
             d->lnet = new LocalNetwork;
-            d->lnet->set_algorithm(d->algorithm);
           }
 
         d->lnet->apriori_m_0(ToDouble(argv[2]));
@@ -502,30 +497,22 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
 	else
 	  d->lnet->PD.setAngularObservations_Lefthanded();
 
-        d->lnet->epoch = ToDouble(argv[9]);
+        if (argv[9])
+          d->lnet->set_epoch(ToDouble(argv[9]));
 
         if (std::string(argv[10]) == "400")
           d->lnet->set_gons();
         else
           d->lnet->degrees();
 
-        // latitude and ellipsiod are not defined in LocalNetwork, see gama-local.cpp
+        using namespace std;
         if (argv[11])
-          {
-            d->latitude = ToDouble(argv[11]) * M_PI / (d->lnet->gons() ? 200 : 180);
-            d->correction_to_ellipsoid = true;
-          }
+          d->lnet->set_latitude(atoi(argv[11]) * M_PI / 200);
 
         if (argv[12])
-          {
-            using namespace GNU_gama;
-            gama_ellipsoid gama_el = ellipsoid(argv[12]);
-            if  ( (gama_el == ellipsoid_unknown)
-                  || GNU_gama::set(&d->ellipsoid,  gama_el) )
-              throw GNU_gama::Exception::sqlitexc(T_gamalite_invalid_column_value);
+          d->lnet->set_ellipsoid(argv[12]);
 
-            d->correction_to_ellipsoid = true;
-          }
+        d->lnet->set_xml_covband(atoi(argv[13]));
 
         return 0;
       }

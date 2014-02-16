@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2006, 2012, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -41,9 +41,11 @@ void LocalNetworkAdjustmentResults::init()
   network_general_parameters.gama_local_version.  clear();
   network_general_parameters.gama_local_algorithm.clear();
   network_general_parameters.gama_local_compiler. clear();
-  network_general_parameters.epoch.  clear();
-  network_general_parameters.axes_xy.clear();
-  network_general_parameters.angles. clear();
+  network_general_parameters.axes_xy.  clear();
+  network_general_parameters.angles.   clear();
+  network_general_parameters.epoch.    clear();
+  network_general_parameters.latitude. clear();
+  network_general_parameters.ellipsoid.clear();
 
   coordinates_summary.adjusted.xyz = 0;
   coordinates_summary.adjusted.xy  = 0;
@@ -599,12 +601,16 @@ void LocalNetworkAdjustmentResults::Parser::network_general_parameters(bool star
             adj->network_general_parameters.gama_local_algorithm = val;
           else if (atr == "gama-local-compiler")
             adj->network_general_parameters.gama_local_compiler = val;
-          else if (atr == "epoch")
-            adj->network_general_parameters.epoch = val;
           else if (atr == "axes-xy")
             adj->network_general_parameters.axes_xy = val;
           else if (atr == "angles")
             adj->network_general_parameters.angles = val;
+          else if (atr == "epoch")
+            adj->network_general_parameters.epoch = val;
+          else if (atr == "latitude")
+            adj->network_general_parameters.latitude = val;
+          else if (atr == "ellipsoid")
+            adj->network_general_parameters.ellipsoid = val;
           else
             {
               error("unknown attribute");

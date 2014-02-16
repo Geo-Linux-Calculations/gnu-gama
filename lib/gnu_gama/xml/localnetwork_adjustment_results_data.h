@@ -50,9 +50,11 @@ namespace GNU_gama
       std::string gama_local_version;
       std::string gama_local_algorithm;
       std::string gama_local_compiler;
-      std::string epoch;
       std::string axes_xy;
       std::string angles;
+      std::string epoch;
+      std::string latitude;
+      std::string ellipsoid;
 
     } network_general_parameters;
 

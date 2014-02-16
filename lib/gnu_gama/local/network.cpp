@@ -39,6 +39,7 @@
 #include <gnu_gama/statan.h>
 #include <gnu_gama/sparse/smatrix_graph.h>
 #include <gnu_gama/version.h>
+#include <gnu_gama/ellipsoids.h>
 
 using namespace std;
 using namespace GNU_gama::local;
@@ -215,11 +216,16 @@ LocalNetwork::LocalNetwork()
     gons_(true)
 {
   least_squares = 0;
-
-  epoch = 0.0;
   Asp = 0;
 
-  xml_covband_ = -1;
+  xml_covband_   = -1;
+  // epoch_         = 0.0;
+  // has_epoch_     = false;
+  // latitude_      = M_PI/4.0;
+  // has_latitude_  = false;
+  // ellipsoid_     = "";
+  // has_ellipsoid_ = false;
+  clear_nullable_data();
 }
 
 
@@ -248,6 +254,12 @@ std::string LocalNetwork::algorithm() const
 }
 
 
+bool LocalNetwork::has_algorithm() const
+{
+  return has_algorithm_;
+}
+
+
 void LocalNetwork::set_algorithm(std::string alg)
 {
   typedef GNU_gama::local::MatVecException     MVE;
@@ -267,11 +279,94 @@ void LocalNetwork::set_algorithm(std::string alg)
       adjb = new OLS_env;
     }
   algorithm_ = alg;
+  has_algorithm_ = true;
 
   if (least_squares != 0) delete least_squares;
   least_squares = adjb;
 
   update(Points);
+}
+
+
+int LocalNetwork::xml_covband() const
+{
+  return xml_covband_;
+}
+
+
+void LocalNetwork::set_xml_covband(int val)
+{
+  if (val < -1) val = -1;
+  xml_covband_ = val;
+}
+
+
+double LocalNetwork::epoch() const
+{
+  return epoch_;
+}
+
+
+bool LocalNetwork::has_epoch() const
+{
+  return has_epoch_;
+}
+
+
+void LocalNetwork::set_epoch(double val)
+{
+  has_epoch_ = true;
+  epoch_ = val;
+}
+
+
+double LocalNetwork::latitude() const
+{
+  return latitude_;
+}
+
+
+bool LocalNetwork::has_latitude() const
+{
+  return has_latitude_;
+}
+
+
+void LocalNetwork::set_latitude(double val)
+{
+  has_latitude_ = true;
+  latitude_ = val;
+}
+
+
+std::string LocalNetwork::ellipsoid() const
+{
+  return ellipsoid_;
+}
+
+
+bool LocalNetwork::has_ellipsoid() const
+{
+return has_ellipsoid_;
+}
+
+void LocalNetwork::set_ellipsoid(std::string e)
+{
+  if (GNU_gama::ellipsoid(e.c_str())) ellipsoid_ = e;
+  else                                set_ellipsoid();
+  has_ellipsoid_ = true;
+}
+
+
+bool LocalNetwork::correction_to_ellipsoid() const
+{
+  return has_latitude_ || has_ellipsoid_;
+}
+
+
+void LocalNetwork::clear_nullable_data()
+{
+  has_algorithm_ = has_epoch_ = has_latitude_ = has_ellipsoid_ = false;
 }
 
 
@@ -345,7 +440,7 @@ void LocalNetwork::revision_observations()
       if (StandPoint* sp = dynamic_cast<StandPoint*>(*cit))
         {
           // 1.3.08 *** check for directions pointing to the same targer
-          set<PointID> targets;
+          std::set<PointID> targets;
 
           int active_directions = 0;
           for (ObservationList::iterator i=sp->observation_list.begin();
@@ -354,7 +449,7 @@ void LocalNetwork::revision_observations()
               if (const Direction* d = dynamic_cast<const Direction*>(*i))
                 if (d->active())
                   {
-                    set<PointID>::const_iterator s = targets.find( d->to() );
+                    std::set<PointID>::const_iterator s = targets.find( d->to() );
                     if (s == targets.end())
                       {
                         active_directions++;

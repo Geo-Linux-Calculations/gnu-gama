@@ -104,16 +104,10 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   }
 
   {
-    std::string algorithm;
-    if (localNetwork.algorithm().empty())
-      algorithm = "'gso', ";
-    else
-      algorithm = "'" + localNetwork.algorithm() + "', ";
-
     ostr <<  "insert into gnu_gama_local_configurations"
          <<  " (conf_id, conf_name, sigma_apr, conf_pr, tol_abs, sigma_act,"
-         <<  " update_cc, axes_xy, angles, epoch, algorithm, ang_units,"
-         <<  " latitude, ellipsoid) values ("
+         <<  " update_cc, axes_xy, angles, ang_units,"
+         <<  " cov_band, algorithm, epoch, latitude, ellipsoid) values ("
          <<  "(select new_id from (select coalesce(max(conf_id), 0)+1 as "
          <<  "new_id from gnu_gama_local_configurations)x),"
          <<  " '" + config +"', "
@@ -127,12 +121,19 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
          <<  axes
          << (localNetwork.PD.left_handed_angles()
              ? "'left-handed'" : "'right-handed'") << ", "
-         <<  localNetwork.epoch << ", "
-         << algorithm
          << (localNetwork.gons() ? 400 : 300) << ", "
-         << "50, "    // latitude
-         << "NULL"    // ellipsoid
-         << ");\n";
+         << localNetwork.xml_covband() << ", ";
+    // nullable data
+    if (localNetwork.has_algorithm()) ostr << "'" << localNetwork.algorithm()
+                                           << "', ";
+    else                              ostr << "NULL, ";
+    if (localNetwork.has_epoch())     ostr << localNetwork.epoch() << ", ";
+    else                              ostr << "NULL, ";
+    if (localNetwork.has_latitude())  ostr << localNetwork.latitude() << ", ";
+    else                              ostr << "NULL, ";
+    if (localNetwork.has_ellipsoid()) ostr << "'" << localNetwork.ellipsoid();
+    else                              ostr << "NULL";
+    ostr << ");\n";
   }
 
   /* <points-observations> atributes */

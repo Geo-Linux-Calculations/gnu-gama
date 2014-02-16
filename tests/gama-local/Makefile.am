@@ -4,7 +4,8 @@ TESTA = gama-local-version \
 	gama-local-xml-xml \
 	gama-local-html \
 	gama-local-equivalents \
-	gama-local-xml-results
+	gama-local-xml-results \
+	gama-local-parameters
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader
@@ -79,6 +80,12 @@ gama-local-xml-xml: $(GAMA_SCRIPT)/gama-local-xml-xml.in Makefile
 	$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-xml.in \
 				> gama-local-xml-xml
 	chmod +x gama-local-xml-xml
+
+gama-local-parameters: $(GAMA_SCRIPT)/gama-local-parameters.in Makefile
+	$(do_subst) < $(GAMA_SCRIPT)/gama-local-parameters.in \
+				> gama-local-parameters
+	chmod +x gama-local-parameters
+
 
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER

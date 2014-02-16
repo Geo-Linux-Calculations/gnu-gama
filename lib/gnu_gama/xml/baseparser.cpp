@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -92,6 +92,21 @@ bool CoreParser::toDouble(const std::string& s, double& d) const
     }
   else
     return false;
+}
+
+
+bool CoreParser::toInteger(const std::string& s, int& value) const
+{
+  if (IsInteger(s))
+    {
+      using namespace std;
+      value =atoi(s.c_str());
+      return true;
+    }
+  else
+    {
+      return false;
+    }
 }
 
 

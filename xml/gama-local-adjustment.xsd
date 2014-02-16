@@ -82,6 +82,8 @@
         </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="epoch" default="0.0" type="xs:NMTOKEN"/>
+      <xs:attribute name="latitude" type="xs:double"/>
+      <xs:attribute name="ellipsoid" type="xs:string"/>
     </xs:complexType>
   </xs:element>
 

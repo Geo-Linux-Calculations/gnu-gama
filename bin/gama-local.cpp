@@ -1,5 +1,6 @@
 /* GNU Gama C++ library
-   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014
+                 Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -153,9 +154,6 @@ int main(int argc, char **argv)
     const char* argv_sqlitedb = 0;
 #endif
 
-    bool correction_to_ellipsoid = false;
-    GNU_gama::Ellipsoid el;
-    double latitude = M_PI/4.0;
 
     for (int i=1; i<argc; i++)
       {
@@ -353,13 +351,12 @@ int main(int argc, char **argv)
           }
       }
 
-   if (argv_algo)
+    if (argv_algo)
       {
         IS->set_algorithm(argv_algo);
       }
 
-   // if algorithm is not explicitly defined implicit algorithm is set
-   if (IS->algorithm().empty()) IS->set_algorithm();
+    if (!IS->has_algorithm()) IS->set_algorithm();
 
     if (argv_angles)
       {
@@ -384,25 +381,27 @@ int main(int argc, char **argv)
 
     if (argv_latitude)
       {
-        if ( !GNU_gama::IsFloat(string(argv_latitude)) )
-          return help();
+        double latitude;
+        if (!GNU_gama::deg2gon(argv_latitude, latitude))
+          {
+            if (!GNU_gama::IsFloat(string(argv_latitude)))
+              return help();
 
-        latitude = atof(argv_latitude) * M_PI / (IS->gons() ? 200 : 180);
+            latitude = atof(argv_latitude);
+          }
 
-        correction_to_ellipsoid = true;
+        IS->set_latitude(latitude * M_PI/200);
       }
 
-    GNU_gama::set(&el, GNU_gama::ellipsoid_wgs84);
 
     if (argv_ellipsoid)
       {
         using namespace GNU_gama;
 
         gama_ellipsoid gama_el = ellipsoid(argv_ellipsoid);
-        if  ( (gama_el == ellipsoid_unknown) || GNU_gama::set(&el,  gama_el) )
-          return help();
+        if  (gama_el == ellipsoid_unknown) return help();
 
-        correction_to_ellipsoid = true;
+        IS->set_ellipsoid(argv_ellipsoid);
       }
 
 
@@ -431,9 +430,13 @@ int main(int argc, char **argv)
         acord.execute();
         ReducedObservationsText(IS,&(acord.RO), cout);
 
-        if (correction_to_ellipsoid)
+        if (IS->correction_to_ellipsoid())
           {
-            ReduceToEllipsoid reduce_to_el(IS->PD, IS->OD, el, latitude);
+            using namespace GNU_gama;
+            gama_ellipsoid elnum = ellipsoid(IS->ellipsoid().c_str());
+            Ellipsoid el;
+            GNU_gama::set(&el, elnum);
+            ReduceToEllipsoid reduce_to_el(IS->PD, IS->OD, el, IS->latitude());
             reduce_to_el.execute();
             ReducedObservationsToEllipsoidText(IS, reduce_to_el.getMap(), cout);
           }

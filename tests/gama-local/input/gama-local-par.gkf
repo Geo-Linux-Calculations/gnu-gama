@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
-<network>
+<network epoch="123">
 
 <description>
 Frantisek Charamza: GEODET/PC, User's Guide, Zdiby 1990
@@ -19,6 +19,7 @@ variant: two fixed points, others adjusted
 
    algorithm = "gso"
    cov-band  = "1"
+   latitude  = "50.2"
    ellipsoid = "wgs84"
 />
 

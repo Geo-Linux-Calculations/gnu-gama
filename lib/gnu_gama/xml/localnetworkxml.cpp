@@ -283,10 +283,6 @@ void LocalNetworkXML::write(std::ostream& out) const
       out << "   gama-local-algorithm=\"" << netinfo->algorithm()<< "\"\n";
       out << "   gama-local-compiler=\""  << GNU_gama_compiler   << "\"\n";
 
-      out.setf(ios_base::fixed, ios_base::floatfield);
-      out.precision(7);
-      out << "   epoch=\""<< netinfo->epoch << "\"\n";
-
       out << "   axes-xy=\"";
       switch (netinfo->PD.local_coordinate_system)
         {
@@ -306,6 +302,20 @@ void LocalNetworkXML::write(std::ostream& out) const
           << (netinfo->PD.right_handed_angles() ?
                                 "right-handed" : "left-handed")
           << "\"\n";
+
+      out.setf(ios_base::fixed, ios_base::floatfield);
+      out.precision(7);
+
+      // nullable data
+
+      if (netinfo->has_epoch())
+        out << "   epoch=\""<< netinfo->epoch() << "\"\n";
+
+      if (netinfo->has_latitude())
+        out << "   latitude=\"" << netinfo->latitude()/M_PI*200 << "\"\n";
+
+      if (netinfo->has_ellipsoid())
+        out << "   ellipsoid=\"" << netinfo->ellipsoid() << "\"\n";
 
       out << "/>\n";
     }

@@ -6,6 +6,7 @@ EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-xml-xml.in \
              gama-local-sqlite-reader.in \
              gama-local-version.in \
+             gama-local-parameters.in \
              xmllint-gama-local-xsd.in \
              xmllint-gama-local-adjustment-xsd.in
 

@@ -50,9 +50,11 @@ void LocalNetworkAdjustmentResultsData::init()
   network_general_parameters.gama_local_version.  clear();
   network_general_parameters.gama_local_algorithm.clear();
   network_general_parameters.gama_local_compiler. clear();
-  network_general_parameters.epoch.  clear();
-  network_general_parameters.axes_xy.clear();
-  network_general_parameters.angles. clear();
+  network_general_parameters.axes_xy.  clear();
+  network_general_parameters.angles.   clear();
+  network_general_parameters.epoch.    clear();
+  network_general_parameters.latitude. clear();
+  network_general_parameters.ellipsoid.clear();
 
   coordinates_summary.adjusted.xyz = 0;
   coordinates_summary.adjusted.xy  = 0;

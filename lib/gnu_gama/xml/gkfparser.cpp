@@ -416,7 +416,7 @@ namespace GNU_gama { namespace local {
     string  nam, val;
     state = state_network;
 
-    lnet.epoch = 0.0;
+    lnet.clear_nullable_data();
 
     while (*atts)
       {
@@ -453,7 +453,7 @@ namespace GNU_gama { namespace local {
             if (!toDouble(val, epoch))
               return error(T_GKF_error_on_reading_of_epoch
                            + nam + " = " + val);
-            lnet.epoch = epoch;
+            lnet.set_epoch(epoch);
           }
         else
           {
@@ -526,15 +526,31 @@ namespace GNU_gama { namespace local {
           }
         else if (jmeno == "algorithm")
           {
+            lnet.set_algorithm(hodnota);
           }
         else if (jmeno == "cov-band")
           {
+            int ival;
+            if (!toInteger(hodnota, ival))
+              return error(T_GKF_undefined_value_of_attribute
+                           + jmeno + " = " + hodnota);
+
+            lnet.set_xml_covband(ival);
           }
         else if (jmeno == "latitude")
           {
+            double dm;
+            if (!GNU_gama::deg2gon(hodnota, dm))
+              {
+                if (!toDouble(hodnota, dm))
+                  return error(T_GKF_undefined_value_of_attribute
+                               + jmeno + " = " + hodnota);
+              }
+            lnet.set_latitude(dm * M_PI / 200);
           }
-        else if (jmeno == "ellipsiod")
+        else if (jmeno == "ellipsoid")
           {
+            lnet.set_ellipsoid(hodnota);
           }
         else
           {

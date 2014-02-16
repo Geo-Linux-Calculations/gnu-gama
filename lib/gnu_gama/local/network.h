@@ -55,14 +55,10 @@ namespace GNU_gama { namespace local
     LocalNetwork();
     virtual ~LocalNetwork();
 
-    std::string algorithm() const;
-    void set_algorithm(std::string alg = std::string());
-
     PointData        PD;      // point list
     ObservationData  OD;      // observation list
 
     std::string   description;
-    double        epoch;
 
 
     // ...  information on points removed from adjustment  .................
@@ -274,23 +270,42 @@ namespace GNU_gama { namespace local
     void set_gons()      { gons_ = true;  Observation::gons = true;  }
     void set_degrees()   { gons_ = false; Observation::gons = false; }
 
-    void set_xml_covband(int band=-1) { xml_covband_ = band; }
-    int  xml_covband() const { return xml_covband_; }
-
     // ...  connected network  .............................................
 
     bool connected_network() const { return design_matrix_graph_is_connected; }
 
-
+    std::string algorithm() const;
+    bool        has_algorithm() const;
+    void        set_algorithm(std::string alg = std::string());
+    int         xml_covband() const;
+    void        set_xml_covband(int value=-1);
+    double      epoch() const;
+    bool        has_epoch() const;
+    void        set_epoch(double=0.0);
+    double      latitude() const;
+    bool        has_latitude() const;
+    void        set_latitude(double);
+    std::string ellipsoid() const;
+    bool        has_ellipsoid() const;
+    void        set_ellipsoid(std::string="wgs84");
+    bool        correction_to_ellipsoid() const;
+    void        clear_nullable_data();
 
     // #####################################################################
 
 
   private:
 
+    int         xml_covband_;         // output XML xyz cov bandWidth
     std::string algorithm_;           // algorithm name or empty string
+    bool        has_algorithm_;
+    double      epoch_;
+    bool        has_epoch_;
+    double      latitude_;
+    bool        has_latitude_;
+    std::string ellipsoid_;
+    bool        has_ellipsoid_;
 
-    // ObservationList      RSM;      // revised observation list
     RevisedObsList          RSM;
 
     PointIDList undefined_xy_z_;      // revision of points
@@ -346,7 +361,6 @@ namespace GNU_gama { namespace local
     Index* min_x_;
 
     bool   gons_;
-    int    xml_covband_;
 
     // preparation for design matrix
 

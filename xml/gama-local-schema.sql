@@ -39,12 +39,12 @@ create table gnu_gama_local_configurations (
    update_cc varchar(3) default 'no' not null check (update_cc in ('yes', 'no')),
    axes_xy   varchar(2) default 'ne' not null check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
    angles    varchar(12) default 'left-handed' not null check (angles in ('left-handed', 'right-handed')),
-   epoch     double precision default 0.0 not null,
-   algorithm varchar(12) default 'svd' not null check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
    ang_units integer default 400 not null check (ang_units in (400, 360)),
-   latitude  double precision default 50 not null,
-   ellipsoid varchar(20),
-   cov_band  integer default -1 not null check (cov_band >= -1)
+   cov_band  integer default -1 not null check (cov_band >= -1),
+   algorithm varchar(12) check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
+   epoch     double precision,
+   latitude  double precision,
+   ellipsoid varchar(20)
 );
 
 create table gnu_gama_local_descriptions (
