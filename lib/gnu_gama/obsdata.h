@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2012, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -150,7 +150,7 @@ namespace GNU_gama {
             }
 
         private:
-          friend class ObservationData;
+          friend class GNU_gama::ObservationData<Observation>;
           friend class iterator;
 
           const ObservationData*  OD;
@@ -245,7 +245,7 @@ namespace GNU_gama {
             }
 
         private:
-          friend class ObservationData;
+          friend class GNU_gama::ObservationData<Observation>;
 
           ObservationData*  OD;
           typename ObservationData::ClusterList::iterator  cluster;

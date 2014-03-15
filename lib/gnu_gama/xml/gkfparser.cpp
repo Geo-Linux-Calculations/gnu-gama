@@ -399,6 +399,10 @@ namespace GNU_gama { namespace local {
                   return error("bad namespace xmlns=\"" + val + "\"");
                 }
           }
+        else if (nam == "version")
+          {
+            // ###### ignored for backward compatibility ######
+          }
         else
           {
             return error(T_GKF_undefined_attribute_of_gama_xml
