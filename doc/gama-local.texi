@@ -20,7 +20,6 @@ If run without arguments @code{gama-local}
 prints a short help
 
 @example
-
 $ ./gama-local
 
 Adjustment of local geodetic network        version: @value{VERSION} / GNU g++
@@ -35,13 +34,15 @@ Usage: gama-local  input.xml  [options]
 Options:
 
 --algorithm  svd | gso | cholesky | envelope
---language   en | ca | cz | du | es | fi | fr | hu | ru | ua
+--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh
 --encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251
 --angles     400 | 360
 --latitude   <latitude>
 --ellipsoid  <ellipsoid name>
 --text       adjustment_results.txt
+--html       adjustment_results.html
 --xml        adjustment_results.xml
+--svg        network_configuration.svg
 --cov-band   covariance matrix of adjusted parameters in XML output
              n  = -1  for full covariance matrix (implicit value)
              n >=  0  covariances are computed only for bandwidth n

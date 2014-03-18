@@ -17,14 +17,13 @@ The XML definition can be found at
 @noindent
 Input data (points, observations and other related information) are
 described using XML start-end pair tags @code{<xxx>} and @code{</xxx>}
-and empty-element tags @code{<xxx/>}. The syntax of XML input format is
-defined in the Document Type Definition (DTD) at
+and empty-element tags @code{<xxx/>}. 
 
-@center    @uref{http://www.gnu.org/software/gama/gama-local.dtd}
-
-@noindent
-and can formally be validated independently on the program
-@code{gama-local}.
+The syntax of XML @code{gama-local} input format is described in XML
+schema (XSD), the file @code{gama-local.xsd} is a part of the
+@code{GNU gama} distribution and can formally be validated
+independently on the program @code{gama-local}, namely in unit testing
+we use @code{xmllint} validating parser, if it is installed.
 
 
 For parsing the XML input data, @code{gama-local} uses the XML parser
@@ -265,6 +264,30 @@ adjustment. If test on linerarization fails (@pxref{Linearization}),
 Gama tries to improve approximate coordinates of adjusted points and
 repeats the whole adjustment. Coordinates of constrained points are
 implicitly not changed during iterations.
+
+@item 
+@code{algorithm = "gso"} numerical algortihm used in the adjistment
+(gso, svd, cholesky, envelope).
+
+@item
+@code{languade = "en"} the language to be used in adjustment output.
+
+@item
+@code{encoding = "utf-8"} adjustment output encoding.
+
+@item
+@code{angles = "400"} output results angular units (400/360).
+
+@item
+@code{latitude = "50"}
+
+@item
+@code{ellipsoid}
+
+@item
+@code{cov-band = "-1"} the bandwith of covariance matrix of the
+adjusted parameters in the output XML file (-1 means all covariances).
+
 @end itemize
 
 @noindent
@@ -1132,15 +1155,12 @@ guide to Geodet/PC by Frantisek Charamza.
 
 @example
 <?xml version="1.0" ?>
-<!DOCTYPE gama-local 
-  SYSTEM "http://www.gnu.org/software/gama/gama-local.dtd">   
 
-<gama-local>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
 <network axes-xy="sw">          
 
 <description>
-XML input stream of points and observation data for program Gama
-<!-- this is a XML comment -->
+XML input stream of points and observation data for the program GNU gama
 </description>
 
 <!-- parameters are expressed with empty-element tag -->
