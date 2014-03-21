@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
           const std::vector<std::string>& desc = adj.xmlerror.getDescription();
           if (!desc.empty()) out << "\n";
-          for (int i=0; i<desc.size(); i++) out << desc[i] << "\n";
+          for (unsigned int i=0; i<desc.size(); i++) out << desc[i] << "\n";
 
           if (adj.xmlerror.hasLineNumber())
             out << "\nline number : " << adj.xmlerror.getLineNumber() << "\n";
@@ -582,7 +582,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
 
   const int MAXWID  = 12;     // IS->maxw_id();
   const int MAXWUNK =  3;     // IS->maxw_unk();
-  const int MAXWOBS =  4;     // IS->maxw_obs();
+  //const int MAXWOBS =  4;     // IS->maxw_obs();
 
   std::string prev_id;
 
@@ -628,7 +628,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
             table += 13;
           }
         cout << ostr.str() << '\n';
-        for (int i=0; i<ostr.str().size(); i++) cout << '=';
+        for (unsigned int i=0; i<ostr.str().size(); i++) cout << '=';
         cout << "\n\n";
 
         for (int i=0, N=adj.fixed_points.size(); i<N; ++i)
@@ -668,7 +668,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
   double kki         = adj.standard_deviation.confidence_scale;
   bool   coordinates = false;
   bool   heights     = false;
-  for (int i=0; i<adj.adjusted_points.size(); i++)
+  for (unsigned int i=0; i<adj.adjusted_points.size(); i++)
     {
       if (adj.adjusted_points[i].hxy) coordinates = true;
       if (adj.adjusted_points[i].hz ) heights     = true;
@@ -689,7 +689,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
       cout.setf(ios_base::fixed, ios_base::floatfield);
 
       prev_id.clear();
-      for (int ii=0; ii<adj.adjusted_points.size(); ii++)
+      for (unsigned int ii=0; ii<adj.adjusted_points.size(); ii++)
         {
           const Adjustment::Point point = adj.adjusted_points[ii];
           const Adjustment::Point aprox = adj.approximate_points[ii];
@@ -706,7 +706,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
               prev_id = point.id;
               double mx = std::sqrt(adj.cov(point.indx, point.indx));
               double my = std::sqrt(adj.cov(point.indy, point.indy));
-              double mp = sqrt(my*my+mx*mx);
+              //double mp = sqrt(my*my+mx*mx);
               cout << "\n";
 
               cout.width(MAXWUNK);
@@ -817,7 +817,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
             cout <<
               "====== [d] ========= [d] ======== [d] =========== [ss] ===\n\n";
 
-          for (int i=0; i<adj.orientations.size(); i++)
+          for (unsigned int i=0; i<adj.orientations.size(); i++)
             {
               const Adjustment::Orientation& orp = adj.orientations[i];
 
@@ -885,7 +885,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
         int number_of_points = 0;
 
         bool has_coordinates = false;
-        for (int i=0; i<adj.adjusted_points.size(); i++)
+        for (unsigned int i=0; i<adj.adjusted_points.size(); i++)
           if (adj.adjusted_points[i].hxy)
             {
               has_coordinates = true;
@@ -911,7 +911,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
                 "== [mm] == [mm] ==== a [mm] b ==== [d] ===== a' [mm] b' ========";
             cout << "\n\n";
 
-            for (int i=0; i<adj.adjusted_points.size(); i++)
+            for (unsigned int i=0; i<adj.adjusted_points.size(); i++)
               {
                 const Adjustment::Point& point = adj.adjusted_points[i];
                 if (!point.hxy) continue;
@@ -1061,7 +1061,7 @@ void adjusted_parameters(Stream& cout,const Adjustment& adj)
       cout << T_GaMa_adjunk_header6;
       cout.setf(ios_base::fixed, ios_base::floatfield);
 
-      for (int i=0; i<adj.adjusted_points.size(); i++)
+      for (unsigned int i=0; i<adj.adjusted_points.size(); i++)
         {
           const Adjustment::Point& point = adj.adjusted_points[i];
           if (!point.hz) continue;
@@ -1105,7 +1105,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
   using std::setprecision;
 
   const int MAXWID  = 12;     // IS->maxw_id();
-  const int MAXWUNK =  3;     // IS->maxw_unk();
+  // const int MAXWUNK =  3;     // IS->maxw_unk();
   const int MAXWOBS =  4;     // IS->maxw_obs();
 
   const double kki   = adj.standard_deviation.confidence_scale;
@@ -1118,7 +1118,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
 
   int minval = 12;
   int maxval = minval;   // maximal value field width (coordinates!)
-  for (int i=0; i<adj.obslist.size(); i++)
+  for (unsigned int i=0; i<adj.obslist.size(); i++)
     {
       const Adjustment::Observation& obs = adj.obslist[i];
       int z = 0;
@@ -1161,7 +1161,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
     cout << "==== [m|d] ====== [mm|ss] ==\n\n";
 
   std::string predcs="";  // previous standpoint ID
-  for (int i=0; i<adj.obslist.size(); i++)
+  for (unsigned int i=0; i<adj.obslist.size(); i++)
     {
       const Adjustment::Observation& obs = adj.obslist[i];
 
@@ -1364,7 +1364,7 @@ void adjusted_observations(Stream& cout,const Adjustment& adj)
     int imax = -1;         // index of maximal studentized residual
   {
     double maxno = 0;
-    for (int i=1; i<adj.obslist.size(); i++)
+    for (unsigned int i=1; i<adj.obslist.size(); i++)
       {
         const Adjustment::Observation& obs = adj.obslist[i];
 

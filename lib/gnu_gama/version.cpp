@@ -1,6 +1,6 @@
 /*
   GNU Gama --- Geodesy and Mapping C++ library
-  Copyright (C) 1999, 2003, 2005, 2011  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 1999, 2003, 2005, 2011, 2014  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -19,10 +19,11 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* The macro VERSION is normally defined in <config.h> created by autoconf.
+/* The VERSION macro is normally defined in <config.h> created by autoconf.
 
-   The #ifndef preprocessor command is used here to enable Qt builds
-   to define their own VERSION number without explicit use of <config.h>
+   The #ifndef preprocessor command is used here to enable Qt and MSVC
+   builds to define their own VERSION number without explicit use of
+   <config.h>
  */
 #ifndef VERSION
 
@@ -39,31 +40,33 @@
 #include <gnu_gama/version.h>
 #include <iostream>
 
+#define str(s)  # s
+#define xstr(s) str(s)
+
 namespace GNU_gama {
 
-  // const char* GNU_gama_version  = "1.9.01a";
   // VERSION is defined in config.h
   const char* GNU_gama_version  = VERSION;
 
   const char* GNU_gama_compiler =
-              #if   defined (__GNUC__)
-              "GNU g++"             // g++ 3.3 / 3.4
-              #elif defined (__BORLANDC__)
-              "win32-borland"       // 5.6
-              #elif defined (_MSC_VER)
-              "win32-msvc"          // 1300
-              #else
-              #error GNU_gama - has not been tested with your compiler
-              #endif
-              ;
+#if   defined  (__GNUC__)
+    "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__) "." xstr(__GNUC_PATCHLEVEL__)
+#elif defined  (_MSC_VER)
+    "msc " xstr(_MSC_VER)
+#else
+    " unknown compiler"
+#error GNU_gama - has not been tested with your compiler
+#endif
+    ;
 
-  const char* GNU_gama_year = "2011";
+  const char* GNU_gama_year = "2014";
 
 
   int version(const char* program, const char* copyright_holder)
   {
     std::cout
-      << program << " (GNU Gama) " << GNU_gama_version << "\n"
+      << program << " (GNU Gama) " << GNU_gama_version
+      << " / " << GNU_gama_compiler << "\n"
       << "Copyright (C) " << GNU_gama_year << " "
       << copyright_holder << "\n" <<
       "License GPLv3+: GNU GPL version 3 or later "

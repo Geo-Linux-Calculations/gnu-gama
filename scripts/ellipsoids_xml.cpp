@@ -478,8 +478,8 @@ void Parser::xml2texi(ostream& out)
 int main(int argc, char* argv[])
 {
   if (argc != 3 ||
-      argc == 3 && (!strcmp(argv[1],"-h") || !strcmp(argv[1],"--help") ||
-                    !strcmp(argv[2],"-h") || !strcmp(argv[2],"--help")) )
+      (argc == 3 && (!strcmp(argv[1],"-h") || !strcmp(argv[1],"--help") ||
+                    !strcmp(argv[2],"-h") || !strcmp(argv[2],"--help"))) )
     {
       cout << "\nusage: ellipsoids_xml  input.xml  output_directory\n\n";
       return 1;
