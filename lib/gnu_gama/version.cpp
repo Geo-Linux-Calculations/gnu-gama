@@ -52,10 +52,10 @@ namespace GNU_gama {
 #if   defined  (__GNUC__)
     "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__) "." xstr(__GNUC_PATCHLEVEL__)
 #elif defined  (_MSC_VER)
-    "msc " xstr(_MSC_VER)
+    "MSVC " xstr(_MSC_VER)
 #else
     " unknown compiler"
-#error GNU_gama - has not been tested with your compiler
+#error GNU gama - has not been tested with your compiler
 #endif
     ;
 
