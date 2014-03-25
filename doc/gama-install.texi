@@ -63,7 +63,15 @@ $ doxygen
 in your @code{gama} directory.
 Doxygen output will be in the @code{doxygen} directory.
 
+
+@menu
+* Precompiled binaries for Windows::
+@end menu
+
+@node       Precompiled binaries for Windows
 @subsection Precompiled binaries for Windows
+@cindex     Windows, precompiled binaries 
+
 
 GNU Gama builds for Windows are available from
 
