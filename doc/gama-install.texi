@@ -62,3 +62,10 @@ $ doxygen
 @end example
 in your @code{gama} directory.
 Doxygen output will be in the @code{doxygen} directory.
+
+@subsection Precompiled binaries for Windows
+
+GNU Gama builds for Windows are available from
+
+@center @uref{https://sourceforge.net/projects/gnu-gama-builds/}
+
