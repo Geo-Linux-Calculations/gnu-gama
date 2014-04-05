@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.65)
-AC_INIT([gama], [1.15], [bug-gama@gnu.org])
+AC_INIT([gama], [1.15a], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -17,6 +17,9 @@ AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+
+AC_SUBST([CXXFLAGS],["$CXXFLAGS -Wall -std=c++0x"])
+AC_MSG_NOTICE([using CXXFLAGS $CXXFLAGS])
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
 
