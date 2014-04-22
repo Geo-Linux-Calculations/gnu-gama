@@ -189,6 +189,7 @@ matvec_src = \
    matvec/symmat.h \
    matvec/transmat.h \
    matvec/transvec.h \
+   matvec/unsigned.h \
    matvec/vecbase.h \
    matvec/vec.h
 

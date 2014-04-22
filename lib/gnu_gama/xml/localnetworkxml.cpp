@@ -575,14 +575,14 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       tagsp(out, "id", (*i).first);
       if (bxy)
         {
-          const double x = (p.x()+X(p.index_x())/1000);
-          const double y = (p.y()+X(p.index_y())/1000)*y_sign;
+          const double x = p.x();
+          const double y = p.y()*y_sign;
           tagsp(out, "x", x);
           tagsp(out, "y", y);
         }
       if (bz)
         {
-          const double z = (p.z()+X(p.index_z())/1000);
+          const double z = p.z();
           tagsp(out, "z", z);
         }
       out << "</point>\n";
@@ -812,11 +812,6 @@ void LocalNetworkXML::observations(std::ostream& out) const
    for (int i=1; i<=pocmer; i++)
      {
        Observation* pm = netinfo->ptr_obs(i);
-       // bool isangle    = false;
-
-       Angle* u = 0;
-       bool xyz = false;
-       const char* tag = 0;
 
        ostringstream ostr;
        ostr.setf(ios_base::fixed, ios_base::floatfield);

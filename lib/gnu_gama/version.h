@@ -22,11 +22,13 @@
 #ifndef GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
 #define GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
 
+#include <string>
+
 namespace GNU_gama {
 
-  extern const char* GNU_gama_version;
-  extern const char* GNU_gama_compiler;
-  extern const char* GNU_gama_year;
+  extern std::string GNU_gama_version;
+  extern std::string GNU_gama_compiler;
+  extern std::string GNU_gama_year;
 
   int version(const char* program, const char* copyright_holder);
 }

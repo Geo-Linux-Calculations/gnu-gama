@@ -24,6 +24,7 @@
 
 #include <matvec/matvec.h>
 #include <matvec/choldec.h>
+#include <matvec/unsigned.h>
 
 
 namespace GNU_gama {   /** \brief Symmetrix matrix */
@@ -66,14 +67,14 @@ public:
     }
   void reset(Index r, Index c)
     {
-      if (r != c || r < 0)
+      if (r != c || isNegative(r))
         throw Exc(Exception::BadRank, "SymMat::reset(Index, Index)");
       dim_ = this->row_ = this->col_ = r;
       this->resize(r*(r+1)/2);
     }
   void reset(Index d)
     {
-      if (d < 0)
+      if (isNegative(d))
         throw Exc(Exception::BadRank, "SymMat::reset(Index)");
       reset(d, d);
     }

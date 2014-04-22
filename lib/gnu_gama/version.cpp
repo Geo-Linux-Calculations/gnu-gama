@@ -46,9 +46,9 @@
 namespace GNU_gama {
 
   // VERSION is defined in config.h
-  const char* GNU_gama_version  = VERSION;
+  std::string GNU_gama_version  = VERSION;
 
-  const char* GNU_gama_compiler =
+  std::string GNU_gama_compiler =
 #if   defined  (__GNUC__)
     "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__) "." xstr(__GNUC_PATCHLEVEL__)
 #elif defined  (_MSC_VER)
@@ -59,7 +59,7 @@ namespace GNU_gama {
 #endif
     ;
 
-  const char* GNU_gama_year = "2014";
+  std::string GNU_gama_year = "2014";
 
 
   int version(const char* program, const char* copyright_holder)
