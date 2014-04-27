@@ -683,7 +683,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   int band = 0;   // signed value, must not be declared as Index
   if (dim)
     {
-      band = netinfo->xml_covband();
+      band = netinfo->adj_covband();
       if (band == -1 || band > dim-1) band = dim - 1;
     }
   out << "\n<!-- upper part of symmetric matrix band by rows -->\n"

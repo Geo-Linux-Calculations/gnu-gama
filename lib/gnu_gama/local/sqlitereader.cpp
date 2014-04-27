@@ -512,7 +512,7 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         if (argv[12])
           d->lnet->set_ellipsoid(argv[12]);
 
-        d->lnet->set_xml_covband(atoi(argv[13]));
+        d->lnet->set_adj_covband(atoi(argv[13]));
 
         return 0;
       }
@@ -849,7 +849,7 @@ int sqlite_db_readVectors(void* data, int argc, char** argv, char**)
             zdiff->set_to_dh(to_dh);
           }
 
-        if (int rejected = ToInteger(argv[8]))
+        if (/*int rejected = */ ToInteger(argv[8]))
           {
             xdiff->set_passive();
             ydiff->set_passive();

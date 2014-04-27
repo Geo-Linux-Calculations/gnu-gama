@@ -72,8 +72,8 @@ public:
                                     const GNU_gama::local::Vec& residuals,
                                     int ySign,
                                     int columnWidth)
-        : IS(localNetwork), out(outStream), maxval(columnWidth),
-          v(residuals), y_sign(ySign)
+      : out(outStream), IS(localNetwork), maxval(columnWidth),
+        v(residuals), y_sign(ySign)
     {}
 
     /** \brief Sets index of observation which will be used in the next visit. */

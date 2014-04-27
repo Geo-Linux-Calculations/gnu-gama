@@ -218,7 +218,7 @@ LocalNetwork::LocalNetwork()
   least_squares = 0;
   Asp = 0;
 
-  xml_covband_   = -1;
+  set_adj_covband();
   // epoch_         = 0.0;
   // has_epoch_     = false;
   // latitude_      = M_PI/4.0;
@@ -288,16 +288,16 @@ void LocalNetwork::set_algorithm(std::string alg)
 }
 
 
-int LocalNetwork::xml_covband() const
+int LocalNetwork::adj_covband() const
 {
-  return xml_covband_;
+  return adj_covband_;
 }
 
 
-void LocalNetwork::set_xml_covband(int val)
+void LocalNetwork::set_adj_covband(int val)
 {
   if (val < -1) val = -1;
-  xml_covband_ = val;
+  adj_covband_ = val;
 }
 
 

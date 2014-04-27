@@ -33,6 +33,7 @@
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/xsd.h>
+#include <matvec/unsigned.h>
 
 namespace {
   typedef std::pair<double, bool> DB_pair;
@@ -539,7 +540,7 @@ namespace GNU_gama { namespace local {
               return error(T_GKF_undefined_value_of_attribute
                            + jmeno + " = " + hodnota);
 
-            lnet.set_xml_covband(ival);
+            lnet.set_adj_covband(ival);
           }
         else if (jmeno == "latitude")
           {
@@ -1294,7 +1295,7 @@ namespace GNU_gama { namespace local {
       return error(T_GKF_cov_mat_bad_band_width + nam + " = " + val);
 
     if (idim  < 1) return error(T_GKF_cov_mat_bad_dim + nam + " = " + val);
-    if (iband < 0 || iband >= idim)
+    if (isNegative(iband) || iband >= idim)
       return error(T_GKF_cov_mat_bad_band_width + nam + " = " + val);
 
     return 0;

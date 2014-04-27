@@ -294,8 +294,8 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
          <<  axes
          << (localNetwork.PD.left_handed_angles()
              ? "'left-handed'" : "'right-handed'") << ", "
-         << (localNetwork.gons() ? 400 : 300) << ", "
-         << localNetwork.xml_covband() << ", ";
+         << (localNetwork.gons() ? 400 : 360) << ", "
+         << localNetwork.adj_covband() << ", ";
     // nullable data
     if (localNetwork.has_algorithm()) ostr << "'" << localNetwork.algorithm()
                                            << "', ";
@@ -934,7 +934,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
       { // covariance matrix
         Index dim  = netinfo->sum_unknowns();
-        int band = netinfo->xml_covband();
+        int band = netinfo->adj_covband();
         if (band < 0) band = dim-1;
 
         const double m2 = netinfo->m_0() * netinfo->m_0();

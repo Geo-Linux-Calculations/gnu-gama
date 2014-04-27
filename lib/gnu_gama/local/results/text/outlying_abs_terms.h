@@ -62,7 +62,7 @@ public:
      * \param outStream reference to output stream
      */
     OutlyingAbsoluteTermsVisitor(GNU_gama::local::LocalNetwork* localNetwork, OutStream& outStream)
-        : IS(localNetwork), out(outStream)
+      : out(outStream), IS(localNetwork)
     {}
 
     void  visit(Distance* obs)

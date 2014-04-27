@@ -59,9 +59,10 @@ void ReducedObservationsText(GNU_gama::local::LocalNetwork* IS,
        << underline(T_GaMa_reduced_Review_of_reduced_observations, '*')
        << "\n\n";
 
+   /* [-Wempty-body]
    if ( reduced->size_nonexist() )
        ; // size_nonexist
-
+   */
 
    int minval_obs = 12;
    int maxval_obs = minval_obs;

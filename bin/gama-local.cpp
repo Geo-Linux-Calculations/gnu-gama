@@ -376,7 +376,7 @@ int main(int argc, char **argv)
         char c;
         if (istr >> c) return help();
 
-        IS->set_xml_covband(band);
+        IS->set_adj_covband(band);
       }
 
     if (argv_latitude)
