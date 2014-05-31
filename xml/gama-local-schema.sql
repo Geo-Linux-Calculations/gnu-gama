@@ -24,10 +24,15 @@
 
 create table gnu_gama_local_schema_version (
    major integer default 1 not null check (major = 1),
-   minor integer default 1 not null check (minor = 90),
+   minor integer default 1 not null check (minor = 91),
    primary key (major, minor)
 );
-insert into gnu_gama_local_schema_version (major, minor) values (1, 90);
+insert into gnu_gama_local_schema_version (major, minor) values (1, 91);
+
+create table gnu_gama_local_options {
+   opt_key varchar(40),
+   opt_val varchar(80)
+};
 
 create table gnu_gama_local_configurations (
    conf_id   integer primary key,
