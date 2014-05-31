@@ -29,10 +29,10 @@ create table gnu_gama_local_schema_version (
 );
 insert into gnu_gama_local_schema_version (major, minor) values (1, 91);
 
-create table gnu_gama_local_options {
+create table gnu_gama_local_options (
    opt_key varchar(40),
    opt_val varchar(80)
-};
+);
 
 create table gnu_gama_local_configurations (
    conf_id   integer primary key,
