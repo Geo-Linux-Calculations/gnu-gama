@@ -33,20 +33,4 @@ the gama-local examples from GIT use the command
 \verbatim
 git clone git://git.sv.gnu.org/gama/examples.git
 \endverbatim
-
-
-\namespace GaMaLib  \brief Deprecated
-
-GaMaLib is a second namespace used in GNU Gama for objects related
-only in gama-local program. Object from GaMaLib namespace are
-deprecated.
-
-The main namespace of GNU Gama project is GNU_gama.
-
-\namespace GNU_gama \brief GNU gama main namespace
-
-GNU_gama is the main project namespace
-
-\namespace GNU_gama::local \brief Local network adjustment
-
 */
