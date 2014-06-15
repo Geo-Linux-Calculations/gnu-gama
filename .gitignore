@@ -64,7 +64,6 @@ scripts/gnu_gama_dep
 scripts/slovnikar
 #
 # doxygen
-html
-latex
+dox
 #
 lib/gnu_gama/local/language.html
