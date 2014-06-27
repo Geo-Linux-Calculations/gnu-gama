@@ -1,5 +1,6 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+                 2014  Maxime Le Moual <maxime.le-moual@ensg.eu>
 
    This file is part of the GNU Gama C++ library.
 
@@ -21,6 +22,7 @@
  * \brief #GNU_gama::local::GamaLocalSVG class implementation
  *
  * \author Ales Cepek
+ * \author Maxime Le Moual
  */
 
 #include <gnu_gama/local/svg.h>
@@ -174,11 +176,24 @@ void GamaLocalSVG::svg_init() const
   fontsize = offset*0.4;
   if (fontsize == 0) fontsize = 1;
   symbolsize  = fontsize;
-  strokewidth = 1;
+  strokewidth = offset*0.01;
+  if (strokewidth == 0) strokewidth = 1;
 
   fixedsymbol = "triangle";     fixedfill = "blue";
   constrainedsymbol = "circle"; constrainedfill = "green";
   freesymbol = "circle";        freefill = "yellow";
+
+#if 0
+  std::cerr << "### initial implicit SVG units\n";
+  std::cerr << "### minx        = " << minx << "\n";
+  std::cerr << "### maxx        = " << maxx << "\n";
+  std::cerr << "### miny        = " << miny << "\n";
+  std::cerr << "### maxy        = " << maxy << "\n";
+  std::cerr << "### offset      = " << offset << "\n";
+  std::cerr << "### fontsize    = " << fontsize << "\n";
+  std::cerr << "### symbolsize  = " << symbolsize << "\n";
+  std::cerr << "### strokewidth = " << strokewidth << "\n";
+#endif
 }
 
 void GamaLocalSVG::svg_xy(const LocalPoint& point, double& x, double& y) const

@@ -1,5 +1,6 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+                 2014  Maxime Le Moual <maxime.le-moual@ensg.eu>
 
    This file is part of the GNU Gama C++ library.
 
@@ -21,6 +22,7 @@
  * \brief #GNU_gama::local::GamaLocalSVG class header file
  *
  * \author Ales Cepek
+ * \author Maxime Le Moual
  */
 
 #ifndef GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
@@ -72,49 +74,49 @@ namespace GNU_gama { namespace local {
       void setDrawAxes(bool p) {tst_draw_axes = p; }
 
       /** Font size. */
-      int fontSize() const { return fontsize; }
+      double fontSize() const { return fontsize; }
       /** Set font size */
-      void setFontSize(int p) { fontsize = p;}
+      void setFontSize(double p) { fontsize = p; }
 
       /** Symbol size. */
-      int symbolSize() const { return symbolsize; }
+      double symbolSize() const { return symbolsize; }
       /** Set symbol size */
-      void setSymbolSize(int p) { symbolsize = p;}
+      void setSymbolSize(double p) { symbolsize = p; }
 
       /** SVG stroke width. */
-      int strokeWidth() const { return strokewidth; }
+      double strokeWidth() const { return strokewidth; }
       /** Set SVG stroke size */
-      void setStrokeWidth(int p) { strokewidth = p;}
+      void setStrokeWidth(double p) { strokewidth = p; }
 
       /** Fixed points' symbol. */
       std::string fixedSymbol() const { return fixedsymbol; }
       /** Set symbol for fixed points */
-      void setFixedSymbol(std::string p) { fixedsymbol = p;}
+      void setFixedSymbol(std::string p) { fixedsymbol = p; }
 
       /** Constrained points' symbol. */
       std::string constrainedSymbol() const { return constrainedsymbol; }
       /** Set symbol for fixed points */
-      void setConstrainedSymbol(std::string p) { constrainedsymbol = p;}
+      void setConstrainedSymbol(std::string p) { constrainedsymbol = p; }
 
       /** Free points' symbol. */
       std::string freeSymbol() const { return freesymbol; }
       /** Set symbol for fixed points */
-      void setFreeSymbol(std::string p) { freesymbol = p;}
+      void setFreeSymbol(std::string p) { freesymbol = p; }
 
       /** Fixed points' fill. */
       std::string fixedFill() const { return fixedfill; }
       /** Set fill for fixed points */
-      void setFixedFill(std::string p) { fixedfill = p;}
+      void setFixedFill(std::string p) { fixedfill = p; }
 
       /** Constrained points' fill. */
       std::string constrainedFill() const { return constrainedfill; }
       /** Set fill for constrained points */
-      void setConstrainedFill(std::string p) { constrainedfill = p;}
+      void setConstrainedFill(std::string p) { constrainedfill = p; }
 
       /** Free points' fill. */
       std::string freeFill() const { return freefill; }
       /** Set symbol for fixed points */
-      void setFreeFill(std::string p) { freefill = p;}
+      void setFreeFill(std::string p) { freefill = p; }
 
     private:
       LocalNetwork&          IS;
@@ -126,7 +128,7 @@ namespace GNU_gama { namespace local {
 
       // SVG coordinates bounding box and offset
       mutable bool not_in_constructor;
-      mutable int  minx, maxx, miny, maxy, offset;
+      mutable double  minx, maxx, miny, maxy, offset;
       mutable double ab_median;
       void svg_xy(const LocalPoint& point, double& x, double& y) const;
       void svg_draw_point  (const PointID& pid, const LocalPoint& point) const;
@@ -138,7 +140,7 @@ namespace GNU_gama { namespace local {
       void svg_points      () const;
       void svg_observations() const;
 
-      mutable int fontsize, symbolsize, strokewidth;
+      mutable double fontsize, symbolsize, strokewidth;
       mutable bool tst_draw_axes, tst_draw_point_symbols, tst_draw_point_ids,
         tst_draw_ellipses, tst_draw_observations;
       mutable std::string  fixedsymbol, fixedfill, constrainedsymbol,
