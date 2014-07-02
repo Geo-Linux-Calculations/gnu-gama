@@ -77,12 +77,24 @@ using namespace GNU_gama::local;
 
 GamaLocalSVG::GamaLocalSVG(LocalNetwork* is)
   : IS(*is), PD(is->PD), OD(is->OD),
-    ysign(GaMaConsistent(PD) ? +1 : -1),
-    not_in_constructor(false),
-    tst_draw_axes(true), tst_draw_point_symbols(true),
-    tst_draw_point_ids(true), tst_draw_ellipses(true),
-    tst_draw_observations(true)
+    ysign(GaMaConsistent(PD) ? +1 : -1)
 {
+  restoreDefaults();
+}
+
+void GamaLocalSVG::restoreDefaults()
+{
+  tst_implicit_size = true;
+  tst_draw_axes = true;
+  tst_draw_point_symbols = true;
+  tst_draw_point_ids = true;
+  tst_draw_ellipses = true;
+  tst_draw_observations = true;
+
+  fixedsymbol = "triangle";         fixedfill = "blue";
+  constrainedsymbol = "circle";     constrainedfill = "green";
+  freesymbol = "circle";            freefill = "yellow";
+
   svg_init();
 }
 
@@ -170,18 +182,15 @@ void GamaLocalSVG::svg_init() const
   // font and symbol sizes must be initialized only once
   // int the constructer, otherwise they could not be setup
   // by the interface
-  if (not_in_constructor) return;
-  not_in_constructor = true;
 
-  fontsize = offset*0.4;
-  if (fontsize == 0) fontsize = 1;
-  symbolsize  = fontsize;
-  strokewidth = offset*0.01;
-  if (strokewidth == 0) strokewidth = 1;
-
-  fixedsymbol = "triangle";     fixedfill = "blue";
-  constrainedsymbol = "circle"; constrainedfill = "green";
-  freesymbol = "circle";        freefill = "yellow";
+  if (tst_implicit_size)
+  {
+    fontsize = offset*0.4;
+    if (fontsize == 0) fontsize = 0.0001;
+    symbolsize  = fontsize;
+    strokewidth = offset*0.01;
+    if (strokewidth == 0) strokewidth = 0.0001;
+  }
 
 #if 0
   std::cerr << "### initial implicit SVG units\n";
@@ -250,8 +259,8 @@ void GamaLocalSVG::draw(std::ostream& output_stream) const
 }
 
 void GamaLocalSVG::svg_point_shape (double x, double y,
-                                    std::string type,  // Fixed Constrained Free
-                                    std::string shape, // triangle, circle
+                                    std::string /*type*/,  // Fixed Constrained Free
+                                    std::string shape,     // triangle, circle
                                     std::string fillColor
                                     ) const
 {

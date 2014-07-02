@@ -54,7 +54,7 @@ namespace GNU_gama { namespace local {
       void setDrawPointSymbols(bool p) {tst_draw_point_symbols = p; }
 
       /** Draw point IDs. */
-      bool drawPoinsIDs() const { return tst_draw_point_ids; }
+      bool drawPointIDs() const { return tst_draw_point_ids; }
       /** Set drawing of point IDs. */
       void setDrawPointIDs(bool p) {tst_draw_point_ids = p; }
 
@@ -64,7 +64,7 @@ namespace GNU_gama { namespace local {
       void setDrawEllipses(bool p) {tst_draw_ellipses = p; }
 
       /** Draw observations. */
-      bool drawPoinsObservations() const { return tst_draw_observations; }
+      bool drawObservations() const { return tst_draw_observations; }
       /** Set drawing of point symbols. */
       void setDrawObservations(bool p) {tst_draw_observations = p; }
 
@@ -76,17 +76,17 @@ namespace GNU_gama { namespace local {
       /** Font size. */
       double fontSize() const { return fontsize; }
       /** Set font size */
-      void setFontSize(double p) { fontsize = p; }
+      void setFontSize(double p) { fontsize = p; tst_implicit_size = false; }
 
       /** Symbol size. */
       double symbolSize() const { return symbolsize; }
       /** Set symbol size */
-      void setSymbolSize(double p) { symbolsize = p; }
+      void setSymbolSize(double p) { symbolsize = p; tst_implicit_size = false; }
 
       /** SVG stroke width. */
       double strokeWidth() const { return strokewidth; }
       /** Set SVG stroke size */
-      void setStrokeWidth(double p) { strokewidth = p; }
+      void setStrokeWidth(double p) { strokewidth = p; tst_implicit_size = false; }
 
       /** Fixed points' symbol. */
       std::string fixedSymbol() const { return fixedsymbol; }
@@ -118,6 +118,9 @@ namespace GNU_gama { namespace local {
       /** Set symbol for fixed points */
       void setFreeFill(std::string p) { freefill = p; }
 
+      /** Restores defuult program settings derived from given coordinates set. */
+      void restoreDefaults();
+
     private:
       LocalNetwork&          IS;
       const PointData&       PD;
@@ -127,7 +130,7 @@ namespace GNU_gama { namespace local {
       mutable std::ostream*  svg;
 
       // SVG coordinates bounding box and offset
-      mutable bool not_in_constructor;
+      mutable bool tst_implicit_size;
       mutable double  minx, maxx, miny, maxy, offset;
       mutable double ab_median;
       void svg_xy(const LocalPoint& point, double& x, double& y) const;
