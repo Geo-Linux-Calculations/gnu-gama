@@ -118,8 +118,20 @@ namespace GNU_gama { namespace local {
       /** Set symbol for fixed points */
       void setFreeFill(std::string p) { freefill = p; }
 
-      /** Restores defuult program settings derived from given coordinates set. */
+      /** Restores default program settings derived from given coordinates set. */
       void restoreDefaults();
+
+      /** Minimal size of font size and stroke width. */
+      double minimalSize() const { return minimalsize; }
+
+      /** Minimal size of font size and stroke width. */
+      void setMinimalSize(double p = 0.0001) const { minimalsize = p > 0 ? p : 0.0001; tst_implicit_size = false; }
+
+      /** Error ellipse scale. */
+      double ellipsesScale() const { return ellipsescale; }
+
+      /** Error ellipse scale. */
+      void setEllipsesScale(double p) const { ellipsescale = p; tst_implicit_size = false; }
 
     private:
       LocalNetwork&          IS;
@@ -132,7 +144,7 @@ namespace GNU_gama { namespace local {
       // SVG coordinates bounding box and offset
       mutable bool tst_implicit_size;
       mutable double  minx, maxx, miny, maxy, offset;
-      mutable double ab_median;
+      mutable double ab_median, minimalsize, ellipsescale;
       void svg_xy(const LocalPoint& point, double& x, double& y) const;
       void svg_draw_point  (const PointID& pid, const LocalPoint& point) const;
       void svg_point_shape (double x, double y,
@@ -142,6 +154,7 @@ namespace GNU_gama { namespace local {
       void svg_axes_xy     () const;
       void svg_points      () const;
       void svg_observations() const;
+      void svg_ellipse(const PointID& pid, double& a, double &b, double& alpha) const;
 
       mutable double fontsize, symbolsize, strokewidth;
       mutable bool tst_draw_axes, tst_draw_point_symbols, tst_draw_point_ids,

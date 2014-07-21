@@ -124,14 +124,46 @@ void GamaLocalSVG::svg_init() const
       sett(0,0,0,0);
     }
 
-
   // clear global transformation parameters
   minx = maxx = miny = maxy = offset = 0;
 
+
+  // median of error ellipsoid semiaxes is needed for computing main bounding box
+  std::vector<double> abmed;
+  for (PointData::const_iterator i=PD.begin(), e=PD.end(); i!=e; ++i)
+    {
+      PointID    pid   = i->first;
+      LocalPoint point = i->second;
+
+      // skip points that are not part of the adjustment or do not have xy
+      if (!point.active_xy() || !point.test_xy()) continue;
+
+      if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy())
+      {
+          double a, b, alpha;
+          IS.std_error_ellipse(pid, a, b, alpha);
+          abmed.push_back(a);
+          abmed.push_back(b);
+       }
+  }
+
+  ab_median = 0;
+  if (unsigned n = abmed.size())
+    {
+      std::sort(abmed.begin(), abmed.end());
+      if (n % 2) ab_median =  abmed[n/2];
+      else       ab_median = (abmed[n/2] + abmed[n/2-1])/2;
+    }
+  if (ab_median <= 0) ab_median = 1;   // handle unrealistic data
+
+
+  // main bounding box
+  if (tst_implicit_size) ellipsescale = 1.0;
+
   bool first_point = true;
   double x, y, tminx, tmaxx, tminy, tmaxy;
-  std::vector<double> abmed;
-
+  for (int iter=1; iter<=22; iter++)
+  {
   for (PointData::const_iterator i=PD.begin(), e=PD.end(); i!=e; ++i)
     {
       PointID    pid   = i->first;
@@ -142,36 +174,41 @@ void GamaLocalSVG::svg_init() const
 
       svg_xy(point, x, y);
 
+      double dx = 0, dy = 0;
+      if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy() && !first_point)
+      {
+          double a, b, alpha;
+          svg_ellipse(pid, a, b, alpha);
+
+          // bounding box with 10% extra space for huge ellipses
+          double t  = atan2(-b*sin(alpha), a*cos(alpha));
+          double u  = atan2( b*cos(alpha), a*sin(alpha));
+          dx = 1.1*abs(a*cos(t)*cos(alpha) - b*sin(t)*sin(alpha));
+          dy = 1.1*abs(b*sin(u)*cos(alpha) + a*cos(u)*sin(alpha));
+      }
+
       if (first_point)
         {
-          tminx = tmaxx = x;
-          tminy = tmaxy = y;
+          tminx = x - dx;
+          tmaxx = x + dx;
+          tminy = y - dy;
+          tmaxy = y + dy;
           first_point = false;
         }
       else
         {
-          if (x < tminx) tminx = x;
-          if (x > tmaxx) tmaxx = x;
-          if (y < tminy) tminy = y;
-          if (y > tmaxy) tmaxy = y;
+          if (x - dx < tminx) tminx = x - dx;
+          if (x + dx > tmaxx) tmaxx = x + dx;
+          if (y - dy < tminy) tminy = y - dy;
+          if (y + dy > tmaxy) tmaxy = y + dy;
+
+          maxx = std::abs(tmaxx-tminx);
+          maxy = std::abs(tmaxy-tminy);
+          offset = (maxx + maxy)/2*0.05;
         }
 
-      if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy())
-        {
-          double a, b, alpha;
-          IS.std_error_ellipse(pid, a, b, alpha);
-          abmed.push_back(a);
-          abmed.push_back(b);
-        }
     }
-
-  ab_median = 0;
-  if (unsigned n = abmed.size())
-    {
-      std::sort(abmed.begin(), abmed.end());
-      if (n % 2) ab_median =  abmed[n/2];
-      else       ab_median = (abmed[n/2] + abmed[n/2-1])/2;
-    }
+  }  // iter
 
   minx = tminx;
   miny = tminy;
@@ -179,17 +216,22 @@ void GamaLocalSVG::svg_init() const
   maxy = std::abs(tmaxy-tminy);
   offset = (maxx + maxy)/2*0.05;
 
+  if (offset == 0) offset = 100;
+
   // font and symbol sizes must be initialized only once
   // int the constructer, otherwise they could not be setup
   // by the interface
 
   if (tst_implicit_size)
   {
+    setMinimalSize();
+    ellipsescale = 1.0;
+
     fontsize = offset*0.4;
-    if (fontsize == 0) fontsize = 0.0001;
+    if (fontsize < minimalsize) fontsize = minimalsize;
     symbolsize  = fontsize;
     strokewidth = offset*0.01;
-    if (strokewidth == 0) strokewidth = 0.0001;
+    if (strokewidth < minimalsize) strokewidth = minimalsize;
   }
 
 #if 0
@@ -470,35 +512,20 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
       if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy())
         {
           double a, b, alpha;
-          IS.std_error_ellipse(pid, a, b, alpha);
-
-          if (PD.right_handed_angles()) alpha = -alpha;
-
-          double q = ab_median;
-          if (ab_median <= 0) q = 1;   // handle unrealistic data
-
-          a *= offset/q;
-          b *= offset/q;
-
-          switch (PD.local_coordinate_system)
-            {
-              // right handed
-            case LocalCoordinateSystem::EN: ; break;
-            case LocalCoordinateSystem::NW: alpha += M_PI/2; break;
-            case LocalCoordinateSystem::SE: alpha += M_PI/2; break;
-            case LocalCoordinateSystem::WS: ; break;
-              // left handed
-            case LocalCoordinateSystem::NE: alpha += M_PI/2; break;
-            case LocalCoordinateSystem::SW: alpha += M_PI/2; break;
-            case LocalCoordinateSystem::ES: break;
-            case LocalCoordinateSystem::WN: break;
-            default:
-              ;
-            }
-
-           while (alpha < 0)      alpha += 2*M_PI;
-           while (alpha > 2*M_PI) alpha -= 2*M_PI;
-
+          svg_ellipse(pid, a, b, alpha);
+#if 0
+           double t  = atan2(-b*sin(alpha), a*cos(alpha));
+           double u  = atan2( b*cos(alpha), a*sin(alpha));
+           double dx = abs(a*cos(t)*cos(alpha) - b*sin(t)*sin(alpha));
+           double dy = abs(b*sin(u)*cos(alpha) + a*cos(u)*sin(alpha));
+           *svg << "<polygon points='"
+                << x-dx <<"," << y-dy << " "
+                << x+dx <<"," << y-dy << " "
+                << x+dx <<"," << y+dy << " "
+                << x-dx <<"," << y+dy << " "
+                << "' style='fill-opacity:0;stroke:lime;stroke-width:"
+                << 0.5 << "' />";
+#endif
           alpha *= RAD_TO_DEG;   // see gnu_gama/radian.h
 
           *svg << "<ellipse  " //cx='" << x << "' cy='" << y << "' "
@@ -508,4 +535,33 @@ void GamaLocalSVG::svg_draw_point(const PointID& pid,
                << "style='stroke:grey;stroke-width:"
                << strokewidth << ";fill:none;' />\n";
         }
+}
+
+void GamaLocalSVG::svg_ellipse(const PointID& pid, double &a, double &b, double &alpha) const
+{
+    IS.std_error_ellipse(pid, a, b, alpha);
+
+    if (PD.right_handed_angles()) alpha = -alpha;
+
+    a *= offset/ab_median*ellipsescale;
+    b *= offset/ab_median*ellipsescale;
+
+    switch (PD.local_coordinate_system)
+      {
+        // right handed
+      case LocalCoordinateSystem::EN: ; break;
+      case LocalCoordinateSystem::NW: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::SE: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::WS: ; break;
+        // left handed
+      case LocalCoordinateSystem::NE: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::SW: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::ES: break;
+      case LocalCoordinateSystem::WN: break;
+      default:
+        ;
+      }
+
+     while (alpha < 0)      alpha += 2*M_PI;
+     while (alpha > 2*M_PI) alpha -= 2*M_PI;
 }
