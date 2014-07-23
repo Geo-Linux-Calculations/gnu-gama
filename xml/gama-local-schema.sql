@@ -46,9 +46,9 @@ create table gnu_gama_local_configurations (
    angles    varchar(12) default 'left-handed' not null check (angles in ('left-handed', 'right-handed')),
    ang_units int default 400 not null check (ang_units in (400, 360)),
    cov_band  int default -1 not null check (cov_band >= -1),
-   algorithm varchar(12) default 'envelope' check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
-   epoch     double precision default 0.0,
-   latitude  double precision default 50,
+   algorithm varchar(12) check (algorithm in ('svd', 'gso', 'cholesky', 'envelope')),
+   epoch     double precision,
+   latitude  double precision,
    ellipsoid varchar(20)
 );
 

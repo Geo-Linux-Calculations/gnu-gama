@@ -20,6 +20,7 @@ configure
 stamp-h1
 scripts/config.aux/
 #
+test-suite.log
 tests/gama-local/gama-local-adjustment
 tests/gama-local/gama-local-algorithms
 tests/gama-local/gama-local-equivalents

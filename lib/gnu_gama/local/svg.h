@@ -125,7 +125,7 @@ namespace GNU_gama { namespace local {
       double minimalSize() const { return minimalsize; }
 
       /** Minimal size of font size and stroke width. */
-      void setMinimalSize(double p = 0.0001) const { minimalsize = p > 0 ? p : 0.0001; tst_implicit_size = false; }
+      void setMinimalSize(double p = 0.0001) const { minimalsize = p > 0 ? p : 0.0001; }
 
       /** Error ellipse scale. */
       double ellipsesScale() const { return ellipsescale; }

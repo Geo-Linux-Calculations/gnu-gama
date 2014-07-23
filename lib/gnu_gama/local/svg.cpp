@@ -162,7 +162,7 @@ void GamaLocalSVG::svg_init() const
 
   bool first_point = true;
   double x, y, tminx, tmaxx, tminy, tmaxy;
-  for (int iter=1; iter<=22; iter++)
+  for (int iter=1; iter<=2; iter++)
   {
   for (PointData::const_iterator i=PD.begin(), e=PD.end(); i!=e; ++i)
     {
@@ -175,7 +175,7 @@ void GamaLocalSVG::svg_init() const
       svg_xy(point, x, y);
 
       double dx = 0, dy = 0;
-      if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy() && !first_point)
+      if (tst_draw_ellipses && IS.is_adjusted() && !point.fixed_xy())
       {
           double a, b, alpha;
           svg_ellipse(pid, a, b, alpha);
@@ -189,10 +189,8 @@ void GamaLocalSVG::svg_init() const
 
       if (first_point)
         {
-          tminx = x - dx;
-          tmaxx = x + dx;
-          tminy = y - dy;
-          tmaxy = y + dy;
+          tminx = tmaxx = x;
+          tminy = tmaxy = y;
           first_point = false;
         }
       else
