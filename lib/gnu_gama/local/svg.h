@@ -133,6 +133,16 @@ namespace GNU_gama { namespace local {
       /** Error ellipse scale. */
       void setEllipsesScale(double p) const { ellipsescale = p; tst_implicit_size = false; }
 
+      /** Transformation from geodetic to SVG coordinates (x, y)
+       * \code{.cpp}
+       * xsvg = t11*x + t12*y + tx;
+       * ysvg = t21*x + t22*y + ty;
+       * \endcode
+       */
+      void SvgCoordinates(double& t11, double& t12,
+                          double& t21, double& t22,
+                          double& tx,  double& ty) const;
+
     private:
       LocalNetwork&          IS;
       const PointData&       PD;
@@ -140,6 +150,8 @@ namespace GNU_gama { namespace local {
       const double ysign;    // consistent coordinates +1, inconsistent -1
 
       mutable std::ostream*  svg;
+
+      mutable double T11, T12, T21, T22, Tx, Ty;
 
       // SVG coordinates bounding box and offset
       mutable bool tst_implicit_size;
@@ -161,6 +173,40 @@ namespace GNU_gama { namespace local {
         tst_draw_ellipses, tst_draw_observations;
       mutable std::string  fixedsymbol, fixedfill, constrainedsymbol,
         constrainedfill, freesymbol, freefill;
+
+
+      /* helper svg point class */
+
+      class Point {
+      public:
+        double x, y;
+
+        Point() {}
+        Point(double a, double b) : x(a), y(b) {}
+
+        friend std::ostream& operator<< (std::ostream& ostr, const Point& p) {
+            return ostr << p.x << "," << p.y << " ";
+        }
+        friend Point operator+(const GamaLocalSVG::Point& a, const Point& b) {
+          return Point(a.x+b.x, a.y+b.y);
+        }
+        friend Point operator-(const Point& a, const Point& b)
+        {
+          return Point(a.x-b.x, a.y-b.y);
+        }
+        friend Point operator*(const Point& a, double q)
+        {
+          return Point(a.x*q, a.y*q);
+        }
+      };
+
+      mutable Point TX, TY;
+
+      void sett(double tr11, double tr12, double tr21, double tr22) const
+      {
+        TX = Point(tr11, tr12);
+        TY = Point(tr21, tr22);
+      }
     };
 }}
 

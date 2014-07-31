@@ -32,47 +32,6 @@
 #include <utility>
 #include <set>
 
-
-namespace
-{
-/**/  class Point {
-/**/  public:
-/**/    double x, y;
-/**/
-/**/    Point() {}
-/**/    Point(double a, double b) : x(a), y(b) {}
-/**/
-/**/  };
-/**/
-/**/  std::ostream& operator<< (std::ostream& ostr, const Point& p)
-/**/  {
-/**/    return ostr << p.x << "," << p.y << " ";
-/**/  }
-/**/
-/**/  Point operator+(const Point& a, const Point& b)
-/**/  {
-/**/    return Point(a.x+b.x, a.y+b.y);
-/**/  }
-/**/
-/**/  Point operator-(const Point& a, const Point& b)
-/**/  {
-/**/    return Point(a.x-b.x, a.y-b.y);
-/**/  }
-/**/
-/**/  Point operator*(const Point& a, double q)
-/**/  {
-/**/    return Point(a.x*q, a.y*q);
-/**/  }
-/**/
-/**/  Point TX, TY;
-/**/  void sett(double tr11, double tr12, double tr21, double tr22)
-/**/  {
-/**/    TX = Point(tr11, tr12);
-/**/    TY = Point(tr21, tr22);
-/**/  }
-}
-
-
 using namespace GNU_gama::local;
 
 GamaLocalSVG::GamaLocalSVG(LocalNetwork* is)
@@ -124,6 +83,7 @@ void GamaLocalSVG::svg_init() const
       sett(0,0,0,0);
     }
 
+
   // clear global transformation parameters
   minx = maxx = miny = maxy = offset = 0;
 
@@ -172,6 +132,11 @@ void GamaLocalSVG::svg_init() const
       // skip points that are not part of the adjustment or do not have xy
       if (!point.active_xy() || !point.test_xy()) continue;
 
+      T11 = TX.x;   T12 = TY.x*ysign;
+      T21 = TX.y;   T22 = TY.y*ysign;
+      Tx  = 2*offset - minx;
+      Ty  = 2*offset - miny;
+
       svg_xy(point, x, y);
 
       double dx = 0, dy = 0;
@@ -216,6 +181,11 @@ void GamaLocalSVG::svg_init() const
 
   if (offset == 0) offset = 100;
 
+  T11 = TX.x;   T12 = TY.x*ysign;
+  T21 = TX.y;   T22 = TY.y*ysign;
+  Tx  = 2*offset - minx;
+  Ty  = 2*offset - miny;
+
   // font and symbol sizes must be initialized only once
   // int the constructer, otherwise they could not be setup
   // by the interface
@@ -245,11 +215,17 @@ void GamaLocalSVG::svg_init() const
 #endif
 }
 
+void GamaLocalSVG::SvgCoordinates(double &t11, double &t12,
+                                  double &t21, double &t22,
+                                  double &tx,  double &ty) const
+{
+  t11 = T11;  t12 = T12;  t21 = T21;  t22 = T22;  tx = Tx;  ty = Ty;
+}
+
 void GamaLocalSVG::svg_xy(const LocalPoint& point, double& x, double& y) const
 {
-  // transformation matrix is inv([TX; TY]) = [TX; TY]'
-  x = TX.x*point.x() + TY.x*point.y()*ysign - minx + 2*offset;
-  y = TX.y*point.x() + TY.y*point.y()*ysign - miny + 2*offset;
+  x = T11*point.x() + T12*point.y() + Tx;
+  y = T21*point.x() + T22*point.y() + Ty;
 }
 
 std::string GamaLocalSVG::string() const
