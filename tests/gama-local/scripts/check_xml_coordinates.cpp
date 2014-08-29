@@ -60,9 +60,9 @@ int main(int argc, char* argv[])
   double diff = 0;
   const LocalNetworkAdjustmentResults::PointList& A = xml1->adjusted_points;
   const LocalNetworkAdjustmentResults::PointList& B = xml2->adjusted_points;
-  for (int i=0; i<A.size(); i++)
+  for (size_t i=0; i<A.size(); i++)
     {
-      for (int j=0; j<B.size(); j++)
+      for (size_t j=0; j<B.size(); j++)
         if (A[i].id == B[j].id)
           {
             if (A[i].hxy && B[j].hxy)

@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -60,8 +60,8 @@ int main(int argc, char* argv[])
 
   condnum = algorithm[0]->cond();
 
-  for (int i=0; i<algname.size(); i++)
-    for (int j=i+1; j<algname.size(); j++)
+  for (size_t i=0; i<algname.size(); i++)
+    for (size_t j=i+1; j<algname.size(); j++)
       {
         std::cout << "cond.n "
                   << std::scientific << std::setprecision(2)

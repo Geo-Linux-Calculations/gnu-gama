@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_IE_internal_error"
@@ -9,10 +9,4 @@
    EN="station and target are identical"
    fr="la station et la cible sont identiques" />
 
-</entries>   
-
-
-
-
-
-
+</entries>

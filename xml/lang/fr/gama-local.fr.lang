@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
-<e id="T_GaMa_Adjustment_of_geodetic_network"   
+<e id="T_GaMa_Adjustment_of_geodetic_network"
    EN="Adjustment of local geodetic network"
-   fr="Ajustement de réseau géodésique local" />
+   fr="Ajustement du rÃ©seau gÃ©odÃ©sique local" />
 
 <e id="T_GaMa_version"
    EN="version: "
@@ -11,11 +11,11 @@
 
 <e id="T_GaMa_exception_1"
    EN="Error during creation of InfoSit object"
-   fr="Erreur durant la création d\'un objet InfoSit" />
+   fr="Erreur durant la crÃ©ation d\'un objet InfoSit" />
 
 <e id="T_GaMa_exception_2a"
    EN="GNU Gama - error on reading XML input configuration file!"
-   fr="GNU Gama - erreur de lecture du fichier XML de configuration!" />
+   fr="GNU Gama - erreur de lecture du fichier de configuration XML!" />
 
 <e id="T_GaMa_exception_2b"
    EN="On line number "
@@ -31,31 +31,30 @@
 
 <e id="T_GaMa_No_network_points_defined"
    EN="No network points defined"
-   fr="Aucun point défifni dans le réseau" />
+   fr="Aucun point dÃ©fini dans le rÃ©seau" />
 
 <e id="T_GaMa_No_unknowns_defined"
    EN="No unknowns have been defined"
-   fr="Aucune inconnue n\'a été déclarée" />
+   fr="Aucune inconnue n\'a Ã©tÃ© dÃ©clarÃ©e" />
 
 <e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
    EN="Observations with outlying absolute terms removed"
-   fr="Les observations comportant des termes absolus trop éloignés ont été supprimées" />
+   fr="Les observations comportant des termes absolus trop Ã©loignÃ©s ont Ã©tÃ© supprimÃ©es" />
 
 <e id="T_GaMa_adjustment_iteration"
    EN=" - adjustment iteration"
-   fr=" - itération de l\'ajustement" />
+   fr=" - itÃ©ration de l\'ajustement" />
 
 <e id="T_GaMa_Approximate_coordinates_replaced"
    EN="Approximate coordinates of computed points replaced by adjusted"
-   fr="Les coordonnées approchées des points calculés sont remplacées par les coordonnées ajustées" />
+   fr="Les coordonnÃ©es approchÃ©es des points calculÃ©s sont remplacÃ©es par les coordonnÃ©es ajustÃ©es" />
 
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"
-   fr="GNU Gama - la résolution s\'est terminée par une erreur!" />
+   fr="GNU Gama - la rÃ©solution s\'est terminÃ©e par une erreur!" />
 
 <e id="T_GaMa_internal_program_error"
    EN="GNU Gama - internal program error!"
    fr="GNU Gama - erreur interne" />
-  
-</entries>   
 
+</entries>

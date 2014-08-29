@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_GKF_illegal_text"
    EN="illegal text"
-   fr="texte illégal" />
+   fr="texte non autorisÃ©" />
 
 <e id="T_GKF_must_start_with_gama_xml"
    EN="document must start with tag &lt;gama-local&gt;"
@@ -11,19 +11,19 @@
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
-   fr="valeur illégale de l\'attribut: " />
+   fr="valeur non autorisÃ©e de l\'attribut: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
    EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
-   fr="valeur illégale de l\'attribut \'version\' de la balise &lt;gama-local&gt;: " />
+   fr="valeur non autorisÃ©e de l\'attribut \'version\' de la balise &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
    EN="undefined attribute of tag &lt;gama-local&gt;: "
-   fr="attribut indéfini dans la balise &lt;gama-local&gt;: " />
+   fr="attribut indÃ©fini dans la balise &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "
-   fr="attribut indéfini dans la balise &lt;vectors&gt;: " />
+   fr="attribut indÃ©fini dans la balise &lt;vectors&gt;: " />
 
 <e id ="T_GKF_missing_tag_network"
    EN="missing tag &lt;network&gt;"
@@ -31,15 +31,15 @@
 
 <e id="T_GKF_e01a_illegal_tag"
    EN="illegal_tag &lt;"
-   fr="balise illégale &lt;" />
+   fr="balise non autorisÃ©e &lt;" />
 
 <e id="T_GKF_e01b_after_tag"
    EN="&gt; after tag"
-   fr="&gt; après la balise" />
+   fr="&gt; aprÃ¨s la balise" />
 
 <e id="T_GKF_error_on_reading_of_standard_deviation"
    EN="error on reading of standard deviation"
-   fr="erreur de lecture de l\'écart-type" />
+   fr="erreur de lecture de l\'Ã©cart-type" />
 
 <e id="T_GKF_error_on_reading_of_confidence_probability"
    EN="error on reading of confidence probability"
@@ -47,35 +47,35 @@
 
 <e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
    EN="error on reading of tolerance for identification of outlying absolute terms"
-   fr="erreur de lecture de la tolérance pour l\'identification des fautes" />
+   fr="erreur de lecture de la tolÃ©rance pour l\'identification des fautes" />
 
 <e id="T_GKF_wrong_type_of_standard_deviation"
-   EN="wrong type of standard deviation" 
-   fr="type d\'écart-type incorrect" />
+   EN="wrong type of standard deviation"
+   fr="type d\'Ã©cart-type incorrect" />
 
 <e id="T_GKF_bad_network_configuration_unknown_parameter"
    EN="bad network configuration - unknown parameter: "
-   fr="mauvaise configuration du réseau - paramètre inconnu: " />
+   fr="mauvaise configuration du rÃ©seau - paramÃ¨tre inconnu: " />
 
 <e id="T_GKF_bad_attribute_distance_dev"
    EN="bad attribute distance-stdev: "
-   fr="attribut distance-stdev erroné: " />
+   fr="attribut distance-stdev erronÃ©: " />
 
 <e id="T_GKF_bad_attribute_direction_dev"
    EN="bad attribute direction-stdev: "
-   fr="attribut direction-stdev erroné: " />
+   fr="attribut direction-stdev erronÃ©: " />
 
 <e id="T_GKF_bad_attribute_angle_dev"
    EN="bad attribute angle-stdev: "
-   fr="attribut angle-stdev erroné: " />
+   fr="attribut angle-stdev erronÃ©: " />
 
 <e id="T_GKF_undefined_attribute_of_points_observations"
-   EN="undefined attribute of &lt;points-observations&gt;: " 
-   fr="attribut de &lt;points-observations&gt; non défini: " />
+   EN="undefined attribute of &lt;points-observations&gt;: "
+   fr="attribut de &lt;points-observations&gt; non dÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_points"
-   EN="undefined attribute of &lt;point&gt;: " 
-   fr="attribut de &lt;point&gt; non défini: " />
+   EN="undefined attribute of &lt;point&gt;: "
+   fr="attribut de &lt;point&gt; non dÃ©fini: " />
 
 <e id="T_GKF_missing_point_ID"
    EN="missing point ID"
@@ -91,55 +91,55 @@
 
 <e id="T_GKF_multiple_definition_of_xy_in_tag_point"
    EN="multiple dexinition of coordinates xy in tag &lt;point&gt;"
-   fr="définition redondante des coordonnées xy dans la balise &lt;point&gt;" />
+   fr="dÃ©finition redondante des coordonnÃ©es xy dans la balise &lt;point&gt;" />
 
 <e id="T_GKF_multiple_definition_of_z_in_tag_point"
    EN="multiple definition of coordinate z in tag &lt;point&gt;"
-   fr="définition redondante de la coordonnée z dans la balise &lt;point&gt;" />
+   fr="dÃ©finition redondante de la coordonnÃ©e z dans la balise &lt;point&gt;" />
 
 <e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
    EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
-   fr="la balise &lt;point /&gt; doit définir des coordonnées xy et/ou z à l'intérieur de la balise &lt;coordinates&gt;" />
+   fr="la balise &lt;point /&gt; doit dÃ©finir des coordonnÃ©es xy et/ou z Ã  l'intÃ©rieur de la balise &lt;coordinates&gt;" />
 
 <e id="T_GKF_coordinate_x_is_not_defined"
    EN="coordinate x is not defined"
-   fr="la coordonnée x n\'est pas définie" />
+   fr="la coordonnÃ©e x n\'est pas dÃ©finie" />
 
 <e id="T_GKF_coordinate_y_is_not_defined"
    EN="coordinate y is not defined"
-   fr="la coordonnée y n\'est pas définie" />
+   fr="la coordonnÃ©e y n\'est pas dÃ©finie" />
 
 <e id="T_GKF_bad_coordinate_x"
    EN="bad coordinate x: "
-   fr="mauvaise coordonnée x: " />
+   fr="mauvaise coordonnÃ©e x: " />
 
 <e id="T_GKF_bad_coordinate_y"
    EN="bad coordinate y: "
-   fr="mauvaise coordonnée y: " />
+   fr="mauvaise coordonnÃ©e y: " />
 
 <e id="T_GKF_bad_height"
    EN="bad height: "
-   fr="hauteur erronée: " />
+   fr="hauteur erronÃ©e: " />
 
 <e id="T_GKF_undefined_point_type"
    EN="undefined point type: "
-   fr="type de point non défini: " />
+   fr="type de point non dÃ©fini: " />
 
 <e id="T_GKF_undefined_height_type"
    EN="undefined height type: "
-   fr="type de hauteur non défini: " />
+   fr="type de hauteur non dÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_distance"
-   EN="undefined attribute of &lt;distance&gt;: " 
-   fr="attribut de &lt;distance&gt; indéfini: " />
+   EN="undefined attribute of &lt;distance&gt;: "
+   fr="attribut de &lt;distance&gt; indÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_slopedist"
-   EN="undefined attribute of &lt;s-distance&gt;: " 
-   fr="attribut de &lt;s-distance&gt; indéfini: " />
+   EN="undefined attribute of &lt;s-distance&gt;: "
+   fr="attribut de &lt;s-distance&gt; indÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_zangle"
-   EN="undefined attribute of &lt;z-angle&gt;: " 
-   fr="attribut de &lt;z-angle&gt; indéfini: " />
+   EN="undefined attribute of &lt;z-angle&gt;: "
+   fr="attribut de &lt;z-angle&gt; indÃ©fini: " />
 
 <e id="T_GKF_missing_standpoint_id"
    EN="missing standpoint ID"
@@ -147,75 +147,75 @@
 
 <e id="T_GKF_missing_forepoint_id"
    EN="missing forepoint ID"
-   fr="identificateur (ID) du point visé manquant" />
+   fr="identificateur (ID) du point visÃ© manquant" />
 
 <e id="T_GKF_missing_observed_value"
    EN="missing observed value"
-   fr="valeur observée manquante" />
+   fr="valeur observÃ©e manquante" />
 
 <e id="T_GKF_bad_distance"
    EN="bad distance: "
-   fr="distance erronée: " />
+   fr="distance erronÃ©e: " />
 
 <e id="T_GKF_bad_zangle"
    EN="bad zenith angle: "
-   fr="angle zénithal erroné: " />
+   fr="angle zÃ©nithal erronÃ©: " />
 
 <e id="T_GKF_illegal_standard_deviation"
    EN="illegal standard deviation"
-   fr="écart-type illégal" />
+   fr="Ã©cart-type non autorisÃ©" />
 
 <e id="T_GKF_undefined_attribute_of_angle"
-   EN="undefined attribute of &lt;angle&gt;: " 
-   fr="attribut de &lt;angle&gt; indéfini: " />
+   EN="undefined attribute of &lt;angle&gt;: "
+   fr="attribut de &lt;angle&gt; indÃ©fini: " />
 
 <e id="T_GKF_missing_left_forepoint_id"
    EN="missing left forepoint ID"
-   fr="identificateur (ID) du point visé gauche manquant" />
+   fr="identificateur (ID) du point visÃ© gauche manquant" />
 
 <e id="T_GKF_missing_right_forepoint_id"
    EN="missing right forepoint ID"
-   fr="identificateur (ID) du point visé droit manquant" />
+   fr="identificateur (ID) du point visÃ© droit manquant" />
 
 <e id="T_GKF_bad_angle"
    EN="bad angle: "
-   fr="angle erroné: " />
+   fr="angle erronÃ©: " />
 
 <e id="T_GKF_undefined_attribute_of_obs"
    EN="undefined attribute of &lt;obs&gt;: "
-   fr="attribut de &lt;obs&gt; indéfini: " />
+   fr="attribut de &lt;obs&gt; indÃ©fini: " />
 
 <e id="T_GKF_bad_instrument_reflector_height"
    EN="bad instrument/reflector height: "
-   fr="hauteur instrument/cible erronée: " />
+   fr="hauteur instrument/cible erronÃ©e: " />
 
 <e id="T_GKF_bad_orientation_angle"
    EN="bad orientation angle: "
-   fr="angle d\'orientation erroné: " />
+   fr="angle d\'orientation erronÃ©: " />
 
 <e id="T_GKF_undefined_attribute_of_direction"
    EN="undefined attribute of &lt;direction&gt;: "
-   fr="attribut de &lt;direction&gt; indéfini: " />
+   fr="attribut de &lt;direction&gt; indÃ©fini: " />
 
 <e id="T_GKF_bad_direction"
    EN="bad direction: "
-   fr="visée erronée: " />
+   fr="visÃ©e erronÃ©e: " />
 
 <e id="T_GKF_bad_height_diff"
    EN="bad height difference: "
-   fr="différence de hauteurs erronée: " />
+   fr="diffÃ©rence de hauteurs erronÃ©e: " />
 
 <e id="T_GKF_undefined_attribute_of_cov_mat"
    EN="undefined attribute of &lt;cov-mat&gt;: "
-   fr="attribut de &lt;cov-mat&gt; indéfini: " />
+   fr="attribut de &lt;cov-mat&gt; indÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_coordinates"
    EN="undefined attribute of &lt;coordinates&gt;: "
-   fr="attribut de &lt;coordinates&gt; indéfini: " />
+   fr="attribut de &lt;coordinates&gt; indÃ©fini: " />
 
 <e id="T_GKF_undefined_attribute_of_height_differences"
-   EN="undefined attribute of &lt;height-differences&gt;: " 
-   fr="attribut de &lt;height-differences&gt; indéfini:" />
+   EN="undefined attribute of &lt;height-differences&gt;: "
+   fr="attribut de &lt;height-differences&gt; indÃ©fini:" />
 
 <e id="T_GKF_cov_mat_missing_dim"
    EN="missing dimension of covariance matrix"
@@ -227,7 +227,7 @@
 
 <e id="T_GKF_covariance_matrix_is_not_positive_definite"
    EN="variance-covariance matrix is not positive definite"
-   fr="la matrice de variance-covariance n'est pas définie positive" />
+   fr="la matrice de variance-covariance n'est pas dÃ©finie positive" />
 
 <e id="T_GKF_cov_mat_bad_dim"
    EN="bad dimension of covariance matrix: "
@@ -239,27 +239,27 @@
 
 <e id="T_GKF_cov_mat_bad_dim_too_many_elements"
    EN="bad dimension of covariance matrix - too many elements"
-   fr="mauvaise dimension de la matrice de covariance - trop d\'éléments" />
+   fr="mauvaise dimension de la matrice de covariance - trop d\'Ã©lÃ©ments" />
 
 <e id="T_GKF_cov_mat_bad_dim_not_enough_elements"
    EN="bad dimension of covariance matrix - not enough elements"
-   fr="mauvaise dimension de la matrice de covariance - pas assez d\'éléments" />
+   fr="mauvaise dimension de la matrice de covariance - pas assez d\'Ã©lÃ©ments" />
 
 <e id="T_GKF_cov_mat_bad_element"
    EN="bad covariance matrix element: "
-   fr="élément erroné dans la matrice de covariance: " />
+   fr="Ã©lÃ©ment erronÃ© dans la matrice de covariance: " />
 
 <e id="T_GKF_no_observations_after_cov_mat"
    EN="observations can not come after covariance matrix"
-   fr="les observations ne peuvent pas venir après la matrice de covariance" />
+   fr="les observations ne peuvent pas venir aprÃ¨s la matrice de covariance" />
 
 <e id="T_GKF_coordinates_without_covariance_matrix"
    EN="coordinates without covariance matrix"
-   fr="coordonnées sans matrice de covariance" />
+   fr="coordonnÃ©es sans matrice de covariance" />
 
 <e id="T_GKF_cov_dim_differs_from_number_of_coordinates"
    EN="covariance matrix dimension differs from the number of coordinates"
-   fr="les dimensions de la matrice de covariance sont en désaccord avec le nombre de coordonnées" />
+   fr="les dimensions de la matrice de covariance sont en dÃ©saccord avec le nombre de coordonnÃ©es" />
 
 <e id="T_GKF_vectors_without_covariance_matrix"
    EN="vectors without covariance matrix"
@@ -271,8 +271,6 @@
 
 <e id="T_GKF_bad_vector_data"
    EN="bad vector data"
-   fr="données de vecteur erronées" />
+   fr="donnÃ©es de vecteur erronÃ©es" />
 
 </entries>
-
-

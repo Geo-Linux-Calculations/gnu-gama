@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_POBS_computation_of_bearing_for_identical_points"
@@ -7,18 +7,18 @@
 
 <e id="T_POBS_bad_data"
    EN="bad data"
-   fr="donn�es erron�es" />
+   fr="donnÃ©es erronÃ©es" />
 
 <e id="T_POBS_zero_or_negative_distance"
    EN="zero or negative distance"
-   fr="distance n�gative ou nulle" />
+   fr="distance nÃ©gative ou nulle" />
 
 <e id="T_POBS_zero_or_negative_slope_distance"
    EN="zero or negative slope distance"
-   fr="distance suivant la pente n�gative ou nulle" />
+   fr="distance suivant la pente nÃ©gative ou nulle" />
 
 <e id="T_POBS_zero_or_negative_zenith_angle"
    EN="zero or negative zenith angle"
-   fr="angle z�nithal n�gatif ou nul" />
+   fr="angle zÃ©nithal nÃ©gatif ou nul" />
 
 </entries>

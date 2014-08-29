@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_LN_undefined_confidence_level"
    EN="undefined confidence level"
-   fr="seuil de confiance non défini" />
+   fr="seuil de confiance non dÃ©fini" />
 
 <e id="T_LN_undefined_type_of_actual_sigma"
    EN="Type of actual sigma is not defined (apriori / aposteriori)"
-   fr="Type de sigma (apriori / aposteriori) non défini" />
+   fr="Type de sigma (a priori / a posteriori) non dÃ©fini" />
 
 </entries>

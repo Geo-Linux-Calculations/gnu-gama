@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -211,7 +211,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
     double dfix = 0;
     LocalNetworkAdjustmentResults::Point p, q;
 
-    for (int i=0; i<html->fixed_points.size(); i++)
+    for (size_t i=0; i<html->fixed_points.size(); i++)
       {
         p = html->fixed_points[i];
         q = html ->fixed_points[i];
@@ -273,7 +273,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         return rcoord;
       }
 
-    for (int n=0; n<html->adjusted_points.size(); n++)
+    for (size_t n=0; n<html->adjusted_points.size(); n++)
       {
         LocalNetworkAdjustmentResults::Point& P=html->adjusted_points[n];
         LocalNetworkAdjustmentResults::Point& Q=xml ->adjusted_points[n];
@@ -361,7 +361,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
       tori = 1;
     }
     else
-      for (int i=0; i<html->original_index.size(); i++)
+      for (size_t i=0; i<html->original_index.size(); i++)
         if (html->original_index[i] != xml->original_index[i])
           {
             tori = 1;
@@ -385,7 +385,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         return 1;
       }
 
-    for (int i=0; i<html->orientations.size(); i++)
+    for (size_t i=0; i<html->orientations.size(); i++)
       {
         double d = html->orientations[i].adj - xml->orientations[i].adj;
         if (std::abs(d) > std::abs(oridif)) oridif = d;
@@ -449,7 +449,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         return 1;
       }
 
-    for (int i=0; i<html->obslist.size(); i++)
+    for (size_t i=0; i<html->obslist.size(); i++)
       {
         LocalNetworkAdjustmentResults::Observation H = html->obslist[i];
         LocalNetworkAdjustmentResults::Observation X = xml ->obslist[i];

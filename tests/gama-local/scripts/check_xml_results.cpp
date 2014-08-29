@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     const GNU_gama::local::Vec& x = lnet->solve();
     const int y_sign = GaMaConsistent(lnet->PD) ? +1 : -1;
 
-    for (int i=0; i<adjres->adjusted_points.size(); i++)
+    for (size_t i=0; i<adjres->adjusted_points.size(); i++)
       {
          LocalNetworkAdjustmentResults::Point A
            = adjres->adjusted_points[i];
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
   { // coordinate standard deviations
     double maxdiffstd = 0;
 
-    for (int i=0; i<adjres->adjusted_points.size(); i++)
+    for (size_t i=0; i<adjres->adjusted_points.size(); i++)
       {
          LocalNetworkAdjustmentResults::Point A
            = adjres->adjusted_points[i];
@@ -150,7 +150,7 @@ int main(int argc, char* argv[])
 
     const GNU_gama::local::Vec& r = lnet->residuals();
 
-    for (int i=0; i<adjres->obslist.size(); i++)
+    for (size_t i=0; i<adjres->obslist.size(); i++)
       {
         LocalNetworkAdjustmentResults::Observation A
           = adjres->obslist[i];

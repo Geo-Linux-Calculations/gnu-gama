@@ -1,3 +1,5 @@
+AUTOMAKE_OPTIONS = subdir-objects
+
 libgama_src = \
    gnu_gama/e3.cpp \
    gnu_gama/e3.h \

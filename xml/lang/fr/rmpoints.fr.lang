@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_LN_rm_removed_points"
    EN="Removed points and coordinates"
-   fr="Points et coordonn�es �limin�s" />
+   fr="Points et coordonnÃ©es Ã©liminÃ©s" />
 
 <e id="T_LN_rm_missing_xyz"
    EN="missing coordiantes xyz"
-   fr="coordonn�es xyz manquantes" />
+   fr="coordonnÃ©es xyz manquantes" />
 
 <e id="T_LN_rm_missing_xy"
    EN="missing coordiantes xy"
-   fr="coordonn�es xy manquantes" />
+   fr="coordonnÃ©es xy manquantes" />
 
 <e id="T_LN_rm_missing_z"
    EN="missing coordiantes z"
-   fr="coordonn�e z manquante" />
+   fr="coordonnÃ©e z manquante" />
 
 <e id="T_LN_rm_singular_xy"
    EN="singular coordiantes xy"
-   fr="coordonn�es xy singuli�res" />
+   fr="coordonnÃ©es xy singuliÃ¨res" />
 
 <e id="T_LN_rm_huge_cov_xyz"
    EN="indeterminable coordinates xyz"
-   fr="coordonn�es xyz ind�terminables" />
+   fr="coordonnÃ©es xyz indÃ©terminables" />
 
 <e id="T_LN_rm_huge_cov_xy"
    EN="indeterminable coordinates xy"
-   fr="coordonn�es xy ind�terminables" />
+   fr="coordonnÃ©es xy indÃ©terminables" />
 
 <e id="T_LN_rm_huge_cov_z"
    EN="indeterminable coordinate z"
-   fr="coordonn�e z ind�terminable" />
+   fr="coordonnÃ©e z indÃ©terminable" />
 
 </entries>

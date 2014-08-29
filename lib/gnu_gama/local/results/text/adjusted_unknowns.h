@@ -1,6 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+                  2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -51,7 +52,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   }   // for ...
   if (sour)
     {
-      Double mp, mp_max = -1, mp_prum = 0;
+      Double /*mp,*/ mp_max = -1, mp_prum = 0;
       PointID mp_max_cb, prev_id;
       int pocbod = 0;
 
@@ -84,7 +85,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               prev_id = point_id;
               Double mx = IS->unknown_stdev(b.index_x());
               Double my = IS->unknown_stdev(b.index_y());
-              mp = sqrt(my*my+mx*mx);
+              // mp = sqrt(my*my+mx*mx);
               out << '\n';
 
               out.width(IS->maxw_unk());

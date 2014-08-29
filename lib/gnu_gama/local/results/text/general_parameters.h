@@ -2,6 +2,7 @@
   GNU Gama C++ library
   Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                 2011  Vaclav Petras <wenzeslaus@gmail.com>
+                2014  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
 
@@ -421,7 +422,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           out << '\n';
         }
 
-      Observation* ptr;
+      Observation* ptr {nullptr};
       double stud_opr;
       double max_stud = 0;
       int imax = 0;
