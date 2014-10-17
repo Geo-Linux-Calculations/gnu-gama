@@ -332,23 +332,27 @@ corresponding to observed directions, angles, and distances.
 @itemize @bullet
 @item 
 @code{direction-stdev = "@dots{}"} defines the implicit value of
-observed direction (default value is not defined)
+standard deviation of observed directions (default value is not
+defined)
 
 @item 
-@code{angle-stdev = "@dots{}"} defines the implicit value of observed
-angle (default value is not defined)
+@code{angle-stdev = "@dots{}"} defines the implicit value of standard
+deviation of observed angles (default value is not defined)
 
 @item 
 @code{zenith-angle-stdev = "@dots{}"} defines the implicit value of
-observed zenith angle (default value is not defined)
+standard deviation of observed zenith angles (default value is not
+defined)
 
 @item 
 @code{azimuth-stdev = "@dots{}"} defines the implicit value of
-observed azimuth angle (default value is not defined)
+standard deviation of observed azimuth angles (default value is not
+defined)
 
 @item 
-@code{distance-stdev = "@dots{}"} defines the implicit value of observed
-horizontal distance (default value is not defined)
+@code{distance-stdev = "@dots{}"} defines the implicit value of
+standard deviation of observed distances, horizontal or slope (default
+value is not defined)
 @end itemize
 
 
