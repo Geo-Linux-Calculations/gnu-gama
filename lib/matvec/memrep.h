@@ -55,8 +55,8 @@ private:
 
 protected:
 
-   MemRep() { rep = new Mrep; }
-   MemRep(Index nsz)
+   MemRep() : rep(0) { rep = new Mrep; }
+   MemRep(Index nsz) : rep(0)
       {
          if (nsz>0)
             rep = new Mrep(nsz);
@@ -65,7 +65,7 @@ protected:
          else
             throw Exc(Exception::BadRank, "MemRep::MemRep(Index nsz)");
       }
-   MemRep(const MemRep& x) { x.rep->n++; rep = x.rep; }
+   MemRep(const MemRep& x) : rep(0) { x.rep->n++; rep = x.rep; }
    MemRep& operator=(const MemRep& x)
       {
          x.rep->n++;                      // protect against "x = x"
@@ -73,7 +73,7 @@ protected:
          rep = x.rep;
          return *this;
       }
-   ~MemRep() { if (--rep->n) return; delete rep; }
+   virtual ~MemRep() { if (--rep->n) return; delete rep; }
 
    void resize(Index nsz)
       {

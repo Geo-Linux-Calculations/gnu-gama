@@ -3,7 +3,7 @@
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                   2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
-                  2011  Ales Cepek <cepek@gnu.org>
+                  2011, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -43,9 +43,9 @@ namespace GNU_gama { namespace local
 
     public:
 
-      PointID()                     { init(std::string("")); }
-      PointID(const char* c)        { init(std::string(c)); }
-      PointID(const std::string& s) { init(s); }
+      PointID()                     : iid(0), sid(std::string()) { init(std::string("")); }
+      PointID(const char* c)        : iid(0), sid(std::string()) { init(std::string(c)); }
+      PointID(const std::string& s) : iid(0), sid(std::string()) { init(s); }
 
       bool operator==(const PointID& p) const;
       bool operator!=(const PointID& p) const;

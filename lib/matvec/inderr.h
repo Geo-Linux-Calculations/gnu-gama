@@ -52,6 +52,7 @@ namespace GNU_gama {
     class base : public std::exception
     {
     public:
+      virtual ~base() {}
       virtual base* clone() const = 0;
       virtual void  raise() const = 0;
     };
@@ -60,16 +61,18 @@ namespace GNU_gama {
     {
     public:
       const int    error;
-      const char*  description;
+      //const char*  description;
+      std::string description;
 
       matvec(int e, const char* t) : error(e), description(t) {}
+      matvec(const matvec& m) : error(m.error), description(m.description) {}
 
       matvec* clone() const { return new matvec(*this); }
       void    raise() const { throw *this; }
 
       const char* what() const throw()
       {
-	return description;
+	return description.c_str();
       }
     };
   }

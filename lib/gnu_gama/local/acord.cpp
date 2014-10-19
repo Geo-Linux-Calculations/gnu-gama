@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2001, 2012, 2013  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2001, 2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,7 +16,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 #include <gnu_gama/local/acord.h>
@@ -127,13 +128,14 @@ void Acord::execute()
                 }
 
               S_Distance* s = dynamic_cast<S_Distance*>(obs);
-              if (s == 0) continue;
+              if (s == nullptr) continue;
 
               StandPoint* c = dynamic_cast<StandPoint*>(s->ptr_cluster());
-              if (c == 0) continue;   // this should newer happen
+              if (c == nullptr) continue;   // this should never happen
 
               PointID from = s->from();
               PointID to   = s->to();
+
 
               // search for a zenith angle corresponding to the given
               // slope distance
@@ -149,6 +151,25 @@ void Acord::execute()
                       standpoint->observation_list.push_back(d);
                       continue;
                     }
+
+
+              // slope distance reduced to horizontal if heights are available
+              LocalPoint a = PD[from];
+              LocalPoint b = PD[to];
+              if (a.test_z() && b.test_z())
+                {
+                  Double dz = a.z() - b.z();
+                  dz = dz*dz;
+                  Double ds = s->value();
+                  ds = ds*ds;
+                  if (ds > dz)
+                    {
+                      ds = std::sqrt(ds - dz);
+                      Distance* d = new Distance(from, to, ds);
+                      standpoint->observation_list.push_back(d);
+                      continue;
+                    }
+                }
 
             }
           // bind observations to the cluster

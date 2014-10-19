@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2014  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -50,11 +50,38 @@ public:
   };
 
 
-  LocalPoint()      : bxy_(false), bz_(false), pst_(unused_) {}
-  LocalPoint(XYZ p) : x_(p.x), y_(p.y), z_(p.z), bxy_(true), bz_(true),
-                      pst_(unused_) {}
-  LocalPoint(XY  p) : x_(p.x), y_(p.y), bxy_(true), bz_(false), pst_(unused_){}
-  LocalPoint(ZZ  p) : z_(p.z), bxy_(false), bz_(true), pst_(unused_) {}
+ LocalPoint()
+   : x_(0), y_(0), z_(0),
+    bxy_(false), bz_(false),
+    ix_(0), iy_(0), iz_(0),
+    x0_(0), y0_(0), z0_(0),
+    pst_(unused_)
+    {
+    }
+  LocalPoint(XYZ p)
+    : x_(p.x), y_(p.y), z_(p.z),
+    bxy_(true), bz_(true),
+    ix_(0), iy_(0), iz_(0),
+    x0_(0), y0_(0), z0_(0),
+    pst_(unused_)
+    {
+    }
+  LocalPoint(XY  p)
+    : x_(p.x), y_(p.y), z_(0),
+    bxy_(true), bz_(false),
+    ix_(0), iy_(0), iz_(0),
+    x0_(0), y0_(0), z0_(0),
+    pst_(unused_)
+    {
+    }
+  LocalPoint(ZZ  p)
+    : x_(0), y_(0), z_(p.z),
+    bxy_(false), bz_(true),
+    ix_(0), iy_(0), iz_(0),
+    x0_(0), y0_(0), z0_(0),
+    pst_(unused_)
+    {
+    }
 
 
   Double y() const
@@ -145,8 +172,3 @@ private:
 }}   // namespace GNU_gama::local;
 
 #endif
-
-
-
-
-
