@@ -48,7 +48,7 @@ namespace
   {
   public:
 
-    Init(GNU_gama::g3::Model* m) : model(m), points(model->points) {}
+    Init(GNU_gama::g3::Model* m) : model(m)/*, points(model->points)*/ {}
 
     void visit(Height* p);
     void visit(Vector* p);
@@ -58,7 +58,7 @@ namespace
   private:
 
     GNU_gama::g3::Model*  model;
-    Model::PointBase*     points;
+    //Model::PointBase*     points; 
     List<Observation*>    a, b;
     ObsList*              obs_in;
     ObsList*              obs_out;

@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2012  Ales Cepek  <cepek@gnu.org>
+                  2001, 2012, 2014  Ales Cepek  <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -321,6 +321,7 @@ namespace GNU_gama { namespace local {
           uu = bearing(SD.solution_2(),B2) - bearing(SD.solution_2(),B1);
           uu += (uu < 0 ? 2*M_PI : 0);
           if((uu < (h2->value()+0.1)) && (uu > (h2->value()-0.1)))
+	  { // added { to avoid dangling else 
             if(number_of_solutions_ == 1)
               {
                 point2->set_xy(SD.solution_2().x(), SD.solution_2().y());
@@ -331,6 +332,7 @@ namespace GNU_gama { namespace local {
                 point1->set_xy(SD.solution_2().x(), SD.solution_2().y());
                 number_of_solutions_ = 1;
               };
+	  } //  added } to avoid dangling else
         };
       return;
 
@@ -400,6 +402,7 @@ namespace GNU_gama { namespace local {
           uu = bearing(DD.solution_2(),B2) - bearing(DD.solution_2(),B1);
           uu += (uu < 0 ? 2*M_PI : 0);
           if((uu < (h2->value()+0.1)) && (uu > (h2->value()-0.1)))
+	  { // added { to avoid dangling else 
             if(number_of_solutions_ == 1)
               {
                 point2->set_xy(DD.solution_2().x(), DD.solution_2().y());
@@ -410,6 +413,7 @@ namespace GNU_gama { namespace local {
                 point1->set_xy(DD.solution_2().x(), DD.solution_2().y());
                 number_of_solutions_ = 1;
               };
+	  } // added } to avoid dangling else 
         };
       return;
 
@@ -497,6 +501,7 @@ namespace GNU_gama { namespace local {
             Vyhovuje1 = (uu1 < (h1->value()+0.1)) && (uu1 > (h1->value()-0.1));
             Vyhovuje2 = (uu2 < (h2->value()+0.1)) && (uu2 > (h2->value()-0.1));
             if(Vyhovuje1 && Vyhovuje2)
+	    { // added { to avoid dangling else 
               if(number_of_solutions_ == 1)
                 {
                   point2->set_xy(DD.solution_2().x(), DD.solution_2().y());
@@ -507,6 +512,7 @@ namespace GNU_gama { namespace local {
                   point1->set_xy(DD.solution_2().x(), DD.solution_2().y());
                   number_of_solutions_ = 1;
                 };
+	    } // added } to avoid dangling else 
           };
       return;
 

@@ -497,8 +497,8 @@ void LocalLinearization::azimuth(const Azimuth* obs) const
    const Double ps = K*sin(s);
    const Double pc = K*cos(s);
 
-   const StandPoint*  csp = static_cast<const StandPoint*>(obs->ptr_cluster());
-   StandPoint* sp = const_cast<StandPoint*>(csp);
+   // const StandPoint*  csp = static_cast<const StandPoint*>(obs->ptr_cluster()); ... unused
+   // StandPoint* sp = const_cast<StandPoint*>(csp); ... unused
 
    Double a = (obs->value() + PD.xNorthAngle() - s)*R2CC;  // rhs
 

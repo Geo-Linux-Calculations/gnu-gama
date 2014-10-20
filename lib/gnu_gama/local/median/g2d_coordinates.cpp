@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2013  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2013, 2014  Ales Cepek  <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -118,10 +118,12 @@ bool ApproximateCoordinates::necessary_observations(PointID id)
       // is second target available?
       Angle* u = dynamic_cast<Angle*>(*i);
       if( u && (u->fs() == id))
+      { // added { to avoid dangling else 
         if(first)
           second = true;
         else
           first = true;
+      } // added } to avoid dangling else 
       i++;
     }
   while(!(second || i == SM.end()));
@@ -167,10 +169,12 @@ void ApproximateCoordinates::move_point(PointData& from, PointData& to,
   PointData::iterator i = from.find(what);
   PointData::iterator j = to.find(what);
   if(i != from.end())
+  { // added { to avoid dangling else 
     if(j != to.end())
       (*j).second.set_xy((*i).second.x(), (*i).second.y());
     else
       to[what] = LocalPoint::XY((*i).second.x(), (*i).second.y());
+  } // added } to avoid dangling else 
 
 }    // ApproximateCoordinates::move_point(PointData&, PointData&, PointID&)
 

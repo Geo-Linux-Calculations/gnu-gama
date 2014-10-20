@@ -34,6 +34,7 @@ double GNU_gama::local::PointData::xNorthAngle() const
     case NW: case NE:  lh = 400; break;
     case SE: case SW:  lh = 200; break;
     case WS: case WN:  lh = 100; break;
+    default:;
     }
 
   if (right_handed_angles()) lh = 400 - lh;

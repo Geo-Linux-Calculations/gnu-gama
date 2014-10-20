@@ -72,8 +72,8 @@ namespace GNU_gama { namespace local {
 
         PointData&          PD;
         ObservationData&    OD;
-        GNU_gama::Ellipsoid EL;
-        double              latitude;
+        // GNU_gama::Ellipsoid EL;        ... unused
+        // double              latitude;  ... unused
         EllipsoidFunction   EF;
         ObsMap              reduced;
     };

@@ -42,7 +42,9 @@ namespace GNU_gama { namespace local {
 
     public:
 
-      LocalLinearization(PointData& pd, double m) : max_size(6), PD(pd), maxn(0), m0(m) {}
+      LocalLinearization(PointData& pd, double m) 
+	: max_size(6), PD(pd), maxn(0) //, m0(m) ... unused
+      {}
 
       int  unknowns() const { return maxn; }
 
@@ -70,7 +72,7 @@ namespace GNU_gama { namespace local {
 
       PointData&           PD;
       mutable int          maxn;
-      double               m0;
+      // double               m0; ... unused
 
       void direction  (const Direction  *obs) const;
       void distance   (const Distance   *obs) const;

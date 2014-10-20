@@ -48,8 +48,11 @@ namespace GNU_gama {
   // VERSION is defined in config.h
   std::string GNU_gama_version  = VERSION;
 
+  // clang needs to be checked befor GNU C, because it defines macro __GNUC__
   std::string GNU_gama_compiler =
-#if   defined  (__GNUC__)
+#if   defined  (__clang__)
+    "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
+#elif defined  (__GNUC__)
     "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__) "." xstr(__GNUC_PATCHLEVEL__)
 #elif defined  (_MSC_VER)
     "MSVC " xstr(_MSC_VER)

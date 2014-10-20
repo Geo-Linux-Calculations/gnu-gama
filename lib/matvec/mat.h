@@ -196,7 +196,7 @@ void Mat<Float, Exc>::invert()
   pentry = this->begin();
 
   const Index N = this->rows();
-  Index step, row, p_row, p_col, i, ii, j, jj, r, c, l;
+  Index step, row, p_row {0}, p_col {0}, i, ii, j, jj, r, c, l;
 
   Array<Index> indr(N),indc(N);    // row/column permutation
   for (l=0; l<N; l++) indr.entry(l) = indc.entry(l) = l;

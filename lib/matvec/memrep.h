@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -73,7 +73,7 @@ protected:
          rep = x.rep;
          return *this;
       }
-   virtual ~MemRep() { if (--rep->n) return; delete rep; }
+   ~MemRep() { if (--rep->n) return; delete rep; }
 
    void resize(Index nsz)
       {

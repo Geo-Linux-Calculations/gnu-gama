@@ -68,14 +68,14 @@ void AdjInputData::write_xml(std::ostream& out) const
           << "<cols>" << A->columns() << "</cols> "
           << "<nonz>" << A->nonzeroes() << "</nonz>\n";
 
-      for (std::size_t m, k=1; k<=A->rows(); k++)
+      for (std::size_t k=1; k<=A->rows(); k++)
         {
           double* n = A->begin(k);
           double* e = A->end  (k);
 
           out << "      <row>";
           out << " <nonz>" << (e - n) << "</nonz>";
-          for(std::size_t* i=A->ibegin(k) ; n!=e; n++, i++, m++)
+          for(std::size_t* i=A->ibegin(k) ; n!=e; n++, i++)
             {
               out << "\n        "
                   << "<int>" << *i << "</int>"

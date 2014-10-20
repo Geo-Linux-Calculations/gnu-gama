@@ -277,8 +277,8 @@ int DataParser::block_diagonal_nonz(const char *name)
 int DataParser::block_diagonal_block_w(const char *name)
 {
   istringstream inp(text_buffer.c_str());
-  std::size_t dim, width;
-  if (pure_data(inp >> dim >> width) && dim>0 && width>=0 && width<dim)
+  std::size_t dim, width;                     // unsigned
+  if (pure_data(inp >> dim >> width) && dim>0 /*&& width>=0*/ && width<dim)
     {
       block_diagonal_dim   = dim;
       block_diagonal_width = width;

@@ -356,7 +356,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
   const int prec  = out.precision(5);
-  const int width = 13;
+  //const int width = 13;
 
   double rd = adj->r()(index)/Linear().scale();
   out << "\n        <observed>" << setw(13) << d->obs()

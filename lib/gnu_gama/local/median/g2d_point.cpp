@@ -1,7 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@gama.fsv.cvut.cz>
+                  2001, 2014  Ales Cepek  <cepek@gama.fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -64,12 +64,15 @@ namespace GNU_gama { namespace local {
     for(ObservationList::iterator i = sm->begin(); i != sm->end(); i++)
       {
         if(((*i)->from() == CB) && KnownTarget(i))
+	{ // added { to avoid dangling else 
           if(Direction* s = dynamic_cast<Direction*>(*i))
             sm_s.push_back(s);
           else
             sm_pom.push_back(*i);
+	} // added } to avoid dangling else 
         else
           if(knownStandpoint(i))
+	  { // added { to avoid dangling else 
             if(Angle* u = dynamic_cast<Angle*>(*i))
               {
                 if((u->to() == CB && KnownTarget2(u)) ||
@@ -78,10 +81,13 @@ namespace GNU_gama { namespace local {
               }
             else
               if((*i)->to() == CB)
+              { // added { to avoid dangling else 
                 if(Direction* s = dynamic_cast<Direction*>(*i))
                   SM_S.push_back(makeBearing(s,CB));
                 else
                   sm_pom.push_back(*i);
+              } // added { to avoid dangling else 
+	  } // added } to avoid dangling else 
       }
 
     // transforming directions on the computed standpoint to inner angels

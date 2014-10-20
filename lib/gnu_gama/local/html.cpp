@@ -59,9 +59,9 @@ std::string double2str(double d, char format, int precision);
 
 std::string tdLeft (std::string s, int l=0, int r=0);
 std::string tdRight(std::string s, int l=0, int r=0);
-std::string tdLeft (int n,         int l=0, int r=0);
+// std::string tdLeft (int n,         int l=0, int r=0);  ... unused function
 std::string tdRight(int n,         int l=0, int r=0);
-std::string tdLeft (double d, char format, int precision, int l=0, int r=0);
+// std::string tdLeft (double d, char format, int precision, int l=0, int r=0); ... unused function
 std::string tdRight(double d, char format, int precision, int l=0, int r=0);
 
 std::string double2str(double d, char format, int precision)
@@ -94,18 +94,18 @@ std::string tdRight(std::string s, int l, int r)
   return
     "<td align='right'>" + tdSpace(l) + str2html(s) + tdSpace(r) + "</td>";
 }
-std::string tdLeft(int n, int l, int r)
-{
-  return tdLeft(int2str(n), l, r);
-}
+// std::string tdLeft(int n, int l, int r)   ... unused function
+// {
+//   return tdLeft(int2str(n), l, r);
+// }
 std::string tdRight(int n, int l, int r)
 {
   return tdRight(int2str(n), l, r);
 }
-std::string tdLeft (double d, char format, int precision, int l, int r)
-{
-  return tdLeft(double2str(d,format,precision),l,r);
-}
+// std::string tdLeft (double d, char format, int precision, int l, int r)
+// {
+//   return tdLeft(double2str(d,format,precision),l,r);  ... unused function
+// }
 std::string tdRight(double d, char format, int precision, int l, int r)
 {
   return tdRight(double2str(d,format,precision),l,r);
@@ -390,8 +390,8 @@ private:
   void linear()
   {
     scale = 1.0;
-    double val = obs->value();
-    double adj = val + lnet->residuals()(index)/1000;
+    // double val = obs->value();                        ... unused
+    // double adj = val + lnet->residuals()(index)/1000; ... unused
 
     double f  = lnet->obs_control(index);
     out << tdRight(f, 'F', 1, 2,0);
@@ -1535,7 +1535,13 @@ void GamaLocalHTML::htmlRejected()
           PointID id = *i;
           str += "<tr>";
           str += tdRight(id.str(),0,1);
-          str += tdLeft(*j < 8 ? codes[*j] : "error : bad code");
+          // str += tdLeft(*j < 8 ? codes[*j] : "error : bad code");
+	  //
+	  // warning: comparison of constant 8 with expression of type
+	  // 'const GNU_gama::local::LocalNetwork::rm_points' is
+	  // always true  [-Wtautological-constant-out-of-range-compare]
+	  //
+          str += tdLeft(codes[*j]);
           str += "</tr>\n";
         }
       str += "</table>\n";

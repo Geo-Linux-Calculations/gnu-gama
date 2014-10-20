@@ -117,7 +117,8 @@ double ReduceToEllipsoid::EllipsoidFunction::sdistance(const LocalPoint& a, cons
 
 ReduceToEllipsoid::ReduceToEllipsoid(PointData& b, ObservationData& m,
                                      GNU_gama::Ellipsoid el, double lat):
-    PD(b), OD(m), EL(el), latitude(lat),  EF(EllipsoidFunction(el, lat))
+  PD(b), OD(m), // EL(el), latitude(lat),  unused members
+    EF(EllipsoidFunction(el, lat))
 {
 
 }
