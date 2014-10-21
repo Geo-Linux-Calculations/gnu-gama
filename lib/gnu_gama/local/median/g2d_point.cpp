@@ -110,7 +110,7 @@ namespace GNU_gama { namespace local {
 
   void ApproxPoint::calculation()
   {
-    CoordinateGeometry2D* GU;
+    CoordinateGeometry2D* GU {nullptr};
     Select_solution_g2d* VR = new Select_solution_g2d(&SB,&SM);
     bool two_solutions = false;
     LocalPoint prv, dru;

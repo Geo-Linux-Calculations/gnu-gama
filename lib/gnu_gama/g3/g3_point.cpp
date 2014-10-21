@@ -526,7 +526,7 @@ void Point::write_xml(std::ostream& ostr)
      {
        ostr.setf(std::ios_base::fixed, std::ios_base::floatfield);
 
-       double dB, dL, dH, BB, LL, HH;
+       double dB {0}, dL {0}, dH, BB, LL, HH;
        double B0 = B.init_value();
        double L0 = L.init_value();
        double H0 = H.init_value();

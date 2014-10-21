@@ -121,7 +121,9 @@ void GamaLocalSVG::svg_init() const
   if (tst_implicit_size) ellipsescale = 1.0;
 
   bool first_point = true;
-  double x, y, tminx, tmaxx, tminy, tmaxy;
+  // tminx, tmaxx, tminy, tmaxy are set for the first point
+  // initialization here is just to remove compiler warning
+  double x, y, tminx {0}, tmaxx {0}, tminy {0}, tmaxy {0};
   for (int iter=1; iter<=2; iter++)
   {
   for (PointData::const_iterator i=PD.begin(), e=PD.end(); i!=e; ++i)

@@ -128,7 +128,7 @@ void LocalNetworkAdjustmentResults::read_html(std::istream& html)
     while (std::getline(html, line, '\0'))
       {
         std::string text;
-        for (int i=0; i<line.length(); i++)
+        for (unsigned int i=0; i<line.length(); i++)
           {
             // replace some special hardcoded characters used in
             // gama-local HTML output for better formatting

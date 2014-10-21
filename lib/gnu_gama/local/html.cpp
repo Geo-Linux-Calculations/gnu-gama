@@ -911,7 +911,7 @@ void GamaLocalHTML::htmlInfo()
           out << "</table>\n";
         }
 
-      Observation* ptr;
+      Observation* ptr {nullptr};
       double stud_opr;
       double max_stud = 0;
       int imax = 0;

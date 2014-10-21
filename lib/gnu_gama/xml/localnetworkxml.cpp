@@ -684,7 +684,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   if (dim)
     {
       band = netinfo->adj_covband();
-      if (band == -1 || band > dim-1) band = dim - 1;
+      if (band == -1 || band > int(dim)-1) band = dim - 1;
     }
   out << "\n<!-- upper part of symmetric matrix band by rows -->\n"
       << "<cov-mat>\n"
