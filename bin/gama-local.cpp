@@ -48,7 +48,7 @@
 #include <gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h>
 #include <gnu_gama/local/results/text/residuals_observations.h>
 #include <gnu_gama/local/results/text/error_ellipses.h>
-#include <gnu_gama/local/results/text/test_linearization.h>
+#include <gnu_gama/local/test_linearization_visitor.h>
 #include <gnu_gama/local/xmlerror.h>
 
 namespace {

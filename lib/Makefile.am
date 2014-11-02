@@ -151,9 +151,10 @@ libgama_src = \
    gnu_gama/local/results/text/reduced_observations.h \
    gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h \
    gnu_gama/local/results/text/residuals_observations.h \
-   gnu_gama/local/results/text/test_linearization.h \
    gnu_gama/local/results/text/underline.cpp \
    gnu_gama/local/results/text/underline.h \
+   gnu_gama/local/test_linearization_visitor.cpp \
+   gnu_gama/local/test_linearization_visitor.h \
    gnu_gama/local/local_revision.h \
    gnu_gama/local/matvec.h \
    gnu_gama/local/medianf.h \

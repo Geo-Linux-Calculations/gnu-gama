@@ -23,7 +23,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/acord.h>
-#include <gnu_gama/local/results/text/test_linearization.h>
+#include <gnu_gama/local/test_linearization_visitor.h>
 
 double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
 		  GNU_gama::local::LocalNetwork* lnet2)

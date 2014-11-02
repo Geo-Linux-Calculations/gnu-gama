@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                  2011  Vaclav Petras <wenzeslaus@gmail.com>
-                 2012, 2013  Ales Cepek <cepek@gnu.org>
+                 2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -112,7 +112,40 @@ public:
     }
 
     void visit(H_Diff*)     { mer = 0; pol = 0; }
-    void visit(S_Distance*) { mer = 0; pol = 0; }
+
+    void visit(S_Distance* obs)
+    {
+      double dx {0}, dy {0}, dz {0};
+      auto f = [&](const PointID& pid)
+	{
+	  const LocalPoint& point = IS->PD[pid];
+	  dx += point.x();
+	  dy += point.y();
+	  dz += point.z();
+	  if (point.free_xy())
+	    {
+	      dx += x(point.index_x())/1000;
+	      dy += x(point.index_y())/1000;
+	    }
+	  if (point.free_z())
+	    {
+	      dz += x(point.index_z())/1000;
+	    }
+	  dx *= -1;
+	  dy *= -1;
+	  dz *= -1;
+	};
+
+      f(obs->from());
+      f(obs->to());
+      double slope = std::sqrt(dx*dx + dy*dy + dz*dz);
+
+      mer  = obs->value() + v(i)/1000;
+      mer -= slope;
+      mer *= 1000;
+      pol  = mer;
+    }
+
     void visit(Z_Angle*)    { mer = 0; pol = 0; }
     void visit(X*)          { mer = 0; pol = 0; }
     void visit(Y*)          { mer = 0; pol = 0; }
