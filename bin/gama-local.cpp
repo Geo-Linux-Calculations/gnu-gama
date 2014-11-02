@@ -83,6 +83,8 @@ int help()
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
     "             n  = -1  for full covariance matrix (implicit value)\n"
     "             n >=  0  covariances are computed only for bandwidth n\n"
+    "--iterations maximum number of iterations allowed in the linearized\n"
+    "             least squares algorithm (implicit value is 5)\n"
     "--version\n"
     "--help\n\n";
 
@@ -112,6 +114,8 @@ int help()
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
     "             n  = -1  for full covariance matrix (implicit value)\n"
     "             n >=  0  covariances are computed only for bandwidth n\n"
+    "--iterations maximum number of iterations allowed in the linearized\n"
+    "             least squares algorithm (implicit value is 5)\n"
     "--version\n"
     "--help\n\n";
 #endif
@@ -147,6 +151,7 @@ int main(int argc, char **argv)
     const char* argv_svgout = 0;
     const char* argv_obsout = 0;
     const char* argv_covband = 0;
+    const char* argv_iterations = 0;
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     const char* argv_confname = 0;
@@ -190,6 +195,7 @@ int main(int argc, char **argv)
         else if (name == "svg"       ) argv_svgout = c;
         else if (name == "obs"       ) argv_obsout = c;
         else if (name == "cov-band"  ) argv_covband = c;
+        else if (name == "iterations") argv_iterations = c;
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
         else if (name == "sqlitedb")               argv_sqlitedb = c;
         else if (name == "configuration")          argv_confname = c;
@@ -379,6 +385,17 @@ int main(int argc, char **argv)
         IS->set_adj_covband(band);
       }
 
+    if (argv_iterations)
+      {
+        std::istringstream istr(argv_iterations);
+        int iter = IS->max_linearization_iterations();
+        if (!(istr >> iter) || iter < 0) return help();
+        char c;
+        if (istr >> c) return help();
+
+        IS->set_max_linearization_iterations(iter);
+      }
+
     if (argv_latitude)
       {
         double latitude;
@@ -499,37 +516,23 @@ int main(int argc, char **argv)
         if (network_can_be_adjusted)
           {
             int iteration = 0;
-            do
+            while (iteration < IS->max_linearization_iterations() &&
+                   TestLinearization(IS))
               {
-                if(++iteration > 1)
-                  {
-                    // removed in version 1.13
-                    // cout << "\n         ******  "
-                    //     << iteration << T_GaMa_adjustment_iteration
-                    //     << "  ******\n\n"
-                    //     << T_GaMa_Approximate_coordinates_replaced << "\n"
-                    //     << underline(T_GaMa_Approximate_coordinates_replaced,
-                    //                  '*') << "\n\n\n";
-
-                    IS->refine_approx();
-                    // GeneralParameters(IS, cout);
-                  }
-                // FixedPoints     (IS, cout);
-                // AdjustedUnknowns(IS, cout);
+                iteration++;
+                IS->refine_approx();
               }
-            while (TestLinearization(IS) && iteration < 5);
 
-            // from version 1.13 running results are not printed
-            if (iteration > 1)
+            if (iteration > 0)
               {
                 cout << T_GaMa_Approximate_coordinates_replaced << "\n"
                      << underline(T_GaMa_Approximate_coordinates_replaced,'*')
                      << "\n\n"
                      << T_GaMa_Number_of_linearization_iterations
                      << iteration << "\n\n";
-
-                if (!TestLinearization(IS, cout)) cout << "\n";
               }
+
+            if (!TestLinearization(IS, cout)) cout << "\n";
 
             NetworkDescription   (IS->description, cout);
             GeneralParameters    (IS, cout);

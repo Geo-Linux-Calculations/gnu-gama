@@ -278,7 +278,9 @@ namespace GNU_gama { namespace local
     bool        has_algorithm() const;
     void        set_algorithm(std::string alg = std::string());
     int         adj_covband() const;
-    void        set_adj_covband(int value=0);
+    void        set_adj_covband(int value=1);
+    int         max_linearization_iterations() const;
+    void        set_max_linearization_iterations(int value=5);
     double      epoch() const;
     bool        has_epoch() const;
     void        set_epoch(double=0.0);
@@ -297,6 +299,7 @@ namespace GNU_gama { namespace local
   private:
 
     int         adj_covband_;         // output XML xyz cov bandWidth
+    int         max_linearization_iterations_;
     std::string algorithm_;           // algorithm name or empty string
     bool        has_algorithm_;
     double      epoch_;

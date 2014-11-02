@@ -51,8 +51,8 @@ private:
     const GNU_gama::local::Vec& v; ///< residuals
     const GNU_gama::local::Vec& x; ///< unknowns
     GNU_gama::Index i;
-    Double pol;
-    Double mer;
+    double pol;
+    double mer;
 public:
     TestLinearizationVisitor(GNU_gama::local::LocalNetwork* localNetwork,
                              const GNU_gama::local::Vec& residuals,
@@ -65,108 +65,35 @@ public:
         next visit. */
     void setObservationIndex(GNU_gama::Index index) { i = index; }
 
-    Double getPol() { return  pol; }
-    Double getMer() { return  mer; }
+    double getPol() { return  pol; }
+    double getMer() { return  mer; }
 
-    void visit(Distance* obs)
-    {
-        Double ds, dd;
-        computeBearingAndDistance(obs, ds, dd);
-        mer  = obs->value() + v(i)/1000;
-        mer -= dd;
-        mer *= 1000;
-        pol  = mer;
-    }
-
-    void visit(Direction* obs)
-    {
-        Double ds, dd;
-        computeBearingAndDistance(obs, ds, dd);
-        Double orp = obs->orientation();
-        mer = obs->value() + v(i)*CC2R + orp + x(obs->index_orientation())*CC2R;
-        mer -= ds;
-        while (mer >  M_PI) mer -= 2*M_PI;
-        while (mer < -M_PI) mer += 2*M_PI;
-        pol  = mer*dd*1000;
-        mer *= R2CC;
-    }
-
-    void visit(Angle* obs)
-    {
-        Double ds, dd;
-        computeBearingAndDistance(obs, ds, dd);
-
-        Double sx, sy, cx, cy;
-        computeFromTo(obs, sx, sy, cx, cy);
-
-        const LocalPoint& cil2 = IS->PD[obs->fs() ];
-        Double cy2 = cil2.y() + x(cil2.index_y())/1000;
-        Double cx2 = cil2.x() + x(cil2.index_x())/1000;
-        Double ds2, dd2;
-        GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
-        mer = obs->value() + v(i)*CC2R - ds2 + ds;
-        while (mer >  M_PI) mer -= 2*M_PI;
-        while (mer < -M_PI) mer += 2*M_PI;
-        pol  = mer*max(dd,dd2)*1000;
-        mer *= R2CC;
-    }
-
-    void visit(H_Diff*)     { mer = 0; pol = 0; }
-
-    void visit(S_Distance* obs)
-    {
-      double dx {0}, dy {0}, dz {0};
-      auto f = [&](const PointID& pid)
-	{
-	  const LocalPoint& point = IS->PD[pid];
-	  dx += point.x();
-	  dy += point.y();
-	  dz += point.z();
-	  if (point.free_xy())
-	    {
-	      dx += x(point.index_x())/1000;
-	      dy += x(point.index_y())/1000;
-	    }
-	  if (point.free_z())
-	    {
-	      dz += x(point.index_z())/1000;
-	    }
-	  dx *= -1;
-	  dy *= -1;
-	  dz *= -1;
-	};
-
-      f(obs->from());
-      f(obs->to());
-      double slope = std::sqrt(dx*dx + dy*dy + dz*dz);
-
-      mer  = obs->value() + v(i)/1000;
-      mer -= slope;
-      mer *= 1000;
-      pol  = mer;
-    }
-
-    void visit(Z_Angle*)    { mer = 0; pol = 0; }
-    void visit(X*)          { mer = 0; pol = 0; }
-    void visit(Y*)          { mer = 0; pol = 0; }
-    void visit(Z*)          { mer = 0; pol = 0; }
-    void visit(Xdiff*)      { mer = 0; pol = 0; }
-    void visit(Ydiff*)      { mer = 0; pol = 0; }
-    void visit(Zdiff*)      { mer = 0; pol = 0; }
-    void visit(Azimuth*)    { mer = 0; pol = 0; }
+    void visit(Distance* obs);
+    void visit(Direction* obs);
+    void visit(Angle* obs);
+    void visit(H_Diff*);
+    void visit(S_Distance* obs);
+    void visit(Z_Angle*);
+    void visit(X*);
+    void visit(Y*);
+    void visit(Z*);
+    void visit(Xdiff*);
+    void visit(Ydiff*);
+    void visit(Zdiff*);
+    void visit(Azimuth*);
 
 private:
-    void computeBearingAndDistance(const Observation* pm, Double& ds, Double& dd)
+    void computeBearingAndDistance(const Observation* pm, double& ds, double& dd)
     {
-        Double sx;
-        Double sy;
-        Double cx;
-        Double cy;
+        double sx;
+        double sy;
+        double cx;
+        double cy;
         computeFromTo(pm, sx, sy, cx, cy);
         GNU_gama::local::bearing_distance(sy, sx, cy, cx, ds, dd);
     }
 
-    void computeFromTo(const Observation* pm, Double& sx, Double& sy, Double& cx, Double& cy)
+    void computeFromTo(const Observation* pm, double& sx, double& sy, double& cx, double& cy)
     {
         const LocalPoint& stan = IS->PD[pm->from()];
         const LocalPoint& cil  = IS->PD[pm->to() ];
@@ -198,8 +125,8 @@ class TestLinearizationWriteVisitor : public AllObservationsVisitor
 private:
     OutStream& out;
     GNU_gama::local::LocalNetwork* IS;
-    Double dms;
-    Double mer;
+    double dms;
+    double mer;
 
     static const int distPrecision = 5;
     static const int angularPrecision = 6;
@@ -213,8 +140,8 @@ public:
     ///* \brief Sets index of observation which will be used in the next visit. */
     //void setObservationIndex(GNU_gama::Index index) { i = index; }
 
-    Double getDms() { return  dms; }
-    Double getMer() { return  mer; }
+    double getDms() { return  dms; }
+    double getMer() { return  mer; }
 
     void visit(Distance* obs)
       {
@@ -240,9 +167,15 @@ public:
         mer = (obs->value())*R2G;
         out.precision(angularPrecision);
       }
+    void visit(S_Distance* obs)
+    { 
+      dms = false;
+      out << T_GaMa_s_distance;
+      mer = obs->value();
+      out.precision(distPrecision);
+    }
 
     void visit(H_Diff*)     { mer = 0; dms = false; }
-    void visit(S_Distance*) { mer = 0; dms = false; }
     void visit(Z_Angle*)    { mer = 0; dms = false; }
     void visit(X*)          { mer = 0; dms = false; }
     void visit(Y*)          { mer = 0; dms = false; }
@@ -256,92 +189,16 @@ public:
 
 /** \brief
  *
- * \todo Reorganize code by moving some observation dependent code to TestLinearizationWriteVisitor.
+ * \todo Reorganize code by moving some observation dependent code to
+ * TestLinearizationWriteVisitor.
  */
 
 bool
 TestLinearization(GNU_gama::local::LocalNetwork* IS,
                   double max_pyx = 0.1500, // suspicious coorection in meters
                   double max_dif = 0.0005  // max. positional difference in mm
-                  )
-{
-  using namespace std;
-  using namespace GNU_gama::local;
-  using GNU_gama::local::Double;
+                  );
 
-  bool test  = false;     // result of bad linearization test
-
-  // difference in adjusted observations computed from residuals and
-  // from adjusted coordinates
-  // ===============================================================
-  {
-    const int M = IS->sum_observations();
-
-    Vec dif_m(M);   // difference in computation of adjusted observation
-    Vec dif_p(M);   //               corresponds to positional shift
-
-    const Vec& v = IS->residuals();
-    const Vec& x = IS->solve();
-
-    TestLinearizationVisitor testVisitor(IS, v, x);
-
-    for (int i=1; i<=M; i++)
-      {
-        dif_m(i) = 0;
-        dif_p(i) = 0;
-        // if (IS->obs_control(i) < 0.1) continue;  // uncontrolled observation
-        // if (IS->obs_control(i) < 5.0) continue;  // weakly controlled obs.
-
-        Double  mer = 0, pol = 0;
-
-        Observation* pm = IS->ptr_obs(i);
-
-        // special case for coordinates
-        if (dynamic_cast<const Coordinates*>(pm->ptr_cluster()))
-          {
-            dif_m(i) = dif_p(i) = 0;
-            continue;
-          }
-
-        // other observations by visitor or by default values
-        testVisitor.setObservationIndex(i);
-        pm->accept(&testVisitor);
-
-        mer = testVisitor.getMer();
-        pol = testVisitor.getPol();
-
-        dif_m(i) = mer;
-        dif_p(i) = pol;
-      }
-
-    Double max_pol = 0;
-    {
-      for (Vec::iterator i=dif_p.begin(); i != dif_p.end(); ++i)
-        if (fabs(*i) > max_pol)
-          max_pol = fabs(*i);
-    }
-    if (max_pol >= max_dif) test = true;
-
-    if (test && !(IS->update_constrained_coordinates()))
-      {
-        // if all adjusted points are constrained, adjustment is never
-        // repeated (unless explicitly asked for)
-        // ------------------------------------------------------
-
-        test = false;
-        for (PointData::const_iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
-          {
-            const LocalPoint& b = (*i).second;
-            if (b.free_xy() && !b.constrained_xy())
-              {
-                test = true;
-                break;
-              }
-          }
-      }
-  }
-  return test;
-}
 
 template <typename OutStream>
 bool
@@ -350,10 +207,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
                   double max_dif = 0.0005  // max. positional difference in mm
                   )
 {
-
   using namespace std;
   using namespace GNU_gama::local;
-  using GNU_gama::local::Double;
 
   bool test  = false;     // result of bad linearization test
 
@@ -378,7 +233,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
         // if (IS->obs_control(i) < 0.1) continue;  // uncontrolled observation
         // if (IS->obs_control(i) < 5.0) continue;  // weakly controlled obs.
 
-        Double  mer = 0, pol = 0;
+        double  mer = 0, pol = 0;
 
         Observation* pm = IS->ptr_obs(i);
 
@@ -401,7 +256,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
       }
 
 
-    Double max_pol = 0;
+    double max_pol = 0;
     {
       for (Vec::iterator i=dif_p.begin(); i != dif_p.end(); ++i)
         if (fabs(*i) > max_pol)
@@ -468,7 +323,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
             out.setf(ios_base::fixed, ios_base::floatfield);
 
             bool dms = false;
-            Double mer = 0;
+            double mer = 0;
 
             pm->accept(&writeVisitor);
 
@@ -492,8 +347,9 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
             else
               out << v(i)*0.324 << ' ';
 
-            if (dynamic_cast<Distance*>(pm))
-              {
+            //if (dynamic_cast<Distance*>(pm));
+	    if (!pm->angular())
+	      {
                 out << "         ";
               }
             else

@@ -46,6 +46,8 @@ Options:
 --cov-band   covariance matrix of adjusted parameters in XML output
              n  = -1  for full covariance matrix (implicit value)
              n >=  0  covariances are computed only for bandwidth n
+--iterations maximum number of iterations allowed in the linearized
+             least squares algorithm (implicit value is 5)
 --version
 --help
 @end example
@@ -102,6 +104,13 @@ written to XML output, @code{--cov-band 1} results in computing the
 main diagonal and first codiagonal etc. If higher rank is specified then
 available, it is reduced do maximum possible value @code{dim-1}.
 
+Option @code{--iterations} enables to set maximum number of
+iterations allowed in the linearized least squares algorithm. After
+the adjustment @code{gama-local} computes differences between adjusted
+observations computed from residuals and from adjusted coordinates. If
+the positional difference is higher than 0.5mm, approximate
+coordinates of adjusted points are updated and the whole adjustment is
+repeated in a new iteration. Implicit number of iterations is 5.
 
 @menu
 * Reductions of horizontal and zenith angles::

@@ -219,6 +219,7 @@ LocalNetwork::LocalNetwork()
   Asp = 0;
 
   set_adj_covband();
+  set_max_linearization_iterations();
   // epoch_         = 0.0;
   // has_epoch_     = false;
   // latitude_      = M_PI/4.0;
@@ -298,6 +299,19 @@ void LocalNetwork::set_adj_covband(int val)
 {
   if (val < -1) val = -1;
   adj_covband_ = val;
+}
+
+
+int LocalNetwork::max_linearization_iterations() const
+{
+  return max_linearization_iterations_;
+}
+
+
+void LocalNetwork::set_max_linearization_iterations(int value)
+{
+  if (value < 0) value = 0;
+  max_linearization_iterations_ = value;
 }
 
 
