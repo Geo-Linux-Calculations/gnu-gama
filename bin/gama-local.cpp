@@ -515,21 +515,21 @@ int main(int argc, char **argv)
 
         if (network_can_be_adjusted)
           {
-            int iteration = 0;
-            while (iteration < IS->max_linearization_iterations() &&
+            IS->clear_linearization_iterations();
+            while (IS->next_linearization_iterations() &&
                    TestLinearization(IS))
               {
-                iteration++;
+                IS->increment_linearization_iterations();
                 IS->refine_approx();
               }
 
-            if (iteration > 0)
+            if (IS->linearization_iterations() > 0)
               {
                 cout << T_GaMa_Approximate_coordinates_replaced << "\n"
                      << underline(T_GaMa_Approximate_coordinates_replaced,'*')
                      << "\n\n"
                      << T_GaMa_Number_of_linearization_iterations
-                     << iteration << "\n\n";
+                     << IS->linearization_iterations() << "\n\n";
               }
 
             if (!TestLinearization(IS, cout)) cout << "\n";

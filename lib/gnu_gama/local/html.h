@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -45,6 +45,7 @@ public:
   std::string str() const;
 
   std::string html_begin       () const { return begin       .text(); }
+  std::string html_terms       () const { return terms       .text(); }
   std::string html_info        () const { return info        .text(); }
   std::string html_unknowns    () const { return unknowns    .text(); }
   std::string html_observations() const { return observations.text(); }
@@ -53,12 +54,14 @@ public:
   std::string html_end         () const { return end         .text(); }
 
   void set_info        (bool p) { info        .active = p; }
+  void set_terms       (bool p) { terms       .active = p; }
   void set_unknowns    (bool p) { unknowns    .active = p; }
   void set_observations(bool p) { observations.active = p; }
   void set_residuals   (bool p) { residuals   .active = p; }
   void set_rejected    (bool p) { rejected    .active = p; }
 
   bool get_info        () const { return info        .active; }
+  bool get_terms       () const { return terms       .active; }
   bool get_unknowns    () const { return unknowns    .active; }
   bool get_observations() const { return observations.active; }
   bool get_residuals   () const { return residuals   .active; }
@@ -66,7 +69,7 @@ public:
 
   void set_all_parts_active()
   {
-    info.active = unknowns.active = observations.active =
+    terms.active = info.active = unknowns.active = observations.active =
       residuals.active = rejected.active = true;
   }
 
@@ -89,12 +92,13 @@ private:
         std::string str;
     };
 
-  HtmlPart begin, info, unknowns, observations, residuals, rejected, end;
+  HtmlPart begin, terms, info, unknowns, observations, residuals, rejected, end;
 
   std::string html_style;
   std::string title, h1;
 
   void htmlBegin       ();
+  void htmlTerms       ();
   void htmlInfo        ();
   void htmlUnknowns    ();
   void htmlObservations();

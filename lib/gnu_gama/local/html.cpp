@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012, 2013  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -28,8 +28,10 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/writevisitor.h>
 #include <gnu_gama/local/language.h>
+#include <gnu_gama/local/test_linearization_visitor.h>
 
 #include <sstream>
+#include <cmath>
 
 namespace {
 
@@ -496,6 +498,7 @@ void GamaLocalHTML::set_local_network(LocalNetwork *local_network)
 {
   lnet = local_network;
 
+  terms       .str.clear();
   info        .str.clear();
   unknowns    .str.clear();
   observations.str.clear();
@@ -508,6 +511,7 @@ void GamaLocalHTML::set_local_network(LocalNetwork *local_network)
 void GamaLocalHTML::html(std::ostream & ostr) const
 {
   ostr << html_begin()
+       << html_terms()
        << html_info()
        << html_unknowns()
        << html_observations()
@@ -526,6 +530,7 @@ std::string GamaLocalHTML::str() const
 void GamaLocalHTML::exec()
 {
   htmlBegin();
+  htmlTerms();
   htmlInfo();
   htmlUnknowns();
   htmlObservations();
@@ -1536,11 +1541,11 @@ void GamaLocalHTML::htmlRejected()
           str += "<tr>";
           str += tdRight(id.str(),0,1);
           // str += tdLeft(*j < 8 ? codes[*j] : "error : bad code");
-	  //
-	  // warning: comparison of constant 8 with expression of type
-	  // 'const GNU_gama::local::LocalNetwork::rm_points' is
-	  // always true  [-Wtautological-constant-out-of-range-compare]
-	  //
+          //
+          // warning: comparison of constant 8 with expression of type
+          // 'const GNU_gama::local::LocalNetwork::rm_points' is
+          // always true  [-Wtautological-constant-out-of-range-compare]
+          //
           str += tdLeft(codes[*j]);
           str += "</tr>\n";
         }
@@ -1575,4 +1580,129 @@ void GamaLocalHTML::htmlRejected()
 void GamaLocalHTML::htmlEnd()
 {
   end.str = "</body>\n</html>\n";
+}
+
+void GamaLocalHTML::htmlTerms()
+{
+  std::string& str = terms.str;
+  str.clear();
+  if (!lnet->is_adjusted()) return;
+
+  const int  iterations = lnet->linearization_iterations();
+  const bool lintest    = TestLinearization(lnet);
+
+  if (iterations > 0 || lintest)
+    {
+      str += "<h2>Linearization</h2>\n";
+      str += "<table id='linearization_iterations'>\n";
+      str += "<tr><td>";
+      str += T_GaMa_Number_of_linearization_iterations;
+      str += "</td><td>" + std::to_string(iterations) + "</td></tr></table>\n";
+    }
+
+  if (!lintest) return;
+
+  str += "<table id='linearization_errors'>";
+  str += "<tr>";
+  str += "<th colspan='4'>"
+      + std::string(T_GaMa_tstlin_Test_of_linearization_error) + "</th>";
+  str += "<th>observed</th>";
+  str += "<th>r</th><th colspan='2'>difference</th>";
+  str += "</tr>\n";
+  str += "<tr>";
+  str += "<tr>";
+  str += "<th>i</th>";
+  str += "<th>" + std::string(T_GaMa_standpoint) + "</th>";
+  str += "<th>" + std::string(T_GaMa_target) + "</th>";
+  str += "<th></th>";
+  str += "<th>value</th>";
+  if (lnet->gons())
+     str += "<th>[mm|cc]</th><th>[cc]</th><th>[mm]</th>";
+  else
+     str += "<th>[mm|ss]</th><th>[ss]</th><th>[mm]</th>";
+  str += "</tr>\n";
+
+
+  const double max_dif = 0.0005;
+  const int M = lnet->sum_observations();
+  Vec dif_m(M);   // difference in computation of adjusted observation
+  Vec dif_p(M);   //               corresponds to positional shift
+  const Vec& v = lnet->residuals();
+  const Vec& x = lnet->solve();
+  TestLinearizationVisitor testVisitor(lnet, v, x);
+
+  for (int i=1; i<=M; i++)
+    {
+      dif_m(i) = dif_p(i) = 0;
+      double  mer = 0, pol = 0;
+      Observation* pm = lnet->ptr_obs(i);
+      // special case for coordinates
+      if (dynamic_cast<const Coordinates*>(pm->ptr_cluster())) continue;
+
+        testVisitor.setObservationIndex(i);
+        pm->accept(&testVisitor);
+
+        mer = testVisitor.getMer();
+        pol = testVisitor.getPol();
+        dif_m(i) = mer;
+        dif_p(i) = pol;
+    }
+
+  std::ostringstream out;
+  TestLinearizationWriteVisitor<std::ostringstream>
+    writeVisitor(out, lnet);
+  std::string predcs {};
+  for (int i=1; i<=M; i++)
+    {
+      if (std::abs(dif_p(i)) < max_dif) continue;
+
+      Observation* pm = lnet->ptr_obs(i);
+      str += "<tr>";
+      str += tdRight(std::to_string(i));
+      std::string from = pm->from().str();
+      std::string tmp = from;
+      if (from == predcs) tmp.clear();
+      // str += "<td>" + (from != predcs) ? from : std::string() + "</td>";
+      str += tdRight(tmp);
+      predcs = from;
+      str += tdRight(pm->to().str());
+
+      out.setf(std::ios_base::fixed, std::ios_base::floatfield);
+      pm->accept(&writeVisitor);
+      double mer = writeVisitor.getMer();
+      bool   dms = writeVisitor.getDms();
+      str += tdLeft(out.str());
+      out.str(std::string());
+
+      if (!dms) out << mer;
+      else      out << GNU_gama::gon2deg(mer, 1, 1);
+      str += tdRight(out.str());
+      out.str(std::string());
+
+      out.precision(3);
+      if (!dms) out << v(i);
+      else      out << v(i)*0.324;
+      str += tdRight(out.str());
+      out.str(std::string());
+
+      if (pm->angular())
+        {
+          out.precision(3);
+          if (!dms)
+            out << dif_m(i);
+          else
+            out << dif_m(i)*0.324;
+        }
+      str += tdRight(out.str());
+      out.str(std::string());
+
+      out.precision(3);
+      out << dif_p(i);
+      str += tdRight(out.str());
+      out.str(std::string());
+
+      str += "</tr>\n";
+    }
+  str += "</table>\n";
+
 }

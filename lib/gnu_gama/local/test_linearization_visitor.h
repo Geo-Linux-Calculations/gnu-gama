@@ -168,7 +168,7 @@ public:
         out.precision(angularPrecision);
       }
     void visit(S_Distance* obs)
-    { 
+    {
       dms = false;
       out << T_GaMa_s_distance;
       mer = obs->value();
@@ -348,8 +348,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
               out << v(i)*0.324 << ' ';
 
             //if (dynamic_cast<Distance*>(pm));
-	    if (!pm->angular())
-	      {
+            if (!pm->angular())
+              {
                 out << "         ";
               }
             else
