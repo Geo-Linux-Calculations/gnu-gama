@@ -174,6 +174,7 @@ extern const char* T_GaMa_interval;
 extern const char* T_GaMa_interval_contains;
 extern const char* T_GaMa_interval_doesnt_contain;
 extern const char* T_GaMa_levell;
+extern const char* T_GaMa_linearization;
 extern const char* T_GaMa_m0_angles;
 extern const char* T_GaMa_m0_apriori;
 extern const char* T_GaMa_m0_directions;

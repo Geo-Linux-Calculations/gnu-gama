@@ -174,6 +174,7 @@ const char* T_GaMa_interval = T_language_cpp_internal_error;
 const char* T_GaMa_interval_contains = T_language_cpp_internal_error;
 const char* T_GaMa_interval_doesnt_contain = T_language_cpp_internal_error;
 const char* T_GaMa_levell = T_language_cpp_internal_error;
+const char* T_GaMa_linearization = T_language_cpp_internal_error;
 const char* T_GaMa_m0_angles = T_language_cpp_internal_error;
 const char* T_GaMa_m0_apriori = T_language_cpp_internal_error;
 const char* T_GaMa_m0_directions = T_language_cpp_internal_error;
@@ -444,6 +445,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="contains value m0\'/m0";
 	T_GaMa_interval_doesnt_contain="does not contain value m0\'/m0";
 	T_GaMa_levell=" h dif ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (angles): ";
 	T_GaMa_m0_apriori="m0  apriori    ";
 	T_GaMa_m0_directions="m0\'/m0 (directions): ";
@@ -710,6 +712,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="conté el valor m0\'/m0";
 	T_GaMa_interval_doesnt_contain="no conté pas el valor m0\'/m0";
 	T_GaMa_levell=" dif h ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0  (angles): ";
 	T_GaMa_m0_apriori="m0  a priori    ";
 	T_GaMa_m0_directions="m0\'/m0 (direccions): ";
@@ -976,6 +979,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="obsahuje hodnotu m0\'/m0";
 	T_GaMa_interval_doesnt_contain="neobsahuje hodnotu m0\'/m0";
 	T_GaMa_levell=" přev. ";
+	T_GaMa_linearization="Linearizace";
 	T_GaMa_m0_angles="m0\'/m0 (úhly): ";
 	T_GaMa_m0_apriori="m0  apriorní    ";
 	T_GaMa_m0_directions="m0\'/m0 (směry): ";
@@ -1242,6 +1246,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="bevat m0\'/m0 waarde ";
 	T_GaMa_interval_doesnt_contain="bevat de  m0\'/m0 waarde niet";
 	T_GaMa_levell=" h verschil ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (hoeken): ";
 	T_GaMa_m0_apriori="m0  apriori    ";
 	T_GaMa_m0_directions="m0\'/m0 (richtingen): ";
@@ -1508,6 +1513,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="contiene el valor m0\'/m0";
 	T_GaMa_interval_doesnt_contain="no contiene el valor m0\'/m0";
 	T_GaMa_levell=" dif h ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0  (ángulos): ";
 	T_GaMa_m0_apriori="m0  a priori    ";
 	T_GaMa_m0_directions="m0\'/m0 (direcciones): ";
@@ -1774,6 +1780,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="sisältää arvon m0\'/m0";
 	T_GaMa_interval_doesnt_contain="ei sisällä arvoa m0\'/m0";
 	T_GaMa_levell=" h ero ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (kulmat): ";
 	T_GaMa_m0_apriori="m0  apriori    ";
 	T_GaMa_m0_directions="m0\'/m0 (suunnat): ";
@@ -2040,6 +2047,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="contient la valeur m0\'/m0";
 	T_GaMa_interval_doesnt_contain="ne contient pas la valeur m0\'/m0";
 	T_GaMa_levell=" dif h ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (angles): ";
 	T_GaMa_m0_apriori="m0  a priori    ";
 	T_GaMa_m0_directions="m0\'/m0 (directions): ";
@@ -2306,6 +2314,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="m0\'/m0 értéket tartalmazza";
 	T_GaMa_interval_doesnt_contain="nem tartalmazza m0\'/m0 értéket";
 	T_GaMa_levell=" m.kül ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (szög): ";
 	T_GaMa_m0_apriori="m0  apriori    ";
 	T_GaMa_m0_directions="m0\'/m0 (irány): ";
@@ -2572,6 +2581,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="содержит значение m0\'/m0";
 	T_GaMa_interval_doesnt_contain="не содержит значение m0\'/m0";
 	T_GaMa_levell=" h разн ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (углы)  : ";
 	T_GaMa_m0_apriori="m0  apriori    ";
 	T_GaMa_m0_directions="m0\'/m0 (направления): ";
@@ -2838,6 +2848,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="містить знач.  m0\'/m0";
 	T_GaMa_interval_doesnt_contain="не містить значення   m0\'/m0 ";
 	T_GaMa_levell=" h різн";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (кути)  : ";
 	T_GaMa_m0_apriori="m0  апріорі    ";
 	T_GaMa_m0_directions="m0\'/m0 (напрямки)  : ";
@@ -3104,6 +3115,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_interval_contains="包含值m0\'/m0";
 	T_GaMa_interval_doesnt_contain="不包含值m0\'/m0";
 	T_GaMa_levell=" h 差 ";
+	T_GaMa_linearization="Linearization";
 	T_GaMa_m0_angles="m0\'/m0 (水平角): ";
 	T_GaMa_m0_apriori="m0  验前    ";
 	T_GaMa_m0_directions="m0\'/m0 (方向): ";

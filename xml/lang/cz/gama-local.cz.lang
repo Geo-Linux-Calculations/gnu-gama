@@ -61,4 +61,8 @@
    EN="GNU Gama - internal program error!"
    cz="GNU Gama - interní chyba programu!" />
 
+<e id="T_GaMa_linearization"
+   EN="Linearization"
+   cz="Linearizace" />
+
 </entries>

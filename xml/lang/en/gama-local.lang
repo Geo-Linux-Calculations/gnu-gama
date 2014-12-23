@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
-<e id="T_GaMa_Adjustment_of_geodetic_network"   
+<e id="T_GaMa_Adjustment_of_geodetic_network"
    en="Adjustment of local geodetic network" />
 
 <e id="T_GaMa_version"
@@ -45,13 +45,11 @@
 
 <e id="T_GaMa_internal_program_error"
    en="GNU Gama - internal program error!" />
-  
+
 <e id="T_GaMa_network_not_connected"
    en="Warning: network is not connected" />
-  
-</entries>   
 
+<e id="T_GaMa_linearization"
+   en="Linearization" />
 
-
-
-
+</entries>

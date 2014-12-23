@@ -738,6 +738,12 @@ void GamaLocalHTML::htmlInfo()
             << tdRight(lnet->sum_observations(),0,8) << "<td/><td/></tr>\n";
       }
     out << "</table>\n";
+
+    if (!lnet->connected_network())
+      {
+        out << "<table><tr>" << tdLeft(T_GaMa_network_not_connected)
+            << "</tr></table>\n";
+      }
   }
 
   // *********  singular free networks  *********
@@ -1567,6 +1573,7 @@ void GamaLocalHTML::htmlRejected()
         {
           Observation* obs = const_cast<Observation*>(*i);
           std::ostringstream out;
+          out.setf(std::ios_base::fixed, std::ios_base::floatfield);
           WriteVisitor<std::ostringstream> write_visitor(out, true);
           obs->accept(&write_visitor);
 
@@ -1593,7 +1600,7 @@ void GamaLocalHTML::htmlTerms()
 
   if (iterations > 0 || lintest)
     {
-      str += "<h2>Linearization</h2>\n";
+      str += "<h2>" + std::string(T_GaMa_linearization) + "</h2>\n";
       str += "<table id='linearization_iterations'>\n";
       str += "<tr><td>";
       str += T_GaMa_Number_of_linearization_iterations;
