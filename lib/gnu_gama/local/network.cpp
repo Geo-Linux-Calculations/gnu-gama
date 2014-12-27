@@ -1313,3 +1313,63 @@ void LocalNetwork::vyrovnani_()
   }
 
 }
+
+
+std::string LocalNetwork::updated_xml()
+{
+  if (!is_adjusted()) std::string();
+
+  std::string xml =
+    "<?xml version=\"1.0\" ?>\n"
+    "<gama-local xmlns=\"http://www.gnu.org/software/gama/gama-local\">\n"
+    "<network axes-xy=";
+
+  switch(PD.local_coordinate_system)
+    {
+    case LocalCoordinateSystem::EN: xml += "\"en\""; break;
+    case LocalCoordinateSystem::NW: xml += "\"nw\""; break;
+    case LocalCoordinateSystem::SE: xml += "\"se\""; break;
+    case LocalCoordinateSystem::WS: xml += "\"ws\""; break;
+    case LocalCoordinateSystem::NE: xml += "\"ne\""; break;
+    case LocalCoordinateSystem::SW: xml += "\"sw\""; break;
+    case LocalCoordinateSystem::ES: xml += "\"es\""; break;
+    case LocalCoordinateSystem::WN: xml += "\"wn\""; break;
+    default:
+      xml +=  "\"ne\""; break;
+    }
+
+  xml += " angles=";
+  xml += PD.left_handed_angles() ? "\"left-handed\"" : "\"right-handed\"";
+  if (has_epoch()) xml += " epoch=\"" + std::to_string(epoch()) + "\"";
+  xml += ">\n";
+
+
+  if (!description.empty())
+    xml += "\n<description>" + description + "</description>\n";
+
+  xml += "\n<parameters\n";
+  xml += "  sigma-apr=\"" + std::to_string(apriori_m_0()) + "\"\n";
+  xml += "  conf-pr=\""   + std::to_string(conf_pr())     + "\"\n";
+  xml += "  tol-abs=\""   + std::to_string(tol_abs())     + "\"\n";
+  xml += "  sigma-act=\"";
+  xml +=         m_0_apriori() ? "apriori\"\n" : "aposteriori\"\n";
+  xml += "  update-constrained-coordinates=\"";
+  xml +=         update_constrained_coordinates() ? "yes\"\n" : "no\"\n";
+  xml += "  angles=\"" + std::string(gons() ? "400" : "360") + "\"\n";
+  if (has_algorithm()) xml += "  algorithm=\"" + algorithm() + "\"\n";
+  if (has_latitude())
+    xml += "  latitude=\"" + std::to_string(latitude()) + "\"\n";
+  if (has_ellipsoid()) xml += "  ellipsoid=\"" + ellipsoid() + "\"\n";
+  xml += "  cov-band=\"" + std::to_string(adj_covband()) + "\"\n";
+  // iterations ... not implemented in XML input
+  // language .....
+  // encoding .....
+  xml += "/>\n";
+
+
+  xml +=
+    "\n</network>\n"
+    "</gama-local>\n";
+
+  return xml;
+}

@@ -300,6 +300,11 @@ namespace GNU_gama { namespace local
     int  increment_linearization_iterations() { return ++iterations_; }
     bool next_linearization_iterations() const { return iterations_ < max_linearization_iterations_;}
 
+    // ...  input data with free coordinates updated after adjustment
+    //      and rejected observations removed ..............................
+
+    std::string updated_xml();
+
     // #####################################################################
 
 

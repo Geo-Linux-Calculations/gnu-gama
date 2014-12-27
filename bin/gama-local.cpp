@@ -85,6 +85,8 @@ int help()
     "             n >=  0  covariances are computed only for bandwidth n\n"
     "--iterations maximum number of iterations allowed in the linearized\n"
     "             least squares algorithm (implicit value is 5)\n"
+//  "--updated-xml input data with free coordinates updated after adjustment\n"
+//  "             and rejected observations removed\n"
     "--version\n"
     "--help\n\n";
 
@@ -116,6 +118,8 @@ int help()
     "             n >=  0  covariances are computed only for bandwidth n\n"
     "--iterations maximum number of iterations allowed in the linearized\n"
     "             least squares algorithm (implicit value is 5)\n"
+//  "--updated-xml input data with free coordinates updated after adjustment\n"
+//  "             and rejected observations removed\n"
     "--version\n"
     "--help\n\n";
 #endif
@@ -152,6 +156,7 @@ int main(int argc, char **argv)
     const char* argv_obsout = 0;
     const char* argv_covband = 0;
     const char* argv_iterations = 0;
+    const char* argv_updated_xml = 0;
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     const char* argv_confname = 0;
@@ -196,6 +201,7 @@ int main(int argc, char **argv)
         else if (name == "obs"       ) argv_obsout = c;
         else if (name == "cov-band"  ) argv_covband = c;
         else if (name == "iterations") argv_iterations = c;
+        else if (name == "updated-xml") argv_updated_xml = c;
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
         else if (name == "sqlitedb")               argv_sqlitedb = c;
         else if (name == "configuration")          argv_confname = c;
@@ -593,6 +599,21 @@ int main(int argc, char **argv)
               {
                 ofstream file(argv_xmlout);
                 xml.write(file);
+              }
+          }
+
+        if (network_can_be_adjusted && argv_updated_xml)
+          {
+            std::string xml = IS->updated_xml();
+
+            if (!strcmp(argv_updated_xml, "-"))
+              {
+                std::cout << xml;
+              }
+            else
+              {
+                ofstream file(argv_updated_xml);
+                file << xml;
               }
           }
       }

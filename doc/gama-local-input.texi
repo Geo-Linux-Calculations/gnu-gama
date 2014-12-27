@@ -548,8 +548,9 @@ zenith angles          @code{<z-angle @dots{} />}
 @item 
 azimuths               @code{<azimuth @dots{} />}
 
-@item 
-height differences     @code{<dh />}
+@comment dh removed from obs in xsd 0.91
+@comment @item 
+@comment height differences     @code{<dh />}
 @end itemize
 
 

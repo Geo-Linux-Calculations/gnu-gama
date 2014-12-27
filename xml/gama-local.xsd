@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema version="0.90"
+<xs:schema version="0.91"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.gnu.org/software/gama/gama-local"
   targetNamespace="http://www.gnu.org/software/gama/gama-local"
@@ -9,7 +9,10 @@
   <xs:annotation>
     <xs:documentation xml:lang="en">
       GNU Gama local schema
-      http://www.gnu.org/software/gama/gama-local.xsd
+      http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gama-local.xsd
+
+      0.91  element dh removed from obs. Elements dh can newly be
+            defined only inside the height-differences.
     </xs:documentation>
   </xs:annotation>
 
@@ -208,7 +211,7 @@
           <xs:element ref="s-distance"/>
           <xs:element ref="z-angle"/>
           <xs:element ref="azimuth"/>
-          <xs:element ref="dh"/>
+          <!-- xs:element ref="dh"/ removed in version 0.91 -->
         </xs:choice>
         <xs:element minOccurs="0" ref="cov-mat"/>
       </xs:sequence>

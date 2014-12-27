@@ -1,0 +1,25 @@
+#!/bin/sh
+
+GAMA_LOCAL=@top_builddir@/bin/gama-local
+GAMA_LOCAL_XSD=@GAMA_XML@/gama-local.xsd
+
+if [ ! -d results ]; then
+    mkdir results
+fi;
+
+for t in gama-local.gkf azimuth-angle.gkf
+do
+    $GAMA_LOCAL @GAMA_INPUT@/$t \
+        --xml results/@PACKAGE_VERSION@-$t-1.xml \
+        --updated-xml results/@PACKAGE_VERSION@-$t-1-updated.xml
+    $GAMA_LOCAL @GAMA_INPUT@/$t \
+        --xml results/@PACKAGE_VERSION@-$t-2.xml
+    scripts/check_xml_xml "updated xml $t" \
+        results/@PACKAGE_VERSION@-$t-1.xml \
+        results/@PACKAGE_VERSION@-$t-2.xml
+
+if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes"; then
+    xmllint --schema $GAMA_LOCAL_XSD --noout \
+       results/@PACKAGE_VERSION@-$t-1-updated.xml
+fi
+done

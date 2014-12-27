@@ -125,7 +125,7 @@ namespace GNU_gama { namespace local {
         state_obs_angle,
         state_obs_sdistance,
         state_obs_zangle,
-        state_obs_dh,
+        // xsd 0.91 state_obs_dh,
         state_obs_azimuth,
         state_obs_cov,
         state_obs_after_cov,
@@ -175,7 +175,7 @@ namespace GNU_gama { namespace local {
       int process_direction  (const char** atts);
       int process_sdistance  (const char** atts);
       int process_zangle     (const char** atts);
-      int process_obs_dh     (const char** atts);
+      // xsd 0.91 int process_obs_dh     (const char** atts);
       int process_azimuth    (const char** atts);
 
       int process_obs(const char** atts);

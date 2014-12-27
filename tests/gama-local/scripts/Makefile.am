@@ -7,6 +7,7 @@ EXTRA_DIST = gama-local-adjustment.in  \
              gama-local-sqlite-reader.in \
              gama-local-version.in \
              gama-local-parameters.in \
+             gama-local-updated-xml.in \
              xmllint-gama-local-xsd.in \
              xmllint-gama-local-adjustment-xsd.in
 
@@ -15,7 +16,7 @@ SQLITE_READER_PROG = check_xml_coordinates sqlite_init_db
 endif
 
 check_PROGRAMS = check_algorithms check_equivalents check_html \
-	check_xml_results check_xml_xml $(SQLITE_READER_PROG)
+        check_xml_results check_xml_xml $(SQLITE_READER_PROG)
 
 check_algorithms_SOURCES  = check_algorithms.cpp \
                             check_xyz.h check_xyz.cpp

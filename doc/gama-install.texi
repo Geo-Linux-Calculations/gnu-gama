@@ -1,5 +1,5 @@
-GNU Gama is developed and tested under Debian GNU/Linux
-(@uref{http://www.debian.org/}).  A static library @code{libgama.lib}
+GNU Gama is developed and tested under GNU/Linux.  
+A static library @code{libgama.lib}
 and executables are build in folders @code{lib} and @code{bin}.
 You can compile Gama easily yourself if you download the
 sources.  If @code{expat} XML parser is installed on your system,

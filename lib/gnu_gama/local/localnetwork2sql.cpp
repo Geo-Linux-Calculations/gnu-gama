@@ -518,20 +518,20 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
                     if (m->fs_dh()  ) ostr << ", " << m->fs_dh();   else ostr << ", null";
                     ostr  << ", " << rejected(m) << ");\n";
                   }
-                else if (const H_Diff*     m = dynamic_cast<const H_Diff*    >(*b))
-                  {
-                    ostr << "insert into gnu_gama_local_obs "
-                         << "(conf_id, ccluster, indx, tag, from_id, to_id, "
-                         << "val, dist, rejected) values (" << cnfg() << ", " << cluster << ", "
-                         << index++ << ", 'dh', '"
-                         << m->from() << "', '" << m->to() << "', "
-                         << m->value() << ", ";
-                    if (m->dist())
-                      ostr << ", " << m->dist();
-                    else
-                      ostr << "null";
-                    ostr << ", " << rejected(m) << ");\n";
-                  }
+                // xsd 0.91 else if (const H_Diff*     m = dynamic_cast<const H_Diff*    >(*b))
+                // xsd 0.91   {
+                // xsd 0.91     ostr << "insert into gnu_gama_local_obs "
+                // xsd 0.91          << "(conf_id, ccluster, indx, tag, from_id, to_id, "
+                // xsd 0.91          << "val, dist, rejected) values (" << cnfg() << ", " << cluster << ", "
+                // xsd 0.91          << index++ << ", 'dh', '"
+                // xsd 0.91          << m->from() << "', '" << m->to() << "', "
+                // xsd 0.91          << m->value() << ", ";
+                // xsd 0.91     if (m->dist())
+                // xsd 0.91       ostr << ", " << m->dist();
+                // xsd 0.91     else
+                // xsd 0.91       ostr << "null";
+                // xsd 0.91     ostr << ", " << rejected(m) << ");\n";
+                // xsd 0.91   }
                 else
                   {
                   }
