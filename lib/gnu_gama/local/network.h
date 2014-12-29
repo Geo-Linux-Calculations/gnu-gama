@@ -310,6 +310,8 @@ namespace GNU_gama { namespace local
 
   private:
 
+    void updated_xml_covmat(std::string& xml, const CovMat& C, bool always);
+
     int         adj_covband_;         // output XML xyz cov bandWidth
     int         max_linearization_iterations_;
     int         iterations_ {};

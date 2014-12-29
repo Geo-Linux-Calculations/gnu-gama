@@ -1,6 +1,6 @@
 /*
-    GNU Gama C++ library
-    Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+    GNU Gama --- adjustment of geoC++ library
+    Copyright (C) 2000, 2010, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -15,12 +15,14 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with this library; if not, write to the Free Software Foundation,
+    Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/cluster.h>
+#include <gnu_gama/local/network.h>
+#include <gnu_gama/gon2deg.h>
 
 namespace GNU_gama { namespace local
 {
@@ -82,4 +84,160 @@ int Direction::index_orientation() const
   return sp->index_orientation();
 }
 
+// -------------------------------------------------------------------
 
+DisplayObservationVisitor::DisplayObservationVisitor(LocalNetwork* ln)
+  : lnet(ln), scale(ln->gons() ? 1.0 : 0.324)
+{
+}
+
+void DisplayObservationVisitor::visit(Distance* obs)
+{
+  clear();
+  xml_name  = "distance";
+  str_from  = obs->from().str();
+  str_to    = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Direction* obs)
+{
+  clear();
+  xml_name = "direction";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  double m = R2G*(obs->value());
+  if (lnet->gons())
+    str_val =  std::to_string(m);
+  else
+    str_val =  GNU_gama::gon2deg(m, 0, 2);
+  str_stdev = std::to_string(obs->stdDev()*scale);
+}
+
+void DisplayObservationVisitor::visit(Angle* obs)
+{
+  clear();
+  xml_name = "angle";
+  str_from = obs->from().str();
+  str_bs   = obs->bs().str();
+  str_fs   = obs->fs().str();
+  double m = R2G*(obs->value());
+  if (lnet->gons())
+    str_val =  std::to_string(m);
+  else
+    str_val =  GNU_gama::gon2deg(m, 0, 2);
+  str_stdev = std::to_string(obs->stdDev()*scale);
+}
+
+void DisplayObservationVisitor::visit(H_Diff* obs)
+{
+  clear();
+  xml_name = "dh";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(S_Distance* obs)
+{
+  clear();
+  xml_name = "s-distance";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Z_Angle* obs)
+{
+  clear();
+  xml_name = "z-angle";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  double m = R2G*(obs->value());
+  if (lnet->gons())
+    str_val =  std::to_string(m);
+  else
+    str_val =  GNU_gama::gon2deg(m, 0, 2);
+  str_stdev = std::to_string(obs->stdDev()*scale);
+}
+
+void DisplayObservationVisitor::visit(X* obs)
+{
+  clear();
+  xml_name = "x";
+  str_from = obs->from().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Y* obs)
+{
+  clear();
+  xml_name = "y";
+  str_from = obs->from().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Z* obs)
+{
+  clear();
+  xml_name = "z";
+  str_from = obs->from().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Xdiff* obs)
+{
+  clear();
+  xml_name = "dx";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Ydiff* obs)
+{
+  clear();
+  xml_name = "dy";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Zdiff* obs)
+{
+  clear();
+  xml_name = "dz";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  str_val   = std::to_string(obs->value());
+  str_stdev = std::to_string(obs->stdDev());
+}
+
+void DisplayObservationVisitor::visit(Azimuth* obs)
+{
+  clear();
+  xml_name = "azimuth";
+  str_from = obs->from().str();
+  str_to   = obs->to().str();
+  double m = R2G*(obs->value());
+  if (lnet->gons())
+    str_val =  std::to_string(m);
+  else
+    str_val =  GNU_gama::gon2deg(m, 0, 2);
+  str_stdev = std::to_string(obs->stdDev()*scale);
+}
+
+void DisplayObservationVisitor::clear()
+{
+  str_to  .clear();
+  str_bs  .clear();
+  str_fs  .clear();
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network>
+
+<parameters  sigma-apr="1" />
+
+<points-observations>
+
+<point id="A" adj="z" />
+
+<coordinates>
+<point id="A" z="100.000" />
+<cov-mat dim="1" band="0" >
+   1.0
+</cov-mat>
+</coordinates>
+
+</points-observations>
+</network>
+</gama-local>
+

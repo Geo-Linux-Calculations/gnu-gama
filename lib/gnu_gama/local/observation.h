@@ -2,7 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2013  Ales Cepek <cepek@gnu.org>
+                  2013, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -17,8 +17,8 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with this library; if not, write to the Free Software Foundation,
+    Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 /** \file observation.h
@@ -30,12 +30,6 @@
 
 #ifndef gama_local_Bod_Mer_Mereni_H
 #define gama_local_Bod_Mer_Mereni_H
-
-#ifdef _MSC_VER
-      #define CLONE(ptr) Observation*
-#else
-      #define CLONE(ptr) ptr
-#endif
 
 #include <gnu_gama/local/float.h>
 #include <gnu_gama/local/pointid.h>
@@ -60,7 +54,8 @@ namespace GNU_gama { namespace local {
 
   /** \brief Local observation base class
    *
-   * \note VisitableObservation class can be used for automatic implementation of accept method.
+   * \note VisitableObservation class can be used for automatic implementation
+   *       of accept method.
    * \note Every derived class should be added to class AllObservationsVisitor.
    *
    * \sa VisitableObservation, AllObservationsVisitor
@@ -114,7 +109,8 @@ namespace GNU_gama { namespace local {
 
       /** \brief Checks whether observation is active.
        *
-       * Passive (non-active) observations are usually not taken into account during computations.
+       * Passive (non-active) observations are usually not taken into account
+       * during computations.
        *
        * \sa set_active(), set_passive()
        */
@@ -194,7 +190,7 @@ namespace GNU_gama { namespace local {
         }
       ~Distance() {}
 
-      CLONE(Distance*) clone() const { return new Distance(*this); }
+      Distance* clone() const { return new Distance(*this); }
     };
 
 
@@ -208,7 +204,7 @@ namespace GNU_gama { namespace local {
         }
       ~Direction() {}
 
-      CLONE(Direction*) clone() const { return new Direction(*this); }
+      Direction* clone() const { return new Direction(*this); }
 
       bool angular() const { return true; }
 
@@ -241,7 +237,7 @@ namespace GNU_gama { namespace local {
         }
       ~Angle() {}
 
-      CLONE(Angle*) clone() const { return new Angle(*this); }
+      Angle* clone() const { return new Angle(*this); }
 
       bool angular() const { return true; }
 
@@ -271,7 +267,7 @@ namespace GNU_gama { namespace local {
         }
       ~H_Diff() {}
 
-      CLONE(H_Diff*) clone() const { return new H_Diff(*this); }
+      H_Diff* clone() const { return new H_Diff(*this); }
 
       void   set_dist(Double d)
         {
@@ -294,7 +290,7 @@ namespace GNU_gama { namespace local {
       }
       ~Xdiff() {}
 
-      CLONE(Xdiff*) clone() const { return new Xdiff(*this); }
+      Xdiff* clone() const { return new Xdiff(*this); }
     };
 
   class Ydiff : public Accept<Ydiff, Observation>
@@ -306,7 +302,7 @@ namespace GNU_gama { namespace local {
       }
       ~Ydiff() {}
 
-      CLONE(Ydiff*) clone() const { return new Ydiff(*this); }
+      Ydiff* clone() const { return new Ydiff(*this); }
     };
 
   class Zdiff : public Accept<Zdiff, Observation>
@@ -318,7 +314,7 @@ namespace GNU_gama { namespace local {
       }
       ~Zdiff() {}
 
-      CLONE(Zdiff*) clone() const { return new Zdiff(*this); }
+      Zdiff* clone() const { return new Zdiff(*this); }
     };
 
 
@@ -334,7 +330,7 @@ namespace GNU_gama { namespace local {
 
       ~X() {}
 
-      CLONE(X*) clone() const { return new X(*this); }
+      X* clone() const { return new X(*this); }
     };
 
   class Y : public Accept<Y, Observation>
@@ -347,7 +343,7 @@ namespace GNU_gama { namespace local {
 
       ~Y() {}
 
-      CLONE(Y*) clone() const { return new Y(*this); }
+      Y* clone() const { return new Y(*this); }
     };
 
   class Z : public Accept<Z, Observation>
@@ -360,7 +356,7 @@ namespace GNU_gama { namespace local {
 
       ~Z() {}
 
-      CLONE(Z*) clone() const { return new Z(*this); }
+      Z* clone() const { return new Z(*this); }
     };
 
 
@@ -378,7 +374,7 @@ namespace GNU_gama { namespace local {
 
       ~S_Distance() {}
 
-      CLONE(S_Distance*) clone() const { return new S_Distance(*this); }
+      S_Distance* clone() const { return new S_Distance(*this); }
     };
 
 
@@ -394,7 +390,7 @@ namespace GNU_gama { namespace local {
 
       ~Z_Angle() {}
 
-      CLONE(Z_Angle*) clone() const { return new Z_Angle(*this); }
+      Z_Angle* clone() const { return new Z_Angle(*this); }
 
       bool angular() const { return true; }
     };
@@ -410,7 +406,7 @@ namespace GNU_gama { namespace local {
         }
       ~Azimuth() {}
 
-      CLONE(Azimuth*) clone() const { return new Azimuth(*this); }
+      Azimuth* clone() const { return new Azimuth(*this); }
 
       bool angular() const { return true; }
     };
@@ -418,18 +414,19 @@ namespace GNU_gama { namespace local {
 
   /** \brief Base class for visitors which visit all observations
    *
-   * AllObservationsVisitor is a interface for visitors which visit all observations.
-   * It ensures implementing all visit methods.
+   * AllObservationsVisitor is a interface for visitors which visit
+   * all observations.  It ensures implementing all visit methods.
    *
-   * Acyclic visitor pattern does not require the ability to visit all classes from hierarchy.
-   * However, most observation visitors visit all observations.
+   * Acyclic visitor pattern does not require the ability to visit all
+   * classes from hierarchy.  However, most observation visitors visit
+   * all observations.
    *
-   * AllObservationsVisitor should be used as a base class
-   * when visitor is expected to deal with all kinds of local observations
-   * (classes derived from Observation).
-   * When a new local observation type is created, it should be added to AllObservationsVisitor
-   * to ensure that compiler will warn about visitors that want to visit all observations
-   * but they don't.
+   * AllObservationsVisitor should be used as a base class when
+   * visitor is expected to deal with all kinds of local observations
+   * (classes derived from Observation).  When a new local observation
+   * type is created, it should be added to AllObservationsVisitor to
+   * ensure that compiler will warn about visitors that want to visit
+   * all observations but they don't.
    *
    * Example of using AllObservationsVisitor:
    * \code
@@ -481,8 +478,47 @@ namespace GNU_gama { namespace local {
   };
 
 
-}}   // namespace GNU_gama::local
+  /** \brief Helper class for printing observational data.
+   */
 
-#undef CLONE
+  class LocalNetwork;
+
+  class DisplayObservationVisitor final : public AllObservationsVisitor
+  {
+  public:
+
+    DisplayObservationVisitor(LocalNetwork* ln);
+
+    std::string xml_name;
+    std::string str_val;
+    std::string str_stdev;
+    std::string str_from;
+    std::string str_to;
+    std::string str_bs;
+    std::string str_fs;
+
+    void visit(Distance* obs);
+    void visit(Direction* obs);
+    void visit(Angle* obs);
+    void visit(H_Diff* obs);
+    void visit(S_Distance* obs);
+    void visit(Z_Angle* obs);
+    void visit(X* obs);
+    void visit(Y* obs);
+    void visit(Z* obs);
+    void visit(Xdiff* obs);
+    void visit(Ydiff* obs);
+    void visit(Zdiff* obs);
+    void visit(Azimuth* obs);
+
+  private:
+
+    LocalNetwork* lnet;
+    const double  scale;
+    void clear();
+  };
+
+
+}}   // namespace GNU_gama::local
 
 #endif

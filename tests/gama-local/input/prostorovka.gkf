@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+prostorovka (local 3D network)
+http://b903.fsv.cvut.cz/vyuk_gak/predmety/ig20.htm
+
+Department of Special Geodesy
+Faculty of Civil Engineering
+Czech Technical University in Prague
+</description>
+
+<parameters
+   sigma-apr="4.00"
+   conf-pr="0.95"
+   tol-abs="1000"
+   sigma-act="apriori"
+/>
+
+<points-observations
+      distance-stdev="1.0"
+      direction-stdev="4.0"
+      zenith-angle-stdev="4.0" >
+
+<point id= "1" adj="XYZ" />
+<point id= "2" adj="XYZ" />
+<point id= "3" adj="XYZ" />
+<point id= "4" adj="XYZ" />
+<point id= "5" adj="XYZ" />
+<point id= "141" x="-1.792" y="-2.047" z="0.113" adj="XYZ" />
+<point id= "142" x="10.264" y="-2.621" z="-0.086" adj="XYZ" />
+
+<obs from="141">
+ <direction to= "5" val= "0" />
+ <direction to= "2" val= "32.9614" />
+ <direction to= "3" val= "247.5799" />
+ <direction to= "4" val= "280.2704" />
+ <direction to= "142" val= "352.0014" />
+ <direction to= "1" val= "385.3791" />
+
+ <s-distance to= "2" val= "18.2605" />
+ <s-distance to= "3" val= "41.577" />
+ <s-distance to= "4" val= "44.566" />
+ <s-distance to= "142" val= "12.073" />
+ <s-distance to= "1" val= "36.9805" />
+
+ <z-angle to= "5" val= "102.9145" />
+ <z-angle to= "2" val= "96.4396" />
+ <z-angle to= "3" val= "83.5817" />
+ <z-angle to= "4" val= "84.7182" />
+ <z-angle to= "142" val= "101.0509" />
+ <z-angle to= "1" val= "99.6349" />
+</obs>
+
+<obs from="142">
+ <direction to= "5" val= "0" />
+ <direction to= "2" val= "43.0365" />
+ <direction to= "141" val= "119.6653" />
+ <direction to= "3" val= "197.0721" />
+ <direction to= "4" val= "230.1957" />
+ <direction to= "1" val= "367.3006" />
+
+ <s-distance to= "2" val= "18.7065" />
+ <s-distance to= "141" val= "12.0725" />
+ <s-distance to= "3" val= "44.1125" />
+ <s-distance to= "4" val= "41.0733" />
+ <s-distance to= "1" val= "27.2118" />
+
+ <z-angle to= "5" val= "103.3086" />
+ <z-angle to= "2" val= "95.8442" />
+ <z-angle to= "141" val= "98.9495" />
+ <z-angle to= "3" val= "84.2490" />
+ <z-angle to= "4" val= "83.0701" />
+ <z-angle to= "1" val= "99.0375" />
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

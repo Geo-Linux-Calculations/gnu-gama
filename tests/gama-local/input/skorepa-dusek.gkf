@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Volna sit s merenymi delkami a uhly
+-----------------------------------
+
+Skorepa, Z. - Dusek, R.: Aplikace singularniho rozkladu matice..., 
+GaKO 41/83, 1995, c. 7 
+</description>
+
+<parameters
+        sigma-apr="1"
+        sigma-act="apriori"
+/>
+
+<points-observations  angle-stdev="15" distance-stdev = "20">
+
+<point id="1" x="1118103.84" y="668559.14" adj="XY" />
+<point id="2" x="1117697.19" y="667132.98" adj="XY" />
+<point id="3" x="1119159.92" y="667054.59" adj="XY" />
+<point id="4" x="1119260.13" y="667932.57" adj="xy"    />
+
+<obs from="1">
+   <distance to="3" val="1838.258" />         <!--  s1 -->
+   <distance to="2" val="1483.050" />         <!--  s2 -->
+   <angle    bs="2" fs="3" val="56.6464" />   <!--  w6 -->
+</obs>
+
+<obs from="2">
+   <distance to="3" val="1464.841" />         <!--  s3 --> 
+   <angle    bs="4" fs="1" val="52.2111" />   <!--  w7 -->
+   <angle    bs="3" fs="4" val="33.5127" />   <!--  w8 -->
+   <angle    bs="3" fs="1" val="85.7233" />   <!--  w9 -->
+</obs>
+
+<obs from="3">
+   <distance to="4" val="883.684" />          <!--  s4 -->  
+   <angle    bs="1" fs="2" val="57.6310" />   <!-- w10 -->
+   <angle    bs="4" fs="1" val="46.1976" />   <!-- w11 -->
+   <angle    bs="4" fs="2" val="103.8266"/>   <!-- w12 -->
+</obs>
+
+<obs from="4">
+   <distance to="2" val="1755.639" />         <!--  s5 -->
+   <angle    bs="2" fs="3" val="62.6593" />   <!-- w13 -->
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>
+
+
+

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e   # exit on first error
+
 GAMA_LOCAL=@top_builddir@/bin/gama-local
 GAMA_LOCAL_XSD=@GAMA_XML@/gama-local.xsd
 
@@ -7,19 +9,20 @@ if [ ! -d results ]; then
     mkdir results
 fi;
 
-for t in gama-local.gkf azimuth-angle.gkf
+for t in gama-local.gkf azimuth-angle.gkf prostorovka.gkf skorepa-dusek.gkf \
+         mikhail-7.4.gkf minimal.gkf seq-dsuloha-d.gkf # tst-tetrahedron-2.gkf
 do
     $GAMA_LOCAL @GAMA_INPUT@/$t \
         --xml results/@PACKAGE_VERSION@-$t-1.xml \
         --updated-xml results/@PACKAGE_VERSION@-$t-1-updated.xml
-    $GAMA_LOCAL @GAMA_INPUT@/$t \
+    $GAMA_LOCAL results/@PACKAGE_VERSION@-$t-1-updated.xml \
         --xml results/@PACKAGE_VERSION@-$t-2.xml
     scripts/check_xml_xml "updated xml $t" \
         results/@PACKAGE_VERSION@-$t-1.xml \
-        results/@PACKAGE_VERSION@-$t-2.xml
+        results/@PACKAGE_VERSION@-$t-2.xml ]
 
 if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes"; then
-    xmllint --schema $GAMA_LOCAL_XSD --noout \
-       results/@PACKAGE_VERSION@-$t-1-updated.xml
+    xmllint --schema $GAMA_LOCAL_XSD \
+       results/@PACKAGE_VERSION@-$t-1-updated.xml --noout
 fi
 done

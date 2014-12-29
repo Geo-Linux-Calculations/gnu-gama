@@ -529,6 +529,13 @@ namespace GNU_gama { namespace local {
             return error(T_GKF_bad_network_configuration_unknown_parameter
                          + jmeno + " = " + hodnota);
           }
+        else if (jmeno == "angles")
+          {
+            if      (hodnota == "400") lnet.set_gons();
+            else if (hodnota == "360") lnet.set_degrees();
+            else error(T_GKF_bad_network_configuration_unknown_parameter
+                         + jmeno + " = " + hodnota);
+          }
         else if (jmeno == "algorithm")
           {
             lnet.set_algorithm(hodnota);
@@ -739,13 +746,13 @@ namespace GNU_gama { namespace local {
     if      (st == "fixed"     ) SB[pp_id].set_fixed_xy();
     else if (st == "free"      ) SB[pp_id].set_free_xy();
     else if (st =="constrained") SB[pp_id].set_constrained_xy();
-    else if (st == "unused"    ) SB[pp_id].unused_xy();
+    else if (st == "unused"    ) SB[pp_id].set_unused_xy();
     else if (st != "")
       return error(T_GKF_undefined_point_type + st);
 
     if      (sh == "fixed" ) SB[pp_id].set_fixed_z();
     else if (sh == "free"  ) SB[pp_id].set_free_z();
-    else if (sh == "unused") SB[pp_id].unused_z();
+    else if (sh == "unused") SB[pp_id].set_unused_z();
     else if (sh != "")
       return error(T_GKF_undefined_height_type + sh);
 

@@ -27,6 +27,7 @@
  */
 
 #include <fstream>
+#include <sstream>
 #include <iomanip>
 #include <cctype>
 #include <memory>
@@ -406,7 +407,7 @@ void LocalNetwork::revision_points()
             }
           else
             {
-              b.unused_xy();
+              b.set_unused_xy();
               removed( (*bod).first, rm_missing_xy );
               ok = false;
             }
@@ -420,7 +421,7 @@ void LocalNetwork::revision_points()
             }
           else
             {
-              b.unused_z();
+              b.set_unused_z();
               removed( (*bod).first, rm_missing_z );
               ok = false;
             }
@@ -746,7 +747,7 @@ bool LocalNetwork::singular_coords(const Mat& A)
       if(p.index_x() == 0 || p.index_y() == 0)
       {
           result = true;
-          p.unused_xy();
+          p.set_unused_xy();
           removed( (*i).first, rm_singular_xy );
           continue;
       }
@@ -779,7 +780,7 @@ bool LocalNetwork::singular_coords(const Mat& A)
       if (D < 1e-12)
         {
           result = true;
-          p.unused_xy();
+          p.set_unused_xy();
           removed( (*i).first, rm_singular_xy );
         }
 
@@ -984,12 +985,12 @@ int LocalNetwork::null_space()
             LocalPoint& p = PD[id];
             if (type == 'X' || type == 'Y' || type == 'R' )
               {
-                p.unused_xy();
+                p.set_unused_xy();
                 removed(id, rm_singular_xy );
               }
             else if (type == 'Z' )
               {
-                p.unused_z();
+                p.set_unused_z();
                 removed(id, rm_missing_z );
               }
 
@@ -1188,20 +1189,20 @@ void LocalNetwork::vyrovnani_()
 
         if (bxy && bz)
           {
-            P.unused_xy();
-            P.unused_z();
+            P.set_unused_xy();
+            P.set_unused_z();
             removed(id, rm_huge_cov_xyz);
             tst_vyrovnani_ = false;
           }
         else if (bxy)
           {
-            P.unused_xy();
+            P.set_unused_xy();
             removed(id, rm_huge_cov_xy);
             tst_vyrovnani_ = false;
           }
         else if (bz)
           {
-            P.unused_z();
+            P.set_unused_z();
             removed(id, rm_huge_cov_z);
             tst_vyrovnani_ = false;
           }
@@ -1367,9 +1368,170 @@ std::string LocalNetwork::updated_xml()
   xml += "/>\n";
 
 
+  xml += "\n<points-observations";
+  // implicit parameters
+  xml += ">\n\n";
+
+
+  for (auto p=PD.begin(); p!=PD.end(); ++p)
+    {
+      PointID    id    = p->first;
+      LocalPoint point = p->second;
+      if (!point.active()) continue;
+
+      xml += "<point id=\"" + id.str() + "\"";
+
+      if (point.test_xy()) {
+        xml += " x=\"" + std::to_string(point.x()) + "\"";
+        xml += " y=\"" + std::to_string(point.y()) + "\"";
+      }
+
+      if (point.test_z()) {
+          xml += " z=\"" + std::to_string(point.z()) + "\"";
+      }
+
+      std::string fix {}, adj {};
+      if      (point.fixed_xy())       fix += "xy";
+      else if (point.constrained_xy()) adj += "XY";
+      else if (point.free_xy())        adj += "xy";
+
+      if      (point.fixed_z())        fix += "z";
+      else if (point.constrained_z())  adj += "Z";
+      else if (point.free_z())         adj += "z";
+
+      if (!fix.empty()) xml += " fix=\"" + fix + "\"";
+      if (!adj.empty()) xml += " adj=\"" + adj + "\"";
+
+      xml += " />\n";
+    }
+
+
+  DisplayObservationVisitor info(this);
+
+  for (auto c=OD.clusters.begin(); c!=OD.clusters.end(); ++c) {
+    if (auto cluster = dynamic_cast<StandPoint*>(*c))
+      {
+        xml += "\n<obs from=\"" + cluster->station.str() + "\">\n";
+
+        for (auto p  = cluster->observation_list.begin();
+                  p != cluster->observation_list.end(); ++p) {
+          Observation* obs = *p;
+          obs->accept(&info);
+
+          xml += "<" +  info.xml_name;
+          if (!info.str_to.empty()) xml += " to=\"" + info.str_to + "\"";
+          else if (!info.str_bs.empty()) {
+            xml += " bs=\"" + info.str_bs + "\"";
+            xml += " fs=\"" + info.str_fs + "\"";
+          }
+          xml += " val=\"" + info.str_val + "\"";
+          xml += " stdev=\"" + info.str_stdev + "\"";
+          xml += " />\n";
+        }
+
+        updated_xml_covmat(xml, cluster->covariance_matrix, false);
+         xml += "</obs>\n";
+      }
+    else if (auto cluster = dynamic_cast<HeightDifferences*>(*c))
+      {
+        xml += "\n<height-differences>\n";
+        for (auto p  = cluster->observation_list.begin();
+                  p != cluster->observation_list.end(); ++p) {
+          Observation* obs = *p;
+          obs->accept(&info);
+
+         xml += "<" +  info.xml_name;
+         xml += " from=\"" + info.str_from + "\"";
+         xml += " to=\"" + info.str_to + "\"";
+         xml += " val=\"" + info.str_val + "\"";
+
+         double dist = 0;
+         if (H_Diff* p = dynamic_cast<H_Diff*>(obs)) dist = p->dist();
+         if (dist > 0)
+           xml += " dist=\"" +std::to_string(dist) + "\"";
+         else
+           xml += " stdev=\"" + info.str_stdev + "\"";
+         xml += "/>\n";
+        }
+
+        updated_xml_covmat(xml, cluster->covariance_matrix, false);
+        xml += "</height-differences>\n";
+      }
+    else if (auto cluster = dynamic_cast<Coordinates*>(*c))
+      {
+        xml += "\n<coordinates>\n";
+        for (auto p  = cluster->observation_list.begin();
+                  p != cluster->observation_list.end(); ++p) {
+          Observation* obs = *p;
+          obs->accept(&info);
+          std::string from = info.str_from;
+          xml += "<point id=\"" + from + "\"";
+          if (info.xml_name == "x")
+            {
+              xml += " x=\"" + info.str_val + "\"";
+              ++p;
+              (*p)->accept(&info);
+              xml += " y=\"" + info.str_val + "\"";
+              auto q = p;
+              ++q;
+              if (q != cluster->observation_list.end())
+                {
+                  DisplayObservationVisitor tmp(this);
+                  (*q)->accept(&tmp);
+                  if (tmp.str_from == from && tmp.xml_name == "z")
+                    {
+                      ++p;
+                      (*p)->accept(&info);
+                    }
+                }
+            }
+          if (info.xml_name == "z")
+            {
+              xml += " z=\"" + info.str_val + "\"";
+            }
+          xml += " />\n";
+        }
+
+        updated_xml_covmat(xml, cluster->covariance_matrix, true);
+        xml += "</coordinates>\n";
+      }
+    else if (auto cluster = dynamic_cast<Vectors*>(*c))
+      {
+        updated_xml_covmat(xml, cluster->covariance_matrix, true);
+      }
+    else
+      {
+        xml += "\n### Undefined cluster\n";
+      }
+  }
+
+
   xml +=
+    "\n</points-observations>\n"
     "\n</network>\n"
     "</gama-local>\n";
 
   return xml;
+}
+
+void LocalNetwork::updated_xml_covmat(std::string& xml, const CovMat& C,
+                                      bool always)
+{
+  Index  dim  = C.dim();
+  Index  band = C.bandWidth();
+  if (!always && band == 0) return;
+
+  xml += "\n<cov-mat dim=\"" + std::to_string(dim) + "\"";
+  xml += " band=\"" + std::to_string(band) + "\">\n";
+  for (Index i=1; i<=dim; i++)
+    {
+      std::ostringstream out;
+      out.setf(ios_base::scientific, ios_base::floatfield);
+      out.precision(16);
+      for (Index j=i; j<=i+band && j <=dim; j++)
+        out << C(i,j) << " ";
+      out << "\n";
+      xml += out.str();
+    }
+  xml += "</cov-mat>\n";
 }

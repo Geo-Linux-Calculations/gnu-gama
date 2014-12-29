@@ -15,4 +15,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              azimuth-distance.gkf      azimuth-distance.xml \
              gama-local-nop.gkf \
              gama-local-par.gkf \
-             gama-local-deprecated.gkf
+             gama-local-deprecated.gkf \
+             mikhail-7.4.gkf minimal.gkf prostorovka.gkf \
+             seq-dsuloha-d.gkf skorepa-dusek.gkf

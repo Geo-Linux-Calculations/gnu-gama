@@ -122,9 +122,9 @@ public:
   void set_free_z()         { pst_ &= ~active_z_;  pst_ |= z_adjusted_;   }
   void set_constrained_z()  { pst_ &= ~active_z_;
                               pst_ |= (z_adjusted_  | z_constrained_);    }
-  void unused_xy()          { pst_ &= ~active_xy_;                        }
-  void unused_z()           { pst_ &= ~active_z_;                         }
-  void unused()             { pst_ = unused_;                             }
+  void set_unused_xy()      { pst_ &= ~active_xy_;                        }
+  void set_unused_z()       { pst_ &= ~active_z_;                         }
+  void set_unused()         { pst_ = unused_;                             }
 
   bool active_xy()      const { return pst_ & active_xy_;      }
   bool fixed_xy()       const { return pst_ & xy_fixed_;       }
