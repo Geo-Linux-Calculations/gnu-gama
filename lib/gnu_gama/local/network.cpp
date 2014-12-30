@@ -1419,10 +1419,24 @@ std::string LocalNetwork::updated_xml()
           obs->accept(&info);
 
           xml += "<" +  info.xml_name;
-          if (!info.str_to.empty()) xml += " to=\"" + info.str_to + "\"";
+          if (!info.str_to.empty()) {
+            xml += " to=\"" + info.str_to + "\"";
+            double fdh = obs->from_dh();
+            double tdh = obs->to_dh();
+            if (fdh) xml += " from_dh=\"" + std::to_string(fdh) + "\"";
+            if (tdh) xml +=   " to_dh=\"" + std::to_string(tdh) + "\"";
+          }
           else if (!info.str_bs.empty()) {
             xml += " bs=\"" + info.str_bs + "\"";
             xml += " fs=\"" + info.str_fs + "\"";
+
+            Angle* a = static_cast<Angle*>(obs);
+            double rdh = a->from_dh();
+            double bdh = a->bs_dh();
+            double fdh = a->fs_dh();
+            if (rdh) xml += " from_dh=\"" + std::to_string(rdh) + "\"";
+            if (bdh) xml +=   " bs_dh=\"" + std::to_string(bdh) + "\"";
+            if (fdh) xml +=   " fs_dh=\"" + std::to_string(fdh) + "\"";
           }
           xml += " val=\"" + info.str_val + "\"";
           xml += " stdev=\"" + info.str_stdev + "\"";
@@ -1497,7 +1511,30 @@ std::string LocalNetwork::updated_xml()
       }
     else if (auto cluster = dynamic_cast<Vectors*>(*c))
       {
+        xml += "\n<vectors>\n";
+
+        for (auto p  = cluster->observation_list.begin();
+                  p != cluster->observation_list.end(); ++p) {
+          Observation* obs = *p;
+          obs->accept(&info);
+
+          xml += "<vec from=\"" +info.str_from+ "\" to=\"" +info.str_to+ "\"";
+          obs->accept(&info);
+          xml += " dx=\"" + info.str_val + "\"";
+          (*++p)->accept(&info);
+          xml += " dy=\"" + info.str_val + "\"";
+          (*++p)->accept(&info);
+          xml += " dz=\"" + info.str_val + "\"";
+
+          // double fdh = (*p)->from_dh(); ... unrealistic
+          // double tdh = (*p)->to_dh();
+          // if (fdh) xml += " from_dh=\"" + std::to_string(fdh) + "\"";
+          // if (tdh) xml +=   " to_dh=\"" + std::to_string(tdh) + "\"";
+          xml += " />\n";
+        }
+
         updated_xml_covmat(xml, cluster->covariance_matrix, true);
+        xml += "\n</vectors>\n";
       }
     else
       {
@@ -1528,10 +1565,13 @@ void LocalNetwork::updated_xml_covmat(std::string& xml, const CovMat& C,
       std::ostringstream out;
       out.setf(ios_base::scientific, ios_base::floatfield);
       out.precision(16);
-      for (Index j=i; j<=i+band && j <=dim; j++)
-        out << C(i,j) << " ";
+      out << "\n";
+      for (Index n=1, j=i; j<=i+band && j <=dim; j++, n++)
+        {
+          out << setw(24) << C(i,j) << ((n%3 == 0 && j != dim) ? "\n" : " ");
+        }
       out << "\n";
       xml += out.str();
     }
-  xml += "</cov-mat>\n";
+  xml += "\n</cov-mat>\n";
 }

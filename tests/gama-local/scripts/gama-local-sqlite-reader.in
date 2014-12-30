@@ -2,7 +2,11 @@
 
 echo test of adjustment with data read from Sqlite database
 
-TMP=/tmp
+TMP=@GAMA_RESULTS@/gama-local-sqlite-reader
+if [ ! -d $TMP ] ; then
+    mkdir -p $TMP
+fi
+
 DB=$TMP/demo.db
 CONF=fixed-azimuth
 a=fixed-azimuth

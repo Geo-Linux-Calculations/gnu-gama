@@ -1,8 +1,10 @@
 #!/bin/sh
 
+# depends on gama-local-adjustment
+
 for g in @INPUT_FILES@
 do
     scripts/check_html $g \
-        results/@PACKAGE_VERSION@-$g-gso.html \
+        @GAMA_RESULTS@/gama-local-adjustment/$g-gso.html \
         @GAMA_INPUT@/$g.xml
 done

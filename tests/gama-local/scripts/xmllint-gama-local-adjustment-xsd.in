@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if [ ! -d results ]; then
-    mkdir results
-fi;
-
+RES=@GAMA_RESULTS@/xmllint-gama-local-adjustment-xsd
+if [ ! -d $RES ] ; then
+    mkdir -p $RES
+fi
 
 for g in @INPUT_FILES@
 do
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
-        --xml results/@PACKAGE_VERSION@-adjustment-$g.xml
+        --xml $RES/adjustment-$g.xml
     xmllint --schema @GAMA_XML@/gama-local-adjustment.xsd \
-      --noout results/@PACKAGE_VERSION@-adjustment-$g.xml
+      --noout $RES/adjustment-$g.xml
 done
