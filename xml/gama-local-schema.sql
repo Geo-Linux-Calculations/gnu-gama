@@ -27,7 +27,7 @@ create table gnu_gama_local_schema_version (
    minor integer default 1 not null check (minor = 92),
    primary key (major, minor)
 );
-insert into gnu_gama_local_schema_version (major, minor) values (1, 91);
+insert into gnu_gama_local_schema_version (major, minor) values (1, 92);
 
 create table gnu_gama_local_options (
    opt_key varchar(40),

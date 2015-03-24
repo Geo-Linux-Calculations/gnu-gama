@@ -1,5 +1,4 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
+
 #
 AC_PREREQ(2.65)
 AC_INIT([gama], [1.15i], [bug-gama@gnu.org])
@@ -19,7 +18,7 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
-AC_SUBST([CXXFLAGS],["$CXXFLAGS -std=c++0x -Wall"])
+AC_SUBST([CXXFLAGS],["$CXXFLAGS -std=c++11 -Wall"])
 AC_MSG_NOTICE([using CXXFLAGS $CXXFLAGS])
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
