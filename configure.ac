@@ -1,4 +1,5 @@
-
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.65)
 AC_INIT([gama], [1.15i], [bug-gama@gnu.org])
