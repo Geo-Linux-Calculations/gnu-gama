@@ -24,10 +24,10 @@
 
 create table gnu_gama_local_schema_version (
    major integer default 1 not null check (major = 1),
-   minor integer default 1 not null check (minor = 92),
+   minor integer default 1 not null check (minor = 93),
    primary key (major, minor)
 );
-insert into gnu_gama_local_schema_version (major, minor) values (1, 92);
+insert into gnu_gama_local_schema_version (major, minor) values (1, 93);
 
 create table gnu_gama_local_options (
    opt_key varchar(40),
@@ -95,7 +95,7 @@ create table gnu_gama_local_obs (
    conf_id   integer,
    ccluster  integer,
    indx      integer check (indx > 0),
-   tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'azimuth')),
+   tag       varchar(10) check (tag in ('direction', 'distance', 'angle', 's-distance', 'z-angle', 'azimuth', 'dh')),
    from_id   varchar(80) not null,
    to_id     varchar(80) not null,
    to_id2    varchar(80),
