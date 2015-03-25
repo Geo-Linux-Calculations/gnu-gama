@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # testing equivalent adjustment input data (like two configurations,
 # one in degrees and the other one in gons]
 
@@ -22,4 +24,3 @@ scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
 a=gama-local; b=gama-local-deprecated
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                           $b @GAMA_INPUT@/$b.gkf
-

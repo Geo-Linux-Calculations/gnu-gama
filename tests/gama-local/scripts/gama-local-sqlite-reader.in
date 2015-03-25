@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo test of adjustment with data read from Sqlite database
 
 TMP=@GAMA_RESULTS@/gama-local-sqlite-reader

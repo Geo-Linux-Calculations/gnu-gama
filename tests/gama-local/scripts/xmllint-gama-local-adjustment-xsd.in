@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 RES=@GAMA_RESULTS@/xmllint-gama-local-adjustment-xsd
 if [ ! -d $RES ] ; then
     mkdir -p $RES

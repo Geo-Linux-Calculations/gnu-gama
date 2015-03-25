@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 for g in @INPUT_FILES@
 do
     scripts/check_algorithms @PACKAGE_VERSION@ $g @GAMA_INPUT@/$g.gkf
