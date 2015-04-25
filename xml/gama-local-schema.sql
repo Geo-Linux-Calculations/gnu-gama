@@ -2,7 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2010 Ales Cepek <cepek@gnu.org>, 2010 Jiri Novak
     <jiri.novak@petriny.net>, 2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>,
-    2013, 2014 Ales Cepek <cepek@gnu.org>
+    2013, 2014, 2015 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
