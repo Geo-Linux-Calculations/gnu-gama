@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -765,12 +765,6 @@ bool LocalNetwork::singular_coords(const Mat& A)
           bb += b*b;
         }
 
-      // old scale dependent test:
-      //
-      // D = aa*bb - ab*ab;
-      //
-      // if ((aa == 0) || (fabs(D) <= aa*1e-6))
-
       if (bb > aa) std::swap(aa, bb);
       if (aa == 0)
         D = 0;
@@ -935,11 +929,6 @@ Double LocalNetwork::test_abs_term(Index indm)
 {
   Observation* m = RSM[indm-1];
 
-  // 2005-12-28 added test for coordinates and vectors
-  //
-  // if (dynamic_cast<const Coordinates*>(m->ptr_cluster())) return 0;
-  // if (dynamic_cast<const Vectors*>(m->ptr_cluster())) return 0;
-
   const LocalPoint& stan = PD[m->from()];
   const LocalPoint& cil  = PD[m->to()];   // ignoring second angle target here
 
@@ -1100,20 +1089,6 @@ void LocalNetwork::forwardSubstitution(const CovMat& chol, Vec& v)
     }
 }
 
-// void LocalNetwork::backwardSubstitution(const Cov& chol, Vec& v)
-// {
-//   using namespace std;
-//   const Index N = chol.rows();
-//   const Index b = chol.bandWidth();
-//
-//   for (Index i=N; i>0; i--)
-//     {
-//       Index m = min(N, i+b);
-//       for (Index j=i+1; j<=m; j++) v(i) -= chol(i,j)*v(j);
-//
-//       v(i) /= chol(i,i);
-//     }
-// }
 
 void LocalNetwork::prepareProjectEquations()
 {
@@ -1157,19 +1132,19 @@ void LocalNetwork::vyrovnani_()
   using namespace GNU_gama::local;
   if (tst_vyrovnani_) return;
 
-  project_equations();
-  if (sum_unknowns()     == 0)
-    throw GNU_gama::local::Exception(T_GaMa_No_unknowns_defined);
-  if (sum_observations() == 0)
-    throw GNU_gama::local::Exception(T_GaMa_No_observations_available);
-  if (sum_points()      == 0)
-    throw GNU_gama::local::Exception(T_GaMa_No_points_available);
+  do {
 
-  /* least_squares->solve(); ... removed in 1.9.01a */
+    project_equations();
+    if (sum_unknowns()     == 0)
+      throw GNU_gama::local::Exception(T_GaMa_No_unknowns_defined);
+    if (sum_observations() == 0)
+      throw GNU_gama::local::Exception(T_GaMa_No_observations_available);
+    if (sum_points()      == 0)
+      throw GNU_gama::local::Exception(T_GaMa_No_points_available);
 
-  tst_vyrovnani_ = true;
+    tst_vyrovnani_ = true;
 
-  { /* ----------------------------------------------------------------- */
+    /* ----------------------------------------------------------------- */
     // check for huge covariances / indefinite coordinates
 
     for (PointData::iterator i=PD.begin(); i!=PD.end(); ++i)
@@ -1180,9 +1155,9 @@ void LocalNetwork::vyrovnani_()
         if (!P.free_xy() && !P.free_z()) continue;
 
         Double tx=0, ty=0, tz=0;
-        if (int ix = P.index_x()) tx = m_0_apr_ * sqrt( least_squares->q_xx(ix,ix) );
-        if (int iy = P.index_y()) ty = m_0_apr_ * sqrt( least_squares->q_xx(iy,iy) );
-        if (int iz = P.index_z()) tz = m_0_apr_ * sqrt( least_squares->q_xx(iz,iz) );
+        if (int ix = P.index_x()) tx =m_0_apr_*sqrt(least_squares->q_xx(ix,ix));
+        if (int iy = P.index_y()) ty =m_0_apr_*sqrt(least_squares->q_xx(iy,iy));
+        if (int iz = P.index_z()) tz=m_0_apr_*sqrt(least_squares->q_xx(iz,iz));
 
         bool bxy = (tx > 1e4) || (ty > 1e4);
         bool bz  = (tz > 1e4);
@@ -1192,28 +1167,23 @@ void LocalNetwork::vyrovnani_()
             P.set_unused_xy();
             P.set_unused_z();
             removed(id, rm_huge_cov_xyz);
-            tst_vyrovnani_ = false;
+            update(Points);
           }
         else if (bxy)
           {
             P.set_unused_xy();
             removed(id, rm_huge_cov_xy);
-            tst_vyrovnani_ = false;
+            update(Points);
           }
         else if (bz)
           {
             P.set_unused_z();
             removed(id, rm_huge_cov_z);
-            tst_vyrovnani_ = false;
+            update(Points);
           }
       }
 
-    if (!tst_vyrovnani_)
-      {
-        vyrovnani_();
-        return;
-      }
-  }
+  } while (!tst_vyrovnani_);
 
   if (AdjBaseFull* full = dynamic_cast<AdjBaseFull*>(least_squares))
   { /* ----------------------------------------------------------------- */
@@ -1280,7 +1250,7 @@ void LocalNetwork::vyrovnani_()
           const Clust_r& cluster = *(*cit);
           // ??? if (cluster.covariance_matrix.bandWidth())
           // ???   {
-          // ???     // vypocet pro korelovana mereni zatim chybi !!!
+          // ???     // calculation for correlated observations missing !!!
           // ???   }
           // ??? else
             {
