@@ -31,7 +31,8 @@ INPUT_FILES = gama-local \
               fixed-azimuth \
               azimuth-angle \
               azimuth-azimuth \
-              azimuth-distance
+              azimuth-distance \
+              alex-2015-05-17
 
 
 GAMA_SCRIPT  = $(srcdir)/scripts

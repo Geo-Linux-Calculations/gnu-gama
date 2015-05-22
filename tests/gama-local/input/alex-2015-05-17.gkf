@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Testing data from a bug report by Alex Shulg (alex-shulg@yandex.ru)
+
+     Network with rejected huge absolute terms and singular coordinates.
+ -->
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+  <network angles="right-handed" axes-xy="ne">
+    <points-observations>
+      <point id="1" x="99140.425" y="123863.39" fix="xy" />
+      <point id="2" x="99311.653" y="123868.152" fix="xy" />
+      <point id="3" adj="xy" />
+      <point id="4" adj="xy" />
+      <point id="33" adj="xy" />
+      <point id="49" adj="xy" />
+      <point id="69" x="98994.999" y="123815.063" fix="xy" />
+      <obs from="1">
+        <direction to="2" val="0" stdev="10" />
+        <direction to="3" val="214.8595667" stdev="10" />
+        <distance to="3" val="126.552419" stdev="5" />
+      </obs>
+      <obs from="3">
+        <direction to="1" val="0" stdev="10" />
+        <direction to="4" val="119.7199056" stdev="10" />
+        <distance to="4" val="30.997495" stdev="5" />
+      </obs>
+      <obs from="4">
+        <direction to="3" val="0" stdev="10" />
+        <distance to="3" val="31.027088" stdev="5" />
+        <direction to="33" val="297.8123389" stdev="10" />
+        <distance to="33" val="32.855546" stdev="5" />
+      </obs>
+      <obs from="33">
+        <direction to="4" val="0" stdev="10" />
+        <direction to="49" val="269.9506167" stdev="10" />
+        <distance to="49" val="26.380726" stdev="5" />
+      </obs>
+      <obs from="49">
+        <direction to="33" val="0" stdev="10" />
+        <distance to="33" val="26.38095" stdev="5" />
+        <direction to="69" val="299.9955944" stdev="10" />
+        <distance to="69" val="20.233986" stdev="5" />
+      </obs>
+      <obs from="69">
+        <direction to="49" val="0" stdev="10" />
+        <direction to="1" val="216.35725" stdev="10" />
+      </obs>
+    </points-observations>
+  </network>
+</gama-local>

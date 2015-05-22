@@ -1,4 +1,20 @@
-2014-01-02  Ales Cepek  <cepek@biggy>
+2015-05-22  Ales Cepek  <cepek@gnu.org>
+
+	* 1.15j	fixed a bug in LocalNetwork class reported independently by
+		Marek Peca <pecam1@fjfi.cvut.cz>
+		Kolesár András <kolesar@openstreetmap.hu>
+		Alex Shulg <alex-shulg@yandex.ru>
+
+@@ -724,8 +724,8 @@ void LocalNetwork::project_equations()
+               min_x_[n++] = p.index_z();
+             }
+         }
+-      least_squares->min_x(min_n_, min_x_);
+     }
++  least_squares->min_x(min_n_, min_x_);
+
+
+2014-01-02  Ales Cepek  <cepek@gnu.org>
 
 	* fixed a bug reported by Gabriel Gyori <gabriel.gyori@fsv.cvut.cz>
 	  in the class LocalNetwork2sql
@@ -152,7 +168,7 @@ index 4da4a3b..bc2255c 100644
 
 	* function ResidualsObservations uses visitor writing observation name
 
-2012-03-16  Ales Cepek  <cepek@biggy>
+2012-03-16  Ales Cepek  <cepek@gnu.org>
 
 	* fixed a bug in the definition of angular observations reported
 	by Anna Kratochvilova <anna.kratochvilova@fsv.cvut.cz> and Vaclav

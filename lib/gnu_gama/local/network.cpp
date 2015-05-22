@@ -216,8 +216,8 @@ LocalNetwork::LocalNetwork()
     tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(0),
     gons_(true)
 {
-  least_squares = 0;
-  Asp = 0;
+  least_squares = nullptr;
+  Asp = nullptr;
 
   set_adj_covband();
   set_max_linearization_iterations();
@@ -283,7 +283,7 @@ void LocalNetwork::set_algorithm(std::string alg)
   algorithm_ = alg;
   has_algorithm_ = true;
 
-  if (least_squares != 0) delete least_squares;
+  if (least_squares != nullptr) delete least_squares;
   least_squares = adjb;
 
   update(Points);
@@ -646,7 +646,7 @@ void LocalNetwork::project_equations()
       // design matrix
 
       input.set_mat(Asp);
-      Asp = 0;
+      Asp = nullptr;
 
       // ---  cofactors  --------------------------------------------------
 
@@ -697,7 +697,7 @@ void LocalNetwork::project_equations()
   //--opr.write((char*)(A.begin()), sizeof(Double)*m*n);
 
   delete[] min_x_;
-  min_x_ = 0;
+  min_x_ = nullptr;
   min_n_ = 0;
 
   for (PointData::iterator i=PD.begin(); i!=PD.end(); ++i)
@@ -724,8 +724,8 @@ void LocalNetwork::project_equations()
               min_x_[n++] = p.index_z();
             }
         }
-      least_squares->min_x(min_n_, min_x_);
     }
+  least_squares->min_x(min_n_, min_x_);
 
   tst_rov_opr_ = true;
   update(Adjustment);
