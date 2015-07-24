@@ -1,3 +1,7 @@
+2015-07-24  Ales Cepek  <cepek@gnu.org>
+
+	* released version 1.16
+
 2015-05-22  Ales Cepek  <cepek@gnu.org>
 
 	* 1.15j	fixed a bug in LocalNetwork class reported independently by

@@ -398,37 +398,37 @@ Program @code{gama-local} uses two basic statistical parameters
 @itemize @bullet{}
 
 @item 
-confidence probability @gmat{P} (default value is 95%, see parameter
-@code{conf-pr}) and
+confidence probability @gmat{P} (default value is 95%, see input XML
+parameter @code{conf-pr}) and
 
 @item 
 actual type of reference standard deviation @mnakt{} (parameter
-@code{typ-m0}).
+@code{sigma-act}).
 @end itemize
 
 @noindent
 Confidence probability determines significance level on which
-statistical tests of adjusted quatities are carried.  Actual type of
-reference standard deviations @mnakt{} specifies whether during
-statistical analysis we use a priori reference standard deviation
-@mnapr{} or a posteriori estimate @mnemp{}.
-
-
-We can choose only the type of actual reference standard deviation
-(@mnapr{} or @mnemp{}) but not its value. The value corresponds
-to a priori given value of reference standard deviation 
-or to the results of adjustment. On the type of actual reference
-standard deviation depends the choice of density functions
+statistical tests of adjusted quantities are carried.  Actual type of
+reference standard deviation @mnakt{} specifies whether during
+statistical analysis we use an a priori reference standard deviation
+@mnapr{} or an a posteriori estimate @mnemp{}.  On the type of actual
+reference standard deviation depends the choice of density functions
 of stochastic quantities in statistical analysis of the adjustment.
 
 @itemize @w{}
 
 @item
-@strong{A priori reference standard deviation @mnapr{}} is used in the
-cases when we know its value in advance and with sufficient reliability.
-Another situation when @mnapr{} is used are networks with low number of
-degrees of freedom (poorly overdetermined systems) or when veen degrees
-of freedom is zero. Examples may be analysis of network models etc.
+@strong{A priori reference standard deviation @mnapr{}} is an estimate
+of the standard deviation of an observation with the unit
+weight. Numerically it is a scaling factor used in calculation of the
+weights. If we change @mnapr, only the sum of weighted residuals
+squares is changed and all adjustment results remain the same (there
+is just one least squares solution).  @mnapr{} can be selected in
+cases when we know its value in advance and with sufficient
+reliability.  Another situation when @mnapr{} is used are networks
+with low number of degrees of freedom (poorly overdetermined systems)
+or when veen degrees of freedom is zero. Examples may be analysis of
+network models etc.
 
 @item
 @strong{A posteri estimate of reference standard deviation @mnemp{}} is
@@ -489,7 +489,7 @@ following text.
 @c % ....................................................................
 @ifnottex
 
-The standard deviantion of an adjusted quuantity is computed in
+The standard deviantion of an adjusted quantity is computed in
 dependence of the choice of actual type of reference standard deviation
 @mnakt{} according to formula
 
