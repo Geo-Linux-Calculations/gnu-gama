@@ -1,6 +1,13 @@
+2015-07-25  Ales Cepek  <cepek@gnu.org>
+
+	* fixed two bugs reported by Greg Troxel <gdt@lexort.com>
+	** The bug with the tests is that they specify /bin/bash as the shell.
+           POSIX does not require bash to be present.
+	** Bad conditional in test for availability of xmllint parser.
+
 2015-07-24  Ales Cepek  <cepek@gnu.org>
 
-	* released version 1.16
+	* new release version 1.16
 
 2015-05-22  Ales Cepek  <cepek@gnu.org>
 

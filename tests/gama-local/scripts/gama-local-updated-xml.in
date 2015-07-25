@@ -23,7 +23,7 @@ do
         $RES/$t-1.xml \
         $RES/$t-2.xml
 
-if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes"; then
+if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" == "xyes"; then
     xmllint --schema $GAMA_LOCAL_XSD \
        $RES/$t-1.gkf --noout
 fi

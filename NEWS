@@ -1,5 +1,13 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 1.16 Jula 2015
+
+* minor fixes in documentation
+* fixed a bug in SQL schema
+* new export of XML network definition
+* C++11 features enabled (-std=c++11 for g++ compiler)
+* fixed several minor bugs
+
 Version 1.15 February 2014
 
 * DTD replaced with XSD for gama-local.xsd and
