@@ -488,7 +488,6 @@ GamaLocalHTML::GamaLocalHTML(GNU_gama::local::LocalNetwork *local_network)
   set_title("GNU Gama");
 
   set_style("<style type='text/css'>\n"
-            "  body  { font-size:10pt; }\n"
             "  table { border:0; margin:0.2em 0; }\n"
             "  th    { white-space:nowrap; }\n"
             "</style>\n");
