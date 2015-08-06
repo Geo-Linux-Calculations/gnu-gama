@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2013  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2013, 2015  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -41,4 +41,71 @@ double GNU_gama::local::PointData::xNorthAngle() const
   if (lh == 400) lh = 0;
 
   return lh*G2R;
+}
+
+
+
+using PointID = GNU_gama::local::PointID;
+using LocalPoint = GNU_gama::local::LocalPoint;
+
+std::map <PointID, LocalPoint>::iterator
+GNU_gama::local::PointData::begin()
+{
+  return points.begin();
+}
+
+std::map <PointID, LocalPoint>::iterator
+GNU_gama::local::PointData::end()
+{
+  return points.end();
+}
+
+std::map <PointID, LocalPoint>::const_iterator
+GNU_gama::local::PointData::begin() const
+{
+  return points.begin();
+}
+
+std::map <PointID, LocalPoint>::const_iterator
+GNU_gama::local::PointData::end() const
+{
+  return points.end();
+}
+
+GNU_gama::local::LocalPoint&
+GNU_gama::local::PointData::operator[](const PointID& id)
+{
+  return points[id];
+}
+
+std::map <PointID, LocalPoint>::iterator
+GNU_gama::local::PointData::find(const PointID& id)
+{
+  return points.find(id);
+}
+
+std::map <PointID, LocalPoint>::const_iterator
+GNU_gama::local::PointData::find(const PointID& id) const
+{
+  return points.find(id);
+}
+
+std::map <PointID, LocalPoint>::iterator
+GNU_gama::local::PointData::erase(
+    std::map <PointID, LocalPoint>::const_iterator first,
+    std::map <PointID, LocalPoint>::const_iterator last)
+{
+  return points.erase(first, last);
+}
+
+unsigned
+GNU_gama::local::PointData::size() const
+{
+  return points.size();
+}
+
+bool
+GNU_gama::local::PointData::empty() const
+{
+  return points.empty();
 }
