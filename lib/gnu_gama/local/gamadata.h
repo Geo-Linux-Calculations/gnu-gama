@@ -54,7 +54,9 @@ namespace GNU_gama { namespace local {
       LocalPoint& operator[](const PointID& id);
       iterator find(const PointID& id);
       const_iterator find(const PointID& id) const;
+      unsigned erase(const PointID& id);
       iterator erase(const_iterator firs, const_iterator last);
+      void allocate(int count);
       unsigned size() const;
       bool empty() const;
 

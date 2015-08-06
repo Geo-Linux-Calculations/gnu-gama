@@ -90,12 +90,24 @@ GNU_gama::local::PointData::find(const PointID& id) const
   return points.find(id);
 }
 
+unsigned
+GNU_gama::local::PointData::erase(const PointID& id)
+{
+  return points.erase(id);
+}
+
 std::map <PointID, LocalPoint>::iterator
 GNU_gama::local::PointData::erase(
     std::map <PointID, LocalPoint>::const_iterator first,
     std::map <PointID, LocalPoint>::const_iterator last)
 {
   return points.erase(first, last);
+}
+
+void
+GNU_gama::local::PointData::allocate(int count)
+{
+    if (count > 0) points.get_allocator().allocate(count);
 }
 
 unsigned
