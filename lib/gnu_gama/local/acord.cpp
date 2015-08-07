@@ -65,7 +65,7 @@ Acord::Acord(PointData& b, ObservationData& m)
     {
       LocalPoint& p = (*ii).second;
 
-      if (p.test_xy()) p.set_xy(p.x(), -p.y());
+      if (p.test_xy()) p.set_xy(p.x(), -p.w());
     }
 
   for (ObservationData::ClusterList::iterator

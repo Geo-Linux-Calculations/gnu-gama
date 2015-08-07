@@ -120,7 +120,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                 out << "y" << "   ";
               out.precision(5);
               out.width(13);
-              Double adj_y = y_sign*(b.y()+x(b.index_y())/1000);
+              Double adj_y = y_sign*(b.w()+x(b.index_y())/1000);
               out << y_sign*b.y_0() << " ";
               out.width(9);
               out << (adj_y - y_sign*b.y_0()) << " ";

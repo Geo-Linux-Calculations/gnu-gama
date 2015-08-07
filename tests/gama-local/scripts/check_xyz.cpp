@@ -50,10 +50,10 @@ double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
               //return false;
             }
           double adj_x = b.x()+x1(b.index_x())/1000;
-          double adj_y = y_sign*(b.y()+x1(b.index_y())/1000);
+          double adj_y = y_sign*(b.w()+x1(b.index_y())/1000);
 
           double adj_x2 = b2.x()+x2(b2.index_x())/1000;
-          double adj_y2 = y_sign*(b2.y()+x2(b2.index_y())/1000);
+          double adj_y2 = y_sign*(b2.w()+x2(b2.index_y())/1000);
 
           double dx = adj_x - adj_x2;
           if (std::abs(dx) > std::abs(maxdiff)) maxdiff = dx;

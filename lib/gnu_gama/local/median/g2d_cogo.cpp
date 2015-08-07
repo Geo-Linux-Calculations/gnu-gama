@@ -90,7 +90,7 @@ namespace GNU_gama { namespace local {
           r1 = h1->value();
           r2 = h2->value();
         };
-      Double dy = B2.y() - B1.y();
+      Double dy = B2.w() - B1.w();
       Double dx = B2.x() - B1.x();
       Double s12 = sqrt(g2d_sqr(dy)+g2d_sqr(dx));
       if(s12 == 0)                  // given identical points; no solution
@@ -106,11 +106,11 @@ namespace GNU_gama { namespace local {
           small_angle_detected_ = true;
           return;
         }
-      point1->set_xy(B1.x()+dx*f-dy*sqrt(g), B1.y()+dy*f+dx*sqrt(g));
+      point1->set_xy(B1.x()+dx*f-dy*sqrt(g), B1.w()+dy*f+dx*sqrt(g));
       number_of_solutions_ = 1;
       if(g > 0)
         {
-          point2->set_xy(B1.x()+dx*f+dy*sqrt(g), B1.y()+dy*f-dx*sqrt(g));
+          point2->set_xy(B1.x()+dx*f+dy*sqrt(g), B1.w()+dy*f-dx*sqrt(g));
           number_of_solutions_ = 2;
         };
       return;
@@ -164,7 +164,7 @@ namespace GNU_gama { namespace local {
           return;
         }
       Double dy = (sin(h1->value())*sin(h2->value())*(B2.x()-B1.x())-
-                   cos(h1->value())*sin(h2->value())*(B2.y()-B1.y()))/jmen;
+                   cos(h1->value())*sin(h2->value())*(B2.w()-B1.w()))/jmen;
       /*
        * if((signum(dy) != signum(sin(h2->value()))) ||
        *   (signum(B2.x()+(dy*cos(h2->value()))/sin(h2->value())-B1.x()) !=
@@ -180,7 +180,7 @@ namespace GNU_gama { namespace local {
       const int s_4=signum(cos(h1->value()));
       if ((s_1 != s_2) || (s_3 != s_4)) return;
 
-      point1->set_xy(B2.x()+(dy*cos(h2->value()))/sin(h2->value()), B2.y()+dy);
+      point1->set_xy(B2.x()+(dy*cos(h2->value()))/sin(h2->value()), B2.w()+dy);
       number_of_solutions_ = 1;
       return;
 
@@ -235,12 +235,12 @@ namespace GNU_gama { namespace local {
         B2 = B;
       if(r <= 0)                  // radius <= 0
         return;
-      Double yp = (B1.y()-B2.y())*cos(h1->value())
+      Double yp = (B1.w()-B2.w())*cos(h1->value())
         -(B1.x()-B2.x())*sin(h1->value());
       if(fabs(yp) > r) // semi-line outside circle; intersection doesn't exist
         return;
       Double xp = (B1.x()-B2.x())*cos(h1->value())
-        +(B1.y()-B2.y())*sin(h1->value());
+        +(B1.w()-B2.w())*sin(h1->value());
       Double x1 = sqrt(g2d_sqr(r)-g2d_sqr(yp));
       if(x1 <= xp)     // semi-line outside circle; intersection doesn't exist
         return;
@@ -250,12 +250,12 @@ namespace GNU_gama { namespace local {
           return;
         }
       point1->set_xy(B2.x()+x1*cos(h1->value())-yp*sin(h1->value()),
-                     B2.y()+yp*cos(h1->value())+x1*sin(h1->value()));
+                     B2.w()+yp*cos(h1->value())+x1*sin(h1->value()));
       number_of_solutions_ = 1;
       if((-x1) <= (xp+1e-6)) // only one solution; 1e-6 ==> roundoff
         return;
       point2->set_xy(B2.x()-x1*cos(h1->value())-yp*sin(h1->value()),
-                     B2.y()+yp*cos(h1->value())-x1*sin(h1->value()));
+                     B2.w()+yp*cos(h1->value())-x1*sin(h1->value()));
       number_of_solutions_ = 2;
       return;
 
@@ -313,7 +313,7 @@ namespace GNU_gama { namespace local {
       // value() or value()+-PI
       if((uu < (h2->value()+0.1)) && (uu > (h2->value()-0.1)))
         {
-          point1->set_xy(SD.solution_1().x(), SD.solution_1().y());
+          point1->set_xy(SD.solution_1().x(), SD.solution_1().w());
           number_of_solutions_ = 1;
         };
       if(SD.number_of_solutions() > 1)
@@ -324,12 +324,12 @@ namespace GNU_gama { namespace local {
 	  { // added { to avoid dangling else 
             if(number_of_solutions_ == 1)
               {
-                point2->set_xy(SD.solution_2().x(), SD.solution_2().y());
+                point2->set_xy(SD.solution_2().x(), SD.solution_2().w());
                 number_of_solutions_ = 2;
               }
             else
               {
-                point1->set_xy(SD.solution_2().x(), SD.solution_2().y());
+                point1->set_xy(SD.solution_2().x(), SD.solution_2().w());
                 number_of_solutions_ = 1;
               };
 	  } //  added } to avoid dangling else
@@ -394,7 +394,7 @@ namespace GNU_gama { namespace local {
       // value() or value()+-PI
       if((uu < (h2->value()+0.1)) && (uu > (h2->value()-0.1)))
         {
-          point1->set_xy(DD.solution_1().x(), DD.solution_1().y());
+          point1->set_xy(DD.solution_1().x(), DD.solution_1().w());
           number_of_solutions_ = 1;
         };
       if(DD.number_of_solutions() > 1)
@@ -405,12 +405,12 @@ namespace GNU_gama { namespace local {
 	  { // added { to avoid dangling else 
             if(number_of_solutions_ == 1)
               {
-                point2->set_xy(DD.solution_2().x(), DD.solution_2().y());
+                point2->set_xy(DD.solution_2().x(), DD.solution_2().w());
                 number_of_solutions_ = 2;
               }
             else
               {
-                point1->set_xy(DD.solution_2().x(), DD.solution_2().y());
+                point1->set_xy(DD.solution_2().x(), DD.solution_2().w());
                 number_of_solutions_ = 1;
               };
 	  } // added } to avoid dangling else 
@@ -471,8 +471,8 @@ namespace GNU_gama { namespace local {
       Double uu1, uu2;
       // in the case of common point at both angles is one of
       // intersections this point
-      if(!(((B1.x()==DD.solution_1().x()) && (B1.y()==DD.solution_1().y())) ||
-           ((B2.x()==DD.solution_1().x()) && (B2.y()==DD.solution_1().y()))))
+      if(!(((B1.x()==DD.solution_1().x()) && (B1.w()==DD.solution_1().w())) ||
+           ((B2.x()==DD.solution_1().x()) && (B2.w()==DD.solution_1().w()))))
         {
           uu1 = bearing(DD.solution_1(),B2) - bearing(DD.solution_1(),B1);
           uu2 = bearing(DD.solution_1(),B4) - bearing(DD.solution_1(),B3);
@@ -484,15 +484,15 @@ namespace GNU_gama { namespace local {
           Vyhovuje2 = (uu2 < (h2->value()+0.1)) && (uu2 > (h2->value()-0.1));
           if(Vyhovuje1 && Vyhovuje2)
             {
-              point1->set_xy(DD.solution_1().x(), DD.solution_1().y());
+              point1->set_xy(DD.solution_1().x(), DD.solution_1().w());
               number_of_solutions_ = 1;
             };
         };
       if(DD.number_of_solutions() > 1)
         if(!(((B1.x()==DD.solution_2().x()) &&
-              (B1.y()==DD.solution_2().y())) ||
+              (B1.w()==DD.solution_2().w())) ||
              ((B2.x()==DD.solution_2().x()) &&
-              (B2.y()==DD.solution_2().y()))))
+              (B2.w()==DD.solution_2().w()))))
           {
             uu1 = bearing(DD.solution_2(),B2) - bearing(DD.solution_2(),B1);
             uu2 = bearing(DD.solution_2(),B4) - bearing(DD.solution_2(),B3);
@@ -504,12 +504,12 @@ namespace GNU_gama { namespace local {
 	    { // added { to avoid dangling else 
               if(number_of_solutions_ == 1)
                 {
-                  point2->set_xy(DD.solution_2().x(), DD.solution_2().y());
+                  point2->set_xy(DD.solution_2().x(), DD.solution_2().w());
                   number_of_solutions_ = 2;
                 }
               else
                 {
-                  point1->set_xy(DD.solution_2().x(), DD.solution_2().y());
+                  point1->set_xy(DD.solution_2().x(), DD.solution_2().w());
                   number_of_solutions_ = 1;
                 };
 	    } // added } to avoid dangling else 
@@ -554,7 +554,7 @@ namespace GNU_gama { namespace local {
         return;
       Double rr = d/sin(u)/2;
       R = fabs(rr);
-      point1->set_xy(B1.x()-rr*sin(sm - u), B1.y()+rr*cos(sm - u));
+      point1->set_xy(B1.x()-rr*sin(sm - u), B1.w()+rr*cos(sm - u));
       number_of_solutions_ = 1;
       return;
 

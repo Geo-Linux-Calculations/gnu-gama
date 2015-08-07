@@ -114,7 +114,7 @@ void ApproximateVectors::execute()
 		if ( cii == OVD.YD.end() )
 		    continue;
 
-		from.set_xy( to.x() - (*ci)->value(), to.y() - (*cii)->value() );
+		from.set_xy( to.x() - (*ci)->value(), to.w() - (*cii)->value() );
 		updated = true;
 	    }
 	    else
@@ -125,7 +125,7 @@ void ApproximateVectors::execute()
 		    if ( cii == OVD.YD.end() )
 			continue;
 
-		    to.set_xy( from.x() + (*ci)->value(), from.y() + (*cii)->value() );
+		    to.set_xy( from.x() + (*ci)->value(), from.w() + (*cii)->value() );
 		    updated = true;
 		}
 

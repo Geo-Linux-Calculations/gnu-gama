@@ -95,7 +95,7 @@ void FixedPoints(GNU_gama::local::LocalNetwork* IS, OutStream& out)
             out << (*i).second.x();
             out << "  ";
             out.width(13);
-            out << (*i).second.y()*y_sign;
+            out << (*i).second.w()*y_sign;
           }
         if ((*i).second.fixed_z())
           {

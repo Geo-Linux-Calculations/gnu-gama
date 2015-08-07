@@ -97,14 +97,14 @@ private:
     {
         const LocalPoint& stan = IS->PD[pm->from()];
         const LocalPoint& cil  = IS->PD[pm->to() ];
-        sy = stan.y();
+        sy = stan.w();
         sx = stan.x();
         if (stan.free_xy())
           {
             sy += x(stan.index_y())/1000;
             sx += x(stan.index_x())/1000;
           }
-        cy = cil .y();
+        cy = cil .w();
         cx = cil .x();
         if (cil.free_xy())
           {

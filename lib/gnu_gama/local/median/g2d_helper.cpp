@@ -162,7 +162,7 @@ void Statistics_g2d::calculation()
     std::vector<Double> Y, X;
     for(Helper_list::const_iterator i = PS->begin(); i != PS->end(); i++)
       {
-        Y.push_back(i->y());
+        Y.push_back(i->w());
         X.push_back(i->x());
       }
     std::sort(Y.begin(), Y.end());
@@ -223,7 +223,7 @@ void SimilarityTr2D::Identical_points(PointData::iterator& b1,
         if(Given_point((*j).first) && (i != j) && (*j).second.test_xy())
         {
           stred.set_xy(((*i).second.x()+(*j).second.x())/2,
-                       ((*i).second.y()+(*j).second.y())/2);
+                       ((*i).second.w()+(*j).second.w())/2);
           delka_max = 0;
           for(PointIDList::iterator cb = computed.begin();
 	      cb != computed.end(); cb++)
@@ -263,16 +263,16 @@ void SimilarityTr2D::transformation_key(PointData::iterator& b1,
 		  " in target coordinate system - "+(*b2).first.str());
   kam2 = (*pom).second;
   Double dy1, dy2, dx1, dx2;
-  dy1 = odkud2.y() - odkud1.y();
+  dy1 = odkud2.w() - odkud1.w();
   dx1 = odkud2.x() - odkud1.x();
-  dy2 = kam2.y() - kam1.y();
+  dy2 = kam2.w() - kam1.w();
   dx2 = kam2.x() - kam1.x();
   transf_key_.push_back((dy2*dx1-dx2*dy1)/(g2d_sqr(dx1)+g2d_sqr(dy1)));
   transf_key_.push_back((dy1*dy2+dx1*dx2)/(g2d_sqr(dx1)+g2d_sqr(dy1)));
-  transf_key_.push_back(kam1.y()-transf_key_[1]*odkud1.y()-
+  transf_key_.push_back(kam1.w()-transf_key_[1]*odkud1.w()-
                         transf_key_[0]*odkud1.x());
   transf_key_.push_back(kam1.x()-transf_key_[1]*odkud1.x()+
-                        transf_key_[0]*odkud1.y());
+                        transf_key_[0]*odkud1.w());
 }
 
 void SimilarityTr2D::calculation()
@@ -299,8 +299,8 @@ void SimilarityTr2D::calculation()
             transf_points_[(*cb)] =
               LocalPoint::XY(
                         transf_key_[3] + transf_key_[1]*pom.x() -
-                                         transf_key_[0]*pom.y(),
-                        transf_key_[2] + transf_key_[1]*pom.y() +
+                                         transf_key_[0]*pom.w(),
+                        transf_key_[2] + transf_key_[1]*pom.w() +
                                          transf_key_[0]*pom.x()
                         );
 

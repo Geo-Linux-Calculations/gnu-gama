@@ -106,12 +106,12 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
 
                   s << std::setw(13) << pa->first;
                   s << "  x = " << std::setw(13) << pa->second.x();
-                  s << "  y = " << std::setw(13) << pa->second.y();
+                  s << "  y = " << std::setw(13) << pa->second.w();
                   s << "\n";
 
                   s << std::setw(13) << pb->first;
                   s << "  x = " << std::setw(13) << pb->second.x();
-                  s << "  y = " << std::setw(13) << pb->second.y();
+                  s << "  y = " << std::setw(13) << pb->second.w();
                   s << "\n";
 
                   throw GNU_gama::local::Exception(s.str());

@@ -1032,7 +1032,7 @@ void GamaLocalHTML::htmlUnknowns()
             if ((*i).second.fixed_xy())
               {
                 out << tdRight((*i).second.x(), 'F', 3, 0, N_fixed)
-                    << tdRight((*i).second.y()*y_sign, 'F', 3, 0, N_fixed);
+                    << tdRight((*i).second.w()*y_sign, 'F', 3, 0, N_fixed);
               }
             if ((*i).second.fixed_z())
               {
@@ -1136,7 +1136,7 @@ void GamaLocalHTML::htmlUnknowns()
                   out << tdRight("Y") << tdRight("*");
                 else
                   out << tdRight("y") << tdRight("");
-                double adj_y = y_sign*(b.y()+x(b.index_y())/1000);
+                double adj_y = y_sign*(b.w()+x(b.index_y())/1000);
                 out << tdRight(y_sign*b.y_0(), 'F', 5, 2,2);
                 out << tdRight(adj_y - y_sign*b.y_0(), 'F',5, 2,2);
                 out << tdRight(adj_y, 'F', 5, 2,2);

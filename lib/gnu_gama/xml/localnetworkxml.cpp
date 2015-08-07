@@ -576,7 +576,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       if (bxy)
         {
           const double x = p.x();
-          const double y = p.y()*y_sign;
+          const double y = p.w()*y_sign;
           tagsp(out, "x", x);
           tagsp(out, "y", y);
         }
@@ -613,7 +613,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
               cy = "Y";
             }
           const double x = p.x();
-          const double y = p.y()*y_sign;
+          const double y = p.w()*y_sign;
           tagsp(out, cx, x);
           tagsp(out, cy, y);
         }
@@ -657,7 +657,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
               cy = "Y";
             }
           const double x = (p.x()+X(p.index_x())/1000);
-          const double y = (p.y()+X(p.index_y())/1000)*y_sign;
+          const double y = (p.w()+X(p.index_y())/1000)*y_sign;
           tagsp(out, cx, x);
           tagsp(out, cy, y);
           ind[++dim] = p.index_x();

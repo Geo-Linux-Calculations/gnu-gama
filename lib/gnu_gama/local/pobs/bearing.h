@@ -44,7 +44,7 @@ inline Double bearing(Double ya, Double xa, Double yb, Double xb)
 
 inline Double bearing(const LocalPoint& a, const LocalPoint& b)
 {
-   return bearing(a.y(), a.x(), b.y(), b.x());
+   return bearing(a.w(), a.x(), b.w(), b.x());
 }
 
 inline void bearing_distance(Double ya, Double xa, Double yb, Double xb,
@@ -64,7 +64,7 @@ inline void bearing_distance(Double ya, Double xa, Double yb, Double xb,
 inline void bearing_distance(const LocalPoint& a, const LocalPoint& b,
                              Double& br, Double& d)
 {
-   bearing_distance(a.y(), a.x(), b.y(), b.x(), br, d);
+   bearing_distance(a.w(), a.x(), b.w(), b.x(), br, d);
 }
 
 }}   // namespace GNU_gama::local
