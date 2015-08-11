@@ -98,7 +98,7 @@ double ReduceToEllipsoid::EllipsoidFunction::R() const
 
 double ReduceToEllipsoid::EllipsoidFunction::distance(const LocalPoint& a, const LocalPoint& b) const
 {
-    const double dy = b.w() - a.w();
+    const double dy = b.y() - a.y();
     const double dx = b.x() - a.x();
 
     return  sqrt(dy*dy + dx*dx);
@@ -106,7 +106,7 @@ double ReduceToEllipsoid::EllipsoidFunction::distance(const LocalPoint& a, const
 
 double ReduceToEllipsoid::EllipsoidFunction::sdistance(const LocalPoint& a, const LocalPoint& b) const
 {
-    const double dy = b.w() - a.w();
+    const double dy = b.y() - a.y();
     const double dx = b.x() - a.x();
     const double dz = b.z() - a.z();
 
@@ -216,7 +216,7 @@ void ReduceToEllipsoid::execute()
         if (p.active_xy() && p.test_xy())
         {
             sumx += p.x();
-            sumy += p.w();
+            sumy += p.y();
             ++numxy;
         }
 

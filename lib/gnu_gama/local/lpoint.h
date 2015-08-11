@@ -84,7 +84,7 @@ public:
     }
 
 
-  Double w() const
+  Double y() const
     {
       if (!bxy_) throw GNU_gama::local::Exception(T_POBS_bad_data);
       return y_;

@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
         if (A.indx && A.indy && P.index_x() && P.index_y())
           {
             double adj_x = P.x()+x(P.index_x())/1000;
-            double adj_y = y_sign*(P.w()+x(P.index_y())/1000);
+            double adj_y = y_sign*(P.y()+x(P.index_y())/1000);
 
             double dx = adj_x - A.x;
             if (std::abs(dx) > std::abs(maxdiffxyz)) maxdiffxyz = dx;
@@ -170,7 +170,7 @@ int main(int argc, char* argv[])
             else
               T = lnet->PD[A.to];
             double dx = F.x() - T.x();
-            double dy = F.w() - T.w();
+            double dy = F.y() - T.y();
             double D  = std::sqrt(dx*dx + dy*dy);
 
             double p = obs->value()*R2G + r(i+1)/10000;

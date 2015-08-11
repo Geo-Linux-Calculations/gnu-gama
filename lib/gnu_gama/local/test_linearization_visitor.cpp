@@ -20,7 +20,7 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Angle* obs)
   computeFromTo(obs, sx, sy, cx, cy);
   
   const LocalPoint& cil2 = IS->PD[obs->fs() ];
-  double cy2 = cil2.w() + x(cil2.index_y())/1000;
+  double cy2 = cil2.y() + x(cil2.index_y())/1000;
   double cx2 = cil2.x() + x(cil2.index_x())/1000;
   double ds2, dd2;
   GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
@@ -38,7 +38,7 @@ void GNU_gama::local::TestLinearizationVisitor::visit(S_Distance* obs)
     {
       const LocalPoint& point = IS->PD[pid];
       dx += point.x();
-      dy += point.w();
+      dy += point.y();
       dz += point.z();
       if (point.free_xy())
 	{

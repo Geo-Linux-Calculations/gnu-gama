@@ -73,7 +73,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
             str << "\"" << bod.x() << "\"";
             str << " y=";
             str.precision(Format::coord_p());
-            str << "\"" << bod.w() << "\"";
+            str << "\"" << bod.y() << "\"";
           }
         if (bod.test_z())
           {

@@ -106,7 +106,7 @@ namespace GNU_gama { namespace local {
   inline Double g2d_distance(const LocalPoint& b1, const LocalPoint& b2)
     {
       using namespace std;
-      return sqrt(g2d_sqr(b1.x()-b2.x())+g2d_sqr(b1.w()-b2.w()));
+      return sqrt(g2d_sqr(b1.x()-b2.x())+g2d_sqr(b1.y()-b2.y()));
     }
 
   // --------------------------------------------------------------

@@ -384,7 +384,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
         if (pt.test_xy())
           {
             atr += ", x, y";
-            val << ", " << pt.x() << ", " << pt.w();
+            val << ", " << pt.x() << ", " << pt.y();
           }
 
         if (pt.test_z())
@@ -836,12 +836,12 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
             if (b.fixed_xy())
               {
-                ostr << b.x() << ", " << b.w() << ", ";
+                ostr << b.x() << ", " << b.y() << ", ";
               }
             else if (b.free_xy() && b.index_x())
               {
                 double adj_x = b.x()+x(b.index_x())/1000;
-                double adj_y = y_sign*(b.w()+x(b.index_y())/1000);
+                double adj_y = y_sign*(b.y()+x(b.index_y())/1000);
                 ostr << adj_x << ", " << adj_y << ", ";
               }
             else

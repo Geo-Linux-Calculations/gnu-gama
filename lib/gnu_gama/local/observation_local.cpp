@@ -157,7 +157,7 @@ void LocalLinearization::s_distance(const S_Distance* obs) const
    // bearing_sdistance(PD[obs->from()], PD[obs->to()], s, sd);
    // Double p = M_0 / stdDev();
    Double dx = cbod.x() - sbod.x();
-   Double dy = cbod.w() - sbod.w();
+   Double dy = cbod.y() - sbod.y();
    Double dz = cbod.z() - sbod.z();
    Double sd = sqrt(dx*dx + dy*dy + dz*dz);
    if (sd == 0)
@@ -235,7 +235,7 @@ void LocalLinearization::y(const Y* obs) const
    // Double p = M_0 / stdDev();
 
    // Double w = p*p;                          // weight
-   rhs = (obs->value() - point.w())*1e3;       // abs. term in millimetres
+   rhs = (obs->value() - point.y())*1e3;       // abs. term in millimetres
 
    size = 0;
    if (point.free_xy())
@@ -299,7 +299,7 @@ void LocalLinearization::ydiff(const Ydiff* obs) const
 {
   LocalPoint& spoint = PD[obs->from()];
   LocalPoint& tpoint = PD[obs-> to() ];
-  Double df = tpoint.w() - spoint.w();
+  Double df = tpoint.y() - spoint.y();
   // Double p = M_0 / stdDev();
 
   // Double w = p*p;
@@ -360,7 +360,7 @@ void LocalLinearization::z_angle(const Z_Angle* obs) const
    // bearing_sdistance(PD[obs->from()], PD[obs->to()], s, sd);
 
    Double dx = cbod.x() - sbod.x();
-   Double dy = cbod.w() - sbod.w();
+   Double dy = cbod.y() - sbod.y();
    Double dz = cbod.z() - sbod.z();
 
    Double d2 = dx*dx + dy*dy;

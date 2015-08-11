@@ -36,7 +36,7 @@ using namespace GNU_gama::local;
 
 GamaLocalSVG::GamaLocalSVG(LocalNetwork* is)
   : IS(*is), PD(is->PD), OD(is->OD),
-    y_sign(GaMaConsistent(PD) ? +1 : -1)
+    ysign(GaMaConsistent(PD) ? +1 : -1)
 {
   restoreDefaults();
 }
@@ -134,8 +134,8 @@ void GamaLocalSVG::svg_init() const
       // skip points that are not part of the adjustment or do not have xy
       if (!point.active_xy() || !point.test_xy()) continue;
 
-      T11 = TX.x;   T12 = TY.x*y_sign;
-      T21 = TX.y;   T22 = TY.y*y_sign;
+      T11 = TX.x;   T12 = TY.x*ysign;
+      T21 = TX.y;   T22 = TY.y*ysign;
       Tx  = 2*offset - minx;
       Ty  = 2*offset - miny;
 
@@ -183,8 +183,8 @@ void GamaLocalSVG::svg_init() const
 
   if (offset == 0) offset = 100;
 
-  T11 = TX.x;   T12 = TY.x*y_sign;
-  T21 = TX.y;   T22 = TY.y*y_sign;
+  T11 = TX.x;   T12 = TY.x*ysign;
+  T21 = TX.y;   T22 = TY.y*ysign;
   Tx  = 2*offset - minx;
   Ty  = 2*offset - miny;
 
@@ -226,8 +226,8 @@ void GamaLocalSVG::SvgCoordinates(double &t11, double &t12,
 
 void GamaLocalSVG::svg_xy(const LocalPoint& point, double& x, double& y) const
 {
-  x = T11*point.x() + T12*point.w() + Tx;
-  y = T21*point.x() + T22*point.w() + Ty;
+  x = T11*point.x() + T12*point.y() + Tx;
+  y = T21*point.x() + T22*point.y() + Ty;
 }
 
 std::string GamaLocalSVG::string() const

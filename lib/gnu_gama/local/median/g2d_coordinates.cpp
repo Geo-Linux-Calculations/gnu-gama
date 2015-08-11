@@ -171,9 +171,9 @@ void ApproximateCoordinates::move_point(PointData& from, PointData& to,
   if(i != from.end())
   { // added { to avoid dangling else 
     if(j != to.end())
-      (*j).second.set_xy((*i).second.x(), (*i).second.w());
+      (*j).second.set_xy((*i).second.x(), (*i).second.y());
     else
-      to[what] = LocalPoint::XY((*i).second.x(), (*i).second.w());
+      to[what] = LocalPoint::XY((*i).second.x(), (*i).second.y());
   } // added } to avoid dangling else 
 
 }    // ApproximateCoordinates::move_point(PointData&, PointData&, PointID&)
@@ -204,9 +204,9 @@ bool ApproximateCoordinates::solve_intersection(PointData& points,
               bb = PB.Solution();
               j = points.find(*i);
               if(j != points.end())
-                (*j).second.set_xy(bb.x(), bb.w());
+                (*j).second.set_xy(bb.x(), bb.y());
               else
-                points[*i] = LocalPoint::XY(bb.x(), bb.w());
+                points[*i] = LocalPoint::XY(bb.x(), bb.y());
               solved_pd[*i] = bb;
               i = what.erase(i);
             }
@@ -365,7 +365,7 @@ bool ApproximateCoordinates::solve_insertion()
       if((i = SB.find((*bod).first)) == SB.end())
         SB[(*bod).first] = (*bod).second;
       else
-        (*i).second.set_xy((*bod).second.x(), (*bod).second.w());
+        (*i).second.set_xy((*bod).second.x(), (*bod).second.y());
       solved_pd[(*bod).first] = (*bod).second;
     }
 

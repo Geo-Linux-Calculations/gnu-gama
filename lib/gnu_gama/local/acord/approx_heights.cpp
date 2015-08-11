@@ -123,7 +123,7 @@ void ApproximateHeights::make_heights()
           if (from.test_xy() && to.test_xy())
             {
               Double dist = sqrt( (from.x() - to.x())*(from.x() - to.x()) +
-                                  (from.w() - to.w())*(from.w() - to.w()));
+                                  (from.y() - to.y())*(from.y() - to.y()));
               OHD.tmpHD.push_back(H_Diff(From,To, dist / tan(Vzenit)));
               is_heights = true;
             }

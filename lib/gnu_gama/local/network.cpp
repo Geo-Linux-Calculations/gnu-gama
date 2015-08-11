@@ -110,7 +110,7 @@ public:
         Double dx, dy;
         if (stan->test_xy() && cil->test_xy())
             {
-                dy = stan->w() - cil->w();
+                dy = stan->y() - cil->y();
                 dx = stan->x() - cil->x();
                 d0 = sqrt(dy*dy + dx*dx);
             }
@@ -155,7 +155,7 @@ public:
 
     void visit(Y* obs)
     {
-        check(fabs(stan->w() - obs->value())*1000);
+        check(fabs(stan->y() - obs->value())*1000);
     }
     void visit(Z* obs)
     {
@@ -170,7 +170,7 @@ public:
 
     void visit(Ydiff* obs)
     {
-        const Double dy = cil->w() - stan->w();
+        const Double dy = cil->y() - stan->y();
         check(fabs(dy - obs->value())*1000);
     }
 
@@ -1030,7 +1030,7 @@ void LocalNetwork::refine_approx()
         const PointID& cb = unknown_pointid(i);
         LocalPoint& b = PD[cb];
         if (!b.constrained_xy() || update_constrained_coordinates())
-            b.set_xy(b.x() + x(i)/1000, b.w() + x(i+1)/1000);
+            b.set_xy(b.x() + x(i)/1000, b.y() + x(i+1)/1000);
       }
     else if (unknown_type(i) == 'Z')
       {
@@ -1353,7 +1353,7 @@ std::string LocalNetwork::updated_xml()
 
       if (point.test_xy()) {
         xml += " x=\"" + std::to_string(point.x()) + "\"";
-        xml += " y=\"" + std::to_string(point.w()) + "\"";
+        xml += " y=\"" + std::to_string(point.y()) + "\"";
       }
 
       if (point.test_z()) {
