@@ -46,7 +46,7 @@ public:
     WriteSQLVisitor(std::ostream& outStream, GNU_gama::local::LocalNetwork* net)
         : ostr(outStream), netinfo(net),
           residuals(netinfo->residuals()),
-          index(0), y_sign(GaMaConsistent(netinfo->PD) ? +1 : -1),
+          index(0), y_sign(netinfo->y_sign()),
           kki(netinfo->conf_int_coef())
     {
     }
@@ -656,7 +656,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   if (localNetwork.is_adjusted())
     {
       LocalNetwork* netinfo = &localNetwork;
-      const int y_sign = GaMaConsistent(netinfo->PD) ? +1 : -1;
+      const int y_sign = netinfo->y_sign();
       const Vec& x = netinfo->solve();
 
       { // general parameters

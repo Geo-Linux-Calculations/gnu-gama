@@ -35,7 +35,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   using namespace std;
   using namespace GNU_gama::local;
 
-  const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
+  const int y_sign = IS->y_sign();
 
   const Vec& x = IS->solve();
   Double kki = IS->conf_int_coef();

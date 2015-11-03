@@ -228,6 +228,8 @@ LocalNetwork::LocalNetwork()
   // ellipsoid_     = "";
   // has_ellipsoid_ = false;
   clear_nullable_data();
+
+  removed_inconsistency_ = false;
 }
 
 
@@ -1544,4 +1546,59 @@ void LocalNetwork::updated_xml_covmat(std::string& xml, const CovMat& C,
       xml += out.str();
     }
   xml += "\n</cov-mat>\n";
+}
+
+bool LocalNetwork::consistent() const
+{
+  return PD.left_handed_coordinates() == PD.left_handed_angles();
+}
+
+double LocalNetwork::y_sign() const
+{
+  return consistent() ? +1.0 : -1.0;
+}
+
+void LocalNetwork::remove_inconsistency()
+{
+  if (consistent()) return;
+  if (removed_inconsistency_) return;
+
+  change_y_signs_for_inconsistent_system_();
+  removed_inconsistency_ = true;
+}
+
+void LocalNetwork::return_inconsistency()
+{
+  if (!removed_inconsistency_) return;
+
+  change_y_signs_for_inconsistent_system_();
+  removed_inconsistency_ = false;
+}
+
+void LocalNetwork::change_y_signs_for_inconsistent_system_()
+{
+  for (PointData::iterator ii=PD.begin(); ii!=PD.end(); ++ii)
+    {
+      LocalPoint& p = (*ii).second;
+
+      if (p.test_xy()) p.set_xy(p.x(), -p.y());
+    }
+
+  for (ObservationData::ClusterList::iterator
+         ci=OD.clusters.begin(), ei=OD.clusters.end(); ci!=ei; ++ci)
+    {
+      ObservationData::ClusterType *cluster = *ci;
+      for (ObservationList::iterator
+             m = cluster->observation_list.begin(),
+             e = cluster->observation_list.end()  ; m!=e; ++m)
+        {
+          Observation *obs = *m;
+          bool b = false;
+
+          if      (dynamic_cast<Y*>    (obs))  b = true;
+          else if (dynamic_cast<Ydiff*>(obs))  b = true;
+
+          if (b)  obs->set_value( -obs->value() );
+        }
+    }
 }

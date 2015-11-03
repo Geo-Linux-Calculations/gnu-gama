@@ -1005,7 +1005,7 @@ void GamaLocalHTML::htmlUnknowns()
     using namespace std;
     using namespace GNU_gama::local;
 
-    const int y_sign = GaMaConsistent(lnet->PD) ? +1 : -1;
+    const int y_sign = lnet->y_sign();
 
     int pocpevb=0, pocpevv=0;
     for (PointData::iterator i=lnet->PD.begin(); i!=lnet->PD.end(); ++i)
@@ -1055,7 +1055,7 @@ void GamaLocalHTML::htmlUnknowns()
     using namespace std;
     using namespace GNU_gama::local;
 
-    const int y_sign = GaMaConsistent(lnet->PD) ? +1 : -1;
+    const int y_sign = lnet->y_sign();
 
     const Vec& x = lnet->solve();
     double kki = lnet->conf_int_coef();
@@ -1329,7 +1329,7 @@ void GamaLocalHTML::htmlUnknowns()
         using namespace std;
         using namespace GNU_gama::local;
 
-        const int y_sign = GaMaConsistent(lnet->PD) ? +1 : -1;
+        const int y_sign = lnet->y_sign();
 
         const Vec& x = lnet->solve();
         double elp_k = 0;

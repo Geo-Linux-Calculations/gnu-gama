@@ -36,7 +36,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
    using namespace GNU_gama::local;
    using GNU_gama::local::Double;
 
-  const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
+   const int y_sign = IS->y_sign();
 
    const Vec& x = IS->solve();
    Double elp_k = 0;

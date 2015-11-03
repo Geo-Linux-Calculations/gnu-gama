@@ -50,14 +50,6 @@ namespace GNU_gama { namespace local {
 
   std::ostream& operator << (std::ostream&,     PointData&);
   std::ostream& operator << (std::ostream& str, ObservationData&);
-
-  inline bool GaMaConsistent(const PointData& lcs)
-    {
-      return
-        (lcs. left_handed_coordinates() && lcs. left_handed_angles()) ||
-        (lcs.right_handed_coordinates() && lcs.right_handed_angles());
-    }
-
 }}   // namepsace GNU_gama::local
 
 

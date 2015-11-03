@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2006, 2012, 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2006, 2012, 2014, 2015  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -307,6 +307,10 @@ namespace GNU_gama { namespace local
 
     // #####################################################################
 
+    bool   consistent() const;
+    double y_sign() const;
+    void   remove_inconsistency();
+    void   return_inconsistency();
 
   private:
 
@@ -387,6 +391,12 @@ namespace GNU_gama { namespace local
     // void backwardSubstitution(const Cov& chol, Vec& v);
     void prepareProjectEquations();
     bool singular_coords(const Mat&);
+
+    // fixing inconsitent systems
+
+    void change_y_signs_for_inconsistent_system_();
+    bool removed_inconsistency_ {false};
+
 
   };     /* class LocalNetwork */
 

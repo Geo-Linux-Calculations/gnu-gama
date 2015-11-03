@@ -445,10 +445,12 @@ int main(int argc, char **argv)
 
     try
       {
-        if (!GaMaConsistent(IS->PD))
-          {
-            // cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
-          }
+        // if (!GaMaConsistent(IS->PD))
+        //   {
+        //      cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
+        //   }
+	IS->remove_inconsistency();
+
         Acord acord(IS->PD, IS->OD);
         acord.execute();
         ReducedObservationsText(IS,&(acord.RO), cout);

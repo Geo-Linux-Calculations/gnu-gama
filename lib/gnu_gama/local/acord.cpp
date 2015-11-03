@@ -57,34 +57,6 @@ Acord::Acord(PointData& b, ObservationData& m)
 
   for (ObservationData::const_iterator
          i=OD.begin(), e=OD.end(); i!=e; ++i, ++observations);
-
-
-  if (GaMaConsistent(PD)) return;
-
-  for (PointData::iterator ii=PD.begin(); ii!=PD.end(); ++ii)
-    {
-      LocalPoint& p = (*ii).second;
-
-      if (p.test_xy()) p.set_xy(p.x(), -p.y());
-    }
-
-  for (ObservationData::ClusterList::iterator
-         ci=OD.clusters.begin(), ei=OD.clusters.end(); ci!=ei; ++ci)
-    {
-      ObservationData::ClusterType *cluster = *ci;
-      for (ObservationList::iterator
-             m = cluster->observation_list.begin(),
-             e = cluster->observation_list.end()  ; m!=e; ++m)
-        {
-          Observation *obs = *m;
-          bool b = false;
-
-          if      (dynamic_cast<Y*>    (obs))  b = true;
-          else if (dynamic_cast<Ydiff*>(obs))  b = true;
-
-          if (b)  obs->set_value( -obs->value() );
-        }
-    }
 }
 
 void Acord::execute()

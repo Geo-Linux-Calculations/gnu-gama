@@ -35,7 +35,7 @@ void FixedPoints(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   using namespace std;
   using namespace GNU_gama::local;
 
-  const int y_sign = GaMaConsistent(IS->PD) ? +1 : -1;
+  const int y_sign = IS->y_sign();
 
   int pocpevb=0, pocpevv=0;
   {   // for ...
