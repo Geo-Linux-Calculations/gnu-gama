@@ -1,3 +1,19 @@
+2015-11-08  Ales Cepek  <cepek@gnu.org>
+
+	* new release 1.17
+
+	This is a maintainer's version introducing some basic functions
+	for handling inconsistent systems (like right-handed coordinates
+	with left-handed angles). Gama-local program solves this problem
+	by internally changig signs of all Y coordinates, together with
+	observed Y coordinates and Y differences (vectors).
+
+	All y signed information is changed in the output. This works file
+	for batch processing (gama-local) but fails in interactive
+	dialogue environment of Qt based gama-q2 where all input
+	information can be edited by user and changed signed Y coordinates
+	(and observations) must be switched only once.
+
 2015-07-25  Ales Cepek  <cepek@gnu.org>
 
 	* fixed two bugs reported by Greg Troxel <gdt@lexort.com>
