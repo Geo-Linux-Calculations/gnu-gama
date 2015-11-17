@@ -4,6 +4,7 @@
 @comment Part 1 : Header
 
 @c %**start of header
+@documentencoding UTF-8
 @setfilename gama.info
 @include     version.texi
 @settitle    GNU Gama @value{VERSION}
