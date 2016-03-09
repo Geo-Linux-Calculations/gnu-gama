@@ -2,7 +2,7 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012, 2013, 2014 Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -111,7 +111,8 @@ public:
         double m = obs->value()*R2G;
         double r = residuals(index)/10000;
 
-        ostr << "'angle', '" << obs->from() << "', '" << obs->bs() << obs->fs() << m << ", " << m+r;
+        ostr << "'angle', '" << obs->from() << "', '" << obs->bs() << "', '"
+	     << obs->fs() << "', " << m << ", " << m+r;
     }
     void visit(H_Diff* obs)
     {
