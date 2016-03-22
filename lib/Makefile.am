@@ -94,7 +94,6 @@ libgama_src = \
    gnu_gama/xml/gkfparser.cpp \
    gnu_gama/xml/gkfparser.h \
    gnu_gama/local/angobs.h \
-   gnu_gama/local/bpoint.h \
    gnu_gama/local/html.cpp \
    gnu_gama/local/html.h \
    gnu_gama/local/cluster.h \

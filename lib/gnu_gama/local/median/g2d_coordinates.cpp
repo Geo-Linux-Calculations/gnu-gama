@@ -1,7 +1,8 @@
 /*
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2013, 2014  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2013, 2014, 2016  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2016  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -17,7 +18,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 /*************************************************************
@@ -118,18 +120,18 @@ bool ApproximateCoordinates::necessary_observations(PointID id)
       // is second target available?
       Angle* u = dynamic_cast<Angle*>(*i);
       if( u && (u->fs() == id))
-      { // added { to avoid dangling else 
+      { // added { to avoid dangling else
         if(first)
           second = true;
         else
           first = true;
-      } // added } to avoid dangling else 
+      } // added } to avoid dangling else
       i++;
     }
   while(!(second || i == SM.end()));
   return second;
 
-}	// bool ApproximateCoordinates::necessary_observations()
+}       // bool ApproximateCoordinates::necessary_observations()
 
 
 void ApproximateCoordinates::find_missing_coordinates()
@@ -159,7 +161,7 @@ void ApproximateCoordinates::find_missing_coordinates()
   selected.sort();
   selected.unique();
 
-}	// void ApproximateCoordinates::find_missing_coordinates()
+}       // void ApproximateCoordinates::find_missing_coordinates()
 
 
 void ApproximateCoordinates::move_point(PointData& from, PointData& to,
@@ -169,12 +171,12 @@ void ApproximateCoordinates::move_point(PointData& from, PointData& to,
   PointData::iterator i = from.find(what);
   PointData::iterator j = to.find(what);
   if(i != from.end())
-  { // added { to avoid dangling else 
+  { // added { to avoid dangling else
     if(j != to.end())
       (*j).second.set_xy((*i).second.x(), (*i).second.y());
     else
-      to[what] = LocalPoint::XY((*i).second.x(), (*i).second.y());
-  } // added } to avoid dangling else 
+      to[what] = LocalPoint((*i).second.x(), (*i).second.y());
+  } // added } to avoid dangling else
 
 }    // ApproximateCoordinates::move_point(PointData&, PointData&, PointID&)
 
@@ -206,7 +208,7 @@ bool ApproximateCoordinates::solve_intersection(PointData& points,
               if(j != points.end())
                 (*j).second.set_xy(bb.x(), bb.y());
               else
-                points[*i] = LocalPoint::XY(bb.x(), bb.y());
+                points[*i] = LocalPoint(bb.x(), bb.y());
               solved_pd[*i] = bb;
               i = what.erase(i);
             }
@@ -412,7 +414,7 @@ void ApproximateCoordinates::computational_loop()
   selected.insert(selected.end(), unsolvable.begin(), unsolvable.end());
   unsolvable.erase(unsolvable.begin(), unsolvable.end());
 
-}	// ApproximateCoordinates::computational_loop()
+}       // ApproximateCoordinates::computational_loop()
 
 
 // public
@@ -453,7 +455,7 @@ bool ApproximateCoordinates::calculation(PointID id)
 
   return all_is_solved();
 
-}	// bool ApproximateCoordinates::calculation(PointID id)
+}       // bool ApproximateCoordinates::calculation(PointID id)
 
 
 // point list (even the points with coordinates)
@@ -513,10 +515,4 @@ bool ApproximateCoordinates::calculation(PointIDList id)
 
   return all_is_solved();
 
-}	// bool ProblSour::calculation(PointIDList id)
-
-
-
-
-
-
+}       // bool ProblSour::calculation(PointIDList id)

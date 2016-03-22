@@ -1,3 +1,11 @@
+2016-03-22  Ales Cepek  <cepek@gnu.org>
+
+	* Simplified class LocalPoint. Removed helper classes XYZ, XY and
+	ZZ, replace by correspondning constructors. Removed exceptions
+	from x(), y() and z() methods; user of the class is responsible
+	for correct usage of LocalPoint objects, i.e. for calling
+	test_xy() and test_z().
+
 2015-11-08  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.17

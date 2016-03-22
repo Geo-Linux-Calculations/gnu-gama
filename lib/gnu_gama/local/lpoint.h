@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2014  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2000, 2014, 2016  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,39 +16,18 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 #ifndef gama_local___class__LocalPoint_h
 #define gama_local___class__LocalPoint_h
-
-#include <gnu_gama/local/bpoint.h>
-#include <gnu_gama/local/float.h>
-#include <gnu_gama/local/exception.h>
-#include <gnu_gama/local/language.h>
 
 namespace GNU_gama { namespace local {
 
 
 class LocalPoint {
 public:
-
-  struct XYZ
-  {
-    Double x, y, z;
-    XYZ(Double px, Double py, Double pz) : x(px), y(py), z(pz) {}
-  };
-  struct XY
-  {
-    Double x, y;
-    XY(Double px, Double py) : x(px), y(py) {}
-  };
-  struct ZZ
-  {
-    Double z;
-    ZZ(Double pz) : z(pz) {}
-  };
-
 
  LocalPoint()
    : x_(0), y_(0), z_(0),
@@ -58,24 +37,24 @@ public:
     pst_(unused_)
     {
     }
-  LocalPoint(XYZ p)
-    : x_(p.x), y_(p.y), z_(p.z),
+ LocalPoint(double px, double py, double pz)
+    : x_(px), y_(py), z_(pz),
     bxy_(true), bz_(true),
     ix_(0), iy_(0), iz_(0),
     x0_(0), y0_(0), z0_(0),
     pst_(unused_)
     {
     }
-  LocalPoint(XY  p)
-    : x_(p.x), y_(p.y), z_(0),
+ LocalPoint(double px, double py)
+    : x_(px), y_(py), z_(0),
     bxy_(true), bz_(false),
     ix_(0), iy_(0), iz_(0),
     x0_(0), y0_(0), z0_(0),
     pst_(unused_)
     {
     }
-  LocalPoint(ZZ  p)
-    : x_(0), y_(0), z_(p.z),
+  LocalPoint(double pz)
+    : x_(0), y_(0), z_(pz),
     bxy_(false), bz_(true),
     ix_(0), iy_(0), iz_(0),
     x0_(0), y0_(0), z0_(0),
@@ -84,24 +63,12 @@ public:
     }
 
 
-  Double y() const
-    {
-      if (!bxy_) throw GNU_gama::local::Exception(T_POBS_bad_data);
-      return y_;
-    }
-  Double x() const
-    {
-      if (!bxy_) throw GNU_gama::local::Exception(T_POBS_bad_data);
-      return x_;
-    }
-  Double z() const
-    {
-      if (!bz_ ) throw GNU_gama::local::Exception(T_POBS_bad_data);
-      return z_;
-    }
+  double y() const { return y_; }        // check test_xy()
+  double x() const { return x_; }
+  double z() const { return z_; }        // check test_z()
 
-  void set_xy  (Double x, Double y) { bxy_ = true; x_ = x; y_ = y; }
-  void set_z   (Double z)           { bz_  = true; z_ = z; }
+  void set_xy  (double x, double y) { bxy_ = true; x_ = x; y_ = y; }
+  void set_z   (double z)           { bz_  = true; z_ = z; }
   void unset_xy() { bxy_ = false; }
   void unset_z () { bz_  = false; }
   bool test_xy () const { return bxy_; }
@@ -139,18 +106,18 @@ public:
 
   // initial values of coordinates used in the first adjustment iteration
 
-  Double x_0() const { return x0_; }
-  Double y_0() const { return y0_; }
-  Double z_0() const { return z0_; }
+  double x_0() const { return x0_; }
+  double y_0() const { return y0_; }
+  double z_0() const { return z0_; }
 
   void   set_xyz_0() { x0_ = x_; y0_ = y_; z0_ = z_;  }
 
 private:
 
-  Double  x_, y_, z_;       // coordinates
+  double  x_, y_, z_;       // coordinates
   bool    bxy_, bz_;        // coordinates are/are_not defined
   int     ix_, iy_, iz_;    // indexes of unknowns in project equations
-  Double  x0_, y0_, z0_;    // initial values of cordinates in adjustment
+  double  x0_, y0_, z0_;    // initial values of cordinates in adjustment
   int     pst_;             // point status in adjustment
 
   enum

@@ -17,7 +17,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 /*************************************************************
@@ -51,7 +52,7 @@ void Select_solution_g2d::calculation()
 {
   /* ***********************************************************************
 
-     Change  median-0.7.4  / gnu_gama/local-0.9.35  AC                  1999.12.30
+     Change  median-0.7.4  / gnu_gama/local-0.9.35  AC            1999.12.30
      ------------------------------------------
 
      I think, that calculation() didn't do exactly, what describes
@@ -297,7 +298,7 @@ void SimilarityTr2D::calculation()
         if(pom.test_xy())
           {
             transf_points_[(*cb)] =
-              LocalPoint::XY(
+              LocalPoint(
                         transf_key_[3] + transf_key_[1]*pom.x() -
                                          transf_key_[0]*pom.y(),
                         transf_key_[2] + transf_key_[1]*pom.y() +
@@ -323,5 +324,3 @@ void SimilarityTr2D::calculation()
 }  // void SimilarityTr2D::calculation()
 
 }} // namespace GNU_gama::local
-
-

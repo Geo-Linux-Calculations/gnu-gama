@@ -1,6 +1,7 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Jan Pytel  <pytel@gama.fsv.cvut.cz>
+    Copyright (C) 2004  Jan Pytel  <pytel@gama.fsv.cvut.cz>,
+                  2016  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,7 +17,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 #include <gnu_gama/local/acord/reduce_to_ellipsoid.h>
@@ -28,7 +30,7 @@ using namespace GNU_gama::local;
 
 
 ReduceToEllipsoid::EllipsoidFunction::EllipsoidFunction(GNU_gama::Ellipsoid EL, double lat):
-    el(EL), latitude(lat), centralPoint(LocalPoint(LocalPoint::XYZ(0, 0, 0)) )
+    el(EL), latitude(lat), centralPoint(LocalPoint(LocalPoint(0, 0, 0)) )
 {
     r = R();
 }
@@ -231,7 +233,7 @@ void ReduceToEllipsoid::execute()
     const double centralY = ( numxy ? sumy / numxy : 0 );
     const double centralZ = ( numz  ? sumz / numz  : 0 );
 
-    EF.setCentralPoint(LocalPoint::XYZ(centralX, centralY, centralZ));
+    EF.setCentralPoint(LocalPoint(centralX, centralY, centralZ));
 
     for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
     {
