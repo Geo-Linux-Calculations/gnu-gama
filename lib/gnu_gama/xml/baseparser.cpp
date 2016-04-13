@@ -65,6 +65,7 @@ namespace {
 
 CoreParser::CoreParser()
 {
+  state = -1;
   errCode = errLineNumber = 0;
 
   parser  = XML_ParserCreate(0);

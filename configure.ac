@@ -2,13 +2,13 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.65)
-AC_INIT([gama], [1.17], [bug-gama@gnu.org])
+AC_INIT([gama], [1.17a], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
 
 AM_INIT_AUTOMAKE
-# AM_SILENT_RULES([yes])
+AM_SILENT_RULES([yes])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -24,7 +24,7 @@ AC_MSG_NOTICE([using CXXFLAGS $CXXFLAGS])
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
 
-# Checks for libraries.
+# Checks for libraries libexpat1-dev, libsqlite3-dev
 AC_CHECK_LIB([expat], [XML_ParserCreate])
 AC_CHECK_LIB([sqlite3], [sqlite3_open])
 AC_CHECK_LIB([sqlite3], [sqlite3_open],
