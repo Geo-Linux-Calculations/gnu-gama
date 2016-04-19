@@ -2,7 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2013  Ales Cepek <cepek@gnu.org>
+                  2013, 2016  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -18,7 +18,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301  USA
 */
 
 /** \file outlying_abs_terms.h
@@ -251,7 +252,9 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
           pm->accept(&visitor);
 
-          out << setiosflags(ios_base::scientific) << setprecision(5);
+          // out << setiosflags(ios_base::scientific) << setprecision(5);
+          out.setf(ios_base::scientific, ios_base::floatfield);
+          out.precision(5);
           out << setw(13) << IS->rhs(i);       // 1.1.56 << pm->rhs();
           out << '\n';
           out.flush();
@@ -264,4 +267,3 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 }}
 
 #endif
-
