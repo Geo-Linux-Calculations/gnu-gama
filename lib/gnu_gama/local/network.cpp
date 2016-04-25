@@ -488,7 +488,7 @@ void LocalNetwork::revision_observations()
     }
 
   RSM.clear();
-  removed_obs.clear();
+  // removed_obs.clear();  1.17b
   for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
     {
       Observation* m = *i;

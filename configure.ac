@@ -1,8 +1,8 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 #
-AC_PREREQ(2.65)
-AC_INIT([gama], [1.17a], [bug-gama@gnu.org])
+AC_PREREQ(2.69)
+AC_INIT([gama], [1.17b], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
