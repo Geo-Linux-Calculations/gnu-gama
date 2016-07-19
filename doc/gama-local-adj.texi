@@ -421,7 +421,7 @@ of stochastic quantities in statistical analysis of the adjustment.
 @strong{A priori reference standard deviation @mnapr{}} is an estimate
 of the standard deviation of an observation with the unit
 weight. Numerically it is a scaling factor used in calculation of the
-weights. If we change @mnapr, only the sum of weighted residuals
+weights. If we change @mnapr{}, only the sum of weighted residuals
 squares is changed and all adjustment results remain the same (there
 is just one least squares solution).  @mnapr{} can be selected in
 cases when we know its value in advance and with sufficient
