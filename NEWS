@@ -1,6 +1,21 @@
 GNU Gama NEWS - History of user-visible changes.
 
-Version 1.16 Jula 2015
+Version 1.18 ... future
+
+* fixed some minor problems reported by Greg Troxel (doc, NEWS)
+* in local/network.cpp commented out // removed_obs.clear();
+* fixed a formatting bug in outlaying terms (due to c++11)
+* fixed a bug in HTML parser test
+* simplified class LocalPoint
+* fixed a bug in sql export reported by Dominik Hladik
+* added @documentencoding UTF-8 into gama.texi
+
+Version 1.17 November 2015
+
+* new set of functions for handling inconsistent systems
+* fixed two bugs reported by Greg Troxel
+
+Version 1.16 July 2015
 
 * minor fixes in documentation
 * fixed a bug in SQL schema
