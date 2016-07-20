@@ -2,6 +2,7 @@ GNU Gama NEWS - History of user-visible changes.
 
 Version 1.18 ... future
 
+* configure.ac : rewritten conditional settings for sqlite3 support
 * fixed some minor problems reported by Greg Troxel (doc, NEWS)
 * in local/network.cpp commented out // removed_obs.clear();
 * fixed a formatting bug in outlaying terms (due to c++11)
