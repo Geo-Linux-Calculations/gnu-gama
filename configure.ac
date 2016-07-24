@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.69)
-AC_INIT([gama], [1.17c], [bug-gama@gnu.org])
+AC_INIT([gama], [1.17d], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -20,27 +20,36 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
 AC_SUBST([CXXFLAGS],["$CXXFLAGS -std=c++11 -Wall"])
-# AC_MSG_NOTICE([using CXXFLAGS $CXXFLAGS])
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
+AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [false])
+
 
 # Checks for libraries libexpat1-dev, libsqlite3-dev
+
 AC_CHECK_LIB([expat], [XML_ParserCreate])
-AC_CHECK_LIB([sqlite3], [sqlite3_open])
-# 1.17 AC_CHECK_LIB([sqlite3], [sqlite3_open],
-# 1.17        AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],,
-# 1.17                  [Conditional support for sqlite3 databases])
-# 1.17        AC_SUBST([CPPFLAGS],[-DGNU_GAMA_LOCAL_SQLITE_READER $CPPFLAGS])
-# 1.17        AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
-# 1.17        )
-if test "x$ac_cv_lib_sqlite3_sqlite3_open" = "xyes"; then
-       AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],,
-                 [Conditional support for sqlite3 databases])
-       CPPFLAGS+=" -DGNU_GAMA_LOCAL_SQLITE_READER"
-       AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
+if test "x$ac_cv_lib_expat_XML_ParserCreate" != "xyes"; then
+       AC_MSG_WARN([Build with local copy of expat 1.1 XML parser])
+       AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [true])
+       AC_DEFINE([GNU_gama_expat_1_1],1,
+                 [Optional support for expat 1.1 from local sources])
+       CPPFLAGS+=" -DGNU_gama_expat_1_1 "
+else
+       AC_CHECK_HEADER(expat.h, , [AC_MSG_ERROR(
+                [Cannot find expat.h ... please install libexpat1-dev] )])
 fi
 
+AC_CHECK_LIB([sqlite3], [sqlite3_open])
+if test "x$ac_cv_lib_sqlite3_sqlite3_open" = "xyes"; then
+       AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
+       AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],1,
+                 [Conditional support for sqlite3 databases])
+       CPPFLAGS+=" -DGNU_GAMA_LOCAL_SQLITE_READER "
+fi
+
+
 # Check for xmllint
+
 AC_CHECK_PROG(GNU_GAMA_LOCAL_TEST_XMLLINT, xmllint, yes, no)
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_XMLLINT],
                [test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" = "xyes"])
@@ -52,8 +61,9 @@ fi
 
 # Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADER(expat.h, , [AC_MSG_ERROR(
-                [Cannot find expat.h ... please install libexpat1-dev] )])
+
+# AC_CHECK_HEADER(expat.h, , [AC_MSG_ERROR(
+#                 [Cannot find expat.h ... please install libexpat1-dev] )])
 
 # Checks for typedefs, structures, and compiler characteristics.
 # AC_HEADER_STAT

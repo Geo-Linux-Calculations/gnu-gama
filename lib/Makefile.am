@@ -239,6 +239,13 @@ expat_extra = \
    expat/xmlparse/xmlparse.h
 
 noinst_LIBRARIES  = libgama.a
+
+if GNU_GAMA_LOCAL_TEST_EXPAT_1_1
+AM_CFLAGS= -I@top_srcdir@/lib/expat/xmltok
+AM_CPPFLAGS= -I@top_srcdir@/lib/expat/xmltok
+libgama_a_SOURCES = $(libgama_src) $(matvec_src) $(expat_src)
+else
 libgama_a_SOURCES = $(libgama_src) $(matvec_src)
+endif
 
 EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
