@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.69)
-AC_INIT([gama], [1.17d], [bug-gama@gnu.org])
+AC_INIT([gama], [1.18], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -33,7 +33,7 @@ if test "x$ac_cv_lib_expat_XML_ParserCreate" != "xyes"; then
        AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [true])
        AC_DEFINE([GNU_gama_expat_1_1],1,
                  [Optional support for expat 1.1 from local sources])
-       CPPFLAGS+=" -DGNU_gama_expat_1_1 "
+       CPPFLAGS="${CPPFLAGS} -DGNU_gama_expat_1_1"
 else
        AC_CHECK_HEADER(expat.h, , [AC_MSG_ERROR(
                 [Cannot find expat.h ... please install libexpat1-dev] )])
@@ -44,7 +44,7 @@ if test "x$ac_cv_lib_sqlite3_sqlite3_open" = "xyes"; then
        AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
        AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],1,
                  [Conditional support for sqlite3 databases])
-       CPPFLAGS+=" -DGNU_GAMA_LOCAL_SQLITE_READER "
+       CPPFLAGS="${CPPFLAGS} -DGNU_GAMA_LOCAL_SQLITE_READER"
 fi
 
 

@@ -1,10 +1,29 @@
-2016-03-22  Ales Cepek  <cepek@gnu.org>
+2016-08-14  Ales Cepek  <cepek@gnu.org>
 
+	* new release 1.18
+
+	This is a maintainer's version introducing some minor technical
+	changes and important syntax changes in configure.ac (many thanks
+	to Greg Troxel <gdt@lexort.com> for the patch and testing on OS X
+	10.9, netbsd-7 i386 and netbsd-7 amd64).
+
+	* configure.ac : patch by Greg Troxel <gdt@lexort.com>
+	  CPPFLAGS was set with +=, which is a bash extension and fails on
+	  POSIX-conforming shells.  This resulted in sqlite3 support not being
+	  enabled on NetBSD, even though the sqlite3 library was found and
+	  linked in.
+
+	* fixed some minor problems reported by Greg Troxel (doc, NEWS)
+	* in local/network.cpp commented out // removed_obs.clear();
+	* fixed a formatting bug in outlaying terms (due to c++11)
+	* fixed a bug in HTML parser test
 	* Simplified class LocalPoint. Removed helper classes XYZ, XY and
-	ZZ, replace by correspondning constructors. Removed exceptions
-	from x(), y() and z() methods; user of the class is responsible
-	for correct usage of LocalPoint objects, i.e. for calling
-	test_xy() and test_z().
+	  ZZ, replace by correspondning constructors. Removed exceptions
+	  from x(), y() and z() methods; user of the class is responsible
+	  for correct usage of LocalPoint objects, i.e. for calling
+	  test_xy() and test_z().
+	* fixed a bug in sql export reported by Dominik Hladik
+	* added @documentencoding UTF-8 into gama.texi
 
 2015-11-08  Ales Cepek  <cepek@gnu.org>
 
