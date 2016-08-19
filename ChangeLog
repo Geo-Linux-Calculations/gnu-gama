@@ -1,3 +1,8 @@
+2016-08-19  Ales Cepek  <cepek@biggy>
+
+	* patch by Greg Troxel
+	fixed "test ==", which is a bash extension and not POSIX compliant
+
 2016-08-14  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.18
