@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2016  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -36,7 +36,12 @@ int main(int argc, char* argv[])
       std::cout << "   ####  ERROR ON OPENING FILE " << argv[2] << "\n";
       return 1;
     }
-    html->read_html(inp_html);
+    try {
+      html->read_html(inp_html);
+    } catch (...) {
+      std::cout << "   ####  ERROR ON READING " << argv[2] << "\n";
+      return 1;
+    }
   }
 
   LocalNetworkAdjustmentResults* xml = new LocalNetworkAdjustmentResults;
@@ -46,8 +51,20 @@ int main(int argc, char* argv[])
       std::cout << "   ####  ERROR ON OPENING FILE " << argv[3] << "\n";
       return 1;
     }
-    xml->read_xml(inp_xml);
+    try {
+      xml->read_xml(inp_xml);
+    } catch (...) {
+      std::cout << "   ####  ERROR ON READING FILE " << argv[3] << "\n";
+      return 1;
+    }
   }
 
-  return compare_xml_adjustment(html, xml, 1e-2);
+  try
+    {
+      return compare_xml_adjustment(html, xml, 1e-2);
+    }
+  catch (...)
+    {
+      std::cout << "   ####  EXCEPTION FROM compare_xml_adjustment\n";
+    }
 }
