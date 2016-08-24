@@ -59,6 +59,6 @@ Contributors:
     Tomáš Kubín <tomas.kubin@fsv.cvut.cz>
         - update of output of a posteriori standard deviation Chi-Square test
 
-    Grep Troxel <gdt@lexort.com>
+    Greg Troxel <gdt@lexort.com>
         - many bug fixes of violations of GNU Coding Standards, namely
           on OS X and NetBSD
