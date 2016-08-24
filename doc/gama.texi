@@ -73,7 +73,8 @@ Free Documentation License''.
 * XML input data format for gama-local::
 * SQL schema SQLite and gama-local::
 * Network adjustment with gama-local::
-* Data structures and algorithms::  
+* Data structures and algorithms::
+* Gama-local test suite::
 
 * Copying This Manual::
 * Concept Index::               
@@ -150,7 +151,8 @@ Aleš Čepek, Jiří Veselý, Petr Doubrava, Jan Pytel, Chuck Ghilani, Dan
 Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
-Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang) and Tomáš Kubín.
+Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang), Tomáš Kubín
+and Greg Troxel.
 
 Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 
@@ -176,6 +178,17 @@ Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 @node    Data structures and algorithms
 @chapter Data structures and algorithms
 @include algorithms.texi
+
+
+@c ----------------------------------------------------------------------
+
+
+@node    Gama-local test suite
+@chapter Gama-local test suite
+@include gama-local-test-suite.texi
+
+
+@c ----------------------------------------------------------------------
 
 
 @node     Copying This Manual

@@ -1,21 +1,22 @@
 info_TEXINFOS = gama.texi
 
-gama_TEXINFOS =           \
-   algorithms.texi        \
-   class-g3-model.texi    \
-   ellipsoids-1.texi      \
-   ellipsoids.texi        \
-   fdl.texi               \
-   gama-download.texi     \
-   gama-g3.texi           \
-   gama-install.texi      \
-   gama-introduction.texi \
-   gama-local-adj.texi    \
-   gama-local-macros.texi \
-   gama-local.texi        \
-   gama-local-input.texi  \
-   obsdata.texi           \
-   xyz2blh.texi           \
+gama_TEXINFOS =               \
+   algorithms.texi            \
+   class-g3-model.texi        \
+   ellipsoids-1.texi          \
+   ellipsoids.texi            \
+   fdl.texi                   \
+   gama-download.texi         \
+   gama-g3.texi               \
+   gama-install.texi          \
+   gama-introduction.texi     \
+   gama-local-adj.texi        \
+   gama-local-macros.texi     \
+   gama-local-test-suite.texi \
+   gama-local.texi            \
+   gama-local-input.texi      \
+   obsdata.texi               \
+   xyz2blh.texi               \
    gama-local-sql.texi
 
 EXTRA_DIST =                         \
