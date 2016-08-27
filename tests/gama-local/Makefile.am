@@ -25,6 +25,7 @@ INPUT_FILES = gama-local \
               zoltan-test_2d_gon \
               zoltan-test_3d_dms \
               zoltan-test_3d_gon \
+              tst-tetrahedron-1 \
               tst-tetrahedron-2 \
               tst-tetrahedron-3-deg \
               tst-tetrahedron-3-gon \
