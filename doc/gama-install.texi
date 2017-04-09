@@ -31,7 +31,7 @@ $ make install
 parameters if you need to change directories where user executables
 and info documentation should be installed.
 
-Typically, if you want to download (@pxref{Download}) and compile sources,
+Typically,lin if you want to download (@pxref{Download}) and compile sources,
 you will run following commands:
 @example
 $ git clone git://git.sv.gnu.org/gama.git gama
@@ -57,16 +57,40 @@ $ make run-gendocs.sh
 @end example
 The documentation should be in @code{doc/manual} directory.
 To compile API documentation run
+
 @example
 $ doxygen
 @end example
+
+@noindent
 in your @code{gama} directory.
 Doxygen output will be in the @code{doxygen} directory.
 
 
 @menu
+* CMake::
 * Precompiled binaries for Windows::
 @end menu
+
+@node       CMake
+@subsection CMake
+@cindex     CMake
+
+Alternatively you can use CMake to generate makefiles for Unix,
+Windows, Mac OS X, OS/2, MSVC, Cygwin, MinGW or Xcode. Configuration
+file @code{CMakeLists.txt} is available from root distribution
+directory. For example to build @code{gama-local} binary for Linux run
+
+@example
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+@end example
+
+@noindent
+where @code{build} is an arbitrary directory name for
+@emph{out-of-place build}.
 
 @node       Precompiled binaries for Windows
 @subsection Precompiled binaries for Windows
