@@ -5,8 +5,7 @@ project (gama-local)
 set(CMAKE_CXX_STANDARD 14)
 
 file(READ configure.ac temp1)
-string(REGEX REPLACE ".+AC_INIT.\\[gama\\], \\["
-  "CMake Generator /\\\\n${CMAKE_GENERATOR} / gama-local " temp2 "${temp1}")
+string(REGEX REPLACE ".+AC_INIT.\\[gama\\], \\[" "" temp2 "${temp1}")
 string(REGEX REPLACE "\\].+" "" temp3 "${temp2}")
 add_definitions(-DVERSION="${temp3}")
 
