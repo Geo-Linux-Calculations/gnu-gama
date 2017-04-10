@@ -1,6 +1,6 @@
 GNU Gama  can be found in the subdirectory @code{/gnu/gama/} on
-your favourite @uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or
-checked-out from the GIT. See our project page at
+your favourite FTP @uref{http://www.gnu.org/prep/ftp.html, GNU mirror} or
+cloned from the GIT. See our project page at
 @uref{http://savannah.gnu.org/projects/gama/, savannah} for more
 information.
 
@@ -12,7 +12,7 @@ git clone git://git.sv.gnu.org/gama.git
 @end example
 
 
-@noindent The collection of sample networks is available separetely. To checkout
+@noindent The collection of sample networks is available separetely. To clone
 the @code{gama-local} examples from GIT use the command
 
 @example

@@ -1,17 +1,20 @@
-GNU Gama is developed and tested under GNU/Linux.  
-A static library @code{libgama.lib}
-and executables are build in folders @code{lib} and @code{bin}.
-You can compile Gama easily yourself if you download the
-sources.  If @code{expat} XML parser is installed on your system,
-change to the directory of Gama project and issue the following
-commands at the shell prompt
+GNU Gama is developed and tested under GNU/Linux.  A static library
+@code{libgama.lib} and executables are build in folders @code{lib} and
+@code{bin}.  You can compile Gama easily yourself if you download the
+sources from a FTP server.  The preferred way is to have @code{expat}
+XML parser installed on your system, if not, GNU Gama will be build
+with internally stored @code{expat} older source codes version 1.1.
+
+Change to the directory of Gama project and issue the
+following commands at the shell prompt
 
 @example
 $ ./configure
 $ make
 @end example
 
-To run tests from the Gama test suite try
+@noindent
+For GNU Gama test suite run
 
 @example
 $ make check
@@ -31,7 +34,7 @@ $ make install
 parameters if you need to change directories where user executables
 and info documentation should be installed.
 
-Typically,lin if you want to download (@pxref{Download}) and compile sources,
+Typically, if you want to download (@pxref{Download}) and compile sources,
 you will run following commands:
 @example
 $ git clone git://git.sv.gnu.org/gama.git gama
@@ -49,12 +52,15 @@ make doxygen git automake autoconf libexpat1-dev libsqlite3-dev
 @end example
 
 To compile user documentation in various formats (PDF, HTML, @dots{}) run
-the following commands (before you have to run at least @code{./configure}).
+the following commands
+
 @example
 $ cd doc/
 $ make download-gendocs.sh
 $ make run-gendocs.sh
 @end example
+
+@noindent
 The documentation should be in @code{doc/manual} directory.
 To compile API documentation run
 
@@ -78,7 +84,7 @@ Doxygen output will be in the @code{doxygen} directory.
 
 Alternatively you can use CMake to generate makefiles for Unix,
 Windows, Mac OS X, OS/2, MSVC, Cygwin, MinGW or Xcode. Configuration
-file @code{CMakeLists.txt} is available from root distribution
+file @code{CMakeLists.txt} is available from the root distribution
 directory. For example to build @code{gama-local} binary for Linux run
 
 @example
