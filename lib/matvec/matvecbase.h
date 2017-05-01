@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -105,52 +105,6 @@ protected:
     const Float Sign(Float a, Float b) const
     {
        return b >= Float() ? Abs(a) : -Abs(a);
-    }
-
-
-
-  // List initialiser helper class
-
-  class ListInitialiser {
-
-    iterator x, e, first;
-
-  public:
-
-  ListInitialiser(iterator begin,
-                  iterator end) : x(begin), e(end)
-    {
-      first = x;
-      if (x != e) ++first;
-    }
-  ~ListInitialiser()
-    {
-      if (x != first && x != e)
-        throw Exc(Exception::BadRank, "ListInitialiser : "
-                           "not enough elements in the initialisation list");
-    }
-
-  void add(Float p)
-    {
-      if (x == e)  throw Exc(Exception::BadRank, "ListInitialiser : "
-                             "too many elements in the initialisation list");
-      *x = p;
-      ++x;
-    }
-
-  ListInitialiser& operator,(Float x)
-    {
-      add(x);
-      return *this;
-    }
-
-  };
-
-  ListInitialiser list_init(Float p)
-    {
-      ListInitialiser linit( this->begin(), this->end() );
-      linit.add(p);
-      return linit;
     }
 
 };

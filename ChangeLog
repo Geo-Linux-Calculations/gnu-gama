@@ -1,3 +1,8 @@
+2017-05-01  Ales Cepek  <cepek@dodo>
+
+	* matvec 1.02 - user defined initializer replaced by
+	std::initializer_list
+
 2016-08-19  Ales Cepek  <cepek@biggy>
 
 	* patch by Greg Troxel

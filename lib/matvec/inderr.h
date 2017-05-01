@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2011, 2012, 2014  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2011, 2012, 2014, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -29,7 +29,7 @@ namespace GNU_gama {
 
   typedef size_t Index;
 
-  inline const char* matvec_version() { return "1.01"; }
+  inline const char* matvec_version() { return "1.02"; }
 
   /** Exception \brief Matrix/vector exceptions
    */

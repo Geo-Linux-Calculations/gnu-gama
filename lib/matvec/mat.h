@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -23,6 +23,7 @@
 #define GNU_gama_gMatVec_Mat__h_
 
 #include <iostream>
+#include <initializer_list>
 #include <matvec/matbase.h>
 #include <matvec/array.h>
 
@@ -44,6 +45,19 @@ public:
   Mat() {}
   Mat(Index r, Index c) : MatBase<Float, Exc>(r, c, r*c) {}
   Mat(const TransMat<Float, Exc>&);
+  Mat(std::initializer_list<std::initializer_list<Float>> init)
+    : MatBase<Float, Exc>(init.size(), init.begin()->size(),
+			  init.size() *init.begin()->size())
+  {
+    Index cols = init.begin()->size();
+    Float* f = this->begin();
+    for (auto row : init) {
+      if (row.size() != cols)
+	throw Exc(Exception::BadRank, "Mat::Initializer list");
+      for (auto c : row)
+	*f++ = c;
+    }
+  }
 
   Float& operator()(Index r, Index c) {
     Float *m = this->begin();
@@ -76,11 +90,6 @@ public:
 
   void transpose() { *this = trans(*this); }
   void invert();
-
-  typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
-  {
-    return this->list_init(x);
-  }
 
 private:
 

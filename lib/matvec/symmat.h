@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2006, 2007, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2006, 2007, 2012, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -98,12 +98,6 @@ public:
      this->sub(M, T);
      return T;
   }
-
-  typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
-  {
-    return this->list_init(x);
-  }
-
 };       // template <Float, Exc> class SymMat;
 
 // ======================================================================

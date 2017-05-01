@@ -164,7 +164,8 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         << setw(w_)  << f_z
         << '\n';
 
-    for (int ii=0; ii<w1+1+3*w_+1; ii++) out << '-'; out << "\n";
+    for (int ii=0; ii<w1+1+3*w_+1; ii++) out << '-';
+    out << "\n";
 
     out.setf(ios_base::left,  ios_base::adjustfield);
     out << Utf8::rightPad(T_GaMa_gpar1_total, w1) << ":";

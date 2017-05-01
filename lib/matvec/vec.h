@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2012, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -24,6 +24,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <initializer_list>
 #include <matvec/vecbase.h>
 
 namespace GNU_gama {   /** \brief Vector */
@@ -40,6 +41,11 @@ public:
   Vec() {}
   Vec(Index nsz) : VecBase<Float, Exc>(nsz) {}
   Vec(const VecBase<Float, Exc>& v) : VecBase<Float, Exc>(v) {}
+  Vec(std::initializer_list<Float> init) : VecBase<Float, Exc>(init.size()) {
+    Float* f = this->begin();
+    for (auto p : init)
+      *f++ = p;
+  }
 
   Vec operator*(Float f) const {
     Vec t(this->dim()); this->mul(f, t); return t;
@@ -54,12 +60,6 @@ public:
   Vec& operator*=(Float f)      { this->mul(f, *this); return *this; }
   Vec& operator+=(const Vec &x) { this->add(x, *this); return *this; }
   Vec& operator-=(const Vec &x) { this->sub(x, *this); return *this; }
-
-  typename MatVecBase<Float, Exc>::ListInitialiser operator=(Float x)
-  {
-    return this->list_init(x);
-  }
-
 };
 
 
