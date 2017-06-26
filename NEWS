@@ -1,5 +1,13 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 1.19 June 2017
+
+* fixed a bug introduced in 1.16, reported by Pierre Bosser
+	<pierre.bosser@ensta-bretagne.fr>. Implicit value of
+	covariance band in XML adjustment output is -1 (full
+	bandwidth).
+
+
 Version 1.18 August 2016
 
 * configure.ac : patch by Greg Troxel <gdt@lexort.com>

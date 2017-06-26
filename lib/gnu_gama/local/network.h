@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2006, 2012, 2014, 2015  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2006, 2012, 2014, 2015, 2017  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -278,7 +278,7 @@ namespace GNU_gama { namespace local
     bool        has_algorithm() const;
     void        set_algorithm(std::string alg = std::string());
     int         adj_covband() const;
-    void        set_adj_covband(int value=1);
+    void        set_adj_covband(int value=-1);
     double      epoch() const;
     bool        has_epoch() const;
     void        set_epoch(double=0.0);

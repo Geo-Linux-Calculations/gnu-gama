@@ -1,9 +1,17 @@
-2017-05-01  Ales Cepek  <cepek@dodo>
+2017-06-26  Ales Cepek  <cepek@gnu.org>
+
+	* new release 1.19
+
+	* fixed a bug introduced in 1.16, reported by Pierre Bosser
+	<pierre.bosser@ensta-bretagne.fr>. Implicit value of covariance
+	band in XML adjustment output is -1 (full bandwidth).
+
+2017-05-01  Ales Cepek  <cepek@gnu.org>
 
 	* matvec 1.02 - user defined initializer replaced by
 	std::initializer_list
 
-2016-08-19  Ales Cepek  <cepek@biggy>
+2016-08-19  Ales Cepek  <cepek@gnu.org>
 
 	* patch by Greg Troxel
 	fixed "test ==", which is a bash extension and not POSIX compliant
