@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.69)
-AC_INIT([gama], [1.19], [bug-gama@gnu.org])
+AC_INIT([gama], [1.19a], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -19,11 +19,14 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
-AC_SUBST([CXXFLAGS],["$CXXFLAGS -std=c++11 -Wall"])
+# Install package autoconf-archive or download from
+# git://git.sv.gnu.org/autoconf-archive.git
+# https://www.gnu.org/software/autoconf-archive/ax_cxx_compile_stdcxx_11.html
+
+AX_CXX_COMPILE_STDCXX_11
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [false])
-
 
 # Checks for libraries libexpat1-dev, libsqlite3-dev
 

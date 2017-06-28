@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project (gama-local)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 file(READ configure.ac temp1)
 string(REGEX REPLACE ".+AC_INIT.\\[gama\\], \\[" "" temp2 "${temp1}")

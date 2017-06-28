@@ -2,6 +2,15 @@ GNU package Gama is a C++ free software for geodesy released under GNU
 General Public Licence. Project Gama was started in 1998, in 2001 was
 dubbed a GNU packaqe and today contains the following main components:
 
+    [compiler] To build Gama, the compiler must support c++11
+    standard. Purposefully there are no constructs based on c++14 xto
+    enable builds with a wider range of available compilers. To check
+    the compiler support of c++11 features, configure.ac calls macro
+    AX_CXX_COMPILE_STDCXX_11, you need either to install package
+    autoconf-archive or download it from
+    git://git.sv.gnu.org/autoconf-archive.git. See
+    https://www.gnu.org/software/autoconf-archive/ax_cxx_compile_stdcxx_11.html
+
     [gamalib] C++ class library for handling geodetic observations
     (measurements) and points (coordinates), computation of
     approximate coordinates (needed for linearization) and adjustment
@@ -23,12 +32,6 @@ dubbed a GNU packaqe and today contains the following main components:
     [matvec] C++ matrix/vector template classes used in adjustment
     computations in gamalib.
 
-    [rocinante] is a GUI for GNU Gama based on Qt graphical library
-    that is available for GNU/Linux under GNU GPL. Rocinante binaries 
-    are also available for win32 platform; see 
-                    http://roci.sourceforge.net/
-    for more information.
-
-More information on GNU GaMa can be found at
+More information on GNU Gama can be found at
 
                  http://www.gnu.org/software/gama
