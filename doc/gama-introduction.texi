@@ -16,10 +16,11 @@ methods other than least squares are used sometimes but are not common). In
 other words, we have more observations than needed and we are trying to
 get the best estimate for adjusted observations and/or coordinates.
 
-@dfn{Adjustment of geodetic networks} means that we have a set of
-points with given coordinates coordinates of some points and a set of
+@dfn{Adjustment of geodetic networks} means that we have a set of fixed
+points with given coordinates, a set of points with unknown coordinates
+(possibly with approximate values available) and a set of
 observations among them. What is typical of adjustment of special
-geodetic measurements is that the resulting linearised system might be
+geodetic measurements is that the resulting linearized system might be
 singular (we can have a network with no fixed points) and we are not
 only interested in the values of `adjusted parameters and
 observations' but also in the estimates of their covariances. This is
