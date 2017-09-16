@@ -103,7 +103,14 @@ where @code{build} is an arbitrary directory name for
 @cindex     Windows, precompiled binaries 
 
 
+@itemize @bullet
+
+@item
 GNU Gama builds for Windows are available from
+@uref{https://sourceforge.net/projects/gnu-gama-builds}.
 
-@center @uref{https://sourceforge.net/projects/gnu-gama-builds/}
+@item
+Binary builds of Qt based GUI gama-q2 are available from
+@uref{https://sourceforge.net/projects/gnu-gama-q2}.
 
+@end itemize
