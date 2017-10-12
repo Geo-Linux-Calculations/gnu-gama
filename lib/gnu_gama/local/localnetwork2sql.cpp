@@ -2,7 +2,7 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012, 2013, 2014, 2015 Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2017 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -305,7 +305,8 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
     else                              ostr << "NULL, ";
     if (localNetwork.has_latitude())  ostr << localNetwork.latitude() << ", ";
     else                              ostr << "NULL, ";
-    if (localNetwork.has_ellipsoid()) ostr << "'" << localNetwork.ellipsoid();
+    if (localNetwork.has_ellipsoid()) ostr << "'" << localNetwork.ellipsoid()
+                                           << "'";
     else                              ostr << "NULL";
     ostr << ");\n";
   }
