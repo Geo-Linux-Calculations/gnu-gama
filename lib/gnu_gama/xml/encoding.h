@@ -21,8 +21,8 @@
 
 #include <gnu_gama/xml_expat.h>
 
-#ifndef gama_local_GKF__XML__encoding__h_
-#define gama_local_GKF__XML__encoding__h_
+#ifndef gama_local_GKF_XML_encoding_h_
+#define gama_local_GKF_XML_encoding_h_
 
 
 #ifdef __cplusplus

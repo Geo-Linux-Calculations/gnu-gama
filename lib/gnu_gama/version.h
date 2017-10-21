@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
-#define GNU_GAMA_VERSION_H___GNU_Gama_version_h___gnugamaversionh
+#ifndef GNU_GAMA_VERSION_H_GNU_Gama_version_h_gnugamaversionh
+#define GNU_GAMA_VERSION_H_GNU_Gama_version_h_gnugamaversionh
 
 #include <string>
 

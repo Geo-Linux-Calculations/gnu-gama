@@ -24,8 +24,8 @@
  * approximate coordinates of a single point                 *
  *************************************************************/
 
-#ifndef gama_local_g2d_point_h__GNU_gama_local_Median_Pribl_b_H
-#define gama_local_g2d_point_h__GNU_gama_local_Median_Pribl_b_H
+#ifndef gama_local_g2d_point_h_GNU_gama_local_Median_Pribl_b_H
+#define gama_local_g2d_point_h_GNU_gama_local_Median_Pribl_b_H
 
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/pobs/bearing.h>

@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local__gnu_gama_local____capi_H___________C_API_CAPI_H________
-#define gama_local__gnu_gama_local____capi_H___________C_API_CAPI_H________
+#ifndef gama_local_gnu_gama_local_capi_H_C_API_CAPI_H_
+#define gama_local_gnu_gama_local_capi_H_C_API_CAPI_H_
 
 #include <gnu_gama/local/c/api/capi_exception.h>
 #include <gnu_gama/local/c/api/capi_locnet.h>

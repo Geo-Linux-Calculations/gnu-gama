@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__e3_____gnu_gama_e3_____gnugamae3____h
-#define GNU_gama__e3_____gnu_gama_e3_____gnugamae3____h
+#ifndef GNU_gama_e3_gnu_gama_e3_gnugamae3_h
+#define GNU_gama_e3_gnu_gama_e3_gnugamae3_h
 
 #include <iostream>
 

@@ -27,8 +27,8 @@
  * \author Vaclav Petras
  */
 
-#ifndef GNU_gama__visior_h_gnugamavisitor__gnu_gama_visior
-#define GNU_gama__visior_h_gnugamavisitor__gnu_gama_visior
+#ifndef GNU_gama_visior_h_gnugamavisitor_gnu_gama_visior
+#define GNU_gama_visior_h_gnugamavisitor_gnu_gama_visior
 
 #include <iostream>
 
@@ -173,4 +173,4 @@ public:
 
 } // namespace GNU_gama
 
-#endif // GNU_gama__visior_h_gnugamavisitor__gnu_gama_visior
+#endif // GNU_gama_visior_h_gnugamavisitor_gnu_gama_visior

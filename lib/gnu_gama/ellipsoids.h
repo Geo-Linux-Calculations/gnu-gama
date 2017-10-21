@@ -1,5 +1,5 @@
-#ifndef GNU_gama___gama_ellipsoids__header_file_h
-#define GNU_gama___gama_ellipsoids__header_file_h
+#ifndef GNU_gama_gama_ellipsoids_header_file_h
+#define GNU_gama_gama_ellipsoids_header_file_h
 
 #include <gnu_gama/ellipsoid.h>
 

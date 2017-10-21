@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
-#define GNU_gama____Symmetric_Block_Diagonal___Symmetric_Block_Diagonal
+#ifndef GNU_gama_Symmetric_Block_Diagonal_Symmetric_Block_Diagonal
+#define GNU_gama_Symmetric_Block_Diagonal_Symmetric_Block_Diagonal
 
 #include <cstddef>
 #include <cstring>

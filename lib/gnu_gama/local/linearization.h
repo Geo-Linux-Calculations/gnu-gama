@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local_Linearization_______GNU_gama_local_____Linearization__
-#define gama_local_Linearization_______GNU_gama_local_____Linearization__
+#ifndef gama_local_Linearization_GNU_gama_local_Linearization_
+#define gama_local_Linearization_GNU_gama_local_Linearization_
 
 
 namespace GNU_gama { namespace local {

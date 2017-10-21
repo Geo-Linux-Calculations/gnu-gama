@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local___gnu_gama_local__local__results__underline_H_
-#define gama_local___gnu_gama_local__local__results__underline_H_
+#ifndef gama_local_gnu_gama_local_local_results_underline_H_
+#define gama_local_gnu_gama_local_local_results_underline_H_
 
 #include <string>
 

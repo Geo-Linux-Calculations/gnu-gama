@@ -28,8 +28,8 @@
  * \author Vaclav Petras (acyclic visitor pattern)
  */
 
-#ifndef GNU_gama__local_write_writewisitor_h
-#define GNU_gama__local_write_writewisitor_h
+#ifndef GNU_gama_local_write_writewisitor_h
+#define GNU_gama_local_write_writewisitor_h
 
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/local/observation.h>

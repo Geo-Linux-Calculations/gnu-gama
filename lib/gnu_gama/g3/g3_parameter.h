@@ -19,8 +19,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
-#define GNU_gama_____g3______parameter______h__________GNUgamag3parameterh
+#ifndef GNU_gama_g3_parameter_h_GNUgamag3parameterh
+#define GNU_gama_g3_parameter_h_GNUgamag3parameterh
 
 
 #include <cstddef>

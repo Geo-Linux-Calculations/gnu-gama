@@ -28,8 +28,8 @@
  * \author Vaclav Petras (acyclic visitor pattern)
  */
 
-#ifndef gama_local__LocalLinearization__GNU_gama_local_Local_Linearization
-#define gama_local__LocalLinearization__GNU_gama_local_Local_Linearization
+#ifndef gama_local_LocalLinearization_GNU_gama_local_Local_Linearization
+#define gama_local_LocalLinearization_GNU_gama_local_Local_Linearization
 
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/gamadata.h>

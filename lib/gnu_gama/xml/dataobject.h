@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local_GaMa_XML_Data_Object__object___h_
-#define gama_local_GaMa_XML_Data_Object__object___h_
+#ifndef gama_local_GaMa_XML_Data_Object_object_h_
+#define gama_local_GaMa_XML_Data_Object_object_h_
 
 #include <string>
 #include <sstream>

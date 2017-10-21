@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__xml__localnetwork__gnugamaxmllocalnetwork______________h
-#define GNU_gama__xml__localnetwork__gnugamaxmllocalnetwork______________h
+#ifndef GNU_gama_xml_localnetwork_gnugamaxmllocalnetwork_h
+#define GNU_gama_xml_localnetwork_gnugamaxmllocalnetwork_h
 
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/network.h>

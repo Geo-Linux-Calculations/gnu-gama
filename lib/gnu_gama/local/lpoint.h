@@ -20,8 +20,8 @@
     MA  02110-1301  USA
 */
 
-#ifndef gama_local___class__LocalPoint_h
-#define gama_local___class__LocalPoint_h
+#ifndef gama_local_class_LocalPoint_h
+#define gama_local_class_LocalPoint_h
 
 namespace GNU_gama { namespace local {
 

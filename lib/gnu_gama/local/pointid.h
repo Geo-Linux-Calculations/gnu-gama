@@ -24,8 +24,8 @@
 
 // PointID - point identification
 
-#ifndef gama_local_Point_Identification__h
-#define gama_local_Point_Identification__h
+#ifndef gama_local_Point_Identification_h
+#define gama_local_Point_Identification_h
 
 #include <string>
 #include <cstddef>

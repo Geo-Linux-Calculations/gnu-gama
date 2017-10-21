@@ -22,8 +22,8 @@
 #include <gnu_gama/list.h>
 #include <cmath>
 
-#ifndef GNU_gama__obsdata_h_gnugamaobsdata_observation_data__gnu_gama_obsdata
-#define GNU_gama__obsdata_h_gnugamaobsdata_observation_data__gnu_gama_obsdata
+#ifndef GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
+#define GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
 
 
 namespace GNU_gama {

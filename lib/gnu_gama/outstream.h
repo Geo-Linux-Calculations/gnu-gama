@@ -24,8 +24,8 @@
 #include <gnu_gama/xml_expat.h>
 #include <gnu_gama/xml/encoding.h>
 
-#ifndef GNU_gama__outstream__h____output_stream__outstreamh
-#define GNU_gama__outstream__h____output_stream__outstreamh
+#ifndef GNU_gama_outstream_h_output_stream_outstreamh
+#define GNU_gama_outstream_h_output_stream_outstreamh
 
 namespace GNU_gama {
 

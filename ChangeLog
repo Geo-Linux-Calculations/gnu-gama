@@ -1,3 +1,7 @@
+2017-10-21  Ales Cepek  <cepek@gnu.org>
+
+	* ver. 1.19.3 removed double underscores from include guards
+
 	* ver. 1.19.2 fixed the bug in sql output reported by Pavlo Karbovnyk
 
 2017-06-26  Ales Cepek  <cepek@gnu.org>

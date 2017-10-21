@@ -30,8 +30,8 @@
 
 #include <iostream>
 
-#ifndef gama_local_Adj__adjustment_class__h
-#define gama_local_Adj__adjustment_class__h
+#ifndef gama_local_Adj_adjustment_class_h
+#define gama_local_Adj_adjustment_class_h
 
 
 namespace GNU_gama {

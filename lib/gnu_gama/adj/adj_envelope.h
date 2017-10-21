@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
-#define GNU_Gama___gnu_gama_adj_envelope___gnugamaadjenvelope___adj_envelope_h
+#ifndef GNU_Gama_gnu_gama_adj_envelope_gnugamaadjenvelope_adj_envelope_h
+#define GNU_Gama_gnu_gama_adj_envelope_gnugamaadjenvelope_adj_envelope_h
 
 
 #include <gnu_gama/adj/adj_basesparse.h>

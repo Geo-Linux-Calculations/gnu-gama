@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local_Exception__h_
-#define gama_local_Exception__h_
+#ifndef gama_local_Exception_h_
+#define gama_local_Exception_h_
 
 #include <gnu_gama/exception.h>
 

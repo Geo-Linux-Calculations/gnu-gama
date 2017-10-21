@@ -33,8 +33,8 @@
  * - class Circle : public CoordinateGeometry2D              *
  *************************************************************/
 
-#ifndef gama_local_g2d_cogo_h__GNU_gama_local_Median_G_ulohy_H
-#define gama_local_g2d_cogo_h__GNU_gama_local_Median_G_ulohy_H
+#ifndef gama_local_g2d_cogo_h_GNU_gama_local_Median_G_ulohy_H
+#define gama_local_g2d_cogo_h_GNU_gama_local_Median_G_ulohy_H
 
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/median/g2d_exception.h>

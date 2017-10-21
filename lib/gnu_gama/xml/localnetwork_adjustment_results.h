@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
-#define GNU_gama_localnetwork_adjustment_results__gnugamalocalnetworkadjres_h
+#ifndef GNU_gama_localnetwork_adjustment_results_gnugamalocalnetworkadjres_h
+#define GNU_gama_localnetwork_adjustment_results_gnugamalocalnetworkadjres_h
 
 #include <gnu_gama/xml/localnetwork_adjustment_results_data.h>
 

@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
-#define GNU_Gama_Homogenization___gnu_gama_homogenization___homogenization_h
+#ifndef GNU_Gama_Homogenization_gnu_gama_homogenization_homogenization_h
+#define GNU_Gama_Homogenization_gnu_gama_homogenization_homogenization_h
 
 
 #include <gnu_gama/adj/adj.h>

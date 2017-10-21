@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
-#define GNU_gama__mathematical_model_h_gnugamamodel___gnu_gama_gmodel___h
+#ifndef GNU_gama_mathematical_model_h_gnugamamodel_gnu_gama_gmodel_h
+#define GNU_gama_mathematical_model_h_gnugamamodel_gnu_gama_gmodel_h
 
 #include <gnu_gama/obsdata.h>
 #include <gnu_gama/visitor.h>

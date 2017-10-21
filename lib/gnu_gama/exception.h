@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__exception__exception_class_hierarchy_____exception_h
-#define GNU_gama__exception__exception_class_hierarchy_____exception_h
+#ifndef GNU_gama_exception_exception_class_hierarchy_exception_h
+#define GNU_gama_exception_exception_class_hierarchy_exception_h
 
 #include <matvec/inderr.h>
 #include <string>

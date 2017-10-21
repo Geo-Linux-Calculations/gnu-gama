@@ -28,9 +28,13 @@
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.12";
+         const char* version = "1.13";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.13  2017-10-21
+ *
+ *       - generate include guards withou double underscores
  *
  * 1.12  2011-07-10
  *
@@ -329,8 +333,8 @@ int main()
   {
     ofstream out("language.h");
 
-    out << "#ifndef GNU_gama_local___language__header_file_h\n";
-    out << "#define GNU_gama_local___language__header_file_h\n\n";
+    out << "#ifndef GNU_gama_local_language_header_file_h\n";
+    out << "#define GNU_gama_local_language_header_file_h\n\n";
 
     out << "namespace GNU_gama { namespace local {      /* slovnikar " << version << " */\n\n";
 

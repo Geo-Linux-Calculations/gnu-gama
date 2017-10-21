@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_gMatVec_Cholesky_Decomposition__h_
-#define GNU_gama_gMatVec_Cholesky_Decomposition__h_
+#ifndef GNU_gama_gMatVec_Cholesky_Decomposition_h_
+#define GNU_gama_gMatVec_Cholesky_Decomposition_h_
 
 #include <matvec/vecbase.h>
 

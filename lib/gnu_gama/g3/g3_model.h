@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
-#define GNU_gama__g3_model_h_gnugamag3modelh___gnu_gama_g3model
+#ifndef GNU_gama_g3_model_h_gnugamag3modelh_gnu_gama_g3model
+#define GNU_gama_g3_model_h_gnugamag3modelh_gnu_gama_g3model
 
 #include <gnu_gama/model.h>
 #include <gnu_gama/pointbase.h>

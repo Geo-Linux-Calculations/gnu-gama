@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_gMatVec_Sort_Vec__h_
-#define GNU_gama_gMatVec_Sort_Vec__h_
+#ifndef GNU_gama_gMatVec_Sort_Vec_h_
+#define GNU_gama_gMatVec_Sort_Vec_h_
 
 #include <algorithm>
 #include <matvec/vecbase.h>

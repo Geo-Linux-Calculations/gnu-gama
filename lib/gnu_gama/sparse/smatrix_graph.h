@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
-#define GNU_gama_matrix_graph_h___GNU_Gama_MatrixGraph
+#ifndef GNU_gama_matrix_graph_h_GNU_Gama_MatrixGraph
+#define GNU_gama_matrix_graph_h_GNU_Gama_MatrixGraph
 
 #include <gnu_gama/sparse/smatrix.h>
 #include <gnu_gama/sparse/intlist.h>

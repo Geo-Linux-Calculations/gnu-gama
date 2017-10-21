@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama___gnu_gama_radian_h________________gnugamaradian_h
-#define GNU_gama___gnu_gama_radian_h________________gnugamaradian_h
+#ifndef GNU_gama_gnu_gama_radian_h_gnugamaradian_h
+#define GNU_gama_gnu_gama_radian_h_gnugamaradian_h
 
 
 namespace GNU_gama {

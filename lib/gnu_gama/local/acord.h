@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local_Acord___accord___header___h
-#define gama_local_Acord___accord___header___h
+#ifndef gama_local_Acord_accord_header_h
+#define gama_local_Acord_accord_header_h
 
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/acord/reduce_observations.h>

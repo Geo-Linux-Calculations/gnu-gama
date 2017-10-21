@@ -25,8 +25,8 @@
  * \author Maxime Le Moual
  */
 
-#ifndef GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
-#define GAMA_LOCAL_SVG__Gama_Local_Svg__gama_local_svg__h
+#ifndef GAMA_LOCAL_SVG_Gama_Local_Svg_gama_local_svg_h
+#define GAMA_LOCAL_SVG_Gama_Local_Svg_gama_local_svg_h
 
 #include <gnu_gama/xml/localnetworkxml.h>
 #include <string>

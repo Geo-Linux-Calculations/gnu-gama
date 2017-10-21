@@ -22,8 +22,8 @@
 #include <string>
 #include <gnu_gama/g3/g3_parameter.h>
 
-#ifndef GNU_gama__g3_point_h_gnugamag3pointh___gnu_gama_g3point
-#define GNU_gama__g3_point_h_gnugamag3pointh___gnu_gama_g3point
+#ifndef GNU_gama_g3_point_h_gnugamag3pointh_gnu_gama_g3point
+#define GNU_gama_g3_point_h_gnugamag3pointh_gnu_gama_g3point
 
 
 namespace GNU_gama {  namespace g3 {

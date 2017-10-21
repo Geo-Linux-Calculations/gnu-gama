@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
-#define GNU_gama_sparse_matrix_ordering_h___GNU_Gama_SparseMatrixOrdering
+#ifndef GNU_gama_sparse_matrix_ordering_h_GNU_Gama_SparseMatrixOrdering
+#define GNU_gama_sparse_matrix_ordering_h_GNU_Gama_SparseMatrixOrdering
 
 #include <gnu_gama/sparse/intlist.h>
 #include <gnu_gama/sparse/smatrix.h>

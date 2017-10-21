@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama___sparse__vector__h___sparsevectorh_sparsevectorh
-#define GNU_gama___sparse__vector__h___sparsevectorh_sparsevectorh
+#ifndef GNU_gama_sparse_vector_h_sparsevectorh_sparsevectorh
+#define GNU_gama_sparse_vector_h_sparsevectorh_sparsevectorh
 
 #include <cstddef>
 

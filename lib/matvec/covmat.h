@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama___CovMat__gMatVec_Symmetric_Band_Matrix_2__H_
-#define GNU_gama___CovMat__gMatVec_Symmetric_Band_Matrix_2__H_
+#ifndef GNU_gama_CovMat_gMatVec_Symmetric_Band_Matrix_2_H_
+#define GNU_gama_CovMat_gMatVec_Symmetric_Band_Matrix_2_H_
 
 #include <matvec/matvec.h>
 #include <matvec/choldec.h>

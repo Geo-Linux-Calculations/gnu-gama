@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_gMatVec__Hilbert_Matrix__h__
-#define GNU_gama_gMatVec__Hilbert_Matrix__h__
+#ifndef GNU_gama_gMatVec_Hilbert_Matrix_h_
+#define GNU_gama_gMatVec_Hilbert_Matrix_h_
 
 #include <matvec/matvec.h>
 

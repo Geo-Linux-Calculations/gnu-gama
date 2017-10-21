@@ -28,8 +28,8 @@
  * \author Vaclav Petras (acyclic visitor pattern)
  */
 
-#ifndef GaMa_GaMaProg_Opravy_Pozorovani__h_
-#define GaMa_GaMaProg_Opravy_Pozorovani__h_
+#ifndef GaMa_GaMaProg_Opravy_Pozorovani_h_
+#define GaMa_GaMaProg_Opravy_Pozorovani_h_
 
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/observation.h>

@@ -23,8 +23,8 @@
  * \author Ales Cepek
  */
 
-#ifndef GNU_gama_localnetwork_adjustment_results_data__DATA_h
-#define GNU_gama_localnetwork_adjustment_results_data__DATA_h
+#ifndef GNU_gama_localnetwork_adjustment_results_data_DATA_h
+#define GNU_gama_localnetwork_adjustment_results_data_DATA_h
 
 #include <string>
 #include <vector>

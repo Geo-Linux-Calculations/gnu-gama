@@ -24,8 +24,8 @@
  * local exception for GNU_gama::local (Median)                           *
  ******************************************************************/
 
-#ifndef gama_local_g2d_exception_h__GNU_gama_local_Median_Vyjimky_H
-#define gama_local_g2d_exception_h__GNU_gama_local_Median_Vyjimky_H
+#ifndef gama_local_g2d_exception_h_GNU_gama_local_Median_Vyjimky_H
+#define gama_local_g2d_exception_h_GNU_gama_local_Median_Vyjimky_H
 
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>

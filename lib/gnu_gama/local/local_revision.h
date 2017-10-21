@@ -28,8 +28,8 @@
  * \author Vaclav Petras (acyclic visitor pattern)
  */
 
-#ifndef gama_local__LocalRevision______GNU_gama_local___Local___Revision_____
-#define gama_local__LocalRevision______GNU_gama_local___Local___Revision_____
+#ifndef gama_local_LocalRevision_GNU_gama_local_Local_Revision_
+#define gama_local_LocalRevision_GNU_gama_local_Local_Revision_
 
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/observation.h>

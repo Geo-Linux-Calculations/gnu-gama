@@ -23,8 +23,8 @@
  * \author Ales Cepek
  */
 
-#ifndef GAMA_LOCAL_HTML__Gama_Local_Html__gama_local_html__h
-#define GAMA_LOCAL_HTML__Gama_Local_Html__gama_local_html__h
+#ifndef GAMA_LOCAL_HTML_Gama_Local_Html_gama_local_html_h
+#define GAMA_LOCAL_HTML_Gama_Local_Html_gama_local_html_h
 
 #include <gnu_gama/local/network.h>
 #include <string>

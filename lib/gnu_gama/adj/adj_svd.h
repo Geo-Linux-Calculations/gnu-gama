@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
-#define GNU_Gama__gnu_gama__gnu_gama_GaMa_OLS_svd_h
+#ifndef GNU_Gama_gnu_gama_gnu_gama_GaMa_OLS_svd_h
+#define GNU_Gama_gnu_gama_gnu_gama_GaMa_OLS_svd_h
 
 #include <gnu_gama/adj/adj_basefull.h>
 #include <matvec/svd.h>

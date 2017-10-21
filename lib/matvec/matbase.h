@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_gMatVec_MatBase__h_
-#define GNU_gama_gMatVec_MatBase__h_
+#ifndef GNU_gama_gMatVec_MatBase_h_
+#define GNU_gama_gMatVec_MatBase_h_
 
 #include <iostream>
 #include <matvec/matvecbase.h>

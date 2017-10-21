@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__g3___WriteObservationXML__g3_xml_write_observation_h
-#define GNU_gama__g3___WriteObservationXML__g3_xml_write_observation_h
+#ifndef GNU_gama_g3_WriteObservationXML_g3_xml_write_observation_h
+#define GNU_gama_g3_WriteObservationXML_g3_xml_write_observation_h
 
 
 #include <gnu_gama/g3/g3_observation.h>

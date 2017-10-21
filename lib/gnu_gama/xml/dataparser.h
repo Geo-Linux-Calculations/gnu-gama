@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
-#define GNU_Gama_GaMa_XML_DataParser__data_parser__dataparser___h_
+#ifndef GNU_Gama_GaMa_XML_DataParser_data_parser_dataparser_h_
+#define GNU_Gama_GaMa_XML_DataParser_data_parser_dataparser_h_
 
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/dataobject.h>

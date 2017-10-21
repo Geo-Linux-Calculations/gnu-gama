@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama_MoveToFront___gnu_gama_move_to_front___movetofront_h
-#define GNU_Gama_MoveToFront___gnu_gama_move_to_front___movetofront_h
+#ifndef GNU_Gama_MoveToFront_gnu_gama_move_to_front_movetofront_h
+#define GNU_Gama_MoveToFront_gnu_gama_move_to_front_movetofront_h
 
 #include <algorithm>
 

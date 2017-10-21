@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama___gama_local_Sparse_General_Matrix_______General___Matrix__
-#define GNU_gama___gama_local_Sparse_General_Matrix_______General___Matrix__
+#ifndef GNU_gama_gama_local_Sparse_General_Matrix_General_Matrix_
+#define GNU_gama_gama_local_Sparse_General_Matrix_General_Matrix_
 
 #include <cstddef>
 #include <cstring>

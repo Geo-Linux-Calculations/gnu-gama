@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
-#define GNU_Gama_Envelope___gnu_gama_envelope___gnugamaenvelope___envelope_h
+#ifndef GNU_Gama_Envelope_gnu_gama_envelope_gnugamaenvelope_envelope_h
+#define GNU_Gama_Envelope_gnu_gama_envelope_gnugamaenvelope_envelope_h
 
 
 #include <limits>

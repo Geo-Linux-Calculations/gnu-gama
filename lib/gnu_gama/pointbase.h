@@ -23,8 +23,8 @@
 #include <iterator>
 
 
-#ifndef GNU_gama__point_data_h_gnugamapointbase___gnu_gama_pointbase
-#define GNU_gama__point_data_h_gnugamapointbase___gnu_gama_pointbase
+#ifndef GNU_gama_point_data_h_gnugamapointbase_gnu_gama_pointbase
+#define GNU_gama_point_data_h_gnugamapointbase_gnu_gama_pointbase
 
 
 namespace GNU_gama {

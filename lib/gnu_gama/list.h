@@ -23,8 +23,8 @@
 #include <iterator>
 
 
-#ifndef GNU_gama__pointer_list_h_gnugamapointerlist___gnu_gama_pointerlist
-#define GNU_gama__pointer_list_h_gnugamapointerlist___gnu_gama_pointerlist
+#ifndef GNU_gama_pointer_list_h_gnugamapointerlist_gnu_gama_pointerlist
+#define GNU_gama_pointer_list_h_gnugamapointerlist_gnu_gama_pointerlist
 
 
 namespace GNU_gama {

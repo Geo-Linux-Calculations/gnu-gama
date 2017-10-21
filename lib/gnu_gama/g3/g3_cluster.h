@@ -21,8 +21,8 @@
 
 // #include <gnu_gama/g3/g3_observation/g3_cluster_vec.h>
 
-#ifndef GNU_gama__g3_cluster___g3clustergnugamag3cluster__gnu_gama_g3_cluster
-#define GNU_gama__g3_cluster___g3clustergnugamag3cluster__gnu_gama_g3_cluster
+#ifndef GNU_gama_g3_cluster_g3clustergnugamag3cluster_gnu_gama_g3_cluster
+#define GNU_gama_g3_cluster_g3clustergnugamag3cluster_gnu_gama_g3_cluster
 
 #include <gnu_gama/model.h>
 #include <gnu_gama/exception.h>

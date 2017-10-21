@@ -25,8 +25,8 @@
 #include <gnu_gama/g3/g3_point.h>
 
 
-#ifndef GNU_gama__g3_observation_h_gnugamag3obs_baseh___gnu_gama_g3obs
-#define GNU_gama__g3_observation_h_gnugamag3obs_baseh___gnu_gama_g3obs
+#ifndef GNU_gama_g3_observation_h_gnugamag3obs_baseh_gnu_gama_g3obs
+#define GNU_gama_g3_observation_h_gnugamag3obs_baseh_gnu_gama_g3obs
 
 
 namespace GNU_gama {  namespace g3 {

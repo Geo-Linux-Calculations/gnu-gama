@@ -19,8 +19,8 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_adjustment_cholesky_decomposition_implementation__h
-#define GNU_gama_adjustment_cholesky_decomposition_implementation__h
+#ifndef GNU_gama_adjustment_cholesky_decomposition_implementation_h
+#define GNU_gama_adjustment_cholesky_decomposition_implementation_h
 
 #include <algorithm>
 #include <limits>

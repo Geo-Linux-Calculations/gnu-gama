@@ -37,8 +37,8 @@
  * - class SimilarityTr2D : public Transformation_g2d                *
  *********************************************************************/
 
-#ifndef gama_local_g2d_helper_h__GNU_gama_local_Median_G_fce_H
-#define gama_local_g2d_helper_h__GNU_gama_local_Median_G_fce_H
+#ifndef gama_local_g2d_helper_h_GNU_gama_local_Median_G_fce_H
+#define gama_local_g2d_helper_h_GNU_gama_local_Median_G_fce_H
 
 #include <algorithm>
 #include <gnu_gama/local/gamadata.h>

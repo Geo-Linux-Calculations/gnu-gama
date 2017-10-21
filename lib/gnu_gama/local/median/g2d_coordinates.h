@@ -27,8 +27,8 @@
  * - all points with unknown coordinates                     *
  *************************************************************/
 
-#ifndef gama_local_g2d_coordinates_h__GNU_gama_local_Median_Pribl_s_H
-#define gama_local_g2d_coordinates_h__GNU_gama_local_Median_Pribl_s_H
+#ifndef gama_local_g2d_coordinates_h_GNU_gama_local_Median_Pribl_s_H
+#define gama_local_g2d_coordinates_h_GNU_gama_local_Median_Pribl_s_H
 
 #include <algorithm>
 #include <gnu_gama/local/gamadata.h>

@@ -17,8 +17,8 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
-#ifndef GNU_gama___gnu_gama____StatAn_h
-#define GNU_gama___gnu_gama____StatAn_h
+#ifndef GNU_gama_gnu_gama_StatAn_h
+#define GNU_gama_gnu_gama_StatAn_h
 
 #include <cmath>
 

@@ -25,8 +25,8 @@
  * \author Ales Cepek
  */
 
-#ifndef GNU_gama_matvec_unsigned_h__UNSIGNED_H_
-#define GNU_gama_matvec_unsigned_h__UNSIGNED_H_
+#ifndef GNU_gama_matvec_unsigned_h_UNSIGNED_H_
+#define GNU_gama_matvec_unsigned_h_UNSIGNED_H_
 
 template<typename T> inline bool isNegative(T i) { return i < 0; }
 

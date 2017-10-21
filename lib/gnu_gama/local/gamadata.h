@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local____ObservationData____and_other_data_objects___h_____
-#define gama_local____ObservationData____and_other_data_objects___h_____
+#ifndef gama_local_ObservationData_and_other_data_objects_h_
+#define gama_local_ObservationData_and_other_data_objects_h_
 
 #include <gnu_gama/obsdata.h>
 

@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
-#define GNU_gama__g3_adjres_h_gnugamag3adjresh___gnu_gama_g3adjres
+#ifndef GNU_gama_g3_adjres_h_gnugamag3adjresh_gnu_gama_g3adjres
+#define GNU_gama_g3_adjres_h_gnugamag3adjresh_gnu_gama_g3adjres
 
 #include <ostream>
 #include <string>

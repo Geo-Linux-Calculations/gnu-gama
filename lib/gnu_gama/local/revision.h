@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local_Revision_______GNU_gama_local_____Revision__
-#define gama_local_Revision_______GNU_gama_local_____Revision__
+#ifndef gama_local_Revision_GNU_gama_local_Revision_
+#define gama_local_Revision_GNU_gama_local_Revision_
 
 
 namespace GNU_gama { namespace local {

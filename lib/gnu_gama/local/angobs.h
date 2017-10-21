@@ -19,8 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef gama_local____Angular_Observations__h____
-#define gama_local____Angular_Observations__h____
+#ifndef gama_local_Angular_Observations_h_
+#define gama_local_Angular_Observations_h_
 
 
 namespace GNU_gama { namespace local {
