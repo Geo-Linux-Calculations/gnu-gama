@@ -1,4 +1,5 @@
 *.log
 *.trs
 
+matvec-basic
 simple-inversion
