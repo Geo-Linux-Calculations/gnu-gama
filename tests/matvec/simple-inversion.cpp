@@ -47,5 +47,5 @@ int main()
     std::cout << "matvec - simple inversion maxdif = " << maxdif << "\n";
   }
 
-  return std::abs(maxdif) < 10*DBL_EPSILON ? 0 : 1;
+  return std::abs(maxdif) < 100*DBL_EPSILON ? 0 : 1;
 }

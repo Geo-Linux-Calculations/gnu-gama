@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <cfloat>
 #include <matvec/bandmat.h>
 #include <matvec/matvec.h>
 #include <matvec/svd.h>
@@ -9,32 +10,29 @@ int main()
   using namespace GNU_gama;
   using namespace std;
 
+  int result = 0;
+
   cout << "\n   BandMat   .........   demo_002  matvec "
        << GNU_gama::matvec_version() << "\n"
     "------------------------------------------------------\n\n";
 
-  {
-    char txt[] =  " 4 3   2  4   6  10 \n"
-                  "         13  32  50 \n"
-                  "            101 171 \n"
-                  "                381 \n";
-    ofstream o("matvec_.tmp");
-    o << txt;
-  }
 
   BandMat<> A(4, 2);
   {
-    ifstream i("matvec_.tmp");
-    i >> A;
+    istringstream input
+      (" 4 3   2  4   6  10 "    // upper part of a band matrix
+       "         13  32  50 "
+       "            101 171 "
+       "                381 ");
+    input >> A;
   }
   cout.width(3);
   cout << A;
   BandMat<> B = A;
-  // cout << B;
   BandMat<> C;
   C = B;
-  C.cholDec();
-  cout << "\n" << C;
+  C.cholDec();    // cholesky decomposition trans(U) * diagonal * U
+  // cout << "\n" << C << "\n";
 
   Vec<> z;
   Mat<> U;
@@ -43,66 +41,62 @@ int main()
   Mat<> Q;
   {
     std::istringstream inp
-      ("4      1.0  2.0  3.0  4.0 "
+      ("4      1.0  2.0  3.0  4.0 "    // right hand side
        " "
-       "4  4   1.0  2.0  3.0  5.0 "
+       "4  4   1.0  2.0  3.0  5.0 "    // upper part of Cholesky decomposition
        "       0.0  1.0  4.0  6.0 "
        "       0.0  0.0  1.0  7.0 "
        "       0.0  0.0  0.0  1.0 "
        " "
-       "4  4   1.0  0.0  0.0  0.0 "
+       "4  4   1.0  0.0  0.0  0.0 "    // lower part of Cholesky decomposition
        "       2.0  1.0  0.0  0.0 "
        "       3.0  4.0  1.0  0.0 "
        "       5.0  6.0  7.0  1.0 "
        " "
-       "4  4   2.0  0.0  0.0  0.0 "
+       "4  4   2.0  0.0  0.0  0.0 "    // diagonal of Cholesky decomposition
        "       0.0  5.0  0.0  0.0 "
        "       0.0  0.0  3.0  0.0 "
        "       0.0  0.0  0.0  4.0 "
        " "
-       "4  4   2.0    4.0    6.0   10.0 "
-       "       4.0   13.0   32.0   50.0 "
+       "4  4   2.0    4.0    6.0   10.0 "   // full matrix
+       "       4.0   13.0   32.0   50.0 "   // cond. number = 1.6197e5
        "       6.0   32.0  101.0  171.0 "
        "      10.0   50.0  171.0  381.0 ");
     inp >> z >> U >> F >> W >> Q;
   }
 
-
-  cout << trans(inv(Q)*z);
+  Vec<> x = inv(Q)*z;
+  cout << trans(x);
 
   C.solve(z);
   cout << trans(z);
 
-  {
-    char bbb[] =
-      "12 4    9     9    18    27    36"
-      "     17.5  26.5    44  61.5    34"
-      "     52.5    79 113.5    58    32"
-      "    130.5 182.5   107  54.5    30"
-      "      267   172 100.5    51    28"
-      "    251.5 161.5    94  47.5    26"
-      "      236   151  87.5    44    24"
-      "    220.5 140.5    81  40.5    22"
-      "      205   130  74.5    37      "
-      "    189.5 119.5    68            "
-      "      174   109                  "
-      "    158.5                        ";
-    ofstream o("matvec_.tmp");
-    o << bbb;
-  }
+  cout << "diff = " << trans(x-z)  << "\n";
+
+  if ((x-z).norm_Linf() > 100*1.6197e5*DBL_EPSILON) result++;
+
+  // --------------------------------------------------------------------------
+
   BandMat<> M;
   {
-    ifstream i("matvec_.tmp");
-    i >> M;
+    istringstream inp
+      ("12 4    9     9    18    27    36"
+       "     17.5  26.5    44  61.5    34"
+       "     52.5    79 113.5    58    32"
+       "    130.5 182.5   107  54.5    30"
+       "      267   172 100.5    51    28"
+       "    251.5 161.5    94  47.5    26"
+       "      236   151  87.5    44    24"
+       "    220.5 140.5    81  40.5    22"
+       "      205   130  74.5    37      "
+       "    189.5 119.5    68            "
+       "      174   109                  "
+       "    158.5                        ");
+    inp >> M;
   }
   M.cholDec();
   cout.width(3);
-  cout << M;
-  // cout << endl;
-  // for (int i=1; i<=M.Dim(); i++, cout << endl)
-  //    for (int j=1; j<=M.Dim(); j++)
-  //       cout << M(i,j) << ' ';
-
+  cout << "M = " << M;
 
   Mat<> Mf12;
   Vec<> b12;
@@ -133,6 +127,10 @@ int main()
   cout << trans(b12 - t);
 
   SVD<> svd(Mf12);
-  cout <<"\ncond = "<< svd.SVD_W()(1)/svd.SVD_W()(svd.SVD_W().dim()) <<'\n';
+  double cond = svd.SVD_W()(1)/svd.SVD_W()(svd.SVD_W().dim());
+  cout <<"\ncond = "<< cond <<'\n';
 
+  if ((b12 - t).norm_Linf() > 100*cond*DBL_EPSILON) result++;
+
+  return result;
 }
