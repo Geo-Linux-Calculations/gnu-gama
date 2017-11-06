@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <cfloat>
 #include <matvec/symmat.h>
 #include <matvec/sortvec.h>
 #include <matvec/svd.h>
@@ -11,6 +12,8 @@ int main()
   using namespace GNU_gama;
   using namespace std;
 
+  int result = 0;
+  
   cout << "\n   Mat / Vec  .........   demo_001  matvec "
        << GNU_gama::matvec_version() << "\n"
           "------------------------------------------------------\n\n";  
@@ -66,14 +69,23 @@ int main()
     Vec<> x;
     svd.solve(b, x);
 
-    Vec<> berr;
-
-    cout << "x = " << trans(x);
-    cout << "    " << trans(inv(trans(A)*A)*(trans(A)*b));
-    cout << "    " << trans(inv(trans(A)*A)*trans(A)*b);
-    cout << "    " << (trans(b)* A)*inv(trans(A)*A);
-    cout << "    " <<  trans(b)*(A *inv(trans(A)*A));
+    TransVec<> x1 = trans(x);
+    TransVec<> x2 = trans(inv(trans(A)*A)*(trans(A)*b));
+    TransVec<> x3 = trans(inv(trans(A)*A)*trans(A)*b);
+    TransVec<> x4 = (trans(b)* A)*inv(trans(A)*A);
+    TransVec<> x5 = trans(b)*(A *inv(trans(A)*A));
+    
+    cout << "x = " << x1;
+    cout << "    " << x2;
+    cout << "    " << x3;
+    cout << "    " << x4;
+    cout << "    " << x5;
     cout << endl;
+
+    if ((x1-x2).norm_Linf() > 100*DBL_EPSILON) result++;
+    if ((x1-x3).norm_Linf() > 100*DBL_EPSILON) result++;
+    if ((x1-x4).norm_Linf() > 100*DBL_EPSILON) result++;
+    if ((x1-x5).norm_Linf() > 100*DBL_EPSILON) result++;
   }
 
   {
@@ -132,8 +144,13 @@ int main()
     Vec<>    rhs = b;
     Ch.cholDec();
     Ch.solve(rhs);
+    TransVec<> err = trans(2.0*rhs - inv(S)*b - inv(Square(S))*b);
     cout << "Cholesky  "
          << Ch << endl
-         << trans(2.0*rhs - inv(S)*b - inv(Square(S))*b );
+         << err;
+
+    if (err.norm_Linf() > 100*DBL_EPSILON) result++;
   }
+
+  return result;
 }
