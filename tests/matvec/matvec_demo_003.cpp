@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cfloat>
 #include <matvec/svd.h>
 #include <matvec/matvec.h>
 #include <matvec/sortvec.h>
@@ -6,9 +7,18 @@
 using namespace std;
 using namespace GNU_gama;
 
+int result = 0;
+
+template<class M, class N> int cmp(M a, N b)
+{
+  for (unsigned i=1; i<=a.rows(); i++)
+    for (unsigned j=1; j<=a.cols(); j++)
+      if (std::abs(a(i,j) - b(i,j)) > DBL_EPSILON) result++;
+}
 
 int f(ostream& cout)
 {
+
   typedef long double T;
 
   const T T1 = 1.0;
@@ -25,31 +35,54 @@ int f(ostream& cout)
   Mat<T> X = A;
   Mat<T> Y = Mat<T>(trans(A));
 
-  cout << "trans() ...\n\n";
+  // ------------------------------------------------------------------------
+  cout << "trans() ...\n";
 
-  cout <<       X  +       Y  <<       X  -       Y;
-  cout << trans(X) + trans(Y) << trans(X) - trans(Y);
-  cout << trans(X) +       Y  << trans(X) -       Y;
-  cout <<       X  + trans(Y) <<       X  - trans(Y);
+  // cout <<       X  +       Y  <<       X  -       Y;
+  // cout << trans(X) + trans(Y) << trans(X) - trans(Y);
+  // cout << trans(X) +       Y  << trans(X) -       Y;
+  // cout <<       X  + trans(Y) <<       X  - trans(Y);
 
-  cout << "\n*******************************************************\n\n";
+  cmp(X+Y,Mat<T>({{2, 5},{5, 8}}));
+  cmp(X-Y,Mat<T>({{0,-1},{1, 0}}));
 
-  cout << "inv(), trans() ... \n\n";
+  cmp(trans(X)+trans(Y),Mat<T>({{ 2, 5},{ 5, 8}}));
+  cmp(trans(X)-trans(Y),Mat<T>({{ 0, 1},{-1, 0}}));
 
-  cout << inv(A) << inv(A)*A;
-  cout << trans(inv(A))*A;
-  cout << inv(A)*trans(A);
-  cout << trans(inv(A))*trans(A);
-  cout << trans(inv(X)) - inv(Mat<T>(trans(X)));
+  cmp(trans(X)+Y,Mat<T>({{ 2, 6},{ 4, 8}}));
+  cmp(trans(X)-Y,Mat<T>({{ 0, 0},{ 0, 0}}));
 
-  cout << "\n*******************************************************\n\n";
+  cmp(X+trans(Y),Mat<T>({{ 2, 4},{ 6, 8}}));
+  cmp(X-trans(Y),Mat<T>({{ 0, 0},{ 0, 0}}));
+
+  // ------------------------------------------------------------------------
+  cout << "inv(), trans() ... \n";
+
+  // cout << inv(A) << inv(A)*A;
+  // cout << trans(inv(A))*A;
+  // cout << inv(A)*trans(A);
+  // cout << trans(inv(A))*trans(A);
+  // cout << trans(inv(X)) - inv(Mat<T>(trans(X)));
+
+  cmp(inv(A)*A,                Mat<T>({{  1, 0}, {   0,  1 }}));
+  cmp(trans(inv(A))*A,         Mat<T>({{2.5, 2}, {-0.5,  0 }}));
+  cmp(inv(A)*trans(A),         Mat<T>({{  0,-2}, { 0.5, 2.5}}));
+  cmp(trans(inv(A))*trans(A),  Mat<T>({{  1, 0}, {   0,  1 }}));
+  cmp(trans(inv(A))-inv(Mat<T>(trans(A))), Mat<T>({{0,0},{0,0 }}));
+
+
+  // ------------------------------------------------------------------------
+  cout << "sort vec, SVD ...\n";
   {
-    Vec<T> W(3); W(1)=T3; W(2)=T5; W(3)=T1;
+    //Vec<T> W(3); W(1)=T3; W(2)=T5; W(3)=T1;
+    Vec<T> W({T3, T5, T1});
 
     Vec<T> V1(W);
     Vec<T> V2(trans(W));
     sort(V1);
-    cout << trans(V1) << V2;
+    //cout << trans(V1) << V2;
+    if (V2(1) != 3 || V2(2) != 5 || V2(3) != 1) result++;
+    if (V1(1) != 1 || V1(2) != 3 || V1(3) != 5) result++;
    }
 
 
@@ -58,9 +91,11 @@ int f(ostream& cout)
    SVD<T> svd(A);
    svd.solve(b, x);
 
-   cout << trans(x) << trans(inv(A)*b);
+   //cout << trans(x) << trans(inv(A)*b);
+   if (std::abs(x(1)+3.0) > DBL_EPSILON) result++;
+   if (std::abs(x(2)-2.5) > DBL_EPSILON) result++;
 
-   return 0;
+   return result;
 }
 
-int main() { f(cout); }
+int main() { return f(cout); }
