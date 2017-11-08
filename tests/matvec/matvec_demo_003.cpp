@@ -11,7 +11,7 @@ const double dbl_epsilon = std::numeric_limits<double>::epsilon();
 
 int result = 0;
 
-template<class M, class N> int cmp(M a, N b)
+template<class M, class N> void cmp(M a, N b)
 {
   for (unsigned i=1; i<=a.rows(); i++)
     for (unsigned j=1; j<=a.cols(); j++)

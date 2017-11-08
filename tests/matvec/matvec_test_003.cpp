@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 #include <matvec/hilbert.h>
 
 int main()
@@ -27,6 +28,8 @@ int main()
   using namespace std;
   using namespace GNU_gama;
 
+  int result = 0;
+  
   cout << "\n   Hilbert matrix  ....   test_003  matvec "
        << GNU_gama::matvec_version() << "\n"
        << "------------------------------------------------------\n\n";
@@ -62,13 +65,14 @@ int main()
         Double m = 0;
         for (Index i=1; i<=N; i++)
           for (Index j=1; j<=N; j++)
-            if (fabs(T(i,j)) > fabs(m))
+            if (std::abs(T(i,j)) > std::abs(m))
               m = T(i,j);
 
         cout << m;
       }
       catch (Exception::matvec&) {
         cout << "failed";
+	result++;
       }
 
       try {
@@ -80,13 +84,14 @@ int main()
         Double m = 0;
         for (Index i=1; i<=N; i++)
           for (Index j=1; j<=N; j++)
-            if (fabs(T(i,j)) > fabs(m))
+            if (std::abs(T(i,j)) > std::abs(m))
               m = T(i,j);
 
         cout << m;
       }
       catch (Exception::matvec&) {
         cout << "failed";
+	result++;
       }
 
       cout << endl;
@@ -95,4 +100,6 @@ int main()
   // cout.setf(ios::fixed, ios::floatfield);
   // cout.precision(0);
   // cout << setw(9) << InvHilbert<Double>(15);
+
+  return result;
 }

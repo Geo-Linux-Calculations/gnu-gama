@@ -37,6 +37,7 @@
 #include <matvec/matvec.h>
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 template <class Mat> void
 InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
@@ -74,7 +75,7 @@ InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
   for (Index i=1; i<=M.rows(); i++)
     for (Index j=1; j<=M.cols(); j++)
       {
-        e = fabs(M(i,j));
+        e = std::abs(M(i,j));
         if (e > maxe) maxe = e;
         a += e*e;
         b += I(i,j)*I(i,j);
@@ -105,10 +106,10 @@ template<class Float> void InverseTest()
       double maxdif = 0;
       for (Index i=1; i<=N; i++)
         for (Index j=1; j<=N; j++)
-          if (fabs(invM(i,j) - I(i,j)) > fabs(maxdif))
+          if (std::abs(invM(i,j) - I(i,j)) > std::abs(maxdif))
               maxdif = invM(i,j) - I(i,j);
       cout << "  max. relative error = "
-           << fabs(maxdif)/maxe << endl;
+           << std::abs(maxdif)/maxe << endl;
     }
   cout << endl;
 }
