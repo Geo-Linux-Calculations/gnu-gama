@@ -10,3 +10,13 @@ check_PROGRAMS = matvec-basic simple-inversion \
 AM_DEFAULT_SOURCE_EXT = .cpp
 
 TESTS = $(check_PROGRAMS)
+
+
+# to run manually: valgrind --leak-check=full ./matvec_ ...
+#
+@VALGRIND_CHECK_RULES@
+#
+# https://wiki.wxwidgets.org/Valgrind_Suppression_File_Howto
+#
+# VALGRIND_SUPPRESSIONS_FILES = matvec.supp
+# EXTRA_DIST = matvec.supp

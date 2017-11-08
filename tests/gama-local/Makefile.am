@@ -123,3 +123,7 @@ xmllint-gama-local-adjustment-xsd: $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-
 				> xmllint-gama-local-adjustment-xsd
 	@chmod +x xmllint-gama-local-adjustment-xsd
 endif
+
+@VALGRIND_CHECK_RULES@
+# VALGRIND_SUPPRESSIONS_FILES = matvec.supp
+# EXTRA_DIST = matvec.supp

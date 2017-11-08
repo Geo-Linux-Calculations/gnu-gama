@@ -10,6 +10,10 @@ AC_CONFIG_AUX_DIR([scripts/config.aux])
 AM_INIT_AUTOMAKE
 AM_SILENT_RULES([yes])
 
+# Check for valgrind
+AX_VALGRIND_DFLT([sgcheck], [off])
+AX_VALGRIND_CHECK
+
 # Checks for programs.
 AC_PROG_AWK
 AC_PROG_CXX
