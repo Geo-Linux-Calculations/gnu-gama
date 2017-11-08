@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include <cfloat>
+#include <limits>
 #include <matvec/symmat.h>
 #include <matvec/sortvec.h>
 #include <matvec/svd.h>
@@ -12,6 +12,8 @@ int main()
   using namespace GNU_gama;
   using namespace std;
 
+  const double dbl_epsilon = std::numeric_limits<double>::epsilon();
+  
   int result = 0;
   
   cout << "\n   Mat / Vec  .........   demo_001  matvec "
@@ -82,10 +84,10 @@ int main()
     cout << "    " << x5;
     cout << endl;
 
-    if ((x1-x2).norm_Linf() > 100*DBL_EPSILON) result++;
-    if ((x1-x3).norm_Linf() > 100*DBL_EPSILON) result++;
-    if ((x1-x4).norm_Linf() > 100*DBL_EPSILON) result++;
-    if ((x1-x5).norm_Linf() > 100*DBL_EPSILON) result++;
+    if ((x1-x2).norm_Linf() > 100*dbl_epsilon) result++;
+    if ((x1-x3).norm_Linf() > 100*dbl_epsilon) result++;
+    if ((x1-x4).norm_Linf() > 100*dbl_epsilon) result++;
+    if ((x1-x5).norm_Linf() > 100*dbl_epsilon) result++;
   }
 
   {
@@ -149,7 +151,7 @@ int main()
          << Ch << endl
          << err;
 
-    if (err.norm_Linf() > 100*DBL_EPSILON) result++;
+    if (err.norm_Linf() > 100*dbl_epsilon) result++;
   }
 
   return result;

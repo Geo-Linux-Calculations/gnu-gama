@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cfloat>
+#include <limits>
 #include <matvec/svd.h>
 #include <matvec/matvec.h>
 #include <matvec/sortvec.h>
@@ -7,13 +7,15 @@
 using namespace std;
 using namespace GNU_gama;
 
+const double dbl_epsilon = std::numeric_limits<double>::epsilon();
+
 int result = 0;
 
 template<class M, class N> int cmp(M a, N b)
 {
   for (unsigned i=1; i<=a.rows(); i++)
     for (unsigned j=1; j<=a.cols(); j++)
-      if (std::abs(a(i,j) - b(i,j)) > DBL_EPSILON) result++;
+      if (std::abs(a(i,j) - b(i,j)) > dbl_epsilon) result++;
 }
 
 int f(ostream& cout)
@@ -92,8 +94,8 @@ int f(ostream& cout)
    svd.solve(b, x);
 
    //cout << trans(x) << trans(inv(A)*b);
-   if (std::abs(x(1)+3.0) > DBL_EPSILON) result++;
-   if (std::abs(x(2)-2.5) > DBL_EPSILON) result++;
+   if (std::abs(x(1)+3.0) > dbl_epsilon) result++;
+   if (std::abs(x(2)-2.5) > dbl_epsilon) result++;
 
    return result;
 }

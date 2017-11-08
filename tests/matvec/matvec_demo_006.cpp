@@ -1,5 +1,5 @@
 /* matvec_demo_006.cpp
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2017  Ales Cepek <cepek@gnu.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -16,24 +16,43 @@
    Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
-#include <fstream>
 #include <sstream>
+#include <limits>
 #include <matvec/bandmat.h>
 #include <matvec/matvec.h>
 #include <matvec/covmat.h>
 #include <matvec/symmat.h>
+
+/* test matrix in octave format
+
+M = [ 9.0  9.0  18.0  27.0  36.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+      9.0 17.5  26.5  44.0  61.5  34.0   0.0   0.0   0.0   0.0   0.0   0.0
+     18.0 26.5  52.5  79.0 113.5  58.0  32.0   0.0   0.0   0.0   0.0   0.0
+     27.0 44.0  79.0 130.5 182.5 107.0  54.5  30.0   0.0   0.0   0.0   0.0
+     36.0 61.5 113.5 182.5 267.0 172.0 100.5  51.0  28.0   0.0   0.0   0.0
+      0.0 34.0  58.0 107.0 172.0 251.5 161.5  94.0  47.5  26.0   0.0   0.0
+      0.0  0.0  32.0  54.5 100.5 161.5 236.0 151.0  87.5  44.0  24.0   0.0
+      0.0  0.0   0.0  30.0  51.0  94.0 151.0 220.5 140.5  81.0  40.5  22.0
+      0.0  0.0   0.0   0.0  28.0  47.5  87.5 140.5 205.0 130.0  74.5  37.0
+      0.0  0.0   0.0   0.0   0.0  26.0  44.0  81.0 130.0 189.5 119.5  68.0 
+      0.0  0.0   0.0   0.0   0.0   0.0  24.0  40.5  74.5 119.5 174.0 109.0 
+      0.0  0.0   0.0   0.0   0.0   0.0   0.0  22.0  37.0  68.0 109.0 158.5 ]
+*/
 
 int main()
 {
   using namespace GNU_gama;
   using namespace std;
 
+  const double dbl_epsilon = std::numeric_limits<double>::epsilon();
+  
+  int result = 0;
+
   cout << "\n   BandMat   .........   demo_006  matvec "
        << GNU_gama::matvec_version() << "\n"
     "------------------------------------------------------\n\n";
 
-  {
-    char bbb[] =
+  const string data =
       "12 4    9     9    18    27    36"
       "     17.5  26.5    44  61.5    34"
       "     52.5    79 113.5    58    32"
@@ -46,22 +65,21 @@ int main()
       "    189.5 119.5    68            "
       "      174   109                  "
       "    158.5                        ";
-    ofstream o("matvec_.tmp");
-    o << bbb;
-  }
 
-  BandMat<> B;
+  BandMat<> B, B2;
   {
-    ifstream i("matvec_.tmp");
-    i >> B;
+    istringstream inp(data);
+    inp >> B;
+    B2 = B;
   }
 
   CovMat<> C;
   {
-    ifstream i("matvec_.tmp");
-    i >> C;    
+    istringstream inp(data);
+    inp >> C;    
   }
 
+  
   Mat<> Mf12;
   Vec<> b12;
   {
@@ -101,23 +119,36 @@ int main()
   S.cholDec();
   S.solve(s);
 
-  // B.cholDec();
-  // B.solve(b);
+  B.cholDec();
+  B.solve(b);
 
   C.cholDec();
   C.solve(c);
 
   // cout << Mf12;
   Vec<> eig;
-  B.eigenVal(eig);
+  B2.eigenVal(eig);
   cout << "eigenvalues ~ " << trans(eig);
-  cout << "cond.number ~ " << eig(eig.dim())/eig(1) << "\n";
+  double cn = eig(eig.dim())/eig(1);
+  cout << "cond.number ~ " << cn
+       << "   (correct value is 571692.29)\n\n";
 
   Vec<> d = s - c;
-
   cout << "differences between cholesky "
        << "decomposition solution SymMat - CovMat\n";
   cout << "norm L1: "     << d.norm_L1()   << "   "
        << "norm_L2: "     << d.norm_L2()   << "   "
        << "norm_Linf(): " << d.norm_Linf() << "\n\n";
+
+  Vec<> e = s - b;
+  cout << "differences between cholesky "
+       << "decomposition solution SymMat - BandMat\n";
+  cout << "norm L1: "     << e.norm_L1()   << "   "
+       << "norm_L2: "     << e.norm_L2()   << "   "
+       << "norm_Linf(): " << e.norm_Linf() << "\n\n";
+
+  if (d.norm_Linf() > 100*cn*dbl_epsilon) result++;
+  if (e.norm_Linf() > 100*cn*dbl_epsilon) result++;
+  
+  return result;
 }

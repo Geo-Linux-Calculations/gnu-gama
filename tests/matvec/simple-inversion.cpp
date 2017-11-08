@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <cfloat>
+#include <limits>
 
 using namespace GNU_gama;
 
@@ -47,5 +47,6 @@ int main()
     std::cout << "matvec - simple inversion maxdif = " << maxdif << "\n";
   }
 
-  return std::abs(maxdif) < 100*DBL_EPSILON ? 0 : 1;
+  const double dbl_epsilon = std::numeric_limits<double>::epsilon();
+  return std::abs(maxdif) < 100*dbl_epsilon ? 0 : 1;
 }

@@ -1,6 +1,6 @@
 #include <fstream>
 #include <sstream>
-#include <cfloat>
+#include <limits>
 #include <matvec/bandmat.h>
 #include <matvec/matvec.h>
 #include <matvec/svd.h>
@@ -9,6 +9,8 @@ int main()
 {
   using namespace GNU_gama;
   using namespace std;
+
+  const double dbl_epsilon = std::numeric_limits<double>::epsilon();
 
   int result = 0;
 
@@ -73,7 +75,7 @@ int main()
 
   cout << "diff = " << trans(x-z)  << "\n";
 
-  if ((x-z).norm_Linf() > 100*1.6197e5*DBL_EPSILON) result++;
+  if ((x-z).norm_Linf() > 100*1.6197e5*dbl_epsilon) result++;
 
   // --------------------------------------------------------------------------
 
@@ -130,7 +132,7 @@ int main()
   double cond = svd.SVD_W()(1)/svd.SVD_W()(svd.SVD_W().dim());
   cout <<"\ncond = "<< cond <<'\n';
 
-  if ((b12 - t).norm_Linf() > 100*cond*DBL_EPSILON) result++;
+  if ((b12 - t).norm_Linf() > 100*cond*dbl_epsilon) result++;
 
   return result;
 }
