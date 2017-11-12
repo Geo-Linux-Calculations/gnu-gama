@@ -7,7 +7,7 @@
 using namespace std;
 using namespace GNU_gama;
 
-const double dbl_epsilon = std::numeric_limits<double>::epsilon();
+const long double dbl_epsilon = std::numeric_limits<double>::epsilon();
 
 int result = 0;
 
@@ -93,9 +93,8 @@ int main()
    SVD<T> svd(A);
    svd.solve(b, x);
 
-   // without the following lamda functions valgrind reports memory leak !?!?
-   if (std::abs(x(1)+3.0) > dbl_epsilon) [](){result++;}; //result++;
-   if (std::abs(x(2)-2.5) > dbl_epsilon) [](){result++;}; //result++;
+   if (std::abs(x(1)+3.0) > dbl_epsilon) return result++;
+   if (std::abs(x(2)-2.5) > dbl_epsilon) return result++;
 
    return result;
 }
