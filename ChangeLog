@@ -1,3 +1,10 @@
+2017-11-12  Ales Cepek  <cepek@dodo>
+
+	* ver. 1.19.4
+	* deprecated dynamic exception specifications replaced by noexcept
+	* new test suite for matvec classes
+	* added valgrind rule to configure.ac and test suites' Makefile.am
+
 2017-10-21  Ales Cepek  <cepek@gnu.org>
 
 	* ver. 1.19.3 removed double underscores from include guards

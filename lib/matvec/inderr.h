@@ -68,7 +68,7 @@ namespace GNU_gama {
       matvec* clone() const { return new matvec(*this); }
       void    raise() const { throw *this; }
 
-      const char* what() const throw()
+      const char* what() const noexcept
       {
 	return description;
       }

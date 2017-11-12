@@ -175,7 +175,7 @@ namespace GNU_gama
         err_adj     .clear();
       }
 
-      double residual() const throw();
+      double residual() const noexcept;
     };
 
     typedef std::vector<Observation> ObservationList;

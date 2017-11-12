@@ -47,12 +47,12 @@ namespace GNU_gama { namespace Exception {
     const std::string  str;
 
     string(const std::string& s) : str(s) {}
-    ~string() throw() {}
+    ~string() noexcept {}
 
     string* clone() const { return new string(*this); }
     void    raise() const { throw *this; }
 
-    const char* what() const throw() { return str.c_str(); }
+    const char* what() const noexcept { return str.c_str(); }
   };
 
 

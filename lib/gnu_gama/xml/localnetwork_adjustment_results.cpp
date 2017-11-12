@@ -90,7 +90,7 @@ void LocalNetworkAdjustmentResults::init()
 }
 
 double LocalNetworkAdjustmentResults::Observation::residual() const
-  throw()
+  noexcept
 {
   double r = (adj - obs);
   if (xml_tag == "direction" || xml_tag == "angle" ||
@@ -105,7 +105,6 @@ double LocalNetworkAdjustmentResults::Observation::residual() const
 
 
 void LocalNetworkAdjustmentResults::read_xml(std::istream& xml)
-  throw(GNU_gama::Exception::parser)
 {
   string text;
 
@@ -120,7 +119,6 @@ void LocalNetworkAdjustmentResults::read_xml(std::istream& xml)
 
 
 void LocalNetworkAdjustmentResults::read_html(std::istream& html)
-  throw(GNU_gama::Exception::parser)
 {
   GNU_gama::HtmlParser parser(this);
   {

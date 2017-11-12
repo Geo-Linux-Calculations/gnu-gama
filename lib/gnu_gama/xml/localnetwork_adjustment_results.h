@@ -41,8 +41,8 @@ namespace GNU_gama
   {
   public:
 
-    void read_xml (std::istream&) throw(Exception::parser);
-    void read_html(std::istream&) throw(Exception::parser);
+    void read_xml (std::istream&);
+    void read_html(std::istream&);
 
 
   private:
