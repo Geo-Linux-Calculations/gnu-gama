@@ -1,4 +1,5 @@
 #include <matvec/matvec.h>
+#include <matvec/svd.h>
 #include <iostream>
 #include <string>
 
@@ -36,7 +37,33 @@ int b01()
 
 int b02()
 {
+  int result = 0;
 
+  using std::cout;
+  using std::endl;
+
+  // code fragment from matvec_demo_001
+
+  Mat<> A(5, 3);
+  Vec<> b(5);
+
+  try    // List initialisation for Mat<> and Vec<> --> move assignment
+    {
+       A = {{1.001, 0.006, 0.012},
+            {0.002, 1.007, 0.013},
+            {0.003, 0.008, 1.014},
+            {1.004, 0.009, 1.015},
+            {0.005, 1.011, 1.016}};
+
+        b = {1.1, 1.9, 3.1, 4, 5.1};
+    }
+  catch (const Exception::matvec& e)
+    {
+      cout << e.description << endl;
+      return 1;
+    }
+
+  return result;
 }
 
 
@@ -45,6 +72,7 @@ int main()
   int error = 0;
 
   error += b01();
+  error += b02();
 
   return error;
 }
