@@ -1,12 +1,20 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 1.20 November 2017
+
+* New test suite for matvec classes and support for valgrind memory
+  leak tests for tests/matvec and tests/gama-local.
+
+     This release is a preperation phase for the next release in which
+     the base matvec memory handling class (MemRep) will reimplemented
+     with C++11 move constructor and move assignemnt operator.
+
 Version 1.19 June 2017
 
 * fixed a bug introduced in 1.16, reported by Pierre Bosser
 	<pierre.bosser@ensta-bretagne.fr>. Implicit value of
 	covariance band in XML adjustment output is -1 (full
 	bandwidth).
-
 
 Version 1.18 August 2016
 
