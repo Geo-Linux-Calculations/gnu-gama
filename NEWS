@@ -1,5 +1,11 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 1.21 November 2017
+
+* Maintainer's release : internal matrix/vectors memory management
+  replaced with a new implementation using C++11 move constructor and
+  move asignment syntax.
+
 Version 1.20 November 2017
 
 * New test suite for matvec classes and support for valgrind memory

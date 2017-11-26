@@ -1,4 +1,11 @@
-2017-11-12  Ales Cepek  <cepek@dodo>
+2017-11-26  Ales Cepek  <cepek@gnu.org>
+
+	* new release 1.21
+	* Maintainer's release : internal matrix/vectors memory management
+	  replaced with a new implementation using C++11 move constructor
+	  and move asignment syntax.
+
+2017-11-12  Ales Cepek  <cepek@gnu.org>
 
 	* ver. 1.19.4
 	* deprecated dynamic exception specifications replaced by noexcept

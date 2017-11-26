@@ -29,7 +29,7 @@ namespace GNU_gama {
 
   typedef size_t Index;
 
-  inline const char* matvec_version() { return "1.02"; }
+  inline const char* matvec_version() { return "2.00"; }
 
   /** Exception \brief Matrix/vector exceptions
    */

@@ -1,22 +1,22 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2014  Ales Cepek <cepek@gnu.org>
+  C++ Matrix/Vector templates (GNU Gama / matvec)
+  Copyright (C) 1999, 2007, 2014, 2017  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ Matrix/Vector template library.
+  This file is part of the GNU Gama C++ Matrix/Vector template library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef GNU_gama_gMatVec_MemRep_h_
@@ -27,89 +27,115 @@
 
 namespace GNU_gama {   /** \brief Memory repository for matvec objects */
 
-template <typename Float=double, typename Exc=Exception::matvec>
-class MemRep {
+  template <typename Float=double, typename Exc=Exception::matvec>
+    class MemRep {
 
-private:
+  public:
 
-   struct Mrep {
-     Float* m;
-     Index  sz;
-     Index  n;
+  using iterator = Float*;
+  iterator begin() { return rep; }
+  iterator end()   { return rep + sz; }
 
-     ~Mrep() { delete[] m; }
-     Mrep() : m(0), sz(0), n(1) {}
-     Mrep(Index nsz) : m(new Float[nsz]), sz(nsz), n(1) {}
-     Mrep(Index nsz, const Float* p) : m(new Float[nsz]), sz(nsz), n(1)
-       {
-         using namespace std;
-         memcpy(m, p, sz*sizeof(Float));
-       }
+  using const_iterator = const Float*;
+  const_iterator begin() const { return rep; }
+  const_iterator end()   const { return rep + sz; }
 
-     private:
-     Mrep(const Mrep&);
-     Mrep& operator=(const Mrep&);
-   };      /* struct Mrep; */
+  protected:
 
-   mutable Mrep* rep;
+  MemRep() : rep(nullptr), sz(0) {}
 
-protected:
-
-   MemRep() : rep(0) { rep = new Mrep; }
-   MemRep(Index nsz) : rep(0)
+  MemRep(Index nsz)
+  {
+    if (nsz > 0)
       {
-         if (nsz>0)
-            rep = new Mrep(nsz);
-         else if (nsz == 0)
-            rep = new Mrep;
-         else
-            throw Exc(Exception::BadRank, "MemRep::MemRep(Index nsz)");
+        sz  = nsz;
+        rep = new Float[sz];
       }
-   MemRep(const MemRep& x) : rep(0) { x.rep->n++; rep = x.rep; }
-   MemRep& operator=(const MemRep& x)
+    else if (nsz == 0)
       {
-         x.rep->n++;                      // protect against "x = x"
-         if (--rep->n == 0) delete rep;
-         rep = x.rep;
-         return *this;
+        sz  = 0;
+        rep = nullptr;
       }
-   ~MemRep() { if (--rep->n) return; delete rep; }
-
-   void resize(Index nsz)
+    else
       {
-         if (nsz == rep->sz)
-            return;
-         else
-            {
-               if (--rep->n == 0) delete rep;
-               if (nsz > 0)
-                  rep = new Mrep(nsz);
-               else
-                  rep = new Mrep;
-            }
+        throw Exc(Exception::BadRank, "MemRep::MemRep(Index nsz)");
+      }
+  }
+
+  MemRep(const MemRep& x)
+  {
+    sz = x.sz; rep = new Float[sz];
+    std::memcpy(rep, x.rep, sz*sizeof(Float));
+  }
+
+  MemRep(MemRep&& x)
+  {
+    sz = x.sz;  rep = x.rep;
+    x.sz = 0;   x.rep = nullptr;
+  }
+
+  MemRep& operator = (const MemRep& x)
+  {
+    if (&x == this) return *this;
+
+    if (sz == x.sz) {
+      std::memcpy(rep, x.rep, sz*sizeof(Float));
+      return *this;
+    }
+
+    sz = x.sz;
+    if (sz > 0)
+      {
+        rep = new Float[sz];
+        std::memcpy(rep, x.rep, sz*sizeof(Float));
+      }
+    else
+      {
+        rep = nullptr;
       }
 
-   Index size() const { return rep->sz; }
+    return *this;
+  }
 
-public:
+  MemRep& operator = (MemRep&& x)
+  {
+    if (&x != this)
+      {
+        if (rep != nullptr) delete[] rep;
 
-   typedef Float* iterator;
-   iterator begin()
-     {
-         if (rep->n > 1) { --rep->n; rep = new Mrep(rep->sz, rep->m); }
-         return rep->m;
-     }
-   iterator end() { return begin() + rep->sz; }
+        sz = x.sz;  rep = x.rep;
+        x.sz = 0;   x.rep = nullptr;
+      }
 
-   typedef const Float* const_iterator;
-   const_iterator begin() const { return rep->m; }
-   const_iterator end()   const { return rep->m + rep->sz; }
+    return *this;
+  }
 
-};      /* class MemRep; */
+  ~MemRep() { delete[] rep; }
+
+  void resize(Index nsz)
+  {
+    if (nsz == sz) return;
+
+    sz = nsz;
+    delete[] rep;
+
+    if (sz > 0)
+      rep = new Float[sz];
+    else
+      rep = nullptr;
+  }
+
+  Index size() const { return sz; }
+
+
+  private:
+
+  Float* rep;
+  Index  sz;
+
+  };      /* class MemRep; */
 
 
 }   // namespace GNU_gama
 
 #endif
-
-
