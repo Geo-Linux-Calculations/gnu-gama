@@ -1,0 +1,27 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[backend=biber,style=numeric]{biblatex}
+
+\title{GNU Gama Manual}
+\author{Aleš Čepek}
+\date{\today}
+
+\addbibresource{gama-manual.bib}
+
+\begin{document}
+
+\maketitle
+
+\noindent Donec varius orci eget risus. Duis nibh mi, congue eu, accumsan
+eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissim
+rutrum \cite{gama-manual}.
+
+Donec vehicula augue eu neque. Pellentesque habitant morbi
+\cite{gama-manual} tristique senectus et netus et malesuada fames ac
+turpis egestas. Mauris ut leo.
+
+
+\printbibliography[heading=subbibliography]
+
+\end{document}
