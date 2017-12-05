@@ -17,7 +17,7 @@ The XML definition can be found at
 @noindent
 Input data (points, observations and other related information) are
 described using XML start-end pair tags @code{<xxx>} and @code{</xxx>}
-and empty-element tags @code{<xxx/>}. 
+and empty-element tags @code{<xxx/>}.
 
 The syntax of XML @code{gama-local} input format is described in XML
 schema (XSD), the file @code{gama-local.xsd} is a part of the
@@ -49,13 +49,13 @@ object is given.
 @menu
 * Angular units::             Angular units
 * Prologue::                    XML declaration
-* Network definition::        Tags @code{<gama-local>} and @code{<network>} 
+* Network definition::        Tags @code{<gama-local>} and @code{<network>}
 * Network description::       Tag  @code{<description>}
 * Network parameters::        Tag  @code{<parameters />}
 * Points and observations::   Tag  @code{<points-observations>}
-* Points::                    Tag  @code{<point />}            
+* Points::                    Tag  @code{<point />}
 * Set of observations::       Tag  @code{<obs>}
-* Directions::                Tag  @code{<direction />} 
+* Directions::                Tag  @code{<direction />}
 * Horizontal distances::      Tag  @code{<distance />}
 * Angles::                    Tag  @code{<angle />}
 * Slope distances::           Tag  @code{<s-distance />}
@@ -132,13 +132,13 @@ that contains the network definition.  The definition of the network is
 composed of three sections:
 
 @itemize @bullet
-@item 
+@item
 @code{<description>} of the network (annotation or comments),
 
-@item 
+@item
 network @code{<parameters />} and
 
-@item 
+@item
 @code{<points-observations>} section.
 @end itemize
 
@@ -156,15 +156,15 @@ the @code{xy} orthogonal coordinate system axes and the orientation of the
 observed angles and/or directions.
 
 @itemize @bullet
-@item 
+@item
 @code{axes-xy="ne"} orientation of axes @code{x} and @code{y}; value
 @code{ne} implies that axis @code{x} is oriented north and axis @code{y}
 is oriented east. Acceptable values are @code{ne}, @code{sw},
 @code{es}, @code{wn} for left-handed coordinate systems and @code{en},
 @code{nw}, @code{se}, @code{ws} for right-handed coordinate systems
 (default value is @code{ne}).
-    
-@item 
+
+@item
 @code{angles="right-handed"} defines counterclockwise observed angles
 and/or directions, value @code{left-handed} defines clockwise observed
 angles and/or directions (default value is @code{left-handed}).
@@ -177,10 +177,10 @@ east, @code{y} axis oriented north and counterclockwise angular
 observations. Example of left-handed orthogonal system with different
 axes orientation is coordinate system @emph{Krovak} used in the Czech
 Republic where the axes @code{x} and @code{y} are oriented south and
-west respectively. 
+west respectively.
 
 GNU Gama can adjust any combination of coordinate and angular
-systems. 
+systems.
 @c Not all cases are supported directly, if needed, Gama simply
 @c internally changes the sign of all @code{y} coordinates (in the text
 @c output of adjustment results the sign of @code{y} coordinates is
@@ -192,7 +192,7 @@ systems.
 
 @example
 <gama-local>
-<network>                     
+<network>
    <description> ... </description>
    <parameters ... />
    <points-observations> ... </points-observations>
@@ -240,19 +240,19 @@ The network parameters may be listed with the following optional
 attributes of an empty-element tag @code{<parameters />}
 
 @itemize @bullet
-@item 
+@item
 @code{sigma-apr = "10"}       value of a priori reference standard
 deviation---square root of reference variance (default value 10)
 
-@item 
-@code{conf-pr = "0.95"}       confidence probability used in statistical 
+@item
+@code{conf-pr = "0.95"}       confidence probability used in statistical
 tests (dafault value 0.95)
 
-@item 
+@item
 @code{tol-abs = "1000"}       tolerance for identification of gross
 absolute terms in project equations (default value 1000 mm)
 
-@item 
+@item
 @code{sigma-act = "aposteriori"}  actual type of reference standard deviation
 use in statistical tests (@code{aposteriori | apriori}); default value
 is @code{aposteriori}
@@ -265,7 +265,7 @@ Gama tries to improve approximate coordinates of adjusted points and
 repeats the whole adjustment. Coordinates of constrained points are
 implicitly not changed during iterations.
 
-@item 
+@item
 @code{algorithm = "gso"} numerical algortihm used in the adjistment
 (gso, svd, cholesky, envelope).
 
@@ -300,11 +300,10 @@ between attribute names, values, and the @emph{equal} sign.
 
 @heading Example
 
- 
 
 @example
 <parameters sigma-apr = "15"
-            conf-pr   = '0.90' 
+            conf-pr   = '0.90'
             sigma-act = "apriori"
             update-constrained-coordinates = "no" />
 @end example
@@ -330,26 +329,26 @@ for the definition of default values of standard deviations
 corresponding to observed directions, angles, and distances.
 
 @itemize @bullet
-@item 
+@item
 @code{direction-stdev = "@dots{}"} defines the implicit value of
 standard deviation of observed directions (default value is not
 defined)
 
-@item 
+@item
 @code{angle-stdev = "@dots{}"} defines the implicit value of standard
 deviation of observed angles (default value is not defined)
 
-@item 
+@item
 @code{zenith-angle-stdev = "@dots{}"} defines the implicit value of
 standard deviation of observed zenith angles (default value is not
 defined)
 
-@item 
+@item
 @code{azimuth-stdev = "@dots{}"} defines the implicit value of
 standard deviation of observed azimuth angles (default value is not
 defined)
 
-@item 
+@item
 @code{distance-stdev = "@dots{}"} defines the implicit value of
 standard deviation of observed distances, horizontal or slope (default
 value is not defined)
@@ -394,12 +393,12 @@ default values of $b=0$ and $c=1$ will be used.
 
 @heading Example
 
- 
+
 
 @example
-<points-observations direction-stdev = "10" 
+<points-observations direction-stdev = "10"
                      distance-stdev  = "5 3 1" >
-   <!-- ... points and observation data ... -->  
+   <!-- ... points and observation data ... -->
 </points-observations>
 @end example
 
@@ -414,26 +413,26 @@ Points are described by the empty-element tags @code{<point/>} with the
 following attributes:
 
 @itemize @bullet
-@item 
-@code{id = "@dots{}"} is the  point identification attribute (mandatory); 
+@item
+@code{id = "@dots{}"} is the  point identification attribute (mandatory);
 point identification is not limited to @emph{numbers}; all printable
 characters can be used in identification.
 
-@item 
+@item
 @code{x = "@dots{}"}    specifies coordinate @code{x}
 
-@item 
+@item
 @code{y = "@dots{}"}    specifies coordinate @code{y}
 
-@item 
+@item
 @code{z = "@dots{}"}    specifies coordinate @code{z}, point height
 
-@item 
+@item
 @code{fix = "@dots{}"}  specifies coordinates that are fixed in
 adjustment; acceptable values are @code{xy}, @code{XY}, @code{z},
 @code{Z}, @code{xyz}, @code{XYZ}, @code{xyZ} and @code{XYz}.
- 
-@item 
+
+@item
 @code{adj = "@dots{}"}  specifies coordinates to be adjusted (unknown
 parameters in adjustment); acceptable values are @code{xy}, @code{XY},
 @code{z}, @code{Z}, @code{xyz}, @code{XYZ}, @code{xyZ} and @code{XYz}.
@@ -491,7 +490,7 @@ $$
    \sum dx^2_i+dy^2_i = \min.
 $$
 where $dx$ and $dy$ are adjusted coordinate corrections and the
-summation index $i$ goes over all \emph{constrained} points. 
+summation index $i$ goes over all \emph{constrained} points.
 @end tex
 @end iftex
 @c % ----------------------------------------------------------------------
@@ -506,7 +505,7 @@ networks.
 
 @heading Example
 
- 
+
 
 @example
 <point id="1" y="644498.590" x="1054980.484" fix="xy"  />
@@ -527,29 +526,29 @@ networks.
 The pair tag @code{<obs>} groups together a set of observations which
 are somehow related. A typical example is a set of directions and
 distances observed from one stand-point. An observation section
-contains a set of 
+contains a set of
 
 @itemize @bullet
-@item 
+@item
 horizontal directions  @code{<direction @dots{} />}
 
-@item 
+@item
 horizontal distances   @code{<distance @dots{} />}
 
-@item 
+@item
 horizontal angles      @code{<angle @dots{} />}
 
-@item 
+@item
 slope distances        @code{<s-distance @dots{}  />}
 
-@item 
+@item
 zenith angles          @code{<z-angle @dots{} />}
 
-@item 
+@item
 azimuths               @code{<azimuth @dots{} />}
 
 @comment dh removed from obs in xsd 0.91
-@comment @item 
+@comment @item
 @comment height differences     @code{<dh />}
 @end itemize
 
@@ -597,9 +596,9 @@ is coded in XML as
 
 @example
 <cov-mat dim="6" band="2">
-   1.1  0.1  0.2              
-        1.2  0.3  0.4             
-             1.3  0.5  0.6      
+   1.1  0.1  0.2
+        1.2  0.3  0.4
+             1.3  0.5  0.6
                   1.4  0.7  0.8
                        1.5  0.9
                             1.6
@@ -628,29 +627,17 @@ millimeters. Observed directions and angles are expressed in centigrades
 (400) and their standard deviations in centigrade seconds.
 
 
-
-@c Height differences can be used in section @code{<obs>} or
-@c @code{<height-differences>}. If used within tag @code{<obs>} parameter
-@c @code{dist = "@dots{}"} is ignored, for details see @ref{Height
-@c differences}.
-@c 
-@c *** replacement by Chuck Ghilani:
-
-Height differences can be entered in the @code{<obs>} or
-@code{<height-differences>} section. If entered in the @code{<obs>} section,
-the @code{dist="..."} parameter is ignored (@ref{Height differences}). 
-
 @heading Example
 
 @example
-<obs from="418">  
+<obs from="418">
    <direction  to=  "2" val="0.0000"   stdev="10.0" />
    <direction  to="416" val="63.9347"  stdev="10.0" />
    <direction  to="420" val="336.3190" stdev="10.0" />
    <distance   to="420" val="246.594"  stdev="5.0"  />
 </obs>
 
-<obs from="418">  
+<obs from="418">
    <direction  to=  "2" val="0.0000"   />
    <direction  to="416" val="63.9347"  />
    <direction  to="420" val="336.3190" />
@@ -664,21 +651,21 @@ the @code{dist="..."} parameter is ignored (@ref{Height differences}).
 
 @node     Directions
 @section  Directions
-@cindex   @code{<direction />} 
-@cindex   direction 
+@cindex   @code{<direction />}
+@cindex   direction
 
 
 Directions are expressed with the following attributes in an
-empty-element tag @code{<direction />} 
+empty-element tag @code{<direction />}
 
 @itemize @bullet
-@item 
-@code{to = "@dots{}"}      target point identification 
+@item
+@code{to = "@dots{}"}      target point identification
 
-@item 
+@item
 @code{val = "@dots{}"}     observed direction;  @pxref{Angular units}
 
-@item 
+@item
 @code{stdev = "@dots{}"}   standard deviation (optional)
 
 @item
@@ -720,19 +707,19 @@ observations (distances, angles, etc.)
 
 
 Distances are written using an empty-element tag @code{<distance />}
-with attributes 
+with attributes
 
 @itemize @bullet
-@item 
+@item
 @code{from = "@dots{}"}    standpoint identification
 
-@item 
+@item
 @code{to = "@dots{}"}      target identification
 
-@item 
+@item
 @code{val = "@dots{}"}     observed horizontal distance
 
-@item 
+@item
 @code{stdev = "@dots{}"}   standard deviation of observed horizontal
 distance (optional)
 
@@ -751,7 +738,7 @@ Contrary to directions,  distances in an observation set
 set of distances observed from several stand-points with
 a common variance-covariance matrix.
 
-@heading Example 
+@heading Example
 
 @example
 <distance from = "2"  to = "1" val = "659.184" />
@@ -769,22 +756,22 @@ a common variance-covariance matrix.
 
 
 Observed angles are expressed with the following attributes of an
-empty-element tag @code{<angle />} 
+empty-element tag @code{<angle />}
 
 @itemize @bullet
-@item 
+@item
 @code{from = "@dots{}"}    standpoint identification (optional)
 
-@item 
+@item
 @code{bs = "@dots{}"}      backsight target identification
 
-@item 
+@item
 @code{fs = "@dots{}"}      foresight target identification
 
-@item 
+@item
 @code{val = "@dots{}"}     observed angle;  @pxref{Angular units}
 
-@item 
+@item
 @code{stdev = "@dots{}" }  standard deviation (optional)
 @item
 @code{from_dh = "@dots{}"} instrument height (optional)
@@ -822,19 +809,19 @@ observed from several standpoints.
 
 
 Slope distances (space distances) are written using an empty-element tag
-@code{<s-distance />} with attributes 
+@code{<s-distance />} with attributes
 
 @itemize @bullet
-@item 
+@item
 @code{from = "@dots{}"}   standpoint identification (optional)
 
 @item
 @code{to = "@dots{}"}     target identification
 
-@item 
+@item
 @code{val = "@dots{}"}    observed slope distance
 
-@item 
+@item
 @code{stdev = "@dots{}"}  standard deviation of observed slope distance
 (optional)
 
@@ -876,19 +863,19 @@ distances observed from several standpoints.
 
 
 Zenith angles are written using an empty-element tag @code{<z-angle />}
-with the following attributes 
+with the following attributes
 
 @itemize @bullet
-@item 
+@item
 @code{from = "@dots{}"}   standpoint identification (optional)
 
-@item 
+@item
 @code{to = "@dots{}"}     target identification
 
-@item 
+@item
 @code{val = "@dots{}"}    observed zenith angle; @pxref{Angular units}
 
-@item 
+@item
 @code{stdev = "@dots{}"}  standard deviation of observed zenith angle
 (optional)
 
@@ -920,8 +907,8 @@ angles observed from several standpoints.
 
 @node     Azimuths
 @section  Azimuths
-@cindex   @code{<azimuth />} 
-@cindex   azumuth 
+@cindex   @code{<azimuth />}
+@cindex   azumuth
 
 
 The azimuth is defined in GNU Gama as an observed horizontal angle
@@ -929,22 +916,22 @@ measured from the North to the given target. The true north
 orientation is measured by gyrotheodolites, mainly in mine
 surveying. In Gama azimuths' angle can be measured clockwise or
 counterclocwise according to the angle orientation defined in
-@code{<parameters />} tag. 
+@code{<parameters />} tag.
 
 Azimuths are expressed with the following attributes in an
-empty-element tag @code{<azimuth />} 
+empty-element tag @code{<azimuth />}
 
 @itemize @bullet
-@item 
-@code{from = "@dots{}"}    standpoint identification 
+@item
+@code{from = "@dots{}"}    standpoint identification
 
-@item 
-@code{to = "@dots{}"}      target point identification 
+@item
+@code{to = "@dots{}"}      target point identification
 
-@item 
+@item
 @code{val = "@dots{}"}     observed azimuth;  @pxref{Angular units}
 
-@item 
+@item
 @code{stdev = "@dots{}"}   standard deviation (optional)
 
 @item
@@ -961,7 +948,7 @@ observations in the adjustment must have their weights defined, the
 standard deviation must be given either explicitly with the attribute
 @code{stdev="@dots{}"} or implicitly with @code{<points-observation
 azimuth-stdev="@dots{}" >} or with a variance-covariance matrix for
-the given observation set. 
+the given observation set.
 
 
 
@@ -997,19 +984,19 @@ variance-covariance matrix.  Single height differences are defined with
 empty tags @code{<dh />} having the following attributes:
 @c
 @itemize @bullet
-@item 
-@code{from  = "@dots{}"}  standpoint identification 
+@item
+@code{from  = "@dots{}"}  standpoint identification
 
-@item 
+@item
 @code{to    = "@dots{}"}  target identification
 
-@item 
-@code{val   = "@dots{}"}  observed leveling height difference 
+@item
+@code{val   = "@dots{}"}  observed leveling height difference
 
-@item 
+@item
 @code{stdev = "@dots{}"}  standard deviation of levellin elevation and
 
-@item 
+@item
 @code{dist  = "@dots{}"}  distance of leveling section (in kilometers)
 @end itemize
 
@@ -1027,7 +1014,7 @@ deviation is computed from the formula
 @center         m_dh = m_0 sqrt(D_km)
 @end ifnottex
 @tex
-$$ m_{dh} = m_0 \sqrt{D_{km}}. $$ 
+$$ m_{dh} = m_0 \sqrt{D_{km}}. $$
 @end tex
 
 If the value of standard deviation of the height difference is defined,
@@ -1059,9 +1046,9 @@ elevations in the set.
 @node     Control coordinates
 @section  Control coordinates
 @cindex   @code{<coordinates>}
-@cindex   observed coordinates 
-@cindex   observed, coordinates 
-@cindex   coordinates, observed 
+@cindex   observed coordinates
+@cindex   observed, coordinates
+@cindex   coordinates, observed
 
 
 
@@ -1071,7 +1058,7 @@ elevations in the set.
 @c of @code{<point />} tags and one tag @code{<cov-mat>}. In the
 @c @code{<point />} tags, we must state a point identification (ID) and its
 @c coordinates (x, y and/or z).  Although .....
-@c 
+@c
 @c *** replacement by Chuck Ghilani:
 
 Control (known) coordinates are described by the start-end pair tag
@@ -1114,7 +1101,7 @@ of it.
 Observed coordinate differences describe relative positions of station
 pairs (vectors). Contrary to the observed coordinates, the
 variance-covariance matrix of the coordinate differences always
-describes all three elements of the 3D vectors. 
+describes all three elements of the 3D vectors.
 
 Optional attributes of empty element tag @code{<vec>} for describing
 instrument and/or target height are
@@ -1162,7 +1149,7 @@ guide to Geodet/PC by Frantisek Charamza.
 <?xml version="1.0" ?>
 
 <gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
-<network axes-xy="sw">          
+<network axes-xy="sw">
 
 <description>
 XML input stream of points and observation data for the program GNU gama
@@ -1172,12 +1159,12 @@ XML input stream of points and observation data for the program GNU gama
 
 <parameters sigma-act = "aposteriori" />
 
-<points-observations>          
+<points-observations>
 
 <!-- fixed point, constrained point -->
 
 <point id="1" y="644498.590" x="1054980.484" fix="xy" />
-<point id="2" y="643654.101" x="1054933.801" adj="XY" /> 
+<point id="2" y="643654.101" x="1054933.801" adj="XY" />
 
 <!-- computed / adjusted points -->
 
@@ -1221,15 +1208,15 @@ XML input stream of points and observation data for the program GNU gama
      <distance   to="418" val="292.094"  stdev="5.0"  />
      <distance   to="420" val="261.408"  stdev="5.0"  />
      <distance   to="422" val="452.249"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="403">  
+</obs>
+
+<obs from="403">
      <direction  to=  "1" val="0.0000"   stdev="10.0" />
      <direction  to="407" val="313.5542" stdev="10.0" />
      <distance   to="407" val="405.403"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="407">  
+</obs>
+
+<obs from="407">
      <direction  to=  "1" val="0.0000"   stdev="10.0" />
      <direction  to="403" val="55.1013"  stdev="10.0" />
      <direction  to="409" val="193.3410" stdev="10.0" />
@@ -1237,62 +1224,62 @@ XML input stream of points and observation data for the program GNU gama
      <direction  to="422" val="323.5443" stdev="10.0" />
      <distance   to="409" val="281.997"  stdev="5.0"  />
      <distance   to="422" val="346.415"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="409">  
+</obs>
+
+<obs from="409">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="407" val="102.2575" stdev="10.0" />
      <direction  to="411" val="310.1751" stdev="10.0" />
      <distance   to="411" val="296.281"  stdev="5.0" />
-</obs>            
-                     
-<obs from="411">  
+</obs>
+
+<obs from="411">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="409" val="49.8647"  stdev="10.0" />
      <direction  to="413" val="291.4953" stdev="10.0" />
      <direction  to="416" val="337.6667" stdev="10.0" />
      <distance   to="413" val="252.266"  stdev="5.0"  />
      <distance   to="416" val="360.449"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="413">  
+</obs>
+
+<obs from="413">
      <direction  to="411" val="0.0000"   stdev="10.0" />
      <direction  to="416" val="295.3582" stdev="10.0" />
      <distance   to="416" val="239.745"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="416">  
+</obs>
+
+<obs from="416">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="411" val="68.8065"  stdev="10.0" />
      <direction  to="413" val="117.9922" stdev="10.0" />
      <direction  to="418" val="348.1606" stdev="10.0" />
      <distance   to="418" val="389.397"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="418">  
+</obs>
+
+<obs from="418">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="416" val="63.9347"  stdev="10.0" />
      <direction  to="420" val="336.3190" stdev="10.0" />
      <distance   to="420" val="246.594"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="420">  
+</obs>
+
+<obs from="420">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="418" val="77.9221"  stdev="10.0" />
      <direction  to="422" val="250.1804" stdev="10.0" />
      <distance   to="422" val="228.207"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="422">  
+</obs>
+
+<obs from="422">
      <direction  to=  "2" val="0.0000"   stdev="10.0" />
      <direction  to="420" val="26.8834"  stdev="10.0" />
      <direction  to="424" val="225.7964" stdev="10.0" />
      <direction  to=  "1" val="259.2124" stdev="10.0" />
      <direction  to="407" val="337.3724" stdev="10.0" />
      <distance   to="424" val="279.405"  stdev="5.0"  />
-</obs>            
-                     
-<obs from="424">  
+</obs>
+
+<obs from="424">
      <direction  to=  "1" val="0.0000"   stdev="10.0" />
      <direction  to="422" val="134.2955" stdev="10.0" />
 </obs>
@@ -1302,6 +1289,3 @@ XML input stream of points and observation data for the program GNU gama
 </network>
 </gama-local>
 @end example
-
-
-
