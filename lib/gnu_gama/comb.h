@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2017  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -19,34 +19,12 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef GNU_gama_RanGen_h
-#define GNU_gama_RanGen_h
+#ifndef GNU_gama_Comb_h
+#define GNU_gama_Comb_h
 
 #include <cmath>
 
 namespace GNU_gama {
-
-/*
-   IRAND55 random number generator
-
-   Based on the code form The Art of Computer Programming by Donald
-   E. Knuth, Addison-Wesley Publishing Company, 2nd ed., 1981, vol. 2,
-   ISBN 0-201-03822-6, pp. 171-172.
-*/
-
-class IRAND55 {
-protected:
-   static long ia[56];
-   static long jrand;
-
-public:
-   static void IN55(long seed=987654321);
-   static void IRN55();
-
-   friend float Rand_U();    // Uniform random numbers <0, 1>
-   friend float Rand_N();    // Normal distribution N(0, 1)
-};
-
 
 // K-combinations of N positive integers <1, N>
 

@@ -21,8 +21,8 @@ libgama_src = \
    gnu_gama/outstream.h \
    gnu_gama/pointbase.h \
    gnu_gama/radian.h \
-   gnu_gama/rand.cpp \
-   gnu_gama/rand.h \
+   gnu_gama/comb.cpp \
+   gnu_gama/comb.h \
    gnu_gama/statan.cpp \
    gnu_gama/statan.h \
    gnu_gama/utf8.cpp \
