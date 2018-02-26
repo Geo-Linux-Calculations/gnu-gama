@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002, 2013, 2014  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2000, 2002, 2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -122,7 +122,6 @@ namespace GNU_gama { namespace local {
           case tag_angle     : return process_angle(atts);
           case tag_s_distance: return process_sdistance(atts);
           case tag_z_angle   : return process_zangle(atts);
-            // xsd 0.91 case tag_dh        : return process_obs_dh(atts);
           case tag_azimuth   : return process_azimuth(atts);
           case tag_cov_mat   : return process_obs_cov(atts);
           default:
@@ -214,9 +213,6 @@ namespace GNU_gama { namespace local {
       case state_obs_zangle:
         state = state_obs;
         break;
-      // xsd 0.91 case state_obs_dh:
-      // xsd 0.91   state = state_obs;
-      // xsd 0.91   break;
       case state_obs_azimuth:
         state = state_obs;
         break;
@@ -286,21 +282,6 @@ namespace GNU_gama { namespace local {
 
 
 
-  /* grep ELEMENT gamaxml/gama-local.dtd | awk '//{print $2}' | sort
-   * -------------------------------------------------------------
-   * angle
-   * coordinates cov-mat
-   * description dh direction distance
-   * gama-local
-   * height-differences
-   * network
-   * obs
-   * parameters point points-observations
-   * s-distance
-   * vec vectors
-   * z-angle
-   */
-
   GKFparser::gkf_tag GKFparser::tag(const char* c)
   {
     switch (*c)
@@ -367,8 +348,6 @@ namespace GNU_gama { namespace local {
     idim        = 0;
     coordinates = 0;
     vectors     = 0;
-
-    obsolete_attribute = true;
 
     // throw exception if a covariance matrix is not positive-definite
     check_cov_mat = true;
@@ -658,26 +637,9 @@ namespace GNU_gama { namespace local {
         else if (nam == "z"  ) sv = val;
         else if (nam == "fix") sf = val;
         else if (nam == "adj") sa = val;
-        else if (nam == "xy" ) st = val;         // ###### obsoleted
-        else if (nam == "height") sh = val;      // ###### obsoleted
         else
           return
             error(T_GKF_undefined_attribute_of_points + nam + " = " + val);
-
-        if ((nam == "xy" || nam == "height") && obsolete_attribute)
-          {
-            description += "\n**** Warning: ";
-            description += "obsolete XML attribute(s)";
-            description += "   <point ...";
-            description += " " + nam + "=\"" + val + "\" />\n";
-
-            ostringstream ostr;
-            ostr << "****          see line number "
-                 << XML_GetCurrentLineNumber(parser) << "\n";;
-            description += ostr.str();
-
-            obsolete_attribute = false;
-          }
       }
 
     if (pp_id == "") return error(T_GKF_missing_point_ID);
@@ -740,21 +702,6 @@ namespace GNU_gama { namespace local {
       else
         return error(T_GKF_undefined_point_type + sf);
     }
-
-    // ###### obsoleted
-
-    if      (st == "fixed"     ) SB[pp_id].set_fixed_xy();
-    else if (st == "free"      ) SB[pp_id].set_free_xy();
-    else if (st =="constrained") SB[pp_id].set_constrained_xy();
-    else if (st == "unused"    ) SB[pp_id].set_unused_xy();
-    else if (st != "")
-      return error(T_GKF_undefined_point_type + st);
-
-    if      (sh == "fixed" ) SB[pp_id].set_fixed_z();
-    else if (sh == "free"  ) SB[pp_id].set_free_z();
-    else if (sh == "unused") SB[pp_id].set_unused_z();
-    else if (sh != "")
-      return error(T_GKF_undefined_height_type + sh);
 
     return 0;
   }

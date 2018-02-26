@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
 
+<!--
+     2018-02-21 added test of the implicit <obs from_dh="..."
+-->
+
 <gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
 <network axes-xy="ne">
 <description>
@@ -58,7 +62,12 @@ test_3d_gon
  <direction to= "504" val= "317.3493827160" />
  <direction to= "04-1223" val= "340.3179012346" />
 </obs>
-<obs from="04-1125">
+<!-- 2018-02-21
+     Check if explicit from_dh attributes in observations takes higher
+     precedence than the common value given in <obs from_dh="..."> tag
+     *****************************************************************
+-->
+<obs from="04-1125" from_dh="16.000">  <!-- gross error in from_dh  -->
  <direction to= "04-1062" val= "399.9990740741" />
  <direction to= "04-1061" val= "60.0685185185" />
  <direction to= "04-1138" val= "116.2885802469" />
@@ -70,7 +79,11 @@ test_3d_gon
  <s-distance to= "1003" val= "1008.8320" from_dh ="1.600" to_dh ="1.500" />
  <z-angle to= "1003" val= "96.5608024691" from_dh ="1.600" to_dh ="1.500" />
 </obs>
-<obs from="04-1125">
+<!-- 2018-02-21
+     Same value is given in <obs from_dh="..."> and in the observations
+     ******************************************************************
+-->
+<obs from="04-1125" from_dh="1.200">
  <direction to= "504" val= "0.0006172840" />
  <direction to= "04-1062" val= "76.4172839506" />
  <direction to= "04-1061" val= "136.4882716049" />
@@ -79,17 +92,22 @@ test_3d_gon
  <s-distance to= "1004" val= "413.5570" from_dh ="1.200" to_dh ="1.500" />
  <z-angle to= "1004" val= "99.0685185185" from_dh ="1.200" to_dh ="1.500" />
 </obs>
-<obs from="1004">
+<!-- 2018-02-21
+     Attribute from_dh="..." is defined only in <obs> and passed to the
+     observations implicitly
+     ******************************************************************
+-->
+<obs from="1004" from_dh ="1.600">
  <direction to= "04-1125" val= "0.0123456790" />
  <direction to= "04-1061" val= "43.2762345679" />
  <direction to= "04-1138" val= "94.5956790123" />
  <direction to= "04-1223" val= "357.5308641975" />
  <direction to= "04-1125" val= "0.0138888889" />
- <s-distance to= "04-1125" val= "413.5530" from_dh ="1.600" to_dh ="1.500" />
- <z-angle to= "04-1125" val= "100.9203703704" from_dh ="1.600" to_dh ="1.500" />
+ <s-distance to= "04-1125" val= "413.5530" to_dh ="1.500" />
+ <z-angle to= "04-1125" val= "100.9203703704" to_dh ="1.500" />
  <direction to= "1005" val= "204.1271604938" />
- <s-distance to= "1005" val= "255.6950" from_dh ="1.600" to_dh ="1.500" />
- <z-angle to= "1005" val= "98.2515432099" from_dh ="1.600" to_dh ="1.500" />
+ <s-distance to= "1005" val= "255.6950" to_dh ="1.500" />
+ <z-angle to= "1005" val= "98.2515432099" to_dh ="1.500" />
 </obs>
 <obs from="1004">
  <direction to= "04-1125" val= "0.0509259259" />

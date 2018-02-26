@@ -1,3 +1,21 @@
+2018-02-26  Ales Cepek  <cepek@gnu.org>
+
+	* revision 1.21.1
+	* xml/gama-local.xsd : fixed type definition of from_dh (in <obs>
+	tag) toxs:double
+	* tests/gama-local/input/zoltan-test_3d_gon.gkf : addes tests to
+	** Check if explicit from_dh attributes in observations takes
+	   higher precedence than the common value given in <obs
+	   from_dh="..."> tag
+	** Same value is given in <obs from_dh="..."> and in the
+	   observations
+	** Attribute from_dh="..." is defined only in <obs> and passed to
+	   the observations implicitly
+	* lib/gnu_gama/xml/gkfparser.h|cpp : removed processing of
+	obsoleted points' attributes xy and height
+	* lib/gnu_gama/local/acord/reduce_observations.h|cpp : removed
+	example processing of ydiff observation type
+
 2017-11-26  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.21

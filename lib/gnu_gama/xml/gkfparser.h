@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2002, 2013, 2014  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2000, 2002, 2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -21,6 +21,7 @@
 
 #ifndef gama_local_GKF_XML_parser_h_
 #define gama_local_GKF_XML_parser_h_
+
 
 #include <gnu_gama/xml/baseparser.h>
 #include <gnu_gama/xml/dataobject.h>
@@ -226,30 +227,8 @@ namespace GNU_gama { namespace local {
       double angle_stdev_;
       double zenith_stdev_;
       double azimuth_stdev_;
-
-      // obsolete XML tags and attributes -- warning messages
-
-      bool  obsolete_attribute;
-
     };  // class GKFparser
 }}       // namespace GNU_gama::local
 
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

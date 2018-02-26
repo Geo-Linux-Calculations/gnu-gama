@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema version="0.91"
+<xs:schema version="1.00"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.gnu.org/software/gama/gama-local"
   targetNamespace="http://www.gnu.org/software/gama/gama-local"
@@ -10,6 +10,9 @@
     <xs:documentation xml:lang="en">
       GNU Gama local schema
       http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gama-local.xsd
+
+      1.00 fixed a formal error in the definition of obs attribute
+           from_dh type=xs:double
 
       0.91  element dh removed from obs. Elements dh can newly be
             defined only inside the height-differences.
@@ -217,7 +220,7 @@
       </xs:sequence>
       <xs:attribute name="from"/>
       <xs:attribute name="orientation" type="xs:double"/>
-      <xs:attribute name="from_dh" type="xs:string"/>
+      <xs:attribute name="from_dh" type="xs:double"/>
     </xs:complexType>
   </xs:element>
 
