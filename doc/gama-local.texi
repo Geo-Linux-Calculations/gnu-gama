@@ -42,6 +42,7 @@ Options:
 --text       adjustment_results.txt
 --html       adjustment_results.html
 --xml        adjustment_results.xml
+--octave     adjustment_results.m
 --svg        network_configuration.svg
 --cov-band   covariance matrix of adjusted parameters in XML output
              n  = -1  for full covariance matrix (implicit value)
@@ -85,14 +86,19 @@ observed vertical and/or zenith angles need to be transformed into the
 projection plane. If none of these two options is explicitly used, no
 corrections are added to horizontal and/or zenith angles. If only one
 of these options is used, then implicit value for @code{--latitude} is
-45 degrees (50 gons) and implicit ellipsoid is WGS84. 
+45 degrees (50 gons) and implicit ellipsoid is WGS84.
 Mathematical formulas for the corrections is given in the following
 section.
 
-Adjustment results (@code{--text} and @code{--xml}) can be redirected
-to standard output if instead of a file name is used "-" string. If no
-output is given, XML adjustment format is implicitly send to standard
-output.
+Adjustment results (@code{--text}, @code{--xml}) and others can be
+redirected to standard output if instead of a file name is used "-"
+string. If no output is given, XML adjustment format is implicitly
+send to standard output.
+
+Option @code{--octave} is used to output simplified adjustment results
+for @uref{https://www.gnu.org/software/octave/, GNU Octave};
+only points' names (identifiers), adjusted coordinates with indexes
+and corresponding covariances are given in the .m file.
 
 Option @code{--cov-band} is used to reduce the number of computed
 covariances (cofactors) in XML adjustment output. Implicitly full
@@ -121,7 +127,7 @@ repeated in a new iteration. Implicit number of iterations is 5.
 @cindex     reductions, horizontal and zenith angles
 
 
-For evaluating of reductions of horizontal and zenith angles, 
+For evaluating of reductions of horizontal and zenith angles,
 @code{gama-local} computes a helper point @math{P_1} in the center of
 the network. Horizontal and zenith angles observed at point @math{P_2}
 are transformed to the projection plane perpendicular to the normal
@@ -170,7 +176,7 @@ size of 6 kilometers, where
 @tex
 $$
    \cos 2\gamma_{12} \approx 1 \qquad {\rm and } \qquad
- \sin 2\gamma_{12} \approx 
+ \sin 2\gamma_{12} \approx
  {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}.
 $$
 @end tex
@@ -181,11 +187,11 @@ and
 $$
 %  \label{eq:sftrupr1}
    \cos z_{23} = \cos z^m_{23}  - \sin z^m_{23} \cos \sigma^m_{23}
-   {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}, 
+   {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}},
 $$
 $$
 %  \label{eq:sftrupr2}
-   \cot \sigma_{23} = \cot \sigma^m_{23} +  
+   \cot \sigma_{23} = \cot \sigma^m_{23} +
    {1\over{\sin^2 \sigma^m_{23}}} \cot z^m_{23}\sin \sigma^m_{23}
    {{2\gamma^{\prime\prime}_{12}}\over{\varrho^{\prime\prime}}}.
 $$
@@ -194,28 +200,28 @@ $$
 @noindent
 Comparing these expressions  with first members of Taylor series
 @tex
-$$ 
+$$
    f(x) \approx f(x^0) +  {{{ \rm d}f(x^0)}\over{{\rm d}x}}
 $$
 @end tex
 of functions @math{@cos z_{23}} and @math{@cot @sigma_{23}} for
 @math{z_{23} = z^m_{23} + \triangle z_{23}} and
 @math{ \sigma_{23} = @sigma^m_{23} + @triangle @sigma_{23} }
-@c 
+@c
 @tex
 $$
 %   \label{eq:taylorcos}
-   \cos z_{23} = \cos z^m_{23}  - \sin z^m_{23} 
+   \cos z_{23} = \cos z^m_{23}  - \sin z^m_{23}
    {{\triangle z^{\prime\prime}_{23}}\over{\varrho^{\prime\prime}}}
 $$
 $$
    \cot \sigma_{23} = \cot \sigma^m_{23} -
-   {{1}\over{\sin^2 \sigma^m_{23}}} 
+   {{1}\over{\sin^2 \sigma^m_{23}}}
    {{\sigma^{\prime\prime}_{23}}\over{\varrho^{\prime\prime}}},
 $$
 @end tex
 @c
-it holds that  
+it holds that
 @math{z_{23} = @cos z^m_{23} + @triangle z^{@prime@prime}_{23}} and
 @math{@sigma_{23} = cos @sigma^m_{23} + @triangle @sigma^{@prime@prime}_{23}}.
 

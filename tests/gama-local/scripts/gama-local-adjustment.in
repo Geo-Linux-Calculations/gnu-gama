@@ -14,9 +14,10 @@ do
     echo  @PACKAGE_VERSION@ $g $a
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
 	--algorithm $a \
-	--text $RES/$g-$a.txt \
-	--html $RES/$g-$a.html \
-	--xml  $RES/$g-$a.xml \
-	--svg  $RES/$g-$a.svg
+	--text   $RES/$g-$a.txt \
+	--html   $RES/$g-$a.html \
+	--xml    $RES/$g-$a.xml \
+	--octave $RES/$g-$a.m \
+	--svg    $RES/$g-$a.svg
 done
 done

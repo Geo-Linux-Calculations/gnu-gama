@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+RES=@GAMA_RESULTS@/gama-local-adjustment
+
+for f in gama-local-svd.m \
+	 zoltan-test_3d_gon-gso.m
+do
+    octave < $RES/$f
+done

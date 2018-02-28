@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.69)
-AC_INIT([gama], [1.21.1], [bug-gama@gnu.org])
+AC_INIT([gama], [1.21.2], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -63,6 +63,17 @@ AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_XMLLINT],
 
 if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes"; then
    AC_MSG_WARN([*** xmllint not found, XML files will not be validated])
+fi
+
+
+# Check for octave
+
+AC_CHECK_PROG(GNU_GAMA_LOCAL_TEST_OCTAVE, octave, yes, no)
+AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_OCTAVE],
+               [test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" = "xyes"])
+
+if test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" != "xyes"; then
+   AC_MSG_WARN([*** octave not found, .m files will not be validated])
 fi
 
 

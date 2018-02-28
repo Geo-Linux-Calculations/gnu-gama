@@ -1,5 +1,5 @@
 /* GNU Gama C++ library
-   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014
+   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014, 2018
                  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
@@ -27,6 +27,7 @@
 #include <cstring>
 #include <gnu_gama/version.h>
 #include <gnu_gama/intfloat.h>
+#include <gnu_gama/xml/localnetworkoctave.h>
 #include <gnu_gama/xml/localnetworkxml.h>
 #include <gnu_gama/xml/gkfparser.h>
 
@@ -64,44 +65,18 @@ int help()
        << "************************************\n"
        << "http://www.gnu.org/software/gama/\n\n";
 
-#ifndef   GNU_GAMA_LOCAL_SQLITE_READER
-  cerr <<
-    "Usage: gama-local  input.xml  [options]\n\n"
-
-    "Options:\n\n"
-
-    "--algorithm  gso | svd | cholesky | envelope\n"
-    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh\n"
-    "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
-    "--angles     400 | 360\n"
-    "--latitude   <latitude>\n"
-    "--ellipsoid  <ellipsoid name>\n"
-    "--text       adjustment_results.txt\n"
-    "--html       adjustment_results.html\n"
-    "--xml        adjustment_results.xml\n"
-    "--svg        network_configuration.svg\n"
-    "--cov-band   covariance matrix of adjusted parameters in XML output\n"
-    "             n  = -1  for full covariance matrix (implicit value)\n"
-    "             n >=  0  covariances are computed only for bandwidth n\n"
-    "--iterations maximum number of iterations allowed in the linearized\n"
-    "             least squares algorithm (implicit value is 5)\n"
-//  "--updated-xml input data with free coordinates updated after adjustment\n"
-//  "             and rejected observations removed\n"
-    "--version\n"
-    "--help\n\n";
-
-  //"--obs        observation_equations.txt (obsolete format)\n"
-#else
   cerr <<
     "Usage: gama-local  input.xml  [options]\n"
+
+#ifdef   GNU_GAMA_LOCAL_SQLITE_READER
     "       gama-local  input.xml  --sqlitedb sqlite.db"
             "  --configuration name  [options]\n"
     "       gama-local  --sqlitedb sqlite.db  --configuration name  [options]\n"
     "       gama-local  --sqlitedb sqlite.db"
             "  --readonly-configuration name  [options]\n"
-    "\n"
+#endif
 
-    "Options:\n\n"
+    "\nOptions:\n\n"
 
     "--algorithm  gso | svd | cholesky | envelope\n"
     "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh\n"
@@ -112,6 +87,7 @@ int help()
     "--text       adjustment_results.txt\n"
     "--html       adjustment_results.html\n"
     "--xml        adjustment_results.xml\n"
+    "--octave     adjustment_results.m\n"
     "--svg        network_configuration.svg\n"
     "--cov-band   covariance matrix of adjusted parameters in XML output\n"
     "             n  = -1  for full covariance matrix (implicit value)\n"
@@ -122,7 +98,8 @@ int help()
 //  "             and rejected observations removed\n"
     "--version\n"
     "--help\n\n";
-#endif
+
+//  "--obs        observation_equations.txt (obsolete format)\n"
 
   return 1;
 }
@@ -152,6 +129,7 @@ int main(int argc, char **argv)
     const char* argv_txtout = 0;
     const char* argv_htmlout = 0;
     const char* argv_xmlout = 0;
+    const char* argv_octaveout = 0;
     const char* argv_svgout = 0;
     const char* argv_obsout = 0;
     const char* argv_covband = 0;
@@ -197,6 +175,7 @@ int main(int argc, char **argv)
         else if (name == "text"      ) argv_txtout = c;
         else if (name == "html"      ) argv_htmlout = c;
         else if (name == "xml"       ) argv_xmlout = c;
+        else if (name == "octave"    ) argv_octaveout = c;
         else if (name == "svg"       ) argv_svgout = c;
         else if (name == "obs"       ) argv_obsout = c;
         else if (name == "cov-band"  ) argv_covband = c;
@@ -601,6 +580,23 @@ int main(int argc, char **argv)
               {
                 ofstream file(argv_xmlout);
                 xml.write(file);
+              }
+          }
+
+        if (argv_octaveout)
+          {
+            IS->set_gons();
+
+            GNU_gama::LocalNetworkOctave octave(IS);
+
+            if (!strcmp(argv_octaveout, "-"))
+              {
+                octave.write(std::cout);
+              }
+            else
+              {
+                ofstream file(argv_octaveout);
+                octave.write(file);
               }
           }
 
