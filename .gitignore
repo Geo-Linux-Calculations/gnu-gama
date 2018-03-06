@@ -72,4 +72,6 @@ scripts/slovnikar
 # doxygen
 dox
 #
+*build*
+#
 lib/gnu_gama/local/language.html

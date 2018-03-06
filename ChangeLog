@@ -1,4 +1,11 @@
-2018-02-28  Ales Cepek  <cepek@dodo>
+2018-03-06  Ales Cepek  <cepek@gnu.org>
+
+	* revision 1.21.3
+	* added m4/ directory with macros ax_cxx_compile_stdcxx.m4 and
+	ax_valgrind_check.m4 to enable them even in case when
+	autoconf-archive package is not installed
+
+2018-02-28  Ales Cepek  <cepek@gnu.org>
 
 	* revision 1.21.2
 	* --octave option added to documentation

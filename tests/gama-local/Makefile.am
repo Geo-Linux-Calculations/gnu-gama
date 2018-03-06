@@ -61,7 +61,8 @@ $(GAMA_RESULTS):
 	mkdir -p $(GAMA_RESULTS)
 
 gama-local-version.sh: $(GAMA_SCRIPT)/gama-local-version.in $(GAMA_OTHERS)
-	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-version.in > gama-local-version.sh
+	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-version.in \
+		> gama-local-version.sh
 	@chmod +x gama-local-version.sh
 
 gama-local-adjustment.sh: $(GAMA_SCRIPT)/gama-local-adjustment.in $(GAMA_OTHERS)
@@ -74,12 +75,14 @@ gama-local-algorithms.sh: $(GAMA_SCRIPT)/gama-local-algorithms.in $(GAMA_OTHERS)
 				> gama-local-algorithms.sh
 	@chmod +x gama-local-algorithms.sh
 
-gama-local-equivalents.sh: $(GAMA_SCRIPT)/gama-local-equivalents.in $(GAMA_OTHERS)
+gama-local-equivalents.sh: $(GAMA_SCRIPT)/gama-local-equivalents.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-equivalents.in \
 				> gama-local-equivalents.sh
 	@chmod +x gama-local-equivalents.sh
 
-gama-local-xml-results.sh: $(GAMA_SCRIPT)/gama-local-xml-results.in $(GAMA_OTHERS)
+gama-local-xml-results.sh: $(GAMA_SCRIPT)/gama-local-xml-results.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-results.in \
 				> gama-local-xml-results.sh
 	@chmod +x gama-local-xml-results.sh
@@ -96,12 +99,14 @@ gama-local-xml-xml.sh: $(GAMA_SCRIPT)/gama-local-xml-xml.in $(GAMA_OTHERS) \
 				> gama-local-xml-xml.sh
 	@chmod +x gama-local-xml-xml.sh
 
-gama-local-parameters.sh: $(GAMA_SCRIPT)/gama-local-parameters.in $(GAMA_OTHERS)
+gama-local-parameters.sh: $(GAMA_SCRIPT)/gama-local-parameters.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-parameters.in \
 				> gama-local-parameters.sh
 	@chmod +x gama-local-parameters.sh
 
-gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in $(GAMA_OTHERS)
+gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-updated-xml.in \
 				> gama-local-updated-xml.sh
 	@chmod +x gama-local-updated-xml.sh
@@ -109,7 +114,8 @@ gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in $(GAMA_OTHER
 
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
-gama-local-sqlite-reader.sh: $(GAMA_SCRIPT)/gama-local-sqlite-reader.in $(GAMA_OTHERS)
+gama-local-sqlite-reader.sh: $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
 				> gama-local-sqlite-reader.sh
 	@chmod +x gama-local-sqlite-reader.sh
@@ -117,12 +123,15 @@ endif
 
 
 if GNU_GAMA_LOCAL_TEST_XMLLINT
-xmllint-gama-local-xsd.sh: $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in $(GAMA_OTHERS)
+xmllint-gama-local-xsd.sh: $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in \
 				> xmllint-gama-local-xsd.sh
 	@chmod +x xmllint-gama-local-xsd.sh
 
-xmllint-gama-local-adjustment-xsd.sh: $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in $(GAMA_OTHERS)
+xmllint-gama-local-adjustment-xsd.sh: \
+		$(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
+		$(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
 				> xmllint-gama-local-adjustment-xsd.sh
 	@chmod +x xmllint-gama-local-adjustment-xsd.sh
@@ -130,7 +139,8 @@ endif
 
 
 if GNU_GAMA_LOCAL_TEST_OCTAVE
-octave-gama-local-read.sh : $(GAMA_SCRIPT)/octave-gama-local-read.in $(GAMA_OTHERS)
+octave-gama-local-read.sh : $(GAMA_SCRIPT)/octave-gama-local-read.in \
+		$(GAMA_OTHERS) gama-local-adjustment.sh
 	@$(do_subst) < $(GAMA_SCRIPT)/octave-gama-local-read.in \
 				> octave-gama-local-read.sh
 	@chmod +x octave-gama-local-read.sh
