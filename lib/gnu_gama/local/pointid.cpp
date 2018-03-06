@@ -1,25 +1,25 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
-                  2001  Ales Cepek <cepek@fsv.cvut.cz>,
-                        Jan Pytel  <pytel@gama.fsv.cvut.cz>
-                  2011  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
+                2001  Ales Cepek <cepek@fsv.cvut.cz>,
+                      Jan Pytel  <pytel@gama.fsv.cvut.cz>
+                2011, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  GNU Gama is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  GNU Gama is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/intfloat.h>
@@ -32,10 +32,21 @@ using namespace GNU_gama::local;
 
 void PointID::init(const std::string& s)
 {
-  std::string::const_iterator b=s.begin();
-  std::string::const_iterator e=s.end();
-  GNU_gama::TrimWhiteSpaces(b, e);
-  sid = std::string(b,e);
+  char t {};
+  bool prev{true}, curr{};  // previous, current char is whitespace
+  for (char c : s)
+    {
+      curr = std::isspace(c);
+      if (prev && curr) continue;
+
+      t = curr ? ' ' : c;
+      sid.push_back(t);
+      prev = curr;
+    }
+  if (!sid.empty() && std::isspace(sid.back())) sid.pop_back();
+
+  std::string::const_iterator b=sid.begin();
+  std::string::const_iterator e=sid.end();
   iid = 0;
 
   if ( !GNU_gama::IsInteger(b, e) ) return;

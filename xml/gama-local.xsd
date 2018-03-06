@@ -14,8 +14,10 @@
       1.00 fixed a formal error in the definition of obs attribute
            from_dh type=xs:double
 
-      0.91  element dh removed from obs. Elements dh can newly be
-            defined only inside the height-differences.
+           points id are defined as xs:token
+
+      0.91 element dh removed from obs. Elements dh can newly be
+           defined only inside the height-differences.
     </xs:documentation>
   </xs:annotation>
 
@@ -169,7 +171,7 @@
 
   <xs:element name="point">
     <xs:complexType>
-      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="id" type="xs:token" use="required"/>
       <xs:attribute name="x" type="xs:double"/>
       <xs:attribute name="y" type="xs:double"/>
       <xs:attribute name="z" type="xs:double"/>
@@ -218,7 +220,7 @@
         </xs:choice>
         <xs:element minOccurs="0" ref="cov-mat"/>
       </xs:sequence>
-      <xs:attribute name="from"/>
+      <xs:attribute name="from" type="xs:token"/>
       <xs:attribute name="orientation" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
     </xs:complexType>
@@ -233,7 +235,7 @@
 
   <xs:element name="direction">
     <xs:complexType>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:NMTOKEN"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -243,8 +245,8 @@
 
   <xs:element name="distance">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:double"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -254,9 +256,9 @@
 
   <xs:element name="angle">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="bs" use="required"/>
-      <xs:attribute name="fs" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="bs" use="required" type="xs:token"/>
+      <xs:attribute name="fs" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:NMTOKEN"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -267,8 +269,8 @@
 
   <xs:element name="s-distance">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:double"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -278,8 +280,8 @@
 
   <xs:element name="z-angle">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:NMTOKEN"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -289,8 +291,8 @@
 
   <xs:element name="azimuth">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:NMTOKEN"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="from_dh" type="xs:double"/>
@@ -309,8 +311,8 @@
 
   <xs:element name="dh">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="val" use="required" type="xs:double"/>
       <xs:attribute name="stdev" type="xs:double"/>
       <xs:attribute name="dist" type="xs:double"/>
@@ -339,8 +341,8 @@
 
   <xs:element name="vec">
     <xs:complexType>
-      <xs:attribute name="from"/>
-      <xs:attribute name="to" use="required"/>
+      <xs:attribute name="from" type="xs:token"/>
+      <xs:attribute name="to" use="required" type="xs:token"/>
       <xs:attribute name="dx" use="required" type="xs:double"/>
       <xs:attribute name="dy" use="required" type="xs:double"/>
       <xs:attribute name="dz" use="required" type="xs:double"/>

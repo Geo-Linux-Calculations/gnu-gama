@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<xs:schema version="0.90"
+<xs:schema version="1.00"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.gnu.org/software/gama/gama-local-adjustment"
   targetNamespace="http://www.gnu.org/software/gama/gama-local-adjustment"
@@ -473,11 +473,11 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="id" type="xs:string"/>
-  <xs:element name="from" type="xs:string"/>
-  <xs:element name="to" type="xs:string"/>
-  <xs:element name="left" type="xs:string"/>
-  <xs:element name="right" type="xs:string"/>
+  <xs:element name="id"    type="xs:token"/>
+  <xs:element name="from"  type="xs:token"/>
+  <xs:element name="to"    type="xs:token"/>
+  <xs:element name="left"  type="xs:token"/>
+  <xs:element name="right" type="xs:token"/>
   <xs:element name="X" type="xs:double"/>
   <xs:element name="x" type="xs:double"/>
   <xs:element name="Y" type="xs:double"/>
