@@ -1,3 +1,8 @@
+2018-03-07  Ales Cepek  <cepek@gnu.org>
+
+	* revision 1.21.4
+	* added fixed points to Octave export (.m)
+
 2018-03-06  Ales Cepek  <cepek@gnu.org>
 
 	* revision 1.21.3

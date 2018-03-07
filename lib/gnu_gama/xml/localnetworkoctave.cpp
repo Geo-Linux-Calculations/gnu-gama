@@ -32,10 +32,21 @@ using GNU_gama::local::LocalPoint;
 void LocalNetworkOctave::write(std::ostream& out) const
 {
   out <<
-    "# gama-local : simplified adjustement results for GNU Octave\n"
-    "# version 1.00\n"
-    "#\n\n";
+    "% gama-local : simplified adjustement results for GNU Octave\n"
+    "% version 1.00\n"
+    "%\n\n";
 
+
+  /* Adjusted points, coordinates, indexes and covariances */
+
+  out <<
+    "%  Addjusted points are stored in four matrix objects\n"
+    "%\n"
+    "%  * Points   points ids\n"
+    "%  * Indexes  indexes of adjusted covatiances\n"
+    "%  * XZY      ajusted coordinates (zero if not available)\n"
+    "%  * Cov      covariance matrix of adjusted coordinates\n"
+    "%\n\n";
 
   out << "Points = [\n";
   for (auto i=netinfo->PD.cbegin(); i!=netinfo->PD.cend(); ++i)
@@ -46,7 +57,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
           out << "   '" << (*i).first << "'\n";
         }
     }
-  out << "]\n\n";
+  out << "];\n\n";
 
   std::vector<Index> ind(netinfo->sum_unknowns() + 1);
   Index n = 1;
@@ -82,7 +93,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
           }
         }
     }
-  out << "]\n\n";
+  out << "];\n\n";
 
 
   out << "XYZ = [\n";
@@ -117,7 +128,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
         }
 
     }
-  out << "]\n\n";
+  out << "];\n\n";
 
 
   const double m2 = netinfo->m_0() * netinfo->m_0();
@@ -132,6 +143,39 @@ void LocalNetworkOctave::write(std::ostream& out) const
         };
       out << ";\n";
     }
-  out << "]\n";
+  out << "];\n\n";
 
+
+  /* Fixed Points */
+
+  out <<
+    "% Fixed points are store in a cell array of the size n x 2\n"
+    "%\n"
+    "% The first column contains points ids, the second row vectors of\n"
+    "% coordinates [x y z], [x y] or [z]\n"
+    "%\n"
+    "% Example: [id xyz] = FixedPoints{1,:}\n"
+    "%\n\n";
+
+  out << "FixedPoints = {\n";
+  for (auto i=netinfo->PD.cbegin(); i!=netinfo->PD.cend(); ++i)
+    {
+      const LocalPoint& p = (*i).second;
+      if (p.fixed_xy() || p.fixed_z())
+        {
+          out << "   '" << (*i).first << "'  [";
+          if (p.fixed_xy())
+            {
+              out << setprecision(6) << fixed << setw(17)
+                  << p.x() << "  " << p.y();
+            }
+          if (p.fixed_z())
+            {
+              out << setprecision(6) << fixed << setw(12)
+                  << p.z();
+            }
+          out << " ]\n";
+        }
+    }
+  out << "};\n\n";
 }
