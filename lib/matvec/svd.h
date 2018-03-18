@@ -1,6 +1,6 @@
 /*
   C++ Matrix/Vector templates (GNU Gama / matvec)
-  Copyright (C) 1999, 2001, 2005, 2007  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 1999, 2001, 2005, 2007, 2018  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -23,6 +23,7 @@
 #define GNU_gama_gMatVec_MatSVD_h_
 
 #include <cmath>
+#include <limits>
 #include <matvec/matvec.h>
 
 
@@ -70,19 +71,19 @@ namespace GNU_gama {
      Three tests for convergence had to be rewritten to explicitly
      use a temporary variable s2:
 
-        <    if ((s1 + ABS(rv1[L])) == s1) goto test_for_convergence;
+        <    if ((s1 + std::fabs(rv1[L])) == s1) goto test_for_convergence;
         ---
-        >    s2 = s1 + ABS(rv1[L]);
+        >    s2 = s1 + std::fabs(rv1[L]);
         >    if (s1 == s2) goto test_for_convergence;
 
-        <    if (s1 + (ABS(W[L1])) == s1) break;
+        <    if (s1 + (std::fabs(W[L1])) == s1) break;
         ---
-        >    s2 = s1 + ABS(W[L1]);
+        >    s2 = s1 + std::fabs(W[L1]);
         >    if (s1 == s2) break;
 
-        <    if (s1 + (ABS(f)) == s1) goto test_for_convergence;
+        <    if (s1 + (std::fabs(f)) == s1) goto test_for_convergence;
         ---
-        >    s2 = s1 + ABS(f);
+        >    s2 = s1 + std::fabs(f);
         >    if (s1 == s2) goto test_for_convergence;
 
      ----------------------------------------------------------------------- */
@@ -163,32 +164,28 @@ namespace GNU_gama {
   // ------ Exception::Singular Value Decompiosition member functions --------
 
 
-  template <typename T> inline const T ABS(const T& x)
-    {
-      return (x >= T(0)) ? x : -x ;
-    }
-
   template <typename Float, typename Exc>
     void SVD<Float, Exc>::set_inv_W()
     {
       if (W_tol == 0)
         {             // if not defined set W_tol to 1000*comp_epsilon
-          volatile Float  eps, eps_1, eps_min, eps_max, sum;
-          const Float one = 1;
-
-          eps_min = Float();
-          eps_max = eps = 1e-5;
-          do
-            {
-              eps_1 = eps;
-              eps = (eps_min + eps_max) / 2;
-              sum = one + eps;
-              if (sum == one)
-                eps_min = eps;
-              else
-                eps_max = eps;
-            } while (ABS(eps - eps_1)/eps > 0.1);
-          W_tol = 1000*eps;
+          // volatile Float  eps, eps_1, eps_min, eps_max, sum;
+          // const Float one = 1;
+          //
+          // eps_min = Float();
+          // eps_max = eps = 1e-5;
+          // do
+          //   {
+          //     eps_1 = eps;
+          //     eps = (eps_min + eps_max) / 2;
+          //     sum = one + eps;
+          //     if (sum == one)
+          //       eps_min = eps;
+          //     else
+          //       eps_max = eps;
+          //   } while (std::fabs(eps - eps_1)/eps > 0.1);
+          // W_tol = 1000*eps;
+	  W_tol = 1000*std::numeric_limits<Float>::epsilon();
         }
 
       volatile Float vmax = Float();
@@ -196,7 +193,7 @@ namespace GNU_gama {
       const Float vmin = W_tol * vmax;
       defect = 0;
       for (Index i=1; i<=inv_W_.dim(); i++)
-        if (ABS(W[i]) > vmin)
+        if (std::fabs(W[i]) > vmin)
           inv_W[i] = 1/W[i];
         else
           {
@@ -212,7 +209,7 @@ namespace GNU_gama {
       volatile Float at, bt, ct;
 
       return
-        (( at = ABS(a) )  > ( bt = ABS(b) ) )     ?
+        (( at = std::fabs(a) )  > ( bt = std::fabs(b) ) )     ?
         (       ct = bt/at, at * std::sqrt( (Float)1 + ct * ct ) ) :
         (bt ? ( ct = at/bt, bt * std::sqrt( (Float)1 + ct * ct ) ) : (Float)0);
     }
@@ -244,7 +241,7 @@ namespace GNU_gama {
         rv1[i] = scale*g ;
         g = s = scale = ZERO ;
         if (i <= m) {
-          for (k=i; k<=m; k++) scale += ABS(U[k][i]);
+          for (k=i; k<=m; k++) scale += std::fabs(U[k][i]);
           if (scale) {
             for (k=i; k<=m; k++) {
               tmp1 = (U[k][i] /= scale);
@@ -269,7 +266,7 @@ namespace GNU_gama {
         W[i] = scale*g;
         g = s = scale = ZERO;
         if (i <= m && i != n) {
-          for (k=L; k<=n; k++) scale += ABS(U[i][k]);
+          for (k=L; k<=n; k++) scale += std::fabs(U[i][k]);
           if (scale) {
             for (k=L; k<=n; k++) {
               tmp1 = (U[i][k] /= scale);
@@ -292,7 +289,7 @@ namespace GNU_gama {
           }
         }
         // s1 = FMAX(s1, (FABS(W[i]+FABS(rv1[i])) );
-        r = ABS(W[i]) + ABS(rv1[i]); if (r > s1) s1=r;
+        r = std::fabs(W[i]) + std::fabs(rv1[i]); if (r > s1) s1=r;
       }
 
       /* Accumulation of right-hand transformations */
@@ -356,13 +353,13 @@ namespace GNU_gama {
             {
               for (L=k; L>=1; L--)
                 {
-                  s2 = s1 + ABS(rv1[L]);
+                  s2 = s1 + std::fabs(rv1[L]);
                   if (s1 == s2) goto test_for_convergence;
 
                   /* rv[1] is always zero, so there is no exit
                    * through the bottom of the loop */
                   L1 = L - 1;
-                  s2 = s1 + ABS(W[L1]);
+                  s2 = s1 + std::fabs(W[L1]);
                   if (s1 == s2) break;
                 }
 
@@ -373,7 +370,7 @@ namespace GNU_gama {
                 {
                   f = s * rv1[i];
                   rv1[i] = c * rv1[i];
-                  s2 = s1 + ABS(f);
+                  s2 = s1 + std::fabs(f);
                   if (s1 == s2) goto test_for_convergence;
                   g = W[i];
                   h = PYTHAG(f,g);

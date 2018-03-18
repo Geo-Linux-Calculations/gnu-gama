@@ -98,7 +98,7 @@ public:
   virtual std::ostream& write(std::ostream& out) const
     {
 
-      const int fw = out.width();
+      const std::streamsize fw = out.width();
       out.width(fw);
       out << rows() << " ";
       out.width(fw);
