@@ -27,7 +27,7 @@ namespace GNU_gama {
 #endif
 
 
-int UnknownEncodingHandler(void *userData, const char *name,XML_Encoding *info)
+int UnknownEncodingHandler(void * /*userData*/, const char *name,XML_Encoding *info)
 {
  if      (!strcmp(name,"cp-1250"))
    cp1250_unicode(info->map);

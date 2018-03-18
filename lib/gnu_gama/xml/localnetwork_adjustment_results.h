@@ -84,7 +84,7 @@ namespace GNU_gama
         return 0;
       }
 
-      int endElement(const char *name)
+      int endElement(const char * /*name*/)
       {
         if (stack.empty()) stack.push(&Parser::unknown);
 

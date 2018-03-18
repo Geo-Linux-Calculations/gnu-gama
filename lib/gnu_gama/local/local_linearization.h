@@ -42,7 +42,7 @@ namespace GNU_gama { namespace local {
 
     public:
 
-      LocalLinearization(PointData& pd, double m) 
+      LocalLinearization(PointData& pd, double /*m*/)
 	: max_size(6), PD(pd), maxn(0) //, m0(m) ... unused
       {}
 

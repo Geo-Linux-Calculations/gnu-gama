@@ -297,7 +297,7 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
 
 
 void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
-                                       const Observation* obs,
+                                       const Observation* /*obs*/,
                                        Index index)
 {
   double cxx = cov_bb(index, index  );
@@ -330,7 +330,7 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
 }
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Angle* a, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Angle* /*a*/, Index /*index*/)
 {
   out << "\n<angle> ";
   out << "        </angle>\n";
@@ -338,7 +338,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Angle* a, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Azimuth* /*a*/, Index /*index*/)
 {
   out << "\n<azimuth> ";
   out << "        </azimuth>\n";
@@ -560,11 +560,8 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const ZenithAngle* za, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const ZenithAngle* /*za*/, Index /*index*/)
 {
   out << "\n<zenith-angle> ";
   out << "        </zenith-angle>\n";
 }
-
-
-

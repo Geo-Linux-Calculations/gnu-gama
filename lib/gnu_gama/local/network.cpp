@@ -120,11 +120,11 @@ public:
     {
         check(fabs(obs->value() - d0)*1000);
     }
-    void visit(Direction* obs)
+    void visit(Direction* /*obs*/)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }
-    void visit(Angle* obs)
+    void visit(Angle* /*obs*/)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }
@@ -141,7 +141,7 @@ public:
         check(fabs(d3 - obs->value())*1000);
     }
 
-    void visit(Z_Angle* obs)
+    void visit(Z_Angle* /*obs*/)
     {
         Double dz = stan->z() - cil->z();
         Double d3 = sqrt(dz*dz + d0*d0);
@@ -180,7 +180,7 @@ public:
         check(fabs(dz - obs->value())*1000);
     }
 
-    void visit(Azimuth* obs)
+    void visit(Azimuth* /*obs*/)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }

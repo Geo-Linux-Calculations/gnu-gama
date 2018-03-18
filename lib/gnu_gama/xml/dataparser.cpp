@@ -372,7 +372,7 @@ DataParser::data_tag DataParser::tag(const char* c)
 
 // *****************************************************************
 
-int DataParser::parser_error(const char *name, const char **atts)
+int DataParser::parser_error(const char *name, const char ** /*atts*/)
 {
   return error(string("### tag <") + string(name)
                + string("> cannot be used in this context"));
@@ -385,7 +385,7 @@ int DataParser::start_tag(const char *name, const char **atts)
   return (state = next[state][tag(name)]);
 }
 
-int DataParser::end_tag(const char *name)
+int DataParser::end_tag(const char * /*name*/)
 {
   return (state = after[state]);
 }

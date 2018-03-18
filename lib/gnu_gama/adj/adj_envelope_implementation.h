@@ -384,7 +384,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-  Float AdjEnvelope<Float, Index, Exc>::q_bx(Index i, Index j)
+  Float AdjEnvelope<Float, Index, Exc>::q_bx(Index /*i*/, Index /*j*/)
   {
     throw Exc(Exception::BadRegularization,
               "q_bx not implemented");

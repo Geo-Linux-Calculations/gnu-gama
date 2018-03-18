@@ -203,7 +203,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS,
 template <typename OutStream>
 bool
 TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
-                  double max_pyx = 0.1500, // suspicious coorection in meters
+                  double /*max_pyx*/ = 0.1500, // suspicious coorection in meters
                   double max_dif = 0.0005  // max. positional difference in mm
                   )
 {

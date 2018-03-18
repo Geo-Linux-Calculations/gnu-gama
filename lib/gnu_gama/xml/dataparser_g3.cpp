@@ -1191,7 +1191,7 @@ int DataParser::g3_const_tol_abs(const char *name)
   return error("### bad <tol-abs>");
 }
 
-int DataParser::g3_const_ellipsoid_id(const char *name)
+int DataParser::g3_const_ellipsoid_id(const char * /*name*/)
 {
   using namespace g3;
   stringstream istr(text_buffer);
