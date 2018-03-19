@@ -93,7 +93,7 @@ namespace GNU_gama {
 
     std::ostream&           std_stream;
     std::ios_base::fmtflags flgs;
-    int                     prec;
+    std::streamsize         prec;
   };
 
 }
