@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2012, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -21,13 +21,21 @@
 #include <gnu_gama/radian.h>
 #include <cfloat>
 
+/* All algorithms presented here are yielding approximations with
+   results in single precision. Original fortran sources used float
+   arithmetic accordingly. To simplify its usage in Gama library,
+   floats were changed to doubles in statan.cpp.
+ */
+
 using namespace std;
+
+using Float = double;
 
 namespace GNU_gama {
 
-float Student(float palfa, int N)
+Float Student(Float palfa, int N)
 {
-   float alfa = palfa;
+   Float alfa = palfa;
    if(alfa > 0.5) alfa=1.0-alfa;
    alfa *= 2;
 
@@ -35,26 +43,26 @@ float Student(float palfa, int N)
 
    if (N <= 1)
    {
-      float a = M_PI/2*alfa;
-      float stu_ = cos(a)/sin(a);
+      Float a = M_PI/2*alfa;
+      Float stu_ = cos(a)/sin(a);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
    }
 
    if (N <= 2)
    {
-      float stu_ = sqrt(2.0/(alfa*(2.0-alfa))-2.0);
+      Float stu_ = sqrt(2.0/(alfa*(2.0-alfa))-2.0);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
     }
 
-   float r = N;
-   float a = 1.0/(r-0.5);
-   float b = 48.0/(a*a);
-   float c = ((20700.0*a/b-98.0)*a-16.0)*a+96.36;
-   float d = ((94.5/(b+c)-3.0)/b+1.0)*sqrt(M_PI/2*a)*r;
-   float x = d*alfa, xx = 2.0/r;
-   float y = pow(x,xx);
+   Float r = N;
+   Float a = 1.0/(r-0.5);
+   Float b = 48.0/(a*a);
+   Float c = ((20700.0*a/b-98.0)*a-16.0)*a+96.36;
+   Float d = ((94.5/(b+c)-3.0)/b+1.0)*sqrt(M_PI/2*a)*r;
+   Float x = d*alfa, xx = 2.0/r;
+   Float y = pow(x,xx);
 
    if (y > a+0.05)
    {
@@ -68,14 +76,14 @@ float Student(float palfa, int N)
          y = 0.5*y*y+y;
       else
          y = exp(y)-1.0;
-      float stu_ = sqrt(r*y);
+      Float stu_ = sqrt(r*y);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
    }
 
    y = ((1.0/(((r+6.0)/(r*y)-0.089*d-0.822)*(r+2.0)*3.0)+0.5/(r+4.0))
         *y-1.0)*(r+1.0)/(r+2.0)+1.0/y;
-   float stu_ = sqrt(r*y);
+   Float stu_ = sqrt(r*y);
    if (palfa > 0.5) stu_ = -stu_;
    return stu_;
 
@@ -199,13 +207,13 @@ void NormalDistribution(double x, double& D, double& f)
    if (typv) D = 0; else D = 1;
 }
 
-float KSprob(float lambda)
+Float KSprob(Float lambda)
 {
-   const float eps = 1.0e-8;
-   const float C = -2*lambda*lambda;
-   float term;
-   float j = 1;
-   float sum = 0;
+   const Float eps = 1.0e-8;
+   const Float C = -2*lambda*lambda;
+   Float term;
+   Float j = 1;
+   Float sum = 0;
 
    do {
       term = exp(C*j*j);  j++;  sum += term;
@@ -215,22 +223,22 @@ float KSprob(float lambda)
    return j<100 ? 2*sum : 1;
 }
 
-float Chi_square(float p, int n)
+Float Chi_square(Float p, int n)
 {
    if (n < 2)
    {
-      float a = Normal(0.5*p);
+      Float a = Normal(0.5*p);
       return a*a;
    }
    else if (n == 2)
       return -2.0*log(p);
 
-   float f=n;
-   float f1=1.0/f;
-   float t=Normal(p);
-   float f2=sqrt(f1)*t;
+   Float f=n;
+   Float f1=1.0/f;
+   Float t=Normal(p);
+   Float f2=sqrt(f1)*t;
 
-   float z;
+   Float z;
    if(n < (2+int(4*fabs(t))))
       z=(((((((0.1565326e-2*f2 + 0.1060438e-2)*f2 - 0.6950356e-2)*f2 -
       0.1323293e-1)*f2 + 0.2277679e-1)*f2 - 0.8986007e-2)*f2 - 0.1513904e-1)
