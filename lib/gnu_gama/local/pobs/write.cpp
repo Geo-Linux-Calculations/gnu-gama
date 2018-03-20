@@ -42,14 +42,14 @@ typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
 std::ostream& operator << (std::ostream& str, PointData& sez)
 {
   using namespace std;
-  int prec_p = str.precision();
+  std::streamsize prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
 
-  int maxkl = 0;
+  size_t maxkl = 0;
   for (PointData::iterator i=sez.begin(); i!=sez.end(); ++i)
     {
-      int k = (*i).first.lengthUtf8();
+      size_t k = (*i).first.lengthUtf8();
       // maxkl = max( maxkl, k);
       if (k > maxkl) maxkl = k;
     }
@@ -62,7 +62,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 
 
         str << "<point id=";
-        for (int j=cb.lengthUtf8(); j<maxkl; j++)
+        for (size_t j=cb.lengthUtf8(); j<maxkl; j++)
           str << ' ';
         str << "\"" << cb << "\"";
 
@@ -112,7 +112,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 std::ostream& operator << (std::ostream& str, ObservationData& od)
 {
   using namespace std;
-  int prec_p = str.precision();
+  std::streamsize prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
 
