@@ -135,7 +135,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
 
    Double l1 = 0;
    Float  d  = 0;          // mean deviation
-   int    n  = sz.size();
+   int    n  = int(sz.size());
 
    if (n)
    {

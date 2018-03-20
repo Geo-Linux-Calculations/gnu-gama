@@ -150,7 +150,7 @@ namespace GNU_gama {
         for (row=1; row<=N; row++)
           {
             if ((pivot = *B) < tol)
-              return block;                  // not positive-definite
+              return int(block);             // not positive-definite
 
             k = std::min(W, N-row);          // number of of-diagonal elements
             p = B+k;                         // next row address -1
