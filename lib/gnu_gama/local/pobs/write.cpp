@@ -2,6 +2,7 @@
     GNU Gama C++ library
     Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
+                  2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -36,7 +37,7 @@
 
 namespace GNU_gama { namespace local {
 
-typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
+typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
 
 
 std::ostream& operator << (std::ostream& str, PointData& sez)

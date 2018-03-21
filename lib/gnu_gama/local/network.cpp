@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -46,8 +46,8 @@ using namespace std;
 using namespace GNU_gama::local;
 
 
-typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
-typedef GNU_gama::Cluster<Observation>                  Clust_r;  // 1.10
+typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
+typedef GNU_gama::Cluster<Observation>             Clust_r;  // 1.10
 
 namespace
 {

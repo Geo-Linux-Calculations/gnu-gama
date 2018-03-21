@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2004, 2018  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -22,7 +22,6 @@
 #include <fstream>
 #include <iostream>
 #include <gnu_gama/xml/dataparser.h>
-#include <gnu_gama/list.h>
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/version.h>
 
@@ -123,7 +122,7 @@ namespace
     std::ifstream input(file);
     if (!input) return 0;
 
-    GNU_gama::List<GNU_gama::DataObject::Base*> objects;
+    std::list<GNU_gama::DataObject::Base*> objects;
     GNU_gama::DataParser parser(objects);
 
     try
@@ -151,8 +150,8 @@ namespace
       }
 
     GNU_gama::g3::Model* model = 0;
-    GNU_gama::List<GNU_gama::DataObject::Base*>::iterator i = objects.begin();
-    GNU_gama::List<GNU_gama::DataObject::Base*>::iterator e = objects.end();
+    std::list<GNU_gama::DataObject::Base*>::iterator i = objects.begin();
+    std::list<GNU_gama::DataObject::Base*>::iterator e = objects.end();
     while (i != e)
       {
          if (GNU_gama::DataObject::g3_model* m

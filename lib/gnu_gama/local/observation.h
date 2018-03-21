@@ -2,7 +2,7 @@
     GNU Gama -- adjustment of geodetic networks
     Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2013, 2014  Ales Cepek <cepek@gnu.org>
+                  2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -39,6 +39,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 
 #include <gnu_gama/obsdata.h>
 #include <gnu_gama/local/matvec.h>
@@ -49,7 +50,7 @@ namespace GNU_gama { namespace local {
   class Observation;
 
 
-  typedef GNU_gama::List<Observation*> ObservationList;
+  typedef std::list<Observation*> ObservationList;
 
 
   /** \brief Local observation base class

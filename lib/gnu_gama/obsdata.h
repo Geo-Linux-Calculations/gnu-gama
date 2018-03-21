@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003, 2012, 2014  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2012, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -19,7 +19,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <gnu_gama/list.h>
+#include <list>
 #include <cmath>
 
 #ifndef GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
@@ -40,7 +40,7 @@ namespace GNU_gama {
 
       typedef Observation                     ObservationType;
       const ObservationData<Observation>*     observation_data;
-      List<Observation*>                      observation_list;
+      std::list<Observation*>                      observation_list;
       typename Observation::CovarianceMatrix  covariance_matrix;
 
 
@@ -85,11 +85,11 @@ namespace GNU_gama {
     {
     public:
 
-      typedef Observation           ObservationType;
-      typedef Cluster<Observation>  ClusterType;
-      typedef List<ClusterType*>    ClusterList;
+      typedef Observation              ObservationType;
+      typedef Cluster<Observation>     ClusterType;
+      typedef std::list<ClusterType*>  ClusterList;
 
-      ClusterList                   clusters;
+      ClusterList clusters;
 
       ObservationData() {}
       ObservationData(const ObservationData& cod) { deepCopy(cod); }
@@ -155,7 +155,7 @@ namespace GNU_gama {
 
           const ObservationData*  OD;
           typename ObservationData::ClusterList::const_iterator  cluster;
-          typename List<Observation*>::const_iterator            obs;
+          typename std::list<Observation*>::const_iterator            obs;
         };
 
       const_iterator  begin() const
@@ -249,7 +249,7 @@ namespace GNU_gama {
 
           ObservationData*  OD;
           typename ObservationData::ClusterList::iterator  cluster;
-          typename List<Observation*>::iterator            obs;
+          typename std::list<Observation*>::iterator            obs;
         };
 
       iterator  begin()
@@ -293,7 +293,7 @@ namespace GNU_gama {
   template <typename Observation>
     Cluster<Observation>::~Cluster()
     {
-      for (typename List<Observation*>::iterator
+      for (typename std::list<Observation*>::iterator
              i=observation_list.begin(); i!=observation_list.end() ;  ++i)
         {
           delete *i;
@@ -310,7 +310,7 @@ namespace GNU_gama {
       act_nonz  = 0;
       int index = 0;
       Observation* p;
-      for (typename List<Observation*>::iterator
+      for (typename std::list<Observation*>::iterator
              i=observation_list.begin(); i!=observation_list.end(); ++i)
         {
           p = (*i);
@@ -354,7 +354,7 @@ namespace GNU_gama {
       Index* ind = new Index[act_dim + 1];
       Index  k=1, n=1;
 
-      for (typename List<Observation*>::const_iterator
+      for (typename std::list<Observation*>::const_iterator
              i=observation_list.begin(),
              e=observation_list.end(); i!=e; ++i)
         {
@@ -402,7 +402,7 @@ namespace GNU_gama {
   template <typename Observation>
     ObservationData<Observation>::~ObservationData()
     {
-      for (typename List<Cluster<Observation>*>::iterator
+      for (typename std::list<Cluster<Observation>*>::iterator
              c=clusters.begin(); c!=clusters.end(); ++c)
         {
           delete *c;
@@ -417,7 +417,7 @@ namespace GNU_gama {
     {
       if (this != &cod)
         {
-          for (typename List<Cluster<Observation>*>::iterator
+          for (typename std::list<Cluster<Observation>*>::iterator
                  c=clusters.begin(); c!=clusters.end(); ++c) delete *c;
           {
             deepCopy(cod);
@@ -432,16 +432,16 @@ namespace GNU_gama {
   template <typename Observation>
     void ObservationData<Observation>::deepCopy(const ObservationData& cod)
     {
-      for (typename List<Cluster<Observation>*>::const_iterator
+      for (typename std::list<Cluster<Observation>*>::const_iterator
              ci=cod.clusters.begin(); ci!=cod.clusters.end(); ++ci)
         {
           Cluster<Observation>* current = (*ci)->clone(this);
 
-          typename List<Observation*>::const_iterator
+          typename std::list<Observation*>::const_iterator
             begin = (*ci)->observation_list.begin();
-          typename List<Observation*>::const_iterator
+          typename std::list<Observation*>::const_iterator
             end   = (*ci)->observation_list.end();
-          for (typename List<Observation*>::const_iterator
+          for (typename std::list<Observation*>::const_iterator
                  m=begin; m!=end; ++m)
             {
               current->observation_list.push_back( (*m)->clone() );

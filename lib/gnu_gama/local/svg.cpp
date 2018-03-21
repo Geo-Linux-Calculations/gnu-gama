@@ -1,6 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
                  2014  Maxime Le Moual <maxime.le-moual@ensg.eu>
+                 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -406,7 +407,7 @@ void GamaLocalSVG::svg_observations() const
 
   Pairs pairs;
 
-  typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
+  typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
   const ClusterList& clusters = OD.clusters;
   for (ClusterList::const_iterator
          c=clusters.begin(), ce=clusters.end(); c!=ce; ++c)

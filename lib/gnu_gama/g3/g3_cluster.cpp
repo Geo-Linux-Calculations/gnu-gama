@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2004, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -28,8 +28,8 @@ void ObsCluster::write_xml(std::ostream& out) const
 {
   out << "\n<obs>\n";
 
-  List<ObservationType*>::const_iterator i = observation_list.begin();
-  List<ObservationType*>::const_iterator e = observation_list.end();
+  std::list<ObservationType*>::const_iterator i = observation_list.begin();
+  std::list<ObservationType*>::const_iterator e = observation_list.end();
   while (i != e)
     {
       const ObservationType* obs = (*i);

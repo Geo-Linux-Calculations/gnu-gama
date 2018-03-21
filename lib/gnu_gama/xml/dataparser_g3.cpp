@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2005, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -776,7 +776,7 @@ int DataParser::g3_obs(const char *name)
   using namespace g3;
 
   int obs_dim = 0;
-  for (List<g3::Observation*>::const_iterator
+  for (std::list<g3::Observation*>::const_iterator
          i=g3->obs_cluster->observation_list.begin(),
          e=g3->obs_cluster->observation_list.end();  i!=e;  ++i)
     {
@@ -1304,4 +1304,3 @@ int DataParser::g3_obs_angle(const char *name)
 
   return error("### bad <angle>");
 }
-

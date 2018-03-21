@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2005, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -34,8 +34,7 @@ using namespace GNU_gama::g3;
 using   GNU_gama::ObservationData;
 using   GNU_gama::g3::Observation;
 using   GNU_gama::g3::Model;
-using   GNU_gama::List;
-typedef GNU_gama::List<Observation*>  ObsList;
+using   ObsList = std::list<Observation*>;
 
 
 namespace
@@ -57,12 +56,11 @@ namespace
 
   private:
 
-    GNU_gama::g3::Model*  model;
-    //Model::PointBase*     points; 
-    List<Observation*>    a, b;
-    ObsList*              obs_in;
-    ObsList*              obs_out;
-    bool                  updated;
+    GNU_gama::g3::Model*    model;
+    std::list<Observation*> a, b;
+    ObsList*                obs_in;
+    ObsList*                obs_out;
+    bool                    updated;
   };
 
 

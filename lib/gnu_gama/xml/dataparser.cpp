@@ -49,7 +49,7 @@ DataParser::~DataParser()
 }
 
 
-DataParser::DataParser(List<DataObject::Base*>& obs) : objects(obs)
+DataParser::DataParser(std::list<DataObject::Base*>& obs) : objects(obs)
 {
   adj   = 0;
   g3    = 0;
