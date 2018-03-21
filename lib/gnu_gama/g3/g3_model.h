@@ -179,7 +179,7 @@ namespace GNU_gama {
     // adjustment
     Adj*              adj;
 
-    int    redundancy;
+    size_t redundancy;
     enum { apriori, aposteriori } actual_sd;
     double aposteriori_sd;
     double std_deviation;

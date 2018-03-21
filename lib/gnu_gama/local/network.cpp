@@ -565,7 +565,7 @@ void LocalNetwork::project_equations()
 
     Double* a = Asp->begin(1);
     Index*  i = Asp->ibegin(1);
-    for (int n, row=1; row<=pocmer_; row++)
+    for (Index n, row=1; row<=pocmer_; row++)
       {
         n = Asp->size(row);
         while (n--)
@@ -869,7 +869,7 @@ Double LocalNetwork::m_0()
   else if (m_0_aposteriori())
     {
       vyrovnani_();
-      const int nadb = degrees_of_freedom();
+      const Index nadb = degrees_of_freedom();
       if (nadb > 0)
         return sqrt(trans_VWV()/nadb);
       else
@@ -885,7 +885,7 @@ Double LocalNetwork::m_0()
 Double LocalNetwork::m_0_aposteriori_value()
 {
   vyrovnani_();
-  const int nadb = degrees_of_freedom();
+  const Index nadb = degrees_of_freedom();
   if (nadb > 0)
     return sqrt(trans_VWV()/nadb);
   else
@@ -902,9 +902,9 @@ Double LocalNetwork::conf_int_coef()
     return GNU_gama::Normal(pravdepodobnost);
   else if (m_0_aposteriori())
     {
-      const int nadb = degrees_of_freedom();
+      const Index nadb = degrees_of_freedom();
       if ( nadb > 0)
-        return GNU_gama::Student(pravdepodobnost, nadb);
+        return GNU_gama::Student(pravdepodobnost, int(nadb));
       else
         return 0;
     }
@@ -957,7 +957,7 @@ void LocalNetwork::remove_huge_abs_terms()
 }
 
 
-int LocalNetwork::null_space()
+Index LocalNetwork::null_space()
 {
   try
     {

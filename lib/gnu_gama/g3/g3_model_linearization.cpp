@@ -154,11 +154,11 @@ void GNU_gama::g3::Model::update_linearization()
   }
 
   {
-    int nonzeroes=0, blocks=0;
+    size_t nonzeroes=0, blocks=0;
     for (ClusterList::iterator ci = obsdata.clusters.begin(),
            ce = obsdata.clusters.end(); ci!=ce; ++ci)
       {
-        if (int n = (*ci)->activeNonz())
+        if (size_t n = (*ci)->activeNonz())
           {
             nonzeroes += n;
             blocks++;

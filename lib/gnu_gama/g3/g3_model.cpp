@@ -242,7 +242,7 @@ void Model::update_adjustment()
 
       if (height.free())
         {
-          int k = U.index();
+          size_t k = U.index();
           height.set_index(k);
           height.add_correction(adj->x()(k));
         }
@@ -252,7 +252,7 @@ void Model::update_adjustment()
          i=par_list->begin(), e=par_list->end(); i!=e; ++i)
     {
       Parameter* p = *i;
-      if (int k = p->index()) p->add_correction(adj->x()(k));
+      if (size_t k = p->index()) p->add_correction(adj->x()(k));
     }
 
   // ..........................................................

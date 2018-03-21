@@ -788,8 +788,8 @@ int DataParser::g3_obs(const char *name)
                  "int DataParser::g3_obs(const char *name)");
 
 
-  int cov_dim  = 0;
-  int cov_band = 0;
+  size_t cov_dim  = 0;
+  size_t cov_band = 0;
   typedef std::list<CovMat<> >::const_iterator Iterator;
   for (Iterator i=g3->cov_list.begin(), e=g3->cov_list.end(); i!=e; ++i)
     {
@@ -805,7 +805,7 @@ int DataParser::g3_obs(const char *name)
   g3->obs_cluster->covariance_matrix.reset(cov_dim, cov_band);
   g3->obs_cluster->covariance_matrix.set_zero();
 
-  int offset = 0;
+  size_t offset = 0;
   for (Iterator i=g3->cov_list.begin(), e=g3->cov_list.end(); i!=e; ++i)
     {
       const CovMat<>& cov = *i;
@@ -818,7 +818,7 @@ int DataParser::g3_obs(const char *name)
     }
 
   /* TODO: !!! here we should better test Cholesky decomposition !!! */
-  for (int N=g3->obs_cluster->covariance_matrix.dim(), i=1; i<=N; i++)
+  for (size_t N=g3->obs_cluster->covariance_matrix.dim(), i=1; i<=N; i++)
     if(g3->obs_cluster->covariance_matrix(i,i) <= 0)
       return error("### zero or negative variance");
 

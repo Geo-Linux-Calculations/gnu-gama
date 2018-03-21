@@ -95,7 +95,7 @@ namespace GNU_gama { namespace local
     {
       return undefined_xy_z_;
     }
-    int sum_points()
+    Index sum_points()
     {
       revision_points(); return pocbod_;
     }
@@ -104,7 +104,7 @@ namespace GNU_gama { namespace local
     {
       return removed_obs;
     }
-    int sum_observations() const
+    Index sum_observations() const
     {
       return pocmer_;
     }
@@ -112,7 +112,7 @@ namespace GNU_gama { namespace local
     void project_equations(std::ostream&);
     void project_equations(Mat& A, Vec& b, Vec& w);
     Double conf_int_coef();
-    int min_n() const
+    Index min_n() const
     {
       return min_n_;
     }
@@ -136,7 +136,7 @@ namespace GNU_gama { namespace local
     {
       return RSM[i-1];
     }
-    Double weight_obs(int i)
+    Double weight_obs(Index i)
     {
       Double p = m_0_apr_/RSM[i-1]->stdDev();
       return p*p;
@@ -169,22 +169,22 @@ namespace GNU_gama { namespace local
       vyrovnani_();
       return r;
     }
-    int sum_unknowns()
+    Index sum_unknowns()
     {
       project_equations();
       return A.cols();
     }
-    int sum_observations()
+    Index sum_observations()
     {
       project_equations();
       return A.rows();
     }
-    int degrees_of_freedom()
+    Index degrees_of_freedom()
     {
       vyrovnani_();
       return A.rows() - A.cols() + least_squares->defect();
     }
-    int null_space();
+    Index null_space();
 
     Double trans_VWV()           { vyrovnani_(); return suma_pvv_; }
     Double m_0();
@@ -212,19 +212,19 @@ namespace GNU_gama { namespace local
       return update_constrained_coordinates_;
     }
 
-    Double stdev_obs(int i) { return sigma_L(i); }
-    Double wcoef_res(int i) { return vahkopr(i); }
-    Double stdev_res(int i)
+    Double stdev_obs(Index i) { return sigma_L(i); }
+    Double wcoef_res(Index i) { return vahkopr(i); }
+    Double stdev_res(Index i)
     {
       using namespace std;
       return m_0()*sqrt(fabs(wcoef_res(i)));
     }
 
-    Double studentized_residual(int i)
+    Double studentized_residual(size_t i)
     {
       return residuals()(i)/stdev_res(i);
     }
-    Double obs_control(int i)
+    Double obs_control(size_t i)
     {
       /*
        * It is supposed that standard deviation mL of adjusted
@@ -331,12 +331,12 @@ namespace GNU_gama { namespace local
     RevisedObsList          RSM;
 
     PointIDList undefined_xy_z_;      // revision of points
-    int pocbod_;
-    bool tst_redbod_;
+    Index pocbod_;
+    bool  tst_redbod_;
 
     ObservationList removed_obs;      // revision of observations
-    int pocmer_;
-    bool tst_redmer_;
+    Index pocmer_;
+    bool  tst_redmer_;
 
     // parameters of statistical analysis
 

@@ -46,8 +46,8 @@ void ObsCluster::write_xml(std::ostream& out) const
       ++i;
     }
 
-  const int dim  = covariance_matrix.dim();
-  const int band = covariance_matrix.bandWidth();
+  const size_t dim  = covariance_matrix.dim();
+  const size_t band = covariance_matrix.bandWidth();
   out << "\n<cov> "
       << "<dim>"  << dim  << "</dim> "
       << "<band>" << band << "</band>\n";

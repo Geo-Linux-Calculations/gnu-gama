@@ -52,20 +52,20 @@ namespace GNU_gama {
 
       virtual Cluster* clone(const ObservationData<Observation>*) const = 0;
 
-      double stdDev(int i) const
+      double stdDev(size_t i) const
         {
           i++; return std::sqrt(covariance_matrix(i,i));
         }
-      int size() const
+      size_t size() const
         {
           return observation_list.size();
         }
 
       void update();
 
-      int  activeObs()  const { return act_obs;  }
-      int  activeDim()  const { return act_dim;  }
-      int  activeNonz() const { return act_nonz; }
+      size_t activeObs()  const { return act_obs;  }
+      size_t activeDim()  const { return act_dim;  }
+      size_t activeNonz() const { return act_nonz; }
       typename Observation::CovarianceMatrix
            activeCov() const;
       void scaleCov(int i, double sc);
@@ -75,7 +75,7 @@ namespace GNU_gama {
       Cluster(const Cluster&);
       void operator=(const Cluster&);
 
-      int act_obs, act_dim, act_nonz;
+      size_t act_obs, act_dim, act_nonz;
     };
 
 
@@ -325,7 +325,7 @@ namespace GNU_gama {
 
       if (act_dim)
         {
-          int b = covariance_matrix.bandWidth();
+          size_t b = covariance_matrix.bandWidth();
           if (act_dim - 1 < b) b = act_dim - 1;
           act_nonz = act_dim*(b+1) - b*(b+1)/2;
         }
@@ -382,16 +382,16 @@ namespace GNU_gama {
   template <typename Observation>
     void Cluster<Observation>::scaleCov(int p, double sc)
     {
-      const int N = covariance_matrix.dim();
-      const int B = covariance_matrix.bandWidth();
-      int k = p + B;
+      const size_t N = covariance_matrix.dim();
+      const size_t B = covariance_matrix.bandWidth();
+      size_t k = p + B;
       if (k > N) k = N;
-      int  q = p - B;
+      size_t  q = p - B;
       if (q < 1) q = 1;
 
       // scaling upper part of symmetric band matrix
       covariance_matrix(p, p) *= sc;
-      for (int i=q; i<=k; i++)
+      for (size_t i=q; i<=k; i++)
         {
           covariance_matrix(p, i) *= sc;
         }
