@@ -21,6 +21,7 @@
 
 #include <list>
 #include <cmath>
+#include <cstddef>
 
 #ifndef GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
 #define GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
@@ -40,7 +41,7 @@ namespace GNU_gama {
 
       typedef Observation                     ObservationType;
       const ObservationData<Observation>*     observation_data;
-      std::list<Observation*>                      observation_list;
+      std::list<Observation*>                 observation_list;
       typename Observation::CovarianceMatrix  covariance_matrix;
 
 
@@ -386,8 +387,10 @@ namespace GNU_gama {
       const size_t B = covariance_matrix.bandWidth();
       size_t k = p + B;
       if (k > N) k = N;
-      size_t  q = p - B;
-      if (q < 1) q = 1;
+      // error : subtracting two unsigned arguments
+      // size_t  q = p - B;
+      // if (q < 1) q = 1;
+      size_t q = (p < B+1) ? 1 : p-B;
 
       // scaling upper part of symmetric band matrix
       covariance_matrix(p, p) *= sc;
