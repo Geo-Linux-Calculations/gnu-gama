@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -24,7 +24,6 @@
 
 #include <matvec/matvec.h>
 #include <cmath>
-#include <limits>
 
 /* Gram-Schmidt Ortogonalization
  * =============================
@@ -114,6 +113,11 @@ private:
   Index *minx;
   Index *clist;
   Index *rlist;
+
+  template <typename T> inline const T ABS(const T& x)
+    {
+      return (x >= T(0)) ? x : -x ;
+    }
 };
 
 
@@ -198,23 +202,22 @@ void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last,
 {
   if (tol_ <= 0)
     {
-      // Float  eps, eps_1, eps_min, eps_max, sum;
-      // const Float one = 1;
-      //
-      // eps_min = 0;
-      // eps_max = eps = 1e-5;
-      // do
-      //   {
-      //     eps_1 = eps;
-      //     eps = (eps_min + eps_max) / 2;
-      //     sum = one + eps;
-      //     if (sum == one)
-      //       eps_min = eps;
-      //     else
-      //       eps_max = eps;
-      //   } while (std::fabs(eps - eps_1)/eps > 0.1);
-      // tol_ = std::sqrt(eps);
-      tol_ = std::sqrt(std::numeric_limits<Float>::epsilon());
+      Float  eps, eps_1, eps_min, eps_max, sum;
+      const Float one = 1;
+
+      eps_min = 0;
+      eps_max = eps = 1e-5;
+      do
+        {
+          eps_1 = eps;
+          eps = (eps_min + eps_max) / 2;
+          sum = one + eps;
+          if (sum == one)
+            eps_min = eps;
+          else
+            eps_max = eps;
+        } while (ABS(eps - eps_1)/eps > 0.1);
+      tol_ = std::sqrt(eps);
     }
 
   Mat<Float, Exc> &A = *pA;
@@ -305,3 +308,15 @@ void GSO<Float, Exc>::modified_gso(Index r_first, Index r_last,
 }   // namespace GNU_gama
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+

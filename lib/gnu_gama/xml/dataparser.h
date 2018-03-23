@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002, 2005, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -26,6 +26,7 @@
 #include <gnu_gama/xml/dataobject.h>
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/g3/g3_cluster.h>
+#include <gnu_gama/list.h>
 #include <gnu_gama/exception.h>
 #include <cstddef>
 #include <string>
@@ -47,7 +48,7 @@ namespace GNU_gama {
     {
     public:
 
-      DataParser(std::list<DataObject::Base*>&);
+      DataParser(List<DataObject::Base*>&);
       ~DataParser();
       int startElement(const char *name, const char **atts)
         {
@@ -67,7 +68,7 @@ namespace GNU_gama {
 
     private:
 
-      std::list<DataObject::Base*>& objects;
+      List<DataObject::Base*>& objects;
 
       enum parser_state
         {

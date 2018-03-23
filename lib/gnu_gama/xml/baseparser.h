@@ -44,7 +44,7 @@ namespace GNU_gama {
     virtual void xml_parse(const char *s, int len, int  isFinal) = 0;
     void xml_parse(const std::string& s, bool isFinal)
     {
-      xml_parse(s.c_str(), int(s.length()), isFinal ? 1 : 0);
+      xml_parse(s.c_str(), s.length(), isFinal ? 1 : 0);
     }
     virtual int characterDataHandler(const char* s, int len) = 0;
     virtual int startElement(const char *cname, const char **atts) = 0;

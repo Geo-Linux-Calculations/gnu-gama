@@ -2,7 +2,6 @@
     GNU Gama C++ library
     Copyright (C) 2000, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -37,20 +36,20 @@
 
 namespace GNU_gama { namespace local {
 
-typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
+typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
 
 
 std::ostream& operator << (std::ostream& str, PointData& sez)
 {
   using namespace std;
-  std::streamsize prec_p = str.precision();
+  int prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
 
-  size_t maxkl = 0;
+  int maxkl = 0;
   for (PointData::iterator i=sez.begin(); i!=sez.end(); ++i)
     {
-      size_t k = (*i).first.lengthUtf8();
+      int k = (*i).first.lengthUtf8();
       // maxkl = max( maxkl, k);
       if (k > maxkl) maxkl = k;
     }
@@ -63,7 +62,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 
 
         str << "<point id=";
-        for (size_t j=cb.lengthUtf8(); j<maxkl; j++)
+        for (int j=cb.lengthUtf8(); j<maxkl; j++)
           str << ' ';
         str << "\"" << cb << "\"";
 
@@ -113,7 +112,7 @@ std::ostream& operator << (std::ostream& str, PointData& sez)
 std::ostream& operator << (std::ostream& str, ObservationData& od)
 {
   using namespace std;
-  std::streamsize prec_p = str.precision();
+  int prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
 

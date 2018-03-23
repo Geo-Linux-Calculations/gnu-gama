@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2012, 2018  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2012  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -40,7 +40,7 @@ namespace GNU_gama {
  *
  * \param N degrees of freedom
  */
-double Student(double alfa, int N);
+float Student(float alfa, int N);
 
 /** \brief For given probability computes critical value of normalized
  *  normal distribution N(0,1).
@@ -64,7 +64,7 @@ void NormalDistribution(double x, double& D, double& f);
 
 /** \brief Kolmogorov-Smirnov probability function
  */
-double KSprob(double);
+float KSprob(float);
 
 /** \brief Kolmogorov-Smirnov test.
  *
@@ -80,9 +80,9 @@ void KStest(Float Data[], int n, FloatF (*Func)(FloatF),
 
    sort(Data, Data+n);
 
-   const double  float_n = n;
-   double Fa = 0, Fb, Fi, dl, du, dt;
-   double d = 0;
+   const float  float_n = n;
+   float Fa = 0, Fb, Fi, dl, du, dt;
+   float d = 0;
    for (int i=0; i<n;)
    {
       Fi = Func(Data[i]);
@@ -94,14 +94,14 @@ void KStest(Float Data[], int n, FloatF (*Func)(FloatF),
       if (dt > d) d = dt;
    }
 
-   const double sn = sqrt(float_n);
+   const float sn = sqrt(float_n);
    prob = KSprob((sn + 0.12 + 0.11/sn)*d);
    ks = d;
 }
 
 /** \brief For the given probability and degrees of freedom computes
  * critical value of Chi-square distribution.  */
-double Chi_square(double probability, int degrees_of_freedom);
+float Chi_square(float probability, int degrees_of_freedom);
 
 }      /* namespace GNU_gama::local */
 

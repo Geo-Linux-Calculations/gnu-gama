@@ -39,7 +39,7 @@ private:
     GNU_gama::local::LocalNetwork* netinfo;
     const GNU_gama::local::Vec&    residuals;
     GNU_gama::Index                index;
-    const double                   y_sign;
+    const int                      y_sign;
     const double                   kki;
 
 public:
@@ -658,7 +658,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   if (localNetwork.is_adjusted())
     {
       LocalNetwork* netinfo = &localNetwork;
-      const double y_sign = netinfo->y_sign();
+      const int y_sign = netinfo->y_sign();
       const Vec& x = netinfo->solve();
 
       { // general parameters
@@ -792,8 +792,8 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
 
       { // standard deviation
-        const int dof = int(netinfo->degrees_of_freedom());
-        double test=0, lower=0, upper=0;
+        const int dof = netinfo->degrees_of_freedom();
+        float test=0, lower=0, upper=0;
 
         test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
         if (dof)
@@ -936,7 +936,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
       { // covariance matrix
         Index dim  = netinfo->sum_unknowns();
-        Index band = netinfo->adj_covband();
+        int band = netinfo->adj_covband();
         if (band < 0) band = dim-1;
 
         const double m2 = netinfo->m_0() * netinfo->m_0();

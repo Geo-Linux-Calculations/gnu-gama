@@ -10,10 +10,10 @@ libgama_src = \
    gnu_gama/exception.h \
    gnu_gama/gon2deg.cpp \
    gnu_gama/gon2deg.h \
-   gnu_gama/index.h \
    gnu_gama/intfloat.h \
    gnu_gama/latlong.cpp \
    gnu_gama/latlong.h \
+   gnu_gama/list.h \
    gnu_gama/model.h \
    gnu_gama/movetofront.h \
    gnu_gama/obsdata.h \

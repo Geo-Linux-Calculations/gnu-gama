@@ -271,10 +271,10 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
 {
   const char* tab   = "        ";
   const char* ntab  = "\n        ";
-  const std::streamsize prec  = out.precision(3);
+  const int   prec  = out.precision(3);
   const int   width = 8;
 
-  size_t cluster_index = obs->cluster_index + obs_dim_index;
+  Index  cluster_index = obs->cluster_index + obs_dim_index;
   double obs_stdev     = obs->cluster->stdDev(cluster_index);
 
   // double res_stdev     = -1;
@@ -297,7 +297,7 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
 
 
 void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
-                                       const Observation* /*obs*/,
+                                       const Observation* obs,
                                        Index index)
 {
   double cxx = cov_bb(index, index  );
@@ -310,7 +310,7 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::scientific,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec = out.precision(7);
+  const int prec = out.precision(7);
   const int width = 14;
 
   out << "\n";
@@ -330,7 +330,7 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
 }
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Angle* /*a*/, Index /*index*/)
+void Model::write_xml_adjusted(std::ostream& out, const Angle* a, Index index)
 {
   out << "\n<angle> ";
   out << "        </angle>\n";
@@ -338,7 +338,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Angle* /*a*/, Index /*in
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Azimuth* /*a*/, Index /*index*/)
+void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, Index index)
 {
   out << "\n<azimuth> ";
   out << "        </azimuth>\n";
@@ -355,7 +355,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec  = out.precision(5);
+  const int prec  = out.precision(5);
   //const int width = 13;
 
   double rd = adj->r()(index)/Linear().scale();
@@ -388,7 +388,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec  = out.precision(5);
+  const int prec  = out.precision(5);
   const int width = 13;
 
   double rdx = adj->r()(index)/Linear().scale();
@@ -446,7 +446,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Height* h, Index index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec  = out.precision(5);
+  const int prec  = out.precision(5);
   const int width = 13;
 
   double rdh = adj->r()(index)/Linear().scale();
@@ -478,7 +478,7 @@ void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, Index in
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec  = out.precision(5);
+  const int prec  = out.precision(5);
   const int width = 13;
 
  double rdhd = adj->r()(index)/Linear().scale();
@@ -510,7 +510,7 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const std::streamsize prec  = out.precision(5);
+  const int prec  = out.precision(5);
   const int width = 14;
 
   double rx = adj->r()(index)/Linear().scale();
@@ -560,8 +560,11 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const ZenithAngle* /*za*/, Index /*index*/)
+void Model::write_xml_adjusted(std::ostream& out, const ZenithAngle* za, Index index)
 {
   out << "\n<zenith-angle> ";
   out << "        </zenith-angle>\n";
 }
+
+
+

@@ -282,7 +282,7 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
   std::ostream&
   CovMat<Float, Exc>::write(std::ostream& out) const
   {
-    std::streamsize w = out.width();
+    int w = out.width();
     out.width(w);
     out << dim() << ' ';
     out.width(w);

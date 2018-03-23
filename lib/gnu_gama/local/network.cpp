@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015, 2018  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -46,8 +46,8 @@ using namespace std;
 using namespace GNU_gama::local;
 
 
-typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
-typedef GNU_gama::Cluster<Observation>             Clust_r;  // 1.10
+typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
+typedef GNU_gama::Cluster<Observation>                  Clust_r;  // 1.10
 
 namespace
 {
@@ -120,11 +120,11 @@ public:
     {
         check(fabs(obs->value() - d0)*1000);
     }
-    void visit(Direction* /*obs*/)
+    void visit(Direction* obs)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }
-    void visit(Angle* /*obs*/)
+    void visit(Angle* obs)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }
@@ -141,7 +141,7 @@ public:
         check(fabs(d3 - obs->value())*1000);
     }
 
-    void visit(Z_Angle* /*obs*/)
+    void visit(Z_Angle* obs)
     {
         Double dz = stan->z() - cil->z();
         Double d3 = sqrt(dz*dz + d0*d0);
@@ -180,7 +180,7 @@ public:
         check(fabs(dz - obs->value())*1000);
     }
 
-    void visit(Azimuth* /*obs*/)
+    void visit(Azimuth* obs)
     {
         check(fabs(b(indm)*d0/(10*R2G)));
     }
@@ -565,7 +565,7 @@ void LocalNetwork::project_equations()
 
     Double* a = Asp->begin(1);
     Index*  i = Asp->ibegin(1);
-    for (Index n, row=1; row<=pocmer_; row++)
+    for (int n, row=1; row<=pocmer_; row++)
       {
         n = Asp->size(row);
         while (n--)
@@ -869,7 +869,7 @@ Double LocalNetwork::m_0()
   else if (m_0_aposteriori())
     {
       vyrovnani_();
-      const Index nadb = degrees_of_freedom();
+      const int nadb = degrees_of_freedom();
       if (nadb > 0)
         return sqrt(trans_VWV()/nadb);
       else
@@ -885,7 +885,7 @@ Double LocalNetwork::m_0()
 Double LocalNetwork::m_0_aposteriori_value()
 {
   vyrovnani_();
-  const Index nadb = degrees_of_freedom();
+  const int nadb = degrees_of_freedom();
   if (nadb > 0)
     return sqrt(trans_VWV()/nadb);
   else
@@ -902,9 +902,9 @@ Double LocalNetwork::conf_int_coef()
     return GNU_gama::Normal(pravdepodobnost);
   else if (m_0_aposteriori())
     {
-      const Index nadb = degrees_of_freedom();
+      const int nadb = degrees_of_freedom();
       if ( nadb > 0)
-        return GNU_gama::Student(pravdepodobnost, int(nadb));
+        return GNU_gama::Student(pravdepodobnost, nadb);
       else
         return 0;
     }
@@ -957,7 +957,7 @@ void LocalNetwork::remove_huge_abs_terms()
 }
 
 
-Index LocalNetwork::null_space()
+int LocalNetwork::null_space()
 {
   try
     {

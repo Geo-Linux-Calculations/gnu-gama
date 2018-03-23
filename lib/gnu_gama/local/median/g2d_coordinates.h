@@ -202,18 +202,18 @@ namespace GNU_gama { namespace local {
           return solved_pd;
         }
 
-      size_t Total_points () const
+      int Total_points () const
         {
           return SB.size();
         }
 
-      size_t Total_observations () const
+      int Total_observations () const
         {
           return SM.size();
         }
 
       // number of points with known coordinates (see reset)
-      size_t Known_coordinates() const
+      int Known_coordinates() const
         {
           return known_coordinates_;
         }

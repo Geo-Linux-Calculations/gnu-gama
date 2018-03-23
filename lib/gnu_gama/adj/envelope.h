@@ -512,7 +512,7 @@ namespace GNU_gama {
   template <typename Float, typename Index>
   void Envelope<Float, Index>::set(const Float* b_diag, const Float* e_diag,
                                    const Float* b_env,  const Float* e_env,
-                                   const Index* b_bend, const Index* /*e_bend*/)
+                                   const Index* b_bend, const Index* e_bend)
   {
     clear();
     dim_ = e_diag - b_diag;

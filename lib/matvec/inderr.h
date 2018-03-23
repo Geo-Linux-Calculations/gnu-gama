@@ -22,11 +22,12 @@
 #ifndef GNU_gama_gMatVec_IndexErr_h_
 #define GNU_gama_gMatVec_IndexErr_h_
 
-#include <gnu_gama/index.h> 
 #include <cstddef>
 #include <exception>
 
 namespace GNU_gama {
+
+  typedef size_t Index;
 
   inline const char* matvec_version() { return "2.00"; }
 

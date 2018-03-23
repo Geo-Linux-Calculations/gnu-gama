@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -25,6 +25,7 @@
 #include <gnu_gama/model.h>
 #include <gnu_gama/pointbase.h>
 #include <gnu_gama/obsdata.h>
+#include <gnu_gama/list.h>
 #include <gnu_gama/ellipsoids.h>
 #include <gnu_gama/g3/g3_point.h>
 #include <gnu_gama/g3/g3_observation.h>
@@ -49,9 +50,9 @@ namespace GNU_gama {
     virtual ~Model();
 
     typedef GNU_gama::ObservationData<g3::Observation>  ObservationData;
-    typedef std::list<Observation*>                     ObservationList;
+    typedef GNU_gama::List<Observation*>                ObservationList;
     typedef GNU_gama::PointBase<g3::Point>              PointBase;
-    typedef std::list<Parameter*>                       ParameterList;
+    typedef GNU_gama::List<Parameter*>                  ParameterList;
     typedef GNU_gama::Adj                               Adj;
 
 
@@ -179,7 +180,7 @@ namespace GNU_gama {
     // adjustment
     Adj*              adj;
 
-    size_t redundancy;
+    int    redundancy;
     enum { apriori, aposteriori } actual_sd;
     double aposteriori_sd;
     double std_deviation;

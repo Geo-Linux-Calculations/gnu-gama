@@ -61,8 +61,8 @@ namespace GNU_gama {
     Adj () : data(0), algorithm_(envelope), minx_dim(0), minx(0) { init(0); }
     virtual ~Adj();
 
-    size_t n_obs() const { return n_obs_; }   /*!< number of observations */
-    size_t n_par() const { return n_par_; }   /*!< number of parameters   */
+    int n_obs() const { return n_obs_; }   /*!< number of observations */
+    int n_par() const { return n_par_; }   /*!< number of parameters   */
 
     /**  sets pointer to input data object */
     void set(const AdjInputData* inp) { init(inp); }
@@ -72,7 +72,7 @@ namespace GNU_gama {
     /** returns current numerical algorithm */
     Adj::algorithm get_algorithm() const { return algorithm_; }
 
-    Index  defect() const { return least_squares->defect(); }
+    int    defect() const { return least_squares->defect(); }
     double rtr   () const { return rtr_; }     /*!< weighted sum of squares */
     const Vec<>& x();                          /*!< adjusted parameters     */
     const Vec<>& r();                          /*!< adjusted residuals      */
@@ -95,7 +95,7 @@ namespace GNU_gama {
 
     bool      solved;
     algorithm algorithm_;
-    size_t    n_obs_, n_par_;
+    int       n_obs_, n_par_;
     Mat <>    A_dot;
     Vec <>    b_dot;
     Vec <>    x_;

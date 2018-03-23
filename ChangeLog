@@ -1,22 +1,6 @@
-2018-03-23  Ales Cepek  <cepek@gnu.orgx>
-
-	* rev.1.21.6
-	* GNU_gama::Index defined in <gnu_gama/index.h>
-
-2018-03-21  Ales Cepek  <cepek@gnu.gama>
-
-	* rev. 1.21.5
-	* user defined class GNU_gama::List was removed from the project
-	and replaced by std::list
-
-2018-03-18  Ales Cepek  <cepek@gnu.org>
-
-	* Visual C++ warnings cleanup in matvec
-	* g++ -Wall warnings cleanup
-	* revision 1.21.4
-
 2018-03-07  Ales Cepek  <cepek@gnu.org>
 
+	* revision 1.21.4
 	* added fixed points to Octave export (.m)
 
 2018-03-06  Ales Cepek  <cepek@gnu.org>

@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003, 2012, 2014, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2012, 2014  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -19,10 +19,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <gnu_gama/index.h>
-#include <list>
+#include <gnu_gama/list.h>
 #include <cmath>
-#include <cstddef>
 
 #ifndef GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
 #define GNU_gama_obsdata_h_gnugamaobsdata_observation_data_gnu_gama_obsdata
@@ -42,7 +40,7 @@ namespace GNU_gama {
 
       typedef Observation                     ObservationType;
       const ObservationData<Observation>*     observation_data;
-      std::list<Observation*>                 observation_list;
+      List<Observation*>                      observation_list;
       typename Observation::CovarianceMatrix  covariance_matrix;
 
 
@@ -54,20 +52,20 @@ namespace GNU_gama {
 
       virtual Cluster* clone(const ObservationData<Observation>*) const = 0;
 
-      double stdDev(Index i) const
+      double stdDev(int i) const
         {
           i++; return std::sqrt(covariance_matrix(i,i));
         }
-      Index size() const
+      int size() const
         {
           return observation_list.size();
         }
 
       void update();
 
-      Index activeObs()  const { return act_obs;  }
-      Index activeDim()  const { return act_dim;  }
-      Index activeNonz() const { return act_nonz; }
+      int  activeObs()  const { return act_obs;  }
+      int  activeDim()  const { return act_dim;  }
+      int  activeNonz() const { return act_nonz; }
       typename Observation::CovarianceMatrix
            activeCov() const;
       void scaleCov(int i, double sc);
@@ -77,7 +75,7 @@ namespace GNU_gama {
       Cluster(const Cluster&);
       void operator=(const Cluster&);
 
-      Index act_obs, act_dim, act_nonz;
+      int act_obs, act_dim, act_nonz;
     };
 
 
@@ -87,11 +85,11 @@ namespace GNU_gama {
     {
     public:
 
-      typedef Observation              ObservationType;
-      typedef Cluster<Observation>     ClusterType;
-      typedef std::list<ClusterType*>  ClusterList;
+      typedef Observation           ObservationType;
+      typedef Cluster<Observation>  ClusterType;
+      typedef List<ClusterType*>    ClusterList;
 
-      ClusterList clusters;
+      ClusterList                   clusters;
 
       ObservationData() {}
       ObservationData(const ObservationData& cod) { deepCopy(cod); }
@@ -157,7 +155,7 @@ namespace GNU_gama {
 
           const ObservationData*  OD;
           typename ObservationData::ClusterList::const_iterator  cluster;
-          typename std::list<Observation*>::const_iterator            obs;
+          typename List<Observation*>::const_iterator            obs;
         };
 
       const_iterator  begin() const
@@ -251,7 +249,7 @@ namespace GNU_gama {
 
           ObservationData*  OD;
           typename ObservationData::ClusterList::iterator  cluster;
-          typename std::list<Observation*>::iterator            obs;
+          typename List<Observation*>::iterator            obs;
         };
 
       iterator  begin()
@@ -295,7 +293,7 @@ namespace GNU_gama {
   template <typename Observation>
     Cluster<Observation>::~Cluster()
     {
-      for (typename std::list<Observation*>::iterator
+      for (typename List<Observation*>::iterator
              i=observation_list.begin(); i!=observation_list.end() ;  ++i)
         {
           delete *i;
@@ -312,7 +310,7 @@ namespace GNU_gama {
       act_nonz  = 0;
       int index = 0;
       Observation* p;
-      for (typename std::list<Observation*>::iterator
+      for (typename List<Observation*>::iterator
              i=observation_list.begin(); i!=observation_list.end(); ++i)
         {
           p = (*i);
@@ -327,9 +325,8 @@ namespace GNU_gama {
 
       if (act_dim)
         {
-          Index b = covariance_matrix.bandWidth();
-          // if (act_dim - 1 < b) b = act_dim - 1;
-          if (act_dim < b+1) b = act_dim - 1;
+          int b = covariance_matrix.bandWidth();
+          if (act_dim - 1 < b) b = act_dim - 1;
           act_nonz = act_dim*(b+1) - b*(b+1)/2;
         }
     }
@@ -340,9 +337,10 @@ namespace GNU_gama {
     typename Observation::CovarianceMatrix
        Cluster<Observation>::activeCov() const
     {
-      using GNU_gama::Index;         // defined in <gnu_gama/index.h>
-
+      typedef std::size_t Index;
+      // const Index M      = covariance_matrix.rows();
       const Index N      = activeDim();
+      // const Index i_size = observation_list.size();
       Index active_band  = covariance_matrix.bandWidth();
 
       if (N)
@@ -356,7 +354,7 @@ namespace GNU_gama {
       Index* ind = new Index[act_dim + 1];
       Index  k=1, n=1;
 
-      for (typename std::list<Observation*>::const_iterator
+      for (typename List<Observation*>::const_iterator
              i=observation_list.begin(),
              e=observation_list.end(); i!=e; ++i)
         {
@@ -384,18 +382,16 @@ namespace GNU_gama {
   template <typename Observation>
     void Cluster<Observation>::scaleCov(int p, double sc)
     {
-      const Index N = covariance_matrix.dim();
-      const Index B = covariance_matrix.bandWidth();
-      Index k = p + B;
+      const int N = covariance_matrix.dim();
+      const int B = covariance_matrix.bandWidth();
+      int k = p + B;
       if (k > N) k = N;
-      // error : subtracting two unsigned arguments
-      // size_t  q = p - B;
-      // if (q < 1) q = 1;
-      Index q = (p < B+1) ? 1 : p-B;
+      int  q = p - B;
+      if (q < 1) q = 1;
 
       // scaling upper part of symmetric band matrix
       covariance_matrix(p, p) *= sc;
-      for (Index i=q; i<=k; i++)
+      for (int i=q; i<=k; i++)
         {
           covariance_matrix(p, i) *= sc;
         }
@@ -406,7 +402,7 @@ namespace GNU_gama {
   template <typename Observation>
     ObservationData<Observation>::~ObservationData()
     {
-      for (typename std::list<Cluster<Observation>*>::iterator
+      for (typename List<Cluster<Observation>*>::iterator
              c=clusters.begin(); c!=clusters.end(); ++c)
         {
           delete *c;
@@ -421,7 +417,7 @@ namespace GNU_gama {
     {
       if (this != &cod)
         {
-          for (typename std::list<Cluster<Observation>*>::iterator
+          for (typename List<Cluster<Observation>*>::iterator
                  c=clusters.begin(); c!=clusters.end(); ++c) delete *c;
           {
             deepCopy(cod);
@@ -436,16 +432,16 @@ namespace GNU_gama {
   template <typename Observation>
     void ObservationData<Observation>::deepCopy(const ObservationData& cod)
     {
-      for (typename std::list<Cluster<Observation>*>::const_iterator
+      for (typename List<Cluster<Observation>*>::const_iterator
              ci=cod.clusters.begin(); ci!=cod.clusters.end(); ++ci)
         {
           Cluster<Observation>* current = (*ci)->clone(this);
 
-          typename std::list<Observation*>::const_iterator
+          typename List<Observation*>::const_iterator
             begin = (*ci)->observation_list.begin();
-          typename std::list<Observation*>::const_iterator
+          typename List<Observation*>::const_iterator
             end   = (*ci)->observation_list.end();
-          for (typename std::list<Observation*>::const_iterator
+          for (typename List<Observation*>::const_iterator
                  m=begin; m!=end; ++m)
             {
               current->observation_list.push_back( (*m)->clone() );

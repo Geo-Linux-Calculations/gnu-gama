@@ -98,7 +98,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
 
   out << "XYZ = [\n";
   const GNU_gama::local::Vec& X = netinfo->solve();
-  const double y_sign = netinfo->y_sign();
+  const int y_sign = netinfo->y_sign();
   for (auto i=netinfo->PD.cbegin(); i!=netinfo->PD.cend(); ++i)
     {
       const LocalPoint& p = (*i).second;

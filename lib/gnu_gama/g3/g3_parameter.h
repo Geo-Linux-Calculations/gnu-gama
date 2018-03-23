@@ -25,6 +25,7 @@
 
 #include <cstddef>
 #include <gnu_gama/model.h>
+#include <gnu_gama/list.h>
 #include <gnu_gama/radian.h>
 
 

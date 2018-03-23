@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -91,7 +91,7 @@ void AdjInputData::write_xml(std::ostream& out) const
 
   if (pcov)
     {
-      const size_t blocks = pcov->blocks();
+      const long blocks = pcov->blocks();
 
       out << "\n  <block-diagonal>\n"
           << "    <blocks>" << blocks << "</blocks>"
@@ -99,8 +99,8 @@ void AdjInputData::write_xml(std::ostream& out) const
 
       for (long b=1; b<=blocks; b++)
         {
-          size_t dim   = pcov->dim(b);
-          size_t width = pcov->width(b);
+          long dim   = pcov->dim(b);
+          long width = pcov->width(b);
 
           out << "      <block> <dim>"
               << dim    << "</dim> <width>"
@@ -153,18 +153,18 @@ void AdjInputData::write_xml(std::ostream& out) const
 
 void AdjInputData::read_xml(std::istream& inp)
 {
-  string                       line;
-  std::list<DataObject::Base*> objects;
-  DataParser                   dp(objects);
+  string                  line;
+  List<DataObject::Base*> objects;
+  DataParser              dp(objects);
 
   while (getline(inp, line))
     {
       line += '\n';
-      dp.xml_parse(line.c_str(), int(line.length()), 0);
+      dp.xml_parse(line.c_str(), line.length(), 0);
     }
   dp.xml_parse("", 0, 1);
 
-  for (std::list<DataObject::Base*>::iterator i=objects.begin();
+  for (List<DataObject::Base*>::iterator i=objects.begin();
        i!=objects.end(); ++i)
     {
       if (DataObject::AdjInput *adj = dynamic_cast<DataObject::AdjInput*>(*i))
@@ -230,8 +230,8 @@ void AdjInputData::read_gama_local_old_format(std::istream& inp)
   for (long k=0, r=1; r<=rows; r++)
     {
       A->new_row();
-      size_t nonz = *m++;
-      for (size_t i=1; i<=nonz; i++, k++)  A->add_element(flt[k], ind[k]);
+      long nonz = *m++;
+      for (long i=1; i<=nonz; i++, k++)  A->add_element(flt[k], ind[k]);
     }
 
   delete pcov;

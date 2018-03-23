@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002, 2005, 2018  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2005  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library
 
@@ -776,7 +776,7 @@ int DataParser::g3_obs(const char *name)
   using namespace g3;
 
   int obs_dim = 0;
-  for (std::list<g3::Observation*>::const_iterator
+  for (List<g3::Observation*>::const_iterator
          i=g3->obs_cluster->observation_list.begin(),
          e=g3->obs_cluster->observation_list.end();  i!=e;  ++i)
     {
@@ -788,8 +788,8 @@ int DataParser::g3_obs(const char *name)
                  "int DataParser::g3_obs(const char *name)");
 
 
-  size_t cov_dim  = 0;
-  size_t cov_band = 0;
+  int cov_dim  = 0;
+  int cov_band = 0;
   typedef std::list<CovMat<> >::const_iterator Iterator;
   for (Iterator i=g3->cov_list.begin(), e=g3->cov_list.end(); i!=e; ++i)
     {
@@ -805,7 +805,7 @@ int DataParser::g3_obs(const char *name)
   g3->obs_cluster->covariance_matrix.reset(cov_dim, cov_band);
   g3->obs_cluster->covariance_matrix.set_zero();
 
-  size_t offset = 0;
+  int offset = 0;
   for (Iterator i=g3->cov_list.begin(), e=g3->cov_list.end(); i!=e; ++i)
     {
       const CovMat<>& cov = *i;
@@ -818,7 +818,7 @@ int DataParser::g3_obs(const char *name)
     }
 
   /* TODO: !!! here we should better test Cholesky decomposition !!! */
-  for (size_t N=g3->obs_cluster->covariance_matrix.dim(), i=1; i<=N; i++)
+  for (int N=g3->obs_cluster->covariance_matrix.dim(), i=1; i<=N; i++)
     if(g3->obs_cluster->covariance_matrix(i,i) <= 0)
       return error("### zero or negative variance");
 
@@ -1191,7 +1191,7 @@ int DataParser::g3_const_tol_abs(const char *name)
   return error("### bad <tol-abs>");
 }
 
-int DataParser::g3_const_ellipsoid_id(const char * /*name*/)
+int DataParser::g3_const_ellipsoid_id(const char *name)
 {
   using namespace g3;
   stringstream istr(text_buffer);
@@ -1304,3 +1304,4 @@ int DataParser::g3_obs_angle(const char *name)
 
   return error("### bad <angle>");
 }
+
