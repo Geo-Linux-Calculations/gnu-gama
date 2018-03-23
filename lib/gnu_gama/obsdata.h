@@ -19,6 +19,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include <gnu_gama/index.h>
 #include <list>
 #include <cmath>
 #include <cstddef>
@@ -53,20 +54,20 @@ namespace GNU_gama {
 
       virtual Cluster* clone(const ObservationData<Observation>*) const = 0;
 
-      double stdDev(size_t i) const
+      double stdDev(Index i) const
         {
           i++; return std::sqrt(covariance_matrix(i,i));
         }
-      size_t size() const
+      Index size() const
         {
           return observation_list.size();
         }
 
       void update();
 
-      size_t activeObs()  const { return act_obs;  }
-      size_t activeDim()  const { return act_dim;  }
-      size_t activeNonz() const { return act_nonz; }
+      Index activeObs()  const { return act_obs;  }
+      Index activeDim()  const { return act_dim;  }
+      Index activeNonz() const { return act_nonz; }
       typename Observation::CovarianceMatrix
            activeCov() const;
       void scaleCov(int i, double sc);
@@ -76,7 +77,7 @@ namespace GNU_gama {
       Cluster(const Cluster&);
       void operator=(const Cluster&);
 
-      size_t act_obs, act_dim, act_nonz;
+      Index act_obs, act_dim, act_nonz;
     };
 
 
@@ -326,8 +327,9 @@ namespace GNU_gama {
 
       if (act_dim)
         {
-          size_t b = covariance_matrix.bandWidth();
-          if (act_dim - 1 < b) b = act_dim - 1;
+          Index b = covariance_matrix.bandWidth();
+          // if (act_dim - 1 < b) b = act_dim - 1;
+          if (act_dim < b+1) b = act_dim - 1;
           act_nonz = act_dim*(b+1) - b*(b+1)/2;
         }
     }
@@ -338,10 +340,9 @@ namespace GNU_gama {
     typename Observation::CovarianceMatrix
        Cluster<Observation>::activeCov() const
     {
-      typedef std::size_t Index;
-      // const Index M      = covariance_matrix.rows();
+      using GNU_gama::Index;         // defined in <gnu_gama/index.h>
+
       const Index N      = activeDim();
-      // const Index i_size = observation_list.size();
       Index active_band  = covariance_matrix.bandWidth();
 
       if (N)
@@ -383,18 +384,18 @@ namespace GNU_gama {
   template <typename Observation>
     void Cluster<Observation>::scaleCov(int p, double sc)
     {
-      const size_t N = covariance_matrix.dim();
-      const size_t B = covariance_matrix.bandWidth();
-      size_t k = p + B;
+      const Index N = covariance_matrix.dim();
+      const Index B = covariance_matrix.bandWidth();
+      Index k = p + B;
       if (k > N) k = N;
       // error : subtracting two unsigned arguments
       // size_t  q = p - B;
       // if (q < 1) q = 1;
-      size_t q = (p < B+1) ? 1 : p-B;
+      Index q = (p < B+1) ? 1 : p-B;
 
       // scaling upper part of symmetric band matrix
       covariance_matrix(p, p) *= sc;
-      for (size_t i=q; i<=k; i++)
+      for (Index i=q; i<=k; i++)
         {
           covariance_matrix(p, i) *= sc;
         }

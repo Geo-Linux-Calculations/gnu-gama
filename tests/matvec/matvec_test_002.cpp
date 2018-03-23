@@ -16,6 +16,7 @@
    Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
+#include <gnu_gama/index.h>
 #include <matvec/matvec.h>
 #include <matvec/pinv.h>
 #include <iostream>
@@ -25,7 +26,8 @@
 template <class Mat> void
 InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
 {
-  typedef size_t Index;
+  using GNU_gama::Index;
+
   long double inv0 = 1.0L/ini[0];
   inv[0] = inv0;
   for (Index i=1; i<M.rows(); i++)

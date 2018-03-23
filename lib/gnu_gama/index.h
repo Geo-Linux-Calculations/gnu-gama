@@ -18,25 +18,12 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_gama_localnetwork_octave_h
-#define GNU_gama_localnetwork_octave_h
-
-#include <gnu_gama/local/network.h>
-
+#ifndef GNU_gama_index_h
+#define GNU_gama_index_h
 
 namespace GNU_gama
 {
-  class LocalNetworkOctave
-  {
-  public:
-
-    LocalNetworkOctave(GNU_gama::local::LocalNetwork* ln) : netinfo(ln) {}
-    void write(std::ostream&) const;
-
-  private:
-
-    GNU_gama::local::LocalNetwork* netinfo;
-  };
+  using Index = unsigned long;
 }
 
 #endif
