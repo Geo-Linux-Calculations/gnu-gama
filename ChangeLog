@@ -1,4 +1,10 @@
-2018-03-27  Ales Cepek  <cepek@dodo>
+2018-03-30  Ales Cepek  <cepek@gnu.org>
+
+	* new release 1.22
+	* Maintainer's release : several minor enhancements and fixes
+	before general cleanup of all source codes leading to version 2.
+
+2018-03-27  Ales Cepek  <cepek@gnu.org>
 
 	* rev 1.21.7
 	* added test sparse-demo
