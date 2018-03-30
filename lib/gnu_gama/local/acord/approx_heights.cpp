@@ -1,7 +1,8 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
+    GNU Gama C++ library
     Copyright (C) 2001  Ales Cepek <cepek@fsv.cvut.cz>,
                         Jan Pytel  <pytel@gama.fsv.cvut.cz>
+                  2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,8 +17,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/local/acord/approx_heights.h>
@@ -62,7 +62,7 @@ void ApproximateHeights::make_heights()
        iza != OHD.ZA.end(); ++iza)
     {
 
-      const Double too_small_zenith_angle = 1 * G2R;
+      const double too_small_zenith_angle = 1 * G2R;
 
       bool is_heights = false;
 
@@ -70,7 +70,7 @@ void ApproximateHeights::make_heights()
 
       const PointID& From   = zangle->from();
       const PointID& To     = zangle->to();
-      Double  Vzenit  = (*iza)->value();
+      double  Vzenit  = (*iza)->value();
 
       for (std::list<Distance*>::const_iterator idi = OHD.DI.begin();
            idi != OHD.DI.end() && !is_heights; ++idi)
@@ -79,7 +79,7 @@ void ApproximateHeights::make_heights()
           Distance* distance = *idi;
           const PointID& From2   = distance->from();
           const PointID& To2     = distance->to();
-          const Double& Vdist  = distance->value();
+          const double& Vdist  = distance->value();
 
           // I transfer value of Vzenit into interval <0,M_PI>
           while (Vzenit < 0)   Vzenit+=2*M_PI;
@@ -104,7 +104,7 @@ void ApproximateHeights::make_heights()
 
           const PointID& From2   = sdistance->from();
           const PointID& To2     = sdistance->to();
-          const Double& Vdist  = sdistance->value();
+          const double& Vdist  = sdistance->value();
 
           if ( ( (From == From2) &&  (To == To2  ) ) ||
                ( (From == To2)   &&  (To == From2) ) )
@@ -122,7 +122,7 @@ void ApproximateHeights::make_heights()
           const LocalPoint& to   = PD[To];
           if (from.test_xy() && to.test_xy())
             {
-              Double dist = sqrt( (from.x() - to.x())*(from.x() - to.x()) +
+              double dist = sqrt( (from.x() - to.x())*(from.x() - to.x()) +
                                   (from.y() - to.y())*(from.y() - to.y()));
               OHD.tmpHD.push_back(H_Diff(From,To, dist / tan(Vzenit)));
               is_heights = true;

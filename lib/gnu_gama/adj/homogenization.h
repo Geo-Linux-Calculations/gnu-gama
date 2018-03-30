@@ -32,7 +32,7 @@
 namespace GNU_gama {
 
 
-  template <typename Float=double, typename Index=std::size_t>
+  template <typename Float=double, typename Index=int>
   class Homogenization
   {
   public:

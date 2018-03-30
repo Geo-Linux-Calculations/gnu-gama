@@ -25,12 +25,12 @@
 using namespace GNU_gama;
 
 template <class Float, class Exc> void
-InitMat_SymMat(Index n, SymMat<Float, Exc>& A, SymMat<Float, Exc>& I)
+InitMat_SymMat(int n, SymMat<Float, Exc>& A, SymMat<Float, Exc>& I)
 {
   SymMat<> U(n);
 
-  for (Index i=1; i<=n; i++)
-    for (Index j=1; j<=i; j++)
+  for (int i=1; i<=n; i++)
+    for (int j=1; j<=i; j++)
       if (i == j)
         U(i,i) = 1;
       else
@@ -67,9 +67,9 @@ int main()
        << GNU_gama::matvec_version() << "\n"
        << "------------------------------------------------------\n\n";
 
-  const Index MaxDim=70;
+  const int MaxDim=70;
 
-  for (Index N=3; N<=MaxDim; N++)
+  for (int N=3; N<=MaxDim; N++)
     {
       cout << N << "x" << N;
 

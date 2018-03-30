@@ -1,7 +1,7 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
+    GNU Gama C++ library
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,21 +16,20 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*********************************************************************
  * helper functions and classes:                                     *
  * ----------------------------------------------------------------- *
  * - typedef std::vector<LocalPoint> Helper_list;                    *
- * - inline int signum(const Double& d1)                             *
- * - inline Double g2d_sqr(const Double& d)                          *
+ * - inline int signum(const double& d1)                             *
+ * - inline double g2d_sqr(const double& d)                          *
  * - enum Solution_state_tag                                         *
  * - enum Observation_types                                          *
  * - inline Observation_types ObservationType(Observation* m)        *
- * - inline Double g2d_distance(const LocalPoint& b1, const Bod& b2) *
- * - inline bool g2d_even(std::vector<Double>::size_type& x)         *
+ * - inline double g2d_distance(const LocalPoint& b1, const Bod& b2) *
+ * - inline bool g2d_even(std::vector<double>::size_type& x)         *
  * - class Select_solution_g2d                                       *
  * - class Statistics_g2d                                            *
  * - class Transformation_g2d                                        *
@@ -51,10 +50,10 @@ namespace GNU_gama { namespace local {
   typedef std::vector<LocalPoint> Helper_list;
 
   // --------------------------------------------------------------
-  // inline int signum(const Double& d1) wass added into
+  // inline int signum(const double& d1) wass added into
   // gnu_gama/local-1.1.61 due to problems with MSC (AC)
 
-  inline int signum(Double d1)
+  inline int signum(double d1)
     {
       if(d1 < 0) return -1;
       if(d1 > 0) return  1;
@@ -63,7 +62,7 @@ namespace GNU_gama { namespace local {
 
   // --------------------------------------------------------------
 
-  inline Double g2d_sqr(const Double& d)
+  inline double g2d_sqr(const double& d)
     {
       return (d*d);
     }
@@ -103,14 +102,14 @@ namespace GNU_gama { namespace local {
     }
 
   // --------------------------------------------------------------
-  inline Double g2d_distance(const LocalPoint& b1, const LocalPoint& b2)
+  inline double g2d_distance(const LocalPoint& b1, const LocalPoint& b2)
     {
       using namespace std;
       return sqrt(g2d_sqr(b1.x()-b2.x())+g2d_sqr(b1.y()-b2.y()));
     }
 
   // --------------------------------------------------------------
-  inline bool g2d_even(std::vector<Double>::size_type& x)
+  inline bool g2d_even(std::vector<double>::size_type& x)
     {
       // using namespace std;
       // return (fmod(x,2) == 0);
@@ -279,7 +278,7 @@ namespace GNU_gama { namespace local {
     {
     private:
 
-      std::vector<Double> transf_key_;
+      std::vector<double> transf_key_;
       void reset();
       bool Given_point(const PointID& cb)
         {
@@ -298,7 +297,7 @@ namespace GNU_gama { namespace local {
           reset();
         }
       void calculation();
-      std::vector<Double> transf_key() const
+      std::vector<double> transf_key() const
         {
           if(state_ == calculation_not_done)
             throw g2d_exc("SimilarityTr2D: calculation not done");

@@ -42,20 +42,19 @@
 template <class Mat> void
 InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
 {
-  typedef size_t Index;
   long double inv0 = 1.0L/ini[0];
   inv[0] = inv0;
-  for (Index i=1; i<M.rows(); i++)
+  for (int i=1; i<M.rows(); i++)
     {
       long double s = 0;
-      for (Index j=1; j<=i; j++)
+      for (int j=1; j<=i; j++)
         s -= ini[j]*inv[i-j];
       inv[i] = s * inv0;
     }
-  // for (Index i=0; i<M.rows(); i++) cout << " " << long(inv[i]); cout<<endl;
+  // for (int i=0; i<M.rows(); i++) cout << " " << long(inv[i]); cout<<endl;
 
-  for (Index i=1; i<=M.rows(); i++)
-    for (Index j=1; j<=M.cols(); j++)
+  for (int i=1; i<=M.rows(); i++)
+    for (int j=1; j<=M.cols(); j++)
       if (i > j)
         I(i,j) = M(i,j) = 0;
       else
@@ -72,8 +71,8 @@ InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
 
   maxe = 0;   // max. element
   double a = 0, b = 0, e;
-  for (Index i=1; i<=M.rows(); i++)
-    for (Index j=1; j<=M.cols(); j++)
+  for (int i=1; i<=M.rows(); i++)
+    for (int j=1; j<=M.cols(); j++)
       {
         e = std::abs(M(i,j));
         if (e > maxe) maxe = e;
@@ -89,12 +88,12 @@ template<class Float> void InverseTest()
   using namespace GNU_gama;
   using namespace std;
 
-  const  Index   MaxN = 50;
+  const  int   MaxN = 50;
   double inibmat[MaxN] = {1, 2, 3};
   double inverse[MaxN];
   cout.setf(ios::scientific, ios::floatfield);
   cout.precision(3);
-  for (Index N=3; N<=MaxN; N++)
+  for (int N=3; N<=MaxN; N++)
     {
       cout << setw(2) << sizeof(Float) << " " << setw(2) << N;
       Mat<Float> M(N,N);
@@ -104,8 +103,8 @@ template<class Float> void InverseTest()
       cout << "  cond. <= " << cond;
       Mat<Float> invM = inv(M);
       double maxdif = 0;
-      for (Index i=1; i<=N; i++)
-        for (Index j=1; j<=N; j++)
+      for (int i=1; i<=N; i++)
+        for (int j=1; j<=N; j++)
           if (std::abs(invM(i,j) - I(i,j)) > std::abs(maxdif))
               maxdif = invM(i,j) - I(i,j);
       cout << "  max. relative error = "

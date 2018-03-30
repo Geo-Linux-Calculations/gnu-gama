@@ -43,18 +43,18 @@ bool  Observation::check_std_dev() const
 }
 
 
-Double Observation::stdDev() const
+double Observation::stdDev() const
 {
    return cluster->stdDev(cluster_index);
 }
 
-Double Direction::orientation() const
+double Direction::orientation() const
 {
   StandPoint* sp = static_cast<StandPoint*>(cluster);
   return sp->orientation();
 }
 
-void Direction::set_orientation(Double p)
+void Direction::set_orientation(double p)
 {
   StandPoint* sp = static_cast<StandPoint*>(cluster);
   sp->set_orientation(p);

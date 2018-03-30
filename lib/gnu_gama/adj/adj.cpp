@@ -68,14 +68,14 @@ void AdjInputData::write_xml(std::ostream& out) const
           << "<cols>" << A->columns() << "</cols> "
           << "<nonz>" << A->nonzeroes() << "</nonz>\n";
 
-      for (std::size_t k=1; k<=A->rows(); k++)
+      for (int k=1; k<=A->rows(); k++)
         {
           double* n = A->begin(k);
           double* e = A->end  (k);
 
           out << "      <row>";
           out << " <nonz>" << (e - n) << "</nonz>";
-          for(std::size_t* i=A->ibegin(k) ; n!=e; n++, i++)
+          for(int* i=A->ibegin(k) ; n!=e; n++, i++)
             {
               out << "\n        "
                   << "<int>" << *i << "</int>"
@@ -124,7 +124,7 @@ void AdjInputData::write_xml(std::ostream& out) const
       out << "\n  <vector>\n"
           << "    <dim>" << prhs.dim() << "</dim>\n";
 
-      for (std::size_t i=1; i<=prhs.dim(); i++)
+      for (int i=1; i<=prhs.dim(); i++)
         out << "      <flt>" << prhs(i) << "</flt>\n";
 
       out << "  </vector>\n";
@@ -137,8 +137,8 @@ void AdjInputData::write_xml(std::ostream& out) const
       out << "\n  <array>\n"
           << "    <dim>" << pminx->dim() << "</dim>\n";
 
-      const std::size_t *indx = pminx->begin();
-      for (std::size_t i=1; i<=pminx->dim(); i++)
+      const int *indx = pminx->begin();
+      for (int i=1; i<=pminx->dim(); i++)
         out << "      <int>" << *indx++ << "</int>\n";
 
       out << "  </array>\n";
@@ -274,16 +274,16 @@ void Adj::init_least_squares()
   switch (algorithm_)
     {
     case envelope:
-      least_squares = new AdjEnvelope<double, Index, Exception::matvec>;
+      least_squares = new AdjEnvelope<double, int, Exception::matvec>;
       break;
     case svd:
-      least_squares = new AdjSVD<double, Exception::matvec>;
+      least_squares = new AdjSVD<double, int, Exception::matvec>;
       break;
     case gso:
-      least_squares = new AdjGSO<double, Exception::matvec>;
+      least_squares = new AdjGSO<double, int, Exception::matvec>;
       break;
     case cholesky:
-      least_squares = new AdjCholDec<double, Exception::matvec>;
+      least_squares = new AdjCholDec<double, int, Exception::matvec>;
       break;
     default:
       throw Exception::adjustment("### unknown algorithm");
@@ -294,10 +294,10 @@ void Adj::init_least_squares()
       delete minx;
       minx_dim = 0;
 
-      if (Index N = p->dim())
+      if (int   N = p->dim())
         {
           minx_dim = N;
-          Index* q = minx = new Index[N];
+          int  * q = minx = new int  [N];
           for (IntegerList<>::const_iterator
                  i=p->begin(), e=p->end(); i!=e; i++)
             {
@@ -322,14 +322,14 @@ void Adj::init_least_squares()
       A_dot.set_zero();
       b_dot.reset(data->A->rows());
 
-      for (std::size_t k=1; k<=data->A->rows(); k++)
+      for (int k=1; k<=data->A->rows(); k++)
         {
           double* n = data->A->begin(k);
           double* e = data->A->end  (k);
-          for(size_t* i=data->A->ibegin(k) ; n!=e; n++, i++)  A_dot(k,*i) = *n;
+          for(int* i=data->A->ibegin(k) ; n!=e; n++, i++)  A_dot(k,*i) = *n;
         }
 
-      for (std::size_t i, j, dim, width, r=0, b=1;
+      for (int i, j, dim, width, r=0, b=1;
            b<=data->pcov->blocks(); b++, r += dim)
         {
           dim   = data->pcov->dim(b);
@@ -363,11 +363,11 @@ void Adj::init_least_squares()
 
       const Vec<>& rhs = data->rhs();
       r_.reset(data->A->rows());
-      for (Index i=1; i<=r_.dim(); i++)
+      for (int   i=1; i<=r_.dim(); i++)
         {
           double* b = data->A->begin(i);
           double* e = data->A->end(i);
-          Index * n = data->A->ibegin(i);
+          int   * n = data->A->ibegin(i);
           double  s = 0;
           while (b != e)
             s += *b++ * x_(*n++);
@@ -422,15 +422,15 @@ const Vec<>& Adj::r()
 
 
 
-double Adj::q_bb(Index i, Index j)
+double Adj::q_bb(int   i, int   j)
 {
   double* ib;
   double* ie;
-  Index * in;
+  int   * in;
 
   double* jb = data->A->begin(j);
   double* je = data->A->end(j);
-  Index * jn = data->A->ibegin(j);
+  int   * jn = data->A->ibegin(j);
 
   double t, sum = 0;
   while (jb != je)
@@ -461,10 +461,10 @@ void Adj::choldec(CovMat<>& chol)
   chol.cholDec();
 
   using namespace std;
-  const std::size_t N = chol.rows();
-  const std::size_t b = chol.bandWidth();
+  const int N = chol.rows();
+  const int b = chol.bandWidth();
 
-  for (std::size_t m, j, i=1; i<=N; i++)
+  for (int m, j, i=1; i<=N; i++)
     {
       double d = sqrt(chol(i,i));
       chol(i,i) = d;
@@ -478,14 +478,14 @@ void Adj::choldec(CovMat<>& chol)
 void Adj::forwardSubstitution(const CovMat<>& chol, Vec<>& v)
 {
   using namespace std;
-  const std::size_t N = chol.rows();
-  const std::size_t b = chol.bandWidth();
+  const int N = chol.rows();
+  const int b = chol.bandWidth();
 
-  for (std::size_t m, i=1; i<=N; i++)
+  for (int m, i=1; i<=N; i++)
     {
       if (i > b+1) m = i - b;
       else         m = 1;
-      for (std::size_t j=m; j<i; j++) v(i) -= chol(i,j)*v(j);
+      for (int j=m; j<i; j++) v(i) -= chol(i,j)*v(j);
 
       v(i) /= chol(i,i);
     }

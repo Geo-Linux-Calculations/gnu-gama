@@ -25,20 +25,19 @@
 template <class Mat> void
 InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
 {
-  typedef size_t Index;
   long double inv0 = 1.0L/ini[0];
   inv[0] = inv0;
-  for (Index i=1; i<M.rows(); i++)
+  for (int i=1; i<M.rows(); i++)
     {
       long double s = 0;
-      for (Index j=1; j<=i; j++)
+      for (int j=1; j<=i; j++)
         s -= ini[j]*inv[i-j];
       inv[i] = s * inv0;
     }
-  // for (Index i=0; i<M.rows(); i++) cout << " " << long(inv[i]); cout<<endl;
+  // for (int i=0; i<M.rows(); i++) cout << " " << long(inv[i]); cout<<endl;
 
-  for (Index i=1; i<=M.rows(); i++)
-    for (Index j=1; j<=M.cols(); j++)
+  for (int i=1; i<=M.rows(); i++)
+    for (int j=1; j<=M.cols(); j++)
       if (i > j)
         I(i,j) = M(i,j) = 0;
       else
@@ -54,8 +53,8 @@ InitMat(Mat& M, double ini[], Mat& I, double inv[], double& cond, double& maxe)
 
   maxe = 0;   // max. element
   double a = 0, b = 0, e;
-  for (Index i=1; i<=M.rows(); i++)
-    for (Index j=1; j<=M.cols(); j++)
+  for (int i=1; i<=M.rows(); i++)
+    for (int j=1; j<=M.cols(); j++)
       {
         e = std::abs(M(i,j));
         if (e > maxe) maxe = e;
@@ -88,12 +87,12 @@ int main()
        << GNU_gama::matvec_version() << "\n"
        << "------------------------------------------------------\n\n";
 
-  const Index MaxDim=70;
+  const int MaxDim=70;
   double dini[MaxDim] = {2.7, 3.1, 3.3, -0.4};
   double dinv[MaxDim];
   double cond, maxe;
 
-  for (Index N=3; N<=MaxDim; N++)
+  for (int N=3; N<=MaxDim; N++)
     {
       cout << N << "x" << N;
 

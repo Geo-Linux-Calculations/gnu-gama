@@ -31,7 +31,7 @@ namespace GNU_gama {
 
   /** Symmetric block diagonal matrix. */
 
-  template <typename Float=double, typename Index=std::size_t>
+  template <typename Float=double, typename Index=int>
   class BlockDiagonal {    // symmetric block diagonal matrix
 
     Index   blocks_;       // number of diagonal blocks
@@ -173,7 +173,7 @@ namespace GNU_gama {
 
 
 
-  template <typename Float=double, typename Index=std::size_t>
+  template <typename Float=double, typename Index=int>
   class UpperBlockDiagonal {     // upper triangular block diagonal matrix
   public:
 

@@ -1,6 +1,6 @@
 /*
   GNU Gama is a package for adjustment and analysis of geodetic observations
-  Copyright (C) 2005  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2005, 2018  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -15,8 +15,7 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_implementation_h
@@ -27,9 +26,9 @@
 
 namespace GNU_gama {
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Index
-  AdjCholDec<Float, Exc>::defect()
+  AdjCholDec<Float, Index, Exc>::defect()
   {
     return nullity;
   }
@@ -37,9 +36,9 @@ namespace GNU_gama {
 
   // Qxx = T*Q0*T'
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Float
-  AdjCholDec<Float, Exc>::q_xx(Index i, Index j)
+  AdjCholDec<Float, Index, Exc>::q_xx(Index i, Index j)
   {
     if (!this->is_solved) solve();
 
@@ -58,14 +57,14 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Float
-  AdjCholDec<Float, Exc>::q_bb(Index i, Index j)
+  AdjCholDec<Float, Index, Exc>::q_bb(Index i, Index j)
   {
     if (!this->is_solved) solve();
 
-    const Mat<Float, Exc>& A = *this->pA;
-    Vec<Float, Exc> aq(N);
+    const Mat<Float, Index, Exc>& A = *this->pA;
+    Vec<Float, Index, Exc> aq(N);
     Float s;
 
 
@@ -96,11 +95,11 @@ namespace GNU_gama {
 
   // Qbx = A*Q0*T'
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Float
-  AdjCholDec<Float, Exc>::q_bx(Index i, Index j)
+  AdjCholDec<Float, Index, Exc>::q_bx(Index i, Index j)
   {
-    const Mat<Float, Exc>& A = *this->pA;
+    const Mat<Float, Index, Exc>& A = *this->pA;
     Float s;
 
     if (nullity == 0)
@@ -114,7 +113,7 @@ namespace GNU_gama {
 
     // aq = A_row(i) * Q0
 
-    Vec<Float, Exc> aq(N);
+    Vec<Float, Index, Exc> aq(N);
     for (Index k=1; k<=N; k++)
       {
         s = Float();
@@ -135,9 +134,9 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   bool
-  AdjCholDec<Float, Exc>::lindep(Index n)
+  AdjCholDec<Float, Index, Exc>::lindep(Index n)
   {
     this->solve();
     return nullity && invp(n) > N0;
@@ -145,9 +144,9 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   void
-  AdjCholDec<Float, Exc>::min_x()
+  AdjCholDec<Float, Index, Exc>::min_x()
   {
     delete[] minx_i;
     minx_t = ALL;
@@ -156,9 +155,9 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   void
-  AdjCholDec<Float, Exc>::min_x(Index n, Index minx[])
+  AdjCholDec<Float, Index, Exc>::min_x(Index n, Index minx[])
   {
     delete[] minx_i;
     minx_t = SUBSET;
@@ -169,9 +168,10 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Float
-  AdjCholDec<Float, Exc>::dot(const Mat<Float,Exc>& M, Index i, Index j) const
+  AdjCholDec<Float, Index, Exc>
+    ::dot(const Mat<Float,Index,Exc>& M, Index i, Index j) const
     {
       Float s = Float();
 
@@ -187,9 +187,9 @@ namespace GNU_gama {
 
   // T = eye(N) - alfa*inv(alfa'*P*alfa)*alfa'*P
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   Float
-  AdjCholDec<Float, Exc>::T(Index i, Index j) const
+  AdjCholDec<Float, Index, Exc>::T(Index i, Index j) const
   {
     Float t = (i == j) ? Float(1) : Float();
     for (Index k=0; k<minx_n; k++)
@@ -204,16 +204,16 @@ namespace GNU_gama {
 
 
 
-  template <typename Float, typename Exc>
+  template <typename Float, typename Index, typename Exc>
   void
-  AdjCholDec<Float, Exc>::solve()
+  AdjCholDec<Float, Index, Exc>::solve()
   {
     if (this->is_solved) return;
 
     // project equations Ax = b
 
-    const Mat<Float, Exc>& A = *this->pA;
-    const Vec<Float, Exc>& b = *this->pb;
+    const Mat<Float, Index, Exc>& A = *this->pA;
+    const Vec<Float, Index, Exc>& b = *this->pb;
 
     M = A.rows();
     N = A.cols();
@@ -481,7 +481,7 @@ namespace GNU_gama {
         // the particular solution minimizing subvector defined in min_x()
         // ***************************************************************
 
-        Vec<Index, Exc> g_perm(N1);
+        Vec<Index, Index, Exc> g_perm(N1);
         for (Index i=1; i<=N1; i++) g_perm(i) = i;
 
 

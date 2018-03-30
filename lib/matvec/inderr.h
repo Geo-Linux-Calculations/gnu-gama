@@ -1,6 +1,7 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2011, 2012, 2014, 2017  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 1999, 2007, 2011, 2012, 2014, 2017, 2018
+                  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -15,21 +16,18 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_gama_gMatVec_IndexErr_h_
-#define GNU_gama_gMatVec_IndexErr_h_
+#ifndef GNU_gama_gMatVec_IndexErr_h
+#define GNU_gama_gMatVec_IndexErr_h
 
 #include <cstddef>
 #include <exception>
 
 namespace GNU_gama {
 
-  typedef size_t Index;
-
-  inline const char* matvec_version() { return "2.00"; }
+  inline const char* matvec_version() { return "3.00"; }
 
   /** Exception \brief Matrix/vector exceptions
    */
@@ -70,14 +68,10 @@ namespace GNU_gama {
 
       const char* what() const noexcept
       {
-	return description;
+        return description;
       }
     };
   }
 }
 
 #endif
-
-
-
-

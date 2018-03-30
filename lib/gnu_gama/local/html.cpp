@@ -1,5 +1,5 @@
-/* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012, 2013, 2014, 2016  Ales Cepek <cepek@gnu.org>
+/* GNU Gama C++ librarys
+   Copyright (C) 2012, 2013, 2014, 2016, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -14,8 +14,8 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /** \file svg.h
  * \brief #GNU_gama::local::GamaLocalHTML class implementation
@@ -469,8 +469,8 @@ private:
     bool operator()(int a, int b)
     {
       using namespace std;
-      GNU_gama::local::Double sa = fabs(lnet->studentized_residual(a));
-      GNU_gama::local::Double sb = fabs(lnet->studentized_residual(b));
+      double sa = fabs(lnet->studentized_residual(a));
+      double sb = fabs(lnet->studentized_residual(b));
       return sa > sb;
     }
   };

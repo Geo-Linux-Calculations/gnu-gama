@@ -66,7 +66,7 @@ namespace GNU_gama { namespace local {
 
       typedef GNU_gama::local::CovMat CovarianceMatrix;
 
-      Observation(const PointID& s, const PointID& c, Double m)
+      Observation(const PointID& s, const PointID& c, double m)
         :
         cluster(0), from_(s), to_(c), value_(m), active_(true),
         from_dh_(0), to_dh_(0)
@@ -104,8 +104,8 @@ namespace GNU_gama { namespace local {
 
       const PointID& from() const { return from_;    }
       const PointID& to()   const { return to_;      }
-      Double value()        const { return value_;   }
-      Double stdDev()       const ;
+      double value()        const { return value_;   }
+      double stdDev()       const ;
 
       /** \brief Checks whether observation is active.
        *
@@ -128,12 +128,12 @@ namespace GNU_gama { namespace local {
 
       // instrument / reflector height
 
-      Double  from_dh() const { return from_dh_; }
-      Double  to_dh  () const { return to_dh_;   }
+      double  from_dh() const { return from_dh_; }
+      double  to_dh  () const { return to_dh_;   }
 
-      void    set_value  (Double v) { value_   = v; }
-      void    set_from_dh(Double h) { from_dh_ = h; }
-      void    set_to_dh  (Double h) { to_dh_   = h; }
+      void    set_value  (double v) { value_   = v; }
+      void    set_from_dh(double h) { from_dh_ = h; }
+      void    set_to_dh  (double h) { to_dh_   = h; }
 
       int     dimension() const { return 1; }
 
@@ -151,7 +151,7 @@ namespace GNU_gama { namespace local {
       {}
 
       /** \brief Finishes initialization after Observation(). */
-      void init(const PointID& from, const PointID& to, Double value)
+      void init(const PointID& from, const PointID& to, double value)
       {
           from_ = from;
           to_ = to;
@@ -172,17 +172,17 @@ namespace GNU_gama { namespace local {
 
       PointID from_;
       PointID to_;
-      Double        value_;        // observed value
+      double        value_;        // observed value
       mutable bool  active_;       // set false for unused observation
-      Double        from_dh_;      // height of instrument
-      Double        to_dh_;        // height of reflector
+      double        from_dh_;      // height of instrument
+      double        to_dh_;        // height of reflector
     };
 
 
   class Distance : public Accept<Distance, Observation>
     {
     public:
-      Distance(const PointID& s, const PointID& c, Double d)
+      Distance(const PointID& s, const PointID& c, double d)
         {
           if (d <= 0)
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
@@ -197,7 +197,7 @@ namespace GNU_gama { namespace local {
   class Direction : public Accept<Direction, Observation>
     {
     public:
-      Direction(const PointID& s, const PointID& c,  Double d)
+      Direction(const PointID& s, const PointID& c,  double d)
         {
           init(s, c, d);
           norm_rad_val();
@@ -208,8 +208,8 @@ namespace GNU_gama { namespace local {
 
       bool angular() const { return true; }
 
-      Double orientation() const;
-      void   set_orientation(Double p);
+      double orientation() const;
+      void   set_orientation(double p);
       bool   test_orientation() const;
       void   delete_orientation();
       void   index_orientation(int n);
@@ -221,9 +221,9 @@ namespace GNU_gama { namespace local {
     {
     private:
       PointID fs_;
-      Double  fs_dh_;
+      double  fs_dh_;
     public:
-      Angle(const PointID& s, const PointID& b,  const PointID& f, Double d)
+      Angle(const PointID& s, const PointID& b,  const PointID& f, double d)
           : fs_(f), fs_dh_(0)
         {
           /* was: if (s == c2 || c == c2) ...; from 1.3.31 we allow
@@ -244,10 +244,10 @@ namespace GNU_gama { namespace local {
       const PointID& bs() const { return to(); }     // backsight station
       const PointID& fs() const { return fs_;  }     // foresight station
 
-      Double bs_dh() const       { return to_dh(); }
-      void   set_bs_dh(Double h) { set_to_dh(h);   }
-      Double fs_dh() const       { return fs_dh_;  }
-      void   set_fs_dh(Double h) { fs_dh_ = h;     }
+      double bs_dh() const       { return to_dh(); }
+      void   set_bs_dh(double h) { set_to_dh(h);   }
+      double fs_dh() const       { return fs_dh_;  }
+      void   set_fs_dh(double h) { fs_dh_ = h;     }
     };
 
 
@@ -256,9 +256,9 @@ namespace GNU_gama { namespace local {
   class H_Diff : public Accept<H_Diff, Observation>
     {
     private:
-      Double dist_;
+      double dist_;
     public:
-      H_Diff(const PointID& s, const PointID& c, Double dh, Double d=0)
+      H_Diff(const PointID& s, const PointID& c, double dh, double d=0)
         : dist_(d)
         {
           if (d < 0)   // zero distance is legal in H_Diff
@@ -269,13 +269,13 @@ namespace GNU_gama { namespace local {
 
       H_Diff* clone() const { return new H_Diff(*this); }
 
-      void   set_dist(Double d)
+      void   set_dist(double d)
         {
           if (d < 0)    // zero distance is legal in H_Diff
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           dist_ = d;
         }
-      Double dist() const { return dist_; }
+      double dist() const { return dist_; }
     };
 
 
@@ -284,7 +284,7 @@ namespace GNU_gama { namespace local {
   class Xdiff : public Accept<Xdiff, Observation>
     {
     public:
-      Xdiff(const PointID& from, const PointID& to, Double dx)
+      Xdiff(const PointID& from, const PointID& to, double dx)
       {
           init(from, to, dx);
       }
@@ -296,7 +296,7 @@ namespace GNU_gama { namespace local {
   class Ydiff : public Accept<Ydiff, Observation>
     {
     public:
-      Ydiff(const PointID& from, const PointID& to, Double dy)
+      Ydiff(const PointID& from, const PointID& to, double dy)
       {
           init(from, to, dy);
       }
@@ -308,7 +308,7 @@ namespace GNU_gama { namespace local {
   class Zdiff : public Accept<Zdiff, Observation>
     {
     public:
-      Zdiff(const PointID& from, const PointID& to, Double dz)
+      Zdiff(const PointID& from, const PointID& to, double dz)
       {
           init(from, to, dz);
       }
@@ -323,7 +323,7 @@ namespace GNU_gama { namespace local {
   class X : public Accept<X, Observation>
     {
     public:
-      X(const PointID& point, Double x)
+      X(const PointID& point, double x)
       {
           init(point, "", x);
       }
@@ -336,7 +336,7 @@ namespace GNU_gama { namespace local {
   class Y : public Accept<Y, Observation>
     {
     public:
-      Y(const PointID& point, Double y)
+      Y(const PointID& point, double y)
       {
           init(point, "", y);
       }
@@ -349,7 +349,7 @@ namespace GNU_gama { namespace local {
   class Z : public Accept<Z, Observation>
     {
     public:
-      Z(const PointID& point, Double z)
+      Z(const PointID& point, double z)
       {
           init(point, "", z);
       }
@@ -365,7 +365,7 @@ namespace GNU_gama { namespace local {
   class S_Distance : public Accept<S_Distance, Observation>
     {
     public:
-      S_Distance(const PointID& s, const PointID& c, Double d)
+      S_Distance(const PointID& s, const PointID& c, double d)
         {
           if (d <= 0)
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
@@ -381,7 +381,7 @@ namespace GNU_gama { namespace local {
   class Z_Angle : public Accept<Z_Angle, Observation>
     {
     public:
-      Z_Angle(const PointID& s, const PointID& c, Double d)
+      Z_Angle(const PointID& s, const PointID& c, double d)
         {
           if (d <= 0)
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
@@ -399,7 +399,7 @@ namespace GNU_gama { namespace local {
   class Azimuth : public Accept<Azimuth, Observation>
     {
     public:
-      Azimuth(const PointID& s, const PointID& c,  Double d)
+      Azimuth(const PointID& s, const PointID& c,  double d)
         {
           init(s, c, d);
           norm_rad_val();

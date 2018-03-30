@@ -28,7 +28,7 @@
 
 namespace GNU_gama {
 
-template <typename Float=double, typename Index=std::size_t>
+template <typename Float=double, typename Index=int>
 
   /** Sparse general matrix is a set of unordered sparse rows. */
 
@@ -235,7 +235,7 @@ void write(ostream& cout, SparseMatrix<>* sgm)
       cout << k << " : ";
       double* n = sgm->begin(k);
       double* e = sgm->end  (k);
-      for(std::size_t* i=sgm->ibegin(k) ; n!=e; n++, i++)
+      for(int* i=sgm->ibegin(k) ; n!=e; n++, i++)
         {
           cout << *n << " [" << *i << "]  ";
         }

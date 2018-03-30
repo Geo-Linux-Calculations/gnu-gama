@@ -28,12 +28,12 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <gnu_gama/exception.h>
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/adj/adj_basefull.h>
 #include <gnu_gama/adj/adj_basesparse.h>
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/local_revision.h>
-#include <gnu_gama/sparse/smatrix.h>
 #include <gnu_gama/adj/adj.h>
 
 namespace GNU_gama { namespace local
@@ -41,10 +41,11 @@ namespace GNU_gama { namespace local
 
   class LocalNetwork
   {
+    using MVE = GNU_gama::Exception::matvec;
     typedef std::vector<GNU_gama::local::Observation*>       RevisedObsList;
-    typedef GNU_gama::AdjBase<Double, Index, Vec>            AdjBase;
-    typedef GNU_gama::AdjBaseFull<Double, MatVecException>   AdjBaseFull;
-    typedef GNU_gama::AdjBaseSparse<Double, Index, Vec,
+    typedef GNU_gama::AdjBase<double,     int, MVE>  AdjBase;
+    typedef GNU_gama::AdjBaseFull<double, int, MVE>  AdjBaseFull;
+    typedef GNU_gama::AdjBaseSparse<double, int, MVE,
                                     GNU_gama::AdjInputData>  AdjBaseSparse;
 
     AdjBase                *least_squares;
@@ -111,7 +112,7 @@ namespace GNU_gama { namespace local
     void project_equations();
     void project_equations(std::ostream&);
     void project_equations(Mat& A, Vec& b, Vec& w);
-    Double conf_int_coef();
+    double conf_int_coef();
     int min_n() const
     {
       return min_n_;
@@ -123,7 +124,7 @@ namespace GNU_gama { namespace local
     PointID     unknown_pointid   (int i) const { return seznez_[i-1].cb;  }
     char        unknown_type      (int i) const { return seznez_[i-1].typ; }
     StandPoint* unknown_standpoint(int i) const { return seznez_[i-1].osn; }
-    Double      unknown_stdev     (int i)
+    double      unknown_stdev     (int i)
     {
       using namespace std;
       return m_0()*sqrt(least_squares->q_xx(i, i));
@@ -136,18 +137,18 @@ namespace GNU_gama { namespace local
     {
       return RSM[i-1];
     }
-    Double weight_obs(int i)
+    double weight_obs(int i)
     {
-      Double p = m_0_apr_/RSM[i-1]->stdDev();
+      double p = m_0_apr_/RSM[i-1]->stdDev();
       return p*p;
     }
-    Double test_abs_term(Index i);                   // 0 or abs_term(i)
+    double test_abs_term(Index i);                   // 0 or abs_term(i)
     bool huge_abs_terms()
     {
       project_equations(); return vybocujici_abscl_;
     }
     void remove_huge_abs_terms();
-    Double rhs(Index i) const
+    double rhs(Index i) const
     {
       return rhs_(i);
     }
@@ -186,22 +187,22 @@ namespace GNU_gama { namespace local
     }
     int null_space();
 
-    Double trans_VWV()           { vyrovnani_(); return suma_pvv_; }
-    Double m_0();
-    Double apriori_m_0() const   { return m_0_apr_; }
+    double trans_VWV()           { vyrovnani_(); return suma_pvv_; }
+    double m_0();
+    double apriori_m_0() const   { return m_0_apr_; }
 
-    Double qxx(Index i, Index j) { return least_squares->q_xx(i,j); }
-    Double qbb(Index i, Index j) { return least_squares->q_bb(i,j); }
-    Double qbx(Index i, Index j) { return least_squares->q_bx(i,j); }
+    double qxx(Index i, Index j) { return least_squares->q_xx(i,j); }
+    double qbb(Index i, Index j) { return least_squares->q_bb(i,j); }
+    double qbx(Index i, Index j) { return least_squares->q_bx(i,j); }
 
-    Double cond();
+    double cond();
     bool lindep(Index i);
 
     void refine_approx();
 
-    void   apriori_m_0(Double m)  { m_0_apr_ = m; }
-    void   tol_abs(Double m)      { tol_abs_ = m; }
-    Double tol_abs() const        { return tol_abs_; }
+    void   apriori_m_0(double m)  { m_0_apr_ = m; }
+    void   tol_abs(double m)      { tol_abs_ = m; }
+    double tol_abs() const        { return tol_abs_; }
 
     void   update_constrained_coordinates(bool par)
     {
@@ -212,19 +213,19 @@ namespace GNU_gama { namespace local
       return update_constrained_coordinates_;
     }
 
-    Double stdev_obs(int i) { return sigma_L(i); }
-    Double wcoef_res(int i) { return vahkopr(i); }
-    Double stdev_res(int i)
+    double stdev_obs(int i) { return sigma_L(i); }
+    double wcoef_res(int i) { return vahkopr(i); }
+    double stdev_res(int i)
     {
       using namespace std;
       return m_0()*sqrt(fabs(wcoef_res(i)));
     }
 
-    Double studentized_residual(int i)
+    double studentized_residual(int i)
     {
       return residuals()(i)/stdev_res(i);
     }
-    Double obs_control(int i)
+    double obs_control(int i)
     {
       /*
        * It is supposed that standard deviation mL of adjusted
@@ -242,21 +243,21 @@ namespace GNU_gama { namespace local
       using namespace std;
       return 100*fabs(1-sqrt(least_squares->q_bb(i,i)));
     }
-    void std_error_ellipse(const PointID&, Double& a,
-                           Double& b, Double& alfa);
+    void std_error_ellipse(const PointID&, double& a,
+                           double& b, double& alfa);
 
 
     // ...  parameters of statistic analysis  ...............................
 
     bool m_0_apriori    () const { return typ_m_0_ == apriorni_;  }
     bool m_0_aposteriori() const { return typ_m_0_ == empiricka_; }
-    Double m_0_aposteriori_value();
+    double m_0_aposteriori_value();
 
     void set_m_0_apriori    ()   { typ_m_0_ = apriorni_; }
     void set_m_0_aposteriori()   { typ_m_0_ = empiricka_; }
 
-    Double conf_pr() const       { return konf_pr_; }
-    void   conf_pr(Double p);
+    double conf_pr() const       { return konf_pr_; }
+    void   conf_pr(double p);
 
 
     // ...  formated output  ...............................................
@@ -340,9 +341,9 @@ namespace GNU_gama { namespace local
 
     // parameters of statistical analysis
 
-    Double m_0_apr_;         // a priori reference standard deviation
-    Double konf_pr_;         // (confidence) probability
-    Double tol_abs_;         // tollerance for testing absolute terms
+    double m_0_apr_;         // a priori reference standard deviation
+    double konf_pr_;         // (confidence) probability
+    double tol_abs_;         // tollerance for testing absolute terms
     bool update_constrained_coordinates_;
     enum ApEm_ { apriorni_, empiricka_ };
     ApEm_ typ_m_0_;          // type of reference standard deviation
@@ -369,8 +370,8 @@ namespace GNU_gama { namespace local
     Vec r;
     Vec sigma_L;          // standard deviation of adjusted observation
     Vec vahkopr;          // weight coefficient of residuals
-    Double suma_pvv_;
-    GNU_gama::SparseMatrix<Double, Index>*  Asp;
+    double suma_pvv_;
+    GNU_gama::SparseMatrix<double, Index>*  Asp;
 
     bool design_matrix_graph_is_connected;
 

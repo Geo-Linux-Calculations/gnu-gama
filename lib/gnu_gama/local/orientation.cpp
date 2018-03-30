@@ -1,28 +1,28 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+  GNU Gama C++ library
+  Copyright (C) 1999, 2018  Ales Cepek <cepek@gnu.orf>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/gamadata.h>
 #include <algorithm>
+#include <cmath>
 #include <sstream>
 #include <iomanip>
 
@@ -34,7 +34,7 @@ typedef GNU_gama::Cluster<Observation>  Clust_r;   // 1.11
 void Orientation::add_all()
 {
   ObservationList::const_iterator iterator = OL.begin();
-  Double l1;
+  double l1;
   int    dir_count;
 
   while (iterator != OL.end())
@@ -67,7 +67,7 @@ void Orientation::add_all()
 
 
 void Orientation::orientation(ObservationList::const_iterator& mer,
-                              Double& z, int& dir_count)
+                              double& z, int& dir_count)
 {
    const Clust_r* current = (*mer)->ptr_cluster();
    PointData::const_iterator pa = PL.find( (*mer)->from() );
@@ -80,7 +80,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
       return;
    }
 
-   std::vector<Double> sz;
+   std::vector<double> sz;
 
    while ( mer != OL.end() && (*mer)->ptr_cluster() == current )
    {
@@ -133,22 +133,22 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
       ++mer;
    }
 
-   Double l1 = 0;
-   Float  d  = 0;          // mean deviation
+   double l1 = 0;
+   double d  = 0;          // mean deviation
    int    n  = sz.size();
 
    if (n)
    {
       std::sort(sz.begin(), sz.end());
-      Double l1a = sz[(n-1)/2];
-      Double l1b = sz[n/2];
+      double l1a = sz[(n-1)/2];
+      double l1b = sz[n/2];
       if (abs(l1b - l1a) > M_PI/2 && n < 3)
          l1 = l1a;
       else
          l1 = (sz[n/2] + sz[(n-1)/2]) / 2;
 
       for (int i=0; i<n; i++)
-         d += abs(sz[i] - l1);
+	d += std::abs(sz[i] - l1);
       d /= n;
       if (l1 < 0) l1 += 2*M_PI;
    }

@@ -1,23 +1,22 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2012, 2014  Ales Cepek  <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
+                2001, 2012, 2014, 2018  Ales Cepek  <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
  /**************************************************************
@@ -90,15 +89,15 @@ namespace GNU_gama { namespace local {
           r1 = h1->value();
           r2 = h2->value();
         };
-      Double dy = B2.y() - B1.y();
-      Double dx = B2.x() - B1.x();
-      Double s12 = sqrt(g2d_sqr(dy)+g2d_sqr(dx));
+      double dy = B2.y() - B1.y();
+      double dx = B2.x() - B1.x();
+      double s12 = sqrt(g2d_sqr(dy)+g2d_sqr(dx));
       if(s12 == 0)                  // given identical points; no solution
         return;
-      Double s1 = r1 / s12;
-      Double s2 = r2 / s12;
-      Double f = ((s1+s2)*(s1-s2)+1)/2;
-      Double g = (s1+f)*(s1-f);
+      double s1 = r1 / s12;
+      double s2 = r2 / s12;
+      double f = ((s1+s2)*(s1-s2)+1)/2;
+      double g = (s1+f)*(s1-f);
       if(g < 0)                     // intersection doesn't exist
         return;
       if(sqrt(g) < (small_angle_limit_*s1*s2))    // intersection angle < 10 gon
@@ -156,14 +155,14 @@ namespace GNU_gama { namespace local {
         };
       const LocalPoint B1 = (*(SB->find(h1->from()))).second;
       const LocalPoint B2 = (*(SB->find(h2->from()))).second;
-      Double jmen = cos(h1->value())*sin(h2->value())
+      double jmen = cos(h1->value())*sin(h2->value())
         -sin(h1->value())*cos(h2->value());
       if(fabs(jmen) < small_angle_limit_)       // unreliable intersection
         {
           small_angle_detected_ = true;
           return;
         }
-      Double dy = (sin(h1->value())*sin(h2->value())*(B2.x()-B1.x())-
+      double dy = (sin(h1->value())*sin(h2->value())*(B2.x()-B1.x())-
                    cos(h1->value())*sin(h2->value())*(B2.y()-B1.y()))/jmen;
       /*
        * if((signum(dy) != signum(sin(h2->value()))) ||
@@ -231,17 +230,17 @@ namespace GNU_gama { namespace local {
             B2 = (*(SB->find(h2->to()))).second;
           r = h2->value();
         }
-      else                        // input Direction*, Double, LocalPoint
+      else                        // input Direction*, double, LocalPoint
         B2 = B;
       if(r <= 0)                  // radius <= 0
         return;
-      Double yp = (B1.y()-B2.y())*cos(h1->value())
+      double yp = (B1.y()-B2.y())*cos(h1->value())
         -(B1.x()-B2.x())*sin(h1->value());
       if(fabs(yp) > r) // semi-line outside circle; intersection doesn't exist
         return;
-      Double xp = (B1.x()-B2.x())*cos(h1->value())
+      double xp = (B1.x()-B2.x())*cos(h1->value())
         +(B1.y()-B2.y())*sin(h1->value());
-      Double x1 = sqrt(g2d_sqr(r)-g2d_sqr(yp));
+      double x1 = sqrt(g2d_sqr(r)-g2d_sqr(yp));
       if(x1 <= xp)     // semi-line outside circle; intersection doesn't exist
         return;
       if(x1 < (small_angle_limit_*r))      // intersection angle < 10 gon
@@ -307,7 +306,7 @@ namespace GNU_gama { namespace local {
         return;
       LocalPoint B1 = (*(SB->find(h2->bs()))).second;
       LocalPoint B2 = (*(SB->find(h2->fs()))).second;
-      Double uu = bearing(SD.solution_1(),B2) - bearing(SD.solution_1(),B1);
+      double uu = bearing(SD.solution_1(),B2) - bearing(SD.solution_1(),B1);
       uu += (uu < 0 ? 2*M_PI : 0);
       // uu should be equal to h2->value(), but ...  uu is either
       // value() or value()+-PI
@@ -380,15 +379,15 @@ namespace GNU_gama { namespace local {
         return;
       PointID CBB = (h1->from() == h2->from() ? h1->to() : h1->from());
       LocalPoint BB = (*(SB->find(CBB))).second;
-      Double dd1 = h1->value();
-      Double dd2 = K.radius();
+      double dd1 = h1->value();
+      double dd2 = K.radius();
       Distance_distance DD(dd1,dd2,BB,K.solution_1(),SB);
       DD.calculation();
       if(DD.number_of_solutions() < 1)   // intersection doesn't exist
         return;
       LocalPoint B1 = (*(SB->find(h2->bs()))).second;
       LocalPoint B2 = (*(SB->find(h2->fs()))).second;
-      Double uu = bearing(DD.solution_1(),B2) - bearing(DD.solution_1(),B1);
+      double uu = bearing(DD.solution_1(),B2) - bearing(DD.solution_1(),B1);
       uu += (uu < 0 ? 2*M_PI : 0);
       // uu should be equalto h2->value(), but ...  uu is either
       // value() or value()+-PI
@@ -457,8 +456,8 @@ namespace GNU_gama { namespace local {
       // circle parameters were not solved ?
       if((K1.number_of_solutions() < 1) || (K2.number_of_solutions() < 1))
         return;
-      Double rr1 = K1.radius();
-      Double rr2 = K2.radius();
+      double rr1 = K1.radius();
+      double rr2 = K2.radius();
       Distance_distance DD(rr1,rr2,K1.solution_1(),K2.solution_1(),SB);
       DD.calculation();
       if(DD.number_of_solutions() < 1)   // intersection doesn't exist
@@ -468,7 +467,7 @@ namespace GNU_gama { namespace local {
       LocalPoint B3 = (*(SB->find(h2->bs()))).second;
       LocalPoint B4 = (*(SB->find(h2->fs()))).second;
       bool Vyhovuje1, Vyhovuje2;
-      Double uu1, uu2;
+      double uu1, uu2;
       // in the case of common point at both angles is one of
       // intersections this point
       if(!(((B1.x()==DD.solution_1().x()) && (B1.y()==DD.solution_1().y())) ||
@@ -540,7 +539,7 @@ namespace GNU_gama { namespace local {
     try {
 
       number_of_solutions_ = 0;       // -1 when computation not done
-      Double u = h1->value();
+      double u = h1->value();
       if(fabs(sin(u)) < small_angle_limit_)        // small angle
         {
           small_angle_detected_ = true;
@@ -548,11 +547,11 @@ namespace GNU_gama { namespace local {
         }
       B1 = (*(SB->find(h1->bs()))).second;
       B2 = (*(SB->find(h1->fs()))).second;
-      Double sm, d;
+      double sm, d;
       bearing_distance(B1,B2,sm,d);
       if(d == 0)                     // identical points
         return;
-      Double rr = d/sin(u)/2;
+      double rr = d/sin(u)/2;
       R = fabs(rr);
       point1->set_xy(B1.x()-rr*sin(sm - u), B1.y()+rr*cos(sm - u));
       number_of_solutions_ = 1;

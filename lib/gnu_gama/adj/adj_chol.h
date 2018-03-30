@@ -1,6 +1,6 @@
 /*
   GNU Gama is a package for adjustment and analysis of geodetic observations
-  Copyright (C) 2005, 2006  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2005, 2006, 2018  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -15,8 +15,7 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef GNU_gama_adjustment_cholesky_decomposition_gnu_gama_adj_chol_h
@@ -31,8 +30,9 @@
 namespace GNU_gama {
 
   template <typename Float=double,
-            typename Exc=Exception::matvec>
-  class AdjCholDec : public AdjBaseFull<Float, Exc>
+	    typename Index=int,
+	    typename Exc=Exception::matvec>
+  class AdjCholDec : public AdjBaseFull<Float, Index, Exc>
   {
   public:
 
@@ -50,19 +50,19 @@ namespace GNU_gama {
 
   private:
 
-    Index               M, N;    // number of observations, parameters
-    Vec   <Index>       perm;
-    Vec   <Index>       invp;    // inverse permutation : invp(perm(i)) = i
-    SymMat<Float, Exc>  mat;
-    Vec   <Float, Exc>  rhs;
+    Index                     M, N; // number of observations, parameters
+    Vec<Index, Index, Exc>    perm;
+    Vec<Index, Index, Exc>    invp; // inverse permutation : invp(perm(i)) = i
+    SymMat<Float, Index, Exc> mat;
+    Vec   <Float, Index, Exc> rhs;
 
-    Float               s_tol;   // tolerance for linearly dependent vectors
-    Index               nullity;
-    Index               N0;      // last linearly independent column
-    Vec   <Float, Exc>  x0;      // a particular solution 'x0'
-    SymMat<Float, Exc>  Q0;      // cofactor matrix (inverse of mat(:N0,:N0))
+    Float s_tol;                    // tolerance for linearly dependent vectors
+    Index nullity;
+    Index N0;                       // last linearly independent column
+    Vec   <Float, Index, Exc>  x0;  // a particular solution 'x0'
+    SymMat<Float, Index, Exc>  Q0;  // cofactor matrix (inverse of mat(:N0,:N0))
 
-    enum {ALL, SUBSET}  minx_t;  // parameters of regularization
+    enum {ALL, SUBSET}  minx_t;     // parameters of regularization
     Index               minx_n;
     Index*              minx_i;
 
@@ -72,10 +72,11 @@ namespace GNU_gama {
       nullity = Index();
       minx_t  = ALL;
       minx_i  = 0;
+      N0      = 0;
     }
 
-    Mat<Float, Exc> G;
-    Float dot(const Mat<Float,Exc>& M, Index i, Index j) const;
+    Mat<Float, Index, Exc> G;
+    Float dot(const Mat<Float,Index,Exc>& M, Index i, Index j) const;
     Float T(Index, Index) const;
 
   };

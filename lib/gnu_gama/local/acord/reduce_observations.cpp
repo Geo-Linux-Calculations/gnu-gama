@@ -1,23 +1,22 @@
 /*
-    GNU Gama C++ library
-    Copyright (C) 2002 Jan Pytel  <pytel@fsv.cvut.cz>
-                  2010, 2018 Ales Cepek <cepek@gnu.org>
+  GNU Gama C++ library
+  Copyright (C) 2002 Jan Pytel  <pytel@fsv.cvut.cz>
+                2010, 2018 Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/local/acord/reduce_observations.h>
@@ -26,7 +25,7 @@
 using namespace std;
 using namespace GNU_gama::local;
 
-const Double EarthRadius = 6378000;  // [m]
+const double EarthRadius = 6378000;  // [m]
 
 class average_value {
 public:
@@ -40,7 +39,7 @@ public:
         sum = number_of_values = 0;
     }
 
-    Double add(const Double& val)
+    double add(const double& val)
     {
         if (number_of_values++)
             sum+=val;
@@ -50,18 +49,18 @@ public:
         return sum / number_of_values;
     }
 
-    Double average() const
+    double average() const
     {
         return number_of_values ? sum / number_of_values : 0;
     }
 
-    Double count() const
+    double count() const
     {
         return number_of_values;
     }
 
 private:
-    Double sum;
+    double sum;
     unsigned int number_of_values;
 };
 
@@ -103,7 +102,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
 
     if ( !obs ) return;
 
-    const Double orig_value = r_obs->orig_value();
+    const double orig_value = r_obs->orig_value();
 
     average_value ZA_from_to_cluster, ZA_to_from_cluster,
                   ZA_from_to, ZA_to_from;
@@ -121,7 +120,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
         if ( !zangle->active() )
             continue;
 
-        const Double value = ci->orig_value();
+        const double value = ci->orig_value();
 
         if ( ( zangle->from() == obs->from()       ) &&
              ( zangle->to() == obs->to()           ) &&
@@ -154,14 +153,14 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
         return;
     }
 
-    const Double dh = obs->to_dh() - obs->from_dh();
+    const double dh = obs->to_dh() - obs->from_dh();
 
     const LocalPoint& from = PD[obs->from()];
     const LocalPoint& to   = PD[obs->to()];
 
-    Double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
-    Double gravity_angle    = 0; // correction from gravity
-    Double refraction_angle = 0;
+    double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
+    double gravity_angle    = 0; // correction from gravity
+    double refraction_angle = 0;
 
 
     if ( from.test_z() && to.test_z() )
@@ -181,7 +180,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
 
     gravity_angle = orig_value / (EarthRadius + Hm);
 
-    Double observed_za;
+    double observed_za;
 
     if ( ZA_from_to_cluster.count() )
     {
@@ -202,13 +201,13 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
                 observed_za = M_PI + gravity_angle - ZA_to_from.average();
 
 
-    const Double d2 = (orig_value * orig_value) + dh*dh - 2 * orig_value * dh *
+    const double d2 = (orig_value * orig_value) + dh*dh - 2 * orig_value * dh *
                        std::cos(observed_za + refraction_angle - gravity_angle);
 
     if ( fabs(d2) <= 0 )
         return;
 
-    const Double d_from = gravity_angle * obs->from_dh();
+    const double d_from = gravity_angle * obs->from_dh();
 
     obs->set_value( std::sqrt(d2) - d_from );
 
@@ -222,7 +221,7 @@ void ReducedObservations::reduce_zangle(ReducedObs* r_obs)
 
     if ( !obs ) return;
 
-    const Double orig_value = r_obs->orig_value();
+    const double orig_value = r_obs->orig_value();
 
     average_value ZA_to_from_cluster,
                   SD_cluster,
@@ -283,14 +282,14 @@ void ReducedObservations::reduce_zangle(ReducedObs* r_obs)
         return;
     }
 
-    const Double dh = obs->to_dh() - obs->from_dh();
+    const double dh = obs->to_dh() - obs->from_dh();
 
     const LocalPoint& from = PD[obs->from()];
     const LocalPoint& to   = PD[obs->to()];
 
-    Double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
-    Double gravity_angle    = 0;  // correction from gravity
-    Double refraction_angle = 0;
+    double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
+    double gravity_angle    = 0;  // correction from gravity
+    double refraction_angle = 0;
 
 
     if ( from.test_z() && to.test_z() )
@@ -312,17 +311,17 @@ void ReducedObservations::reduce_zangle(ReducedObs* r_obs)
     if ( ZA_to_from_cluster.count() )
         refraction_angle = M_PI/2 + gravity_angle/2 - 0.5 *
                            (orig_value + ZA_to_from_cluster.average() );
-    Double sdist;
+    double sdist;
 
     if ( SD_cluster.count() )
         sdist = SD_cluster.average();
     else
         sdist = SD.average();
 
-    const Double dist_to_vertic_dh = sdist - dh *
+    const double dist_to_vertic_dh = sdist - dh *
                  std::cos ( orig_value + refraction_angle - gravity_angle );
 
-    const Double vertic_dh = dh * std::sin( orig_value + refraction_angle -
+    const double vertic_dh = dh * std::sin( orig_value + refraction_angle -
                                             gravity_angle);
 
     if ( std::fabs(dist_to_vertic_dh) < 1e-10 )

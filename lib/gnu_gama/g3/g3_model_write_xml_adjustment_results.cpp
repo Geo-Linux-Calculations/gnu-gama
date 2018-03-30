@@ -30,8 +30,6 @@
 using namespace std;
 using namespace GNU_gama::g3;
 
-using GNU_gama::Index;
-
 namespace
 {
   class WriteAdjustedXML :
@@ -85,7 +83,7 @@ namespace
       model->write_xml_adjusted(out, p, index);
     }
 
-    Index index;
+    int index;
 
   private:
 
@@ -247,7 +245,7 @@ void Model::write_xml_adjustment_results_observations(std::ostream& out)
   out << "\n<adjusted-observations>\n";
 
   WriteAdjustedXML  write_xml(this, out);
-  Index index = 1;
+  int index = 1;
   for (ObservationList::iterator
          i=active_obs->begin(), e=active_obs->end(); i!=e; ++i)
     {
@@ -266,15 +264,15 @@ void Model::write_xml_adjustment_results_observations(std::ostream& out)
 void Model::write_xml_adjusted_stdev(const char* prefix,
                                      std::ostream& out,
                                      const Observation* obs,
-                                     Index obs_dim_index,
-                                     Index index)
+                                     int obs_dim_index,
+                                     int index)
 {
   const char* tab   = "        ";
   const char* ntab  = "\n        ";
   const int   prec  = out.precision(3);
   const int   width = 8;
 
-  Index  cluster_index = obs->cluster_index + obs_dim_index;
+  int    cluster_index = obs->cluster_index + obs_dim_index;
   double obs_stdev     = obs->cluster->stdDev(cluster_index);
 
   // double res_stdev     = -1;
@@ -298,7 +296,7 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
 
 void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
                                        const Observation* obs,
-                                       Index index)
+                                       int index)
 {
   double cxx = cov_bb(index, index  );
   double cxy = cov_bb(index, index+1);
@@ -330,7 +328,7 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
 }
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Angle* a, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Angle* a, int index)
 {
   out << "\n<angle> ";
   out << "        </angle>\n";
@@ -338,7 +336,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Angle* a, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, int index)
 {
   out << "\n<azimuth> ";
   out << "        </azimuth>\n";
@@ -346,7 +344,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Distance* d, int index)
 {
   out << "\n<distance> "
       << "<from>"  << d->from << "</from> "
@@ -379,7 +377,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Distance* d, Index index
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Vector* v, int index)
 {
   out << "\n<vector> "
       << "<from>"  << v->from << "</from> "
@@ -438,7 +436,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const Height* h, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const Height* h, int index)
 {
   out << "\n<height> "
       << "<id>" << h->id << "</id> "
@@ -470,7 +468,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Height* h, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, int index)
 {
   out << "\n<height-diff> "
       << "<from>" << hd->from << "</from> <to>" << hd->to << "</to> "
@@ -502,7 +500,7 @@ void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, Index in
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
+void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, int index)
 {
   out << "\n<xyz> "
       << "<id>" << xyz->id << "</id> "
@@ -560,7 +558,8 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, Index index)
 
 
 
-void Model::write_xml_adjusted(std::ostream& out, const ZenithAngle* za, Index index)
+void Model::write_xml_adjusted(std::ostream& out,
+			       const ZenithAngle* za, int index)
 {
   out << "\n<zenith-angle> ";
   out << "        </zenith-angle>\n";

@@ -25,14 +25,16 @@
  * \author Maxime Le Moual
  */
 
-#include <gnu_gama/local/svg.h>
-#include <gnu_gama/radian.h>
+#include <cmath>
 #include <algorithm>
 #include <sstream>
 #include <utility>
 #include <set>
+#include <gnu_gama/local/svg.h>
+#include <gnu_gama/radian.h>
 
 using namespace GNU_gama::local;
+using std::abs;   // floating point std::abs() from <cmath>
 
 GamaLocalSVG::GamaLocalSVG(LocalNetwork* is)
   : IS(*is), PD(is->PD), OD(is->OD),

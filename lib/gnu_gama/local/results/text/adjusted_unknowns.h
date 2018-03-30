@@ -1,23 +1,22 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
-                  2014  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+                2014, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef GaMa_GaMaProg_Vyrovnane_Nezname_h_
@@ -38,7 +37,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   const int y_sign = IS->y_sign();
 
   const Vec& x = IS->solve();
-  Double kki = IS->conf_int_coef();
+  double kki = IS->conf_int_coef();
   const int pocnez = IS->sum_unknowns();
 
   bool sour = false;
@@ -52,7 +51,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   }   // for ...
   if (sour)
     {
-      Double /*mp,*/ mp_max = -1, mp_prum = 0;
+      double /*mp,*/ mp_max = -1, mp_prum = 0;
       PointID mp_max_cb, prev_id;
       int pocbod = 0;
 
@@ -83,8 +82,8 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               else
                 out << " ";
               prev_id = point_id;
-              Double mx = IS->unknown_stdev(b.index_x());
-              Double my = IS->unknown_stdev(b.index_y());
+              double mx = IS->unknown_stdev(b.index_x());
+              double my = IS->unknown_stdev(b.index_y());
               // mp = sqrt(my*my+mx*mx);
               out << '\n';
 
@@ -97,7 +96,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                 out << "x" << "   ";
               out.precision(5);
               out.width(13);
-              Double adj_x = b.x()+x(b.index_x())/1000;
+              double adj_x = b.x()+x(b.index_x())/1000;
               out << b.x_0() << " ";
               out.width(9);
               out << (adj_x - b.x_0()) << " ";
@@ -120,7 +119,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                 out << "y" << "   ";
               out.precision(5);
               out.width(13);
-              Double adj_y = y_sign*(b.y()+x(b.index_y())/1000);
+              double adj_y = y_sign*(b.y()+x(b.index_y())/1000);
               out << y_sign*b.y_0() << " ";
               out.width(9);
               out << (adj_y - y_sign*b.y_0()) << " ";
@@ -157,7 +156,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                 out << "z" << "   ";
               out.precision(5);
               out.width(13);
-              Double adj_z = b.z()+x(b.index_z())/1000;
+              double adj_z = b.z()+x(b.index_z())/1000;
               out << b.z_0() << " ";
               out.width(9);
               out << (adj_z - b.z_0()) << " ";
@@ -227,7 +226,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               const PointID cb = IS->unknown_pointid(i);
               out << Utf8::leftPad(cb.str(), IS->maxw_id()) << "  ";
               StandPoint* k = IS->unknown_standpoint(i);
-              Double z = y_sign*( k->orientation() )*R2G;
+              double z = y_sign*( k->orientation() )*R2G;
               if (z <  0 ) z += 400;
               if (z > 400) z -= 400;
               out.setf(ios_base::fixed, ios_base::floatfield);
@@ -253,7 +252,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                 out << GNU_gama::gon2deg(z, 0, 2) << " ";
               out.precision(1);
               out.width(8);
-              Double mz = IS->unknown_stdev(i)*scale;
+              double mz = IS->unknown_stdev(i)*scale;
               out << mz << " ";
               out.width(7);
               out << mz*kki;
@@ -305,7 +304,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               out << "   ";
             out.precision(5);
             out.width(13);
-            Double adj_z = b.z()+x(i)/1000;
+            double adj_z = b.z()+x(i)/1000;
             out << b.z_0() << " ";
             out.width(9);
             out << (adj_z - b.z_0()) << " ";

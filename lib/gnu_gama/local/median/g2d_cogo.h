@@ -1,23 +1,22 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2012  Ales Cepek  <cepek@gnu.org>
+  GNU Gama C++ library
+  Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
+                2001, 2012, 2018  Ales Cepek  <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*************************************************************
@@ -111,7 +110,7 @@ namespace GNU_gama { namespace local {
       Distance*   h1;
       Distance*   h2;
       PointID     CB;     // for easier search in computed distances
-      Double      r1, r2;
+      double      r1, r2;
       LocalPoint  B1;
       LocalPoint  B2;
       void observation_check(Observation*, Observation*);
@@ -126,7 +125,7 @@ namespace GNU_gama { namespace local {
         {
           observation_check(m1, m2);
         }
-      Distance_distance(Double& m1, Double& m2,
+      Distance_distance(double& m1, double& m2,
                         LocalPoint b1, LocalPoint b2, PointData* sb)
         : CoordinateGeometry2D(sb), r1(m1), r2(m2), B1(b1), B2(b2)
         {
@@ -191,7 +190,7 @@ namespace GNU_gama { namespace local {
       Direction*  h1;
       Distance*   h2;
       LocalPoint  B;
-      Double r;
+      double r;
       void observation_check(Observation*, Observation*);
 
     public:
@@ -204,7 +203,7 @@ namespace GNU_gama { namespace local {
         {
           observation_check(m1, m2);
         }
-      Direction_distance(Direction* m1, Double m2, LocalPoint b, PointData* sb)
+      Direction_distance(Direction* m1, double m2, LocalPoint b, PointData* sb)
         : CoordinateGeometry2D(sb), h1(m1), B(b), r(m2)
         {
         }
@@ -331,7 +330,7 @@ namespace GNU_gama { namespace local {
     private:
       Angle*      h1;
       LocalPoint  B1, B2;
-      Double      R;
+      double      R;
       void observation_check(Observation*, Observation*) {}
 
     public:
@@ -352,7 +351,7 @@ namespace GNU_gama { namespace local {
           h1 = u;
           calculation();
         }
-      Double radius() const
+      double radius() const
         {
           if(number_of_solutions_ == -1)
             throw g2d_exc("Circle: computation not done");

@@ -1,22 +1,21 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999, 2018  Ales Cepek <cepek@fsv.cvut.cz>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef GaMa_GaMaProg_Prehled_Elipsy_Chyb_h_
@@ -34,14 +33,13 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 {
    using namespace std;
    using namespace GNU_gama::local;
-   using GNU_gama::local::Double;
 
    const int y_sign = IS->y_sign();
 
    const Vec& x = IS->solve();
-   Double elp_k = 0;
+   double elp_k = 0;
    {
-     Double alfa = (1 - IS->conf_pr());
+     double alfa = (1 - IS->conf_pr());
      if (IS->m_0_apriori())
        {
 	 elp_k = sqrt(GNU_gama::Chi_square(float(alfa), 2));
@@ -67,7 +65,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
        }
    }   // for ...
 
-   Double mp_max = -1, mp_prum = 0;
+   double mp_max = -1, mp_prum = 0;
    PointID mp_max_cb;
    int pocbod = 0;
 
@@ -101,10 +99,10 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                out << Utf8::leftPad(point_id.str(), IS->maxw_id()) << ' ';
 
                const LocalPoint& p = (*point).second;
-               Double my = IS->unknown_stdev(p.index_y());
-               Double mx = IS->unknown_stdev(p.index_x());
+               double my = IS->unknown_stdev(p.index_y());
+               double mx = IS->unknown_stdev(p.index_x());
 
-               Double mp = sqrt(my*my+mx*mx);
+               double mp = sqrt(my*my+mx*mx);
                if (mp < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
                else
@@ -119,7 +117,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                }
                pocbod++;
 
-               Double myx = mp/sqrt(2.0);
+               double myx = mp/sqrt(2.0);
                out.width(7);
                if (myx < 1000)
                  out.setf(ios_base::fixed, ios_base::floatfield);
@@ -127,7 +125,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                  out.setf(ios_base::scientific, ios_base::floatfield);
                out << myx << ' ' ;
 
-               Double a, b, alfa;
+               double a, b, alfa;
                IS->std_error_ellipse(point_id, a, b, alfa);
                // if (y_sign == -1)
                //   {
@@ -153,8 +151,8 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
                if (mp < 1000 && mp > 1e-3)
                  {           // ********* testing noise (coordinates are OK)
-                   Double ak = a*elp_k;
-                   Double bk = b*elp_k;
+                   double ak = a*elp_k;
+                   double bk = b*elp_k;
                    out.width(7);
                    if (ak < 1000)
                      out.setf(ios_base::fixed, ios_base::floatfield);
@@ -168,11 +166,11 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
                      out.setf(ios_base::scientific, ios_base::floatfield);
                    out << bk << ' ';
 
-                   Double g  = 0;
-                   Double dx = x( p.index_x() );
-                   Double dy = y_sign*x( p.index_y() );
-                   Double p1 = (dx*cos(alfa) + dy*sin(alfa));
-                   Double p2 = (dy*cos(alfa) - dx*sin(alfa));
+                   double g  = 0;
+                   double dx = x( p.index_x() );
+                   double dy = y_sign*x( p.index_y() );
+                   double p1 = (dx*cos(alfa) + dy*sin(alfa));
+                   double p2 = (dy*cos(alfa) - dx*sin(alfa));
                    if (ak > 0 && bk > 0 && bk > ak*1e-4)
                      {           // ***** testing noise (bk is practically 0)
                        p1 /= ak;

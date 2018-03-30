@@ -1,23 +1,23 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001, 2014  Ales Cepek  <cepek@gama.fsv.cvut.cz>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
+                2001, 2014  Ales Cepek  <cepek@gama.fsv.cvut.cz>
+                2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*************************************************************
@@ -244,8 +244,8 @@ namespace GNU_gama { namespace local {
 
     ObservationList::iterator i, j;
     // distances
-    Double med;
-    std::vector<Double> pom_sez;
+    double med;
+    std::vector<double> pom_sez;
     i = sm_pom.begin();
     while(i != sm_pom.end())
       {
@@ -269,7 +269,7 @@ namespace GNU_gama { namespace local {
                   j++;
               }
             std::sort(pom_sez.begin(),pom_sez.end());
-            std::vector<Double>::size_type size = pom_sez.size();
+            std::vector<double>::size_type size = pom_sez.size();
             med = (g2d_even(size) ?
                    (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                    pom_sez[(size+1)/2-1]);
@@ -306,7 +306,7 @@ namespace GNU_gama { namespace local {
               j++;
           }
         std::sort(pom_sez.begin(),pom_sez.end());
-        std::vector<Double>::size_type size = pom_sez.size();
+        std::vector<double>::size_type size = pom_sez.size();
         med = (g2d_even(size) ?
                (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);
@@ -321,7 +321,7 @@ namespace GNU_gama { namespace local {
     // in sm_pom are only inner angels now; dists. have been already removed
     // in SM_U are only angles
     i = sm_pom.begin();
-    Double u_mer;
+    double u_mer;
     while(i != sm_pom.end())
       {
         Angle* u1 = static_cast<Angle*>(*i);
@@ -344,7 +344,7 @@ namespace GNU_gama { namespace local {
               j++;
           }
         std::sort(pom_sez.begin(),pom_sez.end());
-        std::vector<Double>::size_type size = pom_sez.size();
+        std::vector<double>::size_type size = pom_sez.size();
         med = (g2d_even(size) ?
                (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);
@@ -383,7 +383,7 @@ namespace GNU_gama { namespace local {
               j++;
           }
         std::sort(pom_sez.begin(),pom_sez.end());
-        std::vector<Double>::size_type size = pom_sez.size();
+        std::vector<double>::size_type size = pom_sez.size();
         med = (g2d_even(size) ?
                (pom_sez[size/2-1] + pom_sez[size/2])/2 :
                pom_sez[(size+1)/2-1]);

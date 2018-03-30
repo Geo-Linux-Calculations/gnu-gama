@@ -1,26 +1,25 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2012  Ales Cepek <cepek@gnu.org>
+  C++ Matrix/Vector templates (GNU Gama / matvec)
+  Copyright (C) 1999, 2007, 2012, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ Matrix/Vector template library.
+  This file is part of the GNU Gama C++ Matrix/Vector template library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_gama_gMatVec_Cholesky_Decomposition_h_
-#define GNU_gama_gMatVec_Cholesky_Decomposition_h_
+#ifndef GNU_gama_gMatVec_Cholesky_Decomposition_h
+#define GNU_gama_gMatVec_Cholesky_Decomposition_h
 
 #include <matvec/vecbase.h>
 
@@ -36,45 +35,46 @@ namespace GNU_gama {
    */
 
 
-template <typename Float=double, typename Exc=Exception::matvec>
-class CholDec {
+  template <typename Float=double,
+            typename Index=int,
+            typename Exc=Exception::matvec>
+  class CholDec
+  {
+    Float  tol_;
 
-  Float  tol_;
+  public:
 
-public:
+    CholDec(Float t=1e-8) : tol_(t) {}
+    virtual ~CholDec() {}
 
-  CholDec(Float t=1e-8) : tol_(t) {}
-  virtual ~CholDec() {}
+    Float  cholTol() const  { return tol_; }
+    Float  cholTol(Float t) { tol_ = t; return tol_; }
 
-  Float  cholTol() const  { return tol_; }
-  Float  cholTol(Float t) { tol_ = t; return tol_; }
-
-  virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
-  virtual void solve(Vec<Float, Exc>& rhs) const = 0;
-};
+    virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
+    virtual void solve(Vec<Float, Index, Exc>& rhs) const = 0;
+  };
 
 
-template <typename Float=double, typename Exc=Exception::matvec>
-class CholDecLD {
+  template <typename Float=double,
+            typename Index=int,
+            typename Exc=Exception::matvec>
+  class CholDecLD
+  {
+    Float  tol_;
 
-  Float  tol_;
+  public:
 
-public:
+    CholDecLD(Float t=1e-8) : tol_(t) {}
+    virtual ~CholDecLD() {}
 
-  CholDecLD(Float t=1e-8) : tol_(t) {}
-  virtual ~CholDecLD() {}
+    Float  cholTol() const  { return tol_; }
+    Float  cholTol(Float t) { tol_ = t; return tol_; }
 
-  Float  cholTol() const  { return tol_; }
-  Float  cholTol(Float t) { tol_ = t; return tol_; }
-
-  virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
-  virtual void solve(Vec<Float, Exc>& rhs) const = 0;
-};
+    virtual void cholDec() = 0;    // `in situ' Cholesky decomposition
+    virtual void solve(Vec<Float, Index, Exc>& rhs) const = 0;
+  };
 
 
 }   // namespace GNU_gama
 
 #endif
-
-
-

@@ -153,7 +153,7 @@ void HtmlParser::table_coordinates_summary()
   // skip table heades and possible new-line after </tr>
   if (table_col <= 0) return;
 
-  std::size_t N;
+  int N;
   toIndex(data, N);
 
   set(2,2,adjres->coordinates_summary.adjusted.xyz,    N);
@@ -172,7 +172,7 @@ void HtmlParser::table_observations_summary()
 {
   if (table_col <= 0 || table_col != 2) return;
 
-  std::size_t N;
+  int N;
   toIndex(data, N);
 
   if (trat == "count_dist" ) adjres->observations_summary.distances  = N;
@@ -190,7 +190,7 @@ void HtmlParser::table_project_equations()
 {
   if (table_col <= 0) return;
 
-  std::size_t N;
+  int N;
   toIndex(data, N);
 
   if (table_row == 1)
@@ -313,7 +313,7 @@ void HtmlParser::table_adjusted_coordinates()
   // unknown index in column 1 detects a 'continuous row' of the given point
   if (table_col == 1)
     {
-      std::size_t N;
+      int N;
       toIndex(data, N);
       adjres->original_index.push_back(N);
 
@@ -386,7 +386,7 @@ void HtmlParser::table_adjusted_coordinates()
 
   if (table_col == 7)
     {
-      std::size_t n = adjres->original_index.size()-1;
+      int n = adjres->original_index.size()-1;
       adjres->cov(n,n) = D*D;
     }
 
@@ -401,7 +401,7 @@ void HtmlParser::table_orientation_unknowns()
 
   if (table_col == 1)
     {
-      std::size_t N;
+      int N;
       toIndex(data, N);
       adjres->original_index.push_back(N);
 
@@ -426,7 +426,7 @@ void HtmlParser::table_orientation_unknowns()
   else if (table_col == 5) ori.adj    = D;
   else if (table_col == 6)
     {
-      std::size_t n = adjres->original_index.size() - 1;
+      int n = adjres->original_index.size() - 1;
       adjres->cov(n,n) = D*D;
     }
 }
@@ -512,7 +512,7 @@ void HtmlParser::table_residuals()
 
   if (table_col == 1)
     {
-      std::size_t N;
+      int N;
       toIndex(data, N);
       adj_ind = N;
       return;

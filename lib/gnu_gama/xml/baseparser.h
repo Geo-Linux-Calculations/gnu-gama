@@ -58,9 +58,9 @@ namespace GNU_gama {
     int error(const char* text);
     int error(const std::string& s)   { return error(s.c_str()); }
 
-    bool toDouble (const std::string&, double&     ) const;
-    bool toIndex  (const std::string&, std::size_t&) const;
-    bool toInteger(const std::string&, int&        ) const;
+    bool toDouble (const std::string&, double&) const;
+    bool toIndex  (const std::string&, int&   ) const;
+    bool toInteger(const std::string&, int&   ) const;
 
     // private:
 

@@ -1,22 +1,21 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 2006, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef GNU_Gama_gnu_gama_adj_envelope_gnugamaadjenvelope_adj_envelope_h
@@ -33,19 +32,18 @@
 namespace GNU_gama {
 
 
-  template <typename Float=double,  typename Index=std::size_t,
+  template <typename Float=double,  typename Index=int,
             typename Exc=Exception::matvec>
-  class AdjEnvelope : public AdjBaseSparse<Float, Index,
-                                           GNU_gama::Vec<Float, Exc>,
-                                           AdjInputData >
+  class AdjEnvelope
+    : public AdjBaseSparse<Float, Index, Exc, AdjInputData>
   {
   public:
 
     AdjEnvelope() : min_x_list(0) {}
     ~AdjEnvelope() { delete[] min_x_list; }
 
-    virtual const GNU_gama::Vec<Float, Exc>& unknowns();
-    virtual const GNU_gama::Vec<Float, Exc>& residuals();
+    virtual const GNU_gama::Vec<Float, Index, Exc>& unknowns();
+    virtual const GNU_gama::Vec<Float, Index, Exc>& residuals();
     virtual Float sum_of_squares();
     virtual Index defect();
 
@@ -72,18 +70,17 @@ namespace GNU_gama {
     Index                    observations;
     Index                      parameters;
     const SparseMatrix<>*   design_matrix;
-    GNU_gama::Vec<Float, Exc>          x0;        // particular solution
-    GNU_gama::Vec<Float, Exc>           x;        // unique or regularized solution
-    //GNU_gama::Mat<Float, Exc>           G;
-    GNU_gama::Vec<Float, Exc>       resid;        // residuals
+    GNU_gama::Vec<Float, Index, Exc>   x0;    // particular solution
+    GNU_gama::Vec<Float, Index, Exc>    x;    // unique or regularized solution
+    GNU_gama::Vec<Float, Index, Exc>resid;        // residuals
     Float                         squares;        // sum of squares
     Envelope<Float, Index>             q0;        // weight coefficients for x0
 
-    GNU_gama::Vec<Float, Exc>     tmpvec;
-    GNU_gama::Vec<Float, Exc>     tmpres;         // used in q_bb
+    GNU_gama::Vec<Float, Index, Exc> tmpvec;
+    GNU_gama::Vec<Float, Index, Exc> tmpres;         // used in q_bb
 
-    std::vector<GNU_gama::Vec<Float, Exc> > qxxbuf;
-    GNU_gama::MoveToFront<3,Index,Index>    indbuf;
+    std::vector<GNU_gama::Vec<Float, Index, Exc>> qxxbuf;
+    GNU_gama::MoveToFront<3,Index,Index>          indbuf;
 
     enum Stage {
       stage_init,       // implicitly set by Adj_BaseSparse constuctor
@@ -102,10 +99,10 @@ namespace GNU_gama {
     void solve_x0();
     void solve_x();
     void solve_q0();
-    void T_row(GNU_gama::Vec<Float, Exc>& row, Index i);
+    void T_row(GNU_gama::Vec<Float, Index, Exc>& row, Index i);
 
     Index nullity;
-    Mat<Float, Exc> G;
+    Mat<Float, Index, Exc> G;
     Float dot(Index i, Index j) const;
 
     Index* min_x_list;

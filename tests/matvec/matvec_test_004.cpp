@@ -24,7 +24,7 @@
 using namespace GNU_gama;
 
 template <class Float, class Exc> void
-InitMat_CACM_Alg_52(Index n, Mat<Float, Exc>& A, Mat<Float, Exc>& invA)
+InitMat_CACM_Alg_52(int n, Mat<Float, Exc>& A, Mat<Float, Exc>& invA)
 {
   /* CACM Algorithm 52
    * A set of test matrices by J.R.Herndon, corrected by P. Naur
@@ -45,12 +45,12 @@ InitMat_CACM_Alg_52(Index n, Mat<Float, Exc>& A, Mat<Float, Exc>& invA)
     Float d = 1 / c;
 
     A(n,n) = -d;
-    for (Index i=1; i<=n-1; i++)
+    for (int i=1; i<=n-1; i++)
       {
         A(i,n) = A(n,i) = d * i;
         A(i,i) = d * (c - i*i);
 
-        for (Index j=1; j<=i-1; j++)
+        for (int j=1; j<=i-1; j++)
           A(i,j) = A(j,i) = -d*i*j;
       }
   }
@@ -58,7 +58,7 @@ InitMat_CACM_Alg_52(Index n, Mat<Float, Exc>& A, Mat<Float, Exc>& invA)
   {
     invA.reset(n,n);
     invA.set_identity();
-    for (Index i=1; i<=n; i++) invA(i,n) = invA(n,i) = i;
+    for (int i=1; i<=n; i++) invA(i,n) = invA(n,i) = i;
   }
 }
 
@@ -85,9 +85,9 @@ int main()
        << GNU_gama::matvec_version() << "\n"
        << "------------------------------------------------------\n\n";
 
-  const Index MaxDim=70;
+  const int MaxDim=70;
 
-  for (Index N=3; N<=MaxDim; N++)
+  for (int N=3; N<=MaxDim; N++)
     {
       cout << N << "x" << N;
 

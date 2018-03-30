@@ -337,11 +337,8 @@ namespace GNU_gama {
     typename Observation::CovarianceMatrix
        Cluster<Observation>::activeCov() const
     {
-      typedef std::size_t Index;
-      // const Index M      = covariance_matrix.rows();
-      const Index N      = activeDim();
-      // const Index i_size = observation_list.size();
-      Index active_band  = covariance_matrix.bandWidth();
+      const int N     = activeDim();
+      int active_band = covariance_matrix.bandWidth();
 
       if (N)
         {
@@ -351,8 +348,8 @@ namespace GNU_gama {
         active_band = 0;
 
       typename Observation::CovarianceMatrix C(N, active_band);
-      Index* ind = new Index[act_dim + 1];
-      Index  k=1, n=1;
+      int* ind = new int[act_dim + 1];
+      int  k=1, n=1;
 
       for (typename List<Observation*>::const_iterator
              i=observation_list.begin(),
@@ -361,7 +358,7 @@ namespace GNU_gama {
           const Observation* obs = *i;
 
           if (obs->active())
-            for (int /*Index*/ d=0; d < obs->dimension(); d++)
+            for (int d=0; d < obs->dimension(); d++)
               {
                 ind[k++] = n + d;
               }
@@ -369,8 +366,8 @@ namespace GNU_gama {
           n += obs->dimension();
         }
 
-      for (Index i=1; i<=N; i++)
-        for (Index j=0; j<=active_band && i+j<=N; j++)
+      for (int i=1; i<=N; i++)
+        for (int j=0; j<=active_band && i+j<=N; j++)
           C(i, i+j) = covariance_matrix(ind[i], ind[i+j]);
 
       delete[] ind;
@@ -386,8 +383,10 @@ namespace GNU_gama {
       const int B = covariance_matrix.bandWidth();
       int k = p + B;
       if (k > N) k = N;
-      int  q = p - B;
-      if (q < 1) q = 1;
+      // int  q = p - B;
+      // if (q < 1) q = 1;
+      /* unsigned safe version: */
+      int q = (p < B+1) ? 1 : p-B;
 
       // scaling upper part of symmetric band matrix
       covariance_matrix(p, p) *= sc;

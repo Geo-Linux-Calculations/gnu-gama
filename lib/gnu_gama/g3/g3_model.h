@@ -96,14 +96,14 @@ namespace GNU_gama {
     void linearization(XYZ*        );
     void linearization(ZenithAngle*);
 
-    void write_xml_adjusted(std::ostream&, const Angle*,      Index);
-    void write_xml_adjusted(std::ostream&, const Azimuth*,    Index);
-    void write_xml_adjusted(std::ostream&, const Distance*,   Index);
-    void write_xml_adjusted(std::ostream&, const Vector*,     Index);
-    void write_xml_adjusted(std::ostream&, const Height*,     Index);
-    void write_xml_adjusted(std::ostream&, const HeightDiff*, Index);
-    void write_xml_adjusted(std::ostream&, const XYZ*,        Index);
-    void write_xml_adjusted(std::ostream&, const ZenithAngle*,Index);
+    void write_xml_adjusted(std::ostream&, const Angle*,      int);
+    void write_xml_adjusted(std::ostream&, const Azimuth*,    int);
+    void write_xml_adjusted(std::ostream&, const Distance*,   int);
+    void write_xml_adjusted(std::ostream&, const Vector*,     int);
+    void write_xml_adjusted(std::ostream&, const Height*,     int);
+    void write_xml_adjusted(std::ostream&, const HeightDiff*, int);
+    void write_xml_adjusted(std::ostream&, const XYZ*,        int);
+    void write_xml_adjusted(std::ostream&, const ZenithAngle*,int);
 
     void set_algorithm(Adj::algorithm a) { adj->set_algorithm(a); }
 
@@ -116,8 +116,8 @@ namespace GNU_gama {
 
     double standard_deviation() const { return std_deviation; }
     double standard_variance () const { return std_variance; }
-    double cov_xx(Index i, Index j) { return std_variance*adj->q_xx(i,j); }
-    double cov_bb(Index i, Index j) { return std_variance*adj->q_bb(i,j); }
+    double cov_xx(int i, int j) { return std_variance*adj->q_xx(i,j); }
+    double cov_bb(int i, int j) { return std_variance*adj->q_bb(i,j); }
 
     bool   graph_is_connected() const  { return dm_graph_is_connected; }
 
@@ -204,10 +204,10 @@ namespace GNU_gama {
 
     void write_xml_adjusted_stdev  (const char*,
                                     std::ostream&, const Observation*,
-                                    Index, Index);
+                                    int, int);
 
     void write_xml_adjusted_cov_xyz(std::ostream&, const Observation*,
-                                    Index);
+                                    int);
   };
 
 }}

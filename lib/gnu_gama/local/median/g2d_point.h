@@ -1,7 +1,7 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
+    GNU Gama C++ library
     Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+                  2001, 2018  Ales Cepek  <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -16,8 +16,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*************************************************************
@@ -59,14 +58,14 @@ namespace GNU_gama { namespace local {
           Direction* s2 = dynamic_cast<Direction*>(*j);
           if(!(s1 && s2))
             throw g2d_exc("ApproxPoint::makeAngle : missing direction");
-          Double angle = s2->value() - s1->value();
+          double angle = s2->value() - s1->value();
           return new Angle(s1->from(),s1->to(),s2->to(),
                            (angle < 0 ? angle+2*M_PI : angle));
         }
       Direction* makeBearing(const Angle* u, const PointID& cb)
         {
           PointID point = (u->to() == cb ? u->fs() : u->to());
-          Double sm = bearing(SB[u->from()],SB[point]);
+          double sm = bearing(SB[u->from()],SB[point]);
           sm += (u->to() == cb ? -u->value() : u->value());
           sm += (sm < 0 ? 2*M_PI : 0);
           sm -= (sm >= 2*M_PI ? 2*M_PI : 0);
@@ -74,7 +73,7 @@ namespace GNU_gama { namespace local {
         }
       Direction* makeBearing(const Direction* s, const PointID& cb)
         {
-          Double sm = s->value() + s->orientation();
+          double sm = s->value() + s->orientation();
           sm -= (sm >= 2*M_PI ? 2*M_PI : 0);
           return new Direction(s->from(),cb,sm);
         }

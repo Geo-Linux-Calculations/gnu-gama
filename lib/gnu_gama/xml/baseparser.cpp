@@ -111,7 +111,7 @@ bool CoreParser::toInteger(const std::string& s, int& value) const
 }
 
 
-bool CoreParser::toIndex(const std::string& s, std::size_t& index) const
+bool CoreParser::toIndex(const std::string& s, int& index) const
 {
   for (std::string::const_iterator i=s.begin(); i!=s.end(); ++i)
     if (!isspace(*i) && !isdigit(*i))
@@ -120,7 +120,7 @@ bool CoreParser::toIndex(const std::string& s, std::size_t& index) const
   double d;
   if (toDouble(s, d))
     {
-      index = static_cast<std::size_t>(d);
+      index = static_cast<int>(d);
       return true;
     }
   else

@@ -1,23 +1,22 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002,2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
-                  2018  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 2002,2003  Jan Pytel  <pytel@gama.fsv.cvut.cz>
+                2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef gama_local_acord_reduce_observations_h
@@ -56,7 +55,7 @@ namespace GNU_gama { namespace local {
             Observation*        ptr_obs;
             TypeOfReduction     type_of_reduction;
 
-            Double  orig_value() const
+            double  orig_value() const
             {
                 return orig_value_;
             }
@@ -68,7 +67,7 @@ namespace GNU_gama { namespace local {
 
         private:
             friend class ReducedObservations;
-            Double orig_value_;
+            double orig_value_;
         };
 
         typedef std::list<ReducedObs> ListReducedObs;

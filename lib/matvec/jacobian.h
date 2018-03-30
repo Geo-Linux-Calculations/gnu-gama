@@ -1,26 +1,25 @@
 /*
-    C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 2002, 2007, 2012  Ales Cepek <cepek@gnu.org>
+  C++ Matrix/Vector templates (GNU Gama / matvec)
+  Copyright (C) 2002, 2007, 2012, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ Matrix/Vector template library.
+  This file is part of the GNU Gama C++ Matrix/Vector template library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_gama_gMatVec_Jacobian_h_
-#define GNU_gama_gMatVec_Jacobian_h_
+#ifndef GNU_gama_gMatVec_Jacobian_h
+#define GNU_gama_gMatVec_Jacobian_h
 
 
 #include <matvec/transmat.h>
@@ -42,22 +41,24 @@ namespace GNU_gama {
    *  The derivative L'4(x) = 2/24*y1 - 4/6*y2 + 4/6*y4 - 2/24*y5.
    */
 
-  template <typename Float=double, typename Exc=Exception::matvec>
-  class Jacobian {
-
+  template <typename Float=double,
+            typename Index=int,
+            typename Exc=Exception::matvec>
+  class Jacobian
+  {
   public:
 
-    typedef Vec<Float, Exc> (*function)(const Vec<Float, Exc>&);
-    Mat<Float, Exc> matrix;
+    typedef Vec<Float, Index, Exc> (*function)(const Vec<Float, Index, Exc>&);
+    Mat<Float, Index, Exc> matrix;
 
 
     Jacobian(Index out, Index inp, function pf, int d=0);
 
 
-    void compute(Vec<Float, Exc> x);
+    void compute(Vec<Float, Index, Exc> x);
 
     void set_f(function pf);
-    void set_h(Vec<Float, Exc> h);
+    void set_h(Vec<Float, Index, Exc> h);
     void set_scale(Float sc=1e-4);
     void set_degree(int n=4);
 
@@ -70,22 +71,23 @@ namespace GNU_gama {
     bool     use_h;
     int      degree;
     Float    scale;
-    Vec<Float, Exc>  h;
-    Vec<Float, Exc>  coef;
+    Vec<Float, Index, Exc>  h;
+    Vec<Float, Index, Exc>  coef;
 
     const Float Abs(const Float x) const { return (x >= Float(0)) ? x : -x ; }
   };
 
 
   template <typename Float, typename Exc>
-  Jacobian<Float, Exc>::Jacobian(Index out, Index inp, function pf, int d)
+  Jacobian<Float, Index, Exc>::Jacobian(Index out,
+                                        Index inp, function pf, int d)
     : matrix(out, inp)
   {
     f    = pf;
     odim = out;
     idim = inp;
 
-    Vec<Float, Exc> dh(inp);
+    Vec<Float, Index, Exc> dh(inp);
     for (Index i=1; i<=inp; i++) dh(i) = 1;
     h     = dh;
     use_h = false;
@@ -95,14 +97,14 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Exc>
-  void Jacobian<Float, Exc>::set_f (function pf)
+  void Jacobian<Float, Index, Exc>::set_f (function pf)
   {
     f = pf;
   }
 
 
   template <typename Float, typename Exc>
-  void Jacobian<Float, Exc>::set_h (Vec<Float, Exc> dh)
+  void Jacobian<Float, Index, Exc>::set_h (Vec<Float, Index, Exc> dh)
   {
     h     = dh;
     use_h = true;
@@ -110,7 +112,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Exc>
-  void Jacobian<Float, Exc>::set_scale (Float sc)
+  void Jacobian<Float, Index, Exc>::set_scale (Float sc)
   {
     scale = sc;
     use_h = false;
@@ -118,7 +120,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Exc>
-  void Jacobian<Float, Exc>::set_degree(int n)
+  void Jacobian<Float, Index, Exc>::set_degree(int n)
   {
     if (n < 2) n = 4;
 
@@ -129,7 +131,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Exc>
-  void Jacobian<Float, Exc>::compute(Vec<Float, Exc> x)
+  void Jacobian<Float, Index, Exc>::compute(Vec<Float, Index, Exc> x)
   {
     Float tx, dh, c;
 
@@ -140,16 +142,16 @@ namespace GNU_gama {
         dh = dh - tx;
 
         c    = degree/2;
-        x(j) = tx - c*dh;     Vec<Float, Exc> d( f(x) );
-        x(j) = tx + c*dh;     Vec<Float, Exc> e( f(x) );
+        x(j) = tx - c*dh;     Vec<Float, Index, Exc> d( f(x) );
+        x(j) = tx + c*dh;     Vec<Float, Index, Exc> e( f(x) );
         d   -= e;
         d   *= coef(1);
 
         for (int M=degree/2, n=2; n<=M; n++)
           {
             c--;
-            x(j) = tx - c*dh;     Vec<Float, Exc> a( f(x) );
-            x(j) = tx + c*dh;     Vec<Float, Exc> b( f(x) );
+            x(j) = tx - c*dh;     Vec<Float, Index, Exc> a( f(x) );
+            x(j) = tx + c*dh;     Vec<Float, Index, Exc> b( f(x) );
 
             a -= b;
             a *= coef(n);
@@ -177,30 +179,25 @@ namespace GNU_gama {
    */
 
   template <typename Float, typename Exc>
-  Float Jacobian<Float, Exc>::d_coef(int index)
-    {
-      int N=degree + 1;
-      int M=degree/2 + 1;
+  Float Jacobian<Float, Index, Exc>::d_coef(int index)
+  {
+    int N=degree + 1;
+    int M=degree/2 + 1;
 
-      Float p=1, q=1;
-      for (int i=1; i<=N; i++)
-        {
-          if (i != index)
-            {
-              q *= index - i;
-              if (i != M)  p *= M - i;
-            }
-        }
+    Float p=1, q=1;
+    for (int i=1; i<=N; i++)
+      {
+        if (i != index)
+          {
+            q *= index - i;
+            if (i != M)  p *= M - i;
+          }
+      }
 
-      return p/q;
-    }
+    return p/q;
+  }
 
 
 }   // namespace GNU_gama
 
 #endif
-
-
-
-
-

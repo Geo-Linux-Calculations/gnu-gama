@@ -29,7 +29,7 @@ namespace GNU_gama {
 
 /** Sparse vector class */
 
-template <typename Float=double, typename Index=std::size_t>
+template <typename Float=double, typename Index=int>
 
   class SparseVector {
   private:
@@ -131,8 +131,8 @@ int main()
       cout << i << " (nonz " << svec.nonzeroes() << ") : ";
       double* mm = svec.begin ();
       double* me = svec.end   ();
-      std::size_t* ii = svec.ibegin();
-      std::size_t* ie = svec.iend  ();
+      int* ii = svec.ibegin();
+      int* ie = svec.iend  ();
       while (mm != me && ii != ie)
         {
           cout << *ii++ << " " << *mm++ << "   ";

@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -73,7 +73,7 @@ namespace
  * // do visit
  * m->accept(&testVisitor);
  * // use result value
- * Double myValue = testVisitor.value();
+ * double myValue = testVisitor.value();
  * \endcode
  *
  */
@@ -85,7 +85,7 @@ public:
      * \note Before first (and probably each) visit
      * setIndex() and setFromTo() should be called.
      */
-    TestAbsTermVisitor(const Vec& bVector, Double tolerance)
+    TestAbsTermVisitor(const Vec& bVector, double tolerance)
         : indm(0), stan(0), cil(0),
           b(bVector), tol_abs_(tolerance),
           val(0), d0(0)
@@ -93,10 +93,10 @@ public:
     }
 
     /** Result value of last visited observation. */
-    Double value() { return val; }
+    double value() { return val; }
 
     /** Sets observation index in vector \a b (given in constructor). */
-    void setIndex(Index observationIndex)
+    void setIndex(int observationIndex)
     {
         indm = observationIndex;
     }
@@ -107,7 +107,7 @@ public:
         stan = &from;
         cil = &to;
 
-        Double dx, dy;
+        double dx, dy;
         if (stan->test_xy() && cil->test_xy())
             {
                 dy = stan->y() - cil->y();
@@ -130,21 +130,21 @@ public:
     }
     void visit(H_Diff* obs)
     {
-        const Double h0 = cil->z() - stan->z();
+        const double h0 = cil->z() - stan->z();
         check(fabs(obs->value() - h0)*1000);
     }
 
     void visit(S_Distance* obs)
     {
-        Double dz = stan->z() - cil->z();
-        Double d3 = sqrt(dz*dz + d0*d0);
+        double dz = stan->z() - cil->z();
+        double d3 = sqrt(dz*dz + d0*d0);
         check(fabs(d3 - obs->value())*1000);
     }
 
     void visit(Z_Angle* obs)
     {
-        Double dz = stan->z() - cil->z();
-        Double d3 = sqrt(dz*dz + d0*d0);
+        double dz = stan->z() - cil->z();
+        double d3 = sqrt(dz*dz + d0*d0);
         check(fabs(b(indm)*d3/(10*R2G)));
     }
 
@@ -164,19 +164,19 @@ public:
 
     void visit(Xdiff* obs)
     {
-        const Double dx = cil->x() - stan->x();
+        const double dx = cil->x() - stan->x();
         check(fabs(dx - obs->value())*1000);
     }
 
     void visit(Ydiff* obs)
     {
-        const Double dy = cil->y() - stan->y();
+        const double dy = cil->y() - stan->y();
         check(fabs(dy - obs->value())*1000);
     }
 
     void visit(Zdiff* obs)
     {
-        const Double dz = cil->z() - stan->z();
+        const double dz = cil->z() - stan->z();
         check(fabs(dz - obs->value())*1000);
     }
 
@@ -186,15 +186,15 @@ public:
     }
 
 private:
-    Index indm;
-    const LocalPoint* stan;
-    const LocalPoint* cil;
-    const Vec& b;
-    Double tol_abs_;
-    Double val;
-    Double d0;
+    int    indm;
+    const  LocalPoint* stan;
+    const  LocalPoint* cil;
+    const  Vec& b;
+    double tol_abs_;
+    double val;
+    double d0;
 
-    void check(Double value)
+    void check(double value)
     {
         if (value > tol_abs_)
             val = b(indm);
@@ -240,13 +240,13 @@ LocalNetwork::~LocalNetwork()
 }
 
 
-Double LocalNetwork::cond()
+double LocalNetwork::cond()
 {
   return least_squares->cond();
 }
 
 
-bool LocalNetwork::lindep(Index i)
+bool LocalNetwork::lindep(int i)
 {
   return least_squares->lindep(i);
 }
@@ -266,11 +266,11 @@ bool LocalNetwork::has_algorithm() const
 
 void LocalNetwork::set_algorithm(std::string alg)
 {
-  typedef GNU_gama::local::MatVecException     MVE;
-  typedef GNU_gama::AdjEnvelope<Double, Index, MVE> OLS_env;
-  typedef GNU_gama::AdjGSO     <Double,        MVE> OLS_gso;
-  typedef GNU_gama::AdjSVD     <Double,        MVE> OLS_svd;
-  typedef GNU_gama::AdjCholDec <Double,        MVE> OLS_chol;
+  typedef GNU_gama::local::MatVecException   MVE;
+  typedef GNU_gama::AdjEnvelope<double, int, MVE> OLS_env;
+  typedef GNU_gama::AdjGSO     <double, int, MVE> OLS_gso;
+  typedef GNU_gama::AdjSVD     <double, int, MVE> OLS_svd;
+  typedef GNU_gama::AdjCholDec <double, int, MVE> OLS_chol;
 
   AdjBase* adjb;
   if      (alg == "gso" )     adjb = new OLS_gso;
@@ -526,12 +526,12 @@ void LocalNetwork::project_equations()
   {
     LocalLinearization  loclin(PD, m_0_apr_);
 
-    const size_t  V = pocmer_;               // vectors
-    const size_t  M = V * loclin.max_size;   // reserved memory
+    const int V = pocmer_;               // vectors
+    const int M = V * loclin.max_size;   // reserved memory
 
 
-    GNU_gama::SparseMatrix<Double, Index>*
-      tmp = new GNU_gama::SparseMatrix<Double, Index>(M, V, 0);
+    GNU_gama::SparseMatrix<double, int>*
+       tmp = new GNU_gama::SparseMatrix<double, int>(M, V, 0);
 
     b.reset(pocmer_);   // initialisation of base class OLS
     rhs_.reset(pocmer_);
@@ -558,13 +558,13 @@ void LocalNetwork::project_equations()
     delete tmp;
 
     {
-      GNU_gama::SparseMatrixGraph<> graph(Asp);
+      GNU_gama::SparseMatrixGraph<double, int> graph(Asp);
 
       design_matrix_graph_is_connected = graph.connected();
     }
 
-    Double* a = Asp->begin(1);
-    Index*  i = Asp->ibegin(1);
+    double* a = Asp->begin(1);
+    int*  i = Asp->ibegin(1);
     for (int n, row=1; row<=pocmer_; row++)
       {
         n = Asp->size(row);
@@ -652,14 +652,14 @@ void LocalNetwork::project_equations()
 
       // ---  cofactors  --------------------------------------------------
 
-      Index count = 0;   // number of diagonal blocks
-      Index msize = 0;   // memory size
+      int count = 0;   // number of diagonal blocks
+      int msize = 0;   // memory size
 
       for (ClusterList::const_iterator
              cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
-        if (const Index N = (*cluster)->activeObs())
+        if (const int N = (*cluster)->activeObs())
         {
-          Index W = (*cluster)->covariance_matrix.bandWidth();
+          int W = (*cluster)->covariance_matrix.bandWidth();
           count++;
           msize += 1+(N+N-W)*(W+1)/2;   // += number of band matrix elements
         }
@@ -668,7 +668,7 @@ void LocalNetwork::project_equations()
 
       for (ClusterList::const_iterator
              cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
-        if (const Index N = (*cluster)->activeObs())
+        if (const int N = (*cluster)->activeObs())
         {
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);        // covariances ==> cofactors
@@ -681,7 +681,7 @@ void LocalNetwork::project_equations()
       // ---  right-hand side  --------------------------------------------
 
       GNU_gama::Vec<> bb(b.dim());
-      for (Index i=1; i<=b.dim(); i++) bb(i) = rhs_(i);
+      for (int i=1; i<=b.dim(); i++) bb(i) = rhs_(i);
       input.set_rhs(bb);     // right-hand side before homogenization
 
       sparse->reset(&input);
@@ -696,7 +696,7 @@ void LocalNetwork::project_equations()
   //--int n=A.cols();
   //--opr.write((char*)(&m), sizeof(int));
   //--opr.write((char*)(&n), sizeof(int));
-  //--opr.write((char*)(A.begin()), sizeof(Double)*m*n);
+  //--opr.write((char*)(A.begin()), sizeof(double)*m*n);
 
   delete[] min_x_;
   min_x_ = nullptr;
@@ -711,7 +711,7 @@ void LocalNetwork::project_equations()
 
   if (min_n_)
     {
-      min_x_ = new Index[min_n_];
+      min_x_ = new int[min_n_];
       int n = 0;
       for (PointData::iterator i=PD.begin(); i!=PD.end(); ++i)
         {
@@ -738,8 +738,8 @@ bool LocalNetwork::singular_coords(const Mat& A)
 {
   bool result = false;
 
-  Double a, b, aa, ab, bb, D;          // testing xy submatrix is sufficient
-  Index  indx, indy, r;
+  double a, b, aa, ab, bb, D;          // testing xy submatrix is sufficient
+  int  indx, indy, r;
 
   for (PointData::iterator i=PD.begin(); i!=PD.end(); ++i)
     {
@@ -793,11 +793,11 @@ void LocalNetwork::project_equations(std::ostream& out)
 
   out << "\n" << pocet_neznamych_ << " " << pocmer_ << "\n\n";
 
-  Index*  ib;
-  Index*  ie;
-  Double* nb;
-  Double* ne;
-  for (Index i=1; i<=Asp->rows(); i++)
+  int*    ib;
+  int*    ie;
+  double* nb;
+  double* ne;
+  for (int i=1; i<=Asp->rows(); i++)
     {
       out << Asp->size(i) << ' ';     // number of nonzeroes in the i-th row
       ib = Asp->ibegin(i);
@@ -833,10 +833,10 @@ void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
   b_.reset(A.rows());
   w_.reset(A.rows());
 
-  Index*  ib;
-  Double* nb;
-  Double* ne;
-  for (Index i=1; i<=Asp->rows(); i++)
+  int*  ib;
+  double* nb;
+  double* ne;
+  for (int i=1; i<=Asp->rows(); i++)
     {
       ib = Asp->ibegin(i);
       nb = Asp-> begin(i);
@@ -854,7 +854,7 @@ void LocalNetwork::project_equations(Mat& A_, Vec& b_, Vec& w_)
 }
 
 
-void LocalNetwork::conf_pr(Double p)
+void LocalNetwork::conf_pr(double p)
 {
   if (p <= 0 || p >= 1)
     throw GNU_gama::local::Exception(T_LN_undefined_confidence_level);
@@ -862,7 +862,7 @@ void LocalNetwork::conf_pr(Double p)
 }
 
 
-Double LocalNetwork::m_0()
+double LocalNetwork::m_0()
 {
   if (m_0_apriori())
     return m_0_apr_;
@@ -882,7 +882,7 @@ Double LocalNetwork::m_0()
 }
 
 
-Double LocalNetwork::m_0_aposteriori_value()
+double LocalNetwork::m_0_aposteriori_value()
 {
   vyrovnani_();
   const int nadb = degrees_of_freedom();
@@ -893,11 +893,11 @@ Double LocalNetwork::m_0_aposteriori_value()
 }
 
 
-Double LocalNetwork::conf_int_coef()
+double LocalNetwork::conf_int_coef()
 {
   using namespace GNU_gama::local;
 
-  Double pravdepodobnost = (1 - konf_pr_)/2;
+  double pravdepodobnost = (1 - konf_pr_)/2;
   if (m_0_apriori())
     return GNU_gama::Normal(pravdepodobnost);
   else if (m_0_aposteriori())
@@ -927,7 +927,7 @@ void LocalNetwork::update(Update etapa)
     }
 }
 
-Double LocalNetwork::test_abs_term(Index indm)
+double LocalNetwork::test_abs_term(int indm)
 {
   Observation* m = RSM[indm-1];
 
@@ -948,7 +948,7 @@ void LocalNetwork::remove_huge_abs_terms()
 {
   if (!huge_abs_terms()) return;
 
-  Index r = 0;
+  int r = 0;
   for (RevisedObsList::iterator m = RSM.begin(); m!=RSM.end(); ++m)
     if (test_abs_term(++r))
       (*m)->set_passive();
@@ -994,21 +994,21 @@ int LocalNetwork::null_space()
 
 
 void LocalNetwork::std_error_ellipse(const PointID& cb,
-                                     Double& a, Double& b, Double& alfa)
+                                     double& a, double& b, double& alfa)
 {
   using namespace std;
 
   const LocalPoint& bod = PD[cb];
   int iy = bod.index_y();
   int ix = bod.index_x();
-  Double cyy = least_squares->q_xx(iy,iy);
-  Double cyx = least_squares->q_xx(iy,ix);
-  Double cxx = least_squares->q_xx(ix,ix);
-  Double c = sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
+  double cyy = least_squares->q_xx(iy,iy);
+  double cyx = least_squares->q_xx(iy,ix);
+  double cxx = least_squares->q_xx(ix,ix);
+  double c = sqrt((cxx-cyy)*(cxx-cyy) + 4*cyx*cyx);
   b = (cyy+cxx-c)/2;
   if (b < 0) b = 0;
 
-  Double m = m_0();
+  double m = m_0();
   a = m * sqrt(b+c);
   b = m * sqrt(b);
   if (c == 0) {
@@ -1044,7 +1044,7 @@ void LocalNetwork::refine_approx()
     else if (unknown_type(i) == 'R')
       {
         StandPoint* standpoint = unknown_standpoint(i);
-        Double ori =
+        double ori =
           ( standpoint->orientation() )*R2G + x(i)/10000;
         standpoint->set_orientation( ori*G2R );
       }
@@ -1061,10 +1061,10 @@ void LocalNetwork::cholesky(CovMat& chol)
   chol.cholDec();
 
   using namespace std;
-  const Index N = chol.rows();
-  const Index b = chol.bandWidth();
+  const int N = chol.rows();
+  const int b = chol.bandWidth();
 
-  for (Index m, j, i=1; i<=N; i++)
+  for (int m, j, i=1; i<=N; i++)
     {
       double d = sqrt(chol(i,i));
       chol(i,i) = d;
@@ -1078,14 +1078,14 @@ void LocalNetwork::cholesky(CovMat& chol)
 void LocalNetwork::forwardSubstitution(const CovMat& chol, Vec& v)
 {
   using namespace std;
-  const Index N = chol.rows();
-  const Index b = chol.bandWidth();
+  const int N = chol.rows();
+  const int b = chol.bandWidth();
 
-  for (Index m, i=1; i<=N; i++)
+  for (int m{}, i=1; i<=N; i++)
     {
       if (i > b+1) m = i - b;
       else         m = 1;
-      for (Index j=m; j<i; j++) v(i) -= chol(i,j)*v(j);
+      for (int j=m; j<i; j++) v(i) -= chol(i,j)*v(j);
 
       v(i) /= chol(i,i);
     }
@@ -1094,35 +1094,35 @@ void LocalNetwork::forwardSubstitution(const CovMat& chol, Vec& v)
 
 void LocalNetwork::prepareProjectEquations()
 {
-  Index ind_0 = 0;
+  int ind_0 = 0;
 
   for (ClusterList::const_iterator
          cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
-    if (const Index N = (*cluster)->activeObs())
+    if (const int N = (*cluster)->activeObs())
         {
           Vec t(N);
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);        // covariances ==> cofactors
           cholesky(C);                     // cofactors   ==> weights
 
-          for (Index j=1; j<=A.cols(); j++)
+          for (int j=1; j<=A.cols(); j++)
             {
               bool empty = true;
-              for (Index k=1; k<=N; k++)
+              for (int k=1; k<=N; k++)
                 {
-                  Double tmp = A(ind_0+k,j);
+                  double tmp = A(ind_0+k,j);
                   t(k) = tmp;
                   if (tmp) empty = false;
                 }
                 if (empty) continue;
 
                 forwardSubstitution(C, t);
-                for (Index l=1; l<=N; l++) A(ind_0+l,j) = t(l);
+                for (int l=1; l<=N; l++) A(ind_0+l,j) = t(l);
             }
 
-          for (Index k=1; k<=N; k++) t(k) = b(ind_0+k);
+          for (int k=1; k<=N; k++) t(k) = b(ind_0+k);
           forwardSubstitution(C, t);
-          for (Index l=1; l<=N; l++) b(ind_0+l) = t(l);
+          for (int l=1; l<=N; l++) b(ind_0+l) = t(l);
 
           ind_0 += N;
         }
@@ -1156,7 +1156,7 @@ void LocalNetwork::vyrovnani_()
 
         if (!P.free_xy() && !P.free_z()) continue;
 
-        Double tx=0, ty=0, tz=0;
+        double tx=0, ty=0, tz=0;
         if (int ix = P.index_x()) tx =m_0_apr_*sqrt(least_squares->q_xx(ix,ix));
         if (int iy = P.index_y()) ty =m_0_apr_*sqrt(least_squares->q_xx(iy,iy));
         if (int iz = P.index_z()) tz=m_0_apr_*sqrt(least_squares->q_xx(iz,iz));
@@ -1193,37 +1193,37 @@ void LocalNetwork::vyrovnani_()
     r = full->residuals();
     suma_pvv_ = 0;
 
-    Double tmp;
-    Index  ind_0 = 0;
+    double tmp;
+    int    ind_0 = 0;
 
     for (ClusterList::const_iterator
            cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
-      if (const Index N = (*cluster)->activeObs())
+      if (const int N = (*cluster)->activeObs())
         {
           Vec t(N), u(N);
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);
           cholesky(C);
 
-          for (Index k=1; k<=N; k++)
+          for (int k=1; k<=N; k++)
             {
               tmp  = r(ind_0+k);
               t(k) = tmp;
               suma_pvv_ += tmp*tmp;
             }
           const CovMat&  CC = C;
-          const Index b  = CC.bandWidth();
+          const int b  = CC.bandWidth();
           {
-            for (Index m, i=1; i<=N; i++)
+            for (int m, i=1; i<=N; i++)
               {
-                Double s=0;
+                double s=0;
                 if (i > b+1) m = i - b;
                 else         m = 1;
-                for (Index j=m; j<=i; j++) s += CC(i,j)*t(j);
+                for (int j=m; j<=i; j++) s += CC(i,j)*t(j);
                 u(i) = s;
               }
           }
-          for (Index l=1; l<=N; l++) r(ind_0+l) = u(l);
+          for (int l=1; l<=N; l++) r(ind_0+l) = u(l);
 
           ind_0 += N;
         }
@@ -1242,12 +1242,12 @@ void LocalNetwork::vyrovnani_()
   { /* ----------------------------------------------------------------- */
     sigma_L.reset(pocmer_);
 
-    Double MM = m_0() / m_0_apr_;
-    Index ind_0 = 0;
+    double MM = m_0() / m_0_apr_;
+    int ind_0 = 0;
 
     for (ClusterList::const_iterator
            cit=OD.clusters.begin(); cit!=OD.clusters.end(); ++cit)
-      if (const Index N = (*cit)->activeObs())
+      if (const int N = (*cit)->activeObs())
         {
           const Clust_r& cluster = *(*cit);
           // ??? if (cluster.covariance_matrix.bandWidth())
@@ -1256,7 +1256,7 @@ void LocalNetwork::vyrovnani_()
           // ???   }
           // ??? else
             {
-              Index n = ind_0+1;
+              int n = ind_0+1;
               for (ObservationList::const_iterator
                      i = cluster.observation_list.begin();
                      i!= cluster.observation_list.end(); ++i)
@@ -1279,8 +1279,8 @@ void LocalNetwork::vyrovnani_()
     for (int i=1; i<=pocmer_; i++)
       {
         // F.Charamza: Geodet/PC p. 171
-        // 1.1.56 Double  qv = (1.0 - q_bb(i, i))/w(i);
-        Double  qv = (1.0 - least_squares->q_bb(i, i))/ weight_obs(i);
+        // 1.1.56 double  qv = (1.0 - q_bb(i, i))/w(i);
+        double  qv = (1.0 - least_squares->q_bb(i, i))/ weight_obs(i);
         vahkopr(i) = (qv >= 0) ? qv : 0;       // removing noise
       }
   }
@@ -1526,19 +1526,19 @@ std::string LocalNetwork::updated_xml()
 void LocalNetwork::updated_xml_covmat(std::string& xml, const CovMat& C,
                                       bool always)
 {
-  Index  dim  = C.dim();
-  Index  band = C.bandWidth();
+  int  dim  = C.dim();
+  int  band = C.bandWidth();
   if (!always && band == 0) return;
 
   xml += "\n<cov-mat dim=\"" + std::to_string(dim) + "\"";
   xml += " band=\"" + std::to_string(band) + "\">\n";
-  for (Index i=1; i<=dim; i++)
+  for (int i=1; i<=dim; i++)
     {
       std::ostringstream out;
       out.setf(ios_base::scientific, ios_base::floatfield);
       out.precision(16);
       out << "\n";
-      for (Index n=1, j=i; j<=i+band && j <=dim; j++, n++)
+      for (int n=1, j=i; j<=i+band && j <=dim; j++, n++)
         {
           out << setw(24) << C(i,j) << ((n%3 == 0 && j != dim) ? "\n" : " ");
         }

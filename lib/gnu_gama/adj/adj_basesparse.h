@@ -28,9 +28,9 @@ namespace GNU_gama {
 
   /** \brief Base adjustment class for sparse matrix solutions. */
 
-  template <typename Float, typename Index, typename Vector,
+  template <typename Float, typename Index, typename Exc,
             typename AdjInputData>
-  class AdjBaseSparse : public AdjBase<Float, Index, Vector>
+  class AdjBaseSparse : public AdjBase<Float, Index, Exc>
   {
   public:
 

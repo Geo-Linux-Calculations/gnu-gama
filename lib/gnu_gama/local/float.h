@@ -26,14 +26,6 @@
 
 namespace GNU_gama { namespace local {
 
-typedef double Double;
-typedef double Float;
-
-inline double abs(double x)           { return x >= 0 ? x : -x; }
-inline double max(double x, double y) { return x >= y ? x : y; }
-inline double min(double x, double y) { return x <= y ? x : y; }
-
-
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif

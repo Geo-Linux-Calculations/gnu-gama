@@ -31,7 +31,7 @@ namespace GNU_gama {
 
   /** Adjacency structure. */
 
-  template <typename Index=std::size_t>
+  template <typename Index=int>
   class Adjacency
   {
   public:
@@ -71,7 +71,7 @@ namespace GNU_gama {
 
   /** Sparse matrix graph. */
 
-  template <typename Float=double, typename Index=std::size_t>
+  template <typename Float=double, typename Index=int>
   class SparseMatrixGraph : public Adjacency<Index>
   {
   public:

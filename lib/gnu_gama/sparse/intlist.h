@@ -28,7 +28,7 @@ namespace GNU_gama {
 
 /** Integer list class */
 
-template <typename Index=std::size_t>
+template <typename Index=int>
 
   class IntegerList {     // Integer List class
 

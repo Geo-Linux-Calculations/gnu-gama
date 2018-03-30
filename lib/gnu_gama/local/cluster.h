@@ -61,7 +61,7 @@ namespace GNU_gama { namespace local {
         if (!test_or) throw GNU_gama::local::Exception(T_POBS_bad_data);
         return attr_or;
       }
-    void   set_orientation(Double p) { attr_or = p; test_or = true; }
+    void   set_orientation(double p) { attr_or = p; test_or = true; }
     bool   test_orientation() const  { return test_or;              }
     void   delete_orientation()      { test_or = false;             }
     void   index_orientation(int n)  { indx_or = n;                 }
@@ -69,7 +69,7 @@ namespace GNU_gama { namespace local {
 
   private:
 
-    Double   attr_or;
+    double   attr_or;
     bool     test_or;
     int      indx_or;
 

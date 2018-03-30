@@ -146,10 +146,10 @@ namespace GNU_gama { namespace local {
       };
 
       // 1.7.09 std::pair<"standard deviation", "angular value in degrees">
-      std::vector<std::pair<Double, bool> > sigma;
-      Index        idim, iband;            // covariance matrix dim. / band
+      std::vector<std::pair<double, bool> > sigma;
+      int          idim, iband;            // covariance matrix dim. / band
       bool         pp_xydef, pp_zdef;      // process_point();
-      Double       pp_x, pp_y, pp_z;
+      double       pp_x, pp_y, pp_z;
       PointID      pp_id;
       std::string  cov_mat_data;
 
@@ -157,7 +157,7 @@ namespace GNU_gama { namespace local {
       // directions/distances and/or angles.
 
       std::string         standpoint_id;
-      Double              obs_from_dh;
+      double              obs_from_dh;
 
       StandPoint        * standpoint;
       Coordinates       * coordinates;

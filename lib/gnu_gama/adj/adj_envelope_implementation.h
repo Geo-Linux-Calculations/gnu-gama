@@ -160,7 +160,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-  const GNU_gama::Vec<Float, Exc>&
+  const GNU_gama::Vec<Float, Index, Exc>&
   AdjEnvelope<Float, Index, Exc>::unknowns()
   {
     if (init_x) solve_x();
@@ -170,7 +170,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-  const GNU_gama::Vec<Float, Exc>&
+  const GNU_gama::Vec<Float, Index, Exc>&
   AdjEnvelope<Float, Index, Exc>::residuals()
   {
     if (init_residuals)
@@ -225,7 +225,7 @@ namespace GNU_gama {
 
   template <typename Float, typename Index, typename Exc>
   void AdjEnvelope<Float, Index, Exc>
-  ::T_row(GNU_gama::Vec<Float, Exc>& row, Index ii)
+    ::T_row(GNU_gama::Vec<Float, Index, Exc>& row, Index ii)
   {
     Float t;
     const Index i = ordering.invp(ii);
@@ -261,8 +261,8 @@ namespace GNU_gama {
     std::pair<Index,bool> pa = indbuf.get(i);
     std::pair<Index,bool> pb = indbuf.get(j);
 
-    Vec<Float, Exc>& a = qxxbuf[pa.first];
-    Vec<Float, Exc>& b = qxxbuf[pb.first];
+    Vec<Float, Index, Exc>& a = qxxbuf[pa.first];
+    Vec<Float, Index, Exc>& b = qxxbuf[pb.first];
     if (!pa.second)
       {
         T_row(a, i);
@@ -306,7 +306,7 @@ namespace GNU_gama {
 
     std::pair<Index,bool> pa = indbuf.get(ii);
 
-    Vec<Float, Exc>& a = qxxbuf[pa.first];
+    Vec<Float, Index, Exc>& a = qxxbuf[pa.first];
     if (!pa.second)
       {
         a.set_zero();
@@ -483,7 +483,7 @@ namespace GNU_gama {
         nullity = defect();
         const Index N1 = nullity+1;
         G.reset(parameters, N1);
-        Vec<Float, Exc> tmp(parameters);
+        Vec<Float, Index, Exc> tmp(parameters);
 
         for (Index k=1, column=1; column<=parameters; column++)
           if (envelope.diagonal(column) == 0)

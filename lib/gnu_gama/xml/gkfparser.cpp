@@ -1014,12 +1014,12 @@ namespace GNU_gama { namespace local {
       }
     else
       {
-        const Index N = sigma.size();
+        const int N = sigma.size();
         standpoint->covariance_matrix.reset(N, 0);
         CovMat::iterator c=standpoint->covariance_matrix.begin();
         std::vector<DB_pair>::iterator s = sigma.begin();
 
-        for (Index i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
+        for (int i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
       }
 
     if (check_cov_mat)
@@ -1029,7 +1029,7 @@ namespace GNU_gama { namespace local {
             // scaling of rows/columns corresponding to covariances
             // given in sexagesimal seconds
             std::vector<DB_pair>::iterator s = sigma.begin();
-            for (Index i=1; i<=sigma.size(); ++i, ++s)
+            for (int i=1; i<=sigma.size(); ++i, ++s)
               {
                 if ((*s).second) standpoint->scaleCov(i, 1.0/0.324);
               }
@@ -1170,61 +1170,6 @@ namespace GNU_gama { namespace local {
   }
 
 
-
-// xsd 0.91 int GKFparser::process_obs_dh(const char** atts)
-// xsd 0.91 {
-// xsd 0.91   /*  the function body was copied from process_dh(const char**)  */
-// xsd 0.91   /*  ##########################################################  */
-// xsd 0.91
-// xsd 0.91   string  nam, val, sfrom, sto,  sval, sstdev, sdist;
-// xsd 0.91   // ###### state = state_hdiff_dh;
-// xsd 0.91   state = state_obs_dh;
-// xsd 0.91
-// xsd 0.91   while (*atts)
-// xsd 0.91     {
-// xsd 0.91       nam = string(*atts++);
-// xsd 0.91       val = string(*atts++);
-// xsd 0.91
-// xsd 0.91       if      (nam == "from" ) sfrom  = val;
-// xsd 0.91       else if (nam == "to"   ) sto    = val;
-// xsd 0.91       else if (nam == "val"  ) sval   = val;
-// xsd 0.91       else if (nam == "stdev") sstdev = val;
-// xsd 0.91       else if (nam == "dist" ) sdist  = val;
-// xsd 0.91       else
-// xsd 0.91         return error(T_GKF_undefined_attribute_of_height_differences
-// xsd 0.91                      + nam + " = " + val);
-// xsd 0.91     }
-// xsd 0.91
-// xsd 0.91   if (sfrom == "") return error(T_GKF_missing_from_ID);
-// xsd 0.91   if (sto   == "") return error(T_GKF_missing_to_ID);
-// xsd 0.91   if (sval  == "") return error(T_GKF_missing_observed_value);
-// xsd 0.91
-// xsd 0.91   double dm;
-// xsd 0.91   if (!toDouble(sval, dm)) return error(T_GKF_bad_height_diff + sval);
-// xsd 0.91   double dd = 0;
-// xsd 0.91   if (sdist != "")
-// xsd 0.91     if (!toDouble(sdist, dd) || dd < 0)
-// xsd 0.91       return error(T_GKF_bad_distance + sdist);
-// xsd 0.91   double ds = lnet.apriori_m_0() * sqrt(dd);
-// xsd 0.91   if (sstdev != "")
-// xsd 0.91     if (!toDouble(sstdev, ds)) return error(T_GKF_illegal_standard_deviation);
-// xsd 0.91
-// xsd 0.91   try
-// xsd 0.91     {
-// xsd 0.91       H_Diff* hd = new H_Diff(sfrom, sto, dm, dd);
-// xsd 0.91       // ###### heightdifferences->observation_list.push_back( hd );
-// xsd 0.91       standpoint->observation_list.push_back( hd );
-// xsd 0.91       sigma.push_back(DB_pair(ds, false));
-// xsd 0.91     }
-// xsd 0.91   catch  (const /*GNU_gama::local::*/Exception &e)
-// xsd 0.91     {
-// xsd 0.91       error(e.what());
-// xsd 0.91     }
-// xsd 0.91
-// xsd 0.91   return 0;
-// xsd 0.91 }
-
-
   int GKFparser::process_cov(const char** atts)
   {
     string nam, val, sdim, sband;
@@ -1261,8 +1206,8 @@ namespace GNU_gama { namespace local {
     cov_mat.reset(idim, iband);
     int elements =  idim*(iband+1) - iband*(iband+1)/2;
     string::const_iterator i=cov_mat_data.begin();
-    Index row = 1;
-    Index col = row;
+    int row = 1;
+    int col = row;
 
     while (i!=cov_mat_data.end())
       {
@@ -1393,12 +1338,12 @@ namespace GNU_gama { namespace local {
       }
     else
       {
-        const Index N = sigma.size();
+        const int N = sigma.size();
         heightdifferences->covariance_matrix.reset(N, 0);
         CovMat::iterator c=heightdifferences->covariance_matrix.begin();
         std::vector<DB_pair>::iterator s = sigma.begin();
 
-        for (Index i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
+        for (int i=1; i<=N; ++i, ++c, ++s) *c = (*s).first * (*s).first;
       }
 
     if (check_cov_mat)

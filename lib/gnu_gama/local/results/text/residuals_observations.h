@@ -1,24 +1,23 @@
 /*
-    GNU Gama C++ library
-    Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
-                  2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2013  Ales Cepek <cepek@gnu.org>
+  GNU Gama C++ library
+  Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                2011  Vaclav Petras <wenzeslaus@gmail.com>
+                2013, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /** \file residuals_observations.h
@@ -60,8 +59,8 @@ public:
   bool operator()(int a, int b)
     {
       using namespace std;
-      GNU_gama::local::Double sa = fabs(IS->studentized_residual(a));
-      GNU_gama::local::Double sb = fabs(IS->studentized_residual(b));
+      double sa = fabs(IS->studentized_residual(a));
+      double sb = fabs(IS->studentized_residual(b));
       return sa > sb;
     }
 };
@@ -101,7 +100,6 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
   using namespace std;
   using namespace GNU_gama::local;
-  using GNU_gama::local::Double;
 
   const Vec&    v      = IS->residuals();
   const int     pocmer = IS->sum_observations();
@@ -109,16 +107,16 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
   vector<int> odlehla;
 
-  Double kki = IS->conf_int_coef();
+  double kki = IS->conf_int_coef();
   int imax = 1;         // index of maximal studentized residual
   {
     using namespace std;
-    Double maxno = 0;
+    double maxno = 0;
     for (int i=1; i<=pocmer; i++)
       {
         if (IS->obs_control(i) < 0.1) continue;
 
-        Double no = fabs(IS->studentized_residual(i));
+        double no = fabs(IS->studentized_residual(i));
         if (no > maxno) {
           maxno = no;
           imax = i;
@@ -195,7 +193,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
           pm->accept(&nameVisitor);
 
-          Double f  = IS->obs_control(i);
+          double f  = IS->obs_control(i);
           out.precision(1);
           out.width(5);
           out << f;
@@ -221,7 +219,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           if (f >= 0.1)
             {
               using namespace std;
-              Double no = fabs(IS->studentized_residual(i));
+              double no = fabs(IS->studentized_residual(i));
               out << no;
 
               if (i == imax)
@@ -236,11 +234,11 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
                   (f >=5 || (f >= 0.1 && no > kki)))
                 {
-                  Double em = v(i) / (IS->wcoef_res(i)*IS->weight_obs(i));
+                  double em = v(i) / (IS->wcoef_res(i)*IS->weight_obs(i));
                   out.width(7);
                   out << em*sc;
 
-                  Double ev = em - v(i);
+                  double ev = em - v(i);
                   out.width(7);
                   out << ev*sc;
                 }
@@ -263,8 +261,8 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
       { // ****** Kolmogorov-Smirnov
 
-        Vec   pv(pocmer);
-        Float pvvar = 0, pvstr = 0, p;
+        Vec    pv(pocmer);
+        double pvvar = 0, pvstr = 0, p;
         {
           for (int i=1; i<=pocmer; i++)
             {
@@ -297,7 +295,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       }
     }
 
-  if (Double cond = IS->cond())
+  if (double cond = IS->cond())
     {
       out.setf(ios_base::scientific, ios_base::floatfield);
       out.precision(1);

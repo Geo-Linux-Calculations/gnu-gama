@@ -1,24 +1,22 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
-                  2001  Ales Cepek  <cepek@fsv.cvut.cz>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
+                2001, 2018  Ales Cepek  <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-    MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*************************************************************
@@ -67,7 +65,7 @@ void Select_solution_g2d::calculation()
   try {
 
     state_ = no_solution;
-    Double delta1, delta2, tol1, tol2;
+    double delta1, delta2, tol1, tol2;
     LocalPoint PB1, PB2;
     for(ObservationList::const_iterator i = SM->begin(); i != SM->end(); i++)
       {
@@ -95,8 +93,8 @@ void Select_solution_g2d::calculation()
               const Angle* u = dynamic_cast<const Angle*>(*i);
               PB1 = (*(SB->find(u->to()))).second;
               PB2 = (*(SB->find(u->fs()))).second;
-              Double uu1 = bearing(B1,PB2)-bearing(B1,PB1);
-              Double uu2 = bearing(B2,PB2)-bearing(B2,PB1);
+              double uu1 = bearing(B1,PB2)-bearing(B1,PB1);
+              double uu2 = bearing(B2,PB2)-bearing(B2,PB1);
               uu1 += (uu1 < 0 ? 2*M_PI : 0);
               uu2 += (uu2 < 0 ? 2*M_PI : 0);
               tol1 = (g2d_distance(B1,PB1)+g2d_distance(B1,PB2))/2;
@@ -160,7 +158,7 @@ void Statistics_g2d::calculation()
         median = *(PS->begin());
         return;
       }
-    std::vector<Double> Y, X;
+    std::vector<double> Y, X;
     for(Helper_list::const_iterator i = PS->begin(); i != PS->end(); i++)
       {
         Y.push_back(i->y());
@@ -168,8 +166,8 @@ void Statistics_g2d::calculation()
       }
     std::sort(Y.begin(), Y.end());
     std::sort(X.begin(), X.end());
-    std::vector<Double>::size_type size = Y.size();
-    Double x, y;
+    std::vector<double>::size_type size = Y.size();
+    double x, y;
     x = (g2d_even(size) ? (X[size/2-1] + X[size/2])/2 : X[(size+1)/2-1]);
     y = (g2d_even(size) ? (Y[size/2-1] + Y[size/2])/2 : Y[(size+1)/2-1]);
     median.set_xy(x, y);
@@ -215,8 +213,8 @@ void SimilarityTr2D::Identical_points(PointData::iterator& b1,
                                       PointData::iterator& b2)
 {
   LocalPoint stred;
-  Double pomocna_d1, delka_max;
-  Double rozdil_min = 1e5;
+  double pomocna_d1, delka_max;
+  double rozdil_min = 1e5;
   PointData::iterator pom1, pom2;
   for(PointData::iterator i = local.begin(); i != local.end(); i++)
     if(Given_point((*i).first) && (*i).second.test_xy())
@@ -263,7 +261,7 @@ void SimilarityTr2D::transformation_key(PointData::iterator& b1,
     throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
 		  " in target coordinate system - "+(*b2).first.str());
   kam2 = (*pom).second;
-  Double dy1, dy2, dx1, dx2;
+  double dy1, dy2, dx1, dx2;
   dy1 = odkud2.y() - odkud1.y();
   dx1 = odkud2.x() - odkud1.x();
   dy2 = kam2.y() - kam1.y();

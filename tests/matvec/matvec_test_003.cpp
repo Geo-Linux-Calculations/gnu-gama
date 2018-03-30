@@ -37,18 +37,18 @@ int main()
   cout.setf(ios::scientific, ios::floatfield);
   cout.precision(2);
 
-  for (Index N=2; N<=15; N++)
+  for (int N=2; N<=15; N++)
     {
       cout << setw(2) << N;
 
       Mat<Double> E(N,N);
       E.set_identity();
-      Mat<Double> H = Hilbert<Double, Exception::matvec>(N);
-      Mat<Double> I = InvHilbert<Double, Exception::matvec>(N);
+      Mat<Double> H = Hilbert   <Double, int, Exception::matvec>(N);
+      Mat<Double> I = InvHilbert<Double, int, Exception::matvec>(N);
 
       Double fh = 0, fi = 0;
-      for (Index i=1; i<=N; i++)
-        for (Index j=1; j<=N; j++)
+      for (int i=1; i<=N; i++)
+        for (int j=1; j<=N; j++)
           {
             fh += H(i,j)*H(i,j);
             fi += I(i,j)*I(i,j);
@@ -58,13 +58,13 @@ int main()
 
       try {
         cout << setw(14);
-        Mat<Double> T = Hilbert<Double, Exception::matvec>(N);
+        Mat<Double> T = Hilbert<Double, int, Exception::matvec>(N);
         T.invert();
         T = H*T - E;
 
         Double m = 0;
-        for (Index i=1; i<=N; i++)
-          for (Index j=1; j<=N; j++)
+        for (int i=1; i<=N; i++)
+          for (int j=1; j<=N; j++)
             if (std::abs(T(i,j)) > std::abs(m))
               m = T(i,j);
 
@@ -77,13 +77,13 @@ int main()
 
       try {
         cout << setw(14);
-        Mat<Double> T = InvHilbert<Double, Exception::matvec>(N);
+        Mat<Double> T = InvHilbert<Double, int, Exception::matvec>(N);
         T.invert();
         T = I*T - E;
 
         Double m = 0;
-        for (Index i=1; i<=N; i++)
-          for (Index j=1; j<=N; j++)
+        for (int i=1; i<=N; i++)
+          for (int j=1; j<=N; j++)
             if (std::abs(T(i,j)) > std::abs(m))
               m = T(i,j);
 

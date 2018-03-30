@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2014, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -14,8 +14,8 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /** \file unsigned.h
  * \brief Helper functions replacing tests like "k < 0" where k may be
@@ -25,8 +25,8 @@
  * \author Ales Cepek
  */
 
-#ifndef GNU_gama_matvec_unsigned_h_UNSIGNED_H_
-#define GNU_gama_matvec_unsigned_h_UNSIGNED_H_
+#ifndef GNU_gama_matvec_unsigned_h_UNSIGNED_h
+#define GNU_gama_matvec_unsigned_h_UNSIGNED_h
 
 template<typename T> inline bool isNegative(T i) { return i < 0; }
 

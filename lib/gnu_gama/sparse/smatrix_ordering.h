@@ -32,7 +32,7 @@ namespace GNU_gama {
 
   /** \brief Rooted level structure */
 
-  template <typename Index=std::size_t>
+  template <typename Index=int>
   class RootedLevelStructure
   {
   public:
@@ -111,7 +111,7 @@ namespace GNU_gama {
 
   /** \brief Pseudo-peripheral node */
 
-  template <typename Index=std::size_t>
+  template <typename Index=int>
   class PseudoPeripheralNode
   {
   public:
@@ -159,7 +159,7 @@ namespace GNU_gama {
 
   /** \brief Sprase matrix ordring */
 
-  template <typename Index=std::size_t>
+  template <typename Index=int>
   class SparseMatrixOrdering
   {
   public:
@@ -212,7 +212,7 @@ namespace GNU_gama {
 
   /** \brief Reverse Cuthill-McKee ordering */
 
-  template <typename Index=std::size_t>
+  template <typename Index=int>
   class ReverseCuthillMcKee : public SparseMatrixOrdering<Index>
   {
   public:

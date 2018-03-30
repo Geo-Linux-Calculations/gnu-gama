@@ -1,5 +1,5 @@
 #include <gnu_gama/local/test_linearization_visitor.h>
-
+#include <cmath>
 
 void GNU_gama::local::TestLinearizationVisitor::visit(Distance* obs)
 {
@@ -27,7 +27,7 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Angle* obs)
   mer = obs->value() + v(i)*CC2R - ds2 + ds;
   while (mer >  M_PI) mer -= 2*M_PI;
   while (mer < -M_PI) mer += 2*M_PI;
-  pol  = mer*max(dd,dd2)*1000;
+  pol  = mer*std::max(dd,dd2)*1000;
   mer *= R2CC;
 }
 

@@ -1,25 +1,24 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
-                  2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2013, 2016  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 1999  Ales Cepek <cepek@fsv.cvut.cz>
+                2011  Vaclav Petras <wenzeslaus@gmail.com>
+                2013, 2016, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library.
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-    MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with this library; if not, write to the Free Software
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /** \file outlying_abs_terms.h
@@ -71,7 +70,7 @@ public:
         out << T_GaMa_distance;
         out.precision(distPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -80,7 +79,7 @@ public:
         out << T_GaMa_direction;
         out.precision(angularPrecision);
         out.width(width);
-        Double m = R2G*(obs->value());
+        double m = R2G*(obs->value());
         if (IS->gons())
             out << m << " ";
         else
@@ -95,7 +94,7 @@ public:
         out << T_GaMa_angle;
         out.precision(angularPrecision);
         out.width(width);
-        Double m = R2G*(obs->value());
+        double m = R2G*(obs->value());
         if (IS->gons())
             out << m << " ";
         else
@@ -107,7 +106,7 @@ public:
         out << T_GaMa_levell;
         out.precision(distPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -116,7 +115,7 @@ public:
         out << T_GaMa_s_distance;
         out.precision(distPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -125,7 +124,7 @@ public:
         out << T_GaMa_z_angle;
         out.precision(angularPrecision);
         out.width(width);
-        Double m = R2G*(obs->value());
+        double m = R2G*(obs->value());
         if (IS->gons())
             out << m << " ";
         else
@@ -137,7 +136,7 @@ public:
         out << T_GaMa_x;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -146,7 +145,7 @@ public:
         out << T_GaMa_y;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -155,7 +154,7 @@ public:
         out << T_GaMa_z;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -164,7 +163,7 @@ public:
         out << T_GaMa_xdiff;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -173,7 +172,7 @@ public:
         out << T_GaMa_ydiff;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -182,7 +181,7 @@ public:
         out << T_GaMa_zdiff;
         out.precision(coordPrecision);
         out.width(width);
-        Double m = obs->value();
+        double m = obs->value();
         out << m << " ";
     }
 
@@ -191,7 +190,7 @@ public:
         out << T_GaMa_azimuth;
         out.precision(angularPrecision);
         out.width(width);
-        Double m = R2G*(obs->value());
+        double m = R2G*(obs->value());
         if (IS->gons())
             out << m << " ";
         else
