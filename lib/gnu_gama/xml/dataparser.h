@@ -26,8 +26,8 @@
 #include <gnu_gama/xml/dataobject.h>
 #include <gnu_gama/g3/g3_model.h>
 #include <gnu_gama/g3/g3_cluster.h>
-#include <gnu_gama/list.h>
 #include <gnu_gama/exception.h>
+#include <list>
 #include <cstddef>
 #include <string>
 #include <list>
@@ -48,7 +48,7 @@ namespace GNU_gama {
     {
     public:
 
-      DataParser(List<DataObject::Base*>&);
+      DataParser(std::list<DataObject::Base*>&);
       ~DataParser();
       int startElement(const char *name, const char **atts)
         {
@@ -68,7 +68,7 @@ namespace GNU_gama {
 
     private:
 
-      List<DataObject::Base*>& objects;
+      std::list<DataObject::Base*>& objects;
 
       enum parser_state
         {

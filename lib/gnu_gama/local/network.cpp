@@ -46,8 +46,8 @@ using namespace std;
 using namespace GNU_gama::local;
 
 
-typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
-typedef GNU_gama::Cluster<Observation>                  Clust_r;  // 1.10
+typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
+typedef GNU_gama::Cluster<Observation>             Clust_r;  // 1.10
 
 namespace
 {

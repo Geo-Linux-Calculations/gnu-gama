@@ -1,6 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
                  2014  Maxime Le Moual <maxime.le-moual@ensg.eu>
+                 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -15,8 +16,8 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software Foundation,
-   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /** \file svg.cpp
  * \brief #GNU_gama::local::GamaLocalSVG class implementation
@@ -408,7 +409,7 @@ void GamaLocalSVG::svg_observations() const
 
   Pairs pairs;
 
-  typedef GNU_gama::List<GNU_gama::Cluster<Observation>*> ClusterList;
+  typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
   const ClusterList& clusters = OD.clusters;
   for (ClusterList::const_iterator
          c=clusters.begin(), ce=clusters.end(); c!=ce; ++c)

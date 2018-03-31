@@ -25,7 +25,6 @@
 #include <gnu_gama/model.h>
 #include <gnu_gama/pointbase.h>
 #include <gnu_gama/obsdata.h>
-#include <gnu_gama/list.h>
 #include <gnu_gama/ellipsoids.h>
 #include <gnu_gama/g3/g3_point.h>
 #include <gnu_gama/g3/g3_observation.h>
@@ -49,11 +48,11 @@ namespace GNU_gama {
     Model();
     virtual ~Model();
 
-    typedef GNU_gama::ObservationData<g3::Observation>  ObservationData;
-    typedef GNU_gama::List<Observation*>                ObservationList;
-    typedef GNU_gama::PointBase<g3::Point>              PointBase;
-    typedef GNU_gama::List<Parameter*>                  ParameterList;
-    typedef GNU_gama::Adj                               Adj;
+    using ObservationData = GNU_gama::ObservationData<g3::Observation>;
+    using ObservationList = std::list<Observation*>;
+    using PointBase       = GNU_gama::PointBase<g3::Point>;
+    using ParameterList   = std::list<Parameter*>;
+    using Adj             = GNU_gama::Adj;             
 
 
     PointBase           *points;

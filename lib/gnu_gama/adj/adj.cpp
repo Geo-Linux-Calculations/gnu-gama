@@ -153,9 +153,9 @@ void AdjInputData::write_xml(std::ostream& out) const
 
 void AdjInputData::read_xml(std::istream& inp)
 {
-  string                  line;
-  List<DataObject::Base*> objects;
-  DataParser              dp(objects);
+  string                       line;
+  std::list<DataObject::Base*> objects;
+  DataParser                   dp(objects);
 
   while (getline(inp, line))
     {
@@ -164,7 +164,7 @@ void AdjInputData::read_xml(std::istream& inp)
     }
   dp.xml_parse("", 0, 1);
 
-  for (List<DataObject::Base*>::iterator i=objects.begin();
+  for (std::list<DataObject::Base*>::iterator i=objects.begin();
        i!=objects.end(); ++i)
     {
       if (DataObject::AdjInput *adj = dynamic_cast<DataObject::AdjInput*>(*i))
