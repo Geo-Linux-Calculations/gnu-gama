@@ -40,7 +40,7 @@ namespace GNU_gama {
  *
  * \param N degrees of freedom
  */
-float Student(float alfa, int N);
+double Student(double alfa, int N);
 
 /** \brief For given probability computes critical value of normalized
  *  normal distribution N(0,1).

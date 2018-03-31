@@ -36,7 +36,7 @@
 #include <gnu_gama/utf8.h>
 #include <algorithm>
 
-static float ResidualsObservations_N01(float x)   // local helper function
+static double ResidualsObservations_N01(double x)   // local helper function
 {
    double D, f;
    GNU_gama::NormalDistribution(double(x), D, f);
@@ -77,19 +77,19 @@ public:
     WriteShortObservationName(OutStream& outStream) : out(outStream)
     {}
 
-    void visit(Distance* obs) { out << T_GaMa_distance; }
-    void visit(Direction* obs) { out << T_GaMa_direction; }
-    void visit(Angle* obs) { out << T_GaMa_angle; }
-    void visit(H_Diff* obs) { out << T_GaMa_levell; }
-    void visit(S_Distance* obs) { out << T_GaMa_s_distance; }
-    void visit(Z_Angle* obs) { out << T_GaMa_z_angle; }
-    void visit(X* obs) { out << T_GaMa_x; }
-    void visit(Y* obs) { out << T_GaMa_y; }
-    void visit(Z* obs) { out << T_GaMa_z; }
-    void visit(Xdiff* obs) { out << T_GaMa_xdiff; }
-    void visit(Ydiff* obs) { out << T_GaMa_ydiff; }
-    void visit(Zdiff* obs) { out << T_GaMa_zdiff; }
-    void visit(Azimuth* obs) { out << T_GaMa_azimuth; }
+    void visit(Distance* /*obs*/) { out << T_GaMa_distance; }
+    void visit(Direction* /*obs*/) { out << T_GaMa_direction; }
+    void visit(Angle* /*obs*/) { out << T_GaMa_angle; }
+    void visit(H_Diff* /*obs*/) { out << T_GaMa_levell; }
+    void visit(S_Distance* /*obs*/) { out << T_GaMa_s_distance; }
+    void visit(Z_Angle* /*obs*/) { out << T_GaMa_z_angle; }
+    void visit(X* /*obs*/) { out << T_GaMa_x; }
+    void visit(Y* /*obs*/) { out << T_GaMa_y; }
+    void visit(Z* /*obs*/) { out << T_GaMa_z; }
+    void visit(Xdiff* /*obs*/) { out << T_GaMa_xdiff; }
+    void visit(Ydiff* /*obs*/) { out << T_GaMa_ydiff; }
+    void visit(Zdiff* /*obs*/) { out << T_GaMa_zdiff; }
+    void visit(Azimuth* /*obs*/) { out << T_GaMa_azimuth; }
 
 };
 

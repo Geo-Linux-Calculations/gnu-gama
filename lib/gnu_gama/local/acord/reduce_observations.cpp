@@ -92,7 +92,9 @@ void ReducedObservations::reduce(ReducedObs& r_obs)
     else if (dynamic_cast<Z_Angle*>(obs))
       reduce_zangle(&r_obs);
     else
-      ; // !? Must I throw exception here ?
+      {
+        /* should we throw exception here? */
+      }
 }
 
 

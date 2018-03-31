@@ -25,9 +25,9 @@ using namespace std;
 
 namespace GNU_gama {
 
-float Student(float palfa, int N)
+double Student(double palfa, int N)
 {
-   float alfa = palfa;
+   double alfa = palfa;
    if(alfa > 0.5) alfa=1.0-alfa;
    alfa *= 2;
 
@@ -35,15 +35,15 @@ float Student(float palfa, int N)
 
    if (N <= 1)
    {
-      float a = M_PI/2*alfa;
-      float stu_ = cos(a)/sin(a);
+      double a = M_PI/2*alfa;
+      double stu_ = cos(a)/sin(a);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
    }
 
    if (N <= 2)
    {
-      float stu_ = sqrt(2.0/(alfa*(2.0-alfa))-2.0);
+      double stu_ = sqrt(2.0/(alfa*(2.0-alfa))-2.0);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
     }
@@ -75,7 +75,7 @@ float Student(float palfa, int N)
 
    y = ((1.0/(((r+6.0)/(r*y)-0.089*d-0.822)*(r+2.0)*3.0)+0.5/(r+4.0))
         *y-1.0)*(r+1.0)/(r+2.0)+1.0/y;
-   float stu_ = sqrt(r*y);
+   double stu_ = sqrt(r*y);
    if (palfa > 0.5) stu_ = -stu_;
    return stu_;
 

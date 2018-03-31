@@ -23,6 +23,7 @@ libgama_src = \
    gnu_gama/comb.cpp \
    gnu_gama/comb.h \
    gnu_gama/size_to.h \
+   gnu_gama/size_to.cpp \
    gnu_gama/statan.cpp \
    gnu_gama/statan.h \
    gnu_gama/utf8.cpp \

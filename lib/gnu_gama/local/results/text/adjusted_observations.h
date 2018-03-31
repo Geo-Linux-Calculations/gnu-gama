@@ -51,7 +51,7 @@ private:
     GNU_gama::local::LocalNetwork* IS;
     const int maxval;
     const GNU_gama::local::Vec& v; ///< residuals
-    GNU_gama::Index i;
+    int i;
     const int y_sign;
 
     static const int distPrecision = 5;
@@ -76,7 +76,7 @@ public:
     {}
 
     /** \brief Sets index of observation which will be used in the next visit. */
-    void setObservationIndex(GNU_gama::Index index) { i = index; }
+    void setObservationIndex(int index) { i = index; }
 
     void visit(Distance* obs)
     {

@@ -47,7 +47,7 @@ namespace GNU_gama
     void coordinates         (std::ostream&) const;
     void observations        (std::ostream&) const;
 
-    void orientation_shifts(std::ostream&, std::vector<Index>&, Index&) const;
+    void orientation_shifts(std::ostream&, std::vector<int>&, int&) const;
     void std_dev_summary(std::ostream&) const;
     template <typename T> void tagnl(std::ostream&, const char*, T) const;
     template <typename T> void tagsp(std::ostream&, const char*, T) const;

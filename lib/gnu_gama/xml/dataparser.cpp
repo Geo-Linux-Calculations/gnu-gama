@@ -371,7 +371,7 @@ DataParser::data_tag DataParser::tag(const char* c)
 
 // *****************************************************************
 
-int DataParser::parser_error(const char *name, const char **atts)
+int DataParser::parser_error(const char *name, const char ** /*atts*/)
 {
   return error(string("### tag <") + string(name)
                + string("> cannot be used in this context"));
@@ -384,7 +384,7 @@ int DataParser::start_tag(const char *name, const char **atts)
   return (state = next[state][tag(name)]);
 }
 
-int DataParser::end_tag(const char *name)
+int DataParser::end_tag(const char * /*name*/)
 {
   return (state = after[state]);
 }
@@ -412,7 +412,7 @@ int DataParser::white_spaces(const char* s, int len)
 int DataParser::add_text(const char* s, int len)
 {
   text_buffer += ' ';
-  text_buffer += string(s, len);
+  text_buffer += string(s, std::string::size_type(len));
   return 0;
 }
 

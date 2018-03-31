@@ -165,13 +165,13 @@ std::ostream& operator << (std::ostream& str, ObservationData& od)
       if ((*c)->covariance_matrix.bandWidth())
         {
           const CovMat& C = (*c)->covariance_matrix;
-          Index  dim   = C.dim();
-          Index  band  = C.bandWidth();
+          int  dim   = C.dim();
+          int  band  = C.bandWidth();
           str << "\n<cov-mat dim=\"" << dim
               << "\" band=\"" << band << "\">\n";
-          for (Index i=1; i<=dim; i++)
+          for (int i=1; i<=dim; i++)
             {
-              for (Index j=i; j<=i+band && j <=dim; j++)
+              for (int j=i; j<=i+band && j <=dim; j++)
                 str << C(i,j) << " ";
               str << "\n";
             }

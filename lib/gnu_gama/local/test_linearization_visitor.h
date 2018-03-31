@@ -50,7 +50,7 @@ private:
     GNU_gama::local::LocalNetwork* IS;
     const GNU_gama::local::Vec& v; ///< residuals
     const GNU_gama::local::Vec& x; ///< unknowns
-    GNU_gama::Index i;
+    int i;
     double pol;
     double mer;
 public:
@@ -63,7 +63,7 @@ public:
 
     /** \brief Sets index of observation which will be used in the
         next visit. */
-    void setObservationIndex(GNU_gama::Index index) { i = index; }
+    void setObservationIndex(int index) { i = index; }
 
     double getPol() { return  pol; }
     double getMer() { return  mer; }
@@ -203,7 +203,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS,
 template <typename OutStream>
 bool
 TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
-                  double max_pyx = 0.1500, // suspicious coorection in meters
+                  double /*max_pyx*/ = 0.1500, // suspicious coorection in meters
                   double max_dif = 0.0005  // max. positional difference in mm
                   )
 {

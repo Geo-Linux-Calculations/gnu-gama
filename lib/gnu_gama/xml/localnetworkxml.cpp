@@ -1,24 +1,23 @@
 /*
-    GNU Gama C++ library
-    Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
-                  2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014  Ales Cepek <cepek@gnu.org>
+  GNU Gama C++ library
+  Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
+                2011  Vaclav Petras <wenzeslaus@gmail.com>
+                2012, 2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  This library is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /** \file localnetworkxml.cpp
@@ -79,8 +78,8 @@ private:
     const int linear;
     const int angular;
     const GNU_gama::local::Vec& v;
-    GNU_gama::Index i;
-    const int y_sign;
+    int i;
+    const double y_sign;
 public:
     WriteXMLVisitor(std::ostream& outStream, int linearOutputPrecision, int angularOutputPrecision,
                     const GNU_gama::local::Vec& residuals, int ySign)
@@ -93,7 +92,7 @@ public:
     std::string lastTag() const { return tag; }
 
     /** \brief Sets index of observation which will be used in the next visit. */
-    void setObservationIndex(GNU_gama::Index index) { i = index; }
+    void setObservationIndex(int index) { i = index; }
 
     /** If secondary output stream is not specified output stream given in constructor is used. */
     void setSecondaryOutStream(std::ostream& outStream) { ostr = &outStream; }
@@ -557,8 +556,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out.precision(6);
 
   const GNU_gama::local::Vec& X = netinfo->solve();
-  std::vector<Index> ind(netinfo->sum_unknowns() + 1);
-  Index dim = 0;
+  std::vector<int> ind(netinfo->sum_unknowns() + 1);
+  int dim = 0;
 
 
   out << "\n<fixed>\n";
@@ -680,7 +679,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
 
   orientation_shifts(out, ind, dim);
 
-  int band = 0;   // signed value, must not be declared as Index
+  int band = 0;
   if (dim)
     {
       band = netinfo->adj_covband();
@@ -694,8 +693,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out.setf(ios_base::scientific, ios_base::floatfield);
   out.precision(7);
   const double m2 = netinfo->m_0() * netinfo->m_0();
-  for (Index k=0, i=1; i<=dim; i++)
-    for (Index j=i; j<=std::min(dim, i+band); j++)
+  for (int k=0, i=1; i<=dim; i++)
+    for (int j=i; j<=std::min(dim, i+band); j++)
       {
         out << "<flt>" << m2*netinfo->qxx(ind[i], ind[j]) << "</flt>";
         if (++k == 3)
@@ -740,8 +739,8 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
 
 
 void  LocalNetworkXML::orientation_shifts(std::ostream& out,
-                                          std::vector<GNU_gama::Index>& ind,
-                                          GNU_gama::Index& dim) const
+                                          std::vector<int>& ind,
+                                          int& dim) const
 {
   out << "\n<orientation-shifts>\n";
 

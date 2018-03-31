@@ -79,12 +79,12 @@ namespace GNU_gama
 
       int characterDataHandler(const char *s, int len)
       {
-        data += std::string(s, len);
+        data += std::string(s, std::string::size_type(len));
 
         return 0;
       }
 
-      int endElement(const char *name)
+      int endElement(const char * /*name*/)
       {
         if (stack.empty()) stack.push(&Parser::unknown);
 

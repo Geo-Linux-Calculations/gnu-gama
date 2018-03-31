@@ -23,6 +23,7 @@
 #define GNU_Gama_gnu_gama_adj_envelope_implementationenvelope_implementation_h
 
 #include <gnu_gama/adj/adj_envelope.h>
+#include <gnu_gama/size_to.h>
 
 
 namespace GNU_gama {
@@ -36,7 +37,7 @@ namespace GNU_gama {
 
     indbuf.erase();
     qxxbuf.resize(indbuf.size());
-    for (Index i=0; i<qxxbuf.size(); i++)
+    for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
       qxxbuf[i].reset();
 
     set_stage(stage_init);
@@ -151,7 +152,7 @@ namespace GNU_gama {
     if (nullity)
       {
         qxxbuf.resize(indbuf.size());
-        for (Index i=0; i<qxxbuf.size(); i++)
+        for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
           qxxbuf[i].reset(parameters);
       }
 
@@ -296,7 +297,7 @@ namespace GNU_gama {
     if (qxxbuf[0].dim() != parameters)
       {
         qxxbuf.resize(indbuf.size());
-        for (Index i=0; i<qxxbuf.size(); i++)
+        for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
           qxxbuf[i].reset(parameters);
       }
 
@@ -384,7 +385,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-  Float AdjEnvelope<Float, Index, Exc>::q_bx(Index i, Index j)
+  Float AdjEnvelope<Float, Index, Exc>::q_bx(Index, Index)
   {
     throw Exc(Exception::BadRegularization,
               "q_bx not implemented");

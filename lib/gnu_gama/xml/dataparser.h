@@ -823,7 +823,7 @@ namespace GNU_gama {
       int add_text     (const char *name, int len);
       int end_tag      (const char *name);
       int no_attributes(const char *name, const char **atts);
-      int parser_error (const char *name, const char **atts);
+      int parser_error (const char *name, const char **);
       int start_tag    (const char *name, const char **atts);
       int white_spaces (const char *name, int len);
 

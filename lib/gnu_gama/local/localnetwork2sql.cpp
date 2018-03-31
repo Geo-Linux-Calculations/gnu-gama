@@ -26,6 +26,7 @@
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/statan.h>
+#include <gnu_gama/size_to.h>
 #include <iostream>
 
 using namespace GNU_gama::local;
@@ -38,8 +39,8 @@ private:
     std::ostream&                  ostr;
     GNU_gama::local::LocalNetwork* netinfo;
     const GNU_gama::local::Vec&    residuals;
-    GNU_gama::Index                index;
-    const int                      y_sign;
+    int                            index;
+    const double                   y_sign;
     const double                   kki;
 
 public:
@@ -51,7 +52,7 @@ public:
     {
     }
 
-    void setObservationIndex(GNU_gama::Index ind) { index = ind; }
+    void setObservationIndex(int ind) { index = ind; }
 
     void residualsAndAnalysisOfObservations(Observation* obs)
     {
@@ -350,8 +351,8 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   if (!localNetwork.description.empty())
     {
       const int N = 1000;  // varchar('N') in gnu_gama_local_descriptions table;
-      Index indx = 0;
-      while (indx*N < localNetwork.description.length())
+      int indx = 0;
+      while (indx*N < size_to<int>(localNetwork.description.length()))
         {
           const std::string& s = localNetwork.description.substr(indx*N, N);
           std::string description;
@@ -435,7 +436,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
              */
             write_cluster(ostr, c, cluster, "obs");
 
-            Index index = 1;
+            int index = 1;
             for (ObservationList::const_iterator
                    b = c->observation_list.begin(),
                    e = c->observation_list.end();  b != e;  ++b)
@@ -543,7 +544,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
           {
             write_cluster(ostr, c, cluster, "height-differences");
 
-            Index index = 1;
+            int index = 1;
             for (ObservationList::const_iterator
                    b = c->observation_list.begin(),
                    e = c->observation_list.end();  b != e;  ++b)
@@ -565,7 +566,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
         else if (/*const Coordinates* sp = */dynamic_cast<const Coordinates*>(c))
           {
             write_cluster(ostr, c, cluster, "coordinates");
-            Index index = 1, inc;
+            int index = 1, inc;
             for (ObservationList::const_iterator
                    b = c->observation_list.begin(),
                    e = c->observation_list.end();  b != e;  ++b)
@@ -622,7 +623,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
         else if (/*const Vectors* sp = */ dynamic_cast<const Vectors*>(c))
           {
             write_cluster(ostr, c, cluster, "vectors");
-            Index index = 1;
+            int index = 1;
             for (ObservationList::const_iterator
                    b = c->observation_list.begin(),
                    e = c->observation_list.end();  b != e;  ++b)
@@ -908,9 +909,9 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
           }
       }
 
-      std::vector<Index> ind(netinfo->sum_unknowns() + 1);
+      std::vector<int> ind(netinfo->sum_unknowns() + 1);
       {
-        Index dim = 0;
+        int dim = 0;
         for (PointData::const_iterator
                i=netinfo->PD.begin(); i!=netinfo->PD.end(); ++i)
           {
@@ -935,13 +936,13 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
 
       { // covariance matrix
-        Index dim  = netinfo->sum_unknowns();
+        int dim  = netinfo->sum_unknowns();
         int band = netinfo->adj_covband();
         if (band < 0) band = dim-1;
 
         const double m2 = netinfo->m_0() * netinfo->m_0();
-        for (Index i=1; i<=dim; i++)
-          for (Index j=i; j<=std::min(dim, i+band); j++)
+        for (int i=1; i<=dim; i++)
+          for (int j=i; j<=std::min(dim, i+band); j++)
             {
               ostr << "insert into gnu_gama_local_adj_covmat "
                    << "(conf_id, rind, cind, val) "
@@ -993,8 +994,8 @@ void LocalNetwork2sql::write_cluster(std::ostream& ostr, const Cluster* c,
                                      int cluster, std::string tag)
 {
   const GNU_gama::local::Observation::CovarianceMatrix& covmat = c->covariance_matrix;
-  Index dim  = covmat.rows();
-  Index band = covmat.bandWidth();
+  int dim  = covmat.rows();
+  int band = covmat.bandWidth();
 
   ostr << "\ninsert into gnu_gama_local_clusters "
        << "(conf_id, ccluster, dim, band, tag) "
@@ -1002,8 +1003,8 @@ void LocalNetwork2sql::write_cluster(std::ostream& ostr, const Cluster* c,
        << cluster << ", " << dim << ", " << band << ", '" << tag
        << "');\n";
 
-  for (Index i=1; i<=dim; i++)
-    for (Index j=i; j<=i+band && j <= dim; j++)
+  for (int i=1; i<=dim; i++)
+    for (int j=i; j<=i+band && j <= dim; j++)
       {
         ostr << "insert into gnu_gama_local_covmat "
              << "(conf_id, ccluster, rind, cind, val) "

@@ -26,7 +26,7 @@
 #include <matvec/svd.h>
 #include <matvec/covmat.h>
 
-namespace GNU_gama { using Index=int; namespace local {
+namespace GNU_gama { namespace local {
 
     /** A removed class \a MatVecException has been replaced by a typedef to
         \a GNU_gama::Exception::matvec.

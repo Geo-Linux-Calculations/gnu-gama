@@ -33,7 +33,7 @@
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/xsd.h>
-#include <matvec/unsigned.h>
+#include <gnu_gama/size_to.h>
 
 namespace {
   typedef std::pair<double, bool> DB_pair;
@@ -1029,7 +1029,7 @@ namespace GNU_gama { namespace local {
             // scaling of rows/columns corresponding to covariances
             // given in sexagesimal seconds
             std::vector<DB_pair>::iterator s = sigma.begin();
-            for (int i=1; i<=sigma.size(); ++i, ++s)
+            for (int i=1; i<=size_to<int>(sigma.size()); ++i, ++s)
               {
                 if ((*s).second) standpoint->scaleCov(i, 1.0/0.324);
               }
@@ -1263,7 +1263,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::finish_coords()
   {
     if (!idim) return error(T_GKF_coordinates_without_covariance_matrix);
-    if (idim != coordinates->observation_list.size())
+    if (idim != size_to<int>(coordinates->observation_list.size()))
       return error("T_GKF_cov_dim_differs_from_number_of_coordinates");
 
     coordinates->update();
@@ -1436,7 +1436,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::finish_vectors()
   {
     if (!idim) return error(T_GKF_vectors_without_covariance_matrix);
-    if (idim != vectors->observation_list.size())
+    if (idim != size_to<int>(vectors->observation_list.size()))
       return error("T_GKF_cov_dim_differs_from_number_of_vectors");
 
     vectors->update();         // bind observations to the cluster

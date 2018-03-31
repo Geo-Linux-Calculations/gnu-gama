@@ -809,8 +809,8 @@ int DataParser::g3_obs(const char *name)
     {
       const CovMat<>& cov = *i;
 
-      for (size_t i=1; i<=cov.dim(); i++)
-        for (size_t j=0; j<=cov.bandWidth() && i+j<=cov.dim(); j++)
+      for (int i=1; i<=cov.dim(); i++)
+        for (int j=0; j<=cov.bandWidth() && i+j<=cov.dim(); j++)
           g3->obs_cluster->covariance_matrix(offset+i, offset+i+j) = cov(i, i+j);
 
       offset += cov.dim();
@@ -1190,7 +1190,7 @@ int DataParser::g3_const_tol_abs(const char *name)
   return error("### bad <tol-abs>");
 }
 
-int DataParser::g3_const_ellipsoid_id(const char *name)
+int DataParser::g3_const_ellipsoid_id(const char * /*name*/)
 {
   using namespace g3;
   stringstream istr(text_buffer);

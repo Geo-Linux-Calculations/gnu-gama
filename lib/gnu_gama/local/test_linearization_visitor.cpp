@@ -90,7 +90,7 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Direction* obs)
 
 
 bool GNU_gama::local::TestLinearization(GNU_gama::local::LocalNetwork* IS,
-					double max_pyx,
+					double /*max_pyx*/,
 					double max_dif)
 {
   using namespace std;

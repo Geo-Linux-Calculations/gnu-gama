@@ -142,13 +142,13 @@ namespace GNU_gama { namespace local
       double p = m_0_apr_/RSM[i-1]->stdDev();
       return p*p;
     }
-    double test_abs_term(Index i);                   // 0 or abs_term(i)
+    double test_abs_term(int i);                   // 0 or abs_term(i)
     bool huge_abs_terms()
     {
       project_equations(); return vybocujici_abscl_;
     }
     void remove_huge_abs_terms();
-    double rhs(Index i) const
+    double rhs(int i) const
     {
       return rhs_(i);
     }
@@ -191,12 +191,12 @@ namespace GNU_gama { namespace local
     double m_0();
     double apriori_m_0() const   { return m_0_apr_; }
 
-    double qxx(Index i, Index j) { return least_squares->q_xx(i,j); }
-    double qbb(Index i, Index j) { return least_squares->q_bb(i,j); }
-    double qbx(Index i, Index j) { return least_squares->q_bx(i,j); }
+    double qxx(int i, int j) { return least_squares->q_xx(i,j); }
+    double qbb(int i, int j) { return least_squares->q_bb(i,j); }
+    double qbx(int i, int j) { return least_squares->q_bx(i,j); }
 
     double cond();
-    bool lindep(Index i);
+    bool lindep(int i);
 
     void refine_approx();
 
@@ -371,7 +371,7 @@ namespace GNU_gama { namespace local
     Vec sigma_L;          // standard deviation of adjusted observation
     Vec vahkopr;          // weight coefficient of residuals
     double suma_pvv_;
-    GNU_gama::SparseMatrix<double, Index>*  Asp;
+    GNU_gama::SparseMatrix<double, int>*  Asp;
 
     bool design_matrix_graph_is_connected;
 
@@ -380,8 +380,8 @@ namespace GNU_gama { namespace local
     bool tst_vyrovnani_;
     void vyrovnani_();
 
-    Index  min_n_;           // regularization of free network
-    Index* min_x_;
+    int  min_n_;           // regularization of free network
+    int* min_x_;
 
     bool   gons_;
 

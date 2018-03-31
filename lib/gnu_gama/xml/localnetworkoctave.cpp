@@ -59,8 +59,8 @@ void LocalNetworkOctave::write(std::ostream& out) const
     }
   out << "];\n\n";
 
-  std::vector<Index> ind(netinfo->sum_unknowns() + 1);
-  Index n = 1;
+  std::vector<int> ind(netinfo->sum_unknowns() + 1);
+  int n = 1;
   out << "Indexes = [\n";
   for (auto i=netinfo->PD.cbegin(); i!=netinfo->PD.cend(); ++i)
     {
@@ -68,7 +68,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
       if (p.free_xy() || p.free_z() || p.constrained_xy() || p.constrained_z())
         {
           out << "   " << setw(4);
-          if (Index i = p.index_x()) {
+          if (int i = p.index_x()) {
             ind[n] = i;
             out << n++ << " ";
           }
@@ -76,7 +76,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
             out << 0 << " ";
           }
 	  out << setw(4);
-          if (Index i = p.index_y()) {
+	  if (int i = p.index_y()) {
             ind[n] = i;
             out << n++ << " ";
           }
@@ -84,7 +84,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
             out << 0 << " ";
           }
 	  out << setw(4);
-          if (Index i = p.index_z()) {
+	  if (int i = p.index_z()) {
             ind[n] = i;
             out << n++ << "\n";
           }
@@ -133,9 +133,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
 
   const double m2 = netinfo->m_0() * netinfo->m_0();
   out << "Cov = [\n";
-  for (Index k=0, i=1; i<n; i++, k=0)
+  for (int k=0, i=1; i<n; i++, k=0)
     {
-      for (Index j=1; j<n; j++)
+      for (int j=1; j<n; j++)
         {
           out << " " << setprecision(7) << scientific << setw(14);
           out << m2*netinfo->qxx(ind[i], ind[j]);
