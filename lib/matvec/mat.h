@@ -53,7 +53,7 @@ namespace GNU_gama {
       Index cols = init.begin()->size();
       Float* f = this->begin();
       for (auto row : init) {
-        if (row.size() != cols)
+        if (Index(row.size()) != cols)
           throw Exc(Exception::BadRank, "Mat::Initializer list");
         for (auto c : row)
           *f++ = c;
