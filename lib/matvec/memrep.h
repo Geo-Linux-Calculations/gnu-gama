@@ -126,7 +126,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
         rep = nullptr;
     }
 
-    Index size() const { return sz; }
+    Index size() const { return Index(sz); }
 
 
   private:

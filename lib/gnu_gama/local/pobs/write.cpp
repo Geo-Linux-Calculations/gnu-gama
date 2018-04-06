@@ -42,7 +42,7 @@ typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
 std::ostream& operator << (std::ostream& str, PointData& sez)
 {
   using namespace std;
-  int prec_p = str.precision();
+  auto prec_p = str.precision();
   std::ios_base::fmtflags flag_p = str.flags();
   str.setf(ios_base::fixed);
 

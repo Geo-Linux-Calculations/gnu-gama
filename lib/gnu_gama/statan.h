@@ -21,6 +21,7 @@
 #define GNU_gama_gnu_gama_StatAn_h
 
 #include <cmath>
+#include <algorithm>
 
 /** \file statan.h
  * \brief Basic statistic functions
@@ -64,7 +65,7 @@ void NormalDistribution(double x, double& D, double& f);
 
 /** \brief Kolmogorov-Smirnov probability function
  */
-float KSprob(float);
+double KSprob(double);
 
 /** \brief Kolmogorov-Smirnov test.
  *
@@ -72,36 +73,13 @@ float KSprob(float);
  * \param ks     K-S statistic
  * \param prob   significance level
 */
-template <typename Float, typename FloatF, typename FloatD, typename FloatP>
-void KStest(Float Data[], int n, FloatF (*Func)(FloatF),
-            FloatD& ks, FloatP& prob)
-{
-   using namespace std;
 
-   sort(Data, Data+n);
-
-   const float  float_n = n;
-   float Fa = 0, Fb, Fi, dl, du, dt;
-   float d = 0;
-   for (int i=0; i<n;)
-   {
-      Fi = Func(Data[i]);
-      Fb = ++i/float_n;
-      dl = fabs(Fa - Fi);
-      du = fabs(Fb - Fi);
-      dt = dl > du ? dl : du;
-      Fa = Fb;
-      if (dt > d) d = dt;
-   }
-
-   const float sn = sqrt(float_n);
-   prob = KSprob((sn + 0.12 + 0.11/sn)*d);
-   ks = d;
-}
+void KStest(double Data[], int n, double (*Func)(double),
+            double& ks, double& prob);
 
 /** \brief For the given probability and degrees of freedom computes
  * critical value of Chi-square distribution.  */
-float Chi_square(float probability, int degrees_of_freedom);
+double Chi_square(double probability, int degrees_of_freedom);
 
 }      /* namespace GNU_gama::local */
 

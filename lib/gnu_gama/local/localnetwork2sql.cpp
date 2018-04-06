@@ -659,7 +659,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   if (localNetwork.is_adjusted())
     {
       LocalNetwork* netinfo = &localNetwork;
-      const int y_sign = netinfo->y_sign();
+      const double y_sign = netinfo->y_sign();
       const Vec& x = netinfo->solve();
 
       { // general parameters
@@ -794,7 +794,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
       { // standard deviation
         const int dof = netinfo->degrees_of_freedom();
-        float test=0, lower=0, upper=0;
+        double test=0, lower=0, upper=0;
 
         test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
         if (dof)

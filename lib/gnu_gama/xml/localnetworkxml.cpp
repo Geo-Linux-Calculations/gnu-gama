@@ -82,7 +82,7 @@ private:
     const double y_sign;
 public:
     WriteXMLVisitor(std::ostream& outStream, int linearOutputPrecision, int angularOutputPrecision,
-                    const GNU_gama::local::Vec& residuals, int ySign)
+                    const GNU_gama::local::Vec& residuals, double ySign)
         : out(outStream), ostr(&outStream),
           linear(linearOutputPrecision), angular(angularOutputPrecision),
           v(residuals), y_sign(ySign)
@@ -514,7 +514,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     tagnl(out, "probability", netinfo->conf_pr());
 
     const int dof = netinfo->degrees_of_freedom();
-    float test=0, lower=0, upper=0;
+    double test=0, lower=0, upper=0;
 
     test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
     if (dof)
@@ -548,7 +548,7 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
 
 void LocalNetworkXML::coordinates(std::ostream& out) const
 {
-  const int y_sign = netinfo->y_sign();
+  const double y_sign = netinfo->y_sign();
 
   out << "\n<coordinates>\n";
 
@@ -746,7 +746,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
 
   const GNU_gama::local::Vec& X = netinfo->solve();
   //const double scale    = netinfo->gons() ? 1.0 : 0.324;
-  const int    y_sign     = netinfo->y_sign();
+  const double y_sign     = netinfo->y_sign();
   //const double kki      = netinfo->conf_int_coef();
   const int    unknowns = netinfo->sum_unknowns();
 
@@ -795,7 +795,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
    using namespace std;
    // using namespace GNU_gama::local;
 
-   const int      y_sign = netinfo->y_sign();
+   const double   y_sign = netinfo->y_sign();
    const GNU_gama::local::Vec& v = netinfo->residuals();
    const int      pocmer = netinfo->sum_observations();
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;

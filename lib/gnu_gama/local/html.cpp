@@ -862,13 +862,13 @@ void GamaLocalHTML::htmlInfo()
               << "<td>" << double2str(horni, 'F',3)
               << "</td><td>)</td></tr>\n";
 
-          float m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
-          float sqd=0, sqs=0, squ=0;   // sum of weight coefficients
+          double m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
+          double sqd=0, sqs=0, squ=0;   // sum of weight coefficients
           int   itd=0, its=0, itu=0;
           for (int i=1; i<=lnet->sum_observations(); i++)
             {
-              float v = lnet->residuals()(i);
-              float q = lnet->wcoef_res(i);
+              double v = lnet->residuals()(i);
+              double q = lnet->wcoef_res(i);
               if (dynamic_cast<Distance*>(lnet->ptr_obs(i)))
                 {
                   itd = 1;
@@ -938,13 +938,13 @@ void GamaLocalHTML::htmlInfo()
               }
           }
       bool aprm0 = lnet->m_0_apriori();
-      float krit_opr;
+      double krit_opr;
       if (aprm0)
         krit_opr = GNU_gama::Normal(alfa_pul);
       else
         {
-          float s = GNU_gama::Student(alfa_pul, nadb-1);
-          float t = s*s;
+          double s = GNU_gama::Student(alfa_pul, nadb-1);
+          double t = s*s;
           krit_opr = sqrt(nadb*t/(nadb-1+t));
         }
 
@@ -1005,7 +1005,7 @@ void GamaLocalHTML::htmlUnknowns()
     using namespace std;
     using namespace GNU_gama::local;
 
-    const int y_sign = lnet->y_sign();
+    const double y_sign = lnet->y_sign();
 
     int pocpevb=0, pocpevv=0;
     for (PointData::iterator i=lnet->PD.begin(); i!=lnet->PD.end(); ++i)
@@ -1055,7 +1055,7 @@ void GamaLocalHTML::htmlUnknowns()
     using namespace std;
     using namespace GNU_gama::local;
 
-    const int y_sign = lnet->y_sign();
+    const double y_sign = lnet->y_sign();
 
     const Vec& x = lnet->solve();
     double kki = lnet->conf_int_coef();
@@ -1329,7 +1329,7 @@ void GamaLocalHTML::htmlUnknowns()
         using namespace std;
         using namespace GNU_gama::local;
 
-        const int y_sign = lnet->y_sign();
+        const double y_sign = lnet->y_sign();
 
         const Vec& x = lnet->solve();
         double elp_k = 0;
@@ -1337,7 +1337,7 @@ void GamaLocalHTML::htmlUnknowns()
           double alfa = (1 - lnet->conf_pr());
           if (lnet->m_0_apriori())
             {
-              elp_k = sqrt(GNU_gama::Chi_square(float(alfa), 2));
+              elp_k = sqrt(GNU_gama::Chi_square(double(alfa), 2));
             }
           else
             {

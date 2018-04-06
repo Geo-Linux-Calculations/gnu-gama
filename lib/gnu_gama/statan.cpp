@@ -48,13 +48,13 @@ double Student(double palfa, int N)
       return stu_;
     }
 
-   float r = N;
-   float a = 1.0/(r-0.5);
-   float b = 48.0/(a*a);
-   float c = ((20700.0*a/b-98.0)*a-16.0)*a+96.36;
-   float d = ((94.5/(b+c)-3.0)/b+1.0)*sqrt(M_PI/2*a)*r;
-   float x = d*alfa, xx = 2.0/r;
-   float y = pow(x,xx);
+   double r = N;
+   double a = 1.0/(r-0.5);
+   double b = 48.0/(a*a);
+   double c = ((20700.0*a/b-98.0)*a-16.0)*a+96.36;
+   double d = ((94.5/(b+c)-3.0)/b+1.0)*sqrt(M_PI/2*a)*r;
+   double x = d*alfa, xx = 2.0/r;
+   double y = pow(x,xx);
 
    if (y > a+0.05)
    {
@@ -68,7 +68,7 @@ double Student(double palfa, int N)
          y = 0.5*y*y+y;
       else
          y = exp(y)-1.0;
-      float stu_ = sqrt(r*y);
+      double stu_ = sqrt(r*y);
       if (palfa > 0.5) stu_ = -stu_;
       return stu_;
    }
@@ -199,13 +199,13 @@ void NormalDistribution(double x, double& D, double& f)
    if (typv) D = 0; else D = 1;
 }
 
-float KSprob(float lambda)
+double KSprob(double lambda)
 {
-   const float eps = 1.0e-8;
-   const float C = -2*lambda*lambda;
-   float term;
-   float j = 1;
-   float sum = 0;
+   const double eps = 1.0e-8;
+   const double C = -2*lambda*lambda;
+   double term;
+   double j = 1;
+   double sum = 0;
 
    do {
       term = exp(C*j*j);  j++;  sum += term;
@@ -215,22 +215,22 @@ float KSprob(float lambda)
    return j<100 ? 2*sum : 1;
 }
 
-float Chi_square(float p, int n)
+double Chi_square(double p, int n)
 {
    if (n < 2)
    {
-      float a = Normal(0.5*p);
+      double a = Normal(0.5*p);
       return a*a;
    }
    else if (n == 2)
       return -2.0*log(p);
 
-   float f=n;
-   float f1=1.0/f;
-   float t=Normal(p);
-   float f2=sqrt(f1)*t;
+   double f=n;
+   double f1=1.0/f;
+   double t=Normal(p);
+   double f2=sqrt(f1)*t;
 
-   float z;
+   double z;
    if(n < (2+int(4*fabs(t))))
       z=(((((((0.1565326e-2*f2 + 0.1060438e-2)*f2 - 0.6950356e-2)*f2 -
       0.1323293e-1)*f2 + 0.2277679e-1)*f2 - 0.8986007e-2)*f2 - 0.1513904e-1)
@@ -248,5 +248,31 @@ float Chi_square(float p, int n)
 
    return f*z*z*z;
 }
+
+void KStest(double Data[], int n, double (*Func)(double),
+            double& ks, double& prob){
+   using namespace std;
+
+   std::sort(Data, Data+n);
+
+   const double  float_n = n;
+   double Fa = 0, Fb, Fi, dl, du, dt;
+   double d = 0;
+   for (int i=0; i<n;)
+   {
+      Fi = Func(Data[i]);
+      Fb = ++i/float_n;
+      dl = fabs(Fa - Fi);
+      du = fabs(Fb - Fi);
+      dt = dl > du ? dl : du;
+      Fa = Fb;
+      if (dt > d) d = dt;
+   }
+
+   const double sn = sqrt(float_n);
+   prob = KSprob((sn + 0.12 + 0.11/sn)*d);
+   ks = d;
+}
+
 
 }   // namespace GNU_gama::local

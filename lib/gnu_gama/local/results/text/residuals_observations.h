@@ -282,7 +282,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         if (pvvar)
           for (int i=1; i<=pocmer; i++) pv(i) = (pv(i) - pvstr) / pvvar;
 
-        float  ks, prob;
+        double  ks, prob;
         GNU_gama::KStest(pv.begin(),
                          pocmer, ResidualsObservations_N01, ks, prob);
 

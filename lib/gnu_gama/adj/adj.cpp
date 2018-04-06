@@ -21,6 +21,7 @@
 
 #include <gnu_gama/adj/adj.h>
 #include <gnu_gama/xml/dataparser.h>
+#include <gnu_gama/size_to.h>
 #include <vector>
 #include <cstddef>
 #include <algorithm>
@@ -160,7 +161,7 @@ void AdjInputData::read_xml(std::istream& inp)
   while (getline(inp, line))
     {
       line += '\n';
-      dp.xml_parse(line.c_str(), line.length(), 0);
+      dp.xml_parse(line.c_str(), size_to<int>(line.length()), 0);
     }
   dp.xml_parse("", 0, 1);
 
