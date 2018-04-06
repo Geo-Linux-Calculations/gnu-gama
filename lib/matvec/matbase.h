@@ -101,7 +101,7 @@ namespace GNU_gama {   /** \brief Base matrix class */
     virtual std::ostream& write(std::ostream& out) const
     {
 
-      const int fw = out.width();
+      const auto fw = out.width();
       out.width(fw);
       out << rows() << " ";
       out.width(fw);

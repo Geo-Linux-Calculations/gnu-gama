@@ -49,7 +49,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
     {
       if (nsz > 0)
         {
-          sz  = nsz;
+          sz  = size_t(nsz);
           rep = new Float[sz];
         }
       else if (nsz == 0)
@@ -115,9 +115,9 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
 
     void resize(Index nsz)
     {
-      if (nsz == sz) return;
+      if (size_t(nsz) == sz) return;
 
-      sz = nsz;
+      sz = size_t(nsz);
       delete[] rep;
 
       if (sz > 0)
@@ -132,7 +132,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
   private:
 
     Float* rep;
-    Index  sz;
+    size_t sz;
 
   };      /* class MemRep; */
 

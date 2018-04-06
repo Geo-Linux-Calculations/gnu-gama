@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <initializer_list>
+#include <limits>
 #include <matvec/matbase.h>
 #include <matvec/array.h>
 
@@ -90,7 +91,7 @@ namespace GNU_gama {
     }
 
     void transpose() { *this = trans(*this); }
-    void invert();
+    void invert(Float tol=std::numeric_limits<Float>::epsilon()*1000);
 
     private:
 
@@ -201,7 +202,7 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-    void Mat<Float, Index, Exc>::invert()
+    void Mat<Float, Index, Exc>::invert(Float tol)
     {
       /* Gauss-Jordan elimination */
 
@@ -232,7 +233,7 @@ namespace GNU_gama {
                     }
                 }
             }
-          if (pivot == 0)
+          if (this->Abs(pivot) <= tol)
             throw Exc(Exception::Singular, "Mat<>::invert()");
 
           if (step != p_row) indr.swap(step, p_row);
@@ -310,10 +311,12 @@ namespace GNU_gama {
 
 
   template <typename Float, typename Index, typename Exc>
-    inline Mat<Float, Index, Exc> inv(const Mat<Float, Index, Exc>& A)
+  inline Mat<Float, Index, Exc>
+  inv(const Mat<Float, Index, Exc>& A,
+      Float tol=std::numeric_limits<Float>::epsilon()*1000)
     {
       Mat<Float, Index, Exc> t = A;
-      t.invert();
+      t.invert(tol);
       return t;
     }
 

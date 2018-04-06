@@ -1,5 +1,5 @@
 /* matvec_test_003.cpp
-   Copyright (C) 2000, 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2000, 2012, 2018  Ales Cepek <cepek@gnu.org>
 
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -29,6 +29,7 @@ int main()
   using namespace GNU_gama;
 
   int result = 0;
+  Double tol = 0;
   
   cout << "\n   Hilbert matrix  ....   test_003  matvec "
        << GNU_gama::matvec_version() << "\n"
@@ -59,7 +60,7 @@ int main()
       try {
         cout << setw(14);
         Mat<Double> T = Hilbert<Double, int, Exception::matvec>(N);
-        T.invert();
+        T.invert(tol);
         T = H*T - E;
 
         Double m = 0;
@@ -78,7 +79,7 @@ int main()
       try {
         cout << setw(14);
         Mat<Double> T = InvHilbert<Double, int, Exception::matvec>(N);
-        T.invert();
+        T.invert(tol);
         T = I*T - E;
 
         Double m = 0;
