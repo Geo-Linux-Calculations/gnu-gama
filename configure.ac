@@ -95,6 +95,7 @@ AC_OUTPUT([Makefile
            xml/Makefile
            tests/Makefile
            tests/matvec/Makefile
+           tests/statan/Makefile
            tests/gama-local/Makefile
            tests/gama-local/input/Makefile
            tests/gama-local/scripts/Makefile

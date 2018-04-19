@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 1999, 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 1999, 2012, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -20,6 +20,10 @@
 #include <gnu_gama/statan.h>
 #include <gnu_gama/radian.h>
 #include <cfloat>
+#include <cmath>
+#include <iostream>
+
+// #include <cmath>
 
 using namespace std;
 
@@ -199,20 +203,45 @@ void NormalDistribution(double x, double& D, double& f)
    if (typv) D = 0; else D = 1;
 }
 
-double KSprob(double lambda)
+double KSprob(double x)
 {
-   const double eps = 1.0e-8;
-   const double C = -2*lambda*lambda;
+   const double eps = 1e-20;
+   if (x < eps) return 0.0;
+   if (x > 1.0/eps) return 1.0;
+
+   double sum {};
    double term;
-   double j = 1;
-   double sum = 0;
 
-   do {
-      term = exp(C*j*j);  j++;  sum += term;
-      term = exp(C*j*j);  j++;  sum -= term;
-   } while (term > eps*sum && j < 100);
+   if (x < 1.18)
+     {
+       const double pi2  = M_PI*M_PI;
+       const double xx8  = 8*x*x;
 
-   return j<100 ? 2*sum : 1;
+       sum = 0;
+       for (double j=1; j<100; j++) {
+         double nom = (-4.0*j*j + 4.0*j - 1)*pi2;  // -(2*j-1)*(2*j-1)*pi2;
+         term = exp(nom/xx8);
+         sum += term;
+         if (term < eps) break;
+       }
+       sum *= sqrt(2*M_PI)/x;
+     }
+   else
+     {
+       const double x2 = -2*x*x;
+       double k = 1.0;
+       double s = -2.0;
+
+       sum = 1;
+       do {
+         term = exp(x2*k*k);
+         sum += s*term;
+         s = -s;
+         k++;
+       } while (term > eps && k <= 100);
+     }
+
+   return sum;
 }
 
 double Chi_square(double p, int n)
@@ -269,9 +298,11 @@ void KStest(double Data[], int n, double (*Func)(double),
       if (dt > d) d = dt;
    }
 
-   const double sn = sqrt(float_n);
-   prob = KSprob((sn + 0.12 + 0.11/sn)*d);
+   double sn = sqrt(float_n);
+   //dt = (sn + 0.12 + 0.11/sn)*d;
+   dt = sn*d;
    ks = d;
+   prob = 1 - KSprob(dt);
 }
 
 

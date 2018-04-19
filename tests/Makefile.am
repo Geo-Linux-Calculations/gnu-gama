@@ -1,1 +1,1 @@
-SUBDIRS = matvec gama-local
+SUBDIRS = matvec statan gama-local

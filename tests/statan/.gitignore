@@ -1,0 +1,10 @@
+*.log
+*.trs
+*.tmp
+
+chi2_critical_values
+kolmogorov_smirnov_cdf
+normal_critical_values
+normal_distribution
+student_critical_values
+
