@@ -1114,7 +1114,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_azimuth(const char** atts)
   {
     bool degrees = false;
-    string nam, val, sc, sm, ss, hf, ht;
+    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
     state = state_obs_azimuth;
 
     while (*atts)
@@ -1122,18 +1122,19 @@ namespace GNU_gama { namespace local {
         nam = string(*atts++);
         val = string(*atts++);
 
-        if      (nam == "to"     ) sc = val;
+        if      (nam == "from"   ) ss = val;
+        else if (nam == "to"     ) sc = val;
         else if (nam == "val"    ) sm = val;
-        else if (nam == "stdev"  ) ss = val;
+        else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
         else return error(T_GKF_undefined_attribute_of_azimuth
                           + nam + " = "+val);
       }
 
-    if (standpoint_id == "") return error(T_GKF_missing_standpoint_id);
-    if (sc   == "") return error(T_GKF_missing_forepoint_id);
-    if (sm   == "") return error(T_GKF_missing_observed_value);
+    if (ss == "") return error(T_GKF_missing_standpoint_id);
+    if (sc == "") return error(T_GKF_missing_forepoint_id);
+    if (sm == "") return error(T_GKF_missing_observed_value);
 
     double dm;
     if (GNU_gama::deg2gon(sm, dm))
@@ -1142,8 +1143,8 @@ namespace GNU_gama { namespace local {
       if (!toDouble(sm, dm)) return error(T_GKF_bad_azimuth + sm);
 
     double ds = implicit_stdev_azimuth();
-    if (ss != "")
-      if (!toDouble(ss, ds)) return error(T_GKF_illegal_standard_deviation);
+    if (sv != "")
+      if (!toDouble(sv, ds)) return error(T_GKF_illegal_standard_deviation);
     double df = obs_from_dh;
     if (hf != "")
       if (!toDouble(hf, df))
@@ -1155,7 +1156,7 @@ namespace GNU_gama { namespace local {
 
     try
       {
-        Azimuth* d = new Azimuth(standpoint_id, sc, dm*G2R);
+        Azimuth* d = new Azimuth(ss, sc, dm*G2R);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );

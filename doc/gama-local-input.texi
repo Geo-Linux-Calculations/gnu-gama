@@ -687,6 +687,21 @@ observations (distances, angles, etc.)
 
 
 
+All directions in a given @code{<obs>} tag share a common
+@emph{orientation shift}, which is an adjustment unknown parameter
+defining relation between the stand point directions and bearings
+@tex
+$$
+        direction_{AB} + orientation~shift_{A} = bearing_{AB}.
+$$
+@end tex
+Because one @code{<obs>} tag defines one orientation shit for all its
+directions, stand point @emph{id} must be given in the @code{<obs
+from="id">} tag using attribute @emph{from}, which in turn must not be
+used in @code{<direction />} tags.
+
+
+
 @heading Example
 
 
@@ -695,6 +710,7 @@ observations (distances, angles, etc.)
 <direction  to=  "2" val="0.0000"  stdev="10.0" />
 <direction  to="416" val="63.9347" />
 @end example
+
 
 
 @node     Horizontal distances
