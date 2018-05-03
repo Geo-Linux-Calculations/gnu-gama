@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Triangle - intersection from two direction sets
+</description>
+
+<parameters
+   sigma-apr = "   10 "
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations distance-stdev='5.0' direction-stdev="10.0">
+
+<point id=  "1" y=" 644498.590 "  x=" 1054980.484 " fix="xy" />
+<point id=  "2" y=" 643654.101 "  x=" 1054933.801 " fix="xy" />
+<point id="407" adj="xy" />
+
+<obs from="1">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="407" val="382.8182" />
+</obs>
+
+<obs from="2">
+   <direction  to=  "1" val=  "0.0000" />
+   <direction  to="407" val= "22.2376" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>
+
+
+
+
+
+
+

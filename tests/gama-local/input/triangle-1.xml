@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Triangle - intersection from two direction sets
+</description>
+
+<network-general-parameters
+   gama-local-version="1.22"
+   gama-local-algorithm="gso"
+   gama-local-compiler="g++ 6.3.0"
+   axes-xy="sw"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>1</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>4</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>4</equations>
+   <unknowns>4</unknowns>
+   <degrees-of-freedom>0</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>5.7582043e-46</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>0.0000000e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.000</ratio>
+   <lower>0.000</lower>
+   <upper>0.000</upper>
+   <failed/>
+
+   <confidence-scale>0.0000000e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>1054980.484000</x> <y>644498.590000</y> </point>
+   <point> <id>2</id> <x>1054933.801000</x> <y>643654.101000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>407</id> <x>1054821.175001</x> <y>644025.968488</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>407</id> <x>1054821.1750009118113667</x> <y>644025.9684875198872760</y> </point>
+</adjusted>
+
+<orientation-shifts>
+   <orientation> <id>1</id> <approx>296.484371</approx> <adj>296.484371</adj> </orientation>
+   <orientation> <id>2</id> <approx>96.484371</approx> <adj>96.484371</adj> </orientation>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>4</dim> <band>3</band>
+<flt>0.0000000e+00</flt> <flt>-0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>-0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>-0.0000000e+00</flt>
+<flt>-0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>-0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>2</ind>
+<ind>3</ind>
+<ind>1</ind>
+<ind>4</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<direction> <from>1</from> <to>2</to>
+   <obs>0.0000000000000000</obs> <adj>0.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </direction>
+<direction> <from>1</from> <to>407</to>
+   <obs>382.8181999999999334</obs> <adj>382.8181999999999334</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </direction>
+<direction> <from>2</from> <to>1</to>
+   <obs>0.0000000000000000</obs> <adj>0.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </direction>
+<direction> <from>2</from> <to>407</to>
+   <obs>22.2376000000000005</obs> <adj>22.2376000000000005</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </direction>
+
+</observations>
+
+</gama-local-adjustment>

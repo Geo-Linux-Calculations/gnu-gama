@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -84,7 +84,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
                             - xml->project_equations.sum_of_squares);
       double qvv = (html->project_equations.sum_of_squares
                     + xml->project_equations.sum_of_squares)/2;
-      if (qvv) pvv /= qvv;
+      if (qvv > 1e-5) pvv /= qvv;
       if (pvv > 1e-5)
         {
           std::cout << "         sum of squares failed\n";
@@ -407,7 +407,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   {
     double dcov = 0;
     double dmax = 1;
-    
+
     const int dim  = html->cov.dim();
     const int band = std::min(html->cov.bandWidth(), xml->cov.bandWidth());
 
@@ -416,7 +416,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         if (i+j <= dim) {
           double d = html->cov(i,i+j);
           if (d > dmax) dmax = d;
-          
+
           d -= xml->cov(i,i+j);
           if (std::abs(d) > std::abs(dcov)) dcov = d;
         }
@@ -484,10 +484,10 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
             return 1;
           }
 
-        double dobs = H.obs - X.obs; 
-        double dadj = H.adj - X.adj; 
+        double dobs = H.obs - X.obs;
+        double dadj = H.adj - X.adj;
         if (H.xml_tag == "angle" ||
-            H.xml_tag == "direction" || 
+            H.xml_tag == "direction" ||
             H.xml_tag == "zenith-angle" )
           {
             dobs = std::asin(std::sin(dobs*G2R))*R2G;
@@ -495,13 +495,13 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
             if (std::abs(dobs) > std::abs(dang)) dang = dobs;
             if (std::abs(dadj) > std::abs(dang)) dang = dadj;
-          } 
+          }
         else
           {
             if (std::abs(dobs) > std::abs(dlin)) dlin = dobs;
             if (std::abs(dadj) > std::abs(dlin)) dlin = dadj;
           }
-        
+
         double df = H.f - X.f;
         if (std::abs(df) > std::abs(fpar)) fpar = df;
 
