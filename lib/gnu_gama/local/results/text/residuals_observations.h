@@ -259,6 +259,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           << T_GaMa_resobs_normality_test << "\n"
           << underline(T_GaMa_resobs_normality_test, '=') << "\n\n";
 
+#ifdef GNU_GAMA_KOLMOGOROV_SMIRNOV
       { // ****** Kolmogorov-Smirnov
 
         Vec    pv(pocmer);
@@ -293,6 +294,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         out << "Test Kolmogorov-Smirnov : " << 100*prob << " %\n";
 
       }
+#endif
     }
 
   if (double cond = IS->cond())

@@ -1034,172 +1034,172 @@ Residuals and analysis of observations
 
 
 
+@comment Kolmogorov-Smirnov test removed, available only as conditional compile
 
-
-@comment this section is not included in texinfo
-@comment ***************************************
-
-@iftex
-
-@subsection Test on normal distribution of homogenized residuals
-
-
-Repeated observations often display a normal frequency distribution.
-Residual of observed quantities are linear function real errors.
-From presumption of normal ditribution of real errors follows
-that homogenized residuals should have normal distribution as well.
-
-
-
-Program  @code{gama-local} estimates mean value $E(\tilde {v})$ and estimate
-of variance $V(\tilde {v})$ for the vector of homogenized residuals
-$$
-        E(\tilde {v}) = {1\over N}\sum_{i=1}^N{\tilde {v}_i}, \qquad
-        V(\tilde {v}) = E(\tilde {v}^2) - (E(\tilde {v}))^2.
-$$
-Vector of homogenized residuals transforms to @emph{normalized
-(standardized) vector of residuals}
-$$
-  \nu_i = {{\tilde {v}_i - E(\tilde {v})}\over{\sqrt{V(\tilde {v})}}}.
-$$
-Using Kolmogorov-Smirnov test program @code{gama-local} verifies assumption of
-normality of elements of vector ${\bf \nu}$.  Result of the test is a
-value saying what is the probability that elements of vector ${\bf \nu}$
-are a random sample form normal distribution $N(0, 1).$
-
-
-
-
-Kolmogorov-Smirnov test for one sample is based on maximal difference
-between empirical and theoretical cumulative distribution function
-(normal distribution $N(0, 1)$ in our case).
-For random sample with $N$ elements $X_1, X_2, \ldots, X_N$
-from the population with cumulative distribution function  $F(x)$
-we form empirical cumulative distribution function
-$$
-  S_N(x) = (\hbox{number of elements $X_1,X_2,\ldots,X_N$
-             which are} \le x) / N,
-$$
-%%% ******   as is schematically depicted on Fig. \ref{vyrovnani:obrks}.
-If we denote
-$$
-       D = \max_{-\infty < x < \infty}|S_N(x) - F(x)|,
-$$
-the testing criterion $D\sqrt{N}$ has limit of Kolmogorov-Smirnov
-distribution.  Some critical values of testing criterion $D\sqrt{N}$
-computed from the $KS$ distribution are given in the following table
-$$
-\vbox{\offinterlineskip
-\halign{
-\strut
-\vrule\quad # \quad &\vrule 
-\hfil\quad # \quad\hfil & 
-\hfil\quad # \quad\hfil & 
-\hfil\quad # \quad\hfil & 
-\hfil\quad # \quad\hfil & 
-\hfil\quad # \quad\hfil\vrule \cr
-\noalign{\hrule}
-      & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \cr
-\noalign{\hrule}
-Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \cr
-Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \cr  
-\noalign{\hrule}
-}}
-$$
-@end iftex
-
-
-@ignore
-
-\begin{center}
-\begin{tabular}{|l|ccccc|}
-\hline
-      & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \\
-\hline
-Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \\
-Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \\   
-\hline
-\end{tabular}
-\end{center}
-
-
-
-%=========================================================================
-\begin{figure}
-
-\begin{center}
-
-\setlength{\unitlength}{0.6ex}
-\framebox
-{
-\begin{picture}(100,100)
-    \linethickness{0.03ex}
-    \qbezier(0,0)(15,40)(50,50)
-    \qbezier(50,50)(85,60)(100,100)
-    
-    \put( 0, 0){\line(1,0){ 7}}
-    \put( 7, 0){\line(0,1){10}}      
-    
-    \put( 7,10){\line(1,0){ 6}}   \put( 7,10){\circle*{1}}
-    \put(13,10){\line(0,1){ 8}}
-    
-    \put(13,18){\line(1,0){ 7}}   \put(13,18){\circle*{1}}
-    \put(20,18){\line(0,1){10}}
-    
-    \put(20,28){\line(1,0){ 4}}   \put(20,28){\circle*{1}}
-    \put(24,28){\line(0,1){11}}
-
-    \put(24,39){\line(1,0){20}}   \put(24,39){\circle*{1}}
-    \put(44,39){\line(0,1){12}}
-    
-    \put(44,51){\line(1,0){25}}   \put(44,51){\circle*{1}}
-    \put(69,51){\line(0,1){30}}
-    
-    \put(69,81){\line(1,0){17}}   \put(69,81){\circle*{1}}
-    \put(86,81){\line(0,1){ 5}}
-    
-    \put(86,86){\line(1,0){ 9}}   \put(86,86){\circle*{1}}
-    \put(95,86){\line(0,1){14}}
-
-    \put(95,100){\line(1,0){ 5}}   \put(95,100){\circle*{1}}
-
-    %===========================================================
-
-    \put(85,65){$F(x)$}
-    \put(17, 8){$S_N(x)$}
-    
-    \put(60,72.0){\vector(0,1){9}}   % 81 .. 58.5
-    \put(58.5,68.5){$D$}
-    \put(60,67.5){\vector(0,-1){9}}
-
-\end{picture}
-} 
-
-$x$
-
-\end{center}
-
-   \caption{Empirical cumulative distribution function $S_N(x)$, 
-            theoretical distribution function  $F(x)$ and maximal
-            difference $D$ of Kolmogorov-Smirnov test}
-
-\label{vyrovnani:obrks}
-
-\end{figure}
-%=======================================================================
-
-
-@heading Example
-
-@example
-Test of normality of homogenised residuals of observations
-==========================================================
-
-Test Kolmogorov-Smirnov : 97.6 %
-
-Condition number        : 1.3e+01
-@end example
-@end ignore
+@c KS @comment this section is not included in texinfo
+@c KS @comment ***************************************
+@c KS 
+@c KS @iftex
+@c KS 
+@c KS @subsection Test on normal distribution of homogenized residuals
+@c KS 
+@c KS 
+@c KS Repeated observations often display a normal frequency distribution.
+@c KS Residual of observed quantities are linear function real errors.
+@c KS From presumption of normal ditribution of real errors follows
+@c KS that homogenized residuals should have normal distribution as well.
+@c KS 
+@c KS 
+@c KS 
+@c KS Program  @code{gama-local} estimates mean value $E(\tilde {v})$ and estimate
+@c KS of variance $V(\tilde {v})$ for the vector of homogenized residuals
+@c KS $$
+@c KS         E(\tilde {v}) = {1\over N}\sum_{i=1}^N{\tilde {v}_i}, \qquad
+@c KS         V(\tilde {v}) = E(\tilde {v}^2) - (E(\tilde {v}))^2.
+@c KS $$
+@c KS Vector of homogenized residuals transforms to @emph{normalized
+@c KS (standardized) vector of residuals}
+@c KS $$
+@c KS   \nu_i = {{\tilde {v}_i - E(\tilde {v})}\over{\sqrt{V(\tilde {v})}}}.
+@c KS $$
+@c KS Using Kolmogorov-Smirnov test program @code{gama-local} verifies assumption of
+@c KS normality of elements of vector ${\bf \nu}$.  Result of the test is a
+@c KS value saying what is the probability that elements of vector ${\bf \nu}$
+@c KS are a random sample form normal distribution $N(0, 1).$
+@c KS 
+@c KS 
+@c KS 
+@c KS 
+@c KS Kolmogorov-Smirnov test for one sample is based on maximal difference
+@c KS between empirical and theoretical cumulative distribution function
+@c KS (normal distribution $N(0, 1)$ in our case).
+@c KS For random sample with $N$ elements $X_1, X_2, \ldots, X_N$
+@c KS from the population with cumulative distribution function  $F(x)$
+@c KS we form empirical cumulative distribution function
+@c KS $$
+@c KS   S_N(x) = (\hbox{number of elements $X_1,X_2,\ldots,X_N$
+@c KS              which are} \le x) / N,
+@c KS $$
+@c KS %%% ******   as is schematically depicted on Fig. \ref{vyrovnani:obrks}.
+@c KS If we denote
+@c KS $$
+@c KS        D = \max_{-\infty < x < \infty}|S_N(x) - F(x)|,
+@c KS $$
+@c KS the testing criterion $D\sqrt{N}$ has limit of Kolmogorov-Smirnov
+@c KS distribution.  Some critical values of testing criterion $D\sqrt{N}$
+@c KS computed from the $KS$ distribution are given in the following table
+@c KS $$
+@c KS \vbox{\offinterlineskip
+@c KS \halign{
+@c KS \strut
+@c KS \vrule\quad # \quad &\vrule 
+@c KS \hfil\quad # \quad\hfil & 
+@c KS \hfil\quad # \quad\hfil & 
+@c KS \hfil\quad # \quad\hfil & 
+@c KS \hfil\quad # \quad\hfil & 
+@c KS \hfil\quad # \quad\hfil\vrule \cr
+@c KS \noalign{\hrule}
+@c KS       & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \cr
+@c KS \noalign{\hrule}
+@c KS Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \cr
+@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \cr  
+@c KS \noalign{\hrule}
+@c KS }}
+@c KS $$
+@c KS @end iftex
+@c KS 
+@c KS 
+@c KS @ignore
+@c KS 
+@c KS \begin{center}
+@c KS \begin{tabular}{|l|ccccc|}
+@c KS \hline
+@c KS       & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \\
+@c KS \hline
+@c KS Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \\
+@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \\   
+@c KS \hline
+@c KS \end{tabular}
+@c KS \end{center}
+@c KS 
+@c KS 
+@c KS 
+@c KS %=========================================================================
+@c KS \begin{figure}
+@c KS 
+@c KS \begin{center}
+@c KS 
+@c KS \setlength{\unitlength}{0.6ex}
+@c KS \framebox
+@c KS {
+@c KS \begin{picture}(100,100)
+@c KS     \linethickness{0.03ex}
+@c KS     \qbezier(0,0)(15,40)(50,50)
+@c KS     \qbezier(50,50)(85,60)(100,100)
+@c KS     
+@c KS     \put( 0, 0){\line(1,0){ 7}}
+@c KS     \put( 7, 0){\line(0,1){10}}      
+@c KS     
+@c KS     \put( 7,10){\line(1,0){ 6}}   \put( 7,10){\circle*{1}}
+@c KS     \put(13,10){\line(0,1){ 8}}
+@c KS     
+@c KS     \put(13,18){\line(1,0){ 7}}   \put(13,18){\circle*{1}}
+@c KS     \put(20,18){\line(0,1){10}}
+@c KS     
+@c KS     \put(20,28){\line(1,0){ 4}}   \put(20,28){\circle*{1}}
+@c KS     \put(24,28){\line(0,1){11}}
+@c KS 
+@c KS     \put(24,39){\line(1,0){20}}   \put(24,39){\circle*{1}}
+@c KS     \put(44,39){\line(0,1){12}}
+@c KS     
+@c KS     \put(44,51){\line(1,0){25}}   \put(44,51){\circle*{1}}
+@c KS     \put(69,51){\line(0,1){30}}
+@c KS     
+@c KS     \put(69,81){\line(1,0){17}}   \put(69,81){\circle*{1}}
+@c KS     \put(86,81){\line(0,1){ 5}}
+@c KS     
+@c KS     \put(86,86){\line(1,0){ 9}}   \put(86,86){\circle*{1}}
+@c KS     \put(95,86){\line(0,1){14}}
+@c KS 
+@c KS     \put(95,100){\line(1,0){ 5}}   \put(95,100){\circle*{1}}
+@c KS 
+@c KS     %===========================================================
+@c KS 
+@c KS     \put(85,65){$F(x)$}
+@c KS     \put(17, 8){$S_N(x)$}
+@c KS     
+@c KS     \put(60,72.0){\vector(0,1){9}}   % 81 .. 58.5
+@c KS     \put(58.5,68.5){$D$}
+@c KS     \put(60,67.5){\vector(0,-1){9}}
+@c KS 
+@c KS \end{picture}
+@c KS } 
+@c KS 
+@c KS $x$
+@c KS 
+@c KS \end{center}
+@c KS 
+@c KS    \caption{Empirical cumulative distribution function $S_N(x)$, 
+@c KS             theoretical distribution function  $F(x)$ and maximal
+@c KS             difference $D$ of Kolmogorov-Smirnov test}
+@c KS 
+@c KS \label{vyrovnani:obrks}
+@c KS 
+@c KS \end{figure}
+@c KS %=======================================================================
+@c KS 
+@c KS 
+@c KS @heading Example
+@c KS 
+@c KS @example
+@c KS Test of normality of homogenised residuals of observations
+@c KS ==========================================================
+@c KS 
+@c KS Test Kolmogorov-Smirnov : 97.6 %
+@c KS 
+@c KS Condition number        : 1.3e+01
+@c KS @end example
+@c KS @end ignore
 
 
 
