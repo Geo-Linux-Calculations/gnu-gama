@@ -1,5 +1,9 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.00 May 2018
+
+* Maintainer's release: for the list of internal changes see ChangeLog
+
 Version 1.21 November 2017
 
 * Maintainer's release : internal matrix/vectors memory management

@@ -1,36 +1,54 @@
 GNU package Gama is a C++ free software for geodesy released under GNU
 General Public Licence. Project Gama was started in 1998, in 2001 was
-dubbed a GNU packaqe and today contains the following main components:
+dubbed a GNU packaqe.
 
-    [compiler] To build Gama, the compiler must support c++11
-    standard. Purposefully there are no constructs based on c++14 xto
-    enable builds with a wider range of available compilers. To check
-    the compiler support of c++11 features, configure.ac calls macro
-    AX_CXX_COMPILE_STDCXX_11, you need either to install package
-    autoconf-archive or download it from
-    git://git.sv.gnu.org/autoconf-archive.git. See
-    https://www.gnu.org/software/autoconf-archive/ax_cxx_compile_stdcxx_11.html
+    [Version Number] of the package is defined in configure.ac
 
-    [gamalib] C++ class library for handling geodetic observations
-    (measurements) and points (coordinates), computation of
-    approximate coordinates (needed for linearization) and adjustment
-    of local geodetic networks in 3d.  C API to essential gamalib C++
-    classes and functions is also available. Numerical solution of
-    adjustment is based on orthogonal decomposition of the design
-    matrix (ie without "normal equations"); currently supported
-    algorithms are SVD and GSO (an algorithm based on Gram-Schmidt
-    orthogonalisation). Adjustment on the ellipsoid is a long term
-    goal.
+    [General Description] GNU Gama is a project dedicated to
+    adjustment of geodetic networks. It is intended for use with
+    traditional geodetic surveyings which are still used and needed in
+    special measurements (e.g., underground or high precision
+    engineering measurements) where the Global Positioning System
+    (GPS) cannot be used.
 
-    [program gama-local] C++ program for adjustment of horizontal
-    geodetic network based on gamalib (also available as a public
-    service accessible by email); format of input data is defined in
-    XML. Data structures used in adjustment enable usage of general
-    variance-covariance matrices of observations and are designed to
-    enable implementation of sparse matrices in future versions.
+    Adjustment in local Cartesian coordinate systems is fully
+    supported by a command-line program gama-local that adjusts
+    geodetic (free) networks of observed distances, directions,
+    angles, height differences, 3D vectors and observed coordinates
+    (coordinates with given variance-covariance matrix). Adjustment in
+    global coordinate systems is supported only partly as a gama-g3
+    program.
 
-    [matvec] C++ matrix/vector template classes used in adjustment
-    computations in gamalib.
+    [Compiler] To build Gama, the compiler must support c++11
+        standard. Purposefully there are no constructs based on c++14
+        to enable builds with a wider range of available compilers. To
+        check the compiler support of c++11 features, configure.ac
+        calls macro AX_CXX_COMPILE_STDCXX_11, you need either to
+        install package autoconf-archive or download it from
+        git://git.sv.gnu.org/autoconf-archive.git. See
+        https://www.gnu.org/software/autoconf-archive/
+        ax_cxx_compile_stdcxx_11.html
+
+    [The file INSTALL] is available from the top distribution
+         directory, it contains an explanation of the installation
+         procedure.
+
+    [Top-level directories]
+
+       * [bin] the sources of all binaries of the package, namely
+               gama-local, build binaries are stored also there.
+
+       * [lib] C++ library of classes and functions used to buils
+               gama-local and other helper applications.
+
+       * [doc] documentation.
+
+       * [tests] unit tests
+
+       * [scripts] helper tests and applications
+
+       * [xml] xml schema definitions, examples, gnu-gama-data.dtd and
+               language files.
 
 More information on GNU Gama can be found at
 

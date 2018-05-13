@@ -1,3 +1,22 @@
+2018-05-13  Ales Cepek  <cepek@gnu.org>
+
+	* new release 2.00
+
+	* Kolmogorov-Smirnov test removed - available only as conditional
+	compile
+	* added two unit tests - triangel 1 and 2
+	* gama-local-input.texi wording
+	* fixed a bug in azimuth definition in input XML (missing optional
+	attribude from="") reported by Oleg Goussev
+	* 5 unit tests for statan.cpp functions
+	* fixed some compiler warnings
+	* matvec update
+	* mat.h : row.size() ~~> explicit conversion to Index
+	* fixed several compiler warnings
+	* GNU_gama::List replaced by std::list
+	* redefinition of matvec template parameters, elimination of
+	size_t in sources
+
 2018-03-30  Ales Cepek  <cepek@gnu.org>
 
 	* new release 1.22
