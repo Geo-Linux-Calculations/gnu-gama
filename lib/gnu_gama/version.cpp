@@ -1,6 +1,6 @@
 /*
   GNU Gama --- Geodesy and Mapping C++ library
-  Copyright (C) 1999, 2003, 2005, 2011, 2014  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 1999, 2003, 2005, 2011, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -15,8 +15,7 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* The VERSION macro is normally defined in <config.h> created by autoconf.
@@ -46,30 +45,36 @@
 namespace GNU_gama {
 
   // VERSION is defined in config.h
-  std::string GNU_gama_version  = VERSION;
+  std::string GNU_gama_version() { return VERSION; }
 
   // clang needs to be checked befor GNU C, because it defines macro __GNUC__
-  std::string GNU_gama_compiler =
+  std::string GNU_gama_compiler()
+  {
+    return
 #if   defined  (__clang__)
     "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
 #elif defined  (__GNUC__)
-    "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__) "." xstr(__GNUC_PATCHLEVEL__)
+    "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
 #elif defined  (_MSC_VER)
-    "MSVC " xstr(_MSC_VER)
+      // https://msdn.microsoft.com/en-us/library/b0084kay.aspx
+      "msvc++ " + std::string(xstr(_MSC_VER)).substr(0,2) + "." +
+      std::string(xstr(_MSC_VER)).substr(2,2)
 #else
-    " unknown compiler"
+    "unknown compiler"
+
 #error GNU gama - has not been tested with your compiler
 #endif
     ;
+  }
 
-  std::string GNU_gama_year = "2016";
+  std::string GNU_gama_year = "1998-2018";
 
 
   int version(const char* program, const char* copyright_holder)
   {
     std::cout
-      << program << " (GNU Gama) " << GNU_gama_version
-      << " / " << GNU_gama_compiler << "\n"
+      << program << " (GNU Gama) " << GNU_gama_version()
+      << " / " << GNU_gama_compiler() << "\n"
       << "Copyright (C) " << GNU_gama_year << " "
       << copyright_holder << "\n" <<
       "License GPLv3+: GNU GPL version 3 or later "

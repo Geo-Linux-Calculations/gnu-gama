@@ -164,7 +164,7 @@ int main(int argc, char **argv)
 
         if      (name == "help"      ) return help();
         else if (name == "version"   )
-                        return GNU_gama::version("gama-local", "Ales Cepek");
+                        return GNU_gama::version("gama-local", "Ales Cepek et al.");
         else if ( i   ==  argc       ) return help();
         else if (name == "algorithm" ) argv_algo = c;
         else if (name == "language"  ) argv_lang = c;
