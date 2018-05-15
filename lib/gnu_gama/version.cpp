@@ -33,7 +33,6 @@
 #undef GNU_GAMA_LOCAL_SQLITE_READER
 #endif
 
-#include <config.h>
 #endif
 
 #include <gnu_gama/version.h>
@@ -44,30 +43,37 @@
 
 namespace GNU_gama {
 
-  // VERSION is defined in config.h
-  std::string GNU_gama_version() { return VERSION; }
+  /* GNU_gama_version() must return the same value as defined in
+   * configures.ac (VERSION defined in config.h).
+   *
+   * Checked by tests/gama-local/scripts/check_version.cpp
+   */
+  std::string GNU_gama_version() { return "2.00"; }
 
-  // clang needs to be checked befor GNU C, because it defines macro __GNUC__
   std::string GNU_gama_compiler()
   {
     return
+
+      // clang needs to be checked before GNU C, because it defines __GNUC__
 #if   defined  (__clang__)
-    "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
+      "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
+
 #elif defined  (__GNUC__)
-    "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
+      "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
+
 #elif defined  (_MSC_VER)
       // https://msdn.microsoft.com/en-us/library/b0084kay.aspx
-      "msvc++ " + std::string(xstr(_MSC_VER)).substr(0,2) + "." +
-      std::string(xstr(_MSC_VER)).substr(2,2)
-#else
-    "unknown compiler"
+      "msvc++ " + std::string(xstr(_MSC_VER)).substr(0,2) + "."
+                + std::string(xstr(_MSC_VER)).substr(2,2)
 
-#error GNU gama - has not been tested with your compiler
+#else
+      "unknown compiler"
+
 #endif
     ;
   }
 
-  std::string GNU_gama_year = "1998-2018";
+  std::string GNU_gama_year = "2018";
 
 
   int version(const char* program, const char* copyright_holder)

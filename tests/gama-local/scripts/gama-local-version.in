@@ -2,5 +2,7 @@
 
 set -e
 
-echo verze @PACKAGE_VERSION@
+echo Package version @PACKAGE_VERSION@
 @top_builddir@/bin/gama-local --version
+
+scripts/check_version

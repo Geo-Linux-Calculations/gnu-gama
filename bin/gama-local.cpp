@@ -60,8 +60,8 @@ int help()
 
   cerr << "\n"
        << "Adjustment of local geodetic network"
-       << "        version: "<< GNU_gama::GNU_gama_version
-       << " / " << GNU_gama::GNU_gama_compiler << "\n"
+       << "        version: "<< GNU_gama::GNU_gama_version()
+       << " / " << GNU_gama::GNU_gama_compiler() << "\n"
        << "************************************\n"
        << "http://www.gnu.org/software/gama/\n\n";
 
@@ -409,7 +409,7 @@ int main(int argc, char **argv)
 
     {
       cout << T_GaMa_Adjustment_of_geodetic_network << "        "
-           << T_GaMa_version << GNU_gama::GNU_gama_version
+           << T_GaMa_version << GNU_gama::GNU_gama_version()
            << "-" << IS->algorithm()
            << " / " << GNU_gama::GNU_gama_compiler << "\n"
            << underline(T_GaMa_Adjustment_of_geodetic_network, '*') << "\n"

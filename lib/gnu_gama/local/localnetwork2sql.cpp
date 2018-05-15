@@ -666,7 +666,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
         ostr << "insert into gnu_gama_local_adj_network_general_parameters "
              << "(conf_id, gmversion, algorithm, compiler, epoch, axes, angles) "
              << "values ("
-             << cnfg() << ", '" << GNU_gama::GNU_gama_version << "', "
+             << cnfg() << ", '" << GNU_gama::GNU_gama_version() << "', "
              << (netinfo->algorithm().length() ? ("'"+netinfo->algorithm()+"'") : "NULL")
              << ", '" << GNU_gama::GNU_gama_compiler << "', ";
 

@@ -278,9 +278,9 @@ void LocalNetworkXML::write(std::ostream& out) const
 
       out << "\n<network-general-parameters\n";
 
-      out << "   gama-local-version=\""   << GNU_gama_version    << "\"\n";
+      out << "   gama-local-version=\""   << GNU_gama_version()  << "\"\n";
       out << "   gama-local-algorithm=\"" << netinfo->algorithm()<< "\"\n";
-      out << "   gama-local-compiler=\""  << GNU_gama_compiler   << "\"\n";
+      out << "   gama-local-compiler=\""  << GNU_gama_compiler() << "\"\n";
 
       out << "   axes-xy=\"";
       switch (netinfo->PD.local_coordinate_system)
