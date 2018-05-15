@@ -668,7 +668,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
              << "values ("
              << cnfg() << ", '" << GNU_gama::GNU_gama_version() << "', "
              << (netinfo->algorithm().length() ? ("'"+netinfo->algorithm()+"'") : "NULL")
-             << ", '" << GNU_gama::GNU_gama_compiler << "', ";
+             << ", '" << GNU_gama::GNU_gama_compiler() << "', ";
 
         if (netinfo->has_epoch()) ostr << netinfo->epoch() << ", ";  else  ostr << "NULL, ";
 

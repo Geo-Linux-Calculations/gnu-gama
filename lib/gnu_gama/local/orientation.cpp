@@ -142,7 +142,7 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
       std::sort(sz.begin(), sz.end());
       double l1a = sz[(n-1)/2];
       double l1b = sz[n/2];
-      if (abs(l1b - l1a) > M_PI/2 && n < 3)
+      if (std::abs(l1b - l1a) > M_PI/2 && n < 3)
          l1 = l1a;
       else
          l1 = (sz[n/2] + sz[(n-1)/2]) / 2;
