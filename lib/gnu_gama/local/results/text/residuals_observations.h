@@ -36,12 +36,13 @@
 #include <gnu_gama/utf8.h>
 #include <algorithm>
 
-static double ResidualsObservations_N01(double x)   // local helper function
-{
-   double D, f;
-   GNU_gama::NormalDistribution(double(x), D, f);
-   return D;
-}
+/* replaced by a lambda function below, see KS test */
+//static double ResidualsObservations_N01(double x)   // local helper function
+//{
+//   double D, f;
+//   GNU_gama::NormalDistribution(double(x), D, f);
+//   return D;
+//}
 
 
 /* *******************************************************************
@@ -251,6 +252,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         }
     }
 
+#ifdef GNU_GAMA_KOLMOGOROV_SMIRNOV
   if (pocmer >= 30)
     {
       using namespace GNU_gama::local;
@@ -259,7 +261,6 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           << T_GaMa_resobs_normality_test << "\n"
           << underline(T_GaMa_resobs_normality_test, '=') << "\n\n";
 
-#ifdef GNU_GAMA_KOLMOGOROV_SMIRNOV
       { // ****** Kolmogorov-Smirnov
 
         Vec    pv(pocmer);
@@ -283,6 +284,12 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         if (pvvar)
           for (int i=1; i<=pocmer; i++) pv(i) = (pv(i) - pvstr) / pvvar;
 
+        auto ResidualsObservations_N01 =
+          [](double x) -> double {
+             double D, f;
+             GNU_gama::NormalDistribution(double(x), D, f);
+             return D;
+          };
         double  ks, prob;
         GNU_gama::KStest(pv.begin(),
                          pocmer, ResidualsObservations_N01, ks, prob);
@@ -294,8 +301,8 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         out << "Test Kolmogorov-Smirnov : " << 100*prob << " %\n";
 
       }
-#endif
     }
+#endif
 
   if (double cond = IS->cond())
     {
