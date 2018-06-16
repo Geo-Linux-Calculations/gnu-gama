@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+for g in @INPUT_FILES@
+do
+for a in gso cholesky svd # envelope
+do
+    echo  @PACKAGE_VERSION@ $g $a
+    @top_builddir@/bin/gama-g3 --algorithm $a @G3_INPUT@/$g.xml \
+       > @G3_RESULTS@/$g-$a.adj.xml
+done
+done

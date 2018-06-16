@@ -96,17 +96,20 @@ fi
 AC_HEADER_STDC
 
 
-AC_OUTPUT([Makefile
-           lib/Makefile
-           bin/Makefile
-           scripts/Makefile
-           doc/Makefile
-           xml/Makefile
-           tests/Makefile
-           tests/matvec/Makefile
-           tests/statan/Makefile
-           tests/gama-local/Makefile
-           tests/gama-local/input/Makefile
-           tests/gama-local/scripts/Makefile
-           tests/gama-g3/Makefile
-          ])
+AC_OUTPUT([
+   Makefile
+   lib/Makefile
+   bin/Makefile
+   scripts/Makefile
+   doc/Makefile
+   xml/Makefile
+   tests/Makefile
+   tests/matvec/Makefile
+   tests/statan/Makefile
+   tests/gama-local/Makefile
+   tests/gama-local/input/Makefile
+   tests/gama-local/scripts/Makefile
+   tests/gama-g3/Makefile
+   tests/gama-g3/input/Makefile
+   tests/gama-g3/scripts/Makefile
+])

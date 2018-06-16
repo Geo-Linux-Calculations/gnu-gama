@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gnu-gama-data SYSTEM "gnu-gama-data.dtd">
+
+<gnu-gama-data>
+
+<text>
+demo-g3-01
+</text>
+
+<g3-model>
+
+<constants>
+   <apriori-standard-deviation>10</apriori-standard-deviation>
+   <confidence-level>0.95</confidence-level>
+   <!-- angular-units-degrees/ -->
+   <angular-units-gons/>
+
+   <ellipsoid>
+      <id>wgs84</id>
+      <!-- a>6378137</a -->
+      <!-- b>6356752.31425</b -->
+      <!-- inv-f>298.257223563</inv-f -->
+   </ellipsoid>
+</constants>
+
+<fixed> <n/> <e/> <u/> </fixed>
+
+<point> <id>A</id> <x>3897173.613</x> <y> 997293.454</y> <z>4933466.708</z>  
+</point>
+<point> <id>B</id> <x>3905644.621</x> <y>1024368.968</y> <z>4921493.098</z>  
+</point>
+
+<free> <n/> <e/> <u/> </free>
+
+<point> <id>C</id> </point>
+<point> <id>D</id> </point>
+<point> <id>E</id> </point>
+
+
+<obs>
+<vector> 
+<from>B</from> <to>C</to> 
+<dx>-8882.8485</dx> <dy>-10727.3349</dy> <dz>9069.8455</dz>  
+</vector>
+
+<cov-mat> <dim>3</dim> <band>0</band>    
+   <flt>0.4</flt>  <flt>0.2</flt>  <flt>0.5</flt> 
+</cov-mat>
+</obs>
+
+<obs>
+<vector> 
+<from>A</from> <to>D</to>
+<dx>-2590.2863</dx> <dy>4708.4222</dy> <dz>1156.5328</dz>  
+</vector>
+
+<cov-mat> <dim>3</dim> <band>0</band>
+   <flt>0.4</flt>  <flt>0.2</flt>  <flt>0.4</flt> 
+</cov-mat>
+</obs>
+
+<obs>
+<vector> 
+<from>D</from> <to>E</to>
+<dx>497.5786</dx> <dy>5544.6487</dy> <dz>-1483.8326</dz>  
+</vector>
+
+<cov-mat> <dim>3</dim> <band>0</band>
+   <flt>0.6</flt>  <flt>0.4</flt>  <flt>0.7</flt> 
+</cov-mat>
+</obs>
+
+<obs>
+<vector> 
+<from>E</from> <to>C</to>
+<dx>1680.9135</dx> <dy>6095.1480</dy> <dz>-2576.4300</dz>  
+</vector>
+
+<cov-mat> <dim>3</dim> <band>0</band>
+   <flt>0.5</flt>  <flt>0.3</flt>  <flt>0.5</flt> 
+</cov-mat>
+</obs>
+
+
+</g3-model>
+</gnu-gama-data>
