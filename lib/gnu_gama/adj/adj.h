@@ -88,9 +88,8 @@ namespace GNU_gama {
 
     using AdjBase = GNU_gama::AdjBase<double, int, Exception::matvec>;
     using AdjBaseFull = GNU_gama::AdjBaseFull<double, int, Exception::matvec>;
-    using AdjBaseSparse =
-      GNU_gama::AdjBaseSparse<double, int, Vec<>, GNU_gama::AdjInputData>;
-
+    using AdjBaseSparse = GNU_gama::AdjBaseSparse<double, int, Exception::matvec,
+                                                                    AdjInputData>;
     AdjBase* least_squares;
 
     bool      solved;
