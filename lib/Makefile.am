@@ -42,6 +42,8 @@ libgama_src = \
    gnu_gama/adj/adj_envelope_implementation.h \
    gnu_gama/adj/adj.cpp \
    gnu_gama/adj/adj.h \
+   gnu_gama/adj/adj_input_data.cpp \
+   gnu_gama/adj/adj_input_data.h \
    gnu_gama/adj/adj_gso.h \
    gnu_gama/adj/adj_svd.h \
    gnu_gama/adj/envelope.h \

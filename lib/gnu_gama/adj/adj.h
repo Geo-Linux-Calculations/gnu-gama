@@ -19,13 +19,14 @@
 */
 
 #include <matvec/covmat.h>
-#include <gnu_gama/sparse/smatrix.h>
-#include <gnu_gama/sparse/sbdiagonal.h>
-#include <gnu_gama/sparse/intlist.h>
-#include <gnu_gama/adj/adj_envelope.h>
-#include <gnu_gama/adj/adj_svd.h>
-#include <gnu_gama/adj/adj_gso.h>
-#include <gnu_gama/adj/adj_chol.h>
+#include <gnu_gama/adj/adj_input_data.h>
+//#include <gnu_gama/sparse/smatrix.h>
+//#include <gnu_gama/sparse/sbdiagonal.h>
+//#include <gnu_gama/sparse/intlist.h>
+//#include <gnu_gama/adj/adj_envelope.h>
+//#include <gnu_gama/adj/adj_svd.h>
+//#include <gnu_gama/adj/adj_gso.h>
+//#include <gnu_gama/adj/adj_chol.h>
 
 #include <iostream>
 
@@ -83,15 +84,14 @@ namespace GNU_gama {
 
   private:
 
-    const AdjInputData *data;
+    const AdjInputData* data;
 
-    typedef GNU_gama::AdjBase<double, int, Exception::matvec>   AdjBase;
-    typedef GNU_gama::AdjBaseFull<double, int, Exception::matvec>
-                                                             AdjBaseFull;
-    typedef GNU_gama::AdjBaseSparse<double, int, Vec<>,
-                                    GNU_gama::AdjInputData>  AdjBaseSparse;
+    using AdjBase = GNU_gama::AdjBase<double, int, Exception::matvec>;
+    using AdjBaseFull = GNU_gama::AdjBaseFull<double, int, Exception::matvec>;
+    using AdjBaseSparse =
+      GNU_gama::AdjBaseSparse<double, int, Vec<>, GNU_gama::AdjInputData>;
 
-    AdjBase * least_squares;
+    AdjBase* least_squares;
 
     bool      solved;
     algorithm algorithm_;
@@ -109,50 +109,6 @@ namespace GNU_gama {
 
     int  minx_dim;
     int* minx;
-  };
-
-
-  /** \brief Adjustment input data class.
-   */
-
-  class AdjInputData {
-  public:
-
-    AdjInputData();
-    ~AdjInputData();
-
-    void write_xml(std::ostream&) const;
-    void read_xml(std::istream&);
-
-    /** Sparse design matrix */
-    const SparseMatrix <> * mat () const { return A;     }
-    /** Block diagonal matrix of observtion covariances */
-    const BlockDiagonal<> * cov () const { return pcov;  }
-    /** Right-hand site*/
-    const Vec          <> & rhs () const { return prhs;  }
-    /** List of parameters indexes used in regulrization of singular systems */
-    const IntegerList  <> * minx() const { return pminx; }
-
-    void set_mat (SparseMatrix <> * p) { delete A;     A     = p; }
-    void set_cov (BlockDiagonal<> * p) { delete pcov;  pcov  = p; }
-    void set_rhs (Vec          <>   p) {               prhs  = p; }
-    void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; }
-
-    /* Sparse project equations for uncorrelated observations. *
-     * Defined here only for backward data compatibility       */
-    void read_gama_local_old_format(std::istream&);
-
-
-  private:
-
-    friend class Adj;
-
-    SparseMatrix <> * A;
-    BlockDiagonal<> * pcov;
-    Vec          <>   prhs;
-    IntegerList  <> * pminx;
-
-    void swap(AdjInputData *);
   };
 
 }  // namespace GNU_gama

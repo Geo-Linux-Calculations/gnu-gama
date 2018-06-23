@@ -78,3 +78,5 @@ lib/gnu_gama/local/language.html
 #
 .Rhistory
 octave-workspace
+#
+CMakeLists.txt.user
