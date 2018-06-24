@@ -20,13 +20,6 @@
 
 #include <matvec/covmat.h>
 #include <gnu_gama/adj/adj_input_data.h>
-//#include <gnu_gama/sparse/smatrix.h>
-//#include <gnu_gama/sparse/sbdiagonal.h>
-//#include <gnu_gama/sparse/intlist.h>
-//#include <gnu_gama/adj/adj_envelope.h>
-//#include <gnu_gama/adj/adj_svd.h>
-//#include <gnu_gama/adj/adj_gso.h>
-//#include <gnu_gama/adj/adj_chol.h>
 
 #include <iostream>
 
@@ -58,7 +51,10 @@ namespace GNU_gama {
         cholesky   /*!< Cholesky decomposition of normal equations     */
       };
 
-    Adj () : data(0), algorithm_(envelope), minx_dim(0), minx(0) { init(0); }
+    Adj () : data(nullptr), algorithm_(envelope), minx_dim(0), minx(nullptr)
+    {
+      init(nullptr);
+    }
     virtual ~Adj();
 
     int n_obs() const { return n_obs_; }   /*!< number of observations */
@@ -86,10 +82,10 @@ namespace GNU_gama {
 
     const AdjInputData* data;
 
-    using AdjBase = GNU_gama::AdjBase<double, int, Exception::matvec>;
-    using AdjBaseFull = GNU_gama::AdjBaseFull<double, int, Exception::matvec>;
-    using AdjBaseSparse = GNU_gama::AdjBaseSparse<double, int, Exception::matvec,
-                                                                    AdjInputData>;
+    using Exc = GNU_gama::Exception::matvec;
+    using AdjBase = GNU_gama::AdjBase<double, int, Exc>;
+    using AdjBaseFull = GNU_gama::AdjBaseFull<double, int, Exc>;
+    using AdjBaseSparse = GNU_gama::AdjBaseSparse<double, int, Exc, AdjInputData>;
     AdjBase* least_squares;
 
     bool      solved;

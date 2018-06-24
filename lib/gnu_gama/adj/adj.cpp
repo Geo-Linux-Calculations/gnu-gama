@@ -43,7 +43,7 @@ void Adj::init(const AdjInputData* inp)
 {
   delete data;
   data = inp;
-  least_squares = 0;
+  least_squares = nullptr;
   solved = false;
   n_obs_ = n_par_ = 0;
 
