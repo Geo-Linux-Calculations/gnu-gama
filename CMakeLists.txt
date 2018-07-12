@@ -5,7 +5,7 @@ project (gnu-gama)
 set(CMAKE_CXX_STANDARD 11)
 add_definitions(-DGNU_gama_expat_1_1)
 
-file(GLOB_RECURSE SRC_GAMA lib/gnu_gama/*.cpp)
+file(GLOB_RECURSE SRC_GAMA lib/gnu_gama/*.cpp lib/gnu_gama/*.h)
 
 set(SRC_EXPAT
    lib/expat/xmltok/xmltok.c

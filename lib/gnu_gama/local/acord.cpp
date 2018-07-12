@@ -48,9 +48,9 @@ Acord::Acord(PointData& b, ObservationData& m)
       bool cp = p.test_xy();
       bool hp = p.test_z();
 
-      if (cp && hp) given_xyz++, set_xyz.insert(c);
-      else if (cp)  given_xy++,  set_xy .insert(c);
-      else if (hp)  given_z++,   set_z  .insert(c);
+      if (cp && hp) { given_xyz++; set_xyz.insert(c); }
+      else if (cp)  { given_xy++;  set_xy .insert(c); }
+      else if (hp)  { given_z++;   set_z  .insert(c); }
     }
 
   for (ObservationData::const_iterator
