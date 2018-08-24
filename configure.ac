@@ -39,12 +39,16 @@ AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [false])
 
 AC_ARG_ENABLE([gama-g3],
-   [AS_HELP_STRING([--enable-gama-g3],[Turn on build with gama-g3])],
+   [AS_HELP_STRING([--enable-gama-g3[[=yes|no]]],
+                   [Turn on/off build with gama-g3] (default is yes))],
+   [AM_CONDITIONAL([GNU_GAMA_G3_ENABLED],
+                   [AS_IF([test "x$enable_gama_g3" != "xyes"],
+                          enable_gama_g3=no)]
+                   [test "x$enable_gama_g3" = "xyes"])],
    [AM_CONDITIONAL([GNU_GAMA_G3_ENABLED], [true])
-    AC_MSG_NOTICE([*** gama-g3 build enabled])],
-   [AM_CONDITIONAL([GNU_GAMA_G3_ENABLED], [false])
-    AC_MSG_NOTICE([*** gama-g3 build disabled])]
+    enable_gama_g3=yes]
 )
+AC_MSG_NOTICE([checking whether gama-g3 build is enabled... $enable_gama_g3])
 
 
 # Checks for libraries libexpat1-dev, libsqlite3-dev
