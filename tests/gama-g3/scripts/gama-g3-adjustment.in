@@ -9,5 +9,7 @@ do
     echo  @PACKAGE_VERSION@ $g $a
     @top_builddir@/bin/gama-g3 --algorithm $a @G3_INPUT@/$g.xml \
        > @G3_RESULTS@/$g-$a.adj.xml
+
+    scripts/check_adjustment @G3_INPUT@/$g-adj.xml @G3_RESULTS@/$g-$a.adj.xml
 done
 done

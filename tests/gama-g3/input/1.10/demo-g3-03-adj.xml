@@ -1,0 +1,447 @@
+<?xml version="1.0" ?>
+<!DOCTYPE gnu-gama-data SYSTEM "gnu-gama-data.dtd">
+
+<gnu-gama-data>
+<g3-adjustment-results>
+
+<adjustment-statistics>
+
+<algorithm> envelope </algorithm>
+
+<ellipsoid> <caption> World Geodetic System 1984 </caption>
+            <id>      wgs84         </id>
+            <a>       6378137.00000 </a>
+            <b>       6356752.31425 </b>
+            </ellipsoid>
+
+<parameters>   15 </parameters>
+<equations>    20 </equations>
+<defect>        0 </defect>
+<redundancy>    5 </redundancy>
+
+<sum-of-squares>        1.86378e+05 </sum-of-squares>
+<apriori-variance>      1.00000e+02 </apriori-variance>
+<aposteriori-variance>  3.72755e+04 </aposteriori-variance>
+<variance-factor-used>  aposteriori </variance-factor-used>
+<design-matrix-graph>     connected </design-matrix-graph>
+
+</adjustment-statistics>
+
+
+<!-- adjustment results    : dn / de / du  are in millimeters -->
+<!-- deflection of vertical: db / dl       are in arc seconds -->
+
+<adjustment-results>
+
+<point> <id> B </id>
+
+        <n-free/>   <dn>  -3.762 </dn> <ind>1</ind> 
+        <e-free/>   <de>   7.523 </de> <ind>2</ind> 
+        <u-free/>   <du>  12.080 </du> <ind>3</ind> 
+
+        <cnn> 9.9373793e+01 </cnn> <cne> -1.3603334e+00 </cne> 
+                                   <cnu> -8.4641809e+00 </cnu>
+        <cee> 8.7576706e+01 </cee> <ceu>  4.0389821e+01 </ceu>
+        <cuu> 1.3864470e+02 </cuu>
+
+        <x-given     >      3905644.62100 </x-given>
+        <x-correction>            0.00829 </x-correction>
+        <x-adjusted  >      3905644.62929 </x-adjusted>
+
+        <y-given     >      1024368.96800 </y-given>
+        <y-correction>            0.00995 </y-correction>
+        <y-adjusted  >      1024368.97795 </y-adjusted>
+
+        <z-given     >      4921493.09800 </z-given>
+        <z-correction>            0.00699 </z-correction>
+        <z-adjusted  >      4921493.10499 </z-adjusted>
+
+        <cxx> 1.0799413e+02 </cxx> <cxy>  3.1925077e+01 </cxy> 
+                                   <cxz>  1.2529430e+01 </cxz>
+        <cyy> 1.0291875e+02 </cyy> <cyz>  3.4766463e+01 </cyz>
+        <czz> 1.1468232e+02 </czz>
+
+        <b-given     >   50-49-19.4040143 </b-given>
+        <b-correction>         -0.0001217 </b-correction>
+        <b-adjusted  >   50-49-19.4038926 </b-adjusted>
+
+        <l-given     >   14-41-47.2656613 </l-given>
+        <l-correction>          0.0003843 </l-correction>
+        <l-adjusted  >   14-41-47.2660456 </l-adjusted>
+
+        <h-given     >          554.84924 </h-given>
+        <h-correction>            0.01208 </h-correction>
+        <h-adjusted  >          554.86132 </h-adjusted>
+
+        </point>
+
+<point> <id> C </id>
+
+        <n-free/>   <dn>  -6.144 </dn> <ind>4</ind> 
+        <e-free/>   <de>   9.613 </de> <ind>5</ind> 
+        <u-free/>   <du>  20.595 </du> <ind>6</ind> 
+
+        <cnn> 1.9451366e+02 </cnn> <cne>  8.1732940e+00 </cne> 
+                                   <cnu>  4.9877192e+00 </cnu>
+        <cee> 1.3169996e+02 </cee> <ceu>  2.3830677e+01 </ceu>
+        <cuu> 2.3021407e+02 </cuu>
+
+        <x-given     >      3896761.77250 </x-given>
+        <x-correction>            0.01475 </x-correction>
+        <x-adjusted  >      3896761.78725 </x-adjusted>
+
+        <y-given     >      1013641.63310 </y-given>
+        <y-correction>            0.01377 </y-correction>
+        <y-adjusted  >      1013641.64687 </y-adjusted>
+
+        <z-given     >      4930562.94350 </z-given>
+        <z-correction>            0.01212 </z-correction>
+        <z-adjusted  >      4930562.95562 </z-adjusted>
+
+        <cxx> 1.9500947e+02 </cxx> <cxy>  2.5133300e+01 </cxy> 
+                                   <cxz>  9.9526084e+00 </cxz>
+        <cyy> 1.4049171e+02 </cyy> <cyz>  2.7032495e+01 </cyz>
+        <czz> 2.2092652e+02 </czz>
+
+        <b-given     >   50-57-08.3940162 </b-given>
+        <b-correction>         -0.0001988 </b-correction>
+        <b-adjusted  >   50-57-08.3938174 </b-adjusted>
+
+        <l-given     >   14-34-51.1534421 </l-given>
+        <l-correction>          0.0004925 </l-correction>
+        <l-adjusted  >   14-34-51.1539346 </l-adjusted>
+
+        <h-given     >          460.09741 </h-given>
+        <h-correction>            0.02059 </h-correction>
+        <h-adjusted  >          460.11800 </h-adjusted>
+
+        </point>
+
+<point> <id> A </id>
+
+        <n-free/>   <dn>   3.358 </dn> <ind>7</ind> 
+        <e-free/>   <de>  -6.760 </de> <ind>8</ind> 
+        <u-free/>   <du> -10.616 </du> <ind>9</ind> 
+
+        <cnn> 9.3378582e+01 </cnn> <cne> -1.2054154e+00 </cne> 
+                                   <cnu> -6.8481306e+00 </cnu>
+        <cee> 8.3519306e+01 </cee> <ceu>  3.5720275e+01 </ceu>
+        <cuu> 1.2700042e+02 </cuu>
+
+        <x-given     >      3897173.61300 </x-given>
+        <x-correction>           -0.00733 </x-correction>
+        <x-adjusted  >      3897173.60567 </x-adjusted>
+
+        <y-given     >       997293.45400 </y-given>
+        <y-correction>           -0.00885 </y-correction>
+        <y-adjusted  >       997293.44515 </y-adjusted>
+
+        <z-given     >      4933466.70800 </z-given>
+        <z-correction>           -0.00614 </z-correction>
+        <z-adjusted  >      4933466.70186 </z-adjusted>
+
+        <cxx> 1.0031077e+02 </cxx> <cxy>  2.7715836e+01 </cxy> 
+                                   <cxz>  1.0615581e+01 </cxz>
+        <cyy> 9.6604766e+01 </cyy> <cyz>  3.0585580e+01 </cyz>
+        <czz> 1.0698278e+02 </czz>
+
+        <b-given     >   50-59-40.2028830 </b-given>
+        <b-correction>          0.0001087 </b-correction>
+        <b-adjusted  >   50-59-40.2029916 </b-adjusted>
+
+        <l-given     >   14-21-14.5873773 </l-given>
+        <l-correction>         -0.0003466 </l-correction>
+        <l-adjusted  >   14-21-14.5870307 </l-adjusted>
+
+        <h-given     >          395.21233 </h-given>
+        <h-correction>           -0.01062 </h-correction>
+        <h-adjusted  >          395.20171 </h-adjusted>
+
+        </point>
+
+<point> <id> D </id>
+
+        <n-free/>   <dn>   6.383 </dn> <ind>10</ind> 
+        <e-free/>   <de>  -8.835 </de> <ind>11</ind> 
+        <u-free/>   <du> -18.349 </du> <ind>12</ind> 
+
+        <cnn> 1.8447237e+02 </cnn> <cne>  8.6405386e+00 </cne> 
+                                   <cnu> -2.0169870e+00 </cnu>
+        <cee> 1.2893974e+02 </cee> <ceu>  2.1403273e+01 </ceu>
+        <cuu> 2.1411464e+02 </cuu>
+
+        <x-given     >      3894583.32670 </x-given>
+        <x-correction>           -0.01378 </x-correction>
+        <x-adjusted  >      3894583.31292 </x-adjusted>
+
+        <y-given     >      1002001.87620 </y-given>
+        <y-correction>           -0.01267 </y-correction>
+        <y-adjusted  >      1002001.86353 </y-adjusted>
+
+        <z-given     >      4934623.24080 </z-given>
+        <z-correction>           -0.01025 </z-correction>
+        <z-adjusted  >      4934623.23055 </z-adjusted>
+
+        <cxx> 1.9062292e+02 </cxx> <cxy>  2.2620454e+01 </cxy> 
+                                   <cxz>  8.9460739e+00 </cxz>
+        <cyy> 1.3649634e+02 </cyy> <cyz>  2.5092831e+01 </cyz>
+        <czz> 2.0040749e+02 </czz>
+
+        <b-given     >   51-00-37.4198098 </b-given>
+        <b-correction>          0.0002065 </b-correction>
+        <b-adjusted  >   51-00-37.4200163 </b-adjusted>
+
+        <l-given     >   14-25-41.4884406 </l-given>
+        <l-correction>         -0.0004532 </l-correction>
+        <l-adjusted  >   14-25-41.4879874 </l-adjusted>
+
+        <h-given     >          451.56270 </h-given>
+        <h-correction>           -0.01835 </h-correction>
+        <h-adjusted  >          451.54435 </h-adjusted>
+
+        </point>
+
+<point> <id> E </id>
+
+        <n-free/>   <dn>  10.631 </dn> <ind>13</ind> 
+        <e-free/>   <de> -13.778 </de> <ind>14</ind> 
+        <u-free/>   <du> -31.055 </du> <ind>15</ind> 
+
+        <cnn> 2.3598112e+02 </cnn> <cne>  1.2094313e+01 </cne> 
+                                   <cnu>  5.4045782e+00 </cnu>
+        <cee> 1.5917791e+02 </cee> <ceu>  1.5551732e+01 </ceu>
+        <cuu> 2.6655596e+02 </cuu>
+
+        <x-given     >      3895080.90530 </x-given>
+        <x-correction>           -0.02347 </x-correction>
+        <x-adjusted  >      3895080.88183 </x-adjusted>
+
+        <y-given     >      1007546.52490 </y-given>
+        <y-correction>           -0.02030 </y-correction>
+        <y-adjusted  >      1007546.50460 </y-adjusted>
+
+        <z-given     >      4933139.40820 </z-given>
+        <z-correction>           -0.01744 </z-correction>
+        <z-adjusted  >      4933139.39076 </z-adjusted>
+
+        <cxx> 2.3737410e+02 </cxx> <cxy>  2.0618900e+01 </cxy> 
+                                   <cxz>  8.4594281e+00 </cxz>
+        <cyy> 1.6461277e+02 </cyy> <cyz>  2.2533608e+01 </cyz>
+        <czz> 2.5972812e+02 </czz>
+
+        <b-given     >   50-59-20.2590588 </b-given>
+        <b-correction>          0.0003440 </b-correction>
+        <b-adjusted  >   50-59-20.2594028 </b-adjusted>
+
+        <l-given     >   14-30-10.4287798 </l-given>
+        <l-correction>         -0.0007064 </l-correction>
+        <l-adjusted  >   14-30-10.4280734 </l-adjusted>
+
+        <h-given     >          473.26555 </h-given>
+        <h-correction>           -0.03106 </h-correction>
+        <h-adjusted  >          473.23450 </h-adjusted>
+
+        </point>
+
+</adjustment-results>
+
+
+<adjusted-observations>
+
+<vector> <from>B</from> <to>C</to> <ind>1</ind>
+
+        <dx-observed>  -8882.84850 </dx-observed>
+        <dx-residual>      0.00646 </dx-residual>
+        <dx-adjusted>  -8882.84204 </dx-adjusted>
+
+        <dy-observed> -10727.33490 </dy-observed>
+        <dy-residual>      0.00382 </dy-residual>
+        <dy-adjusted> -10727.33108 </dy-adjusted>
+
+        <dz-observed>   9069.84550 </dz-observed>
+        <dz-residual>      0.00514 </dz-residual>
+        <dz-adjusted>   9069.85064 </dz-adjusted>
+
+        <dx-stdev-obs>   0.632 </dx-stdev-obs>
+        <dx-stdev-adj>  11.195 </dx-stdev-adj>
+
+        <dy-stdev-obs>   0.447 </dy-stdev-obs>
+        <dy-stdev-adj>   8.118 </dy-stdev-adj>
+
+        <dz-stdev-obs>   0.707 </dz-stdev-obs>
+        <dz-stdev-adj>  12.345 </dz-stdev-adj>
+
+        <cxx> 1.2533902e+02 </cxx> <cxy>  1.3669448e+00 </cxy> 
+                                   <cxz>  7.7667854e-01 </cxz>
+        <cyy> 6.5898112e+01 </cyy> <cyz>  1.8761635e+00 </cyz>
+        <czz> 1.5240596e+02 </czz>
+        </vector>
+
+<vector> <from>A</from> <to>D</to> <ind>4</ind>
+
+        <dx-observed>  -2590.28630 </dx-observed>
+        <dx-residual>     -0.00646 </dx-residual>
+        <dx-adjusted>  -2590.29276 </dx-adjusted>
+
+        <dy-observed>   4708.42220 </dy-observed>
+        <dy-residual>     -0.00382 </dy-residual>
+        <dy-adjusted>   4708.41838 </dy-adjusted>
+
+        <dz-observed>   1156.53280 </dz-observed>
+        <dz-residual>     -0.00411 </dz-residual>
+        <dz-adjusted>   1156.52869 </dz-adjusted>
+
+        <dx-stdev-obs>   0.632 </dx-stdev-obs>
+        <dx-stdev-adj>  11.200 </dx-stdev-adj>
+
+        <dy-stdev-obs>   0.447 </dy-stdev-obs>
+        <dy-stdev-adj>   8.120 </dy-stdev-adj>
+
+        <dz-stdev-obs>   0.632 </dz-stdev-obs>
+        <dz-stdev-adj>  11.290 </dz-stdev-adj>
+
+        <cxx> 1.2544431e+02 </cxx> <cxy>  1.4333988e+00 </cxy> 
+                                   <cxz>  5.2073656e-01 </cxz>
+        <cyy> 6.5939976e+01 </cyy> <cyz>  1.4372453e+00 </cyz>
+        <czz> 1.2745593e+02 </czz>
+        </vector>
+
+<vector> <from>D</from> <to>E</to> <ind>7</ind>
+
+        <dx-observed>    497.57860 </dx-observed>
+        <dx-residual>     -0.00969 </dx-residual>
+        <dx-adjusted>    497.56891 </dx-adjusted>
+
+        <dy-observed>   5544.64870 </dy-observed>
+        <dy-residual>     -0.00763 </dy-residual>
+        <dy-adjusted>   5544.64107 </dy-adjusted>
+
+        <dz-observed>  -1483.83260 </dz-observed>
+        <dz-residual>     -0.00719 </dz-residual>
+        <dz-adjusted>  -1483.83979 </dz-adjusted>
+
+        <dx-stdev-obs>   0.775 </dx-stdev-obs>
+        <dx-stdev-adj>  13.055 </dx-stdev-adj>
+
+        <dy-stdev-obs>   0.632 </dy-stdev-obs>
+        <dy-stdev-adj>  10.708 </dy-stdev-adj>
+
+        <dz-stdev-obs>   0.837 </dz-stdev-obs>
+        <dz-stdev-adj>  13.951 </dz-stdev-adj>
+
+        <cxx> 1.7042306e+02 </cxx> <cxy>  4.3001964e+00 </cxy> 
+                                   <cxz>  1.3669335e+00 </cxz>
+        <cyy> 1.1465771e+02 </cyy> <cyz>  5.0303586e+00 </cyz>
+        <czz> 1.9463716e+02 </czz>
+        </vector>
+
+<vector> <from>E</from> <to>C</to> <ind>10</ind>
+
+        <dx-observed>   1680.91350 </dx-observed>
+        <dx-residual>     -0.00807 </dx-residual>
+        <dx-adjusted>   1680.90543 </dx-adjusted>
+
+        <dy-observed>   6095.14800 </dy-observed>
+        <dy-residual>     -0.00573 </dy-residual>
+        <dy-adjusted>   6095.14227 </dy-adjusted>
+
+        <dz-observed>  -2576.43000 </dz-observed>
+        <dz-residual>     -0.00514 </dz-residual>
+        <dz-adjusted>  -2576.43514 </dz-adjusted>
+
+        <dx-stdev-obs>   0.707 </dx-stdev-obs>
+        <dx-stdev-adj>  12.223 </dx-stdev-adj>
+
+        <dy-stdev-obs>   0.548 </dy-stdev-obs>
+        <dy-stdev-adj>   9.615 </dy-stdev-adj>
+
+        <dz-stdev-obs>   0.707 </dz-stdev-obs>
+        <dz-stdev-adj>  12.351 </dz-stdev-adj>
+
+        <cxx> 1.4941231e+02 </cxx> <cxy>  2.6876227e+00 </cxy> 
+                                   <cxz>  8.1365088e-01 </cxz>
+        <cyy> 9.2451623e+01 </cyy> <cyz>  2.6948350e+00 </cyz>
+        <czz> 1.5255546e+02 </czz>
+        </vector>
+
+<xyz> <id>A</id> <ind>13</ind>
+
+        <x-observed> 3897173.61300 </x-observed>
+        <x-residual>      -0.00733 </x-residual>
+        <x-adjusted> 3897173.60567 </x-adjusted>
+
+        <y-observed>  997293.45400 </y-observed>
+        <y-residual>      -0.00885 </y-residual>
+        <y-adjusted>  997293.44515 </y-adjusted>
+
+        <z-observed> 4933466.70800 </z-observed>
+        <z-residual>      -0.00614 </z-residual>
+        <z-adjusted> 4933466.70186 </z-adjusted>
+
+        <x-stdev-obs>   0.557 </x-stdev-obs>
+        <x-stdev-adj>  10.016 </x-stdev-adj>
+
+        <y-stdev-obs>   0.566 </y-stdev-obs>
+        <y-stdev-adj>   9.829 </y-stdev-adj>
+
+        <z-stdev-obs>   0.574 </z-stdev-obs>
+        <z-stdev-adj>  10.343 </z-stdev-adj>
+
+        <cxx> 1.0031077e+02 </cxx> <cxy>  2.7715836e+01 </cxy> 
+                                   <cxz>  1.0615581e+01 </cxz>
+        <cyy> 9.6604766e+01 </cyy> <cyz>  3.0585580e+01 </cyz>
+        <czz> 1.0698278e+02 </czz>
+        </xyz>
+
+<xyz> <id>B</id> <ind>16</ind>
+
+        <x-observed> 3905644.62100 </x-observed>
+        <x-residual>       0.00829 </x-residual>
+        <x-adjusted> 3905644.62929 </x-adjusted>
+
+        <y-observed> 1024368.96800 </y-observed>
+        <y-residual>       0.00995 </y-residual>
+        <y-adjusted> 1024368.97795 </y-adjusted>
+
+        <z-observed> 4921493.09800 </z-observed>
+        <z-residual>       0.00699 </z-residual>
+        <z-adjusted> 4921493.10499 </z-adjusted>
+
+        <x-stdev-obs>   0.566 </x-stdev-obs>
+        <x-stdev-adj>  10.392 </x-stdev-adj>
+
+        <y-stdev-obs>   0.574 </y-stdev-obs>
+        <y-stdev-adj>  10.145 </y-stdev-adj>
+
+        <z-stdev-obs>   0.583 </z-stdev-obs>
+        <z-stdev-adj>  10.709 </z-stdev-adj>
+
+        <cxx> 1.0799413e+02 </cxx> <cxy>  3.1925077e+01 </cxy> 
+                                   <cxz>  1.2529430e+01 </cxz>
+        <cyy> 1.0291875e+02 </cyy> <cyz>  3.4766463e+01 </cyz>
+        <czz> 1.1468232e+02 </czz>
+        </xyz>
+
+<distance> <from>B</from> <to>C</to> <ind>19</ind>
+
+        <observed>  16620.55000 </observed>
+        <residual>      0.00070 </residual>
+        <adjusted>  16620.55070 </adjusted>
+
+        <stdev-obs>  15.000 </stdev-obs>
+        <stdev-adj>  10.383 </stdev-adj>
+        </distance>
+
+<distance> <from>B</from> <to>C</to> <ind>20</ind>
+
+        <observed>  16620.55000 </observed>
+        <residual>      0.00070 </residual>
+        <adjusted>  16620.55070 </adjusted>
+
+        <stdev-obs>  15.000 </stdev-obs>
+        <stdev-adj>  10.383 </stdev-adj>
+        </distance>
+
+</adjusted-observations>
+</g3-adjustment-results>
+</gnu-gama-data>
