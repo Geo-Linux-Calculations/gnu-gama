@@ -1,9 +1,3 @@
-# bin_PROGRAMS       = gama-local \
-#                      gama-local-xml2txt \
-#                      gama-local-xml2sql
-# #                     gama-g3
-
-
 GAMA_LOCAL = gama-local \
              gama-local-xml2txt \
              gama-local-xml2sql

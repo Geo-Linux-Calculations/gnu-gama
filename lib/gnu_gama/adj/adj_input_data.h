@@ -45,7 +45,6 @@ namespace GNU_gama {
     ~AdjInputData();
 
     void write_xml(std::ostream&) const;
-    void read_xml(std::istream&);
 
     /** Sparse design matrix */
     const SparseMatrix <> * mat () const { return A;     }
@@ -60,10 +59,6 @@ namespace GNU_gama {
     void set_cov (BlockDiagonal<> * p) { delete pcov;  pcov  = p; }
     void set_rhs (Vec          <>   p) {               prhs  = p; }
     void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; }
-
-    /* Sparse project equations for uncorrelated observations. *
-     * Defined here only for backward data compatibility       */
-    void read_gama_local_old_format(std::istream&);
 
 
   private:
