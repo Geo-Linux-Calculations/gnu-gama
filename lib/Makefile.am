@@ -48,22 +48,6 @@ libgama_src = \
    gnu_gama/adj/adj_svd.h \
    gnu_gama/adj/envelope.h \
    gnu_gama/adj/homogenization.h \
-   gnu_gama/g3/g3_adjres.cpp \
-   gnu_gama/g3/g3_adjres.h \
-   gnu_gama/g3/g3_cluster.cpp \
-   gnu_gama/g3/g3_cluster.h \
-   gnu_gama/g3/g3_model.cpp \
-   gnu_gama/g3/g3_model.h \
-   gnu_gama/g3/g3_model_init.cpp \
-   gnu_gama/g3/g3_model_linearization.cpp \
-   gnu_gama/g3/g3_model_revision.cpp \
-   gnu_gama/g3/g3_model_write_xml_adjustment_results.cpp \
-   gnu_gama/g3/g3_observation.h \
-   gnu_gama/g3/g3_parameter.h \
-   gnu_gama/g3/g3_point.cpp \
-   gnu_gama/g3/g3_point.h \
-   gnu_gama/g3/g3_write_observation_xml.cpp \
-   gnu_gama/g3/g3_write_observation_xml.h \
    gnu_gama/sparse/intlist.h \
    gnu_gama/sparse/sbdiagonal.h \
    gnu_gama/sparse/smatrix_graph_connected.h \
@@ -73,13 +57,6 @@ libgama_src = \
    gnu_gama/sparse/svector.h \
    gnu_gama/xml/baseparser.cpp \
    gnu_gama/xml/baseparser.h \
-   gnu_gama/xml/dataobject.cpp \
-   gnu_gama/xml/dataobject.h \
-   gnu_gama/xml/dataparser_adj.cpp \
-   gnu_gama/xml/dataparser.cpp \
-   gnu_gama/xml/dataparser_g3.cpp \
-   gnu_gama/xml/dataparser_g3adj.cpp \
-   gnu_gama/xml/dataparser.h \
    gnu_gama/xml/encoding_cp1251.cpp \
    gnu_gama/xml/encoding.cpp \
    gnu_gama/xml/encoding.h \
@@ -175,6 +152,32 @@ libgama_src = \
    gnu_gama/local/xmlerror.h \
    gnu_gama/local/xmlerror.cpp
 
+if GNU_GAMA_G3_ENABLED
+libg3_src = \
+   gnu_gama/g3/g3_adjres.cpp \
+   gnu_gama/g3/g3_adjres.h \
+   gnu_gama/g3/g3_cluster.cpp \
+   gnu_gama/g3/g3_cluster.h \
+   gnu_gama/g3/g3_model.cpp \
+   gnu_gama/g3/g3_model.h \
+   gnu_gama/g3/g3_model_init.cpp \
+   gnu_gama/g3/g3_model_linearization.cpp \
+   gnu_gama/g3/g3_model_revision.cpp \
+   gnu_gama/g3/g3_model_write_xml_adjustment_results.cpp \
+   gnu_gama/g3/g3_observation.h \
+   gnu_gama/g3/g3_parameter.h \
+   gnu_gama/g3/g3_point.cpp \
+   gnu_gama/g3/g3_point.h \
+   gnu_gama/g3/g3_write_observation_xml.cpp \
+   gnu_gama/g3/g3_write_observation_xml.h \
+   gnu_gama/xml/dataobject.cpp \
+   gnu_gama/xml/dataobject.h \
+   gnu_gama/xml/dataparser_adj.cpp \
+   gnu_gama/xml/dataparser.cpp \
+   gnu_gama/xml/dataparser_g3.cpp \
+   gnu_gama/xml/dataparser_g3adj.cpp \
+   gnu_gama/xml/dataparser.h
+endif
 
 matvec_src = \
    matvec/array.h \
@@ -248,9 +251,9 @@ noinst_LIBRARIES  = libgama.a
 if GNU_GAMA_LOCAL_TEST_EXPAT_1_1
 AM_CFLAGS= -I@top_srcdir@/lib/expat/xmltok
 AM_CPPFLAGS= -I@top_srcdir@/lib/expat/xmltok
-libgama_a_SOURCES = $(libgama_src) $(matvec_src) $(expat_src)
+libgama_a_SOURCES = $(libgama_src) $(libg3_src) $(matvec_src) $(expat_src)
 else
-libgama_a_SOURCES = $(libgama_src) $(matvec_src)
+libgama_a_SOURCES = $(libgama_src) $(libg3_src) $(matvec_src)
 endif
 
 EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)
