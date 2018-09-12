@@ -15,7 +15,7 @@
 TESTSA = gama-g3-adjustment.sh
 
 if GNU_GAMA_LOCAL_TEST_XMLLINT
-TESTXML = gama-g3-xmlint-xsd.sh
+TESTXML = gama-g3-xmllint-xsd.sh
 endif
 
 TESTS = $(TESTSA) $(TESTXML)
@@ -49,6 +49,6 @@ gama-g3-adjustment.sh: $(G3_SCRIPT)/gama-g3-adjustment.in $(G3_OTHERS)
 				> gama-g3-adjustment.sh
 	@chmod +x gama-g3-adjustment.sh
 
-gama-g3-xmlint-xsd.sh: $(G3_SCRIPT)/gama-g3-xmlint-xsd.in $(G3_OTHERS)
+gama-g3-xmllint-xsd.sh: $(G3_SCRIPT)/gama-g3-xmllint-xsd.in $(G3_OTHERS)
 	@$(do_subst) < $< > $@
 	@chmod +x $@
