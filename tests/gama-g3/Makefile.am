@@ -12,7 +12,13 @@
 #
 # In either case, the testsuite is invoked via ‘make check’.
 
-TESTS = gama-g3-adjustment.sh
+TESTSA = gama-g3-adjustment.sh
+
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+TESTXML = gama-g3-xmlint-xsd.sh
+endif
+
+TESTS = $(TESTSA) $(TESTXML)
 
 SUBDIRS = input scripts
 
@@ -27,7 +33,8 @@ do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
 	       -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
 	       -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
 	       -e 's,[@]G3_INPUT[@],$(G3_INPUT),g' \
-	       -e 's,[@]G3_RESULTS[@],$(G3_RESULTS),g'
+	       -e 's,[@]G3_RESULTS[@],$(G3_RESULTS),g' \
+	       -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
@@ -41,3 +48,7 @@ gama-g3-adjustment.sh: $(G3_SCRIPT)/gama-g3-adjustment.in $(G3_OTHERS)
 	@$(do_subst) < $(G3_SCRIPT)/gama-g3-adjustment.in \
 				> gama-g3-adjustment.sh
 	@chmod +x gama-g3-adjustment.sh
+
+gama-g3-xmlint-xsd.sh: $(G3_SCRIPT)/gama-g3-xmlint-xsd.in $(G3_OTHERS)
+	@$(do_subst) < $< > $@
+	@chmod +x $@

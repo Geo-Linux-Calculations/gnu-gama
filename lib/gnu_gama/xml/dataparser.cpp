@@ -27,15 +27,6 @@ using namespace std;
 using namespace GNU_gama;
 
 
-const char* const DataParser::xml_start =
-    "<?xml version=\"1.0\" ?>\n"
-    "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
-    "<gnu-gama-data>\n";
-
-const char* const DataParser::xml_end =
-    "</gnu-gama-data>\n";
-
-
 DataParser::~DataParser()
 {
   close_adj();
@@ -430,8 +421,17 @@ bool DataParser::pure_data(std::istream& istr)
 // ......  <gnu-gama-data>  ................................................
 
 int DataParser::gama_data(const char *name, const char **atts)
-{
-  no_attributes  (name, atts);   // will have attribute 'version' later?
+{ 
+  // attribute "xmlns" enabled for XML Schema since version 2.01
+  const char** attributes = atts;
+  while (*attributes) {
+    string nam = string(*attributes++);
+    string val = string(*attributes++);
+    if (nam != "xmlns") {
+      no_attributes(name, atts);
+      return 1;
+    }
+  }
   state = next[state][tag(name)];
   return 0;
 }

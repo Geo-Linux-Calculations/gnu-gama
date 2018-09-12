@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -15,8 +15,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/xml/dataobject.h>
@@ -30,9 +29,8 @@ string Base::xml_begin()
 {
   return
     "<?xml version=\"1.0\" ?>\n"
-    "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
-
-    "<gnu-gama-data>\n";
+    "<gnu-gama-data "
+    "xmlns=\"http://www.gnu.org/software/gama/gnu-gama-data\">\n\n";
 }
 
 

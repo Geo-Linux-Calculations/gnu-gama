@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
-<!DOCTYPE gnu-gama-data SYSTEM "gnu-gama-data.dtd">
 
-<gnu-gama-data>
+<gnu-gama-data xmlns="http://www.gnu.org/software/gama/gnu-gama-data">
 <g3-adjustment-results>  <!-- version gama-1.10.tar.gz -->
 
 <adjustment-statistics>

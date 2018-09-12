@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2007  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2007, 2018  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -15,11 +15,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
+
 */
 
 #include <gnu_gama/g3/g3_adjres.h>
+#include <gnu_gama/xml/dataobject.h>
 
 using namespace std;
 using namespace GNU_gama::g3;
@@ -41,10 +42,7 @@ namespace
 
 void AdjustmentResults::write_xml(std::ostream& out) const
 {
-  out <<
-    "<?xml version=\"1.0\" ?>\n"
-    "<!DOCTYPE gnu-gama-data SYSTEM \"gnu-gama-data.dtd\">\n\n"
-    "<gnu-gama-data>\n";
+  out << GNU_gama::DataObject::Base::xml_begin();
 
   EOL = true;
 
@@ -308,5 +306,5 @@ void AdjustmentResults::write_xml(std::ostream& out) const
   out << "\n</adjusted-observations>\n\n";
 
   out << "</g3-adjustment-results>\n";
-  out << "</gnu-gama-data>\n";
+  out << GNU_gama::DataObject::Base::xml_end();
 }

@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004  Ales Cepek <cepek@fsv.cvut.cz>
+    Copyright (C) 2004, 2018  Ales Cepek <cepek@fsv.cvut.cz>
 
     This file is part of the GNU Gama C++ library.
 
@@ -15,8 +15,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <fstream>
@@ -186,9 +185,9 @@ int main_g3()
     {
       std::ofstream out(arg_projeq);
       out.precision(16);
-      out << GNU_gama::DataParser::xml_start;
+      out << GNU_gama::DataObject::Base::xml_begin();
       model->write_xml_adjustment_input_data(out);
-      out << GNU_gama::DataParser::xml_end;
+      out << GNU_gama::DataObject::Base::xml_end();
     }
 
   model->update_adjustment();

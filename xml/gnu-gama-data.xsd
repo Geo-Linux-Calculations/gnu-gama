@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema version="1.00"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.gnu.org/software/gama/gnu-gama-data"
+  targetNamespace="http://www.gnu.org/software/gama/gnu-gama-data"
+  elementFormDefault="qualified">
+
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      GNU Gama g3 data XML schema 
+      http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gnu-gama-data.xsd
+
+      1.00 XML schema generated from DTD based on "A Conversion Tool
+           from  DTD to XML Schema" https://www.w3.org/2000/04/schema_hack/
+           with some final minor fixes (xs: namespace add, t: removed,
+           schema header) 
+    </xs:documentation>
+  </xs:annotation>
+
+ <xs:element name='gnu-gama-data'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='text'/>
+    <xs:element ref='g3-model'/>
+    <xs:element ref='g3-adjustment-results'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='text'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='g3-model'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='constants' minOccurs='0' maxOccurs='1'/>
+    <xs:choice minOccurs='0' maxOccurs='unbounded'>
+     <xs:element ref='fixed'/>
+     <xs:element ref='free'/>
+     <xs:element ref='constr'/>
+     <xs:element ref='point'/>
+    </xs:choice>
+    <xs:element ref='obs' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='g3-adjustment-results'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='rejected-observations' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='adjustment-statistics'/>
+    <xs:element ref='adjustment-results'/>
+    <xs:element ref='adjusted-observations'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='a'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='adjusted-observations'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='vector'/>
+    <xs:element ref='xyz'/>
+    <xs:element ref='distance'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='adjustment-results'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='point' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='adjustment-statistics'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='algorithm'/>
+    <xs:element ref='ellipsoid'/>
+    <xs:element ref='parameters'/>
+    <xs:element ref='equations'/>
+    <xs:element ref='defect'/>
+    <xs:element ref='redundancy'/>
+    <xs:element ref='sum-of-squares'/>
+    <xs:element ref='apriori-variance'/>
+    <xs:element ref='aposteriori-variance'/>
+    <xs:element ref='variance-factor-used'/>
+    <xs:element ref='design-matrix-graph'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='algorithm'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='angle'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:sequence>
+     <xs:sequence>
+      <xs:element ref='val'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+       <xs:element ref='stdev'/>
+      </xs:choice>
+     </xs:sequence>
+    </xs:sequence>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='angular-units-gons'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='angular-units-degrees'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='aposteriori-variance'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='apriori-standard-deviation'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='apriori-variance'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='azimuth'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:sequence>
+     <xs:sequence>
+      <xs:element ref='val'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+       <xs:element ref='stdev'/>
+      </xs:choice>
+     </xs:sequence>
+    </xs:sequence>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='b'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='b-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='b-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='b-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='band'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='caption'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='constants'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='apriori-standard-deviation'/>
+    <xs:element ref='confidence-level'/>
+    <xs:element ref='tol-abs'/>
+    <xs:element ref='angular-units-gons'/>
+    <xs:element ref='angular-units-degrees'/>
+    <xs:element ref='ellipsoid'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='confidence-level'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='tol-abs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='constr'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='n'/>
+    <xs:element ref='e'/>
+    <xs:element ref='u'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cov-mat'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='dim'/>
+    <xs:element ref='band'/>
+    <xs:element ref='flt' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cee'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='ceu'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cne'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cnn'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cnu'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cuu'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cxx'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cxy'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cxz'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cyy'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='cyz'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='czz'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='db'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='de'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='defect'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='design-matrix-graph'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dim'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='distance'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:choice>
+     <xs:sequence>
+      <xs:element ref='val'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+       <xs:element ref='stdev'/>
+      </xs:choice>
+     </xs:sequence>
+     <xs:sequence>
+      <xs:element ref='ind'/>
+      <xs:element ref='observed'/>
+      <xs:element ref='residual'/>
+      <xs:element ref='adjusted'/>
+      <xs:element ref='stdev-obs'/>
+      <xs:element ref='stdev-adj'/>
+     </xs:sequence>
+    </xs:choice>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dl'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dn'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='du'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dx-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dy-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dz-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='e'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='equations'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='e-fixed'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='e-free'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='e-constr'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='e-unused'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='ellipsoid'>
+  <xs:complexType>
+   <xs:choice>
+    <xs:sequence>
+     <xs:element ref='caption'/>
+     <xs:element ref='id'/>
+     <xs:element ref='a'/>
+     <xs:element ref='b'/>
+    </xs:sequence>
+    <xs:choice>
+     <xs:element ref='id'/>
+     <xs:sequence>
+      <xs:element ref='a'/>
+      <xs:choice>
+       <xs:element ref='b'/>
+       <xs:element ref='inv-f'/>
+      </xs:choice>
+     </xs:sequence>
+    </xs:choice>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='fixed'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='n'/>
+    <xs:element ref='e'/>
+    <xs:element ref='u'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='flt'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='free'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='n'/>
+    <xs:element ref='e'/>
+    <xs:element ref='u'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='unused'>
+  <xs:complexType>
+   <xs:choice minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='n'/>
+    <xs:element ref='e'/>
+    <xs:element ref='u'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='from'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='from-dh'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='geoid'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='h'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hdiff'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:sequence>
+     <xs:sequence>
+      <xs:element ref='val'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+       <xs:element ref='stdev'/>
+      </xs:choice>
+     </xs:sequence>
+    </xs:sequence>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='hobs'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='id'/>
+    <xs:element ref='val'/>
+    <xs:element ref='stdev' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='h-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='h-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='h-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='height'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='id'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='ind'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='inv-f'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='n-fixed'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='n-free'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='n-constr'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='n-unused'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='l'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='l-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='l-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='l-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='n'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='obs'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:choice minOccurs='0' maxOccurs='unbounded'>
+     <xs:element ref='vector'/>
+     <xs:element ref='xyz'/>
+     <xs:element ref='distance'/>
+    </xs:choice>
+    <xs:element ref='cov-mat' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='parameters'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='point'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='id'/>
+    </xs:sequence>
+    <xs:choice>
+     <xs:sequence>
+      <xs:choice minOccurs='0' maxOccurs='1'>
+       <xs:sequence>
+        <xs:element ref='x'/>
+        <xs:element ref='y'/>
+        <xs:element ref='z'/>
+       </xs:sequence>
+       <xs:sequence>
+        <xs:element ref='b'/>
+        <xs:element ref='l'/>
+        <xs:element ref='h'/>
+       </xs:sequence>
+      </xs:choice>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='height'/>
+       <xs:element ref='geoid'/>
+       <xs:element ref='unused'/>
+       <xs:element ref='fixed'/>
+       <xs:element ref='free'/>
+       <xs:element ref='constr'/>
+       <xs:element ref='db'/>
+       <xs:element ref='dl'/>
+      </xs:choice>
+     </xs:sequence>
+     <xs:sequence>
+      <xs:choice>
+       <xs:choice>
+        <xs:element ref='n-fixed'/>
+        <xs:element ref='n-unused'/>
+       </xs:choice>
+       <xs:sequence>
+        <xs:choice>
+         <xs:element ref='n-free'/>
+         <xs:element ref='n-constr'/>
+        </xs:choice>
+        <xs:element ref='dn'/>
+        <xs:element ref='ind'/>
+       </xs:sequence>
+      </xs:choice>
+      <xs:choice>
+       <xs:choice>
+        <xs:element ref='e-fixed'/>
+        <xs:element ref='e-unused'/>
+       </xs:choice>
+       <xs:sequence>
+        <xs:choice>
+         <xs:element ref='e-free'/>
+         <xs:element ref='e-constr'/>
+        </xs:choice>
+        <xs:element ref='de'/>
+        <xs:element ref='ind'/>
+       </xs:sequence>
+      </xs:choice>
+      <xs:choice>
+       <xs:choice>
+        <xs:element ref='u-fixed'/>
+        <xs:element ref='u-unused'/>
+       </xs:choice>
+       <xs:sequence>
+        <xs:choice>
+         <xs:element ref='u-free'/>
+         <xs:element ref='u-constr'/>
+        </xs:choice>
+        <xs:element ref='du'/>
+        <xs:element ref='ind'/>
+       </xs:sequence>
+      </xs:choice>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='cnn'/>
+       <xs:element ref='cne'/>
+       <xs:element ref='cnu'/>
+       <xs:element ref='cee'/>
+       <xs:element ref='ceu'/>
+       <xs:element ref='cuu'/>
+      </xs:sequence>
+      <xs:element ref='x-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='x-correction'/>
+       <xs:element ref='x-adjusted'/>
+      </xs:sequence>
+      <xs:element ref='y-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='y-correction'/>
+       <xs:element ref='y-adjusted'/>
+      </xs:sequence>
+      <xs:element ref='z-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='z-correction'/>
+       <xs:element ref='z-adjusted'/>
+      </xs:sequence>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='cxx'/>
+       <xs:element ref='cxy'/>
+       <xs:element ref='cxz'/>
+       <xs:element ref='cyy'/>
+       <xs:element ref='cyz'/>
+       <xs:element ref='czz'/>
+      </xs:sequence>
+      <xs:element ref='b-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='b-correction'/>
+       <xs:element ref='b-adjusted'/>
+      </xs:sequence>
+      <xs:element ref='l-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='l-correction'/>
+       <xs:element ref='l-adjusted'/>
+      </xs:sequence>
+      <xs:element ref='h-given'/>
+      <xs:sequence minOccurs='0' maxOccurs='1'>
+       <xs:element ref='h-correction'/>
+       <xs:element ref='h-adjusted'/>
+      </xs:sequence>
+     </xs:sequence>
+    </xs:choice>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='reason'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='redundancy'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rejected'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='reason'/>
+    <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+     <xs:choice>
+      <xs:element ref='angle'/>
+      <xs:element ref='azimuth'/>
+      <xs:element ref='distance'/>
+      <xs:element ref='hobs'/>
+      <xs:element ref='hdiff'/>
+      <xs:element ref='vector'/>
+      <xs:element ref='xyz'/>
+      <xs:element ref='zenith'/>
+     </xs:choice>
+     <xs:element ref='flt' minOccurs='0' maxOccurs='unbounded'/>
+    </xs:sequence>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='rejected-observations'>
+  <xs:complexType>
+   <xs:sequence minOccurs='0' maxOccurs='unbounded'>
+    <xs:element ref='rejected'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='stdev'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='sum-of-squares'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='to'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='to-dh'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='u'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='u-fixed'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='u-free'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='u-constr'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='u-unused'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='val'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='variance-factor-used'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='vector'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:choice>
+     <xs:sequence>
+      <xs:element ref='dx'/>
+      <xs:element ref='dy'/>
+      <xs:element ref='dz'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+      </xs:choice>
+     </xs:sequence>
+     <xs:sequence>
+      <xs:element ref='ind'/>
+      <xs:element ref='dx-observed'/>
+      <xs:element ref='dx-residual'/>
+      <xs:element ref='dx-adjusted'/>
+      <xs:element ref='dy-observed'/>
+      <xs:element ref='dy-residual'/>
+      <xs:element ref='dy-adjusted'/>
+      <xs:element ref='dz-observed'/>
+      <xs:element ref='dz-residual'/>
+      <xs:element ref='dz-adjusted'/>
+      <xs:element ref='dx-stdev-obs'/>
+      <xs:element ref='dx-stdev-adj'/>
+      <xs:element ref='dy-stdev-obs'/>
+      <xs:element ref='dy-stdev-adj'/>
+      <xs:element ref='dz-stdev-obs'/>
+      <xs:element ref='dz-stdev-adj'/>
+      <xs:element ref='cxx'/>
+      <xs:element ref='cxy'/>
+      <xs:element ref='cxz'/>
+      <xs:element ref='cyy'/>
+      <xs:element ref='cyz'/>
+      <xs:element ref='czz'/>
+     </xs:sequence>
+    </xs:choice>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='x-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='xyz'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='id'/>
+    </xs:sequence>
+    <xs:choice>
+     <xs:sequence>
+      <xs:element ref='x'/>
+      <xs:element ref='y'/>
+      <xs:element ref='z'/>
+     </xs:sequence>
+     <xs:sequence>
+      <xs:element ref='ind'/>
+      <xs:element ref='x-observed'/>
+      <xs:element ref='x-residual'/>
+      <xs:element ref='x-adjusted'/>
+      <xs:element ref='y-observed'/>
+      <xs:element ref='y-residual'/>
+      <xs:element ref='y-adjusted'/>
+      <xs:element ref='z-observed'/>
+      <xs:element ref='z-residual'/>
+      <xs:element ref='z-adjusted'/>
+      <xs:element ref='x-stdev-obs'/>
+      <xs:element ref='x-stdev-adj'/>
+      <xs:element ref='y-stdev-obs'/>
+      <xs:element ref='y-stdev-adj'/>
+      <xs:element ref='z-stdev-obs'/>
+      <xs:element ref='z-stdev-adj'/>
+      <xs:element ref='cxx'/>
+      <xs:element ref='cxy'/>
+      <xs:element ref='cxz'/>
+      <xs:element ref='cyy'/>
+      <xs:element ref='cyz'/>
+      <xs:element ref='czz'/>
+     </xs:sequence>
+    </xs:choice>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='y-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='zenith'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:sequence>
+     <xs:element ref='from'/>
+     <xs:element ref='to'/>
+    </xs:sequence>
+    <xs:sequence>
+     <xs:sequence>
+      <xs:element ref='val'/>
+      <xs:choice minOccurs='0' maxOccurs='unbounded'>
+       <xs:element ref='from-dh'/>
+       <xs:element ref='to-dh'/>
+       <xs:element ref='stdev'/>
+      </xs:choice>
+     </xs:sequence>
+    </xs:sequence>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-adjusted'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-correction'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-given'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-observed'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-residual'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-stdev-adj'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='z-stdev-obs'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+</xs:schema>
