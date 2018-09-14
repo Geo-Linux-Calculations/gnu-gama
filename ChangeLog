@@ -4,6 +4,7 @@
 	by running configure script with --disable-gama-g3)
 	** minor internal changes in organization of gama-g3
 	* gnu-gama-data.dtd replaced by schema definition gnu-gama-data.xsd
+	** based on script https://www.w3.org/2000/04/schema_hack/
 	* new xmllint test for gama-g3 adjustment results
 	* new gama-g3 examples (from the SJTSK/05 project)
 
