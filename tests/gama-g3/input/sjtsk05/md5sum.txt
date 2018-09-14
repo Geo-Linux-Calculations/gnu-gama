@@ -1,0 +1,4 @@
+49a135187cccd4459e3f9bcb410af72f  dopnul.adj.xml
+631bdc73f6c61828a698b41b3716560d  dopnul.xml
+890f2ce5129f7b2a20db336c8511069d  vyberova_udrzba.adj.xml
+452103ece33854c1fc881fd5532f5224  vyberova_udrzba.xml

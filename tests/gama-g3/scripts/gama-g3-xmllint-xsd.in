@@ -8,10 +8,19 @@ do
     xmllint --schema @GAMA_XML@/gnu-gama-data.xsd --noout @G3_INPUT@/$g-adj.xml
 done
 
+
 for g in @INPUT_FILES@
 do
 for a in envelope gso cholesky svd
-do    
-    xmllint --schema @GAMA_XML@/gnu-gama-data.xsd --noout @G3_RESULTS@/$g-$a.adj.xml
+do
+    xmllint --schema @GAMA_XML@/gnu-gama-data.xsd \
+            --noout @G3_RESULTS@/$g-$a.adj.xml
 done
+done
+
+
+for g in dopnul vyberova_udrzba
+do
+    xmllint --schema @GAMA_XML@/gnu-gama-data.xsd \
+            --noout @G3_RESULTS@/$g-envelope.adj.xml
 done

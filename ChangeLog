@@ -1,3 +1,12 @@
+	* new release 2.01
+
+	* support for gama-g3 build is implicitly enabled (can be disabled
+	by running configure script with --disable-gama-g3)
+	** minor internal changes in organization of gama-g3
+	* gnu-gama-data.dtd replaced by schema definition gnu-gama-data.xsd
+	* new xmllint test for gama-g3 adjustment results
+	* new gama-g3 examples (from the SJTSK/05 project)
+
 2018-05-13  Ales Cepek  <cepek@gnu.org>
 
 	* new release 2.00

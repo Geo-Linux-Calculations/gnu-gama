@@ -12,3 +12,14 @@ do
     scripts/check_adjustment @G3_INPUT@/$g-adj.xml @G3_RESULTS@/$g-$a.adj.xml
 done
 done
+
+
+for g in dopnul vyberova_udrzba
+do
+    @top_builddir@/bin/gama-g3 --algorithm envelope \
+                             @G3_INPUT@/sjtsk05/$g.xml > \
+                             @G3_RESULTS@/$g-envelope.adj.xml
+
+    scripts/check_adjustment @G3_INPUT@/sjtsk05/$g.adj.xml \
+                             @G3_RESULTS@/$g-envelope.adj.xml
+done

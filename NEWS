@@ -1,5 +1,10 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.01 September 2018 
+
+* XML schema definition for gama-g3 adjustment results with new
+  xmllint testsuite
+
 Version 2.00 May 2018
 
 * Maintainer's release: for the list of internal changes see ChangeLog
