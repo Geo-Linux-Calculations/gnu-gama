@@ -8,13 +8,13 @@
 
   <xs:annotation>
     <xs:documentation xml:lang="en">
-      GNU Gama g3 data XML schema 
+      GNU Gama g3 data XML schema
       http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gnu-gama-data.xsd
 
-      1.00 XML schema generated from DTD based on "A Conversion Tool
-           from  DTD to XML Schema" https://www.w3.org/2000/04/schema_hack/
-           with some final minor fixes (xs: namespace add, t: removed,
-           schema header) 
+      0.9.00 XML schema generated from DTD based on "A Conversion Tool
+             from  DTD to XML Schema" https://www.w3.org/2000/04/schema_hack/
+             with some final minor fixes (xs: namespace add, t: removed,
+             schema header)
     </xs:documentation>
   </xs:annotation>
 
