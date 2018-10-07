@@ -2,6 +2,8 @@ GNU Gama NEWS - History of user-visible changes.
 
 Version 2.01 September 2018 
 
+* Maintainer's release
+* Conditional build for gama-g3 enabled implicitly
 * XML schema definition for gama-g3 adjustment results with new
   xmllint testsuite
 
