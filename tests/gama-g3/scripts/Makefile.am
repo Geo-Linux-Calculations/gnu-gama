@@ -1,4 +1,4 @@
-EXTRA_DIST = gama-g3-adjustment.in
+EXTRA_DIST = gama-g3-adjustment.in gama-g3-xmllint-xsd.in
 
 check_PROGRAMS = check_adjustment
 
