@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="right-handed">
+<description>Levelling - demo B </description>
+
+<parameters sigma-apr="3.00" conf-pr="0.95" tol-abs="1000" sigma-act="apriori"/>
+<points-observations>
+
+<point id="51" z ="234.3145" fix="Z"/>
+<point id="11" adj="Z"/>
+<point id="38" adj="Z"/>
+<point id= "1" adj="Z"/>
+<point id="17" adj="Z"/>
+<point id="34" adj="Z"/>
+<point id="32" adj="Z"/>
+<point id="43" adj="Z"/>
+
+<height-differences>
+  <dh from="51" to="11" val=" 15.4974" stdev="3.066757245039131" />  <!-- dist="1.045" -->
+  <dh from="51" to="38" val=" 33.9788" stdev="2.891539382405158" />  <!-- dist=" .929" -->
+  <dh from="51" to= "1" val=" 16.3779" stdev="3.233883114770848" />  <!-- dist="1.162" -->
+  <dh from="51" to="17" val=" 10.4647" stdev="3.243609100986123" />  <!-- dist="1.169" -->
+  <dh from="51" to="34" val=" 33.6054" stdev="3.094511269974630" />  <!-- dist="1.064" --> 
+  <dh from="51" to="32" val=" 19.3166" stdev="2.852367437761131" />  <!-- dist=" .904" -->
+  <dh from="51" to="43" val="  2.0043" stdev="2.953133928557931" />  <!-- dist=" .969" -->
+  <dh from="11" to="38" val=" 18.4828" stdev="3.449347764433154" />  <!-- dist="1.322" -->
+  <dh from="38" to= "1" val="-17.5951" stdev="2.957701810527897" />  <!-- dist=" .972" -->
+  <dh from= "1" to="17" val=" -5.9218" stdev="3.404702630186666" />  <!-- dist="1.288" -->
+  <dh from="17" to="34" val=" 23.1419" stdev="3.137833647598292" />  <!-- dist="1.094" -->
+  <dh from="34" to="32" val="-14.2892" stdev="3.062352037241963" />  <!-- dist="1.042" -->
+  <dh from="32" to="43" val="-17.3147" stdev="2.839718295887816" />  <!-- dist=" .896" -->
+  <dh from="11" to="17" val=" -5.0329" stdev="3.327160951922825" />  <!-- dist="1.230" -->
+  <dh from="17" to="43" val=" -8.4571" stdev="2.793385043276347" />  <!-- dist=" .867" --> 
+</height-differences>
+
+</points-observations>
+</network>
+</gama-local>
