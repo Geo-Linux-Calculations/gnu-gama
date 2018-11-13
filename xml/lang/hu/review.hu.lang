@@ -3,7 +3,7 @@
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
-   hu="Nem konzisztens koordináták és szögek: minden Y koordináta elõjelét megváltoztattam" />
+   hu="Inkonzisztens koordináták és szögek: minden Y koordináta elõjelét megváltoztattam" />
 
 <e id="T_GaMa_point"
    EN="point"
@@ -79,7 +79,7 @@
 
 <e id="T_GaMa_gpar2_bearings"
    EN="Number of bearings"
-   hu="Irányszögek száma" />
+   hu="Tájékozások száma" />
 
 <e id="T_GaMa_gpar1_angles"
    EN="Number of angles"
@@ -95,11 +95,11 @@
 
 <e id="T_GaMa_gpar1_leveling_diffs"
    EN="Leveling differences"
-   hu="Magasság különbségek" />
+   hu="Magasságkülönbségek" />
 
 <e id="T_GaMa_gpar1_z_angles"
    EN="Zenith angles"
-   hu="Zenit szögek" />
+   hu="Zenitszögek" />
 
 <e id="T_GaMa_gpar1_s_dists"
    EN="Slope distances"
@@ -143,7 +143,7 @@
 
 <e id="T_GaMa_detected_singular_variables"
    EN="The following unknowns have been detected as linearly dependent"
-   hu="A követhezõ ismeretlenek linárisan függõként azonosítva" />
+   hu="A követhezõ ismeretleneket linárisan függõként azonosítottam" />
 
 <e id="T_GaMa_index_type_point"
    EN="  index type point"
@@ -159,7 +159,7 @@
 
 <e id="T_GaMa_During_statistical_analysis_we_work"
    EN="During statistical analysis we work"
-   hu="Statisztikai analízis" />
+   hu="Statisztikai analízis során használt értékek" />
 
 <e id="T_GaMa_statan_with_empirical_standard_deviation"
    EN="- with aposteriori standard deviation "
@@ -175,7 +175,7 @@
 
 <e id="T_GaMa_Ratio_empirical_to_apriori"
    EN="Ratio m0\' aposteriori / m0 apriori: "
-   hu="m0' aposteriori / m0 apriori: " />
+   hu="m0' aposteriori / m0 apriori hányados: " />
 
 <e id="T_GaMa_interval"
    EN="interval"
@@ -183,11 +183,11 @@
 
 <e id="T_GaMa_interval_contains"
    EN="contains value m0\'/m0"
-   hu="m0\'/m0 értéket tartalmazza" />
+   hu="tartalmazza az m0\'/m0 értéket" />
 
 <e id="T_GaMa_interval_doesnt_contain"
    EN="does not contain value m0\'/m0" 
-   hu="nem tartalmazza m0\'/m0 értéket" />
+   hu="nem tartalmazza az m0\'/m0 értéket" />
 
 <e id="T_GaMa_m0_distances"
    EN="m0\'/m0 (distances): "
@@ -263,7 +263,7 @@
 
 <e id="T_GaMa_adjunk_header1"
    EN="    approximate  correction  adjusted    std.dev conf.i.\n"
-   hu="     elõzetes     javítás     kiegy.     köz.hib konf.i.\n" />
+   hu="     elõzetes     javítás     kiegy.     középh. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header2"
    EN="====== value ====== [m] ====== value ========== [mm] ===\n\n"
@@ -279,7 +279,7 @@
 
 <e id="T_GaMa_adjunk_header3"
    EN="   approximate  correction  adjusted   std.dev conf.i.\n"
-   hu="    elõzetes     javítás     kiegy.    köz.hib konf.i.\n" />
+   hu="    elõzetes     javítás     kiegy.    középh. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header4"
    EN="==== value [g] ==== [g] === value [g] ======= [cc] ===\n\n"
@@ -291,7 +291,7 @@
 
 <e id="T_GaMa_adjunk_header5"
    EN="     approximate  correction  adjusted    std.dev conf.i.\n"
-   hu="      elõzetes     javítás     kiegy.     köz.kib konf.i.\n" />
+   hu="      elõzetes     javítás     kiegy.     középh. konf.i.\n" />
 
 <e id="T_GaMa_adjunk_header6"
    EN="======= value ====== [m] ====== value ========== [mm] ===\n\n"
@@ -324,7 +324,7 @@
 
 <e id="T_GaMa_direction"
    EN=" dir.  "
-   hu="  ir.  " />
+   hu=" irány " />
 
 <e id="T_GaMa_angle"
    EN=" angle "
@@ -362,18 +362,17 @@
    EN=" y dif "
    hu=" y elt " />
 
-
 <e id="T_GaMa_zdiff"
    EN=" z dif "
    hu=" z elt " />
 
 <e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
    EN="Mean errors and parameters of error ellipses"
-   hu="Hibaellipszisek középhibái és paraméterei" />
+   hu="Középhibák és hibaellipszisek paraméterei" />
 
 <e id="T_GaMa_errell_header1"
    EN="    mp      mxy      mean error ellipse  conf.err. ellipse   g\n"
-   hu="    mP      mXY      köz.hiba ellipszis  konf.hib. ellipsz   g\n" />
+   hu="    mP      mXY     középhiba ellipszis konf.hiba ellipszis  g\n" />
 
 <e id="T_GaMa_errell_header2"
    EN="== [mm] == [mm] ==== a [mm] b  alpha[g] ==== a' [mm] b' ========"
@@ -393,7 +392,7 @@
 
 <e id="T_GaMa_adjobs_header1"
    EN=" std.dev conf.i.\n"
-   hu=" köz.hib konf.i.\n" />
+   hu=" középh. konf.i.\n" />
 
 <e id="T_GaMa_adjobs_value"
    EN="== value "
@@ -470,7 +469,7 @@
 
 <e id="T_GaMa_approx_observations"
    EN="observations: "
-   hu="mérések  : " />
+   hu="mérések     : " />
 
 <e id="T_GaMa_approx_header1"
    EN="coordinates   "
@@ -509,6 +508,3 @@
    hu="== érték ===== ttag ==\n\n" />
 
 </entries>
-
-
-

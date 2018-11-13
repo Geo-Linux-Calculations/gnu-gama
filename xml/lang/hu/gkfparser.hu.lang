@@ -3,7 +3,7 @@
 
 <e id="T_GKF_illegal_text"
    EN="illegal text"
-   hu="érvénytelen szöveg" />
+   hu="hibás szöveg" />
 
 <e id="T_GKF_must_start_with_gama_xml"
    EN="document must start with tag &lt;gama-local&gt;"
@@ -11,19 +11,19 @@
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
-   hu="érvénytelen attribútum érték: " />
+   hu="hibás attribútum érték: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
    EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
-   hu="érvénytelen értékû &lt;version&lt; attribútum a &lt;gama-local&gt; címkében: " />
+   hu="hibás érték a &lt;version&lt; attribútumra a &lt;gama-local&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
    EN="undefined attribute of tag &lt;gama-local&gt;: "
-   hu="nem definiált &lt;gama-local&lt; attribútum: " />
+   hu="nem definiált attribútum a &lt;gama-local&lt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "
-   hu="nem definiált &lt;vectors&gt; attribútum: " />
+   hu="nem definiált attribútum a &lt;vectors&gt; címkében: " />
 
 <e id ="T_GKF_missing_tag_network"
    EN="missing tag &lt;network&gt;"
@@ -43,11 +43,11 @@
 
 <e id="T_GKF_error_on_reading_of_confidence_probability"
    EN="error on reading of confidence probability"
-   hu="hiba a konfidencia valószinûség olvasása közben" />
+   hu="hiba a konfidencia szint olvasása közben" />
 
 <e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
    EN="error on reading of tolerance for identification of outlying absolute terms"
-   hu="hiba a tisztatagokra vonatkozó abszolut hibahatár olvasása közben" />
+   hu="hiba a tisztatagokra vonatkozó hibahatár olvasása közben" />
 
 <e id="T_GKF_wrong_type_of_standard_deviation"
    EN="wrong type of standard deviation" 
@@ -71,11 +71,11 @@
 
 <e id="T_GKF_undefined_attribute_of_points_observations"
    EN="undefined attribute of &lt;points-observations&gt;: " 
-   hu="nem definiált &lt;point-observations&gt; érték: " />
+   hu="nem definiált attribútum a &lt;point-observations&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_points"
    EN="undefined attribute of &lt;point&gt;: " 
-   hu="nem definiált &lt;point&gt; érték: " />
+   hu="nem definiált attribútum a &lt;point&gt; címkében: " />
 
 <e id="T_GKF_missing_point_ID"
    EN="missing point ID"
@@ -99,7 +99,7 @@
 
 <e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
    EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
-   hu="a &lt;point /&gt; címke vízszintes és/vagy magassági koordinátákat kell hogy tartalmazzon a &lt;coordinates&gt; címkében" />
+   hu="a &lt;point /&gt; címkének vízszintes koordinátákat és/vagy magasságot kell tartalmaznia a &lt;coordinates&gt; címkében" />
 
 <e id="T_GKF_coordinate_x_is_not_defined"
    EN="coordinate x is not defined"
@@ -131,15 +131,15 @@
 
 <e id="T_GKF_undefined_attribute_of_distance"
    EN="undefined attribute of &lt;distance&gt;: " 
-   hu="nem definiált &lt;distance&gt; érték: " />
+   hu="nem definiált attribútum a  &lt;distance&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_slopedist"
    EN="undefined attribute of &lt;s-distance&gt;: " 
-   hu="nem definiált &lt;s-distance&gt; érték: " />
+   hu="nem definiált attribútum a &lt;s-distance&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_zangle"
    EN="undefined attribute of &lt;z-angle&gt;: " 
-   hu="nem definiált &lt;z-angle&gt; érték: " />
+   hu="nem definiált attribútum a &lt;z-angle&gt; címkében: " />
 
 <e id="T_GKF_missing_standpoint_id"
    EN="missing standpoint ID"
@@ -159,15 +159,15 @@
 
 <e id="T_GKF_bad_zangle"
    EN="bad zenith angle: "
-   hu="bad zenith angle: " />
+   hu="hibás zenitszög: " />
 
 <e id="T_GKF_illegal_standard_deviation"
    EN="illegal standard deviation"
-   hu="érvénytelen középhiba" />
+   hu="hibás középhiba" />
 
 <e id="T_GKF_undefined_attribute_of_angle"
    EN="undefined attribute of &lt;angle&gt;: " 
-   hu="nem definiált &lt;angle&gt; érték: " />
+   hu="nem definiált attribútum az &lt;angle&gt; címkében: " />
 
 <e id="T_GKF_missing_left_forepoint_id"
    EN="missing left forepoint ID"
@@ -183,11 +183,11 @@
 
 <e id="T_GKF_undefined_attribute_of_obs"
    EN="undefined attribute of &lt;obs&gt;: " 
-   hu="nem definiált &lt;obs&gt; érték: " />
+   hu="nem definiált attribútum az &lt;obs&gt; címkében: " />
 
 <e id="T_GKF_bad_instrument_reflector_height"
    EN="bad instrument/reflector height: "
-   hu="hibás mûszer vagy jelmagasság:" />
+   hu="hibás mûszer- vagy jelmagasság:" />
 
 <e id="T_GKF_bad_orientation_angle"
    EN="bad orientation angle: "
@@ -195,7 +195,7 @@
 
 <e id="T_GKF_undefined_attribute_of_direction"
    EN="undefined attribute of &lt;direction&gt;: " 
-   hu="nem definiált &lt;direction&gt; érték: " />
+   hu="nem definiált attribútum a &lt;direction&gt; címkében: " />
 
 <e id="T_GKF_bad_direction"
    EN="bad direction: "
@@ -207,15 +207,15 @@
 
 <e id="T_GKF_undefined_attribute_of_cov_mat"
    EN="undefined attribute of &lt;cov-mat&gt;: " 
-   hu="nem definált &lt;cov-mat&gt; érték: " />
+   hu="nem definált attribútum a &lt;cov-mat&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_coordinates"
    EN="undefined attribute of &lt;coordinates&gt;: " 
-   hu="nem definiált &lt;coordinates&gt; érték: " />
+   hu="nem definiált attribútum a &lt;coordinates&gt; címkében: " />
 
 <e id="T_GKF_undefined_attribute_of_height_differences"
    EN="undefined attribute of &lt;height-differences&gt;: " 
-   hu="nem definiált &lt;height-differences&gt; érték: " />
+   hu="nem definiált attribútum a &lt;height-differences&gt; címkében: " />
 
 <e id="T_GKF_cov_mat_missing_dim"
    EN="missing dimension of covariance matrix"
@@ -251,7 +251,7 @@
 
 <e id="T_GKF_no_observations_after_cov_mat"
    EN="observations can not come after covariance matrix"
-   hu="a kovariancia mátrix után nem lehetnek észlelések" />
+   hu="a kovariancia mátrix után nem lehetnek mérések" />
 
 <e id="T_GKF_coordinates_without_covariance_matrix"
    EN="coordinates without covariance matrix"

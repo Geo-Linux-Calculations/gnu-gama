@@ -15,7 +15,7 @@
 
 <e id="T_GaMa_exception_2a"
    EN="GNU Gama - error on reading XML input configuration file!"
-   hu="GNU Gama - hiba az XML input fájl olvasása közben" />
+   hu="GNU Gama - hiba az XML input konfigurációs fájl olvasása közben" />
 
 <e id="T_GaMa_exception_2b"
    EN="On line number "
@@ -27,7 +27,7 @@
 
 <e id="T_GaMa_No_observations_available"
    EN="No observations available"
-   hu="Nincsenek észlelések" />
+   hu="Nincsenek mérések" />
 
 <e id="T_GaMa_No_network_points_defined"
    EN="No network points defined"
@@ -39,7 +39,7 @@
 
 <e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
    EN="Observations with outlying absolute terms removed"
-   hu="Hibahatáron kívül esõ észlelések eltávolítva" />
+   hu="Hibahatáron kívül esõ tisztatagú méréseket eltávolítottam" />
 
 <e id="T_GaMa_adjustment_iteration"
    EN=" - adjustment iteration"
@@ -47,7 +47,7 @@
 
 <e id="T_GaMa_Approximate_coordinates_replaced"
    EN="Approximate coordinates of computed points replaced by adjusted"
-   hu="A számított pontok elõzetes koordinátáit a kiegyenlítettre cseréltem" />
+   hu="A számított pontok elõzetes koordinátáit a kiegyenlítettekre cseréltem" />
 
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"

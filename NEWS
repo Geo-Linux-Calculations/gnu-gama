@@ -1,5 +1,15 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.02 November 2018
+
+* Improved Hungarian translation by Siki Zoltan:
+   "I would like to inform you that we just have finished a guide to
+   networks used in engineering surveying. It will be a booklet of the
+   Hungarian Chamber of Engineers. It mostly contains practical guide of
+   the network adjustment and blunders detection. In the examples GNU
+   Gama was used (and GeoEasy).
+   During this work we have improved the Hungarian translation."
+
 Version 2.01 September 2018 
 
 * Maintainer's release
