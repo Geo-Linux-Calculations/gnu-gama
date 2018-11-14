@@ -39,7 +39,9 @@ INPUT_FILES = gama-local \
               azimuth-distance \
               alex-2015-05-17 \
               triangle-1 \
-              triangle-2
+              triangle-2 \
+              stroner-levelling-a \
+              stroner-levelling-b
 
 
 GAMA_SCRIPT  = $(srcdir)/scripts

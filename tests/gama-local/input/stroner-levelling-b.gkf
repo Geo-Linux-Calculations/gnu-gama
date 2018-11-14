@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 
+<!-- Demo levelling network equivalent to stroner-levelling-a.gkf -->
+
 <gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
 <network axes-xy="sw" angles="right-handed">
 <description>Levelling - demo B </description>
@@ -27,11 +29,22 @@
   <dh from="11" to="38" val=" 18.4828" stdev="3.449347764433154" />  <!-- dist="1.322" -->
   <dh from="38" to= "1" val="-17.5951" stdev="2.957701810527897" />  <!-- dist=" .972" -->
   <dh from= "1" to="17" val=" -5.9218" stdev="3.404702630186666" />  <!-- dist="1.288" -->
-  <dh from="17" to="34" val=" 23.1419" stdev="3.137833647598292" />  <!-- dist="1.094" -->
-  <dh from="34" to="32" val="-14.2892" stdev="3.062352037241963" />  <!-- dist="1.042" -->
-  <dh from="32" to="43" val="-17.3147" stdev="2.839718295887816" />  <!-- dist=" .896" -->
-  <dh from="11" to="17" val=" -5.0329" stdev="3.327160951922825" />  <!-- dist="1.230" -->
-  <dh from="17" to="43" val=" -8.4571" stdev="2.793385043276347" />  <!-- dist=" .867" --> 
+</height-differences>
+
+<height-differences>
+  <dh from="17" to="34" val=" 23.1419" />   <!-- stdev="3.137833647598292" dist="1.094" -->
+  <dh from="34" to="32" val="-14.2892" />   <!-- stdev="3.062352037241963" dist="1.042" -->
+  <dh from="32" to="43" val="-17.3147" />   <!-- stdev="2.839718295887816" dist=" .896" -->
+  <dh from="11" to="17" val=" -5.0329" />   <!-- stdev="3.327160951922825" dist="1.230" -->
+  <dh from="17" to="43" val=" -8.4571" />   <!-- stdev="2.793385043276347" dist=" .867" -->
+
+  <cov-mat dim="5" band="4">
+    9.846 0 0 0 0
+    9.378 0 0 0
+    8.064 0 0
+    11.07 0
+    7.803
+  </cov-mat>
 </height-differences>
 
 </points-observations>

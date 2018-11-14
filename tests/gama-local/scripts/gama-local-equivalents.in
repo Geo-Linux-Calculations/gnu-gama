@@ -24,3 +24,7 @@ scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
 a=gama-local; b=gama-local-deprecated
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                           $b @GAMA_INPUT@/$b.gkf
+
+a=stroner-levelling-a; b=stroner-levelling-b
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf

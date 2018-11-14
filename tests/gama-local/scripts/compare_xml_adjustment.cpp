@@ -249,24 +249,26 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   } // fixed coordinates
 
 
+  bool html_needs_to_be_fixed = html->observations_summary.h_diffs == html->project_equations.equations;
+
   // adjusted coordinated
   {
     double aprdif = 0;
     double adjdif = 0;
 
-    if (html->approximate_points.size() != xml->approximate_points.size() )
+    if (!html_needs_to_be_fixed && html->approximate_points.size() != xml->approximate_points.size() )
       {
         std::cout << "         approximate coordinates dimensions "
-                  << xml->approximate_points.size() << " "
+                  << html->approximate_points.size() << " "
                   << xml->approximate_points.size()
                   << " failed\n";
         rcoord = 1;
         return rcoord;
       }
-    if (html->adjusted_points.size() != xml->adjusted_points.size() )
+    if (!html_needs_to_be_fixed && html->adjusted_points.size() != xml->adjusted_points.size() )
       {
         std::cout << "         adjusted coordinates dimensions "
-                  << xml->approximate_points.size() << " "
+                  << html->approximate_points.size() << " "
                   << xml->approximate_points.size()
                   << " failed\n";
         rcoord = 1;
@@ -330,7 +332,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
             }
 
       }
-    /* test on approximate coordinates is not irelevant
+    /* test on approximate coordinates is not relevant
     std::cout << "         approx.coordinates "
               << std::scientific << std::setprecision(3) << std::setw(11)
               << aprdif << " [m] ";
@@ -355,7 +357,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   }// adjusted coordinated
 
   // original index list
-  {
+  if (!html_needs_to_be_fixed) {
     int tori = 0;
     if (html->original_index.size() != xml->original_index.size()) {
       tori = 1;
@@ -404,7 +406,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   } // adjusted orientations
 
   // covariance band
-  {
+  if (!html_needs_to_be_fixed) {
     double dcov = 0;
     double dmax = 1;
 

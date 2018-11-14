@@ -668,8 +668,8 @@ void GamaLocalHTML::htmlInfo()
       ///else if (dynamic_cast<Zdiff*     >(lnet->ptr_obs(i))) pocvec++;
     }
 
-  if (lnet->sum_observations() > 0 && pocnivp != lnet->sum_observations())
-  {
+  if (lnet->sum_observations()) // > 0 && pocnivp != lnet->sum_observations())
+    {                           // always print observations summary / v. 2.02
     out << "<table id='observations_summary'>\n";
     if (pocsmer)
       {
