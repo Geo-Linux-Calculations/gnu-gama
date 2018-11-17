@@ -1,4 +1,4 @@
-/* slovnikar 1.13 */
+/* slovnikar 1.14 */
 
 #include <gnu_gama/local/language.h>
 

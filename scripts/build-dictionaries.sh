@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # builds dictionaris for GNU Gama
 # 

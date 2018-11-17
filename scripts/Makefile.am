@@ -1,4 +1,4 @@
-EXTRA_DIST = build-dictionaries build-ellipsoids 
+EXTRA_DIST = build-dictionaries.sh build-ellipsoids.sh
 
 noinst_PROGRAMS   = slovnikar ellipsoids_xml
 

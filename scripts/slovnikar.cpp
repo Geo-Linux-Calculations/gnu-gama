@@ -28,9 +28,13 @@
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.13";
+         const char* version = "1.14";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.14  2018-11-17
+ *
+ *       - <meta content="text/html; charset=UTF-8"... /> added into HTML head
  *
  * 1.13  2017-10-21
  *
@@ -364,9 +368,12 @@ int main()
       "<!DOCTYPE html\n"
       "     PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n"
       "     \"DTD/xhtml1-strict.dtd\">\n"
+      "<!-- slovnikar version " << version << " -->\n"
       "<html xmlns=\"http://www.w3.org/1999/xhtml\""
       " xml:lang=\"en\" lang=\"en\">\n"
       "  <head>\n"
+      "    <meta content=\"text/html; charset=utf-8\""
+      " http-equiv=\"Content-Type\" />\n"
       "    <title>GNU Gama lang</title>\n"
       "  </head>\n"
       "<body>\n\n"

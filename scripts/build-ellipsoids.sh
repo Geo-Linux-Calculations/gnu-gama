@@ -1,3 +1,4 @@
+#!/bin/sh
 #
 # builds ellipsoids.[h|cpp|texi] for GNU GaMa
 # 
