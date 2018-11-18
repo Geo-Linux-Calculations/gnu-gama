@@ -4,7 +4,7 @@
 <description>Levelling - demo B </description>
 
 <network-general-parameters
-   gama-local-version="2.01"
+   gama-local-version="2.02"
    gama-local-algorithm="envelope"
    gama-local-compiler="g++ 6.3"
    axes-xy="sw"
@@ -136,12 +136,12 @@
    <err-obs>-3.107</err-obs> <err-adj>-0.888</err-adj>
    </height-diff>
 <height-diff> <from>51</from> <to>34</to>
-   <obs>33.6054000000000030</obs> <adj>33.6054288778169195</adj> <stdev>2.0384772504212689</stdev>
+   <obs>33.6054000000000030</obs> <adj>33.6054288778169195</adj> <stdev>2.0384772504212685</stdev>
    <qrr>0.602</qrr> <f>34.126</f> <std-residual>0.012</std-residual>
    <err-obs>0.051</err-obs> <err-adj>0.022</err-adj>
    </height-diff>
 <height-diff> <from>51</from> <to>32</to>
-   <obs>19.3166000000000011</obs> <adj>19.3172554477260654</adj> <stdev>1.9682744000427925</stdev>
+   <obs>19.3166000000000011</obs> <adj>19.3172554477260654</adj> <stdev>1.9682744000427923</stdev>
    <qrr>0.474</qrr> <f>30.995</f> <std-residual>0.317</std-residual>
    <err-obs>1.251</err-obs> <err-adj>0.596</err-adj>
    </height-diff>
@@ -166,29 +166,24 @@
    <err-obs>4.549</err-obs> <err-adj>2.006</err-adj>
    </height-diff>
 <height-diff> <from>17</from> <to>34</to>
-   <obs>23.1418999999999997</obs> <adj>23.1429481078443402</adj> <stdev>2.1511363266185315</stdev>
+   <obs>23.1418999999999997</obs> <adj>23.1429481078443402</adj> <stdev>2.1511363266185310</stdev>
    <qrr>0.580</qrr> <f>31.445</f> <std-residual>0.459</std-residual>
-   <err-obs>1.977</err-obs> <err-adj>0.929</err-adj>
    </height-diff>
 <height-diff> <from>34</from> <to>32</to>
    <obs>-14.2891999999999992</obs> <adj>-14.2881734300908541</adj> <stdev>2.1985151135845098</stdev>
    <qrr>0.505</qrr> <f>28.208</f> <std-residual>0.482</std-residual>
-   <err-obs>2.118</err-obs> <err-adj>1.092</err-adj>
    </height-diff>
 <height-diff> <from>32</from> <to>43</to>
-   <obs>-17.3146999999999984</obs> <adj>-17.3131676207974472</adj> <stdev>2.0968261782589011</stdev>
+   <obs>-17.3146999999999984</obs> <adj>-17.3131676207974472</adj> <stdev>2.0968261782589006</stdev>
    <qrr>0.407</qrr> <f>26.161</f> <std-residual>0.800</std-residual>
-   <err-obs>3.370</err-obs> <err-adj>1.837</err-adj>
    </height-diff>
 <height-diff> <from>11</from> <to>17</to>
    <obs>-5.0328999999999997</obs> <adj>-5.0336493237533899</adj> <stdev>2.2416761331469104</stdev>
    <qrr>0.672</qrr> <f>32.625</f> <std-residual>0.305</std-residual>
-   <err-obs>-1.372</err-obs> <err-adj>-0.623</err-adj>
    </height-diff>
 <height-diff> <from>17</from> <to>43</to>
    <obs>-8.4571000000000005</obs> <adj>-8.4583929430439611</adj> <stdev>2.0166174196250259</stdev>
    <qrr>0.415</qrr> <f>27.807</f> <std-residual>0.669</std-residual>
-   <err-obs>-2.700</err-obs> <err-adj>-1.407</err-adj>
    </height-diff>
 
 </observations>

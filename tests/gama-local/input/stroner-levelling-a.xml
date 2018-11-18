@@ -4,7 +4,7 @@
 <description>Levelling - demo A </description>
 
 <network-general-parameters
-   gama-local-version="2.01"
+   gama-local-version="2.02"
    gama-local-algorithm="envelope"
    gama-local-compiler="g++ 6.3"
    axes-xy="sw"
