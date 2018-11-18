@@ -51,8 +51,8 @@ class HtmlParser : public GNU_gama::BaseParser<GNU_gama::Exception::parser>
   // tables
   bool coordinates_summary, observations_summary, project_equations, 
     sum_of_squares, standard_deviation, standard_deviation_2, fixed_points,
-    adjusted_coordinates, orientation_unknowns, adjusted_observations,
-    residuals;
+    adjusted_coordinates, adjusted_heights, adjusted_orientations,
+    adjusted_observations, residuals;
   int   table_row, table_col;
   bool  has_xy;        // fixed points has x,y
   bool  adj_new;       // new adjusted point
@@ -80,7 +80,8 @@ class HtmlParser : public GNU_gama::BaseParser<GNU_gama::Exception::parser>
   void table_standard_deviation_2();
   void table_fixed_points();
   void table_adjusted_coordinates();
-  void table_orientation_unknowns();
+  void table_adjusted_heights();
+  void table_adjusted_orientations();
   void table_adjusted_observations();
   void table_residuals();
 };

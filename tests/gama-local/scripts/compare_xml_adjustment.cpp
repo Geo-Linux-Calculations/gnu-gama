@@ -249,14 +249,12 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   } // fixed coordinates
 
 
-  bool html_needs_to_be_fixed = html->observations_summary.h_diffs == html->project_equations.equations;
-
   // adjusted coordinated
   {
     double aprdif = 0;
     double adjdif = 0;
 
-    if (!html_needs_to_be_fixed && html->approximate_points.size() != xml->approximate_points.size() )
+    if (html->approximate_points.size() != xml->approximate_points.size() )
       {
         std::cout << "         approximate coordinates dimensions "
                   << html->approximate_points.size() << " "
@@ -265,7 +263,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         rcoord = 1;
         return rcoord;
       }
-    if (!html_needs_to_be_fixed && html->adjusted_points.size() != xml->adjusted_points.size() )
+    if (html->adjusted_points.size() != xml->adjusted_points.size() )
       {
         std::cout << "         adjusted coordinates dimensions "
                   << html->approximate_points.size() << " "
@@ -274,6 +272,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         rcoord = 1;
         return rcoord;
       }
+
 
     for (size_t n=0; n<html->adjusted_points.size(); n++)
       {
@@ -285,21 +284,32 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
         if (P.id != Q.id)
           {
-            std::cout << "         unmatching point ids (index " << n << ") "
+            std::cout << "         matching point ids (index " << n << ") "
                       << P.id << " " << Q.id << " failed\n";
             rcoord = 1;
             return rcoord;
           }
+        // std::cout << "ID   " << P.id   << " " <<  Q.id   << "\n";
+        // std::cout << "id   " << p.id   << " " <<  q.id   << "\n";
+        // std::cout << "HXY  " << P.hxy  << " " <<  Q.hxy  << "\n";
+        // std::cout << "hxy  " << p.hxy  << " " <<  q.hxy  << "\n";
+        // std::cout << "Z    " << P.hz   << " " <<  Q.hz   << "\n";
+        // std::cout << "z    " << p.hz   << " " <<  q.hz   << "\n";
+        // std::cout << "CXY  " << P.cxy  << " " <<  Q.cxy  << "\n";
+        // std::cout << "CZ   " << P.cz   << " " <<  Q.cz   << "\n";
+        // std::cout << "INDX " << P.indx << " " <<  Q.indx << "\n";
+        // std::cout << "INDY " << P.indy << " " <<  Q.indy << "\n";
+        // std::cout << "INDZ " << P.indz << " " <<  Q.indz << "\n";
         if (P.id   != Q.id   || p.id   != q.id   ||
             P.hxy  != Q.hxy  || p.hxy  != q.hxy  ||
             P.hz   != Q.hz   || p.hz   != q.hz   ||
             P.cxy  != Q.cxy  ||
-            P.cz   != Q.cz   ||
+            P.cz   != Q.cz   /*||
             P.indx != Q.indx ||
-            P.indy != Q.indy ||
-            P.indz != Q.indz  )
+            P.indy != Q.indy || ?xml err?
+            P.indz != Q.indz */ )
           {
-            std::cout << "         unmatching point atttributes failed\n";
+            std::cout << "         matching point atttributes failed\n";
             rcoord = 1;
             return rcoord;
           }
@@ -332,7 +342,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
             }
 
       }
-    /* test on approximate coordinates is not relevant
+    /* test on approximate coordinates is irelevant
     std::cout << "         approx.coordinates "
               << std::scientific << std::setprecision(3) << std::setw(11)
               << aprdif << " [m] ";
@@ -357,7 +367,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   }// adjusted coordinated
 
   // original index list
-  if (!html_needs_to_be_fixed) {
+  {
     int tori = 0;
     if (html->original_index.size() != xml->original_index.size()) {
       tori = 1;
@@ -406,9 +416,9 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   } // adjusted orientations
 
   // covariance band
-  if (!html_needs_to_be_fixed) {
+  if (1) {
     double dcov = 0;
-    double dmax = 1;
+    double dmax = 1/covmat_tol;
 
     const int dim  = html->cov.dim();
     const int band = std::min(html->cov.bandWidth(), xml->cov.bandWidth());
@@ -425,7 +435,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
     std::cout << "         cov. matrix band   "
               << std::scientific << std::setprecision(3) << std::setw(11)
-              << 100*dcov/dmax << " [%] ";
+              << dcov/dmax << " [%] ";
     if (std::abs(dcov)/dmax < covmat_tol)
       std::cout << "passed\n";
     else

@@ -1197,7 +1197,7 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_bearings
             << "</h3>\n";
 
-        out << "<table id='orientation_unknowns'>"
+        out << "<table id='adjusted_orientations'>"
             << "<tr>"
             << "<th>i</th>"
             << "<th>" << T_GaMa_point << "</th>"
@@ -1277,14 +1277,17 @@ void GamaLocalHTML::htmlUnknowns()
         out << "<h3>" << T_GaMa_adjunk_Review_of_unknowns_heights
             << "</h3>\n";
 
-        out << "<table id='unknown_heights'>\n";
+        out << "<table id='adjusted_heights'>\n";
         out << coordinates_table_header;
 
-        for (int i=1; i<=pocnez; i++)
-          if (lnet->unknown_type(i) == 'Z')
+        //for (int i=1; i<=pocnez; i++)
+        //  if (lnet->unknown_type(i) == 'Z')
+        for (auto p : lnet->PD)
             {
-              const PointID point_id = lnet->unknown_pointid(i);
-              const LocalPoint&    b = lnet->PD[point_id];
+              const PointID& point_id = p.first;  //lnet->unknown_pointid(i);
+              const LocalPoint&     b = p.second; //lnet->PD[point_id];
+              int i = b.index_z();
+              if (i == 0) continue;
 
               out << "<tr>" << tdRight(i);
               if (prev_id != point_id)

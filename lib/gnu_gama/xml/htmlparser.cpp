@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -46,14 +46,14 @@ HtmlParser::~HtmlParser()
 }
 
 
-// in </table> all tables are 'closed' so we do need te select which
-// on was really active
+// in </table> all tables are 'closed' so we do need to select which
+// was really active
 void HtmlParser::close_table()
 {
   coordinates_summary = observations_summary = project_equations
     = sum_of_squares = standard_deviation = standard_deviation_2
-    = fixed_points = adjusted_coordinates = orientation_unknowns
-    = adjusted_observations = residuals = false;
+    = fixed_points = adjusted_coordinates = adjusted_heights
+    = adjusted_orientations = adjusted_observations = residuals = false;
 
   table_row = table_col = 0;
   has_xy  = false;
@@ -80,7 +80,8 @@ int HtmlParser::startElement(const char *name, const char **atts)
   else if (attribute=="standard_deviation_2")  standard_deviation_2  = true;
   else if (attribute=="fixed_points")          fixed_points          = true;
   else if (attribute=="adjusted_coordinates")  adjusted_coordinates  = true;
-  else if (attribute=="orientation_unknowns")  orientation_unknowns  = true;
+  else if (attribute=="adjusted_heights")      adjusted_heights      = true;
+  else if (attribute=="adjusted_orientations") adjusted_orientations = true;
   else if (attribute=="adjusted_observations") adjusted_observations = true;
   else if (attribute=="residuals")             residuals             = true;
 
@@ -131,7 +132,8 @@ int HtmlParser::characterDataHandler(const char *s, int len)
   else if (standard_deviation_2)  table_standard_deviation_2();
   else if (fixed_points)          table_fixed_points();
   else if (adjusted_coordinates)  table_adjusted_coordinates();
-  else if (orientation_unknowns)  table_orientation_unknowns();
+  else if (adjusted_heights)      table_adjusted_heights();
+  else if (adjusted_orientations) table_adjusted_orientations();
   else if (adjusted_observations) table_adjusted_observations();
   else if (residuals)             table_residuals();
 
@@ -150,7 +152,7 @@ void HtmlParser::trim_white_spaces()
 
 void HtmlParser::table_coordinates_summary()
 {
-  // skip table heades and possible new-line after </tr>
+  // skip table headers and possible new-line after </tr>
   if (table_col <= 0) return;
 
   int N;
@@ -393,7 +395,66 @@ void HtmlParser::table_adjusted_coordinates()
 }
 
 
-void HtmlParser::table_orientation_unknowns()
+void HtmlParser::table_adjusted_heights()
+{
+  // table adjusted heights is used only when there aro no other adjusted unknowns (x,y,z)
+
+  // endElement handler sets table_col to -1 for tag <tr>
+  // startElement       sets table_col to  0 for tag <tr>
+  // startElement increments table_col for tag <td>
+  if (table_col <= 0) return;
+
+  trim_white_spaces();
+
+  if (table_col == 1)
+    {
+      int N;
+      toIndex(data, N);
+      adjres->original_index.push_back(N);
+
+      if (true || table_row == 3)
+        {
+          LocalNetworkAdjustmentResults::Point apr, adj;
+          apr.clear();
+          adj.clear();
+          apr.hz = adj.hz = adj.cz = true;
+          adj.indz = N;
+          adjres->approximate_points.push_back(apr);
+          adjres->adjusted_points.push_back(adj);
+        }
+      return;
+    }
+
+  LocalNetworkAdjustmentResults::Point& apr=adjres->approximate_points.back();
+  LocalNetworkAdjustmentResults::Point& adj=adjres->adjusted_points.back();
+
+  if (table_col == 2)
+    {
+      apr.id = adj.id = data;
+    }
+  else if (table_col == 4)
+    {
+      double d;
+      toDouble(data, d);
+      apr.z = d;
+    }
+  else if (table_col == 6)
+    {
+      double d;
+      toDouble(data, d);
+      adj.z = d;
+    }
+  else if (table_col == 7)
+    {
+      double d;
+      toDouble(data, d);
+      int n = adjres->original_index.size()-1;
+      adjres->cov(n,n) = d*d;
+    }
+}
+
+
+void HtmlParser::table_adjusted_orientations()
 {
   if (table_col <= 0) return;
 
