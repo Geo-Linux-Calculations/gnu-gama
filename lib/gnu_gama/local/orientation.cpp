@@ -1,6 +1,6 @@
 /*
   GNU Gama C++ library
-  Copyright (C) 1999, 2018  Ales Cepek <cepek@gnu.orf>
+  Copyright (C) 1999, 2018  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
