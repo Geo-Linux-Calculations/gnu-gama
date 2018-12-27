@@ -352,6 +352,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -362,6 +363,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -373,6 +375,7 @@
         <xs:element ref="right"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -383,6 +386,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -393,6 +397,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -403,6 +408,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -413,6 +419,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -423,6 +430,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -433,6 +441,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 
@@ -470,6 +479,7 @@
         <xs:element ref="to"/>
         <xs:group ref="observation-elements"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 

@@ -710,7 +710,7 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_distance(const char** atts)
   {
-    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
+    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht, ex;
     state = state_obs_distance;
 
     while (*atts)
@@ -723,6 +723,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
+        else if (nam == "extern" ) ex = val;
         else
           return error(T_GKF_undefined_attribute_of_distance +nam+" = "+val);
       }
@@ -753,6 +754,7 @@ namespace GNU_gama { namespace local {
             OD.clusters.push_back( standpoint );
           }
         Distance* d = new Distance(ss, sc, dm);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -771,7 +773,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_angle(const char** atts)
   {
     bool degrees = false;
-    string nam, val, ss=standpoint_id, sl, sp, sm, sv, hf, ht, h2;
+    string nam, val, ss=standpoint_id, sl, sp, sm, sv, hf, ht, h2, ex;
     state = state_obs_angle;
 
     while (*atts)
@@ -789,6 +791,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "from_dh") hf = val;
         else if (nam == "bs_dh"  ) ht = val;
         else if (nam == "fs_dh"  ) h2 = val;
+        else if (nam == "extern" ) ex = val;
         else
           return error(T_GKF_undefined_attribute_of_angle + nam + " = " + val);
       }
@@ -828,6 +831,7 @@ namespace GNU_gama { namespace local {
             OD.clusters.push_back( standpoint );
           }
         Angle* d = new Angle(ss, sl, sp, dm*G2R);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -845,7 +849,7 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_sdistance(const char** atts)
   {
-    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
+    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht, ex;
     state = state_obs_sdistance;
 
     while (*atts)
@@ -858,6 +862,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
+        else if (nam == "extern" ) ex = val;
         else
           return error(T_GKF_undefined_attribute_of_slopedist +nam+" = "+val);
       }
@@ -888,6 +893,7 @@ namespace GNU_gama { namespace local {
             OD.clusters.push_back( standpoint );
           }
         S_Distance* d = new S_Distance(ss, sc, dm);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -906,7 +912,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_zangle(const char** atts)
   {
     bool degrees = false;
-    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
+    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht, ex;
     state = state_obs_zangle;
 
     while (*atts)
@@ -919,6 +925,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
+        else if (nam == "extern" ) ex = val;
         else return error(T_GKF_undefined_attribute_of_zangle +nam+" = "+val);
       }
 
@@ -952,6 +959,7 @@ namespace GNU_gama { namespace local {
             OD.clusters.push_back( standpoint );
           }
         Z_Angle* d = new Z_Angle(ss, sc, dm*G2R);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -1054,7 +1062,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_direction(const char** atts)
   {
     bool degrees = false;
-    string nam, val, sc, sm, ss, hf, ht;
+    string nam, val, sc, sm, ss, hf, ht, ex;
     state = state_obs_direction;
 
     while (*atts)
@@ -1067,6 +1075,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) ss = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
+        else if (nam == "extern" ) ex = val;
         else return error(T_GKF_undefined_attribute_of_direction
                           + nam + " = "+val);
       }
@@ -1096,6 +1105,7 @@ namespace GNU_gama { namespace local {
     try
       {
         Direction* d = new Direction(standpoint_id, sc, dm*G2R);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -1114,7 +1124,7 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_azimuth(const char** atts)
   {
     bool degrees = false;
-    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht;
+    string nam, val, ss=standpoint_id, sc, sm, sv, hf, ht, ex;
     state = state_obs_azimuth;
 
     while (*atts)
@@ -1128,6 +1138,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "stdev"  ) sv = val;
         else if (nam == "from_dh") hf = val;
         else if (nam == "to_dh"  ) ht = val;
+        else if (nam == "extern" ) ex = val;
         else return error(T_GKF_undefined_attribute_of_azimuth
                           + nam + " = "+val);
       }
@@ -1157,6 +1168,7 @@ namespace GNU_gama { namespace local {
     try
       {
         Azimuth* d = new Azimuth(ss, sc, dm*G2R);
+        d->set_extern(ex);
         d->set_from_dh(df);
         d->set_to_dh(dt);
         standpoint->observation_list.push_back( d );
@@ -1368,7 +1380,7 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_dh(const char** atts)
   {
-    string  nam, val, sfrom, sto,  sval, sstdev, sdist;
+    string  nam, val, sfrom, sto,  sval, sstdev, sdist, ex;
     state = state_hdiffs_dh;
 
     while (*atts)
@@ -1376,11 +1388,12 @@ namespace GNU_gama { namespace local {
         nam = string(*atts++);
         val = string(*atts++);
 
-        if      (nam == "from" ) sfrom  = val;
-        else if (nam == "to"   ) sto    = val;
-        else if (nam == "val"  ) sval   = val;
-        else if (nam == "stdev") sstdev = val;
-        else if (nam == "dist" ) sdist  = val;
+        if      (nam == "from"  ) sfrom  = val;
+        else if (nam == "to"    ) sto    = val;
+        else if (nam == "val"   ) sval   = val;
+        else if (nam == "stdev" ) sstdev = val;
+        else if (nam == "dist"  ) sdist  = val;
+        else if (nam == "extern") ex     = val;
         else
           return error(T_GKF_undefined_attribute_of_height_differences
                        + nam + " = " + val);
@@ -1403,6 +1416,7 @@ namespace GNU_gama { namespace local {
     try
       {
         H_Diff* hd = new H_Diff(sfrom, sto, dm, dd);
+        hd->set_extern(ex);
         heightdifferences->observation_list.push_back( hd );
         sigma.push_back(DB_pair(ds, false));
       }
@@ -1463,7 +1477,7 @@ namespace GNU_gama { namespace local {
 
   int GKFparser::process_vec(const char** atts)
   {
-    string  nam, val, sfrom, sto,  sdx, sdy, sdz, hf, ht;
+    string  nam, val, sfrom, sto,  sdx, sdy, sdz, hf, ht, ex;
     state = state_vectors_vec;
 
     while (*atts)
@@ -1478,6 +1492,7 @@ namespace GNU_gama { namespace local {
         else if (nam == "dz"     ) sdz   = val;
         else if (nam == "from_dh") hf    = val;
         else if (nam == "to_dh"  ) ht    = val;
+        else if (nam == "extern" ) ex    = val;
         else
           return error(T_GKF_undefined_attribute_of_height_differences
                        + nam + " = " + val);
@@ -1511,6 +1526,10 @@ namespace GNU_gama { namespace local {
         xdiff->set_from_dh(df);      xdiff->set_to_dh(dt);
         ydiff->set_from_dh(df);      ydiff->set_to_dh(dt);
         zdiff->set_from_dh(df);      zdiff->set_to_dh(dt);
+
+        xdiff->set_extern(ex);
+        ydiff->set_extern(ex);
+        zdiff->set_extern(ex);
 
         vectors->observation_list.push_back( xdiff );
         vectors->observation_list.push_back( ydiff );

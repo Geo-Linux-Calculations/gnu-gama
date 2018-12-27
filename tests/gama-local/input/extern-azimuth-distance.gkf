@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Frantisek Charamza: GEODET/PC, User's Guide, Zdiby 1990
+-------------------------------------------------------
+example: page 238, Appendix B
+
+variant: one fixed point and one azimuth, all other points adjusted
+demo   : 2 azimuths with extern attribute
+</description>
+
+<parameters
+   sigma-apr = "   10 "
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+/>
+
+<points-observations distance-stdev='5.0' direction-stdev="10.0"
+                     azimuth-stdev="15.0">
+
+<point id=  "1" y=" 644498.590 "  x=" 1054980.484 " fix="xy" />
+<point id=  "2" adj="xy" />
+<point id="403" adj="xy" />
+<point id="407" adj="xy" />
+<point id="409" adj="xy" />
+<point id="411" adj="xy" />
+<point id="413" adj="xy" />
+<point id="416" adj="xy" />
+<point id="418" adj="xy" />
+<point id="420" adj="xy" />
+<point id="422" adj="xy" />
+<point id="424" adj="xy" />
+
+<obs from="1">
+   <azimuth    to=  "2" val= "96.4843705724329794"
+               extern="azimuth 1 2"/>
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="422" val= "28.2057" />
+   <direction  to="424" val= "60.4906" />
+   <azimuth    to="403" val="420.85057"
+               extern="azimuth 1 403"/>
+   <direction  to="407" val="382.8182" />
+   <distance to=  "2" val= "845.777" />
+   <distance to="422" val= "493.793" />
+   <distance to="424" val= "288.301" />
+   <distance to="403" val= "388.536" />
+   <distance to="407" val= "498.750" />
+</obs>
+
+<obs from="2">
+   <direction  to=  "1" val=  "0.0000" />
+   <direction  to="407" val= "22.2376" />
+   <direction  to="409" val= "73.8984" />
+   <direction  to="411" val="134.2090" />
+   <direction  to="416" val="203.0706" />
+   <direction  to="418" val="287.2951" />
+   <direction  to="420" val="345.6928" />
+   <direction  to="422" val="368.9908" />
+   <distance to="407" val= "388.562" />
+   <distance to="409" val= "257.498" />
+   <distance to="411" val= "360.282" />
+   <distance to="416" val= "338.919" />
+   <distance to="418" val= "292.094" />
+   <distance to="420" val= "261.408" />
+   <distance to="422" val= "452.249" />
+</obs>
+
+<obs from="407">
+   <direction  to=  "1" val=  "0.0000" />
+   <direction  to="409" val="193.3410" />
+   <direction  to=  "2" val="239.4204" />
+   <direction  to="422" val="323.5443" />
+   <distance to="409" val= "281.997" />
+   <distance to="422" val= "346.415" />
+</obs>
+
+<obs from="409">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="407" val="102.2575" />
+   <direction  to="411" val="310.1751" />
+   <distance to="411" val= "296.281" />
+</obs>
+
+<obs from="411">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="409" val= "49.8647" />
+   <direction  to="413" val="291.4953" />
+   <direction  to="416" val="337.6667" />
+   <distance to="413" val= "252.266" />
+   <distance to="416" val= "360.449" />
+</obs>
+
+<obs from="413">
+   <direction  to="411" val=  "0.0000" />
+   <direction  to="416" val="295.3582" />
+   <distance to="416" val= "239.745" />
+</obs>
+
+<obs from="416">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="411" val= "68.8065" />
+   <direction  to="413" val="117.9922" />
+   <direction  to="418" val="348.1606" />
+   <distance to="418" val= "389.397" />
+</obs>
+
+<obs from="418">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="416" val= "63.9347" />
+   <direction  to="420" val="336.3190" />
+   <distance to="420" val= "246.594" />
+</obs>
+
+<obs from="420">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="418" val= "77.9221" />
+   <direction  to="422" val="250.1804" />
+   <distance to="422" val= "228.207" />
+</obs>
+
+<obs from="422">
+   <direction  to=  "2" val=  "0.0000" />
+   <direction  to="420" val= "26.8834" />
+   <direction  to="424" val="225.7964" />
+   <direction  to=  "1" val="259.2124" />
+   <direction  to="407" val="337.3724" />
+   <distance to="424" val= "279.405" />
+</obs>
+
+<obs from="424">
+   <direction to=  "1" val=  "0.0000" />
+   <direction to="422" val="134.2955" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>
+
+
+
+
+
+
+

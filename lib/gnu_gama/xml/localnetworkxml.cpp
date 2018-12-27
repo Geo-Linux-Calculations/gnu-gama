@@ -99,7 +99,10 @@ public:
 
     void visit(Distance* obs)
     {
-      out << "<" << (tag="distance") << ">";
+      out << "<" << (tag="distance");// << ">";;
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -110,7 +113,10 @@ public:
     }
     void visit(Direction* obs)
     {
-      out << "<" << (tag="direction") << ">";
+      out << "<" << (tag="direction");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(angular);
       double m = R2G*(obs->value());
       *ostr << " <obs>" << m << "</obs>";
@@ -123,7 +129,10 @@ public:
     }
     void visit(Angle* obs)
     {
-      out << "<" << (tag="angle") << ">";
+      out << "<" << (tag="angle");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(angular);
       double m = R2G*(obs->value());
       *ostr << " <obs>" << m << "</obs>";
@@ -138,7 +147,10 @@ public:
     }
     void visit(H_Diff* obs)
     {
-      out << "<" << (tag="height-diff") << ">";
+      out << "<" << (tag="height-diff");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m =obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -149,7 +161,10 @@ public:
     }
     void visit(S_Distance* obs)
     {
-      out << "<" << (tag="slope-distance") << ">";
+      out << "<" << (tag="slope-distance");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -160,7 +175,10 @@ public:
     }
     void visit(Z_Angle* obs)
     {
-      out << "<" << (tag="zenith-angle") << ">";
+      out << "<" << (tag="zenith-angle");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(angular);
       double m = R2G*(obs->value());
       *ostr << " <obs>" << m << "</obs>";
@@ -204,7 +222,10 @@ public:
     }
     void visit(Xdiff* obs)
     {
-      out << "<" << (tag="dx") << ">";
+      out << "<" << (tag="dx");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -215,7 +236,10 @@ public:
     }
     void visit(Ydiff* obs)
     {
-      out << "<" << (tag="dy") << ">";
+      out << "<" << (tag="dy");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << y_sign*m << "</obs>";
@@ -226,7 +250,10 @@ public:
     }
     void visit(Zdiff* obs)
     {
-      out << "<" << (tag="dz") << ">";
+      out << "<" << (tag="dz");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -237,7 +264,10 @@ public:
     }
     void visit(Azimuth* obs)
     {
-      out << "<" << (tag="azimuth") << ">";
+      out << "<" << (tag="azimuth");// << ">";
+      string s = obs->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(angular);
       double m = R2G*(obs->value());
       *ostr << " <obs>" << m << "</obs>";

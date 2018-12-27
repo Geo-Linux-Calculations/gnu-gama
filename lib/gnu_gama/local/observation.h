@@ -138,6 +138,10 @@ namespace GNU_gama { namespace local {
 
       virtual bool angular() const { return false; }
 
+      /** \brief XML attribute "extern" is not processed by gama-local. */
+      std::string get_extern()   const { return extern_; }
+      void set_extern(std::string s);
+
     protected:
 
       /** \brief Constructs only partially initialized object.
@@ -175,6 +179,7 @@ namespace GNU_gama { namespace local {
       mutable bool  active_;       // set false for unused observation
       double        from_dh_;      // height of instrument
       double        to_dh_;        // height of reflector
+      std::string   extern_;
     };
 
 

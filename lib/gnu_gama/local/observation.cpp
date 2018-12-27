@@ -1,28 +1,29 @@
 /*
-    GNU Gama --- adjustment of geoC++ library
-    Copyright (C) 2000, 2010, 2014  Ales Cepek <cepek@gnu.org>
+  GNU Gama -- adjustment of geodetic networks
+  Copyright (C) 2000, 2010, 2014, 2018  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  GNU Gama is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  GNU Gama is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software Foundation,
-    Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/gon2deg.h>
+#include <cctype>
+#include <string>
 
 namespace GNU_gama { namespace local
 {
@@ -42,10 +43,33 @@ bool  Observation::check_std_dev() const
   return cluster && cluster->covariance_matrix.dim();
 }
 
-
 double Observation::stdDev() const
 {
    return cluster->stdDev(cluster_index);
+}
+
+void Observation::set_extern(std::string s)
+{
+  extern_.clear();
+  if (s.empty()) return;
+
+  while (!s.empty() && isspace(s.back())) s.pop_back();
+  string::const_iterator i = s.begin();
+  string::const_iterator e = s.end();
+  while (i != e && std::isspace(*i)) i++;
+
+  while (i != e)
+    {
+      if (!std::isspace(*i))
+        {
+          extern_.push_back(*i++);
+        }
+      else
+        {
+          extern_.push_back(' ');
+          while (i != e && std::isspace(*i)) i++;
+        }
+    }
 }
 
 double Direction::orientation() const

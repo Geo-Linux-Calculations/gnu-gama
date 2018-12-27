@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Tetrahedron with angular observations in gons / extern attribute demo
+</description>
+
+<network-general-parameters
+   gama-local-version="2.02"
+   gama-local-algorithm="gso"
+   gama-local-compiler="g++ 6.3"
+   axes-xy="ne"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>2</count-xyz> <count-xy>0</count-xy> <count-z>2</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>1</count-xyz> <count-xy>0</count-xy> <count-z>1</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>1</distances>
+   <directions>15</directions>
+   <angles>2</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>3</h-diffs>
+   <z-angles>15</z-angles>
+   <s-dists>6</s-dists>
+   <vectors>2</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>48</equations>
+   <unknowns>12</unknowns>
+   <degrees-of-freedom>37</degrees-of-freedom>
+   <defect>1</defect>
+   <sum-of-squares>9.9248292e+04</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>5.1791759e+01</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>5.179</ratio>
+   <lower>0.773</lower>
+   <upper>1.227</upper>
+   <failed/>
+
+   <confidence-scale>2.0261925e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>0.000000</x> <y>0.000000</y> </point>
+   <point> <id>3</id> <x>1500.000000</x> <y>2598.076000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>1</id> <Z>0.000000</Z> </point>
+   <point> <id>2</id> <X>3000.000000</X> <Y>0.000000</Y> <Z>0.000000</Z> </point>
+   <point> <id>3</id> <z>0.091995</z> </point>
+   <point> <id>4</id> <x>1500.010471</x> <y>865.990573</y> <z>2449.497502</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>1</id> <Z>-0.0177135264248634</Z> </point>
+   <point> <id>2</id> <X>3000.0087434691331509</X> <Y>0.0297875255750141</Y> <Z>0.0177135264248634</Z> </point>
+   <point> <id>3</id> <z>0.0919950640650400</z> </point>
+   <point> <id>4</id> <x>1500.0104715662891977</x> <y>865.9905732048272284</y> <z>2449.4975008629194235</z> </point>
+</adjusted>
+
+<orientation-shifts>
+   <orientation> <id>1</id> <approx>0.001237</approx> <adj>0.001237</adj> </orientation>
+   <orientation> <id>2</id> <approx>399.999917</approx> <adj>399.999917</adj> </orientation>
+   <orientation> <id>3</id> <approx>0.000123</approx> <adj>0.000123</adj> </orientation>
+   <orientation> <id>4</id> <approx>0.002380</approx> <adj>0.002380</adj> </orientation>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>12</dim> <band>11</band>
+<flt>5.5088496e+01</flt> <flt>-4.5116522e+00</flt> <flt>1.1646858e+01</flt>
+<flt>-5.5088496e+01</flt> <flt>1.4699713e+01</flt> <flt>1.8923172e+01</flt>
+<flt>1.4934205e+00</flt> <flt>2.7204285e+01</flt> <flt>-1.7686859e-01</flt>
+<flt>6.0115583e-01</flt> <flt>2.4539203e+00</flt> <flt>9.5942389e-01</flt>
+<flt>2.7606416e+02</flt> <flt>1.0721033e+02</flt> <flt>4.5116522e+00</flt>
+<flt>-4.4898120e+00</flt> <flt>3.9425592e+01</flt> <flt>1.4744476e+01</flt>
+<flt>-2.8810846e+01</flt> <flt>6.7329542e+00</flt> <flt>5.2593931e+01</flt>
+<flt>2.5533381e+01</flt> <flt>2.8286826e+01</flt> <flt>8.8052115e+02</flt>
+<flt>-1.1646858e+01</flt> <flt>2.3096839e-01</flt> <flt>6.1079432e+00</flt>
+<flt>1.1114894e+02</flt> <flt>4.5089140e+01</flt> <flt>7.3703441e+01</flt>
+<flt>1.8782197e+02</flt> <flt>3.8458040e+01</flt> <flt>9.9995910e+01</flt>
+<flt>5.5088496e+01</flt> <flt>-1.4699713e+01</flt> <flt>-1.8923172e+01</flt>
+<flt>-1.4934205e+00</flt> <flt>-2.7204285e+01</flt> <flt>1.7686859e-01</flt>
+<flt>-6.0115583e-01</flt> <flt>-2.4539203e+00</flt> <flt>-9.5942389e-01</flt>
+<flt>1.4392184e+02</flt> <flt>-2.9540514e+00</flt> <flt>-2.2377059e+01</flt>
+<flt>3.2909587e+01</flt> <flt>-2.1770255e+00</flt> <flt>2.0542311e+00</flt>
+<flt>-6.2880395e-01</flt> <flt>-2.5053065e-01</flt> <flt>3.8857883e+02</flt>
+<flt>5.3230572e+01</flt> <flt>-4.4836375e+01</flt> <flt>-1.7723050e+01</flt>
+<flt>-2.3325239e+01</flt> <flt>5.0237995e+01</flt> <flt>3.0632339e+00</flt>
+<flt>3.8752514e+02</flt> <flt>-1.3755314e+00</flt> <flt>4.5719817e+01</flt>
+<flt>-1.8986209e+01</flt> <flt>1.1356153e+01</flt> <flt>1.2696767e+01</flt>
+<flt>2.9392173e+02</flt> <flt>5.7899904e+00</flt> <flt>8.9310553e+00</flt>
+<flt>-5.6633479e+00</flt> <flt>3.0193187e+00</flt> <flt>1.2743166e+02</flt>
+<flt>1.2699986e+01</flt> <flt>8.4787166e-01</flt> <flt>8.2328108e+00</flt>
+<flt>2.8230748e+02</flt> <flt>7.0069761e+00</flt> <flt>2.3150809e+01</flt>
+<flt>2.4164213e+02</flt> <flt>5.6447502e+00</flt> <flt>2.4490584e+02</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>6</ind>
+<ind>1</ind>
+<ind>2</ind>
+<ind>7</ind>
+<ind>8</ind>
+<ind>4</ind>
+<ind>5</ind>
+<ind>9</ind>
+<ind>3</ind>
+<ind>10</ind>
+<ind>11</ind>
+<ind>12</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<angle extern="duplicate angle 1 2 3"> <from>1</from> <left>2</left> <right>3</right>
+   <obs>66.6665519999999816</obs><adj>66.6660323132131651</adj> <stdev>6.2969285323056452</stdev>
+   <qrr>0.145</qrr> <f>69.605</f> <std-residual>0.263</std-residual>
+   <err-obs>-5.726</err-obs> <err-adj>-0.529</err-adj>
+   </angle>
+<angle extern="duplicate angle 1 2 3"> <from>1</from> <left>2</left> <right>3</right>
+   <obs>66.6665519999999816</obs><adj>66.6660323132131651</adj> <stdev>6.2969285323056452</stdev>
+   <qrr>0.145</qrr> <f>69.605</f> <std-residual>0.263</std-residual>
+   <err-obs>-5.726</err-obs> <err-adj>-0.529</err-adj>
+   </angle>
+<direction extern="duplicate direction 1 2"> <from>1</from> <to>2</to>
+   <obs>0.0000620000000000</obs> <adj>399.9993955350002466</adj> <stdev>11.6534225347020346</stdev>
+   <qrr>0.209</qrr> <f>55.881</f> <std-residual>0.281</std-residual>
+   <err-obs>-8.275</err-obs> <err-adj>-1.611</err-adj>
+   </direction>
+<direction extern="duplicate direction 1 3"> <from>1</from> <to>3</to>
+   <obs>66.6666139999999956</obs> <adj>66.6654278482134544</adj> <stdev>11.2885632308160542</stdev>
+   <qrr>0.213</qrr> <f>57.263</f> <std-residual>0.497</std-residual>
+   <err-obs>-14.512</err-obs> <err-adj>-2.651</err-adj>
+   </direction>
+<direction extern="duplicate direction 1 4"> <from>1</from> <to>4</to>
+   <obs>33.3289430000000024</obs> <adj>33.3307956167862756</adj> <stdev>11.7461563703471459</stdev>
+   <qrr>0.209</qrr> <f>55.530</f> <std-residual>0.783</std-residual>
+   <err-obs>23.093</err-obs> <err-adj>4.567</err-adj>
+   </direction>
+<direction extern="duplicate direction 1 2"> <from>1</from> <to>2</to>
+   <obs>0.0000620000000000</obs> <adj>399.9993955350002466</adj> <stdev>11.6534225347020346</stdev>
+   <qrr>0.209</qrr> <f>55.881</f> <std-residual>0.281</std-residual>
+   <err-obs>-8.275</err-obs> <err-adj>-1.611</err-adj>
+   </direction>
+<direction extern="duplicate direction 1 3"> <from>1</from> <to>3</to>
+   <obs>66.6666139999999956</obs> <adj>66.6654278482134544</adj> <stdev>11.2885632308160542</stdev>
+   <qrr>0.213</qrr> <f>57.263</f> <std-residual>0.497</std-residual>
+   <err-obs>-14.512</err-obs> <err-adj>-2.651</err-adj>
+   </direction>
+<direction extern="duplicate direction 1 4"> <from>1</from> <to>4</to>
+   <obs>33.3289430000000024</obs> <adj>33.3307956167862756</adj> <stdev>11.7461563703471459</stdev>
+   <qrr>0.209</qrr> <f>55.530</f> <std-residual>0.783</std-residual>
+   <err-obs>23.093</err-obs> <err-adj>4.567</err-adj>
+   </direction>
+<slope-distance extern="s-distance 1 2"> <from>1</from> <to>2</to>
+   <obs>3000.0050000000001091</obs> <adj>3000.0087434691331509</adj> <stdev>16.6151785286762887</stdev>
+   <qrr>0.281</qrr> <f>48.257</f> <std-residual>0.136</std-residual>
+   <err-obs>5.112</err-obs> <err-adj>1.369</err-adj>
+   </slope-distance>
+<slope-distance extern="s-distance 1 3"> <from>1</from> <to>3</to>
+   <obs>2999.9870000000000800</obs> <adj>2999.9998189163602547</adj> <stdev>0.0003993637336025</stdev>
+   <qrr>0.384</qrr> <f>99.999</f> <std-residual>0.399</std-residual>
+   <err-obs>12.819</err-obs> <err-adj>0.000</err-adj>
+   </slope-distance>
+<slope-distance extern="s-distance 1 4"> <from>1</from> <to>4</to>
+   <obs>3000.0369999999998072</obs> <adj>3000.0159788088535606</adj> <stdev>16.9644555731119198</stdev>
+   <qrr>0.277</qrr> <f>47.169</f> <std-residual>0.771</std-residual>
+   <err-obs>-29.160</err-obs> <err-adj>-8.139</err-adj>
+   </slope-distance>
+<distance extern="distance 1 2"> <from>1</from> <to>2</to>
+   <obs>3000.0059999999998581</obs> <adj>3000.0087434691331509</adj> <stdev>16.6151785286762923</stdev>
+   <qrr>0.057</qrr> <f>19.798</f> <std-residual>0.222</std-residual>
+   <err-obs>7.690</err-obs> <err-adj>4.946</err-adj>
+   </distance>
+<zenith-angle extern="duplicate zenith angle 1 2"> <from>1</from> <to>2</to>
+   <obs>99.9988299999999981</obs><adj>99.9992482145892865</adj> <stdev>3.1500635866494200</stdev>
+   <qrr>0.529</qrr> <f>91.668</f> <std-residual>0.111</std-residual>
+   <err-obs>4.211</err-obs> <err-adj>0.029</err-adj>
+   </zenith-angle>
+<zenith-angle extern="duplicate zenith angle 1 3"> <from>1</from> <to>3</to>
+   <obs>99.9966079999999948</obs><adj>99.9976719112621169</adj> <stdev>2.7636674621622692</stdev>
+   <qrr>0.530</qrr> <f>92.690</f> <std-residual>0.282</std-residual>
+   <err-obs>10.696</err-obs> <err-adj>0.057</err-adj>
+   </zenith-angle>
+<zenith-angle extern="duplicate zenith angle 1 4"> <from>1</from> <to>4</to>
+   <obs>39.1810850000000030</obs><adj>39.1821985198981935</adj> <stdev>4.4574590645410872</stdev>
+   <qrr>0.525</qrr> <f>88.210</f> <std-residual>0.297</std-residual>
+   <err-obs>11.292</err-obs> <err-adj>0.157</err-adj>
+   </zenith-angle>
+<zenith-angle extern="duplicate zenith angle 1 2"> <from>1</from> <to>2</to>
+   <obs>99.9988299999999981</obs><adj>99.9992482145892865</adj> <stdev>3.1500635866494200</stdev>
+   <qrr>0.529</qrr> <f>91.668</f> <std-residual>0.111</std-residual>
+   <err-obs>4.211</err-obs> <err-adj>0.029</err-adj>
+   </zenith-angle>
+<zenith-angle extern="duplicate zenith angle 1 3"> <from>1</from> <to>3</to>
+   <obs>99.9966079999999948</obs><adj>99.9976719112621169</adj> <stdev>2.7636674621622692</stdev>
+   <qrr>0.530</qrr> <f>92.690</f> <std-residual>0.282</std-residual>
+   <err-obs>10.696</err-obs> <err-adj>0.057</err-adj>
+   </zenith-angle>
+<zenith-angle extern="duplicate zenith angle 1 4"> <from>1</from> <to>4</to>
+   <obs>39.1810850000000030</obs><adj>39.1821985198981935</adj> <stdev>4.4574590645410872</stdev>
+   <qrr>0.525</qrr> <f>88.210</f> <std-residual>0.297</std-residual>
+   <err-obs>11.292</err-obs> <err-adj>0.157</err-adj>
+   </zenith-angle>
+<direction extern="direction 2 1"> <from>2</from> <to>1</to>
+   <obs>199.9997589999999832</obs> <adj>200.0007150349651397</adj> <stdev>15.5642110376899350</stdev>
+   <qrr>0.170</qrr> <f>41.075</f> <std-residual>0.448</std-residual>
+   <err-obs>14.645</err-obs> <err-adj>5.085</err-adj>
+   </direction>
+<direction extern="direction 2 3"> <from>2</from> <to>3</to>
+   <obs>133.3334570000000099</obs> <adj>133.3338952396489674</adj> <stdev>15.7014957568796873</stdev>
+   <qrr>0.168</qrr> <f>40.556</f> <std-residual>0.206</std-residual>
+   <err-obs>6.777</err-obs> <err-adj>2.395</err-adj>
+   </direction>
+<direction extern="direction 2 4"> <from>2</from> <to>4</to>
+   <obs>166.6701689999999587</obs> <adj>166.6687747253858447</adj> <stdev>16.2732634714916422</stdev>
+   <qrr>0.161</qrr> <f>38.391</f> <std-residual>0.670</std-residual>
+   <err-obs>-22.473</err-obs> <err-adj>-8.530</err-adj>
+   </direction>
+<slope-distance extern="s-distance 2 3"> <from>2</from> <to>3</to>
+   <obs>2999.9920000000001892</obs> <adj>2999.9783928114970877</adj> <stdev>25.2301228430944597</stdev>
+   <qrr>0.147</qrr> <f>21.428</f> <std-residual>0.685</std-residual>
+   <err-obs>-35.561</err-obs> <err-adj>-21.954</err-adj>
+   </slope-distance>
+<slope-distance extern="s-distance 2 4"> <from>2</from> <to>4</to>
+   <obs>2999.9699999999997999</obs> <adj>2999.9723541538810423</adj> <stdev>20.7244354443440066</stdev>
+   <qrr>0.224</qrr> <f>35.460</f> <std-residual>0.096</std-residual>
+   <err-obs>4.035</err-obs> <err-adj>1.681</err-adj>
+   </slope-distance>
+<zenith-angle extern="z-angle 2 1"> <from>2</from> <to>1</to>
+   <obs>100.0011669999999810</obs><adj>100.0007517854106993</adj> <stdev>3.1500635866494200</stdev>
+   <qrr>0.529</qrr> <f>91.668</f> <std-residual>0.110</std-residual>
+   <err-obs>-4.181</err-obs> <err-adj>-0.029</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 2 3"> <from>2</from> <to>3</to>
+   <obs>99.9978110000000129</obs><adj>99.9984236827760782</adj> <stdev>3.2071338648439554</stdev>
+   <qrr>0.529</qrr> <f>91.517</f> <std-residual>0.163</std-residual>
+   <err-obs>6.171</err-obs> <err-adj>0.044</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 2 4"> <from>2</from> <to>4</to>
+   <obs>39.1810279999999977</obs><adj>39.1821914440771621</adj> <stdev>4.9938931031489382</stdev>
+   <qrr>0.524</qrr> <f>86.791</f> <std-residual>0.310</std-residual>
+   <err-obs>11.841</err-obs> <err-adj>0.207</err-adj>
+   </zenith-angle>
+<direction extern="direction 3 1"> <from>3</from> <to>1</to>
+   <obs>266.6665429999999901</obs> <adj>266.6665418850739684</adj> <stdev>15.5448425209510805</stdev>
+   <qrr>0.170</qrr> <f>41.149</f> <std-residual>0.001</std-residual>
+   <err-obs>-0.017</err-obs> <err-adj>-0.006</err-adj>
+   </direction>
+<direction extern="direction 3 2"> <from>3</from> <to>2</to>
+   <obs>333.3334879999999885</obs> <adj>333.3336897765445315</adj> <stdev>15.7325716614710149</stdev>
+   <qrr>0.168</qrr> <f>40.438</f> <std-residual>0.095</std-residual>
+   <err-obs>3.127</err-obs> <err-adj>1.109</err-adj>
+   </direction>
+<direction extern="direction 3 4"> <from>3</from> <to>4</to>
+   <obs>300.0004629999999679</obs> <adj>300.0002623383814466</adj> <stdev>16.0376312808622608</stdev>
+   <qrr>0.164</qrr> <f>39.283</f> <std-residual>0.096</std-residual>
+   <err-obs>-3.178</err-obs> <err-adj>-1.172</err-adj>
+   </direction>
+<slope-distance extern="s-diatance 3 4"> <from>3</from> <to>4</to>
+   <obs>2999.9899999999997817</obs> <adj>2999.9512092138452317</adj> <stdev>18.9047730681627897</stdev>
+   <qrr>0.251</qrr> <f>41.127</f> <std-residual>1.494</std-residual>
+   <err-obs>-59.368</err-obs> <err-adj>-20.578</err-adj>
+   </slope-distance>
+<zenith-angle extern="z-angle 3 1"> <from>3</from> <to>1</to>
+   <obs>100.0033880000000011</obs><adj>100.0023280887378974</adj> <stdev>2.7636674621622692</stdev>
+   <qrr>0.530</qrr> <f>92.690</f> <std-residual>0.281</std-residual>
+   <err-obs>-10.656</err-obs> <err-adj>-0.057</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 3 2"> <from>3</from> <to>2</to>
+   <obs>100.0020619999999809</obs><adj>100.0015763172239218</adj> <stdev>3.2071338648439554</stdev>
+   <qrr>0.529</qrr> <f>91.517</f> <std-residual>0.129</std-residual>
+   <err-obs>-4.892</err-obs> <err-adj>-0.035</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 3 4"> <from>3</from> <to>4</to>
+   <obs>39.1852370000000008</obs><adj>39.1842871142284253</adj> <stdev>4.2556365603154793</stdev>
+   <qrr>0.526</qrr> <f>88.744</f> <std-residual>0.253</std-residual>
+   <err-obs>-9.621</err-obs> <err-adj>-0.122</err-adj>
+   </zenith-angle>
+<direction extern="direction 4 1"> <from>4</from> <to>1</to>
+   <obs>233.3271259999999927</obs> <adj>233.3296525688769236</adj> <stdev>16.8555527937774627</stdev>
+   <qrr>0.154</qrr> <f>36.187</f> <std-residual>1.242</std-residual>
+   <err-obs>42.622</err-obs> <err-adj>17.356</err-adj>
+   </direction>
+<direction extern="direction 2 2"> <from>4</from> <to>2</to>
+   <obs>366.6680979999999863</obs> <adj>366.6663121775115428</adj> <stdev>17.9480970189786468</stdev>
+   <qrr>0.140</qrr> <f>32.050</f> <std-residual>0.922</std-residual>
+   <err-obs>-33.176</err-obs> <err-adj>-15.318</err-adj>
+   </direction>
+<direction extern="direction 5 3"> <from>4</from> <to>3</to>
+   <obs>99.9987459999999970</obs> <adj>99.9980052536115522</adj> <stdev>17.1798438951487995</stdev>
+   <qrr>0.150</qrr> <f>34.959</f> <std-residual>0.369</std-residual>
+   <err-obs>-12.839</err-obs> <err-adj>-5.431</err-adj>
+   </direction>
+<zenith-angle extern="z-angle 4 1"> <from>4</from> <to>1</to>
+   <obs>160.8190219999999897</obs><adj>160.8178014801018207</adj> <stdev>4.4574590645410872</stdev>
+   <qrr>0.525</qrr> <f>88.210</f> <std-residual>0.325</std-residual>
+   <err-obs>-12.377</err-obs> <err-adj>-0.172</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 4 2"> <from>4</from> <to>2</to>
+   <obs>160.8186689999999999</obs><adj>160.8178085559228521</adj> <stdev>4.9938931031489382</stdev>
+   <qrr>0.524</qrr> <f>86.791</f> <std-residual>0.230</std-residual>
+   <err-obs>-8.757</err-obs> <err-adj>-0.153</err-adj>
+   </zenith-angle>
+<zenith-angle extern="z-angle 4 3"> <from>4</from> <to>3</to>
+   <obs>160.8143579999999986</obs><adj>160.8157128857715747</adj> <stdev>4.2556365603154793</stdev>
+   <qrr>0.526</qrr> <f>88.744</f> <std-residual>0.361</std-residual>
+   <err-obs>13.723</err-obs> <err-adj>0.174</err-adj>
+   </zenith-angle>
+<height-diff extern="dh 1 2"> <from>1</from> <to>2</to>
+   <obs>0.0610000000000000</obs> <adj>0.0354270528497268</adj> <stdev>14.8443249332378002</stdev>
+   <qrr>0.070</qrr> <f>26.509</f> <std-residual>1.867</std-residual>
+   <err-obs>-55.605</err-obs> <err-adj>-30.032</err-adj>
+   </height-diff>
+<height-diff extern="dh 2 3"> <from>2</from> <to>3</to>
+   <obs>0.1000000000000000</obs> <adj>0.0742815376401766</adj> <stdev>15.1132313521946049</stdev>
+   <qrr>0.067</qrr> <f>25.178</f> <std-residual>1.919</std-residual>
+   <err-obs>-58.430</err-obs> <err-adj>-32.711</err-adj>
+   </height-diff>
+<height-diff extern="dh 3 1"> <from>3</from> <to>1</to>
+   <obs>-0.1600000000000000</obs> <adj>-0.1097085904899034</adj> <stdev>13.0234753117935185</stdev>
+   <qrr>0.089</qrr> <f>35.523</f> <std-residual>3.257</std-residual>
+   <err-obs>86.074</err-obs> <err-adj>35.783</err-adj>
+   </height-diff>
+<dx extern="vec 1 4"> <from>1</from> <to>4</to>
+   <obs>1500.0129999999999200</obs> <adj>1500.0104715662891977</adj> <stdev>19.7124030246198210</stdev>
+   <qrr>0.105</qrr> <f>23.878</f> <std-residual>0.151</std-residual>
+   </dx>
+<dy extern="vec 1 4"> <from>1</from> <to>4</to>
+   <obs>866.0309999999999491</obs> <adj>865.9905732048272284</adj> <stdev>19.9593342804080081</stdev>
+   <qrr>0.091</qrr> <f>21.335</f> <std-residual>2.581</std-residual>
+   </dy>
+<dz extern="vec 1 4"> <from>1</from> <to>4</to>
+   <obs>2449.4879999999998290</obs> <adj>2449.5152143893442371</adj> <stdev>17.7885445836613911</stdev>
+   <qrr>0.112</qrr> <f>28.383</f> <std-residual>1.570</std-residual>
+   </dz>
+<dx extern="vec 1 3"> <from>1</from> <to>3</to>
+   <obs>1499.9900000000000091</obs> <adj>1500.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.240</qrr> <f>100.000</f> <std-residual>0.394</std-residual>
+   </dx>
+<dy extern="vec 1 3"> <from>1</from> <to>3</to>
+   <obs>2598.0720000000001164</obs> <adj>2598.0760000000000218</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.250</qrr> <f>100.000</f> <std-residual>0.154</std-residual>
+   </dy>
+<dz extern="vec 1 3"> <from>1</from> <to>3</to>
+   <obs>0.0060000000000000</obs> <adj>0.1097085904899034</adj> <stdev>13.7900502012351609</stdev>
+   <qrr>0.189</qrr> <f>47.782</f> <std-residual>4.605</std-residual>
+   </dz>
+
+</observations>
+
+</gama-local-adjustment>

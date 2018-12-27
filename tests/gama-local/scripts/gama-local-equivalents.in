@@ -28,3 +28,11 @@ scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
 a=stroner-levelling-a; b=stroner-levelling-b
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                           $b @GAMA_INPUT@/$b.gkf
+
+a=tst-tetrahedron-3-gon; b=extern-tst-tetrahedron-3-gon
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf
+
+a=azimuth-distance; b=extern-azimuth-distance
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf

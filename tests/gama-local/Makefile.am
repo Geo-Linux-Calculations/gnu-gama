@@ -41,7 +41,9 @@ INPUT_FILES = gama-local \
               triangle-1 \
               triangle-2 \
               stroner-levelling-a \
-              stroner-levelling-b
+              stroner-levelling-b \
+              extern-azimuth-distance \
+              extern-tst-tetrahedron-3-gon
 
 
 GAMA_SCRIPT  = $(srcdir)/scripts
