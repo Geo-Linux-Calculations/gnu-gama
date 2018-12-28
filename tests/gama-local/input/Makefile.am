@@ -19,6 +19,10 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              triangle-2.gkf            triangle-2.xml \
              stroner-levelling-a.gkf   stroner-levelling-a.xml \
              stroner-levelling-b.gkf   stroner-levelling-b.xml \
+             extern-tst-tetrahedron-3-gon.gkf \
+             extern-tst-tetrahedron-3-gon.xml \
+             extern-azimuth-distance.gkf \
+             extern-azimuth-distance.xml \
              gama-local-nop.gkf \
              gama-local-par.gkf \
              gama-local-deprecated.gkf \
