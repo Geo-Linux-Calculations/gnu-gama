@@ -47,7 +47,7 @@ using namespace GNU_gama::local;
 
 
 typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
-typedef GNU_gama::Cluster<Observation>             Clust_r;  // 1.10
+typedef GNU_gama::Cluster<Observation>             Cluster_;  // 1.10
 
 namespace
 {
@@ -1249,7 +1249,7 @@ void LocalNetwork::vyrovnani_()
            cit=OD.clusters.begin(); cit!=OD.clusters.end(); ++cit)
       if (const int N = (*cit)->activeObs())
         {
-          const Clust_r& cluster = *(*cit);
+          const Cluster_& cluster = *(*cit);
           // ??? if (cluster.covariance_matrix.bandWidth())
           // ???   {
           // ???     // calculation for correlated observations missing !!!

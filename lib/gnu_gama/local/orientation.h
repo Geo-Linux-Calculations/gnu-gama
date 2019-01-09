@@ -29,19 +29,29 @@
 namespace GNU_gama { namespace local {
 
 class Orientation {
-
-   PointData&       PL;
-   ObservationList& OL;
-
 public:
 
-   Orientation(PointData& p, ObservationList& o) : PL(p), OL(o) {}
+  Orientation(PointData& p, ObservationList& o) : PD_(p), OL_(o) {}
 
-   // L1 estimate of the standpoint orientation (iter. to the first direction)
-   void orientation(ObservationList::const_iterator&, double&, int&);
+  // L1 estimate of the standpoint orientation
+  /*
+   *  iter   iterator to the first observation in a cluster
+   *  sp     pointer to a StandPoint cluster
+   *  z      resulting orientation (or 0 if computation failed)
+   *  n      number of used directions in the cluster (0 if none)
+   *
+   */
+  void orientation(StandPoint* sp, double& z, int& n);
 
-   // add all possible orientations for the observation list
-   void add_all();
+  // add all possible orientations for the observation list
+  void add_all();
+
+private:
+
+  PointData&       PD_;
+  ObservationList& OL_;
+
+  void orientation(ObservationList::const_iterator& iter, double& z, int& n);
 };
 
 }}

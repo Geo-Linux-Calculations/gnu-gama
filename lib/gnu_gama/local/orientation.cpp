@@ -27,26 +27,25 @@
 #include <iomanip>
 
 using namespace GNU_gama::local;
-
-typedef GNU_gama::Cluster<Observation>  Clust_r;   // 1.11
+using Cluster_ = GNU_gama::Cluster<Observation>;
 
 
 void Orientation::add_all()
 {
-  ObservationList::const_iterator iterator = OL.begin();
+  ObservationList::const_iterator iterator = OL_.begin();
   double l1;
   int    dir_count;
 
-  while (iterator != OL.end())
+  while (iterator != OL_.end())
     if (const Direction* direction = dynamic_cast<const Direction*>(*iterator))
       {
-	Clust_r* cluster = const_cast<Clust_r*>(direction->ptr_cluster());
+        Cluster_* cluster = const_cast<Cluster_*>(direction->ptr_cluster());
         StandPoint* standpoint = static_cast<StandPoint*>(cluster);
         if (standpoint->test_orientation())
           {
-            const Clust_r* ca = direction->ptr_cluster();
-            const Clust_r* cb = ca;
-            while (iterator != OL.end())
+            const Cluster_* ca = direction->ptr_cluster();
+            const Cluster_* cb = ca;
+            while (iterator != OL_.end())
               {
                 cb = (*iterator)->ptr_cluster();
                 if (ca == cb)
@@ -69,57 +68,57 @@ void Orientation::add_all()
 void Orientation::orientation(ObservationList::const_iterator& mer,
                               double& z, int& dir_count)
 {
-   const Clust_r* current = (*mer)->ptr_cluster();
-   PointData::const_iterator pa = PL.find( (*mer)->from() );
-   if (pa == PL.end() || !(*pa).second.test_xy())
-   {
-      while (mer != OL.end() && (*mer)->ptr_cluster() == current)  ++mer;
+  const Cluster_* current = (*mer)->ptr_cluster();
+  PointData::const_iterator pa = PD_.find( (*mer)->from() );
+  if (pa == PD_.end() || !(*pa).second.test_xy())
+    {
+      while (mer != OL_.end() && (*mer)->ptr_cluster() == current)  ++mer;
 
       z = 0;
       dir_count = 0;
       return;
-   }
+    }
 
-   std::vector<double> sz;
+  std::vector<double> sz;
 
-   while ( mer != OL.end() && (*mer)->ptr_cluster() == current )
-   {
+  while ( mer != OL_.end() && (*mer)->ptr_cluster() == current )
+    {
       if (const Direction* direction = dynamic_cast<const Direction*>(*mer))
         {
-          PointData::const_iterator pb = PL.find(direction->to());
-          if (pb != PL.end() && (*pb).second.test_xy())
+          PointData::const_iterator pb = PD_.find(direction->to());
+          if (pb != PD_.end() && (*pb).second.test_xy())
             {
               // gama 1.9.04
               double zn;
               try
-                {
-                  zn = bearing((*pa).second, (*pb).second);
-                }
+              {
+                zn = bearing((*pa).second, (*pb).second);
+              }
               catch (GNU_gama::local::Exception e)
-                {
-                  std::stringstream s;
-                  s.precision(5);
-                  s << e.what() << "\n\n";
+              {
+                std::stringstream s;
+                s.precision(5);
+                s << e.what() << "\n\n";
 
-                  s.precision(5);
-                  s.setf(std::ios_base::fixed, std::ios_base::floatfield);
+                s.precision(5);
+                s.setf(std::ios_base::fixed, std::ios_base::floatfield);
 
-                  s << std::setw(13) << pa->first;
-                  s << "  x = " << std::setw(13) << pa->second.x();
-                  s << "  y = " << std::setw(13) << pa->second.y();
-                  s << "\n";
+                s << std::setw(13) << pa->first;
+                s << "  x = " << std::setw(13) << pa->second.x();
+                s << "  y = " << std::setw(13) << pa->second.y();
+                s << "\n";
 
-                  s << std::setw(13) << pb->first;
-                  s << "  x = " << std::setw(13) << pb->second.x();
-                  s << "  y = " << std::setw(13) << pb->second.y();
-                  s << "\n";
+                s << std::setw(13) << pb->first;
+                s << "  x = " << std::setw(13) << pb->second.x();
+                s << "  y = " << std::setw(13) << pb->second.y();
+                s << "\n";
 
-                  throw GNU_gama::local::Exception(s.str());
-                }
+                throw GNU_gama::local::Exception(s.str());
+              }
               catch (...)
-                {
-                  throw;
-                }
+              {
+                throw;
+              }
               double sn = direction->value();
               double df = zn - sn;
               // if (df < 0) df += 2*M_PI;  ......  gnu_gama/local-1.1.13
@@ -131,31 +130,39 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
             }
         }
       ++mer;
-   }
+    }
 
-   double l1 = 0;
-   double d  = 0;          // mean deviation
-   int    n  = sz.size();
+  double l1 = 0;
+  double d  = 0;          // mean deviation
+  auto   n  = sz.size();
 
-   if (n)
-   {
+  if (n)
+    {
       std::sort(sz.begin(), sz.end());
       double l1a = sz[(n-1)/2];
       double l1b = sz[n/2];
       if (std::abs(l1b - l1a) > M_PI/2 && n < 3)
-         l1 = l1a;
+        l1 = l1a;
       else
-         l1 = (sz[n/2] + sz[(n-1)/2]) / 2;
+        l1 = (sz[n/2] + sz[(n-1)/2]) / 2;
 
-      for (int i=0; i<n; i++)
-	d += std::abs(sz[i] - l1);
+      for (decltype(n) i=0; i<n; i++)
+        d += std::abs(sz[i] - l1);
       d /= n;
       if (l1 < 0) l1 += 2*M_PI;
-   }
+    }
 
-   z = l1;
-   dir_count = n;
-   return;
+  z = l1;
+  dir_count = int(n);
+  return;
 }
 
 
+void Orientation::orientation(GNU_gama::local::StandPoint* sp,
+                              double& z, int& dir_count)
+{
+  ObservationList& obs = sp->observation_list;
+  ObservationList::const_iterator mer = obs.cbegin();
+  Orientation orp(PD_, obs);
+  orp.orientation(mer, z, dir_count);
+}
