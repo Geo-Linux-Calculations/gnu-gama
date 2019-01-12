@@ -35,6 +35,18 @@ namespace
 
   int error(const char* s) { std::cerr << s << "\n"; return 1; }
 
+  int version(int argc, char* argv[])
+  {
+    for (int i=1; i<argc; i++)
+      {
+        // '-arg' is equivalent to '--arg' in gama-g3
+        const std::string a =
+          (*argv[i] == '-' && *(argv[i]+1) == '-') ? argv[i]+1 : argv[i];
+        if (a == "-version")
+            return 1+GNU_gama::version("gama-g3", "Ales Cepek");
+      }
+  }
+
   int help(int argc, char* argv[])
   {
     bool ok = argc > 1;
@@ -50,11 +62,6 @@ namespace
           {
             ok = false;
             continue;
-          }
-        if (a == "-version")
-          {
-            ok = false;
-            return 1+GNU_gama::version("gama-g3", "Ales Cepek");
           }
         if (a == "-algorithm")
           {
@@ -215,6 +222,7 @@ int main(int argc, char* argv[])
 {
   using namespace GNU_gama::g3;
 
+  if (version(argc, argv)) return 0;
   if (help(argc, argv)) return 1;
 
   try
