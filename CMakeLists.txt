@@ -21,3 +21,5 @@ add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
+
+install(TARGETS gama-local gama-g3 DESTINATION bin)
