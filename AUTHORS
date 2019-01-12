@@ -62,3 +62,9 @@ Contributors:
     Greg Troxel <gdt@lexort.com>
         - many bug fixes of violations of GNU Coding Standards, namely
           on OS X and NetBSD
+
+    Kristian Evers <kristianevers@gmail.com> The Danish Agency for
+    Data Supply and Efficiency
+        - concept of XML tag 'extern' for linking adjustement XML input
+          and output with external database keys
+        - conda-forge/gama-feedstock
