@@ -48,7 +48,7 @@ namespace GNU_gama {
    *
    * Checked by tests/gama-local/scripts/check_version.cpp
    */
-  std::string GNU_gama_version() { return "2.02.b"; }
+  std::string GNU_gama_version() { return "2.03"; }
 
   std::string GNU_gama_compiler()
   {
