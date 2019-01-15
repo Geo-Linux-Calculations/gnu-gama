@@ -26,10 +26,10 @@
 
 namespace
 {
-  const char* arg_input     = 0;
-  const char* arg_output    = 0;
-  const char* arg_algorithm = 0;
-  const char* arg_projeq    = 0;
+  const char* arg_input     = nullptr;
+  const char* arg_output    = nullptr;
+  const char* arg_algorithm = nullptr;
+  const char* arg_projeq    = nullptr;
 
   GNU_gama::Adj::algorithm algorithm;
 
@@ -43,8 +43,12 @@ namespace
         const std::string a =
           (*argv[i] == '-' && *(argv[i]+1) == '-') ? argv[i]+1 : argv[i];
         if (a == "-version")
-            return 1+GNU_gama::version("gama-g3", "Ales Cepek");
+          {
+            GNU_gama::version("gama-g3", "Ales Cepek");
+            return 1;
+          }
       }
+    return 0;
   }
 
   int help(int argc, char* argv[])
