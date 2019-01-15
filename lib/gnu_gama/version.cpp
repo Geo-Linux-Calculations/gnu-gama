@@ -54,17 +54,34 @@ namespace GNU_gama {
   {
     return
 
-      // clang needs to be checked before GNU C, because it defines __GNUC__
+      // clang and icc need to be checked before GNU C, because they
+      // define macro __GNUC__
+
+      /* see https://sourceforge.net/p/predef/wiki/Compilers/
+       *
+       * Notice that the meaning of the __GNUC__ macro has changed
+       * subtly over the years, from identifying the GNU C/C++ compiler
+       * to identifying any compiler that implements the GNU compiler
+       * extensions (see the Feature request - a macro defined for GCC
+       * discussion for further information). For example, the Intel C++
+       * on Linux also defines these macros from version 8.1 (see the
+       * Intel C++ Compiler 8.1 for Linux Release Notes and Intel
+       * Compilers for Linux: Compatibility with GNU Compilers.)
+       *
+       */
+
+
 #if   defined  (__clang__)
       "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
+
+#elif defined  (__INTEL_COMPILER)
+      "icc " xstr(__INTEL_COMPILER) // mmnn
 
 #elif defined  (__GNUC__)
       "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
 
 #elif defined  (_MSC_VER)
-      // https://msdn.microsoft.com/en-us/library/b0084kay.aspx
-      "msvc++ " + std::string(xstr(_MSC_VER)).substr(0,2) + "."
-                + std::string(xstr(_MSC_VER)).substr(2,2)
+      "visual c++ " xstr(_MSC_VER)  // mmnn
 
 #else
       "unknown compiler"
