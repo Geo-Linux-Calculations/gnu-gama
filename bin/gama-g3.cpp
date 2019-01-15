@@ -26,10 +26,10 @@
 
 namespace
 {
-  const char* arg_input     = 0;
-  const char* arg_output    = 0;
-  const char* arg_algorithm = 0;
-  const char* arg_projeq    = 0;
+  const char* arg_input     = nullptr;
+  const char* arg_output    = nullptr;
+  const char* arg_algorithm = nullptr;
+  const char* arg_projeq    = nullptr;
 
   GNU_gama::Adj::algorithm algorithm;
 
@@ -37,7 +37,31 @@ namespace
 
   int help(int argc, char* argv[])
   {
-    bool ok = argc > 1;
+    const std::string usage =
+      "\n"
+      "Usage:  gama-g3  [ options ] input  [ output ] \n\n"
+
+      " input      xml data file name\n"
+      " output     optional output data file name\n\n"
+
+      " --algorithm  envelope | gso | svd | cholesky\n"
+
+      " --project-equations file"
+      "     optional output of project equations in XML\n"
+
+      "\n"
+      " -h         help (this text)\n"
+
+      "\n";
+
+
+    if (argc <= 1)   // no arguments
+      {
+        std::cerr << usage;
+        return 1;
+      }
+
+    bool ok = true;
 
     for (int n=0, i=1; ok && i<argc; i++)
       {
@@ -48,13 +72,13 @@ namespace
 
         if (a == "-h" || a == "-help")
           {
-            ok = false;
-            continue;
+            std::cerr << usage;
+            return 1;
           }
         if (a == "-version")
           {
-            ok = false;
-            return 1+GNU_gama::version("gama-g3", "Ales Cepek");
+            GNU_gama::version("gama-g3", "Ales Cepek");
+            return 1;
           }
         if (a == "-algorithm")
           {
@@ -94,23 +118,8 @@ namespace
 
     if (ok) return 0;
 
-    std::cerr <<
-      "\n"
-      "Usage:  gama-g3  [ options ] input  [ output ] \n\n"
-
-      " input      xml data file name\n"
-      " output     optional output data file name\n\n"
-
-      " --algorithm  envelope | gso | svd | cholesky\n"
-
-      " --project-equations file"
-      "     optional output of project equations in XML\n"
-
-      "\n"
-      " -h         help (this text)\n"
-
-      "\n";
-
+    std::cerr << "\nWrong argument(s)\n";
+    std::cerr << usage;
     return 1;
   }
 
