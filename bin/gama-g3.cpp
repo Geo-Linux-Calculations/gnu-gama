@@ -35,7 +35,7 @@ namespace
 
   int error(const char* s) { std::cerr << s << "\n"; return 1; }
 
-  int help(int argc, char* argv[])
+  int arguments(int argc, char* argv[])
   {
     const std::string usage =
       "\n"
@@ -224,7 +224,7 @@ int main(int argc, char* argv[])
 {
   using namespace GNU_gama::g3;
 
-  if (help(argc, argv)) return 1;
+  if (arguments(argc, argv)) return 1;
 
   try
     {
