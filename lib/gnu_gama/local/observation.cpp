@@ -22,8 +22,7 @@
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/gon2deg.h>
-#include <cctype>
-#include <string>
+#include <gnu_gama/simplified.h>
 
 namespace GNU_gama { namespace local
 {

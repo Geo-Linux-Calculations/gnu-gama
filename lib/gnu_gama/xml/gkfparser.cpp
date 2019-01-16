@@ -1256,17 +1256,27 @@ namespace GNU_gama { namespace local {
   int GKFparser::process_coords(const char** atts)
   {
     state = state_coords;
+    string ext;
 
     if (*atts)
       {
         string nam, val;
         nam = string(*atts++);
         val = string(*atts++);
-        return error(T_GKF_undefined_attribute_of_coordinates
-                     + nam + " = " + val);
+        if (nam == "extern")
+          {
+            ext = val;
+          }
+        else
+          {
+            return error(T_GKF_undefined_attribute_of_coordinates
+                         + nam + " = " + val);
+          }
       }
 
     coordinates = new Coordinates(&OD);
+    if (!ext.empty()) coordinates->set_extern(ext);
+
     OD.clusters.push_back(coordinates);
 
     return 0;

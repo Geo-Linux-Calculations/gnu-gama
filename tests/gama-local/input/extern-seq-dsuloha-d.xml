@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Frantisek Charamza: GEODET/PC, Prirucka uzivatele, Zdiby 1990
+-------------------------------------------------------------------
+priklad: str. 238, dodateb B
+
+varianta: vyrovnani korelovanych souradnic z reseni b+c
+</description>
+
+<network-general-parameters
+   gama-local-version="2.03"
+   gama-local-algorithm="envelope"
+   gama-local-compiler="icc 1900"
+   axes-xy="sw"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>10</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>20</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>40</equations>
+   <unknowns>20</unknowns>
+   <degrees-of-freedom>20</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>2.6846651e+03</sum-of-squares>
+   <disconnected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>1.1585908e+01</aposteriori>
+   <used>apriori</used>
+
+   <probability>0.950</probability>
+   <ratio>1.159</ratio>
+   <lower>0.692</lower>
+   <upper>1.307</upper>
+   <passed/>
+
+   <confidence-scale>1.9599640e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>1054980.484000</x> <y>644498.590000</y> </point>
+   <point> <id>2</id> <x>1054933.801000</x> <y>643654.101000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>403</id> <x>1054612.593920</x> <y>644373.621550</y> </point>
+   <point> <id>407</id> <x>1054821.145870</x> <y>644025.975650</y> </point>
+   <point> <id>409</id> <x>1054703.666880</x> <y>643769.615280</y> </point>
+   <point> <id>411</id> <x>1054614.591000</x> <y>643487.042210</y> </point>
+   <point> <id>413</id> <x>1054700.738990</x> <y>643249.941690</y> </point>
+   <point> <id>416</id> <x>1054931.434420</x> <y>643315.189550</y> </point>
+   <point> <id>418</id> <x>1055216.468550</x> <y>643580.491370</y> </point>
+   <point> <id>420</id> <x>1055139.904070</x> <y>643814.897340</y> </point>
+   <point> <id>422</id> <x>1055167.213200</x> <y>644041.463540</y> </point>
+   <point> <id>424</id> <x>1055205.413130</x> <y>644318.244900</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>403</id> <x>1054612.5952148085925728</x> <y>644373.6084820786491036</y> </point>
+   <point> <id>407</id> <x>1054821.1631418797187507</x> <y>644025.9754245036747307</y> </point>
+   <point> <id>409</id> <x>1054703.6703018003609031</x> <y>643769.6181518543744460</y> </point>
+   <point> <id>411</id> <x>1054614.5887149288319051</x> <y>643487.0454967926489189</y> </point>
+   <point> <id>413</id> <x>1054700.7435378534719348</x> <y>643249.9472535715904087</y> </point>
+   <point> <id>416</id> <x>1054931.4336879563052207</x> <y>643315.1935147002805024</y> </point>
+   <point> <id>418</id> <x>1055216.4723496390506625</x> <y>643580.4869896661257371</y> </point>
+   <point> <id>420</id> <x>1055139.8988587893545628</x> <y>643814.8945545301539823</y> </point>
+   <point> <id>422</id> <x>1055167.2223729290999472</x> <y>644041.4614172987639904</y> </point>
+   <point> <id>424</id> <x>1055205.4114263085648417</x> <y>644318.2429972540121526</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>20</dim> <band>19</band>
+<flt>1.4883173e+01</flt> <flt>1.8279108e+00</flt> <flt>3.9405689e+00</flt>
+<flt>7.2479990e-01</flt> <flt>1.3848255e+00</flt> <flt>1.3138771e+00</flt>
+<flt>-7.0304371e-01</flt> <flt>1.8606874e+00</flt> <flt>-2.1000481e+00</flt>
+<flt>1.3422429e+00</flt> <flt>-1.7185919e+00</flt> <flt>5.5726469e-02</flt>
+<flt>-2.3263930e-01</flt> <flt>-1.3640679e+00</flt> <flt>9.0270121e-01</flt>
+<flt>-8.2752119e-01</flt> <flt>1.6544953e+00</flt> <flt>-4.5451092e-01</flt>
+<flt>1.2695702e+00</flt> <flt>1.4534239e-01</flt> <flt>1.9549955e+01</flt>
+<flt>-1.5563292e+00</flt> <flt>3.5216779e+00</flt> <flt>-1.7720934e+00</flt>
+<flt>1.1766891e+00</flt> <flt>-7.0791169e-01</flt> <flt>1.8724424e-01</flt>
+<flt>-3.7405160e-01</flt> <flt>1.0876047e-01</flt> <flt>-2.2262523e-01</flt>
+<flt>2.0015454e-01</flt> <flt>-3.6782770e-01</flt> <flt>2.5163839e-01</flt>
+<flt>-8.3623998e-01</flt> <flt>1.0148528e-01</flt> <flt>-1.2063140e+00</flt>
+<flt>1.3485491e-01</flt> <flt>-9.5644553e-01</flt> <flt>-1.2357158e+00</flt>
+<flt>7.5542279e+00</flt> <flt>4.8700606e-03</flt> <flt>3.7474991e+00</flt>
+<flt>1.3586469e+00</flt> <flt>-4.2648464e-01</flt> <flt>2.8123036e+00</flt>
+<flt>-2.8764506e+00</flt> <flt>2.0504069e+00</flt> <flt>-2.4322030e+00</flt>
+<flt>-1.7053903e-02</flt> <flt>-1.5909479e-01</flt> <flt>-2.1658522e+00</flt>
+<flt>1.6818277e+00</flt> <flt>-1.2077246e+00</flt> <flt>2.8895337e+00</flt>
+<flt>-3.4886049e-01</flt> <flt>1.9937473e+00</flt> <flt>4.2857244e-01</flt>
+<flt>5.8292269e+00</flt> <flt>-9.5026420e-01</flt> <flt>1.9760039e+00</flt>
+<flt>-8.3323603e-01</flt> <flt>1.0659380e+00</flt> <flt>-1.1286916e+00</flt>
+<flt>7.6601583e-01</flt> <flt>-8.5223877e-01</flt> <flt>2.8960196e-01</flt>
+<flt>-2.5403620e-01</flt> <flt>-2.4666225e-01</flt> <flt>-1.2639612e-01</flt>
+<flt>1.2904319e-01</flt> <flt>5.3619690e-02</flt> <flt>1.3847921e+00</flt>
+<flt>7.3126827e-04</flt> <flt>2.9079960e-01</flt> <flt>7.6562656e+00</flt>
+<flt>3.0181063e-01</flt> <flt>2.4339645e+00</flt> <flt>1.6384326e+00</flt>
+<flt>1.6353014e-01</flt> <flt>1.2911858e+00</flt> <flt>-2.6356141e-01</flt>
+<flt>-1.0141936e-01</flt> <flt>2.8905527e-01</flt> <flt>-1.0729218e+00</flt>
+<flt>1.0068574e+00</flt> <flt>-5.5604125e-01</flt> <flt>1.5065889e+00</flt>
+<flt>-1.2176676e-01</flt> <flt>9.7353531e-01</flt> <flt>3.3421682e-01</flt>
+<flt>9.2184054e+00</flt> <flt>-3.5875884e+00</flt> <flt>6.6906448e+00</flt>
+<flt>-6.9019158e+00</flt> <flt>4.7318497e+00</flt> <flt>-5.2991352e+00</flt>
+<flt>1.0774616e+00</flt> <flt>-1.2895330e+00</flt> <flt>-2.8917137e+00</flt>
+<flt>7.1098028e-01</flt> <flt>-1.7170154e+00</flt> <flt>1.4036153e+00</flt>
+<flt>-3.8108881e-01</flt> <flt>1.0518169e+00</flt> <flt>-2.0618472e-01</flt>
+<flt>1.0467167e+01</flt> <flt>-4.4010547e+00</flt> <flt>1.2959293e+01</flt>
+<flt>-2.3133614e+00</flt> <flt>8.5587874e+00</flt> <flt>6.0613403e-01</flt>
+<flt>2.3034025e+00</flt> <flt>3.4309992e+00</flt> <flt>-1.8759393e-01</flt>
+<flt>1.9894837e+00</flt> <flt>-9.7289035e-01</flt> <flt>7.3397799e-01</flt>
+<flt>-8.1768160e-01</flt> <flt>3.9728106e-01</flt> <flt>1.7904533e+01</flt>
+<flt>-1.3009156e+01</flt> <flt>1.2704781e+01</flt> <flt>-9.8188231e+00</flt>
+<flt>3.8161479e+00</flt> <flt>-2.1110014e+00</flt> <flt>-4.7941032e+00</flt>
+<flt>1.4250730e+00</flt> <flt>-2.7725262e+00</flt> <flt>2.5236603e+00</flt>
+<flt>-9.0864456e-01</flt> <flt>1.8312739e+00</flt> <flt>-2.6244560e-01</flt>
+<flt>3.3548733e+01</flt> <flt>-1.1108405e+01</flt> <flt>1.9119458e+01</flt>
+<flt>8.0569505e-01</flt> <flt>4.4242064e+00</flt> <flt>8.5730089e+00</flt>
+<flt>-1.1689252e+00</flt> <flt>4.5907057e+00</flt> <flt>-3.0072225e+00</flt>
+<flt>1.6002994e+00</flt> <flt>-2.3149181e+00</flt> <flt>6.2781316e-01</flt>
+<flt>1.9298185e+01</flt> <flt>-8.7847226e+00</flt> <flt>6.8221443e+00</flt>
+<flt>-1.9950570e+00</flt> <flt>-3.0707512e+00</flt> <flt>1.1054601e+00</flt>
+<flt>-1.9018510e+00</flt> <flt>1.9060712e+00</flt> <flt>-6.3605054e-01</flt>
+<flt>1.3684125e+00</flt> <flt>-1.7229663e-01</flt> <flt>1.8809500e+01</flt>
+<flt>5.9747483e-01</flt> <flt>4.7089468e+00</flt> <flt>7.4491642e+00</flt>
+<flt>-7.3513496e-01</flt> <flt>4.1124661e+00</flt> <flt>-2.5054263e+00</flt>
+<flt>1.4341226e+00</flt> <flt>-1.9671874e+00</flt> <flt>5.7583376e-01</flt>
+<flt>8.7469887e+00</flt> <flt>-4.9984933e-01</flt> <flt>2.5154962e+00</flt>
+<flt>5.6204321e-02</flt> <flt>7.0253652e-01</flt> <flt>-4.5773637e-02</flt>
+<flt>2.1133331e-01</flt> <flt>-6.2855099e-02</flt> <flt>8.6274935e-02</flt>
+<flt>8.7866953e+00</flt> <flt>1.5006664e+00</flt> <flt>3.0688401e+00</flt>
+<flt>2.6520782e+00</flt> <flt>6.6739572e-01</flt> <flt>9.7776647e-01</flt>
+<flt>-3.8080857e-02</flt> <flt>6.7072963e-01</flt> <flt>1.3698104e+01</flt>
+<flt>-1.4729245e+00</flt> <flt>4.8393146e+00</flt> <flt>-2.7076359e+00</flt>
+<flt>1.4881996e+00</flt> <flt>-2.0076684e+00</flt> <flt>5.2970999e-01</flt>
+<flt>6.6696119e+00</flt> <flt>4.1457643e-01</flt> <flt>4.3089854e+00</flt>
+<flt>3.0358910e-01</flt> <flt>2.2352536e+00</flt> <flt>6.6575491e-01</flt>
+<flt>8.6435112e+00</flt> <flt>-1.3056502e+00</flt> <flt>2.3519072e+00</flt>
+<flt>-1.3568140e+00</flt> <flt>1.1150000e+00</flt> <flt>7.5931367e+00</flt>
+<flt>-1.8442584e-01</flt> <flt>4.7757749e+00</flt> <flt>4.3928411e-01</flt>
+<flt>6.7422545e+00</flt> <flt>-1.5679610e+00</flt> <flt>3.4674416e+00</flt>
+<flt>1.0499347e+01</flt> <flt>-2.4772448e+00</flt> <flt>1.3682289e+01</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>4</ind>
+<ind>5</ind>
+<ind>6</ind>
+<ind>7</ind>
+<ind>8</ind>
+<ind>9</ind>
+<ind>10</ind>
+<ind>11</ind>
+<ind>12</ind>
+<ind>13</ind>
+<ind>14</ind>
+<ind>15</ind>
+<ind>16</ind>
+<ind>17</ind>
+<ind>18</ind>
+<ind>19</ind>
+<ind>20</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<coordinate-x> <id>403</id>
+   <obs>1054612.5985300000756979</obs><adj>1054612.5952148085925728</adj> <stdev>3.8578715764349303</stdev>
+   <qrr>0.527</qrr> <f>53.075</f> <std-residual>0.457</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>403</id>
+   <obs>644373.6044599999440834</obs> <adj>644373.6084820786491036</adj> <stdev>4.7029264003783950</stdev>
+   <qrr>0.232</qrr> <f>30.102</f> <std-residual>0.836</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>407</id>
+   <obs>1054821.1713099998887628</obs><adj>1054821.1631418797187507</adj> <stdev>2.8039585982259694</stdev>
+   <qrr>0.070</qrr> <f>27.303</f> <std-residual>3.084</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>407</id>
+   <obs>644025.9747900000074878</obs> <adj>644025.9754245036747307</adj> <stdev>4.6307816569281197</stdev>
+   <qrr>0.432</qrr> <f>42.418</f> <std-residual>0.097</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>409</id>
+   <obs>1054703.6810500000137836</obs><adj>1054703.6703018003609031</adj> <stdev>4.3695023315537922</stdev>
+   <qrr>0.120</qrr> <f>21.590</f> <std-residual>3.108</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>409</id>
+   <obs>643769.6111200000159442</obs> <adj>643769.6181518543744460</adj> <stdev>3.4986829229546879</stdev>
+   <qrr>0.104</qrr> <f>26.534</f> <std-residual>2.176</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>411</id>
+   <obs>1054614.6107799999881536</obs><adj>1054614.5887149288319051</adj> <stdev>6.7432332304116906</stdev>
+   <qrr>0.374</qrr> <f>25.942</f> <std-residual>3.606</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>411</id>
+   <obs>643487.0581199999433011</obs> <adj>643487.0454967926489189</adj> <stdev>5.4386340380318243</stdev>
+   <qrr>0.265</qrr> <f>27.384</f> <std-residual>2.451</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>413</id>
+   <obs>1054700.7631399999372661</obs><adj>1054700.7435378534719348</adj> <stdev>7.1258317042099684</stdev>
+   <qrr>0.374</qrr> <f>24.130</f> <std-residual>3.204</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>413</id>
+   <obs>643249.9775399999925867</obs> <adj>643249.9472535715904087</adj> <stdev>9.6201249522504959</stdev>
+   <qrr>0.750</qrr> <f>25.683</f> <std-residual>3.497</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>416</id>
+   <obs>1054931.4327499999199063</obs><adj>1054931.4336879563052207</adj> <stdev>3.7891318407286718</stdev>
+   <qrr>0.152</qrr> <f>30.324</f> <std-residual>0.240</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>416</id>
+   <obs>643315.2185799999861047</obs> <adj>643315.1935147002805024</adj> <stdev>8.7259889102129762</stdev>
+   <qrr>0.343</qrr> <f>16.978</f> <std-residual>4.278</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>418</id>
+   <obs>1055216.4552700000349432</obs><adj>1055216.4723496390506625</adj> <stdev>5.8001350184069507</stdev>
+   <qrr>0.422</qrr> <f>33.378</f> <std-residual>2.631</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>418</id>
+   <obs>643580.4864199999719858</obs> <adj>643580.4869896661257371</adj> <stdev>3.7870739953576820</stdev>
+   <qrr>0.096</qrr> <f>22.547</f> <std-residual>0.184</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>420</id>
+   <obs>1055139.8886299999430776</obs><adj>1055139.8988587893545628</adj> <stdev>4.3698947059707374</stdev>
+   <qrr>0.083</qrr> <f>16.461</f> <std-residual>3.558</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>420</id>
+   <obs>643814.8825799999758601</obs> <adj>643814.8945545301539823</adj> <stdev>5.3184809813323861</stdev>
+   <qrr>0.174</qrr> <f>21.328</f> <std-residual>2.869</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>422</id>
+   <obs>1055167.2169200000353158</obs><adj>1055167.2223729290999472</adj> <stdev>3.7904347787403503</stdev>
+   <qrr>0.048</qrr> <f>13.341</f> <std-residual>2.498</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>422</id>
+   <obs>644041.4603099999949336</obs> <adj>644041.4614172987639904</adj> <stdev>5.3730219928612692</stdev>
+   <qrr>0.419</qrr> <f>36.111</f> <std-residual>0.171</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>424</id>
+   <obs>1055205.4077399999368936</obs><adj>1055205.4114263085648417</adj> <stdev>4.4708660965455538</stdev>
+   <qrr>0.113</qrr> <f>20.090</f> <std-residual>1.096</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>424</id>
+   <obs>644318.2451499999733642</obs> <adj>644318.2429972540121526</adj> <stdev>6.0742184162829131</stdev>
+   <qrr>0.235</qrr> <f>21.837</f> <std-residual>0.444</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>403</id>
+   <obs>1054612.5939199998974800</obs><adj>1054612.5952148085925728</adj> <stdev>3.8578715764349307</stdev>
+   <qrr>0.098</qrr> <f>22.320</f> <std-residual>0.414</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>403</id>
+   <obs>644373.6215500000398606</obs> <adj>644373.6084820786491036</adj> <stdev>4.5815260452385544</stdev>
+   <qrr>0.329</qrr> <f>37.604</f> <std-residual>2.277</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>407</id>
+   <obs>1054821.1458699998911470</obs><adj>1054821.1631418797187507</adj> <stdev>3.5992233974478669</stdev>
+   <qrr>0.380</qrr> <f>49.558</f> <std-residual>2.803</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>407</id>
+   <obs>644025.9756500000366941</obs> <adj>644025.9754245036747307</adj> <stdev>2.8304786775754476</stdev>
+   <qrr>0.054</qrr> <f>22.582</f> <std-residual>0.097</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>409</id>
+   <obs>1054703.6668799999170005</obs><adj>1054703.6703018003609031</adj> <stdev>3.0340928675289218</stdev>
+   <qrr>0.195</qrr> <f>43.401</f> <std-residual>0.774</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>409</id>
+   <obs>643769.6152800000272691</obs> <adj>643769.6181518543744460</adj> <stdev>3.8115844835567039</stdev>
+   <qrr>0.201</qrr> <f>35.249</f> <std-residual>0.640</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>411</id>
+   <obs>1054614.5910000000149012</obs><adj>1054614.5887149288319051</adj> <stdev>3.4029731712332056</stdev>
+   <qrr>0.410</qrr> <f>53.087</f> <std-residual>0.357</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>411</id>
+   <obs>643487.0422099999850616</obs> <adj>643487.0454967926489189</adj> <stdev>7.2166218384185887</stdev>
+   <qrr>0.299</qrr> <f>20.286</f> <std-residual>0.601</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>413</id>
+   <obs>1054700.7389899999834597</obs><adj>1054700.7435378534719348</adj> <stdev>6.8809708059697341</stdev>
+   <qrr>1.331</qrr> <f>48.772</f> <std-residual>0.394</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>413</id>
+   <obs>643249.9416900000069290</obs> <adj>643249.9472535715904087</adj> <stdev>6.1010608736992005</stdev>
+   <qrr>0.443</qrr> <f>32.408</f> <std-residual>0.836</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>416</id>
+   <obs>1054931.4344200000632554</obs><adj>1054931.4336879563052207</adj> <stdev>8.9391950264316034</stdev>
+   <qrr>0.452</qrr> <f>20.089</f> <std-residual>0.109</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>416</id>
+   <obs>643315.1895500000100583</obs> <adj>643315.1935147002805024</adj> <stdev>3.0816845060692328</stdev>
+   <qrr>0.132</qrr> <f>35.287</f> <std-residual>1.092</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>418</id>
+   <obs>1055216.4685500001069158</obs><adj>1055216.4723496390506625</adj> <stdev>3.7759071920202589</stdev>
+   <qrr>0.143</qrr> <f>29.381</f> <std-residual>1.004</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>418</id>
+   <obs>643580.4913699999451637</obs> <adj>643580.4869896661257371</adj> <stdev>5.6929884178258972</stdev>
+   <qrr>0.525</qrr> <f>38.218</f> <std-residual>0.605</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>420</id>
+   <obs>1055139.9040699999313802</obs><adj>1055139.8988587893545628</adj> <stdev>3.9329572848231233</stdev>
+   <qrr>0.487</qrr> <f>50.906</f> <std-residual>0.747</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>420</id>
+   <obs>643814.8973400000249967</obs> <adj>643814.8945545301539823</adj> <stdev>4.9318049163653361</stdev>
+   <qrr>0.133</qrr> <f>19.639</f> <std-residual>0.763</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>422</id>
+   <obs>1055167.2132000001147389</obs><adj>1055167.2223729290999472</adj> <stdev>4.2188168765678267</stdev>
+   <qrr>0.258</qrr> <f>36.090</f> <std-residual>1.807</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>422</id>
+   <obs>644041.4635400000261143</obs> <adj>644041.4614172987639904</adj> <stdev>3.0787708631365902</stdev>
+   <qrr>0.051</qrr> <f>19.428</f> <std-residual>0.938</std-residual>
+   </coordinate-y>
+<coordinate-x> <id>424</id>
+   <obs>1055205.4131300000008196</obs><adj>1055205.4114263085648417</adj> <stdev>4.2238767239586492</stdev>
+   <qrr>0.362</qrr> <f>42.544</f> <std-residual>0.283</std-residual>
+   </coordinate-x>
+<coordinate-y> <id>424</id>
+   <obs>644318.2449000000488013</obs> <adj>644318.2429972540121526</adj> <stdev>4.9870658541481205</stdev>
+   <qrr>0.080</qrr> <f>13.070</f> <std-residual>0.671</std-residual>
+   </coordinate-y>
+
+</observations>
+
+</gama-local-adjustment>

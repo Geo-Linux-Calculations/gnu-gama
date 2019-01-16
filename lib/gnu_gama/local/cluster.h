@@ -1,29 +1,28 @@
 /*
-    GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
+  GNU Gama C++ library
+  Copyright (C) 2000, 2019  Ales Cepek <cepek@gnu.org>
 
-    This file is part of the GNU Gama C++ library.
+  This file is part of the GNU Gama C++ library
 
-    This library is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
+  GNU Gama is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  GNU Gama is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU General Public License
+  along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef gama_local_Cluster_of_observations_h
 #define gama_local_Cluster_of_observations_h
 
 #include <gnu_gama/obsdata.h>
-
+#include <gnu_gama/simplified.h>
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/matvec.h>
 #include <vector>
@@ -89,6 +88,13 @@ namespace GNU_gama { namespace local {
       {
         return new Coordinates(p);
       }
+
+    std::string get_extern()   const { return extern_; }
+    void set_extern(std::string s) { extern_ = GNU_gama::simplified(s); }
+
+  private:
+
+    std::string extern_;
   };
 
 
@@ -127,12 +133,3 @@ namespace GNU_gama { namespace local {
 }}   // namespace GNU_gama::local
 
 #endif
-
-
-
-
-
-
-
-
-

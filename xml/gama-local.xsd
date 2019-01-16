@@ -333,6 +333,7 @@
         <xs:element maxOccurs="unbounded" ref="point"/>
         <xs:element ref="cov-mat"/>
       </xs:sequence>
+      <xs:attribute name="extern" type="xs:token"/>
     </xs:complexType>
   </xs:element>
 

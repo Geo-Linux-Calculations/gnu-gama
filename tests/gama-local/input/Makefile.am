@@ -23,6 +23,8 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              extern-tst-tetrahedron-3-gon.xml \
              extern-azimuth-distance.gkf \
              extern-azimuth-distance.xml \
+             extern-seq-dsuloha-d.gkf \
+             extern-seq-dsuloha-d.xml \
              gama-local-nop.gkf \
              gama-local-par.gkf \
              gama-local-deprecated.gkf \

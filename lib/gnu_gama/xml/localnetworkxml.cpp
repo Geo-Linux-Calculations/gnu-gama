@@ -58,6 +58,7 @@ using GNU_gama::local::Xdiff;
 using GNU_gama::local::Ydiff;
 using GNU_gama::local::Zdiff;
 using GNU_gama::local::Azimuth;
+using GNU_gama::local::Coordinates;
 
 namespace
 {
@@ -189,7 +190,11 @@ public:
     }
     void visit(X* obs)
     {
-      out << "<" << (tag="coordinate-x") << ">";
+      out << "<" << (tag="coordinate-x");// << ">";
+      auto c = static_cast<const Coordinates*>(obs->ptr_cluster());
+      string s = c->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
@@ -200,7 +205,11 @@ public:
     }
     void visit(Y* obs)
     {
-      out << "<" << (tag="coordinate-y") << ">";
+      out << "<" << (tag="coordinate-y");// << ">";
+      auto c = static_cast<const Coordinates*>(obs->ptr_cluster());
+      string s = c->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << y_sign*m << "</obs>";
@@ -211,7 +220,11 @@ public:
     }
     void visit(Z* obs)
     {
-      out << "<" << (tag="coordinate-z") << ">";
+      out << "<" << (tag="coordinate-z");// << ">";
+      auto c = static_cast<const Coordinates*>(obs->ptr_cluster());
+      string s = c->get_extern();
+      if (!s.empty()) out << " extern=\"" << s << "\"";
+      out << ">";
       ostr->precision(linear);
       double m = obs->value();
       *ostr << " <obs>" << m << "</obs>";
