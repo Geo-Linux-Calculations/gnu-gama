@@ -11,8 +11,8 @@ varianta: vyrovnani korelovanych souradnic z reseni b+c
 
 <network-general-parameters
    gama-local-version="2.03"
-   gama-local-algorithm="envelope"
-   gama-local-compiler="icc 1900"
+   gama-local-algorithm="gso"
+   gama-local-compiler="g++ 6.3"
    axes-xy="sw"
    angles="left-handed"
 />
@@ -29,7 +29,7 @@ varianta: vyrovnani korelovanych souradnic z reseni b+c
    <distances>0</distances>
    <directions>0</directions>
    <angles>0</angles>
-   <xyz-coords>20</xyz-coords>
+   <xyz-coords>40</xyz-coords>
    <h-diffs>0</h-diffs>
    <z-angles>0</z-angles>
    <s-dists>0</s-dists>
@@ -202,104 +202,104 @@ varianta: vyrovnani korelovanych souradnic z reseni b+c
 
 <observations>
 
-<coordinate-x> <id>403</id>
+<coordinate-x extern="seq demo"> <id>403</id>
    <obs>1054612.5985300000756979</obs><adj>1054612.5952148085925728</adj> <stdev>3.8578715764349303</stdev>
    <qrr>0.527</qrr> <f>53.075</f> <std-residual>0.457</std-residual>
    </coordinate-x>
-<coordinate-y> <id>403</id>
-   <obs>644373.6044599999440834</obs> <adj>644373.6084820786491036</adj> <stdev>4.7029264003783950</stdev>
+<coordinate-y extern="seq demo"> <id>403</id>
+   <obs>644373.6044599999440834</obs> <adj>644373.6084820786491036</adj> <stdev>4.7029264003783942</stdev>
    <qrr>0.232</qrr> <f>30.102</f> <std-residual>0.836</std-residual>
    </coordinate-y>
-<coordinate-x> <id>407</id>
-   <obs>1054821.1713099998887628</obs><adj>1054821.1631418797187507</adj> <stdev>2.8039585982259694</stdev>
+<coordinate-x extern="seq demo"> <id>407</id>
+   <obs>1054821.1713099998887628</obs><adj>1054821.1631418797187507</adj> <stdev>2.8039585982259685</stdev>
    <qrr>0.070</qrr> <f>27.303</f> <std-residual>3.084</std-residual>
    </coordinate-x>
-<coordinate-y> <id>407</id>
-   <obs>644025.9747900000074878</obs> <adj>644025.9754245036747307</adj> <stdev>4.6307816569281197</stdev>
+<coordinate-y extern="seq demo"> <id>407</id>
+   <obs>644025.9747900000074878</obs> <adj>644025.9754245036747307</adj> <stdev>4.6307816569281206</stdev>
    <qrr>0.432</qrr> <f>42.418</f> <std-residual>0.097</std-residual>
    </coordinate-y>
-<coordinate-x> <id>409</id>
+<coordinate-x extern="seq demo"> <id>409</id>
    <obs>1054703.6810500000137836</obs><adj>1054703.6703018003609031</adj> <stdev>4.3695023315537922</stdev>
    <qrr>0.120</qrr> <f>21.590</f> <std-residual>3.108</std-residual>
    </coordinate-x>
-<coordinate-y> <id>409</id>
-   <obs>643769.6111200000159442</obs> <adj>643769.6181518543744460</adj> <stdev>3.4986829229546879</stdev>
+<coordinate-y extern="seq demo"> <id>409</id>
+   <obs>643769.6111200000159442</obs> <adj>643769.6181518543744460</adj> <stdev>3.4986829229546870</stdev>
    <qrr>0.104</qrr> <f>26.534</f> <std-residual>2.176</std-residual>
    </coordinate-y>
-<coordinate-x> <id>411</id>
+<coordinate-x extern="seq demo"> <id>411</id>
    <obs>1054614.6107799999881536</obs><adj>1054614.5887149288319051</adj> <stdev>6.7432332304116906</stdev>
    <qrr>0.374</qrr> <f>25.942</f> <std-residual>3.606</std-residual>
    </coordinate-x>
-<coordinate-y> <id>411</id>
-   <obs>643487.0581199999433011</obs> <adj>643487.0454967926489189</adj> <stdev>5.4386340380318243</stdev>
+<coordinate-y extern="seq demo"> <id>411</id>
+   <obs>643487.0581199999433011</obs> <adj>643487.0454967926489189</adj> <stdev>5.4386340380318252</stdev>
    <qrr>0.265</qrr> <f>27.384</f> <std-residual>2.451</std-residual>
    </coordinate-y>
-<coordinate-x> <id>413</id>
-   <obs>1054700.7631399999372661</obs><adj>1054700.7435378534719348</adj> <stdev>7.1258317042099684</stdev>
+<coordinate-x extern="seq demo"> <id>413</id>
+   <obs>1054700.7631399999372661</obs><adj>1054700.7435378534719348</adj> <stdev>7.1258317042099693</stdev>
    <qrr>0.374</qrr> <f>24.130</f> <std-residual>3.204</std-residual>
    </coordinate-x>
-<coordinate-y> <id>413</id>
+<coordinate-y extern="seq demo"> <id>413</id>
    <obs>643249.9775399999925867</obs> <adj>643249.9472535715904087</adj> <stdev>9.6201249522504959</stdev>
    <qrr>0.750</qrr> <f>25.683</f> <std-residual>3.497</std-residual>
    </coordinate-y>
-<coordinate-x> <id>416</id>
-   <obs>1054931.4327499999199063</obs><adj>1054931.4336879563052207</adj> <stdev>3.7891318407286718</stdev>
+<coordinate-x extern="seq demo"> <id>416</id>
+   <obs>1054931.4327499999199063</obs><adj>1054931.4336879563052207</adj> <stdev>3.7891318407286740</stdev>
    <qrr>0.152</qrr> <f>30.324</f> <std-residual>0.240</std-residual>
    </coordinate-x>
-<coordinate-y> <id>416</id>
+<coordinate-y extern="seq demo"> <id>416</id>
    <obs>643315.2185799999861047</obs> <adj>643315.1935147002805024</adj> <stdev>8.7259889102129762</stdev>
    <qrr>0.343</qrr> <f>16.978</f> <std-residual>4.278</std-residual>
    </coordinate-y>
-<coordinate-x> <id>418</id>
+<coordinate-x extern="seq demo"> <id>418</id>
    <obs>1055216.4552700000349432</obs><adj>1055216.4723496390506625</adj> <stdev>5.8001350184069507</stdev>
    <qrr>0.422</qrr> <f>33.378</f> <std-residual>2.631</std-residual>
    </coordinate-x>
-<coordinate-y> <id>418</id>
-   <obs>643580.4864199999719858</obs> <adj>643580.4869896661257371</adj> <stdev>3.7870739953576820</stdev>
+<coordinate-y extern="seq demo"> <id>418</id>
+   <obs>643580.4864199999719858</obs> <adj>643580.4869896661257371</adj> <stdev>3.7870739953576815</stdev>
    <qrr>0.096</qrr> <f>22.547</f> <std-residual>0.184</std-residual>
    </coordinate-y>
-<coordinate-x> <id>420</id>
+<coordinate-x extern="seq demo"> <id>420</id>
    <obs>1055139.8886299999430776</obs><adj>1055139.8988587893545628</adj> <stdev>4.3698947059707374</stdev>
    <qrr>0.083</qrr> <f>16.461</f> <std-residual>3.558</std-residual>
    </coordinate-x>
-<coordinate-y> <id>420</id>
-   <obs>643814.8825799999758601</obs> <adj>643814.8945545301539823</adj> <stdev>5.3184809813323861</stdev>
+<coordinate-y extern="seq demo"> <id>420</id>
+   <obs>643814.8825799999758601</obs> <adj>643814.8945545301539823</adj> <stdev>5.3184809813323879</stdev>
    <qrr>0.174</qrr> <f>21.328</f> <std-residual>2.869</std-residual>
    </coordinate-y>
-<coordinate-x> <id>422</id>
-   <obs>1055167.2169200000353158</obs><adj>1055167.2223729290999472</adj> <stdev>3.7904347787403503</stdev>
+<coordinate-x extern="seq demo"> <id>422</id>
+   <obs>1055167.2169200000353158</obs><adj>1055167.2223729290999472</adj> <stdev>3.7904347787403494</stdev>
    <qrr>0.048</qrr> <f>13.341</f> <std-residual>2.498</std-residual>
    </coordinate-x>
-<coordinate-y> <id>422</id>
-   <obs>644041.4603099999949336</obs> <adj>644041.4614172987639904</adj> <stdev>5.3730219928612692</stdev>
+<coordinate-y extern="seq demo"> <id>422</id>
+   <obs>644041.4603099999949336</obs> <adj>644041.4614172987639904</adj> <stdev>5.3730219928612701</stdev>
    <qrr>0.419</qrr> <f>36.111</f> <std-residual>0.171</std-residual>
    </coordinate-y>
-<coordinate-x> <id>424</id>
-   <obs>1055205.4077399999368936</obs><adj>1055205.4114263085648417</adj> <stdev>4.4708660965455538</stdev>
+<coordinate-x extern="seq demo"> <id>424</id>
+   <obs>1055205.4077399999368936</obs><adj>1055205.4114263085648417</adj> <stdev>4.4708660965455556</stdev>
    <qrr>0.113</qrr> <f>20.090</f> <std-residual>1.096</std-residual>
    </coordinate-x>
-<coordinate-y> <id>424</id>
-   <obs>644318.2451499999733642</obs> <adj>644318.2429972540121526</adj> <stdev>6.0742184162829131</stdev>
+<coordinate-y extern="seq demo"> <id>424</id>
+   <obs>644318.2451499999733642</obs> <adj>644318.2429972540121526</adj> <stdev>6.0742184162829140</stdev>
    <qrr>0.235</qrr> <f>21.837</f> <std-residual>0.444</std-residual>
    </coordinate-y>
 <coordinate-x> <id>403</id>
-   <obs>1054612.5939199998974800</obs><adj>1054612.5952148085925728</adj> <stdev>3.8578715764349307</stdev>
+   <obs>1054612.5939199998974800</obs><adj>1054612.5952148085925728</adj> <stdev>3.8578715764349303</stdev>
    <qrr>0.098</qrr> <f>22.320</f> <std-residual>0.414</std-residual>
    </coordinate-x>
 <coordinate-y> <id>403</id>
-   <obs>644373.6215500000398606</obs> <adj>644373.6084820786491036</adj> <stdev>4.5815260452385544</stdev>
+   <obs>644373.6215500000398606</obs> <adj>644373.6084820786491036</adj> <stdev>4.5815260452385553</stdev>
    <qrr>0.329</qrr> <f>37.604</f> <std-residual>2.277</std-residual>
    </coordinate-y>
 <coordinate-x> <id>407</id>
-   <obs>1054821.1458699998911470</obs><adj>1054821.1631418797187507</adj> <stdev>3.5992233974478669</stdev>
+   <obs>1054821.1458699998911470</obs><adj>1054821.1631418797187507</adj> <stdev>3.5992233974478660</stdev>
    <qrr>0.380</qrr> <f>49.558</f> <std-residual>2.803</std-residual>
    </coordinate-x>
 <coordinate-y> <id>407</id>
-   <obs>644025.9756500000366941</obs> <adj>644025.9754245036747307</adj> <stdev>2.8304786775754476</stdev>
+   <obs>644025.9756500000366941</obs> <adj>644025.9754245036747307</adj> <stdev>2.8304786775754467</stdev>
    <qrr>0.054</qrr> <f>22.582</f> <std-residual>0.097</std-residual>
    </coordinate-y>
 <coordinate-x> <id>409</id>
-   <obs>1054703.6668799999170005</obs><adj>1054703.6703018003609031</adj> <stdev>3.0340928675289218</stdev>
+   <obs>1054703.6668799999170005</obs><adj>1054703.6703018003609031</adj> <stdev>3.0340928675289209</stdev>
    <qrr>0.195</qrr> <f>43.401</f> <std-residual>0.774</std-residual>
    </coordinate-x>
 <coordinate-y> <id>409</id>
@@ -311,39 +311,39 @@ varianta: vyrovnani korelovanych souradnic z reseni b+c
    <qrr>0.410</qrr> <f>53.087</f> <std-residual>0.357</std-residual>
    </coordinate-x>
 <coordinate-y> <id>411</id>
-   <obs>643487.0422099999850616</obs> <adj>643487.0454967926489189</adj> <stdev>7.2166218384185887</stdev>
+   <obs>643487.0422099999850616</obs> <adj>643487.0454967926489189</adj> <stdev>7.2166218384185878</stdev>
    <qrr>0.299</qrr> <f>20.286</f> <std-residual>0.601</std-residual>
    </coordinate-y>
 <coordinate-x> <id>413</id>
-   <obs>1054700.7389899999834597</obs><adj>1054700.7435378534719348</adj> <stdev>6.8809708059697341</stdev>
+   <obs>1054700.7389899999834597</obs><adj>1054700.7435378534719348</adj> <stdev>6.8809708059697359</stdev>
    <qrr>1.331</qrr> <f>48.772</f> <std-residual>0.394</std-residual>
    </coordinate-x>
 <coordinate-y> <id>413</id>
-   <obs>643249.9416900000069290</obs> <adj>643249.9472535715904087</adj> <stdev>6.1010608736992005</stdev>
+   <obs>643249.9416900000069290</obs> <adj>643249.9472535715904087</adj> <stdev>6.1010608736991996</stdev>
    <qrr>0.443</qrr> <f>32.408</f> <std-residual>0.836</std-residual>
    </coordinate-y>
 <coordinate-x> <id>416</id>
-   <obs>1054931.4344200000632554</obs><adj>1054931.4336879563052207</adj> <stdev>8.9391950264316034</stdev>
+   <obs>1054931.4344200000632554</obs><adj>1054931.4336879563052207</adj> <stdev>8.9391950264316069</stdev>
    <qrr>0.452</qrr> <f>20.089</f> <std-residual>0.109</std-residual>
    </coordinate-x>
 <coordinate-y> <id>416</id>
-   <obs>643315.1895500000100583</obs> <adj>643315.1935147002805024</adj> <stdev>3.0816845060692328</stdev>
+   <obs>643315.1895500000100583</obs> <adj>643315.1935147002805024</adj> <stdev>3.0816845060692315</stdev>
    <qrr>0.132</qrr> <f>35.287</f> <std-residual>1.092</std-residual>
    </coordinate-y>
 <coordinate-x> <id>418</id>
-   <obs>1055216.4685500001069158</obs><adj>1055216.4723496390506625</adj> <stdev>3.7759071920202589</stdev>
+   <obs>1055216.4685500001069158</obs><adj>1055216.4723496390506625</adj> <stdev>3.7759071920202594</stdev>
    <qrr>0.143</qrr> <f>29.381</f> <std-residual>1.004</std-residual>
    </coordinate-x>
 <coordinate-y> <id>418</id>
-   <obs>643580.4913699999451637</obs> <adj>643580.4869896661257371</adj> <stdev>5.6929884178258972</stdev>
+   <obs>643580.4913699999451637</obs> <adj>643580.4869896661257371</adj> <stdev>5.6929884178258963</stdev>
    <qrr>0.525</qrr> <f>38.218</f> <std-residual>0.605</std-residual>
    </coordinate-y>
 <coordinate-x> <id>420</id>
-   <obs>1055139.9040699999313802</obs><adj>1055139.8988587893545628</adj> <stdev>3.9329572848231233</stdev>
+   <obs>1055139.9040699999313802</obs><adj>1055139.8988587893545628</adj> <stdev>3.9329572848231220</stdev>
    <qrr>0.487</qrr> <f>50.906</f> <std-residual>0.747</std-residual>
    </coordinate-x>
 <coordinate-y> <id>420</id>
-   <obs>643814.8973400000249967</obs> <adj>643814.8945545301539823</adj> <stdev>4.9318049163653361</stdev>
+   <obs>643814.8973400000249967</obs> <adj>643814.8945545301539823</adj> <stdev>4.9318049163653352</stdev>
    <qrr>0.133</qrr> <f>19.639</f> <std-residual>0.763</std-residual>
    </coordinate-y>
 <coordinate-x> <id>422</id>
@@ -351,11 +351,11 @@ varianta: vyrovnani korelovanych souradnic z reseni b+c
    <qrr>0.258</qrr> <f>36.090</f> <std-residual>1.807</std-residual>
    </coordinate-x>
 <coordinate-y> <id>422</id>
-   <obs>644041.4635400000261143</obs> <adj>644041.4614172987639904</adj> <stdev>3.0787708631365902</stdev>
+   <obs>644041.4635400000261143</obs> <adj>644041.4614172987639904</adj> <stdev>3.0787708631365907</stdev>
    <qrr>0.051</qrr> <f>19.428</f> <std-residual>0.938</std-residual>
    </coordinate-y>
 <coordinate-x> <id>424</id>
-   <obs>1055205.4131300000008196</obs><adj>1055205.4114263085648417</adj> <stdev>4.2238767239586492</stdev>
+   <obs>1055205.4131300000008196</obs><adj>1055205.4114263085648417</adj> <stdev>4.2238767239586501</stdev>
    <qrr>0.362</qrr> <f>42.544</f> <std-residual>0.283</std-residual>
    </coordinate-x>
 <coordinate-y> <id>424</id>

@@ -53,22 +53,11 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
   }
 
   {
-    using std::cout;
-      //cout << "XXX " << html->observations_summary.distances  << " " <<  xml->observations_summary.distances  << "\n";
-      //cout << "XXX " << html->observations_summary.directions << " " <<  xml->observations_summary.directions << "\n";
-      //cout << "XXX " << html->observations_summary.angles     << " " <<  xml->observations_summary.angles     << "\n";
-      //cout << "??? " << html->observations_summary.xyz_coords << " " <<  xml->observations_summary.xyz_coords << "\n";
-      //cout << "XXX " << html->observations_summary.h_diffs    << " " <<  xml->observations_summary.h_diffs    << "\n";
-      //cout << "XXX " << html->observations_summary.z_angles   << " " <<  xml->observations_summary.z_angles   << "\n";
-      //cout << "XXX " << html->observations_summary.s_dists    << " " <<  xml->observations_summary.s_dists    << "\n";
-      //cout << "XXX " << html->observations_summary.vectors    << " " <<  xml->observations_summary.vectors    << "\n";
-
-
     bool test =
       html->observations_summary.distances  ==  xml->observations_summary.distances  &&
       html->observations_summary.directions ==  xml->observations_summary.directions &&
       html->observations_summary.angles     ==  xml->observations_summary.angles     &&
-      //html->observations_summary.xyz_coords ==  xml->observations_summary.xyz_coords &&
+      html->observations_summary.xyz_coords ==  xml->observations_summary.xyz_coords &&
       html->observations_summary.h_diffs    ==  xml->observations_summary.h_diffs    &&
       html->observations_summary.z_angles   ==  xml->observations_summary.z_angles   &&
       html->observations_summary.s_dists    ==  xml->observations_summary.s_dists    &&

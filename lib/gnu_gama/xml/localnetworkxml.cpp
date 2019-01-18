@@ -460,8 +460,8 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
       void visit(S_Distance*) { chords++; }
       void visit(Z_Angle*)    { zangles++; }
       void visit(X*)          { coords++; }
-      void visit(Y*)          { }
-      void visit(Z*)          { }
+      void visit(Y*)          { coords++; }
+      void visit(Z*)          { coords++; }
       void visit(Xdiff*)      { vectors++; }
       void visit(Ydiff*)      { }
       void visit(Zdiff*)      { }
