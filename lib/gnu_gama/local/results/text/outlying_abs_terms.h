@@ -33,7 +33,7 @@
 
 #include <iomanip>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/pobs/format.h>
+#include <gnu_gama/local/format.h>
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>

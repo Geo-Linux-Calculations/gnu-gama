@@ -23,7 +23,7 @@
 
 #include <functional>
 #include <vector>
-#include <gnu_gama/local/pobs/bearing.h>
+#include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/gamadata.h>
 
 namespace GNU_gama { namespace local {

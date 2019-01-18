@@ -19,7 +19,7 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <gnu_gama/local/pobs/format.h>
+#include <gnu_gama/local/format.h>
 
 namespace GNU_gama { namespace local {
 

@@ -98,6 +98,9 @@ libgama_src = \
    gnu_gama/local/acord/reduce_observations.h \
    gnu_gama/local/acord/reduce_to_ellipsoid.cpp \
    gnu_gama/local/acord/reduce_to_ellipsoid.h \
+   gnu_gama/local/bearing.h \
+   gnu_gama/local/format.cpp \
+   gnu_gama/local/format.h \
    gnu_gama/local/gamadata.cpp \
    gnu_gama/local/gamadata.h \
    gnu_gama/local/lcoords.h \
@@ -119,9 +122,6 @@ libgama_src = \
    gnu_gama/local/observation_local.cpp \
    gnu_gama/local/orientation.cpp \
    gnu_gama/local/orientation.h \
-   gnu_gama/local/pobs/bearing.h \
-   gnu_gama/local/pobs/format.cpp \
-   gnu_gama/local/pobs/format.h \
    gnu_gama/local/results/text/adjusted_observations.h \
    gnu_gama/local/results/text/adjusted_unknowns.h \
    gnu_gama/local/results/text/approximate_coordinates.h \

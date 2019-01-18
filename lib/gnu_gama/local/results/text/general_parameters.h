@@ -34,7 +34,7 @@
 #include <iomanip>
 #include <gnu_gama/local/writevisitor.h>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/pobs/format.h>
+#include <gnu_gama/local/format.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/utf8.h>
 #include <gnu_gama/local/results/text/underline.h>

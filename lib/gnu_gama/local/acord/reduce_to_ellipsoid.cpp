@@ -22,7 +22,7 @@
 */
 
 #include <gnu_gama/local/acord/reduce_to_ellipsoid.h>
-#include <gnu_gama/local/pobs/bearing.h>
+#include <gnu_gama/local/bearing.h>
 #include <cmath>
 
 using namespace std;

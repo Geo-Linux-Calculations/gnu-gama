@@ -32,7 +32,7 @@
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/pobs/bearing.h>
+#include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/results/text/underline.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/utf8.h>

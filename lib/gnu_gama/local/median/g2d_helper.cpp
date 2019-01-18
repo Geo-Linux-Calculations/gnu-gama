@@ -34,7 +34,7 @@
 
 
 #include <gnu_gama/local/median/g2d_helper.h>
-#include <gnu_gama/local/pobs/bearing.h>
+#include <gnu_gama/local/bearing.h>
 
 using namespace std;
 

@@ -22,7 +22,7 @@
 
 #include <gnu_gama/local/local_revision.h>
 #include <gnu_gama/local/local_linearization.h>
-#include <gnu_gama/local/pobs/bearing.h>
+#include <gnu_gama/local/bearing.h>
 
 using namespace GNU_gama::local;
 using namespace std;
