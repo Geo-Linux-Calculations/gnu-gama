@@ -78,6 +78,8 @@ libgama_src = \
    gnu_gama/xml/gkfparser.cpp \
    gnu_gama/xml/gkfparser.h \
    gnu_gama/local/angobs.h \
+   gnu_gama/local/bearing.cpp \
+   gnu_gama/local/bearing.h \
    gnu_gama/local/html.cpp \
    gnu_gama/local/html.h \
    gnu_gama/local/cluster.h \
@@ -98,7 +100,6 @@ libgama_src = \
    gnu_gama/local/acord/reduce_observations.h \
    gnu_gama/local/acord/reduce_to_ellipsoid.cpp \
    gnu_gama/local/acord/reduce_to_ellipsoid.h \
-   gnu_gama/local/bearing.h \
    gnu_gama/local/format.cpp \
    gnu_gama/local/format.h \
    gnu_gama/local/gamadata.cpp \

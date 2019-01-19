@@ -72,25 +72,27 @@ namespace GNU_gama {
 
 
 #if   defined  (__clang__)
-      "clang++ " xstr(__clang_major__) "." xstr(__clang_minor__)
+      "Clang C/C++ " xstr(__clang_major__) "." xstr(__clang_minor__)
 
 #elif defined  (__INTEL_COMPILER)
-      "icc " xstr(__INTEL_COMPILER) // mmnn
+      "Intel C/C++ " + std::string(xstr(__INTEL_COMPILER)).substr(0,2) + "."
+                     + std::string(xstr(__INTEL_COMPILER)).substr(2,2)
 
 #elif defined  (__GNUC__)
-      "g++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
+      "GNU C/C++ " xstr(__GNUC__) "." xstr(__GNUC_MINOR__)
 
 #elif defined  (_MSC_VER)
-      "visual c++ " xstr(_MSC_VER)  // mmnn
+      "Visual C++ " + std::string(xstr(_MSC_VER)).substr(0,2) + "."
+                    + std::string(xstr(_MSC_VER)).substr(2,2)
 
 #else
-      "unknown compiler"
+      "Undetected compiler"
 
 #endif
     ;
   }
 
-  std::string GNU_gama_year = "2018";
+  std::string GNU_gama_year = "2019";
 
 
   int version(const char* program, const char* copyright_holder)
