@@ -1,4 +1,4 @@
-/* slovnikar 1.14 */
+/* slovnikar 1.15 */
 
 #include <gnu_gama/local/language.h>
 
@@ -266,7 +266,6 @@ const char* T_LN_rm_singular_z = T_language_cpp_internal_error;
 const char* T_LN_undefined_confidence_level = T_language_cpp_internal_error;
 const char* T_LN_undefined_type_of_actual_sigma = T_language_cpp_internal_error;
 const char* T_POBS_bad_data = T_language_cpp_internal_error;
-const char* T_POBS_computation_of_bearing_for_identical_points = T_language_cpp_internal_error;
 const char* T_POBS_zero_or_negative_distance = T_language_cpp_internal_error;
 const char* T_POBS_zero_or_negative_slope_distance = T_language_cpp_internal_error;
 const char* T_POBS_zero_or_negative_zenith_angle = T_language_cpp_internal_error;
@@ -537,7 +536,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="undefined confidence level";
 	T_LN_undefined_type_of_actual_sigma="Type of actual sigma is not defined (apriori / aposteriori)";
 	T_POBS_bad_data="bad data";
-	T_POBS_computation_of_bearing_for_identical_points="Computation of bearing for identical points";
 	T_POBS_zero_or_negative_distance="zero or negative distance";
 	T_POBS_zero_or_negative_slope_distance="zero or negative slope distance";
 	T_POBS_zero_or_negative_zenith_angle="zero or negative zenith angle";
@@ -804,7 +802,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="nivell de confiança no definit";
 	T_LN_undefined_type_of_actual_sigma="Tipus de sigma no definit (apriori / aposteriori)";
 	T_POBS_bad_data="dades errònies";
-	T_POBS_computation_of_bearing_for_identical_points="Càlcul de l\'angle horitzontal per punts idèntics";
 	T_POBS_zero_or_negative_distance="distància nul·la o negativa";
 	T_POBS_zero_or_negative_slope_distance="distància inclinada nul·la o negativa";
 	T_POBS_zero_or_negative_zenith_angle="angle zenital nul o negatiu";
@@ -1071,7 +1068,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="nedefinovaná hodnota pravděpodobnosti";
 	T_LN_undefined_type_of_actual_sigma="Není definován typ aktuální jednotkové střední chyby (apriorní / aposteriorní)";
 	T_POBS_bad_data="chybný údaj";
-	T_POBS_computation_of_bearing_for_identical_points="Výpočet směrníku pro identické body";
 	T_POBS_zero_or_negative_distance="nulová nebo záporná délka";
 	T_POBS_zero_or_negative_slope_distance="nulová nebo záporná šikmá délka";
 	T_POBS_zero_or_negative_zenith_angle="nulová nebo záporná zenitová vzdálenost";
@@ -1338,7 +1334,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="onbepaald betrouwbaarheidsniveau";
 	T_LN_undefined_type_of_actual_sigma="Type sigma is niet gedefinieerd (a priori / a posteriori)";
 	T_POBS_bad_data="foutieve data";
-	T_POBS_computation_of_bearing_for_identical_points="Berekening van de kaarthoek voor identieke punten";
 	T_POBS_zero_or_negative_distance="nul of negatieve afstand";
 	T_POBS_zero_or_negative_slope_distance="nul of negatieve schuine afstand";
 	T_POBS_zero_or_negative_zenith_angle="nul of negatieve zenit hoek";
@@ -1605,7 +1600,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="nivel de confianza no definido";
 	T_LN_undefined_type_of_actual_sigma="Tipo actual de sigma no definido (apriori / aposteriori)";
 	T_POBS_bad_data="datos erróneos";
-	T_POBS_computation_of_bearing_for_identical_points="Cálculo del rumbo para puntos idénticos";
 	T_POBS_zero_or_negative_distance="distancia nula o negativa";
 	T_POBS_zero_or_negative_slope_distance="distancia inclinada nula o negativa";
 	T_POBS_zero_or_negative_zenith_angle="ángulo cenital nulo o negativo";
@@ -1872,7 +1866,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="määrittelemätön luottamusväli";
 	T_LN_undefined_type_of_actual_sigma="Sigman tyyppi on määrittelemätön (apriori / aposteriori)";
 	T_POBS_bad_data="epäkelpoa dataa";
-	T_POBS_computation_of_bearing_for_identical_points="Suunnan laskenta identtisille pisteille";
 	T_POBS_zero_or_negative_distance="etäisyys nolla tai negatiivinen";
 	T_POBS_zero_or_negative_slope_distance="vinomatka nolla tai negatiivinen";
 	T_POBS_zero_or_negative_zenith_angle="zeniittikulma nolla tai negatiivinen";
@@ -2139,7 +2132,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="seuil de confiance non défini";
 	T_LN_undefined_type_of_actual_sigma="Type de sigma (a priori / a posteriori) non défini";
 	T_POBS_bad_data="donnÃ©es erronÃ©es";
-	T_POBS_computation_of_bearing_for_identical_points="Calcul de gisement entre deux points identiques";
 	T_POBS_zero_or_negative_distance="distance nÃ©gative ou nulle";
 	T_POBS_zero_or_negative_slope_distance="distance suivant la pente nÃ©gative ou nulle";
 	T_POBS_zero_or_negative_zenith_angle="angle zÃ©nithal nÃ©gatif ou nul";
@@ -2406,7 +2398,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="hiányzó konfidencia szint";
 	T_LN_undefined_type_of_actual_sigma="A súlyegység középhiba típusát nem adta meg (apriori / aposteriori)";
 	T_POBS_bad_data="hibás adat";
-	T_POBS_computation_of_bearing_for_identical_points="Irányszög számítás azonos pontok között";
 	T_POBS_zero_or_negative_distance="nulla vagy negatív távolság";
 	T_POBS_zero_or_negative_slope_distance="nulla vagy negatív ferde távolság";
 	T_POBS_zero_or_negative_zenith_angle="nulla vagy negatív zenitszög";
@@ -2673,7 +2664,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="неопределен доверительный интервал";
 	T_LN_undefined_type_of_actual_sigma="Тип текущего среднего квадратического отклонения не определен  (apriori / aposteriori)";
 	T_POBS_bad_data="плохие данные";
-	T_POBS_computation_of_bearing_for_identical_points="Вычисление направления для одинаковых точек";
 	T_POBS_zero_or_negative_distance="нулевое или отрицательное расстояние";
 	T_POBS_zero_or_negative_slope_distance="нулевое или отрицательное наклонное расстояние";
 	T_POBS_zero_or_negative_zenith_angle="нулевой или отрицательный зенитный угол";
@@ -2940,7 +2930,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="не заданий довірчий інтервал";
 	T_LN_undefined_type_of_actual_sigma="Тип фактичного середнього квадратичного відхилення не заданий (апріорі / апостеріорі)";
 	T_POBS_bad_data="погані дані";
-	T_POBS_computation_of_bearing_for_identical_points="Обчислення напрямку для однакових точок";
 	T_POBS_zero_or_negative_distance="нульова або від'ємна відстань";
 	T_POBS_zero_or_negative_slope_distance="нульова або від'ємна наклонна відстань";
 	T_POBS_zero_or_negative_zenith_angle="нульовий або від'ємний зенітний кут";
@@ -3207,7 +3196,6 @@ void set_gama_language(gama_language lang)
 	T_LN_undefined_confidence_level="未定义置信度";
 	T_LN_undefined_type_of_actual_sigma="未定义sigma-act类型(apriori / aposteriori)";
 	T_POBS_bad_data="数据不合格";
-	T_POBS_computation_of_bearing_for_identical_points="同一点方位计算";
 	T_POBS_zero_or_negative_distance="零或者负平距";
 	T_POBS_zero_or_negative_slope_distance="零或者负斜距";
 	T_POBS_zero_or_negative_zenith_angle="零或者负天顶角";

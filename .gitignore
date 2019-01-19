@@ -69,6 +69,7 @@ bin/gama-local-xml2sql
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar
+discarded_entries
 #
 # doxygen
 dox

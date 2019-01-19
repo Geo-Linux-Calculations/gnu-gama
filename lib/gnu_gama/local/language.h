@@ -1,7 +1,7 @@
 #ifndef GNU_gama_local_language_header_file_h
 #define GNU_gama_local_language_header_file_h
 
-namespace GNU_gama { namespace local {      /* slovnikar 1.14 */
+namespace GNU_gama { namespace local {      /* slovnikar 1.15 */
 
 enum gama_language { en, ca, cz, du, es, fi, fr, hu, ru, ua, zh };
 void set_gama_language(gama_language);
@@ -266,7 +266,6 @@ extern const char* T_LN_rm_singular_z;
 extern const char* T_LN_undefined_confidence_level;
 extern const char* T_LN_undefined_type_of_actual_sigma;
 extern const char* T_POBS_bad_data;
-extern const char* T_POBS_computation_of_bearing_for_identical_points;
 extern const char* T_POBS_zero_or_negative_distance;
 extern const char* T_POBS_zero_or_negative_slope_distance;
 extern const char* T_POBS_zero_or_negative_zenith_angle;

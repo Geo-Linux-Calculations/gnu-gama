@@ -20,17 +20,23 @@
  * available.  Attribute EN is ignored on input and serves as a kind
  * of comment.
  *
+ * Attribute XX discards all corresponding entries (id) for all languages.
+ *
  * ------------------------------------------------------------------------ */
 
-         const char* language[] = { "en", 
+         const char* language[] = { "en",
                                     "ca", "cz", "du", "es", "fi",
                                     "fr", "hu", "ru", "ua", "zh" };
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.14";
+         const char* version = "1.15";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.15  2019-01-19
+ *
+ *       - attribute XX for discarding entry 'id' (in all languages).
  *
  * 1.14  2018-11-17
  *
@@ -145,6 +151,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -152,9 +159,11 @@ struct Entry {
   string lang[N];
 };
 
-typedef map<string, Entry> Dictionary;
+using Dictionary = map<string, Entry>;
+using Discard    = set<string>;
 
 Dictionary dict;
+Discard    discard;
 
 // ---------------------------------------------------------------------------
 
@@ -211,6 +220,11 @@ void startElement(void *userData, const char *cname, const char **atts)
             {
               id = val;
               dict_entry = dict[id];
+              continue;
+            }
+          else if (nam == "XX")
+            {
+              discard.insert(id);
               continue;
             }
           else if (nam == "EN")
@@ -327,10 +341,23 @@ void Parser::error(const char* message)
 
 int main()
 {
-  /* reading all input files*/
+  /* reading all input files */
   {
     string f;
     while (cin >> f) { Parser p(f); };
+    dict.erase(f);
+  }
+
+  /* discarded entries (XX atribute) */
+  {
+    ofstream out("discarded_entries");
+    out << "";
+    for (auto e : discard)
+      {
+        cerr << "discarded " << e << endl;
+        out  << e << endl;
+        dict.erase(e);
+      }
   }
 
   /* writing header-file language.h */
