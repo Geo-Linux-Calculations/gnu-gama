@@ -20,7 +20,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <compare_xml_adjustment.h>
+#include "compare_xml_adjustment.h"
 
 using GNU_gama::LocalNetworkAdjustmentResults;
 

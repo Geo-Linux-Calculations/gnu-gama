@@ -1,3 +1,5 @@
+EXTRA_DIST = CMakeLists.txt
+
 TESTA = gama-local-version.sh \
 	gama-local-adjustment.sh \
 	gama-local-algorithms.sh \

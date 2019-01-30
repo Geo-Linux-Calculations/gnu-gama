@@ -3,8 +3,10 @@ cmake_minimum_required(VERSION 3.5)
 project (gnu-gama VERSION 2.03)
 
 set(CMAKE_CXX_STANDARD 11)
+
 add_definitions(-DGNU_gama_expat_1_1)
 
+# Library
 file(GLOB_RECURSE SRC_GAMA lib/gnu_gama/*.cpp lib/gnu_gama/*.h)
 
 set(SRC_EXPAT
@@ -19,7 +21,13 @@ include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 
 add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 
+# Binaries
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
 
+# Installation
 install(TARGETS gama-local gama-g3 DESTINATION bin)
+
+# Tests
+enable_testing()
+add_subdirectory(tests)
