@@ -1,5 +1,32 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.03 February 2019
+
+* The new attribute "extern" suggested by Kristian Evers (Danish
+  Agency for Data Supply and Efficiency) was added both to the
+  gama-local xml input and adjustment results xml output to be
+  conformant with FIRE project.
+
+  FIRE, short for FIkspunktREgister, is a complex of applications that
+  is used by the Danish Agency for Data Supply and Efficiency to
+  manage the geodetic levelling networks in the Kingdom of
+  Denmark. Managing the levelling network requires both physical
+  maintenance on geodetic markers, determination of coordinates of
+  said markers and distributing data about the markers and their
+  coordinates to surveyors in Denmark, Greenland and the Faroe
+  Islands.
+
+  Central to FIRE is an Oracle database that stores all relevant data
+  on levelling benchmarks and other geodetic stations, as well as
+  geodetic observations and coordinates related to them. FIRE is
+  primarily developed in Python 3. The core of FIRE is the database
+  and an API that allow other software modules to interface with the
+  database in a simple fashion while still maintaining the required
+  data integrity. Where possible existing open source software
+  solutions are used instead of developing them in-house. Examples of
+  that are PROJ which is used for coordinate transformations and Gnu
+  Gama which is used for adjustment of geodetic levelling networks.
+
 Version 2.02 November 2018
 
 * Improved Hungarian translation by Siki Zoltan:
@@ -10,7 +37,7 @@ Version 2.02 November 2018
    Gama was used (and GeoEasy).
    During this work we have improved the Hungarian translation."
 
-Version 2.01 September 2018 
+Version 2.01 September 2018
 
 * Maintainer's release
 * Conditional build for gama-g3 enabled implicitly
@@ -39,9 +66,9 @@ Version 1.20 November 2017
 Version 1.19 June 2017
 
 * fixed a bug introduced in 1.16, reported by Pierre Bosser
-	<pierre.bosser@ensta-bretagne.fr>. Implicit value of
-	covariance band in XML adjustment output is -1 (full
-	bandwidth).
+        <pierre.bosser@ensta-bretagne.fr>. Implicit value of
+        covariance band in XML adjustment output is -1 (full
+        bandwidth).
 
 Version 1.18 August 2016
 
@@ -98,4 +125,3 @@ Changes from 1.9.00 to 1.9.01
 -----------------------------
 
 1. new complete build system compatible with GNU policies
-

@@ -1,3 +1,10 @@
+2019-02-15  Ales Cepek  <cepek@gnu.org>
+
+	* new release 2.03
+
+	* added new attribute "extern" both to the gama-local xml input
+	and adjustment results xml output (as suggested by Kristian Evers)
+
 2018-12-18  Ales Cepek  <cepek@gnu.org>
 
 	* new release 2.02
