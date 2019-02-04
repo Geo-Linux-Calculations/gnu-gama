@@ -48,7 +48,7 @@ object is given.
 
 @menu
 * Angular units::             Angular units
-* Prologue::                    XML declaration
+* Prologue::                  XML declaration
 * Network definition::        Tags @code{<gama-local>} and @code{<network>}
 * Network description::       Tag  @code{<description>}
 * Network parameters::        Tag  @code{<parameters />}
@@ -64,6 +64,7 @@ object is given.
 * Height differences::        Tag  @code{<height-differences>}
 * Control coordinates::       Tag  @code{<coordinates>}
 * Coordinate differences::    Tag  @code{<vectors>}
+* Attribute extern::          Attribute @code{extern}
 * Example::                   A complete example of a network
 @end menu
 
@@ -1150,7 +1151,26 @@ instrument and/or target height are
 @end example
 
 
-@page
+@node     Attribute extern
+@section  Attribute @code{extern}
+@cindex   @code{extern}
+@cindex   attribute extern
+@cindex   attribute, extern
+@cindex   extern, attribute
+
+The attribute @code{extern} is available for all observation types,
+including @code{<vector extern="...">} and @code{<coordinates
+extern="...">}.  Its values have no impact on processing in
+@code{gama-local}, it only transferes the attribute values from XML
+input into the corresponing XML tags in the adjustment output.
+
+The attribude @code{extern="value"} is provided to enable storing
+observations' database keys from an external database system in
+@code{gama-local} XML adjutement input and output. If you do not have
+such an external application, you probably will not need this
+attribute.
+
+@c page
 
 @node     Example
 @section  Example of local geodetic network
