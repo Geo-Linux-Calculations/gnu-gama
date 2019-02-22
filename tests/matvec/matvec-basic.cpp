@@ -1,6 +1,6 @@
 /*
   GNU Gama C++ library tests/matvec
-  Copyright (C) 2017  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2017, 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library tests/matvec
   
@@ -30,7 +30,7 @@ int b01()
   double ver = std::stod(std::string(matvec_version()));
 
   Vec<> a, b{ {1,2,3,4,5,6,7,8,9,10} };
-  unsigned bd = b.dim();
+  Vec<>::size_type bd = b.dim();
 
   a = std::move(b);
   std::cout << "01# matvec_version() " << matvec_version() << " --> "

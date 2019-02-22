@@ -1,6 +1,6 @@
 /*
   GNU Gama C++ library tests/matvec
-  Copyright (C) 2017  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2017, 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library tests/matvec
   
@@ -28,8 +28,8 @@ bool operator==(const Mat<>& A, const Mat<> B)
 {
   if (A.rows() != B.rows() || A.cols() != B.cols()) return false;
 
-  for (int i=1; i<=A.rows(); i++)
-    for (int j=1; j<=A.cols(); j++)
+  for (Mat<>::size_type i=1; i<=A.rows(); i++)
+    for (Mat<>::size_type j=1; j<=A.cols(); j++)
       if (A(i,j) != B(i,j)) return false;
 
   return true;

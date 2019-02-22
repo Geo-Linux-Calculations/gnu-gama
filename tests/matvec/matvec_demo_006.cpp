@@ -110,8 +110,8 @@ int main()
 
 
   SymMat<> S(Mf12.rows(), Mf12.cols());
-  for (unsigned int r=1; r<=S.rows(); r++)
-    for (unsigned int s=r; s<=S.cols(); s++)
+  for (SymMat<>::size_type r=1; r<=S.rows(); r++)
+    for (SymMat<>::size_type s=r; s<=S.cols(); s++)
       {
 	S(r,s) = Mf12(r,s);
       }

@@ -1,6 +1,7 @@
 /*
   C++ Matrix/Vector templates (GNU Gama / matvec)
-  Copyright (C) 1999, 2007, 2014, 2017, 2018  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 1999, 2007, 2014, 2017, 2018, 2019
+                Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ Matrix/Vector template library.
 
@@ -32,6 +33,8 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
   class MemRep {
 
   public:
+
+    using size_type = Index;
 
     using iterator = Float*;
     iterator begin() { return rep; }

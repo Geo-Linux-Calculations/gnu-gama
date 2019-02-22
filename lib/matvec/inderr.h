@@ -1,6 +1,6 @@
 /*
     C++ Matrix/Vector templates (GNU Gama / matvec)
-    Copyright (C) 1999, 2007, 2011, 2012, 2014, 2017, 2018
+    Copyright (C) 1999, 2007, 2011, 2012, 2014, 2017, 2018, 2019
                   Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -27,7 +27,7 @@
 
 namespace GNU_gama {
 
-  inline const char* matvec_version() { return "3.00"; }
+  inline const char* matvec_version() { return "3.01"; }
 
   /** Exception \brief Matrix/vector exceptions
    */
