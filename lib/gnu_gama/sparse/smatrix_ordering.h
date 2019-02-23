@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2006, 2019  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -36,6 +36,8 @@ namespace GNU_gama {
   class RootedLevelStructure
   {
   public:
+
+    using size_type = Index;
 
     Adjacency<Index> adst;
 
@@ -116,6 +118,8 @@ namespace GNU_gama {
   {
   public:
 
+    using size_type = Index;
+
     PseudoPeripheralNode() : starting_node(1) {}
 
     Index operator()(const Adjacency<Index>* graph)
@@ -163,6 +167,8 @@ namespace GNU_gama {
   class SparseMatrixOrdering
   {
   public:
+
+    using size_type = Index;
 
     IntegerList<Index> perm;
     IntegerList<Index> invp;

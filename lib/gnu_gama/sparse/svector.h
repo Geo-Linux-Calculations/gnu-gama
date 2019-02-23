@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2003  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2003, 2019  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -44,6 +44,8 @@ template <typename Float=double, typename Index=int>
   enum { min_buffer_size=10 };
 
   public:
+
+  using size_type = Index;
 
   SparseVector(Index floats=min_buffer_size, Index dimension=0)
   {

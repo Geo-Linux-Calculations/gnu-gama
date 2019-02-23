@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2019  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -39,6 +39,8 @@ template <typename Index=int>
     Index*  e;
 
     public:
+
+    using size_type = Index;
 
     IntegerList() : m(0), e(0)
     {
@@ -114,7 +116,7 @@ int main()
   ilist.reset(20);
   IntegerList<>::iterator c = ilist.begin();
   IntegerList<>::const_iterator e = ilist.end();
-  for (int i=1, j=1, k=1; c!=e; k = i+j, i=j, j=k)
+  for (IntegerList<>::size_type i=1, j=1, k=1; c!=e; k = i+j, i=j, j=k)
     {
       *c++ = i;
     }

@@ -73,7 +73,7 @@ int main()
 
     Vec<> v {1,2,3,4,5,6,7,8,9,10};
     ilist.reset(v.dim());
-    int n=0;
+    IntegerList<int>::size_type n=0;
     for (auto i : v) {
       ilist(n++) = i;
     }
@@ -82,7 +82,7 @@ int main()
     IntegerList<int>::const_iterator eit = ilist.end();
 
     cout << "\n---  IntegerList<int>    // zero based indices  \n\n";
-    for (int i=1; vit != eit; vit++, i++) {
+    for (Vec<>::size_type i=1; vit != eit; vit++, i++) {
       if (*vit != v(i)) {
         cout << *vit << " != " << v(i) << endl;
         return 1;
@@ -120,7 +120,7 @@ int main()
     cout << "dimension = " << upper.dim() << endl
          << "nonzeroes = " << upper.nonzeroes() << "\n\n";
 
-    for (unsigned i=1; i<=upper.dim(); i++)
+    for (UpperBlockDiagonal<>::size_type i=1; i<=upper.dim(); i++)
       {
         cout << i << " : ";
         const double* b = upper.begin(i);
@@ -194,7 +194,10 @@ int main()
       {
         svec.reset();
 
-        for (int j=1; j<=3+i/3; j++) svec.add(j, 10.0*i + 0.01*j);
+        for (SparseVector<>::size_type j=1; j<=3+i/3; j++)
+          {
+            svec.add(j, 10.0*i + 0.01*j);
+          }
 
         cout << i << " (nonz " << svec.nonzeroes() << ") : ";
         double* mm = svec.begin ();
