@@ -4,7 +4,7 @@
   Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>,
                 2001  Ales Cepek <cepek@fsv.cvut.cz>,
                       Jan Pytel  <pytel@gama.fsv.cvut.cz>
-                2011, 2014, 2018  Ales Cepek <cepek@gnu.org>
+                2011, 2014, 2018, 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -29,6 +29,15 @@
 #include <sstream>
 
 using namespace GNU_gama::local;
+
+namespace std
+{
+  size_t hash<PointID>::operator()(const PointID & obj) const
+  {
+    return hash<std::string>()(obj.str());
+  }
+}
+
 
 void PointID::init(const std::string& s)
 {
