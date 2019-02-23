@@ -88,12 +88,13 @@ template<class Float> void InverseTest()
   using namespace GNU_gama;
   using namespace std;
 
-  typename Mat<Float>::size_type  MaxN = 50;
+  using size_type = typename Mat<Float>::size_type;
+  const size_type MaxN = 50;
   double inibmat[MaxN] = {1, 2, 3};
   double inverse[MaxN];
   cout.setf(ios::scientific, ios::floatfield);
   cout.precision(3);
-  for (decltype(MaxN) N=3; N<=MaxN; N++)
+  for (size_type N=3; N<=MaxN; N++)
     {
       cout << setw(2) << sizeof(Float) << " " << setw(2) << N;
       Mat<Float> M(N,N);
@@ -103,8 +104,8 @@ template<class Float> void InverseTest()
       cout << "  cond. <= " << cond;
       Mat<Float> invM = inv(M);
       double maxdif = 0;
-      for (decltype(MaxN) i=1; i<=N; i++)
-        for (decltype(MaxN) j=1; j<=N; j++)
+      for (size_type i=1; i<=N; i++)
+        for (size_type j=1; j<=N; j++)
           if (std::abs(invM(i,j) - I(i,j)) > std::abs(maxdif))
               maxdif = invM(i,j) - I(i,j);
       cout << "  max. relative error = "
