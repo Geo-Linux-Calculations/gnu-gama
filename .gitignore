@@ -7,6 +7,8 @@ TAGS
 gama-*.*.tar.gz
 *.gkf
 *.zip
+a.out
+*.pro*
 #
 aclocal.m4
 autom4te.cache/
