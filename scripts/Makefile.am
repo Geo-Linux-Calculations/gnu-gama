@@ -1,4 +1,4 @@
-EXTRA_DIST = build-dictionaries.sh build-ellipsoids.sh
+EXTRA_DIST = build-dictionaries.sh build-ellipsoids.sh gama-local-pro.cpp
 
 noinst_PROGRAMS   = slovnikar ellipsoids_xml
 

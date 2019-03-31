@@ -1,3 +1,16 @@
+2019-03-31  Ales Cepek  <cepek@gnu.org>
+
+	* new release 2.04
+
+	* experimental qmake project file gama-local.pro to be used where
+	cmake is not available with Qt distribution on
+	Windows. CMakeLists.txt project is prefered over gama-local.pro.
+
+	* PointID hash function size_t hash<PointID>::operator()(const
+	PointID & obj) const
+
+	* several minor formal changes.
+
 2019-02-15  Ales Cepek  <cepek@gnu.org>
 
 	* new release 2.03

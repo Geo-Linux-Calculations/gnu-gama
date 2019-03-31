@@ -1,5 +1,11 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.04 March 2019
+
+* experimental qmake project file gama-local.pro to be used where
+cmake is not available with Qt distribution on Windows. CMakeLists.txt
+project is prefered over gama-local.pro.
+
 Version 2.03 February 2019
 
 * The new attribute "extern" suggested by Kristian Evers (Danish
