@@ -56,6 +56,7 @@ int main()
           "CONFIG -= qt\n"
           "CONFIG -= warn_on\n\n" // can qmake suppress CFLAGS warnings only ?
 
+          "DEFINES     += GNU_gama_expat_1_1\n"
           "INCLUDEPATH += lib\n"
           "INCLUDEPATH += lib/expat/xmltok\n\n"
 

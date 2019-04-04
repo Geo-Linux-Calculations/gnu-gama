@@ -6,6 +6,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG -= warn_on
 
+DEFINES     += GNU_gama_expat_1_1
 INCLUDEPATH += lib
 INCLUDEPATH += lib/expat/xmltok
 
