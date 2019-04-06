@@ -27,7 +27,7 @@
 
 namespace GNU_gama {
 
-  inline const char* matvec_version() { return "3.01"; }
+  inline const char* matvec_version() { return "3.02"; }
 
   /** Exception \brief Matrix/vector exceptions
    */
@@ -50,7 +50,7 @@ namespace GNU_gama {
     class base : public std::exception
     {
     public:
-      virtual ~base() {}
+      // virtual ~base() {} ... C++11 std:exception has virtual destructor
       virtual base* clone() const = 0;
       virtual void  raise() const = 0;
     };
