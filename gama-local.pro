@@ -170,4 +170,26 @@ HEADERS = \
     lib/gnu_gama/local/skipcomm.h \
     lib/gnu_gama/local/sqlitereader.h \
     lib/gnu_gama/local/writevisitor.h \
-    lib/gnu_gama/local/xmlerror.h
+    lib/gnu_gama/local/xmlerror.h \
+    lib/matvec/array.h \
+    lib/matvec/bandmat.h \
+    lib/matvec/choldec.h \
+    lib/matvec/covmat.h \
+    lib/matvec/gso.h \
+    lib/matvec/hilbert.h \
+    lib/matvec/inderr.h \
+    lib/matvec/jacobian.h \
+    lib/matvec/matbase.h \
+    lib/matvec/mat.h \
+    lib/matvec/matvecbase.h \
+    lib/matvec/matvec.h \
+    lib/matvec/memrep.h \
+    lib/matvec/pinv.h \
+    lib/matvec/sortvec.h \
+    lib/matvec/svd.h \
+    lib/matvec/symmat.h \
+    lib/matvec/transmat.h \
+    lib/matvec/transvec.h \
+    lib/matvec/unsigned.h \
+    lib/matvec/vecbase.h \
+    lib/matvec/vec.h

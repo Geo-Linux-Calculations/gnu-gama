@@ -3,12 +3,12 @@
   Copyright (C) 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
-  
+
   GNU Gama is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   GNU Gama is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -73,25 +73,31 @@ int main()
 
     string s;
     auto ends_with = [&s](std::string const & ending)
-    {
-      if (ending.size() > s.size()) return false;
-      return std::equal(ending.rbegin(), ending.rend(), s.rbegin());
-    };
-
-    while (cin >> s && s != "libgama_src");
-    getline(cin, s);
-
-    while (getline(cin, s))
       {
-        if (s.empty()) break;
-        while (isspace(s.back()) || s.back() == '\\') s.pop_back();
-        if (s.empty()) break;
+        if (ending.size() > s.size()) return false;
+        return std::equal(ending.rbegin(), ending.rend(), s.rbegin());
+      };
 
-        while (isspace(s.front())) s.erase(s.begin());
+    auto read_section = [&](std::string const & section)
+      {
+        while (cin >> s && s != section);
+        getline(cin, s);
 
-        if (ends_with(".cpp")) sources.push_back(s);
-        if (ends_with(".h"))   headers.push_back(s);
-      }
+        while (getline(cin, s))
+          {
+            if (s.empty()) break;
+            while (isspace(s.back()) || s.back() == '\\') s.pop_back();
+            if (s.empty()) break;
+
+            while (isspace(s.front())) s.erase(s.begin());
+
+            if (ends_with(".cpp")) sources.push_back(s);
+            if (ends_with(".h"))   headers.push_back(s);
+          }
+      };
+
+    read_section("libgama_src");
+    read_section("matvec_src");
 
     for (auto t : sources) cout << " \\\n    lib/" << t;
     cout << "\n\n";
