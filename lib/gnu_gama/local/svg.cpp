@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
    Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
                  2014  Maxime Le Moual <maxime.le-moual@ensg.eu>
-                 2018  Ales Cepek <cepek@gnu.org>
+                 2018, 2019  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -73,15 +73,15 @@ void GamaLocalSVG::svg_init() const
   switch (PD.local_coordinate_system)
     {
       // right handed
-    case LocalCoordinateSystem::EN: sett( 1, 0, 0,-1); break;
-    case LocalCoordinateSystem::NW: sett( 0,-1,-1, 0); break;
-    case LocalCoordinateSystem::SE: sett( 0, 1, 1, 0); break;
-    case LocalCoordinateSystem::WS: sett(-1, 0, 0, 1); break;
+    case LocalCoordinateSystem::CS::EN: sett( 1, 0, 0,-1); break;
+    case LocalCoordinateSystem::CS::NW: sett( 0,-1,-1, 0); break;
+    case LocalCoordinateSystem::CS::SE: sett( 0, 1, 1, 0); break;
+    case LocalCoordinateSystem::CS::WS: sett(-1, 0, 0, 1); break;
       // left handed
-    case LocalCoordinateSystem::NE: sett( 0,-1, 1, 0); break;
-    case LocalCoordinateSystem::SW: sett( 0, 1,-1, 0); break;
-    case LocalCoordinateSystem::ES: sett( 1, 0, 0, 1); break;
-    case LocalCoordinateSystem::WN: sett(-1, 0, 0,-1); break;
+    case LocalCoordinateSystem::CS::NE: sett( 0,-1, 1, 0); break;
+    case LocalCoordinateSystem::CS::SW: sett( 0, 1,-1, 0); break;
+    case LocalCoordinateSystem::CS::ES: sett( 1, 0, 0, 1); break;
+    case LocalCoordinateSystem::CS::WN: sett(-1, 0, 0,-1); break;
     default:
       sett(0,0,0,0);
     }
@@ -324,16 +324,16 @@ void GamaLocalSVG::svg_axes_xy() const
   switch (PD.local_coordinate_system)
     {
       // right handed
-    case LocalCoordinateSystem::EN: P = Point(left,  bottom);  break;
-    case LocalCoordinateSystem::NW: P = Point(right, bottom);  break;
-    case LocalCoordinateSystem::SE: P = Point(left,  top);     break;
-    case LocalCoordinateSystem::WS: P = Point(right, top);     break;
+    case LocalCoordinateSystem::CS::EN: P = Point(left,  bottom);  break;
+    case LocalCoordinateSystem::CS::NW: P = Point(right, bottom);  break;
+    case LocalCoordinateSystem::CS::SE: P = Point(left,  top);     break;
+    case LocalCoordinateSystem::CS::WS: P = Point(right, top);     break;
 
       // left handed
-    case LocalCoordinateSystem::NE: P = Point(left,  bottom);  break;
-    case LocalCoordinateSystem::SW: P = Point(right, top);     break;
-    case LocalCoordinateSystem::ES: P = Point(left,  top);     break;
-    case LocalCoordinateSystem::WN: P = Point(right, bottom);  break;
+    case LocalCoordinateSystem::CS::NE: P = Point(left,  bottom);  break;
+    case LocalCoordinateSystem::CS::SW: P = Point(right, top);     break;
+    case LocalCoordinateSystem::CS::ES: P = Point(left,  top);     break;
+    case LocalCoordinateSystem::CS::WN: P = Point(right, bottom);  break;
 
     default:
       return;
@@ -528,15 +528,15 @@ void GamaLocalSVG::svg_ellipse(const PointID& pid, double &a, double &b, double 
     switch (PD.local_coordinate_system)
       {
         // right handed
-      case LocalCoordinateSystem::EN: ; break;
-      case LocalCoordinateSystem::NW: alpha += M_PI/2; break;
-      case LocalCoordinateSystem::SE: alpha += M_PI/2; break;
-      case LocalCoordinateSystem::WS: ; break;
+      case LocalCoordinateSystem::CS::EN: ; break;
+      case LocalCoordinateSystem::CS::NW: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::CS::SE: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::CS::WS: ; break;
         // left handed
-      case LocalCoordinateSystem::NE: alpha += M_PI/2; break;
-      case LocalCoordinateSystem::SW: alpha += M_PI/2; break;
-      case LocalCoordinateSystem::ES: break;
-      case LocalCoordinateSystem::WN: break;
+      case LocalCoordinateSystem::CS::NE: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::CS::SW: alpha += M_PI/2; break;
+      case LocalCoordinateSystem::CS::ES: break;
+      case LocalCoordinateSystem::CS::WN: break;
       default:
         ;
       }

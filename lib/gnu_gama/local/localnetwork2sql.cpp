@@ -2,7 +2,7 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012, 2013, 2014, 2015, 2017 Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2017, 2019 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -266,14 +266,14 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   std::string axes = "ne";
   switch(localNetwork.PD.local_coordinate_system)
   {
-      case LocalCoordinateSystem::EN: axes = "'en', "; break;
-      case LocalCoordinateSystem::NW: axes = "'nw', "; break;
-      case LocalCoordinateSystem::SE: axes = "'se', "; break;
-      case LocalCoordinateSystem::WS: axes = "'ws', "; break;
-      case LocalCoordinateSystem::NE: axes = "'ne', "; break;
-      case LocalCoordinateSystem::SW: axes = "'sw', "; break;
-      case LocalCoordinateSystem::ES: axes = "'es', "; break;
-      case LocalCoordinateSystem::WN: axes = "'wn', "; break;
+      case LocalCoordinateSystem::CS::EN: axes = "'en', "; break;
+      case LocalCoordinateSystem::CS::NW: axes = "'nw', "; break;
+      case LocalCoordinateSystem::CS::SE: axes = "'se', "; break;
+      case LocalCoordinateSystem::CS::WS: axes = "'ws', "; break;
+      case LocalCoordinateSystem::CS::NE: axes = "'ne', "; break;
+      case LocalCoordinateSystem::CS::SW: axes = "'sw', "; break;
+      case LocalCoordinateSystem::CS::ES: axes = "'es', "; break;
+      case LocalCoordinateSystem::CS::WN: axes = "'wn', "; break;
       default:
              axes =  "'ne', "; //break;*/
   }
@@ -675,14 +675,14 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
         std::string axes = "ne";
         switch(localNetwork.PD.local_coordinate_system)
           {
-          case LocalCoordinateSystem::EN: axes = "'en', "; break;
-          case LocalCoordinateSystem::NW: axes = "'nw', "; break;
-          case LocalCoordinateSystem::SE: axes = "'se', "; break;
-          case LocalCoordinateSystem::WS: axes = "'ws', "; break;
-          case LocalCoordinateSystem::NE: axes = "'ne', "; break;
-          case LocalCoordinateSystem::SW: axes = "'sw', "; break;
-          case LocalCoordinateSystem::ES: axes = "'es', "; break;
-          case LocalCoordinateSystem::WN: axes = "'wn', "; break;
+          case LocalCoordinateSystem::CS::EN: axes = "'en', "; break;
+          case LocalCoordinateSystem::CS::NW: axes = "'nw', "; break;
+          case LocalCoordinateSystem::CS::SE: axes = "'se', "; break;
+          case LocalCoordinateSystem::CS::WS: axes = "'ws', "; break;
+          case LocalCoordinateSystem::CS::NE: axes = "'ne', "; break;
+          case LocalCoordinateSystem::CS::SW: axes = "'sw', "; break;
+          case LocalCoordinateSystem::CS::ES: axes = "'es', "; break;
+          case LocalCoordinateSystem::CS::WN: axes = "'wn', "; break;
           default:
             axes =  "'ne', "; //break;*/
           }

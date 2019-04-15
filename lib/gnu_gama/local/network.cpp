@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015, 2018  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2018, 2019  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -1299,14 +1299,14 @@ std::string LocalNetwork::updated_xml()
 
   switch(PD.local_coordinate_system)
     {
-    case LocalCoordinateSystem::EN: xml += "\"en\""; break;
-    case LocalCoordinateSystem::NW: xml += "\"nw\""; break;
-    case LocalCoordinateSystem::SE: xml += "\"se\""; break;
-    case LocalCoordinateSystem::WS: xml += "\"ws\""; break;
-    case LocalCoordinateSystem::NE: xml += "\"ne\""; break;
-    case LocalCoordinateSystem::SW: xml += "\"sw\""; break;
-    case LocalCoordinateSystem::ES: xml += "\"es\""; break;
-    case LocalCoordinateSystem::WN: xml += "\"wn\""; break;
+    case LocalCoordinateSystem::CS::EN: xml += "\"en\""; break;
+    case LocalCoordinateSystem::CS::NW: xml += "\"nw\""; break;
+    case LocalCoordinateSystem::CS::SE: xml += "\"se\""; break;
+    case LocalCoordinateSystem::CS::WS: xml += "\"ws\""; break;
+    case LocalCoordinateSystem::CS::NE: xml += "\"ne\""; break;
+    case LocalCoordinateSystem::CS::SW: xml += "\"sw\""; break;
+    case LocalCoordinateSystem::CS::ES: xml += "\"es\""; break;
+    case LocalCoordinateSystem::CS::WN: xml += "\"wn\""; break;
     default:
       xml +=  "\"ne\""; break;
     }

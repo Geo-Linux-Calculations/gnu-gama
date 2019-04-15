@@ -1,7 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2011  Vaclav Petras <vaclav.petras@fsv.cvut.cz>
-                  2013, 2014  Ales Cepek <cepek@gnu.org>
+                  2013, 2014, 2019  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -481,15 +481,15 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
 
         std::string val = argv[7];
         LocalCoordinateSystem::CS& lcs = d->lnet->PD.local_coordinate_system;
-        if      (val == "ne") lcs = LocalCoordinateSystem::NE;
-        else if (val == "sw") lcs = LocalCoordinateSystem::SW;
-        else if (val == "es") lcs = LocalCoordinateSystem::ES;
-        else if (val == "wn") lcs = LocalCoordinateSystem::WN;
-        else if (val == "en") lcs = LocalCoordinateSystem::EN;
-        else if (val == "nw") lcs = LocalCoordinateSystem::NW;
-        else if (val == "se") lcs = LocalCoordinateSystem::SE;
-        else if (val == "ws") lcs = LocalCoordinateSystem::WS;
-        else lcs = LocalCoordinateSystem::NE;
+        if      (val == "ne") lcs = LocalCoordinateSystem::CS::NE;
+        else if (val == "sw") lcs = LocalCoordinateSystem::CS::SW;
+        else if (val == "es") lcs = LocalCoordinateSystem::CS::ES;
+        else if (val == "wn") lcs = LocalCoordinateSystem::CS::WN;
+        else if (val == "en") lcs = LocalCoordinateSystem::CS::EN;
+        else if (val == "nw") lcs = LocalCoordinateSystem::CS::NW;
+        else if (val == "se") lcs = LocalCoordinateSystem::CS::SE;
+        else if (val == "ws") lcs = LocalCoordinateSystem::CS::WS;
+        else lcs = LocalCoordinateSystem::CS::NE;
 
         // d->lnet->PD.right_handed_angles = (std::string(argv[8]) == "right-handed");
 	if (std::string(argv[8]) == "right-handed")

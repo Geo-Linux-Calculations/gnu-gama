@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2013  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2013, 2019  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -30,10 +30,10 @@ double GNU_gama::local::PointData::xNorthAngle() const
   int lh = 0;
   switch (local_coordinate_system)
     {
-    case EN: case ES:  lh = 300; break;
-    case NW: case NE:  lh = 400; break;
-    case SE: case SW:  lh = 200; break;
-    case WS: case WN:  lh = 100; break;
+    case CS::EN: case CS::ES:  lh = 300; break;
+    case CS::NW: case CS::NE:  lh = 400; break;
+    case CS::SE: case CS::SW:  lh = 200; break;
+    case CS::WS: case CS::WN:  lh = 100; break;
     default:;
     }
 

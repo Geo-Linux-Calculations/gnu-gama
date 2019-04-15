@@ -2,7 +2,7 @@
   GNU Gama C++ library
   Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
                 2011  Vaclav Petras <wenzeslaus@gmail.com>
-                2012, 2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
+                2012, 2013, 2014, 2018, 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
 
@@ -328,14 +328,15 @@ void LocalNetworkXML::write(std::ostream& out) const
       out << "   axes-xy=\"";
       switch (netinfo->PD.local_coordinate_system)
         {
-        case   1: out << "en"; break;
-        case   2: out << "nw"; break;
-        case   4: out << "se"; break;
-        case   8: out << "ws"; break;
-        case  16: out << "ne"; break;
-        case  32: out << "sw"; break;
-        case  64: out << "es"; break;
-        case 128: out << "wn"; break;
+        using namespace GNU_gama::local;
+        case  LocalCoordinateSystem::CS::EN: out << "en"; break;
+        case  LocalCoordinateSystem::CS::NW: out << "nw"; break;
+        case  LocalCoordinateSystem::CS::SE: out << "se"; break;
+        case  LocalCoordinateSystem::CS::WS: out << "ws"; break;
+        case  LocalCoordinateSystem::CS::NE: out << "ne"; break;
+        case  LocalCoordinateSystem::CS::SW: out << "sw"; break;
+        case  LocalCoordinateSystem::CS::ES: out << "es"; break;
+        case  LocalCoordinateSystem::CS::WN: out << "wn"; break;
         default : break;
         }
       out << "\"\n";
