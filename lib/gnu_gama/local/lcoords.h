@@ -54,10 +54,10 @@ namespace GNU_gama { namespace local {
         return locos_tags[unsigned(local_coordinate_system)];
       }
 
-    static constexpr const char* locos_tags[8] =
-      {
-        "en", "nw", "se", "ws", "ne", "sw", "es", "wn"
-      };
+    static const char* locos_tags[8];
+    //  {
+    //    "en", "nw", "se", "ws", "ne", "sw", "es", "wn"
+    //  };
 
   };
 
