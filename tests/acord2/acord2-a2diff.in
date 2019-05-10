@@ -1,0 +1,11 @@
+ #!/bin/sh
+
+set -e
+
+RES=@ACORD2_RESULTS@/acord2-a2diff
+if [ ! -d $RES ]; then
+    mkdir -p $RES
+fi;
+
+./a2diff @ACORD2_RESULTS@/acord2-a2diff/ @ACORD2_INPUT@/a2diff \
+         @ACORD2_A2DIFF_FILES@

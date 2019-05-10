@@ -25,6 +25,7 @@
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/simplified.h>
 
+
 namespace GNU_gama { namespace local
 {
   // the static member Observation::gons was introduced in 1.7.09 to

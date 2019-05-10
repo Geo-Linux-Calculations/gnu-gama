@@ -18,7 +18,7 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gnu_gama/local/acord.h>
+#include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_cogo.h>
 #include <gnu_gama/local/median/g2d_coordinates.h>

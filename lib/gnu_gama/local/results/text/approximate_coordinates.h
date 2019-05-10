@@ -23,14 +23,14 @@
 #define GaMa_GaMaProg_Priblizne_Souradnice_h_
 
 #include <gnu_gama/local/results/text/underline.h>
-#include <gnu_gama/local/acord.h>
+#include <gnu_gama/local/acord/acord.h>
 #include <cctype>
 #include <iomanip>
 
 namespace GNU_gama { namespace local {
 
-template <typename OutStream>
-void ApproximateCoordinates(GNU_gama::local::Acord* acord, OutStream& out)
+template <typename Stats, typename OutStream>
+void ApproximateCoordinates(Stats* acord, OutStream& out)
 {
    using namespace std;
    using namespace GNU_gama::local;

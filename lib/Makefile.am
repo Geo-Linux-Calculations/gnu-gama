@@ -94,8 +94,18 @@ libgama_src = \
    gnu_gama/local/acord/approx_heights.h \
    gnu_gama/local/acord/approx_vectors.cpp \
    gnu_gama/local/acord/approx_vectors.h \
-   gnu_gama/local/acord.cpp \
-   gnu_gama/local/acord.h \
+   gnu_gama/local/acord/acord.cpp \
+   gnu_gama/local/acord/acord.h \
+   gnu_gama/local/acord/acord2.cpp \
+   gnu_gama/local/acord/acord2.h \
+   gnu_gama/local/acord/acordpolar.cpp \
+   gnu_gama/local/acord/acordpolar.h \
+   gnu_gama/local/acord/acordtraverse.cpp \
+   gnu_gama/local/acord/acordtraverse.h \
+   gnu_gama/local/acord/acordstatistics.h \
+   gnu_gama/local/acord/acordstatistics.cpp \
+   gnu_gama/local/acord/acordweakchecks.cpp \
+   gnu_gama/local/acord/acordweakchecks.h \
    gnu_gama/local/acord/reduce_observations.cpp \
    gnu_gama/local/acord/reduce_observations.h \
    gnu_gama/local/acord/reduce_to_ellipsoid.cpp \

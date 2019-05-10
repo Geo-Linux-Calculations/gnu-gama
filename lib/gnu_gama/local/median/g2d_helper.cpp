@@ -2,6 +2,7 @@
   GNU Gama -- adjustment of geodetic networks
   Copyright (C) 1999  Jiri Vesely <vesely@gama.fsv.cvut.cz>
                 2001, 2018  Ales Cepek  <cepek@gnu.org>
+                2019  Petra Millarova <petramillarova@gmail.com>
 
   This file is part of the GNU Gama C++ library.
 
@@ -118,7 +119,7 @@ void Select_solution_g2d::calculation()
 
         if(delta1 > 10*delta2)
           {
-            B1 = B2;		        // second solution selected
+            B1 = B2;                     // second solution selected
             state_ = unique_solution;
             break;
           }
@@ -225,7 +226,7 @@ void SimilarityTr2D::Identical_points(PointData::iterator& b1,
                        ((*i).second.y()+(*j).second.y())/2);
           delka_max = 0;
           for(PointIDList::iterator cb = computed.begin();
-	      cb != computed.end(); cb++)
+              cb != computed.end(); cb++)
           {
             pomocna_d1 = g2d_distance(stred, local[*cb]);
             if(pomocna_d1 > delka_max)
@@ -254,12 +255,12 @@ void SimilarityTr2D::transformation_key(PointData::iterator& b1,
   pom = SB.find((*b1).first);
   if(pom == SB.end())
     throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
-		  " in target coordinate system - "+(*b1).first.str());
+                  " in target coordinate system - "+(*b1).first.str());
   kam1 = (*pom).second;
   pom = SB.find((*b2).first);
   if(pom == SB.end())
     throw g2d_exc("SimilarityTr2D: identical point doesn't exist"
-		  " in target coordinate system - "+(*b2).first.str());
+                  " in target coordinate system - "+(*b2).first.str());
   kam2 = (*pom).second;
   double dy1, dy2, dx1, dx2;
   dy1 = odkud2.y() - odkud1.y();
@@ -289,7 +290,9 @@ void SimilarityTr2D::calculation()
     for(PointIDList::iterator cb=computed.begin(); cb!=computed.end(); cb++)
       {
         pom_i = local.find((*cb));
-        if(pom_i == SB.end())
+        // the bug fixed by Petra Millarova <petramillarova@gmail.com>
+        // if(pom_i == SB.end())
+        if(pom_i == local.end())
           throw g2d_exc("SimilarityTr2D: point from the list of computed"
                          " points is missing in local coordinate system");
         pom = (*pom_i).second;

@@ -302,7 +302,7 @@ namespace GNU_gama { namespace local {
           if(state_ == calculation_not_done)
             throw g2d_exc("SimilarityTr2D: calculation not done");
           if(state_ == no_solution)
-            throw g2d_exc("SimilarityTr2D: not enough of identical poinst");
+            throw g2d_exc("SimilarityTr2D: not enough identical points");
           return transf_key_;
         }
 

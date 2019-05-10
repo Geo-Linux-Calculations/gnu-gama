@@ -4,4 +4,4 @@ endif
 
 EXTRA_DIST = CMakeLists.txt
 
-SUBDIRS = matvec statan gama-local $(GAMA_G3)
+SUBDIRS = matvec statan acord2 gama-local $(GAMA_G3)

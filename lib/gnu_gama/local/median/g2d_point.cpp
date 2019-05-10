@@ -215,7 +215,7 @@ namespace GNU_gama { namespace local {
   {
     // ----------------------------------------------------------------------
     // in this function we use std:list instead of GNU_gama::List
-    // tu allow 'erase' of list elements
+    // to allow 'erase' of list elements
 
     typedef std::list<Observation*> ObservationList;
 

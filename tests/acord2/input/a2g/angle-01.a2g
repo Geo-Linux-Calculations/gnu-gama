@@ -1,0 +1,72 @@
+# perfect polar ~~> angles - all points are computed and checked
+
+! A   0    0    # fixed point A
+! B 600   -1    # fixed point B
+? C 102  249    # adjusted point C with unknown xy
+? D 480  290    # adjusted point D with unknown xy
+? E 800  300    # adjusted point E with unknown xy
+? F 420  530    # adjusted point F with unknown xy
+
+# 1st iteration ==> computed C and D
+# 2nd iteration ==> computed E
+# 3rd iteration ==> computed F
+
+#( A     # standpoint A
+#= C     # distance + direction to C
+#= D     # distance + direction to D
+#> B     # direction to B
+#)
+
+( A
+- C     # distance to C
+& C D   # angle C D
+- D     # distance to D
+& D B   # angle D B
+)       # end of the cluster
+
+#( B     # standpoint B
+#> A     # direction to A
+#= C     # distance + direction to C
+#= D     # distance + direction to D
+#= E     # distance + direction to E
+#)
+
+( B     # standpoint B
+- C     # direction to C
+& A C   # angle A C
+- D     # direction to D
+& A D   # angle C D
+- E     # distance to E
+& A E   # angle D E
+)
+
+#( C     # standpoint C
+#= F     # distance + direction to F
+#> A     # direction to A
+#)
+
+( C     # standpoint C
+- F     # distance F
+& A F   # angle A F
+)
+
+# ( D     # standpoint D
+# = E     # distance + direction to E
+# > A     # direction to A
+# )
+
+( D     # standpoint D
+- E     # distance to E
+& A E   # angle A E
+)
+
+#( E     # standpoint E
+#= F     # distance + direction to F
+#> D     # direction to D
+#)
+
+( E     # standpoint E
+- F     # distance + direction to F
+& D F   # angle F D
+)
+

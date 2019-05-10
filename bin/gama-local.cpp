@@ -34,7 +34,9 @@
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/network.h>
-#include <gnu_gama/local/acord.h>
+#include <gnu_gama/local/acord/acord2.h>
+#include <gnu_gama/local/acord/acord.h>
+#include <gnu_gama/local/acord/acordstatistics.h>
 #include <gnu_gama/local/svg.h>
 #include <gnu_gama/local/html.h>
 
@@ -164,7 +166,7 @@ int main(int argc, char **argv)
 
         if      (name == "help"      ) return help();
         else if (name == "version"   )
-                        return GNU_gama::version("gama-local", "Ales Cepek et al.");
+                return GNU_gama::version("gama-local", "Ales Cepek et al.");
         else if ( i   ==  argc       ) return help();
         else if (name == "algorithm" ) argv_algo = c;
         else if (name == "language"  ) argv_lang = c;
@@ -428,10 +430,16 @@ int main(int argc, char **argv)
         //   {
         //      cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
         //   }
-	IS->remove_inconsistency();
+        IS->remove_inconsistency();
+
+        AcordStatistics stats(IS->PD, IS->OD);
+
+        Acord2 acord2(IS->PD, IS->OD);
+        acord2.execute();
 
         Acord acord(IS->PD, IS->OD);
         acord.execute();
+
         ReducedObservationsText(IS,&(acord.RO), cout);
 
         if (IS->correction_to_ellipsoid())
@@ -445,7 +453,9 @@ int main(int argc, char **argv)
             ReducedObservationsToEllipsoidText(IS, reduce_to_el.getMap(), cout);
           }
 
-        ApproximateCoordinates(&acord, cout);
+        stats.execute();
+        ApproximateCoordinates(&stats, cout);
+
 
       }
     catch(GNU_gama::local::Exception e)

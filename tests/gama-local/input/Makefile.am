@@ -14,7 +14,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              azimuth-angle.gkf         azimuth-angle.xml \
              azimuth-azimuth.gkf       azimuth-azimuth.xml \
              azimuth-distance.gkf      azimuth-distance.xml \
-             alex-2015-05-17.gkf       alex-2015-05-17.xml \
              triangle-1.gkf            triangle-1.xml \
              triangle-2.gkf            triangle-2.xml \
              stroner-levelling-a.gkf   stroner-levelling-a.xml \

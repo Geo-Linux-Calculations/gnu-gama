@@ -1,0 +1,57 @@
+<?xml version='1.0' ?>
+
+<gama-local xmlns='http://www.gnu.org/software/gama/gama-local'>
+<network axes-xy = 'en' angles='right-handed'>
+
+<description>
+traverse-01
+</description>
+
+<parameters  sigma-apr = '10'
+             conf-pr = '0.95'
+             tol-abs = '1000'
+             sigma-act = 'aposteriori'
+             update-constrained-coordinates = 'yes'/>
+
+<points-observations distance-stdev='5'
+                     direction-stdev='10'
+                     angle-stdev='10'
+                     azimuth-stdev='10'>
+
+<point id='A' x='216.123'  y='170.456' fix='xy' />
+<point id='B' x='800.23'  y='301.564' fix='xy' />
+<point id='C' x='451.809'  y='121.981' fix='xy' />
+<point id='D' adj='xy' />
+<point id='E' adj='xy' />
+<point id='F' adj='xy' />
+
+<obs from='A'>
+   <direction to ='C' val='387.086' />
+   <distance  to ='D' val='160.502' />
+   <direction to ='D' val='53.7844' />
+</obs>
+
+<obs from='D'>
+   <distance  to ='A' val='160.502' />
+   <direction to ='A' val='253.784' />
+   <distance  to ='E' val='184.364' />
+   <direction to ='E' val='386.634' />
+</obs>
+
+<obs from='E'>
+   <distance  to ='D' val='184.364' />
+   <direction to ='D' val='186.634' />
+   <distance  to ='F' val='166.293' />
+   <direction to ='F' val='30.8474' />
+</obs>
+
+<obs from='F'>
+   <distance  to ='E' val='166.293' />
+   <direction to ='E' val='230.847' />
+   <distance  to ='B' val='152.675' />
+   <direction to ='B' val='388.274' />
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

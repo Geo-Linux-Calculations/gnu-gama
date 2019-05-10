@@ -1,0 +1,10 @@
+ #!/bin/sh
+
+set -e
+
+RES=@ACORD2_RESULTS@/acord2-a2g
+if [ ! -d $RES ]; then
+    mkdir -p $RES
+fi;
+
+./a2g @ACORD2_RESULTS@/acord2-a2g/ @ACORD2_INPUT@/a2g @ACORD2_A2G_FILES@

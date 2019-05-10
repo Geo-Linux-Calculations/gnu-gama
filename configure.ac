@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 #
 AC_PREREQ(2.69)
-AC_INIT([gama], [2.04], [bug-gama@gnu.org])
+AC_INIT([gama], [2.04.1], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -110,6 +110,7 @@ AC_OUTPUT([
    tests/Makefile
    tests/matvec/Makefile
    tests/statan/Makefile
+   tests/acord2/Makefile
    tests/gama-local/Makefile
    tests/gama-local/input/Makefile
    tests/gama-local/scripts/Makefile

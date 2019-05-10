@@ -5,6 +5,8 @@ project (gnu-gama VERSION 2.04)
 set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(-DGNU_gama_expat_1_1)
+#add_definitions(-DDEBUG_ACORD2)
+#add_definitions(-DA2G_DEBUG)
 
 # Library
 file(GLOB_RECURSE SRC_GAMA lib/gnu_gama/*.cpp lib/gnu_gama/*.h)
