@@ -9,6 +9,7 @@ gama-*.*.tar.gz
 *.zip
 a.out
 *.pro*
+gama-local-pro
 #
 aclocal.m4
 autom4te.cache/

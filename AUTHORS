@@ -17,6 +17,10 @@ Developers:
     Václav Petráš <vaclav.petras@fsv.cvut.cz>
         - class SqliteReader
 
+    Petra Millarová <petramillarova@gmail.com>
+        - class Acord2 and other helper classes for combinatorial solution
+          of medians of approximate coordinates
+
 Contributors:
 
     Chuck Ghilani (Surveying Program Chair, Penn State Wilkes-Barre)

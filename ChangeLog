@@ -1,3 +1,16 @@
+2019-05-11  Ales Cepek <cepek@gnu.org>
+
+	* new release 2.05
+
+	* added a new class Acord2 with other helper classes for
+	combinatorial solution of medians of approximate coordinates by
+	Petra Millarova <petramillarova@gmail.com>
+	* test suites for Acord2 (a2g and a2diff)
+	* source files for class Acord moved to lib/gnu_gama/local/acord/
+	* ApproximateCoordinates now also takes a class as a template
+	parameter
+	* fixed bug in SimilarityTr2D calculation
+
 2019-03-31  Ales Cepek  <cepek@gnu.org>
 
 	* new release 2.04

@@ -1,5 +1,5 @@
 /* GNU Gama -- testing Acord2 approximate coordinates against Acord class
-   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2019  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -21,6 +21,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <memory>
 
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/xml/gkfparser.h>
@@ -182,7 +183,7 @@ void a2_diff (string input_file, double& max_diff)
           double dx = p.x() - lp.x();
           double dy = p.y() - lp.y();
           double dd = std::sqrt(dx*dx + dy*dy);
-          if (dd > diff) diff = dd; 
+          if (dd > diff) diff = dd;
         }
     }
   if (diff > max_diff) max_diff = diff;
@@ -212,7 +213,7 @@ void a2_diff (string input_file, double& max_diff)
                    << id << " "
                    << lp.x() << " " << lp.y() << " "
                    << dx << " " << dy
-                   << endl; 
+                   << endl;
             }
     }
       cout << endl;

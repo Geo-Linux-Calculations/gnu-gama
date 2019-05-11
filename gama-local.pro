@@ -48,11 +48,17 @@ SOURCES += \
     lib/gnu_gama/local/svg.cpp \
     lib/gnu_gama/local/acord/approx_heights.cpp \
     lib/gnu_gama/local/acord/approx_vectors.cpp \
-    lib/gnu_gama/local/acord.cpp \
+    lib/gnu_gama/local/acord/acord.cpp \
+    lib/gnu_gama/local/acord/acord2.cpp \
+    lib/gnu_gama/local/acord/acordpolar.cpp \
+    lib/gnu_gama/local/acord/acordtraverse.cpp \
+    lib/gnu_gama/local/acord/acordstatistics.cpp \
+    lib/gnu_gama/local/acord/acordweakchecks.cpp \
     lib/gnu_gama/local/acord/reduce_observations.cpp \
     lib/gnu_gama/local/acord/reduce_to_ellipsoid.cpp \
     lib/gnu_gama/local/format.cpp \
     lib/gnu_gama/local/gamadata.cpp \
+    lib/gnu_gama/local/lcoords.cpp \
     lib/gnu_gama/local/localnetwork2sql.cpp \
     lib/gnu_gama/local/median/g2d_cogo.cpp \
     lib/gnu_gama/local/median/g2d_coordinates.cpp \
@@ -132,7 +138,12 @@ HEADERS = \
     lib/gnu_gama/local/svg.h \
     lib/gnu_gama/local/acord/approx_heights.h \
     lib/gnu_gama/local/acord/approx_vectors.h \
-    lib/gnu_gama/local/acord.h \
+    lib/gnu_gama/local/acord/acord.h \
+    lib/gnu_gama/local/acord/acord2.h \
+    lib/gnu_gama/local/acord/acordpolar.h \
+    lib/gnu_gama/local/acord/acordtraverse.h \
+    lib/gnu_gama/local/acord/acordstatistics.h \
+    lib/gnu_gama/local/acord/acordweakchecks.h \
     lib/gnu_gama/local/acord/reduce_observations.h \
     lib/gnu_gama/local/acord/reduce_to_ellipsoid.h \
     lib/gnu_gama/local/format.h \

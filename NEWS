@@ -1,5 +1,25 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.05 May 2019
+
+* The program gama-local for adjustment of local surveying networks
+  used a C++ class Acord for computing approximate coordinates of
+  adjusted points, if these were not explicitly given on
+  input. Acord's computations were based on intersections (and local
+  transformations if necessary) of the tuples of determining
+  observations (for example a bearing and a distance). Gama-local
+  expected input data to be free of blunders, which might be a strong
+  assumption in practice.
+
+  New class Acord2 was introduced as a robust alternative for typical
+  two dimensional input configurations (Acord2 is not a complete
+  general solution yet); the idea is to find all (or as many as possible)
+  solutions of coordinates of a selected point and use their median as
+  the robust position estimation. Algorithm Acord2 is followed by the
+  original Acord intersections in gama-local, before the adjustment
+  solution of the network. Acord2 is based on the master's thesis by
+  Petra Millarová <petramillarova@gmail.com>
+
 Version 2.04 March 2019
 
 * experimental qmake project file gama-local.pro to be used where
