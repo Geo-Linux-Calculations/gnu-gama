@@ -42,30 +42,24 @@ void AcordPolar::execute()
 {
   if (AC.missingXY_.size() == 0) return;
 
-  Acord2::size_type before_cnt {}, after_cnt {};
-  Acord2::size_type N = AC.SPClusters_.size();
   do
     {
       AC.new_points_ = 0;
-      before_cnt = AC.same_points_.size();
 
-      for (Acord2::size_type i = 0; i < N ; i++)
+      for (auto& cluster : AC.SPClusters_)
         {
-          if (AC.SPClusters_[i] != nullptr)
-            {
-              if (!points_from_SPCluster(AC.SPClusters_[i]))
-                {
-                  // AC.SPClusters_[i] = nullptr;
-                  --N;
-                  std::swap(AC.SPClusters_[i], AC.SPClusters_[N]);
-                  --i;
-                }
-            }
+          if (!points_from_SPCluster(cluster)) cluster = nullptr;
         }
-      after_cnt = AC.same_points_.size();
+      AC.SPClusters_.erase( std::remove(AC.SPClusters_.begin(),
+                                        AC.SPClusters_.end(),
+                                        nullptr),
+                            AC.SPClusters_.end() );
+
       AC.get_medians();
     }
-  while (N > 0 && (AC.new_points_ > 0) && AC.missingXY_.size() > 0);
+  while (AC.SPClusters_.size() > 0  &&
+         AC.new_points_        > 0  &&
+         AC.missingXY_.size()  > 0);
 }
 
 // points_from_SPCluster: goes through a StandPoint cluster and if it
