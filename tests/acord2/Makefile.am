@@ -1,4 +1,4 @@
-EXTRA_DIST = acord2-a2g.in acord2-a2diff.in
+EXTRA_DIST = CMakeLists.txt acord2-a2g.in acord2-a2diff.in
 
 AM_CPPFLAGS = -I$(top_srcdir)/lib
 AM_DEFAULT_SOURCE_EXT = .cpp
