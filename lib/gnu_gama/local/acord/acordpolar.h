@@ -21,19 +21,17 @@
 #ifndef GAMA_LOCAL_ACORDPOLAR_H
 #define GAMA_LOCAL_ACORDPOLAR_H
 
-#include <gnu_gama/local/gamadata.h>
-#include <gnu_gama/local/acord/reduce_observations.h>
-#include <gnu_gama/local/acord/reduce_to_ellipsoid.h>
-#include <gnu_gama/local/acord/acord2.h>
-
+#include <gnu_gama/local/acord/acordalgorithm.h>
 
 namespace GNU_gama { namespace local
   {
-    class AcordPolar
+    class AcordPolar final : public AcordAlgorithm
     {
     public:
       AcordPolar(Acord2* acord2);
-      void execute();
+
+      virtual void execute();
+      virtual void prepare() {} /* to be implmented later */
 
       void enable_slope_observations()  { AC.slope_observations_ = true; }
       void enable_weak_checks()         { weak_checks_ = true; }
@@ -41,9 +39,6 @@ namespace GNU_gama { namespace local
       void disable_weak_checks()        { weak_checks_ = false; }
 
     private:
-      Acord2& AC;
-      PointData & PD;
-      ObservationData& OD;
 
       bool weak_checks_ = false;
 

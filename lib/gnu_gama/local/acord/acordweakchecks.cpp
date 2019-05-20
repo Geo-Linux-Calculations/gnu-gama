@@ -25,7 +25,7 @@
 using namespace GNU_gama::local;
 
 AcordWeakChecks::AcordWeakChecks(Acord2* acord2)
-  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
+  : AcordAlgorithm(*acord2)
 {
 }
 

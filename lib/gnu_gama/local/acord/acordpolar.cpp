@@ -27,7 +27,7 @@
 using namespace GNU_gama::local;
 
 AcordPolar::AcordPolar(Acord2* acord2)
-  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
+  : AcordAlgorithm(*acord2)
 {
   try
     {
@@ -162,13 +162,13 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
   if (sp_angles.size() == 0) return res;
 
   std::map<PointID, LocalPoint> secondary_points;
-  Acord2::size_type N = sp_angles.size();
+  AcordAlgorithm::size_type N = sp_angles.size();
+  AcordAlgorithm::size_type N_before {};
 
-  Acord2::size_type N_before {};
   do
     {
       N_before = N;
-      for (Acord2::size_type i=0; i<N; i++)
+      for (AcordAlgorithm::size_type i=0; i<N; i++)
         {
           Angle* a = sp_angles[i];
           if (a == nullptr) continue;

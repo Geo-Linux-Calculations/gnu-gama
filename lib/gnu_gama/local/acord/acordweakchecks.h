@@ -21,25 +21,20 @@
 #ifndef GAMA_LOCAL_ACORDWEAKCHECKS_H
 #define GAMA_LOCAL_ACORDWEAKCHECKS_H
 
-#include <gnu_gama/local/gamadata.h>
-#include <gnu_gama/local/acord/reduce_observations.h>
-#include <gnu_gama/local/acord/reduce_to_ellipsoid.h>
-#include <gnu_gama/local/acord/acord2.h>
+#include <gnu_gama/local/acord/acordalgorithm.h>
 
 namespace GNU_gama { namespace local {
 
-    class AcordWeakChecks
+    class AcordWeakChecks final : public AcordAlgorithm
     {
     public:
       AcordWeakChecks(Acord2* acord2);
       void execute();
+      virtual void prepare() {} /* to be implemented later */
+
       std::pair<bool, PointID> check_traverse_endpoint(Acord2::Point pt);
       bool check_point(Acord2::Point pt);
 
-    private:
-      Acord2 & AC;
-      PointData& PD;
-      ObservationData& OD;
     };
 
 }} //namespace GNU_gama::local

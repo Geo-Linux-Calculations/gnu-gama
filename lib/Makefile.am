@@ -98,8 +98,8 @@ libgama_src = \
    gnu_gama/local/acord/acord.h \
    gnu_gama/local/acord/acord2.cpp \
    gnu_gama/local/acord/acord2.h \
-	gnu_gama/local/acord/acordalgorithm.cpp \
-	gnu_gama/local/acord/acordalgorithm.h \
+   gnu_gama/local/acord/acordalgorithm.cpp \
+   gnu_gama/local/acord/acordalgorithm.h \
    gnu_gama/local/acord/acordpolar.cpp \
    gnu_gama/local/acord/acordpolar.h \
    gnu_gama/local/acord/acordtraverse.cpp \

@@ -26,7 +26,7 @@
 using namespace GNU_gama::local;
 
 AcordTraverse::AcordTraverse(Acord2* acord2)
-  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
+  : AcordAlgorithm(*acord2)
 {
   try
     {
@@ -313,7 +313,7 @@ bool AcordTraverse::calculate_traverse()
   std::vector<double> angles;
   std::vector<double> distances;
 
-  for (Acord2::size_type i = 0; i<traverse_points_.size(); i++ )
+  for (AcordAlgorithm::size_type i = 0; i<traverse_points_.size(); i++ )
     {
       PointID pid = traverse_points_[i];
       std::vector<double> tmp_dists;
@@ -510,7 +510,7 @@ bool AcordTraverse::calculate_traverse()
       dY.push_back(distances.front() * std::sin(b));
     }
   if (distances.size() != angles.size()) return false;
-  for (Acord2::size_type j = 1; j < angles.size();++j)
+  for (AcordAlgorithm::size_type j = 1; j < angles.size();++j)
     {
       double b = angles[j] + bearings[j - 1] - M_PI;
       while (b > 2 * M_PI)
@@ -526,7 +526,7 @@ bool AcordTraverse::calculate_traverse()
   double X = PD[traverse_points_.front()].x();
   double Y = PD[traverse_points_.front()].y();
   traverse.push_back({ traverse_points_.front(), PD[traverse_points_.front()] });
-  for (Acord2::size_type k = 0; k<dX.size();++k)
+  for (AcordAlgorithm::size_type k = 0; k<dX.size();++k)
     {
       X += dX[k];
       Y += dY[k];

@@ -23,23 +23,20 @@
 
 #include <set>
 
-#include <gnu_gama/local/acord/acord2.h>
+#include <gnu_gama/local/acord/acordalgorithm.h>
 
 
 namespace GNU_gama { namespace local {
 
-    class AcordTraverse
+    class AcordTraverse final : public AcordAlgorithm
     {
     public:
       AcordTraverse(Acord2* acord2);
       void execute();
+      virtual void prepare() {} /* to be implmented later */
 
     private:
       friend class AcordWeakChecks;
-
-      Acord2& AC;
-      PointData & PD;
-      ObservationData& OD;
 
       Acord2::Traverse_type tr_type = AC.open_traverse;
       Acord2::Traverse traverse;

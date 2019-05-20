@@ -21,37 +21,43 @@
 #ifndef GAMA_LOCAL_ACORD2_ALGORITHM_H_
 #define GAMA_LOCAL_ACORD2_ALGORITHM_H_
 
-namespace GNU_gama
+#include <cstddef>
+#include <gnu_gama/local/acord/acord2.h>
+
+namespace GNU_gama {  namespace local
   {
-  namespace local
-	{
 
-	class Acord2;
+    class AcordAlgorithm
+    {
+    public:
+      using size_type = size_t;
 
-	class AcordAlgorithm
-	  {
-	  public:
-		using size_type = size_t;
+      AcordAlgorithm(Acord2& acord2)
+        : AC(acord2), PD(AC.PD_), OD(AC.OD_)
+      {
+      }
+      virtual ~AcordAlgorithm();
 
-		AcordAlgorithm(Acord2& acord2) : AC_(acord2)
-		  {}
-		virtual ~AcordAlgorithm();
+      virtual void prepare() = 0;
+      virtual void execute() = 0;
 
-		virtual void prepare() = 0;
-		virtual void execute() = 0;
+      inline bool completed() const
+      {
+        return completed_;
+      }
 
-		inline bool completed() const
-		  {
-		  return completed_;
-		  }
+    protected:
+      Acord2 & AC;
+      PointData & PD;
+      ObservationData & OD;
 
-	  protected:
-		Acord2 & AC_;
-		bool prepared_{ false };
-	  private:
-		bool completed_{ false };
+      bool prepared_{ false };
 
-	  };
-	}} //namespace GNU_gama::local
+    private:
+      bool completed_{ false };
+
+    };
+
+  }} //namespace GNU_gama::local
 
 #endif
