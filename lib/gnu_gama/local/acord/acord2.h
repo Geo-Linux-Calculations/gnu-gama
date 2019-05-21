@@ -26,7 +26,7 @@
 #include <vector>
 #include <set>
 #include <map>
-#include <utility>
+#include <memory>
 
 namespace GNU_gama { namespace local {
     
@@ -43,6 +43,9 @@ namespace GNU_gama { namespace local {
       friend class AcordPolar;
       friend class AcordTraverse;
       friend class AcordWeakChecks;
+
+      class AcordAlgorithm;
+      using Algorithm = std::shared_ptr<AcordAlgorithm>;
 
       struct Point
       {
@@ -88,6 +91,7 @@ namespace GNU_gama { namespace local {
       bool transform_traverse(Acord2::Traverse& traverse);
 
       std::vector<std::pair<Traverse, Traverse_type>> traverses;
+      std::vector<Algorithm> algorithms_;
     };
 
   }} //namespace GNU_gama::local
