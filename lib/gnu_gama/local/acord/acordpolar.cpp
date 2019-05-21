@@ -21,13 +21,14 @@
 #include <numeric>
 #include <algorithm>
 #include <gnu_gama/local/acord/acordpolar.h>
+#include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_point.h>
 
 using namespace GNU_gama::local;
 
 AcordPolar::AcordPolar(Acord2* acord2)
-  : AcordAlgorithm(*acord2)
+  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
 {
   try
     {
@@ -162,13 +163,13 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
   if (sp_angles.size() == 0) return res;
 
   std::map<PointID, LocalPoint> secondary_points;
-  AcordAlgorithm::size_type N = sp_angles.size();
-  AcordAlgorithm::size_type N_before {};
+  Acord2::size_type N = sp_angles.size();
+  Acord2::size_type N_before {};
 
   do
     {
       N_before = N;
-      for (AcordAlgorithm::size_type i=0; i<N; i++)
+      for (Acord2::size_type i=0; i<N; i++)
         {
           Angle* a = sp_angles[i];
           if (a == nullptr) continue;

@@ -3,12 +3,12 @@
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
 
   This file is part of the GNU Gama C++ library.
-  
+
   GNU Gama is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   GNU Gama is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -22,6 +22,7 @@
 #define GAMA_LOCAL_ACORD2_H_
 
 #include <gnu_gama/local/gamadata.h>
+#include <gnu_gama/local/acord/acordalgorithm.h>
 #include <cstddef>
 #include <vector>
 #include <set>
@@ -29,7 +30,7 @@
 #include <memory>
 
 namespace GNU_gama { namespace local {
-    
+
     class Acord2
     {
     public:
@@ -43,9 +44,6 @@ namespace GNU_gama { namespace local {
       friend class AcordPolar;
       friend class AcordTraverse;
       friend class AcordWeakChecks;
-
-      class AcordAlgorithm;
-      using Algorithm = std::shared_ptr<AcordAlgorithm>;
 
       struct Point
       {
@@ -91,7 +89,7 @@ namespace GNU_gama { namespace local {
       bool transform_traverse(Acord2::Traverse& traverse);
 
       std::vector<std::pair<Traverse, Traverse_type>> traverses;
-      std::vector<Algorithm> algorithms_;
+      std::vector<std::shared_ptr<AcordAlgorithm>> algorithms_;
     };
 
   }} //namespace GNU_gama::local

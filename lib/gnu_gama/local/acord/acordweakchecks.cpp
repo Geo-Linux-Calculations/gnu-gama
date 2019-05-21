@@ -19,13 +19,14 @@
 */
 
 #include <gnu_gama/local/acord/acordweakchecks.h>
+#include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/orientation.h>
 
 using namespace GNU_gama::local;
 
 AcordWeakChecks::AcordWeakChecks(Acord2* acord2)
-  : AcordAlgorithm(*acord2)
+  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
 {
 }
 

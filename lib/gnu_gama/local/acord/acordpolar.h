@@ -22,6 +22,7 @@
 #define GAMA_LOCAL_ACORDPOLAR_H
 
 #include <gnu_gama/local/acord/acordalgorithm.h>
+#include <gnu_gama/local/acord/acord2.h>
 
 namespace GNU_gama { namespace local
   {
@@ -39,6 +40,9 @@ namespace GNU_gama { namespace local
       void disable_weak_checks()        { weak_checks_ = false; }
 
     private:
+      Acord2& AC;
+      PointData & PD;
+      ObservationData& OD;
 
       bool weak_checks_ = false;
 

@@ -3,12 +3,12 @@
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
 
   This file is part of the GNU Gama C++ library.
-  
+
   GNU Gama is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   GNU Gama is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -20,6 +20,7 @@
 
 #include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/acord/acord2.h>
+#include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acordpolar.h>
 #include <gnu_gama/local/acord/acordtraverse.h>
 #include <gnu_gama/local/acord/acordweakchecks.h>
@@ -29,6 +30,7 @@
 #include <gnu_gama/local/median/g2d_helper.h>
 #include <gnu_gama/local/gamadata.h>
 #include <cmath>
+#include <algorithm>
 
 using namespace GNU_gama::local;
 
@@ -76,7 +78,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
         { // this means the a network point xy were not set and are
           // part of the network
           // find and add all missing points into one set
-          missingXY_.insert(c); 
+          missingXY_.insert(c);
         }
       if (p.active_z() && !p.test_z())
         {
@@ -105,6 +107,18 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
             }
         }
     }
+
+  using std::make_shared;
+  using std::move;
+
+  algorithms_.push_back( move(make_shared<AcordPolar>(this)) );
+
+  auto slope = make_shared<AcordPolar>(this);
+  slope->enable_slope_observations();
+  algorithms_.push_back( move(slope) );
+
+  algorithms_.push_back( move(make_shared<AcordTraverse>(this)) );
+  algorithms_.push_back( move(make_shared<AcordWeakChecks>(this)) );
 }
 
 
@@ -131,12 +145,12 @@ void Acord2::execute()
     {
       before = missingXY_.size();
 
+      /*
       AcordPolar polar(this);
 
       polar.execute();
       DBG_algo("polar")
 
-	  
       polar.enable_slope_observations();
       polar.execute();
       DBG_algo("polar slope")
@@ -148,13 +162,27 @@ void Acord2::execute()
       AcordWeakChecks weakchecks(this);
       weakchecks.execute();
       DBG_algo("weak checks")
+      */
+
+      for (auto a : algorithms_)
+        {
+          a->execute();
+        }
+
+      algorithms_.erase(
+          std::remove_if(
+             algorithms_.begin(),algorithms_.end(),
+             [](std::shared_ptr<AcordAlgorithm> a){ return a->completed ();}
+          ),
+          algorithms_.end()
+        );
 
       after = missingXY_.size();
-	  get_medians();
+      get_medians();
       same_points_.clear();
-	  traverses.clear();
+      traverses.clear();
     }
-  while (after != 0 && after < before);    
+  while (after != 0 && after < before);
 
   DBG_prnt("\n\n")
 }
@@ -306,7 +334,7 @@ bool Acord2::get_medians()
               PD_[pt].set_xy(med_x, med_y);
               missingXY_.erase(pt);
               new_points_++;
-			  res = true;
+                          res = true;
             }
         }
     }
@@ -345,14 +373,14 @@ bool Acord2::transform_traverse(Traverse& traverse)
   PointData res = transformation.transf_points();
   if (!res.empty())
     {
-	  for (auto &pt : traverse)
-		{
-		if (res[pt.id].test_xy ())
-		  {
-			pt.coords = res[pt.id];
-		  }
-		
-		}
+          for (auto &pt : traverse)
+                {
+                if (res[pt.id].test_xy ())
+                  {
+                        pt.coords = res[pt.id];
+                  }
+
+                }
       return true;
     }
   else
@@ -360,4 +388,3 @@ bool Acord2::transform_traverse(Traverse& traverse)
       return false;
     }
 }
-

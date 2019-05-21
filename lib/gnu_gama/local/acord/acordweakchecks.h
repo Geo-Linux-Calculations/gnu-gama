@@ -22,6 +22,7 @@
 #define GAMA_LOCAL_ACORDWEAKCHECKS_H
 
 #include <gnu_gama/local/acord/acordalgorithm.h>
+#include <gnu_gama/local/acord/acord2.h>
 
 namespace GNU_gama { namespace local {
 
@@ -35,6 +36,10 @@ namespace GNU_gama { namespace local {
       std::pair<bool, PointID> check_traverse_endpoint(Acord2::Point pt);
       bool check_point(Acord2::Point pt);
 
+    private:
+      Acord2& AC;
+      PointData & PD;
+      ObservationData& OD;
     };
 
 }} //namespace GNU_gama::local
