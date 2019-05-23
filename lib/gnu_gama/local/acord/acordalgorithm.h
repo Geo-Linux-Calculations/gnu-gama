@@ -39,10 +39,8 @@ namespace GNU_gama {  namespace local
       }
 
     protected:
-      bool prepared_{ false };
-
-    private:
-      bool completed_{ false };
+      bool prepared_  { false };
+      bool completed_ { false };
 
     };
 

@@ -41,6 +41,7 @@ namespace GNU_gama { namespace local {
       using size_type = std::size_t;
 
       friend class AcordAlgorithm;
+      friend class AcordAzimuth;
       friend class AcordPolar;
       friend class AcordTraverse;
       friend class AcordWeakChecks;

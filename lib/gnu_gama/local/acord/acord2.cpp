@@ -21,6 +21,7 @@
 #include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/acord/acordalgorithm.h>
+#include <gnu_gama/local/acord/acordazimuth.h>
 #include <gnu_gama/local/acord/acordpolar.h>
 #include <gnu_gama/local/acord/acordtraverse.h>
 #include <gnu_gama/local/acord/acordweakchecks.h>
@@ -111,6 +112,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
   using std::make_shared;
   using std::move;
 
+  algorithms_.push_back( move(make_shared<AcordAzimuth>(this)) );
   algorithms_.push_back( move(make_shared<AcordPolar>(this)) );
 
   auto slope = make_shared<AcordPolar>(this);
