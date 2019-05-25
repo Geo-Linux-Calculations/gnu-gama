@@ -9,6 +9,7 @@ gama-*.*.tar.gz
 *.zip
 a.out
 *.pro*
+*.autosave
 gama-local-pro
 #
 aclocal.m4
