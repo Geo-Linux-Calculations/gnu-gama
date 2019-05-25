@@ -72,13 +72,14 @@ namespace GNU_gama { namespace local {
       PointData&       PD_;
       ObservationData& OD_;
       std::vector<StandPoint*> SPClusters_;
-      std::set<PointID> missingXY_;
-      std::set<PointID> missingZ_;
-      std::multimap<PointID,LocalPoint> same_points_;
+      std::set<PointID> missing_xy_;
+      std::set<PointID> missing_z_;
+      std::multimap<PointID,LocalPoint> same_points_xy_;
+      std::multimap<PointID,LocalPoint> same_points_z_;
       std::multimap<PointID,Observation*> obs_from_;
       std::multimap<PointID,Observation*> obs_to_;
       bool get_medians();
-      size_type new_points_;
+      size_type new_points_xy_, new_points_z_;
 
       using Traverse = std::vector<Point>;
       enum Traverse_type

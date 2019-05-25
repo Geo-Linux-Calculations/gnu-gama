@@ -53,8 +53,8 @@ void AcordWeakChecks::execute()
                         {
                           // only setting the coords, leaving other info as is
                           PD[pt.id].set_xy(pt.coords.x(), pt.coords.y());
-                          AC.missingXY_.erase(pt.id);
-                          AC.new_points_++;
+                          AC.missing_xy_.erase(pt.id);
+                          AC.new_points_xy_++;
                             }
                     }
                 }
@@ -77,14 +77,14 @@ void AcordWeakChecks::execute()
     }
 
   // similar procedure for points in same_points
-  for (auto pt : AC.same_points_)
+  for (auto pt : AC.same_points_xy_)
     {
       if (check_point(Acord2::Point(pt.first, pt.second)) &&
           AC.in_missingXY(pt.first))
         {
           PD[pt.first].set_xy(pt.second.x(), pt.second.y());
-          AC.missingXY_.erase(pt.first);
-          AC.new_points_++;
+          AC.missing_xy_.erase(pt.first);
+          AC.new_points_xy_++;
         }
     }
 }

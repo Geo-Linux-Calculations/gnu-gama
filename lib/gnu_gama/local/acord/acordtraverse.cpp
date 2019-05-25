@@ -30,7 +30,7 @@ AcordTraverse::AcordTraverse(Acord2* acord2)
 {
   try
     {
-      for (PointID p : AC.missingXY_)
+      for (PointID p : AC.missing_xy_)
         // if (!PD[p].test_xy()) ... AC.missingXY_ cannot have xy
         {
           std::set<PointID> t = get_neighbours(p);
@@ -92,9 +92,9 @@ void AcordTraverse::execute() //to keep in line with the acord class
   std::set<PointID> added_points = add_same_points();
   if (!added_points.empty())
     {
-      auto cnt_before = AC.missingXY_.size();
+      auto cnt_before = AC.missing_xy_.size();
       AC.get_medians();
-      auto cnt_after = AC.missingXY_.size();
+      auto cnt_after = AC.missing_xy_.size();
       if (cnt_before != cnt_after)
         {
           /* check which traverses contain the points that are now known and edit
@@ -123,8 +123,8 @@ void AcordTraverse::execute() //to keep in line with the acord class
                             {
                               // only setting the coords, leaving other info as is
                               PD[pt.id].set_xy(pt.coords.x(), pt.coords.y());
-                              AC.missingXY_.erase(pt.id);
-                              AC.new_points_++;
+                              AC.missing_xy_.erase(pt.id);
+                              AC.new_points_xy_++;
                             }
                         }
                     }
@@ -152,12 +152,12 @@ std::set<PointID> AcordTraverse::add_same_points()
 	bool found = false;
 	  for (auto pt : (*itr).first)
 		{
-		  auto fit = AC.same_points_.find (pt.id);
+		  auto fit = AC.same_points_xy_.find (pt.id);
 		  auto ait = added_points.find (pt.id);
 
-		  if (fit != AC.same_points_.end() && ait == added_points.end())
+		  if (fit != AC.same_points_xy_.end() && ait == added_points.end())
 			{
-			  AC.same_points_.insert({pt.id, pt.coords});
+			  AC.same_points_xy_.insert({pt.id, pt.coords});
 			  found = true;
 			}
 		}
@@ -174,8 +174,8 @@ std::set<PointID> AcordTraverse::add_same_points()
               if (AC.in_missingXY(pt.id))
                 {
                   PD[pt.id].set_xy(pt.coords.x(), pt.coords.y());
-                  AC.missingXY_.erase(pt.id);
-                  AC.new_points_++;
+                  AC.missing_xy_.erase(pt.id);
+                  AC.new_points_xy_++;
                 }
             }
         }
@@ -192,11 +192,11 @@ std::set<PointID> AcordTraverse::add_same_points()
             {
               if (!found_already)
                 {
-                  AC.same_points_.insert({ comp_point.id, comp_point.coords });
+                  AC.same_points_xy_.insert({ comp_point.id, comp_point.coords });
                   found_already = true;
                   added_points.insert(comp_point.id);
                 }
-              AC.same_points_.insert({ (*initr).first.back().id, (*initr).first.back().coords });
+              AC.same_points_xy_.insert({ (*initr).first.back().id, (*initr).first.back().coords });
             }
         }
 

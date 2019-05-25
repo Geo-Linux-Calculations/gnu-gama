@@ -41,11 +41,11 @@ AcordPolar::AcordPolar(Acord2* acord2)
 
 void AcordPolar::execute()
 {
-  if (AC.missingXY_.size() == 0) return;
+  if (AC.missing_xy_.size() == 0) return;
 
   do
     {
-      AC.new_points_ = 0;
+      AC.new_points_xy_ = 0;
 
       for (auto& cluster : AC.SPClusters_)
         {
@@ -59,8 +59,8 @@ void AcordPolar::execute()
       AC.get_medians();
     }
   while (AC.SPClusters_.size() > 0  &&
-         AC.new_points_        > 0  &&
-         AC.missingXY_.size()  > 0);
+         AC.new_points_xy_        > 0  &&
+         AC.missing_xy_.size()  > 0);
 }
 
 // points_from_SPCluster: goes through a StandPoint cluster and if it
@@ -90,7 +90,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
   std::map<PointID, double> sp_directions;
 
   lol.sort([](Observation* a, Observation* b) { return a->to() < b->to(); });
-  for (PointID pid : AC.missingXY_)
+  for (PointID pid : AC.missing_xy_)
     {
       std::vector<double> tmp_dists;
       bool skip = true;
@@ -146,13 +146,13 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                 {
                    //only setting the coords, leaving other info as is
                   PD[o.first].set_xy(calc_pt.x(), calc_pt.y());
-                  AC.missingXY_.erase(o.first);
-                  AC.new_points_++;
+                  AC.missing_xy_.erase(o.first);
+                  AC.new_points_xy_++;
                   res = false;
                 }
               else
                 {
-                  AC.same_points_.insert({ o.first, calc_pt });
+                  AC.same_points_xy_.insert({ o.first, calc_pt });
                   res = false;
                 }
             }
@@ -235,7 +235,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                   double x = stand_point.x() + d * std::cos(b);
                   double y = stand_point.y() + d * std::sin(b);
                   target.set_xy(x, y);
-                  AC.same_points_.insert({ fsid,target });
+                  AC.same_points_xy_.insert({ fsid,target });
                   secondary_points.insert({ fsid,target });
                 }
 
@@ -252,7 +252,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                   double x = stand_point.x() + d * std::cos(b);
                   double y = stand_point.y() + d * std::sin(b);
                   target.set_xy(x, y);
-                  AC.same_points_.insert({ bsid,target });
+                  AC.same_points_xy_.insert({ bsid,target });
                   secondary_points.insert({ bsid,target });
                 }
 

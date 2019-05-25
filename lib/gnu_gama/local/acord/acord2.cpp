@@ -79,11 +79,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
         { // this means the a network point xy were not set and are
           // part of the network
           // find and add all missing points into one set
-          missingXY_.insert(c);
+          missing_xy_.insert(c);
         }
       if (p.active_z() && !p.test_z())
         {
-          missingZ_.insert(c);
+          missing_z_.insert(c);
         }
     }
 
@@ -140,12 +140,12 @@ void Acord2::execute()
   DBG_prnt("Acord2::execute xy known/same/missing")
   DBG_algo("")
   DBG_prnt("\n")
-  size_type after {},  before = missingXY_.size();
+  size_type after {},  before = missing_xy_.size();
   if (before == 0) return;
 
   do  // while some points need to be solved
     {
-      before = missingXY_.size();
+      before = missing_xy_.size();
 
       /*
       AcordPolar polar(this);
@@ -179,9 +179,9 @@ void Acord2::execute()
           algorithms_.end()
         );
 
-      after = missingXY_.size();
+      after = missing_xy_.size();
       get_medians();
-      same_points_.clear();
+      same_points_xy_.clear();
       traverses.clear();
     }
   while (after != 0 && after < before);
@@ -270,8 +270,8 @@ std::pair<double,bool> Acord2::get_dist(Observation* o)
 
 bool Acord2::in_missingXY(PointID pt)
 {
-  std::set<PointID>::iterator it_stpt = missingXY_.find(pt);
-  if (it_stpt == missingXY_.end()) return false;
+  std::set<PointID>::iterator it_stpt = missing_xy_.find(pt);
+  if (it_stpt == missing_xy_.end()) return false;
   else return true;
 }
 
@@ -284,13 +284,13 @@ bool Acord2::get_medians()
   bool res = false;
   // get unique keys from same_points_
   std::set<PointID> keys;
-  for (auto i : same_points_) keys.insert(i.first);
+  for (auto i : same_points_xy_) keys.insert(i.first);
 
   // for (std::vector<Acord2::Point>::iterator j, i =
   // same_points_.begin(), e = same_points_.end(); i != e; )
   for (auto pt : keys)
     {
-      auto p = same_points_.equal_range(pt);
+      auto p = same_points_xy_.equal_range(pt);
       if (p.first == p.second) continue;    // should never happen
 
       auto i = p.first;
@@ -334,8 +334,8 @@ bool Acord2::get_medians()
               double med_y = median(all_y);
               // only setting the coords, leaving other info as is
               PD_[pt].set_xy(med_x, med_y);
-              missingXY_.erase(pt);
-              new_points_++;
+              missing_xy_.erase(pt);
+              new_points_xy_++;
                           res = true;
             }
         }
@@ -346,7 +346,7 @@ bool Acord2::get_medians()
     {
       if (!in_missingXY(p))
         {
-          same_points_.erase(p);
+          same_points_xy_.erase(p);
         }
     }
   return res;
