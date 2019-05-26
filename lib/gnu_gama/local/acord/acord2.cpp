@@ -140,31 +140,13 @@ void Acord2::execute()
   DBG_prnt("Acord2::execute xy known/same/missing")
   DBG_algo("")
   DBG_prnt("\n")
-  size_type after {},  before = missing_xy_.size();
+
+  size_type after {},  before = missing_xy_.size() + missing_z_.size();
   if (before == 0) return;
 
-  do  // while some points need to be solved
+  do  // while some points need/can to be solved
     {
-      before = missing_xy_.size();
-
-      /*
-      AcordPolar polar(this);
-
-      polar.execute();
-      DBG_algo("polar")
-
-      polar.enable_slope_observations();
-      polar.execute();
-      DBG_algo("polar slope")
-
-      AcordTraverse traverse(this);
-      traverse.execute();
-      DBG_algo("traverse")
-
-      AcordWeakChecks weakchecks(this);
-      weakchecks.execute();
-      DBG_algo("weak checks")
-      */
+      before = missing_xy_.size() + missing_z_.size();
 
       for (auto a : algorithms_)
         {
@@ -179,7 +161,8 @@ void Acord2::execute()
           algorithms_.end()
         );
 
-      after = missing_xy_.size();
+      after = missing_xy_.size() + missing_z_.size();
+
       get_medians();
       same_points_xy_.clear();
       traverses.clear();
@@ -266,7 +249,7 @@ std::pair<double,bool> Acord2::get_dist(Observation* o)
   return {0,false};
 }
 
-// in_missingXY: returns true if point is in the missingXY set
+// in_missingXY: returns true if point is in the missing_xy_ set
 
 bool Acord2::in_missingXY(PointID pt)
 {

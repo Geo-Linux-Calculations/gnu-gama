@@ -126,7 +126,6 @@ void AcordAzimuth::execute()
 {
   if (!prepared_) prepare();
 
-  dbg("execute 1");
   for (auto iter : azimuths_)
     {
       const PointID& a = iter.first.first;
@@ -146,8 +145,7 @@ void AcordAzimuth::execute()
           double x  = x0 + iter.second.distance*cos(bb);
           double y  = y0 + iter.second.distance*sin(bb);
           PD[b].set_xy(x, y);
-          std::cerr << b << " " << std::fixed << x << " " << y
-                    << " bb " << bb/M_PI*200 << "\n";
+          AC.missing_xy_.erase(b);
         }
       else if (!axy && bxy && iter.second.distance != 0)
         {
@@ -157,8 +155,7 @@ void AcordAzimuth::execute()
           double x  = x0 + iter.second.distance*cos(bb);
           double y  = y0 + iter.second.distance*sin(bb);
           PD[a].set_xy(x, y);
-          std::cerr << x << " " << y << "\n";
-
+          AC.missing_xy_.erase(a);
         }
       else if (!axy && !bxy)
         {
@@ -171,6 +168,7 @@ void AcordAzimuth::execute()
   if (azimuths_.empty()) completed_ = true;
 }
 
+/*
 #include <iostream>
 #include <iomanip>
 using std::cerr;
@@ -192,3 +190,4 @@ void AcordAzimuth::dbg(string s)
         
     }
 }
+*/

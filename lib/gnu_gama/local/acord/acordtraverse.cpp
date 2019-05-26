@@ -97,12 +97,13 @@ void AcordTraverse::execute() //to keep in line with the acord class
       auto cnt_after = AC.missing_xy_.size();
       if (cnt_before != cnt_after)
         {
-          /* check which traverses contain the points that are now known and edit
-           * them and their traverse type
+          /* check which traverses contain the points that are now
+           * known and edit them and their traverse type
            */
           for (auto tr : AC.traverses)
             {
-              // if it's a closed traverse we already know coords of both points and we can add them
+              // if it's a closed traverse we already know coords of
+              // both points and we can add them
               if (tr.second == AC.closed_traverse) continue;
               PointID tr_pointid = tr.first.back().id;
 
@@ -114,7 +115,8 @@ void AcordTraverse::execute() //to keep in line with the acord class
                   tr.first.back().coords = PD[tr_pointid]; //set the newly computed coords
                   tr.second = AC.closed_traverse;
 
-                  // now we can add computed points to PD and remove them from missingXY
+                  // now we can add computed points to PD and remove
+                  // them from missingXY
                   if (AC.transform_traverse(tr.first))
                     {
                       for (auto pt : tr.first)

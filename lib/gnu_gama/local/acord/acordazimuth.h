@@ -53,7 +53,7 @@ namespace GNU_gama {
 
       void remove_azimuths_between_known_xy();
 
-      void dbg(std::string s);
+      //void dbg(std::string s);
     };
     
   }

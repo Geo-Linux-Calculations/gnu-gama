@@ -50,6 +50,8 @@ SOURCES += \
     lib/gnu_gama/local/acord/approx_vectors.cpp \
     lib/gnu_gama/local/acord/acord.cpp \
     lib/gnu_gama/local/acord/acord2.cpp \
+    lib/gnu_gama/local/acord/acordalgorithm.cpp \
+    lib/gnu_gama/local/acord/acordazimuth.cpp \
     lib/gnu_gama/local/acord/acordpolar.cpp \
     lib/gnu_gama/local/acord/acordtraverse.cpp \
     lib/gnu_gama/local/acord/acordstatistics.cpp \
@@ -59,16 +61,17 @@ SOURCES += \
     lib/gnu_gama/local/format.cpp \
     lib/gnu_gama/local/gamadata.cpp \
     lib/gnu_gama/local/lcoords.cpp \
+    lib/gnu_gama/local/local_linearization.cpp \
     lib/gnu_gama/local/localnetwork2sql.cpp \
     lib/gnu_gama/local/median/g2d_cogo.cpp \
     lib/gnu_gama/local/median/g2d_coordinates.cpp \
     lib/gnu_gama/local/median/g2d_helper.cpp \
     lib/gnu_gama/local/median/g2d_point.cpp \
     lib/gnu_gama/local/network.cpp \
-    lib/gnu_gama/local/observation_local.cpp \
     lib/gnu_gama/local/orientation.cpp \
     lib/gnu_gama/local/results/text/underline.cpp \
     lib/gnu_gama/local/test_linearization_visitor.cpp \
+    lib/gnu_gama/local/local_revision.cpp \
     lib/gnu_gama/local/observation.cpp \
     lib/gnu_gama/local/pointid.cpp \
     lib/gnu_gama/local/skipcomm.cpp \
@@ -140,6 +143,8 @@ HEADERS = \
     lib/gnu_gama/local/acord/approx_vectors.h \
     lib/gnu_gama/local/acord/acord.h \
     lib/gnu_gama/local/acord/acord2.h \
+    lib/gnu_gama/local/acord/acordalgorithm.h \
+    lib/gnu_gama/local/acord/acordazimuth.h \
     lib/gnu_gama/local/acord/acordpolar.h \
     lib/gnu_gama/local/acord/acordtraverse.h \
     lib/gnu_gama/local/acord/acordstatistics.h \
