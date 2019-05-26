@@ -121,22 +121,22 @@ int main(int argc, char **argv)
     using namespace GNU_gama::local;
 
     const char* c;
-    const char* argv_1 = 0;           // xml input or sqlite db name
-    const char* argv_algo = 0;
-    const char* argv_lang = 0;
-    const char* argv_enc  = 0;
-    const char* argv_angles = 0;
-    const char* argv_ellipsoid = 0;
-    const char* argv_latitude = 0;
-    const char* argv_txtout = 0;
-    const char* argv_htmlout = 0;
-    const char* argv_xmlout = 0;
-    const char* argv_octaveout = 0;
-    const char* argv_svgout = 0;
-    const char* argv_obsout = 0;
-    const char* argv_covband = 0;
-    const char* argv_iterations = 0;
-    const char* argv_updated_xml = 0;
+    const char* argv_1 = nullptr;           // xml input or sqlite db name
+    const char* argv_algo = nullptr;
+    const char* argv_lang = nullptr;
+    const char* argv_enc  = nullptr;
+    const char* argv_angles = nullptr;
+    const char* argv_ellipsoid = nullptr;
+    const char* argv_latitude = nullptr;
+    const char* argv_txtout = nullptr;
+    const char* argv_htmlout = nullptr;
+    const char* argv_xmlout = nullptr;
+    const char* argv_octaveout = nullptr;
+    const char* argv_svgout = nullptr;
+    const char* argv_obsout = nullptr;
+    const char* argv_covband = nullptr;
+    const char* argv_iterations = nullptr;
+    const char* argv_updated_xml = nullptr;
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     const char* argv_confname = 0;
@@ -222,7 +222,7 @@ int main(int argc, char **argv)
         else return help();
       }
 
-    ostream* output = 0;
+    ostream* output = nullptr;
 
     ofstream fcout;
     if (argv_txtout)
