@@ -38,24 +38,12 @@ using namespace GNU_gama::local;
 #ifdef DEBUG_ACORD2
 
 #include <iostream>
-#include <algorithm>
+#include <iomanip>
 
-using Pair = std::pair<PointID, LocalPoint>;
-using std::count_if;
-using std::cerr;
-using std::endl;
-
-#define DBG_algo(text)(cerr << "" << text << " "\
-<< count_if(PD_.begin(),PD_.end(),[](Pair p){return p.second. test_xy();})\
-<< " / " << same_points_.size() << " / "  \
-<< count_if(PD_.begin(),PD_.end(),[](Pair p){return !p.second. test_xy();}))\
-<< "   ";
-
-#define DBG_prnt(text)(cerr << text);
+#define DBG(text) debug_info(text)
 
 #else
-#define DBG_algo(text)
-#define DBG_prnt(text)
+#define DBG
 #endif
 
 
@@ -137,9 +125,7 @@ StandPoint* Acord2::find_standpoint(PointID pt)
 
 void Acord2::execute()
 {
-  DBG_prnt("Acord2::execute xy known/same/missing")
-  DBG_algo("")
-  DBG_prnt("\n")
+  //DBG_prnt("Acord2::execute xy known/same/missing")
 
   size_type after {},  before = missing_xy_.size() + missing_z_.size();
   if (before == 0) return;
@@ -148,9 +134,11 @@ void Acord2::execute()
     {
       before = missing_xy_.size() + missing_z_.size();
 
+      DBG("---- start ----");
       for (auto a : algorithms_)
         {
           a->execute();
+          DBG(a->className());
         }
 
       algorithms_.erase(
@@ -160,6 +148,8 @@ void Acord2::execute()
           ),
           algorithms_.end()
         );
+      DBG("----  end  ----");
+
 
       after = missing_xy_.size() + missing_z_.size();
 
@@ -169,7 +159,6 @@ void Acord2::execute()
     }
   while (after != 0 && after < before);
 
-  DBG_prnt("\n\n")
 }
 
 
@@ -373,3 +362,31 @@ bool Acord2::transform_traverse(Traverse& traverse)
       return false;
     }
 }
+
+
+#ifdef DEBUG_ACORD2
+void Acord2::debug_info(const char* text) const
+{
+  using std::cerr;
+  using std::endl;
+  using std::setw;
+  using Pair = std::pair<PointID, LocalPoint>;
+
+  cerr
+    << setw(15) << text << " : "
+    << "alg " << setw(2)  << algorithms_.size()
+    << "   known/same/missing   xy " << setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+                return p.second.test_xy() && p.second.active_xy();})
+    << " / "  << setw(2) << same_points_xy_.size() << " / " << setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p){
+                return !p.second.test_xy() && p.second.active_xy();})
+    << "    z " << setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+                return p.second.test_z() && p.second.active_z();})
+    << " / "  << setw(2) << same_points_z_.size() << " / " << setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p){
+                return !p.second.test_z() && p.second.active_z();})
+    << std::endl;
+}
+#endif

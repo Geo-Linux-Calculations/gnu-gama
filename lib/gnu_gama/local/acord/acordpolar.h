@@ -34,6 +34,8 @@ namespace GNU_gama { namespace local
       virtual void execute();
       virtual void prepare() {} /* to be implmented later */
 
+      virtual const char* className() const { return "AcordPolar"; }
+
       void enable_slope_observations()  { AC.slope_observations_ = true; }
       void enable_weak_checks()         { weak_checks_ = true; }
       void disable_slope_observations() { AC.slope_observations_ = false; }

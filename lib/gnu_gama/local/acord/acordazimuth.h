@@ -36,6 +36,8 @@ namespace GNU_gama {
       virtual void prepare();
       virtual void execute();
 
+      virtual const char* className() const { return "AcordAzimuth"; }
+
     private:
       Acord2& AC;
       PointData & PD;

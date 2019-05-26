@@ -39,6 +39,8 @@ namespace GNU_gama { namespace local {
       void execute();
       virtual void prepare() {} /* to be implmented later */
 
+      virtual const char* className() const { return "AcordTraverse"; }
+
     private:
       friend class AcordWeakChecks;
 

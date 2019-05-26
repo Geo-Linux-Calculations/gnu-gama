@@ -33,6 +33,8 @@ namespace GNU_gama { namespace local {
       void execute();
       virtual void prepare() {} /* to be implemented later */
 
+      virtual const char* className() const { return "AcordWeakChecks"; }
+
       std::pair<bool, PointID> check_traverse_endpoint(Acord2::Point pt);
       bool check_point(Acord2::Point pt);
 

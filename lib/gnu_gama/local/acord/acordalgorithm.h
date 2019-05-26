@@ -32,6 +32,7 @@ namespace GNU_gama {  namespace local
 
       virtual void prepare() = 0;
       virtual void execute() = 0;
+      virtual const char* className() const = 0;
 
       inline bool completed() const
       {

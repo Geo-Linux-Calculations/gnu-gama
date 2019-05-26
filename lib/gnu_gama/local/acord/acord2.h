@@ -92,6 +92,10 @@ namespace GNU_gama { namespace local {
 
       std::vector<std::pair<Traverse, Traverse_type>> traverses;
       std::vector<std::shared_ptr<AcordAlgorithm>> algorithms_;
+
+#ifdef DEBUG_ACORD2
+      void debug_info(const char* text) const;
+#endif
     };
 
   }} //namespace GNU_gama::local
