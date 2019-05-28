@@ -102,6 +102,8 @@ libgama_src = \
    gnu_gama/local/acord/acordalgorithm.h \
    gnu_gama/local/acord/acordazimuth.cpp \
    gnu_gama/local/acord/acordazimuth.h \
+   gnu_gama/local/acord/acordhdiffs.cpp \
+   gnu_gama/local/acord/acordhdiffs.h \
    gnu_gama/local/acord/acordpolar.cpp \
    gnu_gama/local/acord/acordpolar.h \
    gnu_gama/local/acord/acordtraverse.cpp \

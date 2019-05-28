@@ -42,6 +42,7 @@ namespace GNU_gama { namespace local {
 
       friend class AcordAlgorithm;
       friend class AcordAzimuth;
+      friend class AcordHdiffs;
       friend class AcordPolar;
       friend class AcordTraverse;
       friend class AcordWeakChecks;
