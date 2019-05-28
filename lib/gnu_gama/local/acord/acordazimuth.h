@@ -54,8 +54,6 @@ namespace GNU_gama {
       std::map<std::pair<PointID,PointID>, azimuth> azimuths_;
 
       void remove_azimuths_between_known_xy();
-
-      //void dbg(std::string s);
     };
     
   }

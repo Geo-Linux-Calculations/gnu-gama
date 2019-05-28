@@ -1,0 +1,26 @@
+# long traverse with a weak check (one distance)
+
+! A   0    0   # fixed points
+! B   0  600
+! C 900  600
+
+? D 100  100   # adjusted points with unknown xy
+? E 200   50
+? F 300  200
+? G 400  150
+? H 500  300
+? I 600  250
+? J 700  400
+? K 800  350
+? L 900  500
+
+(A > B = D)   # standpoint A, direction to B, distance + direction to D
+(D > A = E)   #            D,              A,                         E
+(E > D = F)   #
+(F > E = G)
+(G > F = H)
+(H > G = I)
+(I > H = J)
+(J > I = K)
+(K > J = L)
+(L > K > C)   # standpoint L, directions to K and C

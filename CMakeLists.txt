@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.05.01)
+project (gnu-gama VERSION 2.05.02)
 
 set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(-DGNU_gama_expat_1_1)
-#add_definitions(-DDEBUG_ACORD2)
+add_definitions(-DDEBUG_ACORD2)
 #add_definitions(-DA2G_DEBUG)
 
 # Library

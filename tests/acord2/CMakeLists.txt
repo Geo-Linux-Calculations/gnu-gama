@@ -14,6 +14,7 @@ set(A2G_FILES
   traverse-01.a2g
   traverse-02.a2g
   traverse-03.a2g
+  traverse-04.a2g
   trivial-01.a2g
   trivial-02.a2g
   )
