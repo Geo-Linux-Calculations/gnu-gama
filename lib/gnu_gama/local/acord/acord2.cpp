@@ -102,11 +102,6 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 
   algorithms_.push_back( move(make_shared<AcordAzimuth>(this)) );
   algorithms_.push_back( move(make_shared<AcordPolar>(this)) );
-
-  auto slope = make_shared<AcordPolar>(this);
-  slope->enable_slope_observations();
-  algorithms_.push_back( move(slope) );
-
   algorithms_.push_back( move(make_shared<AcordTraverse>(this)) );
   algorithms_.push_back( move(make_shared<AcordWeakChecks>(this)) );
 }

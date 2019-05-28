@@ -67,6 +67,8 @@ namespace GNU_gama { namespace local
       bool points_from_SPCluster(StandPoint* sp);
       LocalPoint calculate_polar(Measurement m);
       bool stub(PointID p);
+
+      int execute_counter_ {0};
     };
 
  }} //namespace GNU_gama::local

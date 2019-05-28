@@ -43,6 +43,14 @@ void AcordPolar::execute()
 {
   if (AC.missing_xy_.size() == 0) return;
 
+  execute_counter_++;
+  if (execute_counter_ > 2)   // heuristic
+    {
+      enable_slope_observations();
+
+      if (AC.MAX_NORM < 0.2) AC.MAX_NORM += 0.02;
+    }
+
   do
     {
       AC.new_points_xy_ = 0;

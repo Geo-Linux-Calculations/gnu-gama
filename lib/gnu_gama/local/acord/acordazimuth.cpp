@@ -167,27 +167,3 @@ void AcordAzimuth::execute()
 
   if (azimuths_.empty()) completed_ = true;
 }
-
-/*
-#include <iostream>
-#include <iomanip>
-using std::cerr;
-using std::endl;
-using std::setw;
-using std::string;
-
-void AcordAzimuth::dbg(string s)
-{
-  for (auto a : azimuths_)
-    {
-      cerr << setw(10) << s
-           << " " << setw(3) << a.first.first  << "->"
-           << setw(3) << a.first.second << " : ";
-      cerr << "dist " << a.second.distance
-           << " value " << a.second.value << " ~ ";
-      for (auto v : a.second.values) cerr << v << " ";
-      cerr << endl;
-        
-    }
-}
-*/
