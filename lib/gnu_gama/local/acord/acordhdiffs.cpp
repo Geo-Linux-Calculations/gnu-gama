@@ -42,6 +42,10 @@ void AcordHdiffs::prepare()
     {
       PointID    id    = pd.first;
       LocalPoint point = pd.second;
+
+      // ignoring points with active xy is a temporary hack before
+      // AcordHdiffs and AcordAzimuths are fully integrated into Acord2
+      if (point.active_xy()) continue;
       if (point.active_z())
         {
           lpd_[id] = point;
