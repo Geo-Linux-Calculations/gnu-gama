@@ -458,6 +458,17 @@ bool AcordTraverse::calculate_traverse()
             }
           ++itt;
         }
+	  if(tmp_bearings.empty() && known_dirs == 10 && i==0 && tr_type == AC.closed_traverse)
+		{
+		  front_ori = { 0, true };
+		  while (angle_from_dirs > 2 * M_PI)
+			  angle_from_dirs -= 2 * M_PI;
+		  while (angle_from_dirs < 0)
+			  angle_from_dirs += 2 * M_PI;
+		  tmp_bearings.push_back(angle_from_dirs);
+		  angle_from_dirs = 0;
+		  known_dirs = 0;
+	    }
       if (!tmp_dists.empty() &&!tmp_bearings.empty())
         {
           distances.push_back(AC.median(tmp_dists));
@@ -482,7 +493,7 @@ bool AcordTraverse::calculate_traverse()
               //to end the traverse here and compute the
               //stuff we have got
               tr_type = AC.closed_start_traverse;
-              for (auto t = traverse_points_.size()-1; t<i-1; --t)
+              for (auto t = traverse_points_.size()-1; t>i; --t)
                 {
                   candidate_traverse_points_.insert(traverse_points_[t]);
                   traverse_points_.pop_back();
@@ -537,7 +548,7 @@ bool AcordTraverse::calculate_traverse()
     }
 
   //look for second orientation
-  if (tr_type == AC.closed_traverse && !AC.in_missingXY(traverse_points_.back()))
+  if ((tr_type == AC.closed_traverse || tr_type == AC.closed_start_traverse))
     {
       std::set<PointID> neighbours = get_neighbours(traverse_points_.back());
       std::pair<double, bool> ori_back = { 0, false };
@@ -547,6 +558,7 @@ bool AcordTraverse::calculate_traverse()
             {
               traverse.push_back({n, PD[n]});
               ori_back.second = true;
+			     tr_type = AC.closed_traverse;
             }
         }
     }
