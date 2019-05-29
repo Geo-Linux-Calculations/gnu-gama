@@ -20,56 +20,86 @@
 
 #include <iostream>
 #include <fstream>
-#include <config.h>
+// #include <config.h>
 #include <gnu_gama/version.h>
+
+using std::string;
 
 int main(int argc, char* argv[])
 {
   int error = 0;
 
-  std::string ver = GNU_gama::GNU_gama_version();  // lib/gnu_gama/version.cpp
+  string version_cpp = GNU_gama::GNU_gama_version(); /* gnu_gama/version.cpp */
+  std::cout << version_cpp << " version_cpp\n";
 
-  if (ver != std::string(VERSION))  /* configure.ac */
+  // string version_configure_ac = string(VERSION);
+
+  string version_configure_ac;                       /* configure.ac */
+  {
+     std::ifstream inpf(argv[1]);
+
+     const string pattern = "AC_INIT([gama], [";
+     while (std::getline(inpf, version_configure_ac))
+       {
+         auto indx = version_configure_ac.find(pattern, 0);
+         if (indx > 0) continue;
+
+         version_configure_ac.erase(0, pattern.size());
+         while (version_configure_ac.back()!= ',')
+           {
+             version_configure_ac.pop_back();
+           }
+         version_configure_ac.pop_back();
+         version_configure_ac.pop_back();
+         break;
+       }
+  }
+  std::cout << version_configure_ac << " version_configure_ac\n";
+
+  if (version_cpp != version_configure_ac)
     {
       std::cout
-        << "\nPackage version " << VERSION << ", defined in configure.ac, "
+        << "\nPackage version "
+        << version_configure_ac << ", defined in configure.ac, "
         << "\nis different from version "
-        << ver << ", defined in lib/gnu_gama/version.cpp\n\n";
+        << version_cpp << ", defined in lib/gnu_gama/version.cpp\n\n";
 
       error++;
     }
 
 
-  // since GNU gama 2.03 CMakeLists.txt version is also tested
-  std::ifstream inpf(argv[1]);
+  std::ifstream inpf(argv[2]);
 
   /* We expect the fix format of CMakeLists.txt project directive:
    *
    * project (gnu-gama VERSION MAJOR.MINOR)
    */
-  const std::string pattern = "project (gnu-gama VERSION ";
+  const string pattern = "project (gnu-gama VERSION ";
 
-  std::string cmake_version;
-  while (std::getline(inpf, cmake_version))
+  string version_cmake;
+  while (std::getline(inpf, version_cmake))
     {
-      auto indx = cmake_version.find(pattern, 0);
+      auto indx = version_cmake.find(pattern, 0);
       if (indx > 0) continue;
 
-      cmake_version.erase(0, pattern.size());
-      cmake_version.pop_back();
+      version_cmake.erase(0, pattern.size());
+      version_cmake.pop_back();
 
-      if (cmake_version != std::string(VERSION))  /* CMakeLists.txt */
+      if (version_cmake != version_configure_ac)     /* CMakeLists.txt */
         {
           std::cout
-            << "\nPackage version " << VERSION << ", defined in configure.ac, "
+            << "\nPackage version " << version_configure_ac
+            << ", defined in configure.ac, "
             << "\nis different from version "
-            << cmake_version << ", defined in CMakeLists.txt\n\n";
+            << version_cmake << ", defined in CMakeLists.txt\n\n";
 
           error++;
         }
 
       break;
     }
+    std::cout << version_cmake << " version_cmake\n";
+
 
   return error;
 }

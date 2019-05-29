@@ -4,6 +4,11 @@ set(INPUT_DIR ${TEST_BASE_DIR}/input)
 
 file(MAKE_DIRECTORY ${RESULT_DIR})
 
+# check version
+add_executable(check_version scripts/check_version.cpp $<TARGET_OBJECTS:libgama>)
+add_test(NAME check_version COMMAND check_version
+  ${PROJECT_SOURCE_DIR}/configure.ac ${PROJECT_SOURCE_DIR}/CMakeLists.txt)
+
 # check_algorithms
 add_executable(check_algorithms scripts/check_xyz.h scripts/check_xyz.cpp scripts/check_algorithms.cpp $<TARGET_OBJECTS:libgama>)
 
