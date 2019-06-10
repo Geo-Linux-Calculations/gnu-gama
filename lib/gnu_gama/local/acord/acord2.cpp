@@ -47,7 +47,6 @@ using namespace GNU_gama::local;
 #define DBG
 #endif
 
-
 Acord2::Acord2(PointData& pd, ObservationData& od)
   : PD_(pd), OD_(od)
 {
@@ -127,7 +126,7 @@ void Acord2::execute()
   size_type after {},  before = missing_xy_.size() + missing_z_.size();
   if (before == 0) return;
 
-  do  // while some points need/can to be solved
+  do  // while some points need/can be solved
     {
       before = missing_xy_.size() + missing_z_.size();
 

@@ -46,14 +46,17 @@ AcordTraverse::AcordTraverse(Acord2* acord2)
 
 void AcordTraverse::execute() //to keep in line with the acord class
 {
+  auto etalon_candidate_points = candidate_traverse_points_;
   std::set<PointID>::iterator it = candidate_traverse_points_.begin();
   while (candidate_traverse_points_.size() > 1 && it != candidate_traverse_points_.end())
     {
+	  traverse_points_.clear();
+	  traverse.clear();
       // If there is one then add pt to traverse_pts and remove from candidates,
       traverse_points_.push_back(*it);
       get_traverse_pts(*it);   // populating the traverse_points_
 
-      if (traverse_points_.size() > 1)
+      if (traverse_points_.size() > 2)
         {
           tr_type = get_connecting_points();
           //if there are at least two points in traverse_pts then I can calculate the polygon and insert into traverses
@@ -61,31 +64,34 @@ void AcordTraverse::execute() //to keep in line with the acord class
           if (success)
             { 
               AC.traverses.push_back({ traverse, tr_type });
+
+			  for (auto t : traverse_points_)
+				  {
+				    candidate_traverse_points_.erase(t);
+				  }
+			  it = candidate_traverse_points_.begin();
             }
           else
             {
               // Computation failed
+			  for (auto t : traverse_points_)
+				  {
+				  auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
+				  if(found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
+				  }
+			  ++it;
             }
 
-          for (auto t : traverse_points_)
-            {
-              candidate_traverse_points_.erase(t);
-            }
-          it = candidate_traverse_points_.begin();
-          traverse_points_.clear();
-          traverse.clear();
         }
       else
         {
           for (auto t : traverse_points_)
             {
-              candidate_traverse_points_.insert(t);
+			  auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
+			  if (found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
             }
-          traverse_points_.clear();
-          traverse.clear();
-          ++it;
+		  ++it;
         }
-
     }
 
   // now we have all traverses we can try to find same points
@@ -138,7 +144,15 @@ void AcordTraverse::execute() //to keep in line with the acord class
   // now we just iterate through the traverses one more time and if the
   // last point is known, we can safely remove them from the list
   
-  AC.traverses.erase(std::remove_if(AC.traverses.begin(), AC.traverses.end(), [this](std::pair<Acord2::Traverse, Acord2::Traverse_type> tr) {return (!AC.in_missingXY(tr.first.back().id)); }), AC.traverses.end());
+  if(!AC.traverses.empty())
+    {
+	  AC.traverses.erase(std::remove_if(
+		  AC.traverses.begin(), 
+		  AC.traverses.end(), 
+	    [this](std::pair<Acord2::Traverse, Acord2::Traverse_type> tr) {
+		  return (!AC.in_missingXY(tr.first.back().id));
+		  }), AC.traverses.end());
+	}
 
 }
 
@@ -346,7 +360,7 @@ bool AcordTraverse::calculate_traverse()
                 {
                   if (i == 0 && !AC.in_missingXY(it->second->to()) && !front_ori.second)
                     {
-                      StandPoint* sp = AC.find_standpoint(it->second->from());
+					  StandPoint* sp = AC.find_standpoint(it->second->from());
                       if (sp != nullptr)
                         {
                           if (!sp->test_orientation())
@@ -411,7 +425,7 @@ bool AcordTraverse::calculate_traverse()
                 }
               else if ((known_dirs == 00 || known_dirs == 10))
                 {
-                  if (i == 0 && !AC.in_missingXY(itt->second->to()) && !front_ori.second)
+                  if (i == 0 && !AC.in_missingXY(itt->second->from()) && !front_ori.second)
                     {
                       StandPoint* sp = AC.find_standpoint(itt->second->from());
                       if (sp != nullptr)
@@ -426,7 +440,7 @@ bool AcordTraverse::calculate_traverse()
                             }
                           if (sp->test_orientation())
                             {
-                              traverse.push_back({ itt->second->to(),PD[itt->second->to()] });
+                              traverse.push_back({ itt->second->from(),PD[itt->second->from()] });
                               known_dirs += 1;
                               double dirval = M_PI - dir.first;
                               angle_from_dirs += (dirval + sp->orientation());
@@ -487,6 +501,12 @@ bool AcordTraverse::calculate_traverse()
               traverse_points_.pop_back();
               i = -1;
             }
+		  else if(i==0)
+			{
+			  //the point is in the first place, but type is not closed
+			  //there is no other choice but to go back
+			  return false;
+			}
           else
             {
               //if the point is in the middle we can try
