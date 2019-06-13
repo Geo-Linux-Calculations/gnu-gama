@@ -1,18 +1,7 @@
 set(TEST_BASE_DIR ${PROJECT_SOURCE_DIR}/tests/gama-local)
-set(RESULT_DIR ${CMAKE_BINARY_DIR}/tests/gama-local/results/${GAMA_VERSION}/gama-local-adjustment)
+set(GAMA_LOCAL ${PROJECT_SOURCE_DIR}/bin/gama-local )
 set(INPUT_DIR ${TEST_BASE_DIR}/input)
-
-file(MAKE_DIRECTORY ${RESULT_DIR})
-
-# check version
-add_executable(check_version scripts/check_version.cpp $<TARGET_OBJECTS:libgama>)
-add_test(NAME check_version COMMAND check_version
-  ${PROJECT_SOURCE_DIR}/configure.ac ${PROJECT_SOURCE_DIR}/CMakeLists.txt)
-
-# check_algorithms
-add_executable(check_algorithms scripts/check_xyz.h scripts/check_xyz.cpp scripts/check_algorithms.cpp $<TARGET_OBJECTS:libgama>)
-
-set(ALGORITHMS_TESTS
+set(INPUT_FILES
     gama-local
     zoltan-test_2d_dms
     zoltan-test_2d_gon
@@ -32,15 +21,69 @@ set(ALGORITHMS_TESTS
     stroner-levelling-b
     extern-azimuth-distance
     extern-tst-tetrahedron-3-gon
-)
+    extern-seq-dsuloha-d
+  )
 
-foreach(test ${ALGORITHMS_TESTS})
-    add_test(NAME check_algorithms_${test} COMMAND check_algorithms ${PROJECT_VERSION} ${test} ${INPUT_DIR}/${test}.gkf )
+set(RESULT_DIR ${CMAKE_BINARY_DIR}/tests/gama-local/results/${PROJECT_VERSION})
+file(MAKE_DIRECTORY ${RESULT_DIR})
+
+
+# ------------------------------------------------------------------------
+#
+# check version
+#
+add_executable(check_version scripts/check_version.cpp
+  $<TARGET_OBJECTS:libgama>)
+add_test(NAME check_version COMMAND check_version
+  ${PROJECT_SOURCE_DIR}/configure.ac ${PROJECT_SOURCE_DIR}/CMakeLists.txt)
+
+
+
+# -------------------------------------------------------------------------
+#
+# check_adjustment
+#
+
+file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-adjustment)
+
+foreach(test ${INPUT_FILES})
+  foreach(algo svd gso cholesky envelope)
+    add_test(NAME gama_local_adjustement_${test}_${algo}
+      COMMAND ${GAMA_LOCAL} ${INPUT_DIR}/${test}.gkf --algorithm ${algo}
+        --text   ${RESULT_DIR}/gama-local-adjustment/${test}-${algo}.txt
+        --html   ${RESULT_DIR}/gama-local-adjustment/${test}-${algo}.html
+        --xml    ${RESULT_DIR}/gama-local-adjustment/${test}-${algo}.xml
+        --octave ${RESULT_DIR}/gama-local-adjustment/${test}-${algo}.m
+        --svg    ${RESULT_DIR}/gama-local-adjustment/${test}-${algo}.svg
+      )
+  endforeach(algo)
 endforeach(test)
 
-add_executable(check_equivalents scripts/check_xyz.h scripts/check_xyz.cpp scripts/check_equivalents.cpp $<TARGET_OBJECTS:libgama>)
 
+
+# ------------------------------------------------------------------------
+#
+# check_algorithms
+#
+add_executable(check_algorithms scripts/check_xyz.h scripts/check_xyz.cpp
+  scripts/check_algorithms.cpp $<TARGET_OBJECTS:libgama>)
+
+foreach(test ${INPUT_FILES})
+  add_test(NAME check_algorithms_${test}
+    COMMAND check_algorithms ${PROJECT_VERSION} ${test}
+    ${INPUT_DIR}/${test}.gkf )
+endforeach(test)
+
+
+
+# -------------------------------------------------------------------------
+#
 # check_equivalents
+#
+add_executable(check_equivalents scripts/check_xyz.h
+  scripts/check_xyz.cpp scripts/check_equivalents.cpp
+  $<TARGET_OBJECTS:libgama>)
+
 set(EQUIVALENTS_TESTS
     # CMake is weird with 2D arrays, so we apply this hack
     # format: <test_name>;<input_a>;<input_b>
@@ -61,6 +104,7 @@ foreach(test ${EQUIVALENTS_TESTS})
     list(GET TEST_LIST 2 input_b)
     add_test(
         NAME check_equivalents_${testname}
-        COMMAND check_equivalents ${input_a} ${INPUT_DIR}/${input_a}.gkf ${input_b} ${INPUT_DIR}/${input_b}.gkf
+        COMMAND check_equivalents ${input_a}
+        ${INPUT_DIR}/${input_a}.gkf ${input_b} ${INPUT_DIR}/${input_b}.gkf
     )
 endforeach(test)
