@@ -1,5 +1,5 @@
 set(TEST_BASE_DIR ${PROJECT_SOURCE_DIR}/tests/gama-local)
-set(GAMA_LOCAL ${PROJECT_SOURCE_DIR}/bin/gama-local )
+set(GAMA_LOCAL ${CMAKE_BINARY_DIR}/gama-local )
 set(INPUT_DIR ${TEST_BASE_DIR}/input)
 set(INPUT_FILES
     gama-local
@@ -73,6 +73,30 @@ foreach(test ${INPUT_FILES})
     COMMAND check_algorithms ${PROJECT_VERSION} ${test}
     ${INPUT_DIR}/${test}.gkf )
 endforeach(test)
+
+
+
+# ------------------------------------------------------------------------
+#
+# check_xml_xml
+#
+add_executable(check_xml_xml scripts/check_xml_xml.cpp
+  scripts/compare_xml_adjustment.h scripts/compare_xml_adjustment.cpp
+  $<TARGET_OBJECTS:libgama>)
+
+set(RES ${RESULT_DIR}/gama-local-adjustment)
+
+foreach(z ${INPUT_FILES})
+  foreach(algorithms gso:svd gso:cholesky gso:envelope
+                     svd:cholesky svd:envelope cholesky:envelope)
+    string(REPLACE ":" ";" test_list ${algorithms})
+    list(GET test_list 0 a)
+    list(GET test_list 1 b)
+    add_test(NAME check_xml_xml_${z}_${a}_${b} COMMAND
+      check_xml_xml "${a} ${b} ${z}" ${RES}/${z}-${a}.xml ${RES}/${z}-${b}.xml
+    )
+  endforeach(algorithms)
+endforeach(z)
 
 
 
