@@ -129,7 +129,7 @@ $\tan u = (Z/D)(a/b).$
 @end ifnottex
 @c
 @noindent Maximum error in earth bound region is 3e-8 of 
-sexadecimal arc seconds (5e-7 millimetres); maximum is 0.0018'' (0.1
+sexagesimal arc seconds (5e-7 millimetres); maximum is 0.0018'' (0.1
 millimetres) at height H = 2a.
  
 

@@ -315,8 +315,9 @@ private:
 
     double ml = lnet->stdev_obs(index);
 
-    out << tdRight(ml,     'F', 1, 2,2)
-        << tdRight(ml*kki, 'F', 1, 2,2);
+    double scale = lnet->gons() ? 1.0 : 0.324;  // 360.0*60*60/400/100/100
+    out << tdRight(scale*ml,     'F', 1, 2,2)
+        << tdRight(scale*ml*kki, 'F', 1, 2,2);
 
     out << "</tr>\n";
   }
@@ -359,7 +360,7 @@ public:
   }
 
 private:
-  double scale;
+  // double scale;
   std::vector<double> studres;
   int imax;
   std::vector<int>*   odlehla;
@@ -389,10 +390,9 @@ private:
       sort(odlehla->begin(), odlehla->end(), StOpSort(lnet));
   }
 
-  void linear()
+  void observation(double scale)
   {
-    scale = 1.0;
-    // double val = obs->value();                        ... unused
+        // double val = obs->value();                        ... unused
     // double adj = val + lnet->residuals()(index)/1000; ... unused
 
     double f  = lnet->obs_control(index);
@@ -448,10 +448,16 @@ private:
     out << "</tr>\n";
   }
 
+  void linear()
+  {
+    //  scale = 1.0;
+    observation(1.0);
+  }
+
   void angular()
   {
-    scale = 0.324;
-    linear();
+    //  scale = lnet->gons() ? 1.0 : 0.324;
+    observation(lnet->gons() ? 1.0 : 0.324);
   }
 
   /* *******************************************************************

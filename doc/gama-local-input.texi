@@ -84,7 +84,8 @@ circumference. For example
 @end example
 
 @paragraphindent 0
-The same angular value (direction) can be expressed in degrees as
+The same angular value (direction) can be expressed in degrees
+(sexagesimal graduation) as
 
 @example
  <direction  from="202" to="416" val="57-32-28.428"  stdev="3.24" />
@@ -96,6 +97,19 @@ dashes (-) with optional leading sign. Spaces are not allowed inside
 the string. Gons and degrees may be mixed in a single XML document but
 one should be careful to supply the information on standard deviations
 and/or covariances in the proper corresponding units.
+
+Sexagesimal seconds (ss) are commonly called arcseconds, they are
+related to the metric system centicentigons (cc) as
+@ifnottex
+
+@math{ss = cc/400/100/100 * 360*60*60 = cc*0.324.}
+@end ifnottex
+@tex
+$$
+ss = cc/400/100/100 * 360*60*60 = cc*0.324.
+$$
+@end tex
+
 
 Internally @code{gama-local} works with gons but output can be
 transformed to degrees using the option @code{--angles 360}.
