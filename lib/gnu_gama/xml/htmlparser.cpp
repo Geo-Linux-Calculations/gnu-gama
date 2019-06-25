@@ -25,7 +25,7 @@
 
 #include <iostream>
 #include <gnu_gama/xml/htmlparser.h>
-
+#include <gnu_gama/gon2deg.h>
 
 using namespace GNU_gama;
 
@@ -84,6 +84,11 @@ int HtmlParser::startElement(const char *name, const char **atts)
   else if (attribute=="adjusted_orientations") adjusted_orientations = true;
   else if (attribute=="adjusted_observations") adjusted_observations = true;
   else if (attribute=="residuals")             residuals             = true;
+  else if (attribute=="angles360")
+    {
+      angles = 360;
+      scale  = 0.324;  // 360*60*60/400/100/100
+    }
 
   if      (tag == "tr")
     {
@@ -481,14 +486,15 @@ void HtmlParser::table_adjusted_orientations()
     }
 
   double D;
-  toDouble(data, D);
+  if (angles == 400) toDouble(data, D);
+  else               deg2gon( data, D);
 
   if      (table_col == 3) ori.approx = D;
   else if (table_col == 5) ori.adj    = D;
   else if (table_col == 6)
     {
       int n = adjres->original_index.size() - 1;
-      adjres->cov(n,n) = D*D;
+      adjres->cov(n,n) = D*D*scale;
     }
 }
 

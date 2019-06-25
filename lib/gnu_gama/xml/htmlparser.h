@@ -62,6 +62,10 @@ class HtmlParser : public GNU_gama::BaseParser<GNU_gama::Exception::parser>
   std::string data;
   std::string obs_point, obs_left, obs_target;   // observations' points id
 
+
+  int angles = 400;   // angular output format 400 : 300
+  double scale = 1;   // scaling factor for arcseconds 1 : 0.324
+
   void close_table();
 
   template<typename T, typename U> void set(int row, int col, T& a, U b)

@@ -65,36 +65,9 @@ namespace GNU_gama
 
       void init();
 
-      int startElement(const char *name, const char **atts)
-      {
-        check_and_clear_data();
-        attributes = atts;
-        tmp_tag = name;
-        int t = tag(name);
-        TagFun f = tagfun[state][t];
-        (this->*f)(true);
-
-        return 0;
-      }
-
-      int characterDataHandler(const char *s, int len)
-      {
-        data += std::string(s, std::string::size_type(len));
-
-        return 0;
-      }
-
-      int endElement(const char * /*name*/)
-      {
-        if (stack.empty()) stack.push(&Parser::unknown);
-
-        TagFun f = stack.top();
-        stack.pop();
-        (this->*f)(false);
-        data.clear();
-
-        return 0;
-      }
+      virtual int startElement(const char *name, const char **atts) final;
+      virtual int characterDataHandler(const char *s, int len) final;
+      virtual int endElement(const char * /*name*/) final;
 
       void check_and_clear_data();
 

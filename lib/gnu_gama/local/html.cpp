@@ -605,7 +605,10 @@ void GamaLocalHTML::htmlInfo()
         }
     }
 
-  out << "<h2>" << T_GaMa_General_solution_parameters << "</h2>";
+  out << "<!-- output angular format -->";
+  if (lnet->gons()) out << "<h2 id='angles400'>";
+  else              out << "<h2 id='angles360'>";
+  out << T_GaMa_General_solution_parameters << "</h2>";
 
   // summary of coordinates in adjustment
 
