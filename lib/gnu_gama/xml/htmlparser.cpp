@@ -537,19 +537,20 @@ void HtmlParser::table_adjusted_observations()
           obs.to = obs_target;
         }
 
-      if      (data == "angle") obs.xml_tag = "angle";
-      else if (data == "azim.") obs.xml_tag = "azimuth";
-      else if (data == "dir." ) obs.xml_tag = "direction";
-      else if (data == "dist.") obs.xml_tag = "distance";
-      else if (data == "slope") obs.xml_tag = "slope-distance";
-      else if (data == "zenit") obs.xml_tag = "zenith-angle";
-      else if (data == "h dif") obs.xml_tag = "height-diff";
-      else if (data == "x dif") obs.xml_tag = "dx";
-      else if (data == "y dif") obs.xml_tag = "dy";
-      else if (data == "z dif") obs.xml_tag = "dz";
-      else if (data == "x")     obs.xml_tag = "coordinate-x";
-      else if (data == "y")     obs.xml_tag = "coordinate-y";
-      else if (data == "z")     obs.xml_tag = "coordinate-z";
+      obs.ang = false;
+      if      (data == "angle") { obs.xml_tag = "angle"; obs.ang = true; }
+      else if (data == "azim.") { obs.xml_tag = "azimuth"; obs.ang = true; }
+      else if (data == "dir." ) { obs.xml_tag = "direction"; obs.ang = true; }
+      else if (data == "dist.") { obs.xml_tag = "distance"; }
+      else if (data == "slope") { obs.xml_tag = "slope-distance"; }
+      else if (data == "zenit") { obs.xml_tag = "zenith-angle"; obs.ang = true; }
+      else if (data == "h dif") { obs.xml_tag = "height-diff"; }
+      else if (data == "x dif") { obs.xml_tag = "dx"; }
+      else if (data == "y dif") { obs.xml_tag = "dy"; }
+      else if (data == "z dif") { obs.xml_tag = "dz"; }
+      else if (data == "x")     { obs.xml_tag = "coordinate-x"; }
+      else if (data == "y")     { obs.xml_tag = "coordinate-y"; }
+      else if (data == "z")     { obs.xml_tag = "coordinate-z"; }
       else
         {
           std::string error =
@@ -565,11 +566,19 @@ void HtmlParser::table_adjusted_observations()
   LocalNetworkAdjustmentResults::Observation& obs = adjres->obslist.back();
 
   double D;
-  toDouble(data, D);
+  if (obs.ang)
+    {
+      if (angles == 400) toDouble(data, D);
+      else               deg2gon( data, D);
+    }
+  else
+    {
+      toDouble(data, D);
+    }
 
   if      (table_col == 5) obs.obs   = D;
   else if (table_col == 6) obs.adj   = D;
-  else if (table_col == 7) obs.stdev = D;
+  else if (table_col == 7) obs.stdev = obs.ang ? D*0.324 : D;
 }
 
 

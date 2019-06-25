@@ -500,7 +500,8 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
         double dadj = H.adj - X.adj;
         if (H.xml_tag == "angle" ||
             H.xml_tag == "direction" ||
-            H.xml_tag == "zenith-angle" )
+            H.xml_tag == "zenith-angle" ||
+            H.xml_tag == "azimuth")
           {
             dobs = std::asin(std::sin(dobs*G2R))*R2G;
             dadj = std::asin(std::sin(dadj*G2R))*R2G;
@@ -524,7 +525,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
     std::cout << "         angular obs.       "
               << std::scientific << std::setprecision(3) << std::setw(11)
               << dang << " [g] ";
-    if (std::abs(dang) < 1e-6)
+    if (std::abs(dang) < 1e-5)
       std::cout << "passed\n";
     else
       {
