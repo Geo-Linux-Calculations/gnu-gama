@@ -36,3 +36,7 @@ scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
 a=azimuth-distance; b=extern-azimuth-distance
 scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                           $b @GAMA_INPUT@/$b.gkf
+
+a=jezerka-dir; b=jezerka-ang
+scripts/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                          $b @GAMA_INPUT@/$b.gkf

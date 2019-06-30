@@ -24,6 +24,7 @@
  */
 
 #include <iostream>
+#include <unordered_set>
 #include <gnu_gama/xml/htmlparser.h>
 #include <gnu_gama/gon2deg.h>
 
@@ -485,16 +486,26 @@ void HtmlParser::table_adjusted_orientations()
       return;
     }
 
-  double D;
-  if (angles == 400) toDouble(data, D);
-  else               deg2gon( data, D);
-
-  if      (table_col == 3) ori.approx = D;
-  else if (table_col == 5) ori.adj    = D;
-  else if (table_col == 6)
+  if (table_col == 3 || table_col == 5)
     {
-      int n = adjres->original_index.size() - 1;
-      adjres->cov(n,n) = D*D*scale;
+      double D;
+      if (angles == 400) toDouble(data, D);
+      else               deg2gon( data, D);
+
+      if      (table_col == 3) ori.approx = D;
+      else if (table_col == 5) ori.adj    = D;
+      return;
+    }
+
+  if (table_col == 6)
+    {
+      double D;
+      toDouble(data, D);
+      if (angles == 360) D /= 0.324;  // ss --> cc
+
+      int n = int(adjres->original_index.size() - 1);
+      adjres->cov(n,n) = D*D;
+      return;
     }
 }
 
@@ -537,20 +548,19 @@ void HtmlParser::table_adjusted_observations()
           obs.to = obs_target;
         }
 
-      obs.ang = false;
-      if      (data == "angle") { obs.xml_tag = "angle"; obs.ang = true; }
-      else if (data == "azim.") { obs.xml_tag = "azimuth"; obs.ang = true; }
-      else if (data == "dir." ) { obs.xml_tag = "direction"; obs.ang = true; }
-      else if (data == "dist.") { obs.xml_tag = "distance"; }
-      else if (data == "slope") { obs.xml_tag = "slope-distance"; }
-      else if (data == "zenit") { obs.xml_tag = "zenith-angle"; obs.ang = true; }
-      else if (data == "h dif") { obs.xml_tag = "height-diff"; }
-      else if (data == "x dif") { obs.xml_tag = "dx"; }
-      else if (data == "y dif") { obs.xml_tag = "dy"; }
-      else if (data == "z dif") { obs.xml_tag = "dz"; }
-      else if (data == "x")     { obs.xml_tag = "coordinate-x"; }
-      else if (data == "y")     { obs.xml_tag = "coordinate-y"; }
-      else if (data == "z")     { obs.xml_tag = "coordinate-z"; }
+      if      (data == "angle") obs.xml_tag = "angle";
+      else if (data == "azim.") obs.xml_tag = "azimuth";
+      else if (data == "dir." ) obs.xml_tag = "direction";
+      else if (data == "dist.") obs.xml_tag = "distance";
+      else if (data == "slope") obs.xml_tag = "slope-distance";
+      else if (data == "zenit") obs.xml_tag = "zenith-angle";
+      else if (data == "h dif") obs.xml_tag = "height-diff";
+      else if (data == "x dif") obs.xml_tag = "dx";
+      else if (data == "y dif") obs.xml_tag = "dy";
+      else if (data == "z dif") obs.xml_tag = "dz";
+      else if (data == "x")     obs.xml_tag = "coordinate-x";
+      else if (data == "y")     obs.xml_tag = "coordinate-y";
+      else if (data == "z")     obs.xml_tag = "coordinate-z";
       else
         {
           std::string error =
@@ -565,8 +575,12 @@ void HtmlParser::table_adjusted_observations()
 
   LocalNetworkAdjustmentResults::Observation& obs = adjres->obslist.back();
 
+  using unordered_set = std::unordered_set<std::string>;
+  const unordered_set angular {"angle", "azimuth", "direction", "zenith-angle"};
+  bool obsang = (angular.find(obs.xml_tag) != angular.end());
+
   double D;
-  if (obs.ang)
+  if (obsang)
     {
       if (angles == 400) toDouble(data, D);
       else               deg2gon( data, D);
@@ -578,7 +592,7 @@ void HtmlParser::table_adjusted_observations()
 
   if      (table_col == 5) obs.obs   = D;
   else if (table_col == 6) obs.adj   = D;
-  else if (table_col == 7) obs.stdev = obs.ang ? D*0.324 : D;
+  else if (table_col == 7) obs.stdev = obsang ? D*0.324 : D;
 }
 
 

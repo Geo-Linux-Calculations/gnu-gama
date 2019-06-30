@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 
   try
     {
-      return compare_xml_adjustment(html, xml, 1e-2);
+      return compare_xml_adjustment(html, xml, 1e-1);
     }
   catch (...)
     {

@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Jezerka
+</description>
+
+<parameters
+   sigma-act='aposteriori'
+   sigma-apr='0.31'
+   conf-pr='0.9'
+/>
+
+<points-observations>
+
+<point id="51" y="1514.1413"  x="3725.0685" adj="xy" />
+<point id="52" y="1556.8089"  x="3446.1750" adj="xy" />
+<point id="53" y="1289.4689"  x="3306.6944" adj="XY" />
+<point id="54" y="1068.4168"  x="3138.7648" fix="xy" />
+<point id="55" y="1141.6977"  x="3321.3128" adj="xy" />
+<point id="56" y="1163.9692"  x="3446.8404" adj="xy" />
+<point id="57" y="1351.1271"  x="3674.5652" adj="xy" />
+<point id="59" y="1037.3041"  x="3443.6549" adj="xy" />
+
+
+<obs from="51">
+   <direction to="54" val="0.0121" stdev="3.1" />
+   <direction to="55" val="6.0670" stdev="3.1" />
+   <direction to="56" val="15.8913" stdev="3.1" />
+   <direction to="59" val="24.6938" stdev="3.1" />
+   <direction to="57" val="39.5078" stdev="3.1" />
+   <direction to="52" val="348.9669" stdev="3.1" />
+</obs>
+
+<obs from="52">
+   <direction to="53" val="0.0297" stdev="3.1" />
+   <direction to="55" val="12.0462" stdev="3.1" />
+   <direction to="59" val="30.3393" stdev="3.1" />
+   <direction to="56" val="30.7548" stdev="3.1" />
+   <direction to="51" val="120.9793" stdev="3.1" />
+</obs>
+
+<obs from="53">
+   <direction to="54" val="0.0322" stdev="3.1" />
+   <direction to="55" val="47.6747" stdev="3.1" />
+   <direction to="56" val="94.8968" stdev="3.1" />
+   <direction to="52" val="210.7780" stdev="3.1" />
+</obs>
+
+<obs from="54">
+   <direction to="51" val="0.0122" stdev="3.1" />
+   <direction to="53" val="17.2724" stdev="3.1" />
+   <direction to="59" val="352.1512" stdev="3.1" />
+   <direction to="56" val="377.7723" stdev="3.1" />
+   <direction to="55" val="382.9260" stdev="3.1" />
+   <direction to="57" val="389.5389" stdev="3.1" />
+</obs>
+
+<obs from="55">
+   <direction to="51" val="0.0160" stdev="3.1" />
+   <direction to="52" val="33.9821" stdev="3.1" />
+   <direction to="53" val="58.8630" stdev="3.1" />
+   <direction to="54" val="176.8751" stdev="3.1" />
+   <direction to="59" val="307.6104" stdev="3.1" />
+   <direction to="56" val="363.7581" stdev="3.1" />
+   <direction to="57" val="386.6513" stdev="3.1" />
+</obs>
+
+<obs from="56">
+   <direction to="54" val="0.0276" stdev="3.1" />
+   <direction to="59" val="79.2926" stdev="3.1" />
+   <direction to="51" val="238.1464" stdev="3.1" />
+   <direction to="52" val="280.9964" stdev="3.1" />
+   <direction to="53" val="334.3915" stdev="3.1" />
+   <direction to="55" val="392.0641" stdev="3.1" />
+</obs>
+
+<obs from="57">
+   <direction to="54" val="0.0148" stdev="3.1" />
+   <direction to="55" val="3.1778" stdev="3.1" />
+   <direction to="51" val="249.9837" stdev="3.1" />
+</obs>
+
+<obs from="59">
+   <direction to="51" val="0.0161" stdev="3.1" />
+   <direction to="56" val="32.3603" stdev="3.1" />
+   <direction to="52" val="33.6482" stdev="3.1" />
+   <direction to="55" val="88.9837" stdev="3.1" />
+   <direction to="54" val="127.4736" stdev="3.1" />
+</obs>
+
+<obs from="51">
+   <distance to="52" val="282.1400" stdev="2.0" />
+   <distance to="54" val="736.4970" stdev="2.0" />
+   <distance to="55" val="549.3090" stdev="2.0" />
+   <distance to="56" val="447.2560" stdev="2.0" />
+   <distance to="57" val="170.6630" stdev="2.0" />
+   <distance to="59" val="553.6970" stdev="2.0" />
+</obs>
+
+<obs from="52">
+   <distance to="53" val="301.5400" stdev="2.0" />
+   <distance to="55" val="433.4990" stdev="2.0" />
+   <distance to="56" val="392.8620" stdev="2.0" />
+   <distance to="59" val="519.5400" stdev="2.0" />
+</obs>
+
+<obs from="53">
+   <distance to="54" val="277.6030" stdev="2.0" />
+   <distance to="55" val="148.5150" stdev="2.0" />
+   <distance to="56" val="188.1510" stdev="2.0" />
+</obs>
+
+<obs from="54">
+   <distance to="55" val="196.7120" stdev="2.0" />
+   <distance to="56" val="322.5640" stdev="2.0" />
+   <distance to="57" val="605.8160" stdev="2.0" />
+   <distance to="59" val="306.5200" stdev="2.0" />
+</obs>
+
+<obs from="55">
+   <distance to="56" val="127.4900" stdev="2.0" />
+   <distance to="57" val="410.6710" stdev="2.0" />
+   <distance to="59" val="160.8490" stdev="2.0" />
+</obs>
+
+<obs from="56">
+   <distance to="59" val="126.7150" stdev="2.0" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>
+

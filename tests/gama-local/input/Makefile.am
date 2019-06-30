@@ -10,6 +10,8 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              scale-cov-gon.gkf \
              scale-cov-dms.gkf \
              fixed-constrained.gkf \
+             jezerka-ang.gkf           jezerka-ang.xml \
+             jezerka-dir.gkf           jezerka-dir.xml \
              fixed-azimuth.gkf         fixed-azimuth.xml \
              azimuth-angle.gkf         azimuth-angle.xml \
              azimuth-azimuth.gkf       azimuth-azimuth.xml \

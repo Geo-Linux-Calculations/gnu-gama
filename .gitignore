@@ -11,6 +11,7 @@ a.out
 *.pro*
 *.autosave
 gama-local-pro
+Makefile.am.user
 #
 aclocal.m4
 autom4te.cache/

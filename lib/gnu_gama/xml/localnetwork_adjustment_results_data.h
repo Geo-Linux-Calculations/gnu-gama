@@ -153,7 +153,6 @@ namespace GNU_gama
       std::string left;         // used in angle observation
       std::string right;        //  ....   angle   ....
 
-      bool   ang;               // angular observation
       double obs;               // observed value
       double adj;               // adjusted
       double stdev;             // standard deviation of adj. value
@@ -166,7 +165,6 @@ namespace GNU_gama
 
       void clear()
       {
-        ang = false;
         obs = adj = stdev = qrr = f = std_residual = 0;
         xml_tag     .clear();
         from        .clear();

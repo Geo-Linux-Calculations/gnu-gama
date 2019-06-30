@@ -21,3 +21,19 @@ do
 	--svg    $RES/$g-$a.svg
 done
 done
+
+# for testing text and html output in 360 degrees we use gso algorithm only
+# see gama-local-html.in
+
+for g in @INPUT_FILES@
+do
+for a in gso # svd cholesky envelope
+do
+    echo  @PACKAGE_VERSION@ $g $a
+    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+        --algorithm $a \
+        --text   $RES/$g-$a-360.txt \
+        --html   $RES/$g-$a-360.html \
+        --angles 360
+done
+done

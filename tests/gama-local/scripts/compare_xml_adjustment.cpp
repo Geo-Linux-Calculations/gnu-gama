@@ -106,10 +106,10 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
     {
       double mapo = std::abs(html->standard_deviation.aposteriori
                              - xml->standard_deviation.aposteriori);
-      double qapo = (html->standard_deviation.aposteriori
-                     + xml->standard_deviation.aposteriori)/2;
-      if (qapo) mapo /= qapo;
-      if (mapo > 1e-3)
+      double qapo = std::max(html->standard_deviation.aposteriori,
+                             xml ->standard_deviation.aposteriori);
+      if (qapo > 1) mapo /= qapo;
+      if (mapo > 2e-2)
         {
           std::cout << "         aposteriori standard deviation failed\n";
           result_gp = 1;

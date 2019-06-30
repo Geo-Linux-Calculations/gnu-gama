@@ -39,6 +39,8 @@ INPUT_FILES = gama-local \
               azimuth-angle \
               azimuth-azimuth \
               azimuth-distance \
+              jezerka-ang \
+              jezerka-dir \
               triangle-1 \
               triangle-2 \
               stroner-levelling-a \
@@ -54,6 +56,7 @@ GAMA_RESULTS = results/$(PACKAGE_VERSION)
 GAMA_OTHERS  = Makefile $(GAMA_RESULTS)
 
 do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
+	       -e 's,[@]top_srcdir[@],$(top_srcdir),g' \
 	       -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
 	       -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
 	       -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g' \
