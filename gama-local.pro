@@ -52,6 +52,7 @@ SOURCES += \
     lib/gnu_gama/local/acord/acord2.cpp \
     lib/gnu_gama/local/acord/acordalgorithm.cpp \
     lib/gnu_gama/local/acord/acordazimuth.cpp \
+    lib/gnu_gama/local/acord/acordhdiffs.cpp \
     lib/gnu_gama/local/acord/acordpolar.cpp \
     lib/gnu_gama/local/acord/acordtraverse.cpp \
     lib/gnu_gama/local/acord/acordstatistics.cpp \
@@ -145,6 +146,7 @@ HEADERS = \
     lib/gnu_gama/local/acord/acord2.h \
     lib/gnu_gama/local/acord/acordalgorithm.h \
     lib/gnu_gama/local/acord/acordazimuth.h \
+    lib/gnu_gama/local/acord/acordhdiffs.h \
     lib/gnu_gama/local/acord/acordpolar.h \
     lib/gnu_gama/local/acord/acordtraverse.h \
     lib/gnu_gama/local/acord/acordstatistics.h \
