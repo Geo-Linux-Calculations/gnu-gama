@@ -1,0 +1,32 @@
+! A   0    0    # fixed point A
+? B 400  300    # adjusted point B with unknown xy
+? C 200  300    # adjusted point B with unknown xy
+! D 500  100    # fixed point D
+
+( A              # standpoint  A
+- B              # distance to B
+^ B              # azimuth to  B 1st
+^ B              # azimuth to  B 2nd
+= C              # distance + direction C
+= B              # distance + direction D
+= D              # distance + direction D
+)
+
+( C              # standpoint   C
+- B              # distance to  B
+^ B              # azimuth to   B
+^ A              # azimuth to   A 1st
+^ A              # azimuth to   A 2nd
+^ A              # azimuth to   A 3d
+> A              # direction to A
+> B              # direction to B
+> D              # direction to D
+)
+
+( D              # standpoint  D
+- B              # distance to B
+^ B              # azimuth to  B
+- A              # distnace to A
+^ A              # azumuth to  A                 
+)
+

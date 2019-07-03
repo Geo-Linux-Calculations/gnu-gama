@@ -1,3 +1,8 @@
-a2g
-a2diff
+# https://git-scm.com/docs/gitignore
+#
+# A leading slash matches the beginning of the pathname. For example,
+# "/*.c" matches "cat-file.c" but not "mozilla-sha1/sha1.c".
+
+/a2g
+/a2diff
 
