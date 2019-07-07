@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description></description>
+
+<network-general-parameters
+   gama-local-version="2.06"
+   gama-local-algorithm="envelope"
+   gama-local-compiler="GNU C/C++ 6.3"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>11</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>1</distances>
+   <directions>0</directions>
+   <angles>33</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>34</equations>
+   <unknowns>22</unknowns>
+   <degrees-of-freedom>12</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.8274982e+00</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>3.9024546e-01</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.039</ratio>
+   <lower>0.606</lower>
+   <upper>1.395</upper>
+   <failed/>
+
+   <confidence-scale>2.1788128e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>Gwjerosna</id> <x>4766.294000</x> <y>6518317.117000</y> </point>
+   <point> <id>Jaswischtsche</id> <x>-4188.965000</x> <y>6453865.307000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>Gladkije_Poshni</id> <x>-21242.551278</x> <y>6540163.917818</y> </point>
+   <point> <id>Kabosi</id> <x>-2253.959261</x> <y>6622455.406442</y> </point>
+   <point> <id>Kudrowo</id> <x>17119.713399</x> <y>6573461.866340</y> </point>
+   <point> <id>Luga</id> <x>-31817.483738</x> <y>6515689.987868</y> </point>
+   <point> <id>Minjuschi</id> <x>22816.787570</x> <y>6474463.470099</y> </point>
+   <point> <id>Nowoje_Sselo</id> <x>-11564.319601</x> <y>6491484.597602</y> </point>
+   <point> <id>Orlino</id> <x>-10708.984687</x> <y>6570318.033702</y> </point>
+   <point> <id>Pogi</id> <x>14638.285441</x> <y>6600780.284000</y> </point>
+   <point> <id>Shestinnaja_Gorka</id> <x>25449.554385</x> <y>6501750.086851</y> </point>
+   <point> <id>Tschaschtscha</id> <x>5013.308299</x> <y>6547916.173789</y> </point>
+   <point> <id>Tschorinzi</id> <x>-17690.600023</x> <y>6597106.614361</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>Gladkije_Poshni</id> <x>-21242.5512770124332746</x> <y>6540163.9178177444264293</y> </point>
+   <point> <id>Kabosi</id> <x>-2253.9592599505499493</x> <y>6622455.4064401276409626</y> </point>
+   <point> <id>Kudrowo</id> <x>17119.7133990237598482</x> <y>6573461.8663380173966289</y> </point>
+   <point> <id>Luga</id> <x>-31817.4837374662274669</x> <y>6515689.9878677083179355</y> </point>
+   <point> <id>Minjuschi</id> <x>22816.7875696635383065</x> <y>6474463.4700991939753294</y> </point>
+   <point> <id>Nowoje_Sselo</id> <x>-11564.3196002590557327</x> <y>6491484.5976024661213160</y> </point>
+   <point> <id>Orlino</id> <x>-10708.9846867197957181</x> <y>6570318.0337006449699402</y> </point>
+   <point> <id>Pogi</id> <x>14638.2854411595126294</x> <y>6600780.2839980376884341</y> </point>
+   <point> <id>Shestinnaja_Gorka</id> <x>25449.5543848176203028</x> <y>6501750.0868511172011495</y> </point>
+   <point> <id>Tschaschtscha</id> <x>5013.3082991748597124</x> <y>6547916.1737880324944854</y> </point>
+   <point> <id>Tschorinzi</id> <x>-17690.6000228907505516</x> <y>6597106.6143601043149829</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>22</dim> <band>21</band>
+<flt>5.3310236e+03</flt> <flt>-1.6860844e+03</flt> <flt>1.5701028e+04</flt>
+<flt>3.4791092e+03</flt> <flt>7.8727377e+03</flt> <flt>5.6666505e+03</flt>
+<flt>1.8882645e+03</flt> <flt>-3.1311876e+03</flt> <flt>-4.9023461e+02</flt>
+<flt>-7.9146904e+02</flt> <flt>-6.3307253e+02</flt> <flt>-1.2920197e+03</flt>
+<flt>8.5147060e+03</flt> <flt>1.5885624e+03</flt> <flt>1.2373458e+04</flt>
+<flt>6.0724004e+03</flt> <flt>-5.9137552e+02</flt> <flt>-1.1423692e+02</flt>
+<flt>4.4827505e+03</flt> <flt>2.6314731e+03</flt> <flt>1.2254118e+04</flt>
+<flt>9.7065384e+02</flt> <flt>7.1402951e+03</flt> <flt>-1.8732153e+04</flt>
+<flt>6.2603171e+03</flt> <flt>-1.0405551e+04</flt> <flt>1.9676313e+03</flt>
+<flt>3.4584326e+03</flt> <flt>4.7135508e+03</flt> <flt>1.4406156e+03</flt>
+<flt>3.7847415e+02</flt> <flt>2.4206088e+03</flt> <flt>-4.3664653e+00</flt>
+<flt>-8.6109532e+03</flt> <flt>7.1029918e+03</flt> <flt>-1.4898914e+04</flt>
+<flt>3.2729178e+03</flt> <flt>1.3766550e+03</flt> <flt>-5.6878781e+02</flt>
+<flt>-5.3021017e+03</flt> <flt>2.8127744e+03</flt> <flt>-1.3759511e+04</flt>
+<flt>8.8376117e+03</flt> <flt>1.2193987e+05</flt> <flt>-5.2910980e+03</flt>
+<flt>5.3882920e+04</flt> <flt>2.0940379e+04</flt> <flt>-2.8889195e+03</flt>
+<flt>-1.6979671e+04</flt> <flt>-4.1224267e+03</flt> <flt>-2.5980600e+03</flt>
+<flt>-6.4908814e+03</flt> <flt>-2.9447536e+03</flt> <flt>4.9216820e+04</flt>
+<flt>-1.3076143e+04</flt> <flt>9.0862753e+04</flt> <flt>1.8928492e+04</flt>
+<flt>-4.2203908e+03</flt> <flt>9.2394353e+02</flt> <flt>2.4996583e+04</flt>
+<flt>4.8826928e+03</flt> <flt>8.3580428e+04</flt> <flt>-2.5129929e+04</flt>
+<flt>2.1709989e+04</flt> <flt>-6.2217203e+03</flt> <flt>1.3191598e+04</flt>
+<flt>5.7505842e+03</flt> <flt>2.1044691e+03</flt> <flt>1.1122740e+03</flt>
+<flt>-3.7375700e+02</flt> <flt>2.0605062e+03</flt> <flt>-1.3033068e+03</flt>
+<flt>3.7047666e+00</flt> <flt>1.3557188e+04</flt> <flt>-4.3535891e+03</flt>
+<flt>2.0979236e+04</flt> <flt>9.3937373e+02</flt> <flt>-7.4847376e+02</flt>
+<flt>-2.7189468e+03</flt> <flt>6.9520079e+03</flt> <flt>-5.8112677e+02</flt>
+<flt>1.9953115e+04</flt> <flt>2.9634926e+04</flt> <flt>5.9290243e+03</flt>
+<flt>-2.0703431e+03</flt> <flt>-9.0846978e+03</flt> <flt>-2.2641456e+03</flt>
+<flt>-1.3223548e+03</flt> <flt>-3.5950474e+03</flt> <flt>-1.4132250e+03</flt>
+<flt>2.4849974e+04</flt> <flt>-8.8836883e+03</flt> <flt>4.2772423e+04</flt>
+<flt>2.4371396e+03</flt> <flt>-2.2985558e+03</flt> <flt>5.5602298e+02</flt>
+<flt>1.4066544e+04</flt> <flt>1.3823586e+03</flt> <flt>3.9634627e+04</flt>
+<flt>-1.3743264e+04</flt> <flt>1.5765723e+04</flt> <flt>4.3150974e+03</flt>
+<flt>-1.2095383e+03</flt> <flt>2.1047971e+02</flt> <flt>-7.6837129e+02</flt>
+<flt>5.9062636e+02</flt> <flt>-1.6083902e+03</flt> <flt>9.2024053e+03</flt>
+<flt>8.6032684e+03</flt> <flt>1.4801753e+04</flt> <flt>1.7975626e+04</flt>
+<flt>4.8369292e+01</flt> <flt>-4.6567060e+02</flt> <flt>2.3074649e+03</flt>
+<flt>7.1505717e+03</flt> <flt>1.5407572e+04</flt> <flt>8.3065551e+03</flt>
+<flt>4.3714526e+03</flt> <flt>1.1709699e+03</flt> <flt>7.4955315e+02</flt>
+<flt>-3.5914384e+02</flt> <flt>1.4194215e+03</flt> <flt>-1.0876771e+03</flt>
+<flt>-6.1672818e+02</flt> <flt>5.2311759e+03</flt> <flt>-2.3605898e+03</flt>
+<flt>5.3388247e+03</flt> <flt>6.1314130e+02</flt> <flt>-5.5421535e+02</flt>
+<flt>-7.9653544e+02</flt> <flt>3.1695499e+03</flt> <flt>-1.7266193e+03</flt>
+<flt>5.9571250e+03</flt> <flt>5.9919244e+03</flt> <flt>1.4716502e+03</flt>
+<flt>8.9727692e+02</flt> <flt>2.3258433e+03</flt> <flt>9.9229780e+02</flt>
+<flt>-8.3360397e+03</flt> <flt>3.3528011e+03</flt> <flt>-1.3458164e+04</flt>
+<flt>-6.3997727e+02</flt> <flt>1.5010218e+03</flt> <flt>-3.4385997e+02</flt>
+<flt>-4.8218583e+03</flt> <flt>5.0847757e+02</flt> <flt>-1.2767256e+04</flt>
+<flt>4.5831030e+03</flt> <flt>2.4319915e+03</flt> <flt>7.3521987e+01</flt>
+<flt>1.4475841e+03</flt> <flt>1.5661677e+02</flt> <flt>-1.9344888e+03</flt>
+<flt>1.3337462e+03</flt> <flt>-3.2753512e+03</flt> <flt>4.5211408e+02</flt>
+<flt>1.4422425e+03</flt> <flt>-7.2653322e+02</flt> <flt>-1.1680196e+03</flt>
+<flt>4.6725062e+02</flt> <flt>-3.0500210e+03</flt> <flt>1.6900569e+03</flt>
+<flt>2.7302441e+03</flt> <flt>4.1588928e+02</flt> <flt>7.2967114e+02</flt>
+<flt>-1.3789182e+03</flt> <flt>-8.8330544e+01</flt> <flt>-2.0500967e+03</flt>
+<flt>-8.0080437e+02</flt> <flt>1.2439407e+03</flt> <flt>9.9378290e+02</flt>
+<flt>-7.4087055e+02</flt> <flt>-3.1998144e+02</flt> <flt>-2.0110111e+03</flt>
+<flt>3.3261259e+01</flt> <flt>2.4220801e+03</flt> <flt>6.5071118e+01</flt>
+<flt>-2.9999489e+03</flt> <flt>2.3672606e+03</flt> <flt>-5.1611969e+03</flt>
+<flt>1.0242291e+03</flt> <flt>1.3899139e+03</flt> <flt>-5.5501125e+02</flt>
+<flt>-1.8377132e+03</flt> <flt>9.1247582e+02</flt> <flt>-4.7767973e+03</flt>
+<flt>2.9579047e+03</flt> <flt>1.3434869e+03</flt> <flt>-1.6936835e+03</flt>
+<flt>-8.6041487e+02</flt> <flt>-2.3121157e+03</flt> <flt>-1.7963422e+03</flt>
+<flt>2.7736392e+02</flt> <flt>2.5796297e+02</flt> <flt>-8.4362617e+02</flt>
+<flt>-8.6561157e+02</flt> <flt>-2.3520571e+03</flt> <flt>-8.0687374e+02</flt>
+<flt>2.3836801e+04</flt> <flt>-4.4609269e+03</flt> <flt>3.8502022e+04</flt>
+<flt>8.3541479e+03</flt> <flt>-2.0100888e+03</flt> <flt>3.5936899e+02</flt>
+<flt>1.2477606e+04</flt> <flt>2.6518269e+03</flt> <flt>3.6899868e+04</flt>
+<flt>-7.6938611e+03</flt> <flt>1.2322031e+04</flt> <flt>-1.0728688e+04</flt>
+<flt>1.1727690e+04</flt> <flt>1.1931595e+03</flt> <flt>-7.3036913e+02</flt>
+<flt>-4.1866599e+03</flt> <flt>5.6434176e+03</flt> <flt>-8.7167918e+03</flt>
+<flt>1.4725825e+04</flt> <flt>6.9560586e+04</flt> <flt>1.2248033e+04</flt>
+<flt>-3.3505678e+03</flt> <flt>7.4064748e+02</flt> <flt>2.0055772e+04</flt>
+<flt>3.5113327e+03</flt> <flt>6.4346074e+04</flt> <flt>-1.9024548e+04</flt>
+<flt>2.6185498e+04</flt> <flt>2.6148630e+02</flt> <flt>-6.0562270e+02</flt>
+<flt>1.1316219e+03</flt> <flt>8.0207478e+03</flt> <flt>1.4408919e+04</flt>
+<flt>1.5194882e+04</flt> <flt>2.5364129e+03</flt> <flt>3.4716442e+02</flt>
+<flt>-1.1966579e+03</flt> <flt>3.6439140e+02</flt> <flt>-3.1389721e+03</flt>
+<flt>1.5388407e+03</flt> <flt>2.1537287e+03</flt> <flt>2.5957546e+02</flt>
+<flt>-3.9011849e+02</flt> <flt>6.4234036e+02</flt> <flt>-8.5805148e+02</flt>
+<flt>7.8309563e+03</flt> <flt>4.6046090e+02</flt> <flt>1.8873477e+04</flt>
+<flt>-6.1301852e+03</flt> <flt>4.8483574e+03</flt> <flt>3.8594624e+03</flt>
+<flt>5.7943582e+03</flt> <flt>6.1766218e+04</flt> <flt>-1.4491529e+04</flt>
+<flt>2.3210674e+04</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>13</ind>
+<ind>14</ind>
+<ind>3</ind>
+<ind>4</ind>
+<ind>7</ind>
+<ind>8</ind>
+<ind>15</ind>
+<ind>16</ind>
+<ind>21</ind>
+<ind>22</ind>
+<ind>17</ind>
+<ind>18</ind>
+<ind>9</ind>
+<ind>10</ind>
+<ind>5</ind>
+<ind>6</ind>
+<ind>19</ind>
+<ind>20</ind>
+<ind>11</ind>
+<ind>12</ind>
+<ind>1</ind>
+<ind>2</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<angle> <from>Tschorinzi</from> <left>Kabosi</left> <right>Pogi</right>
+   <obs>57.9744506172839422</obs><adj>57.9743388052855764</adj> <stdev>0.9289610479846289</stdev>
+   <qrr>3.859</qrr> <f>22.873</f> <std-residual>1.458</std-residual>
+   <err-obs>-2.760</err-obs> <err-adj>-1.642</err-adj>
+   </angle>
+<angle> <from>Kabosi</from> <left>Pogi</left> <right>Tschorinzi</right>
+   <obs>76.9674413580246721</obs><adj>76.9675301328835673</adj> <stdev>0.9494611754771485</stdev>
+   <qrr>3.607</qrr> <f>21.171</f> <std-residual>1.198</std-residual>
+   <err-obs>2.345</err-obs> <err-adj>1.457</err-adj>
+   </angle>
+<angle> <from>Pogi</from> <left>Tschorinzi</left> <right>Kabosi</right>
+   <obs>65.0581080246913359</obs><adj>65.0581310618308066</adj> <stdev>0.9811874125453137</stdev>
+   <qrr>3.204</qrr> <f>18.537</f> <std-residual>0.330</std-residual>
+   <err-obs>0.685</err-obs> <err-adj>0.454</err-adj>
+   </angle>
+<angle> <from>Kudrowo</from> <left>Tschorinzi</left> <right>Pogi</right>
+   <obs>56.2486913580246934</obs><adj>56.2485950114459996</adj> <stdev>0.9432898776438075</stdev>
+   <qrr>3.683</qrr> <f>21.684</f> <std-residual>1.286</std-residual>
+   <err-obs>-2.492</err-obs> <err-adj>-1.528</err-adj>
+   </angle>
+<angle> <from>Pogi</from> <left>Kudrowo</left> <right>Tschorinzi</right>
+   <obs>98.5634814814814604</obs><adj>98.5635316148070046</adj> <stdev>0.9727315837851955</stdev>
+   <qrr>3.313</qrr> <f>19.239</f> <std-residual>0.706</std-residual>
+   <err-obs>1.442</err-obs> <err-adj>0.940</err-adj>
+   </angle>
+<angle> <from>Tschorinzi</from> <left>Pogi</left> <right>Kudrowo</right>
+   <obs>45.1878271604938178</obs><adj>45.1878733737470171</adj> <stdev>0.9743480454957624</stdev>
+   <qrr>3.292</qrr> <f>19.105</f> <std-residual>0.653</std-residual>
+   <err-obs>1.337</err-obs> <err-adj>0.875</err-adj>
+   </angle>
+<angle> <from>Orlino</from> <left>Tschorinzi</left> <right>Kudrowo</right>
+   <obs>109.0689475308641931</obs><adj>109.0688980153486369</adj> <stdev>0.9729952558012372</stdev>
+   <qrr>3.309</qrr> <f>19.217</f> <std-residual>0.697</std-residual>
+   <err-obs>-1.425</err-obs> <err-adj>-0.930</err-adj>
+   </angle>
+<angle> <from>Tschorinzi</from> <left>Kudrowo</left> <right>Orlino</right>
+   <obs>45.7848024691358049</obs><adj>45.7849264134254668</adj> <stdev>0.9160420818196912</stdev>
+   <qrr>4.016</qrr> <f>23.946</f> <std-residual>1.585</std-residual>
+   <err-obs>2.940</err-obs> <err-adj>1.701</err-adj>
+   </angle>
+<angle> <from>Kudrowo</from> <left>Orlino</left> <right>Tschorinzi</right>
+   <obs>45.1462499999999878</obs><adj>45.1461755712258892</adj> <stdev>0.9596810060529709</stdev>
+   <qrr>3.478</qrr> <f>20.323</f> <std-residual>1.023</std-residual>
+   <err-obs>-2.038</err-obs> <err-adj>-1.294</err-adj>
+   </angle>
+<angle> <from>Tschaschtscha</from> <left>Orlino</left> <right>Kudrowo</right>
+   <obs>67.1324876543209825</obs><adj>67.1323860181928609</adj> <stdev>0.9386526508898902</stdev>
+   <qrr>3.741</qrr> <f>22.069</f> <std-residual>1.347</std-residual>
+   <err-obs>-2.588</err-obs> <err-adj>-1.572</err-adj>
+   </angle>
+<angle> <from>Kudrowo</from> <left>Tschaschtscha</left> <right>Orlino</right>
+   <obs>64.6640586419753163</obs><adj>64.6641633146196000</adj> <stdev>0.9358676720752362</stdev>
+   <qrr>3.775</qrr> <f>22.300</f> <std-residual>1.381</std-residual>
+   <err-obs>2.641</err-obs> <err-adj>1.595</err-adj>
+   </angle>
+<angle> <from>Orlino</from> <left>Kudrowo</left> <right>Tschaschtscha</right>
+   <obs>68.2034537037037154</obs><adj>68.2034506671875249</adj> <stdev>0.9833994525298602</stdev>
+   <qrr>3.176</qrr> <f>18.354</f> <std-residual>0.044</std-residual>
+   <err-obs>-0.091</err-obs> <err-adj>-0.061</err-adj>
+   </angle>
+<angle> <from>Gladkije_Poshni</from> <left>Orlino</left> <right>Tschaschtscha</right>
+   <obs>60.3276635802469059</obs><adj>60.3275387742109217</adj> <stdev>0.9150665358393019</stdev>
+   <qrr>4.028</qrr> <f>24.027</f> <std-residual>1.594</std-residual>
+   <err-obs>-2.952</err-obs> <err-adj>-1.704</err-adj>
+   </angle>
+<angle> <from>Orlino</from> <left>Tschaschtscha</left> <right>Gladkije_Poshni</right>
+   <obs>60.3530679012345530</obs><adj>60.3531926718963661</adj> <stdev>0.9151067349752232</stdev>
+   <qrr>4.027</qrr> <f>24.024</f> <std-residual>1.593</std-residual>
+   <err-obs>2.951</err-obs> <err-adj>1.704</err-adj>
+   </angle>
+<angle> <from>Tschaschtscha</from> <left>Gladkije_Poshni</left> <right>Orlino</right>
+   <obs>79.3192685185185127</obs><adj>79.3192685538926554</adj> <stdev>0.9834385134339552</stdev>
+   <qrr>3.175</qrr> <f>18.350</f> <std-residual>0.001</std-residual>
+   <err-obs>0.001</err-obs> <err-adj>0.001</err-adj>
+   </angle>
+<angle> <from>Gwjerosna</from> <left>Gladkije_Poshni</left> <right>Tschaschtscha</right>
+   <obs>56.0542191358024766</obs><adj>56.0541058801049559</adj> <stdev>0.9275024950512976</stdev>
+   <qrr>3.877</qrr> <f>22.994</f> <std-residual>1.474</std-residual>
+   <err-obs>-2.783</err-obs> <err-adj>-1.650</err-adj>
+   </angle>
+<angle> <from>Tschaschtscha</from> <left>Gwjerosna</left> <right>Gladkije_Poshni</right>
+   <obs>81.1912438271604913</obs><adj>81.1913268883828323</adj> <stdev>0.9537600666189081</stdev>
+   <qrr>3.553</qrr> <f>20.814</f> <std-residual>1.129</std-residual>
+   <err-obs>2.227</err-obs> <err-adj>1.396</err-adj>
+   </angle>
+<angle> <from>Gladkije_Poshni</from> <left>Tschaschtscha</left> <right>Gwjerosna</right>
+   <obs>62.7545370370370321</obs><adj>62.7545672315121763</adj> <stdev>0.9795681535140607</stdev>
+   <qrr>3.225</qrr> <f>18.672</f> <std-residual>0.431</std-residual>
+   <err-obs>0.892</err-obs> <err-adj>0.590</err-adj>
+   </angle>
+<angle> <from>Luga</from> <left>Gladkije_Poshni</left> <right>Gwjerosna</right>
+   <obs>69.4710679012345622</obs><adj>69.4709903524750132</adj> <stdev>0.9576200895475460</stdev>
+   <qrr>3.504</qrr> <f>20.494</f> <std-residual>1.062</std-residual>
+   <err-obs>-2.108</err-obs> <err-adj>-1.333</err-adj>
+   </angle>
+<angle> <from>Gladkije_Poshni</from> <left>Gwjerosna</left> <right>Luga</right>
+   <obs>81.4879660493827060</obs><adj>81.4880308154856579</adj> <stdev>0.9655029359804826</stdev>
+   <qrr>3.405</qrr> <f>19.839</f> <std-residual>0.899</std-residual>
+   <err-obs>1.812</err-obs> <err-adj>1.164</err-adj>
+   </angle>
+<angle> <from>Gwjerosna</from> <left>Luga</left> <right>Gladkije_Poshni</right>
+   <obs>49.0409660493827104</obs><adj>49.0409788320393218</adj> <stdev>0.9827459916865701</stdev>
+   <qrr>3.184</qrr> <f>18.408</f> <std-residual>0.184</std-residual>
+   <err-obs>0.382</err-obs> <err-adj>0.255</err-adj>
+   </angle>
+<angle> <from>Nowoje_Sselo</from> <left>Luga</left> <right>Gwjerosna</right>
+   <obs>79.1613765432098688</obs><adj>79.1612954446420787</adj> <stdev>0.9551665680158458</stdev>
+   <qrr>3.535</qrr> <f>20.698</f> <std-residual>1.105</std-residual>
+   <err-obs>-2.185</err-obs> <err-adj>-1.374</err-adj>
+   </angle>
+<angle> <from>Luga</from> <left>Gwjerosna</left> <right>Nowoje_Sselo</right>
+   <obs>60.2082253086419641</obs><adj>60.2083285256034983</adj> <stdev>0.9372140331518847</stdev>
+   <qrr>3.758</qrr> <f>22.188</f> <std-residual>1.364</std-residual>
+   <err-obs>2.616</err-obs> <err-adj>1.584</err-adj>
+   </angle>
+<angle> <from>Gwjerosna</from> <left>Nowoje_Sselo</left> <right>Luga</right>
+   <obs>60.6303981481481458</obs><adj>60.6303760297544372</adj> <stdev>0.9813635712209824</stdev>
+   <qrr>3.202</qrr> <f>18.523</f> <std-residual>0.317</std-residual>
+   <err-obs>-0.658</err-obs> <err-adj>-0.437</err-adj>
+   </angle>
+<angle> <from>Shestinnaja_Gorka</from> <left>Nowoje_Sselo</left> <right>Gwjerosna</right>
+   <obs>60.2169475308641893</obs><adj>60.2168857224726182</adj> <stdev>0.9671171988319764</stdev>
+   <qrr>3.384</qrr> <f>19.705</f> <std-residual>0.861</std-residual>
+   <err-obs>-1.740</err-obs> <err-adj>-1.122</err-adj>
+   </angle>
+<angle> <from>Gwjerosna</from> <left>Shestinnaja_Gorka</left> <right>Nowoje_Sselo</right>
+   <obs>91.8121358024691432</obs><adj>91.8121563028888659</adj> <stdev>0.9816563010609112</stdev>
+   <qrr>3.198</qrr> <f>18.498</f> <std-residual>0.294</std-residual>
+   <err-obs>0.611</err-obs> <err-adj>0.406</err-adj>
+   </angle>
+<angle> <from>Nowoje_Sselo</from> <left>Gwjerosna</left> <right>Shestinnaja_Gorka</right>
+   <obs>47.9709166666666604</obs><adj>47.9709579746384733</adj> <stdev>0.9761822314573638</stdev>
+   <qrr>3.269</qrr> <f>18.953</f> <std-residual>0.585</std-residual>
+   <err-obs>1.204</err-obs> <err-adj>0.791</err-adj>
+   </angle>
+<angle> <from>Minjuschi</from> <left>Nowoje_Sselo</left> <right>Shestinnaja_Gorka</right>
+   <obs>76.8583055555555461</obs><adj>76.8582575218537727</adj> <stdev>0.9736140658777583</stdev>
+   <qrr>3.302</qrr> <f>19.166</f> <std-residual>0.677</std-residual>
+   <err-obs>-1.386</err-obs> <err-adj>-0.906</err-adj>
+   </angle>
+<angle> <from>Shestinnaja_Gorka</from> <left>Minjuschi</left> <right>Nowoje_Sselo</right>
+   <obs>76.6532283950617170</obs><adj>76.6532543338499011</adj> <stdev>0.9805837448770428</stdev>
+   <qrr>3.212</qrr> <f>18.587</f> <std-residual>0.371</std-residual>
+   <err-obs>0.769</err-obs> <err-adj>0.510</err-adj>
+   </angle>
+<angle> <from>Nowoje_Sselo</from> <left>Shestinnaja_Gorka</left> <right>Minjuschi</right>
+   <obs>46.4884660493827155</obs><adj>46.4884881442963120</adj> <stdev>0.9813679789390601</stdev>
+   <qrr>3.202</qrr> <f>18.522</f> <std-residual>0.316</std-residual>
+   <err-obs>0.657</err-obs> <err-adj>0.436</err-adj>
+   </angle>
+<angle> <from>Jaswischtsche</from> <left>Nowoje_Sselo</left> <right>Minjuschi</right>
+   <obs>70.8426697530864118</obs><adj>70.8426108885363703</adj> <stdev>0.9686464919580962</stdev>
+   <qrr>3.365</qrr> <f>19.578</f> <std-residual>0.822</std-residual>
+   <err-obs>-1.666</err-obs> <err-adj>-1.078</err-adj>
+   </angle>
+<angle> <from>Nowoje_Sselo</from> <left>Minjuschi</left> <right>Jaswischtsche</right>
+   <obs>58.4099567901234380</obs><adj>58.4099789440760304</adj> <stdev>0.9813568871820417</stdev>
+   <qrr>3.202</qrr> <f>18.523</f> <std-residual>0.317</std-residual>
+   <err-obs>0.659</err-obs> <err-adj>0.438</err-adj>
+   </angle>
+<angle> <from>Minjuschi</from> <left>Jaswischtsche</left> <right>Nowoje_Sselo</right>
+   <obs>70.7473734567901005</obs><adj>70.7474101673875992</adj> <stdev>0.9777119993928526</stdev>
+   <qrr>3.249</qrr> <f>18.826</f> <std-residual>0.522</std-residual>
+   <err-obs>1.076</err-obs> <err-adj>0.709</err-adj>
+   </angle>
+<distance> <from>Pogi</from> <to>Kabosi</to>
+   <obs>27480.1539999999986321</obs> <adj>27480.1540010560747760</adj> <stdev>0.1951224895677042</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </distance>
+
+</observations>
+
+</gama-local-adjustment>

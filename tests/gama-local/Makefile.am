@@ -49,6 +49,7 @@ INPUT_FILES = gama-local \
               extern-tst-tetrahedron-3-gon \
               extern-seq-dsuloha-d
 
+BUG_FILES = bug-2019-04-23-oleg-goussev
 
 GAMA_SCRIPT  = $(srcdir)/scripts
 GAMA_INPUT   = $(srcdir)/input
@@ -61,7 +62,8 @@ do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
 	       -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
 	       -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g' \
 	       -e 's,[@]GAMA_RESULTS[@],$(GAMA_RESULTS),g' \
-	       -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g'
+	       -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g' \
+	       -e 's,[@]BUG_FILES[@],$(BUG_FILES),g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check

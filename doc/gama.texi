@@ -152,9 +152,16 @@ Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
 Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang), Tomáš Kubín,
-Greg Troxel and Kristian Evers.
+Greg Troxel, Kristian Evers and Petra Millarová.
 
+Jiří Veselý if the author of calculation of approximate coordinates by
+intersections and transformations (class Acord).
+@c
 Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
+@c
+Petra Millarová is the main author of class Acord2 and other helper
+classes for combinatorial solution of medians of approximate
+coordinates.
 
 
 @c ----------------------------------------------------------------------
@@ -195,7 +202,7 @@ Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 @appendix Copying This Manual
 
 @menu
-* GNU Free Documentation License::  License for copying this manual.
+* GNU Free Documentation License:: License for copying this manual.
 @end menu
 
 @include fdl.texi

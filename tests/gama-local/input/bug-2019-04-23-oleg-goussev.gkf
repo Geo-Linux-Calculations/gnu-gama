@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Bug reported by Oleg Goussev
+
+The inpute data resulted in segmentation fault of gama-locar ver. 2.05
+
+The problem stemmed from g2d_helper.cpp where a numeric guard for 
+'maximum distance' was set to 1e5 (100km) which for the given data resulted
+in uninitialized output parameters in SimilarityTr2D::Identical_points. Because
+gama-local is supposed to solve local network up to size of about 30km maximum,
+1e5 was a good approximation of 'infinity', but as a segmentation fault is
+always a bug, the constant was set to std::numeric_limits<double>::max()
+-->
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+  <network angles="left-handed" axes-xy="en">
+
+    <points-observations distance-stdev='   5.0'
+                         direction-stdev= "10.0"
+                         angle-stdev=     "10.0"
+                         azimuth-stdev="   10.0" >
+
+<point id="Gladkije_Poshni" adj="xy" />
+<point id="Gwjerosna" x="4766.294" y="6518317.117" fix="xy" />
+<point id="Jaswischtsche" x="-4188.965" y="6453865.307" fix="xy" />
+<point id="Kabosi" adj="xy" />
+<point id="Kudrowo" adj="xy" />
+<point id="Luga" adj="xy" />
+<point id="Minjuschi" adj="xy" />
+<point id="Nowoje_Sselo" adj="xy" />
+<point id="Orlino" adj="xy" />
+<point id="Pogi" adj="xy" />
+<point id="Shestinnaja_Gorka" adj="xy" />
+<point id="Tschaschtscha" adj="xy" />
+<point id="Tschorinzi" adj="xy" />
+
+
+<!-- aprroximate coordinates for debugging/testing -->
+<!--
+<point id="Gladkije_Poshni"   x="-21242.64048" y="6540164.01607" />
+<point id="Kabosi"            x=" -2253.84952" y="6622456.45033" />
+<point id="Kudrowo"           x=" 17119.96512" y="6573462.19661" />
+<point id="Luga"              x="-31817.59296" y="6515690.00674" />
+<point id="Minjuschi"         x=" 22816.77117" y="6474463.45931" />
+<point id="Nowoje_Sselo"      x="-11564.35151" y="6491484.56808" />
+<point id="Orlino"            x="-10709.02759" y="6570318.35752" />
+<point id="Pogi"              x=" 14638.60726" y="6600780.94468" />
+<point id="Shestinnaja_Gorka" x=" 25449.54151" y="6501750.07336" />
+<point id="Tschaschtscha"     x="  5013.37749" y="6547916.29026" />
+<point id="Tschorinzi"        x="-17690.73647" y="6597107.31619" />
+-->
+
+
+<obs>
+<angle bs="Kabosi" from="Tschorinzi" fs="Pogi" val="52-10-37.22"/>
+<angle bs="Pogi" from="Kabosi" fs="Tschorinzi" val="69-16-14.51"/>
+<angle bs="Tschorinzi" from="Pogi" fs="Kabosi" val="58-33-08.27"/>
+
+<angle bs="Tschorinzi" from="Kudrowo" fs="Pogi" val="50-37-25.76"/>
+<angle bs="Kudrowo" from="Pogi" fs="Tschorinzi" val="88-42-25.68"/>
+<angle bs="Pogi" from="Tschorinzi" fs="Kudrowo" val="40-40-08.56"/>
+
+<angle bs="Tschorinzi" from="Orlino" fs="Kudrowo" val="98-09-43.39"/>
+<angle bs="Kudrowo" from="Tschorinzi" fs="Orlino" val="41-12-22.76"/>
+<angle bs="Orlino" from="Kudrowo" fs="Tschorinzi" val="40-37-53.85"/>
+
+<angle bs="Orlino" from="Tschaschtscha" fs="Kudrowo" val="60-25-09.26"/>
+<angle bs="Tschaschtscha" from="Kudrowo" fs="Orlino" val="58-11-51.55"/>
+<angle bs="Kudrowo" from="Orlino" fs="Tschaschtscha" val="61-22-59.19"/>
+
+<angle bs="Orlino" from="Gladkije_Poshni" fs="Tschaschtscha" val="54-17-41.63"/>
+<angle bs="Tschaschtscha" from="Orlino" fs="Gladkije_Poshni" val="54-19-03.94"/>
+<angle bs="Gladkije_Poshni" from="Tschaschtscha" fs="Orlino" val="71-23-14.43"/>
+
+<angle bs="Gladkije_Poshni" from="Gwjerosna" fs="Tschaschtscha" val="50-26-55.67"/>
+<angle bs="Gwjerosna" from="Tschaschtscha" fs="Gladkije_Poshni" val="73-04-19.63"/>
+<angle bs="Tschaschtscha" from="Gladkije_Poshni" fs="Gwjerosna" val="56-28-44.70"/>
+
+<angle bs="Gladkije_Poshni" from="Luga" fs="Gwjerosna" val="62-31-26.26"/>
+<angle bs="Gwjerosna" from="Gladkije_Poshni" fs="Luga" val="73-20-21.01"/>
+<angle bs="Luga" from="Gwjerosna" fs="Gladkije_Poshni" val="44-08-12.73"/>
+
+<angle bs="Luga" from="Nowoje_Sselo" fs="Gwjerosna" val="71-14-42.86"/>
+<angle bs="Gwjerosna" from="Luga" fs="Nowoje_Sselo" val="54-11-14.65"/>
+<angle bs="Nowoje_Sselo" from="Gwjerosna" fs="Luga" val="54-34-02.49"/>
+
+<angle bs="Nowoje_Sselo" from="Shestinnaja_Gorka" fs="Gwjerosna" val="54-11-42.91"/>
+<angle bs="Shestinnaja_Gorka" from="Gwjerosna" fs="Nowoje_Sselo" val="82-37-51.32"/>
+<angle bs="Gwjerosna" from="Nowoje_Sselo" fs="Shestinnaja_Gorka" val="43-10-25.77"/>
+
+<angle bs="Nowoje_Sselo" from="Minjuschi" fs="Shestinnaja_Gorka" val="69-10-20.91"/>
+<angle bs="Minjuschi" from="Shestinnaja_Gorka" fs="Nowoje_Sselo" val="68-59-16.46"/>
+<angle bs="Shestinnaja_Gorka" from="Nowoje_Sselo" fs="Minjuschi" val="41-50-22.63"/>
+
+<angle bs="Nowoje_Sselo" from="Jaswischtsche" fs="Minjuschi" val="63-45-30.25"/>
+<angle bs="Minjuschi" from="Nowoje_Sselo" fs="Jaswischtsche" val="52-34-08.26"/>
+<angle bs="Jaswischtsche" from="Minjuschi" fs="Nowoje_Sselo" val="63-40-21.49"/>
+
+<distance from="Pogi" to="Kabosi" val= "27480.154" />
+
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

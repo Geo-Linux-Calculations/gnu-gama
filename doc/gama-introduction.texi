@@ -1,4 +1,4 @@
-GNU Gama is a project dedicated to adjustment of geodetic networks.
+GNU Gama package is dedicated to adjustment of geodetic networks.
 It is intended for use with traditional geodetic surveyings which are
 still used and needed in special measurements (e.g., underground or
 high precision engineering measurements) where the Global Positioning

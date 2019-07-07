@@ -11,7 +11,7 @@ b=svd
 c=cholesky
 d=envelope
 
-for z in @INPUT_FILES@
+for z in @INPUT_FILES@ @BUG_FILES@
 do
     scripts/check_xml_xml "$a $b $z" $RES/$z-$a.xml $RES/$z-$b.xml
     scripts/check_xml_xml "$a $c $z" $RES/$z-$a.xml $RES/$z-$c.xml

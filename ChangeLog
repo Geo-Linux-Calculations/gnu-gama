@@ -1,8 +1,11 @@
+2019-07-07  Ales Cepek  <cepek@dodo>
+
+        * new release 2.06
+
         * fixed two bugs reported by Oleg Goussev
           - a bug in html output format for --angles 360 (CC units erroneouly
             used on several places where SS belong)
-          - a bug in gkf input data resulting in segmentation fault (network
-            with observed angles and one distance)
+          - a bug in gkf input data resulting in segmentation fault)
 
 2019-05-11  Ales Cepek <cepek@gnu.org>
 

@@ -7,7 +7,7 @@ if [ ! -d $RES ]; then
     mkdir -p $RES
 fi;
 
-for g in @INPUT_FILES@
+for g in @INPUT_FILES@ @BUG_FILES@
 do
 for a in svd gso cholesky envelope
 do

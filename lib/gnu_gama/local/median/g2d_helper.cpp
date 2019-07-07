@@ -34,6 +34,7 @@
  * AC 2000.04.26 change median-0.7.5 / gnu_gama/local-0.9.57 */
 
 
+#include <limits>
 #include <gnu_gama/local/median/g2d_helper.h>
 #include <gnu_gama/local/bearing.h>
 
@@ -207,19 +208,19 @@ void SimilarityTr2D::reset()
     state_ = no_solution;
 }  //  void SimilarityTr2D::reset()
 
-// the best pair - transformed points are close to circle around the
-// set of identical points
+// the best pair - transformed points are close to the circle around
+// the set of identical points
 
 void SimilarityTr2D::Identical_points(PointData::iterator& b1,
                                       PointData::iterator& b2)
 {
   LocalPoint stred;
   double pomocna_d1, delka_max;
-  double rozdil_min = 1e5;
+  double rozdil_min = std::numeric_limits<double>::max();
   PointData::iterator pom1, pom2;
   for(PointData::iterator i = local.begin(); i != local.end(); i++)
     if(Given_point((*i).first) && (*i).second.test_xy())
-      for(PointData::iterator j = local.begin(); j != local.end(); j++)
+      for(PointData::iterator t=i, j=++t; j != local.end(); j++)
         if(Given_point((*j).first) && (i != j) && (*j).second.test_xy())
         {
           stred.set_xy(((*i).second.x()+(*j).second.x())/2,

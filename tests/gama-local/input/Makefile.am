@@ -30,4 +30,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              gama-local-par.gkf \
              gama-local-deprecated.gkf \
              mikhail-7.4.gkf minimal.gkf prostorovka.gkf \
-             seq-dsuloha-d.gkf skorepa-dusek.gkf
+             seq-dsuloha-d.gkf skorepa-dusek.gkf \
+             bug-2019-04-23-oleg-goussev.gkf \
+             bug-2019-04-23-oleg-goussev.xml
