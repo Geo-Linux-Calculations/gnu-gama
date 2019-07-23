@@ -157,7 +157,7 @@ void Acord::execute()
                   const LocalPoint& p = (*i).second;
                   if (p.active_xy() && !p.test_xy()) // missing coordinates xy
                     {
-                      double limit = ps.small_angle_limit() / 100;
+                      double limit = ps.small_angle_limit() / 1.5;   // relax from 10 to 6 gon
                       ps.set_small_angle_limit(limit);
                       ps.calculation();
                       break;

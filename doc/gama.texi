@@ -154,7 +154,7 @@ Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
 Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang), Tomáš Kubín,
 Greg Troxel, Kristian Evers and Petra Millarová.
 
-Jiří Veselý if the author of calculation of approximate coordinates by
+Jiří Veselý is the author of calculation of approximate coordinates by
 intersections and transformations (class Acord).
 @c
 Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
