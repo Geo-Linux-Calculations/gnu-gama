@@ -7,6 +7,8 @@
             used on several places where SS belong)
           - a bug in gkf input data resulting in segmentation fault)
 
+        * improved AcordTraverse algorithm
+
 2019-05-11  Ales Cepek <cepek@gnu.org>
 
 	* new release 2.05
