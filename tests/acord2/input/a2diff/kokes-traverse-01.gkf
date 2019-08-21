@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gama-local>
+  <network axes-xy="sw">
+    <parameters sigma-apr="8" conf-pr="0.95" tol-abs="1000"
+		sigma-act="aposteriori"/>
+    <description>network adjustment, generated from program KOKES</description>
+    <points-observations>
+      <point id="875" y="537173.376" x="1176310.024" z="189.895" fix="XYZ"/>
+      <point id="876" adj="xyz"/>
+      <point id="877" adj="xyz"/>
+      <point id="878" adj="xyz"/>
+      <point id="879" y="536731.541" x="1175805.510" z="188.286" fix="XYZ"/>
+      <point id="880" adj="xyz"/>
+      <point id="881" adj="xyz"/>
+      <point id="882" adj="xyz"/>
+      <point id="501" adj="xyz"/>
+      <point id="502" adj="xyz"/>
+      <point id="503" adj="xyz"/>
+      <point id="504" adj="xyz"/>
+      <point id="505" y="535823.381" x="1174771.090" z="188.293" fix="XYZ"/>
+      <point id="506" adj="xyz"/>
+      <point id="507" adj="xyz"/>
+      <point id="508" adj="xyz"/>
+      <point id="509" adj="xyz"/>
+      <point id="510" y="535143.411" x="1174011.163" z="191.826" fix="XYZ"/>
+      <obs from="875">
+	<distance to="876" val="155.288" stdev="5.776"/>
+	<distance to="876" val="155.288" stdev="5.776"/>
+	<distance to="876" val="155.289" stdev="5.776"/>
+	<distance to="876" val="155.289" stdev="5.776"/>
+	<distance to="876" val="155.289" stdev="5.776"/>
+	<distance to="876" val="155.289" stdev="5.776"/>
+	<direction to="876" val="212.4488" stdev="9.995"/>
+	<direction to="876" val="212.4488" stdev="9.995"/>
+	<direction to="876" val="212.4486" stdev="9.995"/>
+	<direction to="876" val="212.4486" stdev="9.995"/>
+	<direction to="876" val="212.4486" stdev="9.995"/>
+	<direction to="876" val="212.4480" stdev="9.995"/>
+      </obs>
+      <obs from="876">
+	<distance to="875" val="155.288" stdev="5.776"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="875" val="155.288" stdev="5.776"/>
+	<distance to="875" val="155.288" stdev="5.776"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="875" val="155.289" stdev="5.776"/>
+	<distance to="875" val="155.288" stdev="5.776"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="877" val="172.340" stdev="5.862"/>
+	<distance to="875" val="155.288" stdev="5.776"/>
+	<direction to="875" val="399.9954" stdev="9.995"/>
+	<direction to="877" val="185.4799" stdev="9.995"/>
+	<direction to="877" val="185.4803" stdev="9.995"/>
+	<direction to="875" val="399.9958" stdev="9.995"/>
+	<direction to="875" val="399.9969" stdev="9.995"/>
+	<direction to="877" val="185.4832" stdev="9.995"/>
+	<direction to="877" val="185.4825" stdev="9.995"/>
+	<direction to="875" val="399.9973" stdev="9.995"/>
+	<direction to="875" val="399.9975" stdev="9.995"/>
+	<direction to="877" val="185.4832" stdev="9.995"/>
+	<direction to="877" val="185.4819" stdev="9.995"/>
+	<direction to="875" val="399.9966" stdev="9.995"/>
+      </obs>
+      <obs from="877">
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<distance to="878" val="186.014" stdev="5.930"/>
+	<distance to="878" val="186.013" stdev="5.930"/>
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<distance to="878" val="186.014" stdev="5.930"/>
+	<distance to="878" val="186.014" stdev="5.930"/>
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<distance to="878" val="186.013" stdev="5.930"/>
+	<distance to="878" val="186.013" stdev="5.930"/>
+	<distance to="876" val="172.341" stdev="5.862"/>
+	<direction to="876" val="399.9990" stdev="9.995"/>
+	<direction to="878" val="214.5736" stdev="9.995"/>
+	<direction to="878" val="214.5755" stdev="9.995"/>
+	<direction to="876" val="399.9993" stdev="9.995"/>
+	<direction to="876" val="0.0002" stdev="9.995"/>
+	<direction to="878" val="214.5753" stdev="9.995"/>
+	<direction to="878" val="214.5752" stdev="9.995"/>
+	<direction to="876" val="399.9985" stdev="9.995"/>
+	<direction to="876" val="399.9993" stdev="9.995"/>
+	<direction to="878" val="214.5737" stdev="9.995"/>
+	<direction to="878" val="214.5746" stdev="9.995"/>
+	<direction to="876" val="399.9976" stdev="9.995"/>
+      </obs>
+      <obs from="878">
+	<distance to="877" val="186.013" stdev="5.930"/>
+	<distance to="879" val="161.869" stdev="5.809"/>
+	<distance to="879" val="161.869" stdev="5.809"/>
+	<distance to="877" val="186.014" stdev="5.930"/>
+	<distance to="877" val="186.014" stdev="5.930"/>
+	<distance to="879" val="161.869" stdev="5.809"/>
+	<distance to="879" val="161.869" stdev="5.809"/>
+	<distance to="877" val="186.014" stdev="5.930"/>
+	<distance to="877" val="186.014" stdev="5.930"/>
+	<distance to="879" val="161.868" stdev="5.809"/>
+	<distance to="879" val="161.869" stdev="5.809"/>
+	<distance to="877" val="186.014" stdev="5.930"/>
+	<direction to="877" val="0.0026" stdev="9.995"/>
+	<direction to="879" val="184.1571" stdev="9.995"/>
+	<direction to="879" val="184.1569" stdev="9.995"/>
+	<direction to="877" val="0.0010" stdev="9.995"/>
+	<direction to="877" val="0.0003" stdev="9.995"/>
+	<direction to="879" val="184.1553" stdev="9.995"/>
+	<direction to="879" val="184.1567" stdev="9.995"/>
+	<direction to="877" val="399.9997" stdev="9.995"/>
+	<direction to="877" val="399.9991" stdev="9.995"/>
+	<direction to="879" val="184.1547" stdev="9.995"/>
+	<direction to="879" val="184.1563" stdev="9.995"/>
+	<direction to="877" val="399.9992" stdev="9.995"/>
+      </obs>
+      <obs from="879">
+	<distance to="878" val="161.868" stdev="5.809"/>
+	<distance to="880" val="202.741" stdev="6.014"/>
+	<distance to="880" val="202.741" stdev="6.014"/>
+	<distance to="878" val="161.869" stdev="5.809"/>
+	<distance to="878" val="161.869" stdev="5.809"/>
+	<distance to="880" val="202.741" stdev="6.014"/>
+	<distance to="880" val="202.740" stdev="6.014"/>
+	<distance to="878" val="161.869" stdev="5.809"/>
+	<distance to="878" val="161.869" stdev="5.809"/>
+	<distance to="880" val="202.741" stdev="6.014"/>
+	<distance to="880" val="202.741" stdev="6.014"/>
+	<distance to="878" val="161.869" stdev="5.809"/>
+	<direction to="878" val="399.9820" stdev="9.995"/>
+	<direction to="880" val="212.4552" stdev="9.995"/>
+	<direction to="880" val="212.4556" stdev="9.995"/>
+	<direction to="878" val="399.9814" stdev="9.995"/>
+	<direction to="878" val="399.9816" stdev="9.995"/>
+	<direction to="880" val="212.4552" stdev="9.995"/>
+	<direction to="880" val="212.4553" stdev="9.995"/>
+	<direction to="878" val="399.9816" stdev="9.995"/>
+	<direction to="878" val="399.9814" stdev="9.995"/>
+	<direction to="880" val="212.4553" stdev="9.995"/>
+	<direction to="880" val="212.4552" stdev="9.995"/>
+	<direction to="878" val="399.9815" stdev="9.995"/>
+      </obs>
+      <obs from="880">
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="881" val="171.227" stdev="5.856"/>
+	<distance to="879" val="202.741" stdev="6.014"/>
+	<direction to="879" val="0.0023" stdev="9.995"/>
+	<direction to="881" val="191.2071" stdev="9.995"/>
+	<direction to="881" val="191.2063" stdev="9.995"/>
+	<direction to="879" val="0.0013" stdev="9.995"/>
+	<direction to="879" val="0.0022" stdev="9.995"/>
+	<direction to="881" val="191.2068" stdev="9.995"/>
+	<direction to="881" val="191.2063" stdev="9.995"/>
+	<direction to="879" val="0.0015" stdev="9.995"/>
+	<direction to="879" val="0.0026" stdev="9.995"/>
+	<direction to="881" val="191.2066" stdev="9.995"/>
+	<direction to="881" val="191.2063" stdev="9.995"/>
+	<direction to="879" val="0.0014" stdev="9.995"/>
+      </obs>
+      <obs from="881">
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<distance to="882" val="171.931" stdev="5.860"/>
+	<distance to="882" val="171.930" stdev="5.860"/>
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<distance to="882" val="171.930" stdev="5.860"/>
+	<distance to="882" val="171.931" stdev="5.860"/>
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<distance to="882" val="171.931" stdev="5.860"/>
+	<distance to="882" val="171.930" stdev="5.860"/>
+	<distance to="880" val="171.228" stdev="5.856"/>
+	<direction to="880" val="399.9896" stdev="9.995"/>
+	<direction to="882" val="208.6931" stdev="9.995"/>
+	<direction to="882" val="208.6932" stdev="9.995"/>
+	<direction to="880" val="399.9875" stdev="9.995"/>
+	<direction to="880" val="399.9876" stdev="9.995"/>
+	<direction to="882" val="208.6931" stdev="9.995"/>
+	<direction to="882" val="208.6923" stdev="9.995"/>
+	<direction to="880" val="399.9870" stdev="9.995"/>
+	<direction to="880" val="399.9875" stdev="9.995"/>
+	<direction to="882" val="208.6932" stdev="9.995"/>
+	<direction to="882" val="208.6927" stdev="9.995"/>
+	<direction to="880" val="399.9871" stdev="9.995"/>
+      </obs>
+      <obs from="882">
+	<distance to="881" val="171.927" stdev="5.860"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="881" val="171.927" stdev="5.860"/>
+	<distance to="881" val="171.927" stdev="5.860"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="881" val="171.927" stdev="5.860"/>
+	<distance to="881" val="171.927" stdev="5.860"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="501" val="148.958" stdev="5.745"/>
+	<distance to="881" val="171.926" stdev="5.860"/>
+	<direction to="881" val="399.9515" stdev="9.995"/>
+	<direction to="501" val="191.4215" stdev="9.995"/>
+	<direction to="501" val="191.4226" stdev="9.995"/>
+	<direction to="881" val="399.9512" stdev="9.995"/>
+	<direction to="881" val="399.9505" stdev="9.995"/>
+	<direction to="501" val="191.4213" stdev="9.995"/>
+	<direction to="501" val="191.4226" stdev="9.995"/>
+	<direction to="881" val="399.9511" stdev="9.995"/>
+	<direction to="881" val="399.9505" stdev="9.995"/>
+	<direction to="501" val="191.4211" stdev="9.995"/>
+	<direction to="501" val="191.4224" stdev="9.995"/>
+	<direction to="881" val="399.9510" stdev="9.995"/>
+      </obs>
+      <obs from="501">
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="502" val="187.509" stdev="5.938"/>
+	<distance to="882" val="148.958" stdev="5.745"/>
+	<direction to="882" val="399.9917" stdev="9.995"/>
+	<direction to="502" val="208.0661" stdev="9.995"/>
+	<direction to="502" val="208.0658" stdev="9.995"/>
+	<direction to="882" val="399.9919" stdev="9.995"/>
+	<direction to="882" val="399.9915" stdev="9.995"/>
+	<direction to="502" val="208.0656" stdev="9.995"/>
+	<direction to="502" val="208.0652" stdev="9.995"/>
+	<direction to="882" val="399.9914" stdev="9.995"/>
+	<direction to="882" val="399.9911" stdev="9.995"/>
+	<direction to="502" val="208.0650" stdev="9.995"/>
+	<direction to="502" val="208.0653" stdev="9.995"/>
+	<direction to="882" val="399.9920" stdev="9.995"/>
+      </obs>
+      <obs from="502">
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<distance to="503" val="161.564" stdev="5.808"/>
+	<distance to="503" val="161.563" stdev="5.808"/>
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<distance to="503" val="161.563" stdev="5.808"/>
+	<distance to="503" val="161.564" stdev="5.808"/>
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<distance to="503" val="161.564" stdev="5.808"/>
+	<distance to="503" val="161.564" stdev="5.808"/>
+	<distance to="501" val="187.508" stdev="5.938"/>
+	<direction to="501" val="0.0938" stdev="9.995"/>
+	<direction to="503" val="192.3587" stdev="9.995"/>
+	<direction to="503" val="192.3592" stdev="9.995"/>
+	<direction to="501" val="0.0932" stdev="9.995"/>
+	<direction to="501" val="0.0926" stdev="9.995"/>
+	<direction to="503" val="192.3575" stdev="9.995"/>
+	<direction to="503" val="192.3587" stdev="9.995"/>
+	<direction to="501" val="0.0936" stdev="9.995"/>
+	<direction to="501" val="0.0925" stdev="9.995"/>
+	<direction to="503" val="192.3580" stdev="9.995"/>
+	<direction to="503" val="192.3586" stdev="9.995"/>
+	<direction to="501" val="0.0937" stdev="9.995"/>
+      </obs>
+      <obs from="503">
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<distance to="505" val="335.001" stdev="6.675"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="504" val="164.980" stdev="5.825"/>
+	<distance to="502" val="161.562" stdev="5.808"/>
+	<direction to="502" val="0.0010" stdev="9.995"/>
+	<direction to="504" val="208.2344" stdev="9.995"/>
+	<direction to="504" val="208.2338" stdev="9.995"/>
+	<direction to="502" val="0.0009" stdev="9.995"/>
+	<direction to="502" val="0.0010" stdev="9.995"/>
+	<direction to="504" val="208.2344" stdev="9.995"/>
+	<direction to="504" val="208.2337" stdev="9.995"/>
+	<direction to="502" val="0.0015" stdev="9.995"/>
+	<direction to="502" val="0.0006" stdev="9.995"/>
+	<direction to="505" val="204.1464" stdev="9.995"/>
+	<direction to="504" val="208.2348" stdev="9.995"/>
+	<direction to="504" val="208.2345" stdev="9.995"/>
+	<direction to="502" val="0.0016" stdev="9.995"/>
+      </obs>
+      <obs from="504">
+	<distance to="503" val="164.981" stdev="5.825"/>
+	<distance to="505" val="170.690" stdev="5.853"/>
+	<distance to="505" val="170.690" stdev="5.853"/>
+	<distance to="503" val="164.980" stdev="5.825"/>
+	<distance to="503" val="164.980" stdev="5.825"/>
+	<distance to="505" val="170.691" stdev="5.853"/>
+	<distance to="505" val="170.690" stdev="5.853"/>
+	<distance to="503" val="164.980" stdev="5.825"/>
+	<distance to="503" val="164.981" stdev="5.825"/>
+	<distance to="505" val="170.690" stdev="5.853"/>
+	<distance to="505" val="170.690" stdev="5.853"/>
+	<distance to="503" val="164.980" stdev="5.825"/>
+	<direction to="503" val="0.0039" stdev="9.995"/>
+	<direction to="505" val="191.9644" stdev="9.995"/>
+	<direction to="505" val="191.9644" stdev="9.995"/>
+	<direction to="503" val="0.0033" stdev="9.995"/>
+	<direction to="503" val="0.0035" stdev="9.995"/>
+	<direction to="505" val="191.9646" stdev="9.995"/>
+	<direction to="505" val="191.9644" stdev="9.995"/>
+	<direction to="503" val="0.0039" stdev="9.995"/>
+	<direction to="503" val="0.0036" stdev="9.995"/>
+	<direction to="505" val="191.9642" stdev="9.995"/>
+	<direction to="505" val="191.9647" stdev="9.995"/>
+	<direction to="503" val="0.0041" stdev="9.995"/>
+      </obs>
+      <obs from="505">
+	<distance to="504" val="170.691" stdev="5.853"/>
+	<distance to="506" val="222.916" stdev="6.115"/>
+	<distance to="506" val="222.915" stdev="6.115"/>
+	<distance to="504" val="170.691" stdev="5.853"/>
+	<distance to="504" val="170.691" stdev="5.853"/>
+	<distance to="506" val="222.916" stdev="6.115"/>
+	<distance to="506" val="222.916" stdev="6.115"/>
+	<distance to="504" val="170.691" stdev="5.853"/>
+	<distance to="504" val="170.691" stdev="5.853"/>
+	<distance to="506" val="222.917" stdev="6.115"/>
+	<distance to="506" val="222.916" stdev="6.115"/>
+	<distance to="504" val="170.690" stdev="5.853"/>
+	<direction to="504" val="0.0058" stdev="9.995"/>
+	<direction to="506" val="206.9493" stdev="9.995"/>
+	<direction to="506" val="206.9489" stdev="9.995"/>
+	<direction to="504" val="0.0048" stdev="9.995"/>
+	<direction to="504" val="0.0055" stdev="9.995"/>
+	<direction to="506" val="206.9490" stdev="9.995"/>
+	<direction to="506" val="206.9490" stdev="9.995"/>
+	<direction to="504" val="0.0051" stdev="9.995"/>
+	<direction to="504" val="0.0051" stdev="9.995"/>
+	<direction to="506" val="206.9487" stdev="9.995"/>
+	<direction to="506" val="206.9492" stdev="9.995"/>
+	<direction to="504" val="0.0049" stdev="9.995"/>
+      </obs>
+      <obs from="506">
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<distance to="507" val="169.773" stdev="5.849"/>
+	<distance to="507" val="169.773" stdev="5.849"/>
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<distance to="507" val="169.774" stdev="5.849"/>
+	<distance to="507" val="169.774" stdev="5.849"/>
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<distance to="507" val="169.773" stdev="5.849"/>
+	<distance to="507" val="169.773" stdev="5.849"/>
+	<distance to="505" val="222.916" stdev="6.115"/>
+	<direction to="505" val="399.9977" stdev="9.995"/>
+	<direction to="507" val="193.0212" stdev="9.995"/>
+	<direction to="507" val="193.0216" stdev="9.995"/>
+	<direction to="505" val="399.9979" stdev="9.995"/>
+	<direction to="505" val="399.9980" stdev="9.995"/>
+	<direction to="507" val="193.0210" stdev="9.995"/>
+	<direction to="507" val="193.0216" stdev="9.995"/>
+	<direction to="505" val="399.9984" stdev="9.995"/>
+	<direction to="505" val="399.9976" stdev="9.995"/>
+	<direction to="507" val="193.0206" stdev="9.995"/>
+	<direction to="507" val="193.0222" stdev="9.995"/>
+	<direction to="505" val="399.9982" stdev="9.995"/>
+      </obs>
+      <obs from="507">
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="508" val="211.865" stdev="6.059"/>
+	<distance to="506" val="169.772" stdev="5.849"/>
+	<direction to="506" val="0.0174" stdev="9.995"/>
+	<direction to="508" val="207.1808" stdev="9.995"/>
+	<direction to="508" val="207.1816" stdev="9.995"/>
+	<direction to="506" val="0.0165" stdev="9.995"/>
+	<direction to="506" val="0.0172" stdev="9.995"/>
+	<direction to="508" val="207.1814" stdev="9.995"/>
+	<direction to="508" val="207.1819" stdev="9.995"/>
+	<direction to="506" val="0.0182" stdev="9.995"/>
+	<direction to="506" val="0.0175" stdev="9.995"/>
+	<direction to="508" val="207.1813" stdev="9.995"/>
+	<direction to="508" val="207.1818" stdev="9.995"/>
+	<direction to="506" val="0.0180" stdev="9.995"/>
+      </obs>
+      <obs from="508">
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<distance to="509" val="187.868" stdev="5.939"/>
+	<distance to="509" val="187.867" stdev="5.939"/>
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<distance to="509" val="187.868" stdev="5.939"/>
+	<distance to="509" val="187.867" stdev="5.939"/>
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<distance to="509" val="187.868" stdev="5.939"/>
+	<distance to="509" val="187.867" stdev="5.939"/>
+	<distance to="507" val="211.864" stdev="6.059"/>
+	<direction to="507" val="0.0057" stdev="9.995"/>
+	<direction to="509" val="193.2651" stdev="9.995"/>
+	<direction to="509" val="193.2662" stdev="9.995"/>
+	<direction to="507" val="0.0050" stdev="9.995"/>
+	<direction to="507" val="0.0040" stdev="9.995"/>
+	<direction to="509" val="193.2643" stdev="9.995"/>
+	<direction to="509" val="193.2659" stdev="9.995"/>
+	<direction to="507" val="0.0044" stdev="9.995"/>
+	<direction to="507" val="0.0035" stdev="9.995"/>
+	<direction to="509" val="193.2650" stdev="9.995"/>
+	<direction to="509" val="193.2647" stdev="9.995"/>
+	<direction to="507" val="0.0045" stdev="9.995"/>
+      </obs>
+      <obs from="509">
+	<distance to="508" val="187.868" stdev="5.939"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="508" val="187.867" stdev="5.939"/>
+	<distance to="508" val="187.868" stdev="5.939"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="508" val="187.867" stdev="5.939"/>
+	<distance to="508" val="187.868" stdev="5.939"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="510" val="228.780" stdev="6.144"/>
+	<distance to="508" val="187.868" stdev="5.939"/>
+	<direction to="508" val="399.9979" stdev="9.995"/>
+	<direction to="510" val="206.4735" stdev="9.995"/>
+	<direction to="510" val="206.4744" stdev="9.995"/>
+	<direction to="508" val="399.9994" stdev="9.995"/>
+	<direction to="508" val="399.9985" stdev="9.995"/>
+	<direction to="510" val="206.4747" stdev="9.995"/>
+	<direction to="510" val="206.4757" stdev="9.995"/>
+	<direction to="508" val="399.9997" stdev="9.995"/>
+	<direction to="508" val="399.9993" stdev="9.995"/>
+	<direction to="510" val="206.4755" stdev="9.995"/>
+	<direction to="510" val="206.4759" stdev="9.995"/>
+	<direction to="508" val="0.0001" stdev="9.995"/>
+      </obs>
+      <obs from="510">
+	<distance to="509" val="228.780" stdev="6.144"/>
+	<distance to="509" val="228.779" stdev="6.144"/>
+	<distance to="509" val="228.780" stdev="6.144"/>
+	<distance to="509" val="228.779" stdev="6.144"/>
+	<distance to="509" val="228.779" stdev="6.144"/>
+	<distance to="509" val="228.780" stdev="6.144"/>
+	<direction to="509" val="0.0033" stdev="9.995"/>
+	<direction to="509" val="399.9982" stdev="9.995"/>
+	<direction to="509" val="399.9981" stdev="9.995"/>
+	<direction to="509" val="399.9994" stdev="9.995"/>
+	<direction to="509" val="0.0010" stdev="9.995"/>
+	<direction to="509" val="399.9993" stdev="9.995"/>
+      </obs>
+    </points-observations>
+  </network>
+</gama-local>
