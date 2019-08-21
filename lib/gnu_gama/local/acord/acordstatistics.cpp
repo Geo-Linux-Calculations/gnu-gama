@@ -44,10 +44,6 @@ AcordStatistics::AcordStatistics(PointData& pd, ObservationData& od)
 
       if (p.active_xy() && !cp) missing_coordinates = true;
       if (p.active_z() && !hp) missing_coordinates = true;
-
-      if (p.active_xy() && p.active_z()) total_xyz++;
-      else if (p.active_xy())  total_xy++;
-      else if (p.active_z())  total_z++;
     }
 
   for (ObservationData::const_iterator
@@ -72,6 +68,10 @@ void AcordStatistics::execute()
   computed_xy = known_now_xy - given_xy;
   computed_xyz = known_now_xyz - given_xyz;
   computed_z = known_now_z - given_z;
+
+  total_xy = given_xy+computed_xy;
+  total_xyz = given_xyz+computed_xyz;
+  total_z = given_z+computed_z;
 
   if ((total_xy + total_xyz + total_z) ==
       (known_now_xy + known_now_xyz + known_now_z))

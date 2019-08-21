@@ -32,4 +32,10 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              mikhail-7.4.gkf minimal.gkf prostorovka.gkf \
              seq-dsuloha-d.gkf skorepa-dusek.gkf \
              bug-2019-04-23-oleg-goussev.gkf \
-             bug-2019-04-23-oleg-goussev.xml
+             bug-2019-04-23-oleg-goussev.xml \
+             bug-2019-08-06-integer-coordinates.gkf \
+             bug-2019-08-06-integer-coordinates.xml \
+             bug-2019-08-13-traverse-knin_male.gkf \
+             bug-2019-08-13-traverse-knin_male.xml \
+             bug-2019-08-20-knin_test.gkf \
+             bug-2019-08-20-knin_test.xml

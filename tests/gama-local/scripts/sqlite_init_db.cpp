@@ -5,8 +5,8 @@
 #include <string>
 #include <iterator>
 
-sqlite3    *database;
-int         error = 0;
+static sqlite3    *database;
+static int         error = 0;
 
 int read_sql_file(const char*);
 

@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+  Simple vector demo with all coordinates and vector elements being
+  integers and the sum of residual squares zero; must be explicitly
+  handled in studentized residuals to avoid division by zero.
+</description>
+
+<network-general-parameters
+   gama-local-version="2.06"
+   gama-local-algorithm="envelope"
+   gama-local-compiler="GNU C/C++ 7.4"
+   axes-xy="ne"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>4</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>4</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>1</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>5</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>15</equations>
+   <unknowns>12</unknowns>
+   <degrees-of-freedom>3</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>0.0000000e+00</sum-of-squares>
+   <disconnected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>0.0000000e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.000</ratio>
+   <lower>0.268</lower>
+   <upper>1.765</upper>
+   <failed/>
+
+   <confidence-scale>3.1824491e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>A</id> <x>100.000000</x> <y>100.000000</y> <z>100.000000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>B</id> <X>200.000000</X> <Y>200.000000</Y> <Z>150.000000</Z> </point>
+   <point> <id>C</id> <X>300.000000</X> <Y>50.000000</Y> <Z>120.000000</Z> </point>
+   <point> <id>D</id> <X>390.000000</X> <Y>200.000000</Y> <Z>160.000000</Z> </point>
+   <point> <id>E</id> <X>400.000000</X> <Y>0.000000</Y> <Z>130.000000</Z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>B</id> <X>200.0000000000000000</X> <Y>200.0000000000000000</Y> <Z>150.0000000000000000</Z> </point>
+   <point> <id>C</id> <X>300.0000000000000000</X> <Y>50.0000000000000000</Y> <Z>120.0000000000000000</Z> </point>
+   <point> <id>D</id> <X>390.0000000000000000</X> <Y>200.0000000000000000</Y> <Z>160.0000000000000000</Z> </point>
+   <point> <id>E</id> <X>400.0000000000000000</X> <Y>0.0000000000000000</Y> <Z>130.0000000000000000</Z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>12</dim> <band>11</band>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>7</ind>
+<ind>8</ind>
+<ind>9</ind>
+<ind>10</ind>
+<ind>11</ind>
+<ind>12</ind>
+<ind>4</ind>
+<ind>5</ind>
+<ind>6</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<dx> <from>A</from> <to>B</to>
+   <obs>100.0000000000000000</obs> <adj>100.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>A</from> <to>B</to>
+   <obs>100.0000000000000000</obs> <adj>100.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>A</from> <to>B</to>
+   <obs>50.0000000000000000</obs> <adj>50.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>E</from> <to>A</to>
+   <obs>-300.0000000000000000</obs> <adj>-300.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>E</from> <to>A</to>
+   <obs>100.0000000000000000</obs> <adj>100.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>E</from> <to>A</to>
+   <obs>-30.0000000000000000</obs> <adj>-30.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>C</from> <to>B</to>
+   <obs>-100.0000000000000000</obs> <adj>-100.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>C</from> <to>B</to>
+   <obs>150.0000000000000000</obs> <adj>150.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>C</from> <to>B</to>
+   <obs>30.0000000000000000</obs> <adj>30.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>D</from> <to>C</to>
+   <obs>-90.0000000000000000</obs> <adj>-90.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>D</from> <to>C</to>
+   <obs>-150.0000000000000000</obs> <adj>-150.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>D</from> <to>C</to>
+   <obs>-40.0000000000000000</obs> <adj>-40.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>D</from> <to>E</to>
+   <obs>10.0000000000000000</obs> <adj>10.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>D</from> <to>E</to>
+   <obs>-200.0000000000000000</obs> <adj>-200.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>D</from> <to>E</to>
+   <obs>-30.0000000000000000</obs> <adj>-30.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.020</qrr> <f>10.557</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+
+</observations>
+
+</gama-local-adjustment>

@@ -45,7 +45,7 @@ using GNU_gama::LocalNetworkAdjustmentResults;
 
 void a2_diff(std::string, double& maxdiff);
 string input_dir;
-const double a2_toll = 0.1;
+const double a2_toll = 0.2;
 
 
 int main(int argc, char* argv[])

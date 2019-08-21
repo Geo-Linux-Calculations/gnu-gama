@@ -1,6 +1,7 @@
 /*
   GNU Gama -- Approximate coordinates version 2
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
+		2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -22,9 +23,11 @@
 #include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acordazimuth.h>
+#include <gnu_gama/local/acord/acordzderived.h>
 #include <gnu_gama/local/acord/acordhdiffs.h>
 #include <gnu_gama/local/acord/acordpolar.h>
 #include <gnu_gama/local/acord/acordtraverse.h>
+#include <gnu_gama/local/acord/acordvectors.h>
 #include <gnu_gama/local/acord/acordweakchecks.h>
 #include <gnu_gama/local/acord/acordstatistics.h>
 #include <gnu_gama/local/bearing.h>
@@ -33,6 +36,7 @@
 #include <gnu_gama/local/gamadata.h>
 #include <cmath>
 #include <algorithm>
+#include <unordered_set>
 
 using namespace GNU_gama::local;
 
@@ -50,13 +54,52 @@ using namespace GNU_gama::local;
 Acord2::Acord2(PointData& pd, ObservationData& od)
   : PD_(pd), OD_(od)
 {
+  bool has_azimuths = false;
+  slope_observations_ = false;
+
   for (auto i : OD_.clusters)
     {
-      StandPoint* sp = dynamic_cast<StandPoint*>(i);
-      if (sp != nullptr)
-        {
-          SPClusters_.push_back(sp);
-        }
+      if (StandPoint* sp = dynamic_cast<StandPoint*>(i))
+	{
+	  SPClusters_.push_back(sp);
+
+	  if (!has_azimuths)
+	    {
+	      for (const auto observation : sp->observation_list)
+		{
+		  if (dynamic_cast<const Azimuth*>(observation) != nullptr)
+		    {
+		      has_azimuths = true;
+		      break;
+		    }
+		}
+	    }
+
+	  if (!slope_observations_)
+	    {
+	      for (const auto observation : sp->observation_list)
+		{
+		  if (dynamic_cast<const Z_Angle*>(observation) != nullptr)
+		    {
+		      slope_observations_ = true;
+		      break;
+		    }
+		  /*if (dynamic_cast<const S_Distance*>(observation) != nullptr)
+		    {
+		      slope_observations_ = true;
+		      break;
+		    }*/
+		}
+	    }
+	}
+      else if (HeightDifferences* hcl = dynamic_cast<HeightDifferences*>(i))
+	{
+	  HDiffClusters_.push_back(hcl);
+	}
+      else if (Vectors* vcl = dynamic_cast<Vectors*>(i))
+	{
+	  VectorsClusters_.push_back(vcl);
+	}
     }
 
   for (PointData::const_iterator i = PD_.begin(); i != PD_.end(); ++i)
@@ -64,47 +107,59 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
       const PointID& c = (*i).first;
       const LocalPoint& p = (*i).second;
       if (p.active_xy() && !p.test_xy())
-        { // this means the a network point xy were not set and are
-          // part of the network
-          // find and add all missing points into one set
-          missing_xy_.insert(c);
-        }
+	{ // this means the a network point xy were not set and are
+	  // part of the network
+	  // find and add all missing points into one set
+	  missing_xy_.insert(c);
+	}
       if (p.active_z() && !p.test_z())
-        {
-          missing_z_.insert(c);
-        }
+	{
+	  missing_z_.insert(c);
+	}
     }
 
-  for (auto c : OD_.clusters)
+  for (auto sp : SPClusters_)
     {
-      StandPoint* sp = dynamic_cast<StandPoint*>(c);
-      if (sp != nullptr)
-        {
-          for (auto obs : sp->observation_list)
-            {
-              PointID from = obs->from();
-              obs_from_.insert({obs->from(), obs});
-              if (Angle* angle = dynamic_cast<Angle*>(obs))
-                {
-                  obs_to_.insert({angle->bs(), obs});
-                  obs_to_.insert({angle->fs(), obs});
-                }
-              else
-                {
-                  obs_to_.insert({obs->to(), obs});
-                }
-            }
-        }
+      for (auto obs : sp->observation_list)
+	{
+	  PointID from = obs->from();
+	  obs_from_.insert({obs->from(), obs});
+	  if (Angle* angle = dynamic_cast<Angle*>(obs))
+	    {
+	      obs_to_.insert({angle->bs(), obs});
+	      obs_to_.insert({angle->fs(), obs});
+	    }
+	  else
+	    {
+	      obs_to_.insert({obs->to(), obs});
+	    }
+	}
     }
 
   using std::make_shared;
-  using std::move;
 
-  algorithms_.push_back( move(make_shared<AcordAzimuth>   (this)) );
-  algorithms_.push_back( move(make_shared<AcordHdiffs>    (this)) );
-  algorithms_.push_back( move(make_shared<AcordPolar>     (this)) );
-  algorithms_.push_back( move(make_shared<AcordTraverse>  (this)) );
-  algorithms_.push_back( move(make_shared<AcordWeakChecks>(this)) );
+  if (has_azimuths)
+    {
+      algorithms_.push_back( make_shared<AcordAzimuth> (this) );
+    }
+  if (!HDiffClusters_.empty())
+    {
+      algorithms_.push_back( make_shared<AcordHdiffs>  (this) );
+    }
+  if (slope_observations_)
+    {
+      algorithms_.push_back( make_shared<AcordZderived>(this) );
+    }
+  if (!VectorsClusters_.empty())
+    {
+      algorithms_.push_back( make_shared<AcordVectors>(this) );
+    }
+  if (!SPClusters_.empty())
+    {
+      algorithms_.push_back( make_shared<AcordPolar>   (this) );
+      algorithms_.push_back( make_shared<AcordTraverse>(this) );
+    }
+  algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
 }
 
 
@@ -130,30 +185,49 @@ void Acord2::execute()
     {
       before = missing_xy_.size() + missing_z_.size();
 
-      DBG("---- start ----");
+      DBG("\n---- start ----");
       for (auto a : algorithms_)
-        {
-          a->execute();
-          DBG(a->className());
-        }
+	{
+	  a->execute();
+	  DBG(a->className());
+	}
 
       algorithms_.erase(
-          std::remove_if(
-             algorithms_.begin(),algorithms_.end(),
-             [](std::shared_ptr<AcordAlgorithm> a){ return a->completed ();}
-          ),
-          algorithms_.end()
-        );
+	  std::remove_if(
+	     algorithms_.begin(),algorithms_.end(),
+	     [](std::shared_ptr<AcordAlgorithm> a){ return a->completed ();}
+	  ),
+	  algorithms_.end()
+	);
       DBG("----  end  ----");
 
 
       after = missing_xy_.size() + missing_z_.size();
 
       get_medians();
-      same_points_xy_.clear();
+      candidate_xy_.clear();
+      get_medians_z();
+      candidate_z_.clear();
       traverses.clear();
     }
   while (after != 0 && after < before);
+
+  //iterate once more over all SPClusters
+  // and compute missing orientations
+  for (auto cluster : OD_.clusters)
+    {
+      if (StandPoint* sp = dynamic_cast<StandPoint*>(cluster))
+       {
+          if (!sp->test_orientation())
+            {
+              Orientation ori(PD_, sp->observation_list);
+              double orientation_shift;
+              int n;
+              ori.orientation(sp, orientation_shift, n);
+              if (n > 0) sp->set_orientation(orientation_shift);
+            }
+        }
+    }
 
 }
 
@@ -252,13 +326,13 @@ bool Acord2::get_medians()
   bool res = false;
   // get unique keys from same_points_
   std::set<PointID> keys;
-  for (auto i : same_points_xy_) keys.insert(i.first);
+  for (auto i : candidate_xy_) keys.insert(i.first);
 
   // for (std::vector<Acord2::Point>::iterator j, i =
   // same_points_.begin(), e = same_points_.end(); i != e; )
   for (auto pt : keys)
     {
-      auto p = same_points_xy_.equal_range(pt);
+      auto p = candidate_xy_.equal_range(pt);
       if (p.first == p.second) continue;    // should never happen
 
       auto i = p.first;
@@ -294,9 +368,18 @@ bool Acord2::get_medians()
           double max_dy = std::fabs(max_y - min_y);
           double max_diff = std::max(max_dy, max_dx);
 
-          if (slope_observations_) MAX_NORM = 0.5;
+          double median_max_norm = median_max_norm_;  // coarse heuristic
+          if (slope_observations_) median_max_norm *= 2;
 
-          if (max_diff <= MAX_NORM)
+          const auto n = all_x.size();
+          switch (n)
+            {
+            case 3 : median_max_norm *= 1.5; break;
+            case 4 : median_max_norm *= 2.0; break;
+            default: break;
+            }
+
+          if (n > 4 || max_diff <= median_max_norm)
             {
               double med_x = median(all_x);
               double med_y = median(all_y);
@@ -304,7 +387,7 @@ bool Acord2::get_medians()
               PD_[pt].set_xy(med_x, med_y);
               missing_xy_.erase(pt);
               new_points_xy_++;
-                          res = true;
+              res = true;
             }
         }
     }
@@ -314,12 +397,35 @@ bool Acord2::get_medians()
     {
       if (!in_missingXY(p))
         {
-          same_points_xy_.erase(p);
+          candidate_xy_.erase(p);
         }
     }
   return res;
 
 };
+
+// loops through candidate pairs <PointID, double>, calculate medians and store
+
+void Acord2::get_medians_z()
+{
+  std::unordered_set<PointID> set;
+  for (auto p : candidate_z_) set.insert(p.first);
+
+  for (PointID id : set)
+    {
+      std::vector<double> values;
+      auto range = candidate_z_.equal_range(id);
+      for (auto i = range.first; i != range.second; ++i)
+        {
+          values.push_back(i->second);
+        }
+      std::sort(values.begin(), values.end());
+      auto n = values.size();
+      double median = (values[(n-1)/2] + values[n/2])/2;
+      PD_[id].set_z(median);
+      candidate_z_.erase(id);
+    }
+}
 
 // takes a traverse and transforms its coordinates
 
@@ -343,14 +449,18 @@ bool Acord2::transform_traverse(Traverse& traverse)
   PointData res = transformation.transf_points();
   if (!res.empty())
     {
-          for (auto &pt : traverse)
-                {
-                if (res[pt.id].test_xy ())
-                  {
-                        pt.coords = res[pt.id];
-                  }
+      for (auto &pt : traverse)
+        {
+          if (res[pt.id].test_xy ())
+            {
+              pt.coords = res[pt.id];
+            }
+          else
+            {
+              pt.coords = PD_[pt.id];
+            }
 
-                }
+        }
       return true;
     }
   else
@@ -373,16 +483,16 @@ void Acord2::debug_info(const char* text) const
     << "alg " << setw(2)  << algorithms_.size()
     << "   known/same/missing   xy " << setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-                return p.second.test_xy() && p.second.active_xy();})
-    << " / "  << setw(2) << same_points_xy_.size() << " / " << setw(2)
+        return p.second.test_xy() && p.second.active_xy();})
+    << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p){
-                return !p.second.test_xy() && p.second.active_xy();})
+        return !p.second.test_xy() && p.second.active_xy();})
     << "    z " << setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-                return p.second.test_z() && p.second.active_z();})
-    << " / "  << setw(2) << same_points_z_.size() << " / " << setw(2)
+        return p.second.test_z() && p.second.active_z();})
+    << " / "  << setw(2) << candidate_z_.size() << " / " << setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p){
-                return !p.second.test_z() && p.second.active_z();})
+        return !p.second.test_z() && p.second.active_z();})
     << std::endl;
 }
 #endif

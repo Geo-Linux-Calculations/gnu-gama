@@ -48,26 +48,36 @@ void AcordPolar::execute()
     {
       enable_slope_observations();
 
-      if (AC.MAX_NORM < 0.2) AC.MAX_NORM += 0.02;
+      if (AC.median_max_norm_ < 0.2) AC.median_max_norm_ += 0.02;
     }
 
   do
     {
       AC.new_points_xy_ = 0;
 
-      for (auto& cluster : AC.SPClusters_)
+      /*for (auto& cluster : AC.SPClusters_)
         {
           if (!points_from_SPCluster(cluster)) cluster = nullptr;
         }
       AC.SPClusters_.erase( std::remove(AC.SPClusters_.begin(),
                                         AC.SPClusters_.end(),
                                         nullptr),
-                            AC.SPClusters_.end() );
+                            AC.SPClusters_.end() );*/
+	  int N = AC.SPClusters_.size()-1;
+	  int i = 0;
+	  while (i <= N && N > 0)
+	    {
+		  if (!points_from_SPCluster(AC.SPClusters_[i]))
+		    {
+			  std::swap(AC.SPClusters_[i], AC.SPClusters_[N]);
+			  --N;
+		    }
+		  else ++i;
+	    }
 
       AC.get_medians();
     }
-  while (AC.SPClusters_.size() > 0  &&
-         AC.new_points_xy_        > 0  &&
+  while (AC.new_points_xy_ > 0  &&
          AC.missing_xy_.size()  > 0);
 }
 
@@ -160,7 +170,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                 }
               else
                 {
-                  AC.same_points_xy_.insert({ o.first, calc_pt });
+                  AC.candidate_xy_.insert({ o.first, calc_pt });
                   res = false;
                 }
             }
@@ -243,7 +253,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                   double x = stand_point.x() + d * std::cos(b);
                   double y = stand_point.y() + d * std::sin(b);
                   target.set_xy(x, y);
-                  AC.same_points_xy_.insert({ fsid,target });
+                  AC.candidate_xy_.insert({ fsid,target });
                   secondary_points.insert({ fsid,target });
                 }
 
@@ -260,7 +270,7 @@ bool AcordPolar::points_from_SPCluster(StandPoint* sp)
                   double x = stand_point.x() + d * std::cos(b);
                   double y = stand_point.y() + d * std::sin(b);
                   target.set_xy(x, y);
-                  AC.same_points_xy_.insert({ bsid,target });
+                  AC.candidate_xy_.insert({ bsid,target });
                   secondary_points.insert({ bsid,target });
                 }
 

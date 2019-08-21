@@ -27,24 +27,19 @@
 
 using GNU_gama::local::LocalNetwork;
 
-std::string version, netconfig, input;
-const char* netfile;
-
-std::vector<std::string>   algname;
-std::vector<LocalNetwork*> algorithm;
-
-double condnum;
-
-
 int main(int argc, char* argv[])
 {
   if (argc != 4) return 1;
 
-  version   = std::string(argv[1]);
-  netconfig = std::string(argv[2]);
-  netfile   = argv[3];
+  std::string version   = std::string(argv[1]);
+  std::string netconfig = std::string(argv[2]);
+  std::string netfile   = std::string(argv[3]);
 
-  std::ifstream inp(argv[3]);
+  std::vector<std::string>   algname;
+  std::vector<LocalNetwork*> algorithm;
+  double condnum;
+
+  std::ifstream inp(netfile);
   if (!inp)
     {
       std::cout << "   ####  ERROR ON OPENING FILE " << argv[3] << "\n";

@@ -1,5 +1,6 @@
 EXTRA_DIST = \
   gama-local.gkf \
+  kokes-traverse-01.gkf \
   traverse-01-en-left.gkf  \
   traverse-01-en-right.gkf \
   traverse-01-es-left.gkf  \

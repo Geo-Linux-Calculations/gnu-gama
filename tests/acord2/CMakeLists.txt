@@ -43,6 +43,7 @@ set(A2DIFF_FILES
   traverse-01-ws-left.gkf
   traverse-01-ws-right.gkf
   gama-local.gkf
+  kokes-traverse-01.gkf
   )
 
 add_test(NAME acord2-a2diff COMMAND a2diff ${RESULT_DIR}/a2diff

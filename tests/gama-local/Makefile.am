@@ -49,7 +49,10 @@ INPUT_FILES = gama-local \
               extern-tst-tetrahedron-3-gon \
               extern-seq-dsuloha-d
 
-BUG_FILES = bug-2019-04-23-oleg-goussev
+BUG_FILES = bug-2019-04-23-oleg-goussev \
+            bug-2019-08-06-integer-coordinates \
+            bug-2019-08-13-traverse-knin_male \
+            bug-2019-08-20-knin_test
 
 GAMA_SCRIPT  = $(srcdir)/scripts
 GAMA_INPUT   = $(srcdir)/input

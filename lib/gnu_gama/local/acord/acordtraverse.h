@@ -53,6 +53,7 @@ namespace GNU_gama { namespace local {
       Acord2::Traverse traverse;
 
       std::set<PointID>    candidate_traverse_points_;
+      std::set<PointID>    etalon_candidate_points;
       std::vector<PointID> traverse_points_;
 
       std::set<PointID> get_neighbours(PointID pt);

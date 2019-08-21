@@ -77,16 +77,25 @@ void AcordWeakChecks::execute()
     }
 
   // similar procedure for points in same_points
-  for (auto pt : AC.same_points_xy_)
+  for (auto pt : AC.candidate_xy_)
     {
-      if (check_point(Acord2::Point(pt.first, pt.second)) &&
-          AC.in_missingXY(pt.first))
+      if (AC.in_missingXY(pt.first)
+        && check_point(Acord2::Point(pt.first, pt.second)))
         {
           PD[pt.first].set_xy(pt.second.x(), pt.second.y());
           AC.missing_xy_.erase(pt.first);
           AC.new_points_xy_++;
         }
     }
+  std::set<PointID> keys;
+  for (auto i : AC.candidate_xy_) keys.insert(i.first);
+  for (auto p : keys)
+  {
+	  if (!AC.in_missingXY(p))
+	  {
+		  AC.candidate_xy_.erase(p);
+	  }
+  }
 }
 
 // check traverse endpoint: find if there are any observations from
@@ -114,7 +123,7 @@ AcordWeakChecks::check_traverse_endpoint(Acord2::Point pt)
             {
               double calc_dist = distance(PD[obs->from()], pt.coords);
               // if the point is within tolerance then we can add it
-              if (std::abs(dist.first - calc_dist) <= AC.MAX_NORM)
+              if (std::abs(dist.first - calc_dist) <= AC.median_max_norm_)
                 return {true, obs->from()};
             }
           auto dir = AC.get_dir(obs);
@@ -142,8 +151,9 @@ AcordWeakChecks::check_traverse_endpoint(Acord2::Point pt)
                     calc_dir -= 2 * M_PI;
                   while (calc_dir < 0)
                     calc_dir += 2 * M_PI;
-                  if (std::sin(std::abs(calc_dir - dir.first))*calc_dist <
-                      AC.MAX_NORM)
+                  if (std::abs(std::sin(std::abs(calc_dir - dir.first-
+					  sp->orientation()))*calc_dist) <
+                      AC.median_max_norm_)
                     {
                       return { true, obs->from() };
                     }
@@ -152,6 +162,28 @@ AcordWeakChecks::check_traverse_endpoint(Acord2::Point pt)
         }
       ++it;
     }
+  it = AC.obs_from_.lower_bound(pt.id);
+  eit = AC.obs_from_.upper_bound(pt.id);
+
+  while (it != eit)
+  {
+	  Observation* obs = (*it).second;
+	  // this means there is an observation from a known point to our
+	  // point
+	  if (!AC.in_missingXY(obs->to()))
+	  {
+		  auto dist = AC.get_dist(obs);
+		  if (dist.second)
+		  {
+			  double calc_dist = distance(PD[obs->to()], pt.coords);
+			  if (std::abs(dist.first - calc_dist) <= AC.median_max_norm_)
+				  return {true, obs->to()};
+		  }
+		  //no point in testing direction if we would not know the orientation anyway
+	  }
+	  ++it;
+  }
+
   return {false, PointID()};
 }
 
@@ -205,8 +237,8 @@ bool AcordWeakChecks::check_point(Acord2::Point pt)
                     calc_dir -= 2 * M_PI;
                   while (calc_dir < 0)
                     calc_dir += 2 * M_PI;
-                  double diff = std::sin(std::abs(calc_dir - dir.first +
-                                         sp->orientation()))*calc_dist;
+                  double diff = std::abs(std::sin(std::abs(calc_dir - dir.first -
+                                         sp->orientation()))*calc_dist);
                   if (diff > maxdiff) maxdiff = diff;
                 }
             }
@@ -256,8 +288,8 @@ bool AcordWeakChecks::check_point(Acord2::Point pt)
                     calc_dir -= 2 * M_PI;
                   while (calc_dir < 0)
                     calc_dir += 2 * M_PI;
-                  double diff = std::sin(std::abs(calc_dir - dir.first +
-                                         sp->orientation()))*calc_dist;
+                  double diff = std::abs(std::sin(std::abs(calc_dir - dir.first -
+                                         sp->orientation()))*calc_dist);
                   if (diff > maxdiff) maxdiff = diff;
                 }
             }
@@ -267,5 +299,5 @@ bool AcordWeakChecks::check_point(Acord2::Point pt)
 
   if (maxdiff < 0) return false;
 
-  return (maxdiff<AC.MAX_NORM);
+  return (maxdiff<AC.median_max_norm_);
 }

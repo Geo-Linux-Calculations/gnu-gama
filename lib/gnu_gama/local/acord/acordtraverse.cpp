@@ -1,14 +1,14 @@
 /*
-  GNU Gama -- Approximate coordinates by Polar Method
+  GNU Gama -- Approximate coordinates by Traverse computation
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
 
   This file is part of the GNU Gama C++ library.
-  
+
   GNU Gama is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   GNU Gama is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -62,24 +62,24 @@ void AcordTraverse::execute() //to keep in line with the acord class
           //if there are at least two points in traverse_pts then I can calculate the polygon and insert into traverses
           bool success = calculate_traverse();
           if (success)
-            { 
+            {
               AC.traverses.push_back({ traverse, tr_type });
 
-			  for (auto t : traverse_points_)
-				  {
-				    candidate_traverse_points_.erase(t);
-				  }
-			  it = candidate_traverse_points_.begin();
+	      for (auto t : traverse_points_)
+		{
+		  candidate_traverse_points_.erase(t);
+		}
+	      it = candidate_traverse_points_.begin();
             }
           else
             {
               // Computation failed
-			  for (auto t : traverse_points_)
-				  {
-				  auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
-				  if(found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
-				  }
-			  ++it;
+              for (auto t : traverse_points_)
+                {
+                  auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
+                  if(found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
+                }
+              ++it;
             }
 
         }
@@ -87,10 +87,10 @@ void AcordTraverse::execute() //to keep in line with the acord class
         {
           for (auto t : traverse_points_)
             {
-			  auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
-			  if (found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
+              auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), t);
+              if (found != etalon_candidate_points.end()) candidate_traverse_points_.insert(t);
             }
-		  ++it;
+          ++it;
         }
     }
 
@@ -140,19 +140,19 @@ void AcordTraverse::execute() //to keep in line with the acord class
             }
         }
     }
-  
+
   // now we just iterate through the traverses one more time and if the
   // last point is known, we can safely remove them from the list
-  
+
   if(!AC.traverses.empty())
     {
-	  AC.traverses.erase(std::remove_if(
-		  AC.traverses.begin(), 
-		  AC.traverses.end(), 
-	    [this](std::pair<Acord2::Traverse, Acord2::Traverse_type> tr) {
-		  return (!AC.in_missingXY(tr.first.back().id));
-		  }), AC.traverses.end());
-	}
+      AC.traverses.erase(std::remove_if(
+                  AC.traverses.begin(),
+                  AC.traverses.end(),
+            [this](std::pair<Acord2::Traverse, Acord2::Traverse_type> tr) {
+                  return (!AC.in_missingXY(tr.first.back().id));
+                  }), AC.traverses.end());
+        }
 
 }
 
@@ -164,23 +164,23 @@ std::set<PointID> AcordTraverse::add_same_points()
   std::set<PointID> added_points;
   for (auto itr = AC.traverses.begin(); itr!= AC.traverses.end(); ++itr )
     {
-	//first check if any points have been computed before
-	bool found = false;
-	  for (auto pt : (*itr).first)
-		{
-		  auto fit = AC.same_points_xy_.find (pt.id);
-		  auto ait = added_points.find (pt.id);
+      //first check if any points have been computed before
+      bool found = false;
+      for (auto pt : (*itr).first)
+        {
+          auto fit = AC.candidate_xy_.find (pt.id);
+          auto ait = added_points.find (pt.id);
 
-		  if (fit != AC.same_points_xy_.end() && ait == added_points.end())
-			{
-			  AC.same_points_xy_.insert({pt.id, pt.coords});
-			  found = true;
-			}
-		}
-	  if (found && AC.get_medians())
-		{
-		  AC.transform_traverse ((*itr).first);
-		}
+          if (fit != AC.candidate_xy_.end() && ait == added_points.end())
+            {
+              AC.candidate_xy_.insert({pt.id, pt.coords});
+              found = true;
+            }
+        }
+      if (found && AC.get_medians())
+        {
+          AC.transform_traverse ((*itr).first);
+        }
       //we know both endpoints are known - we can add the whole traverse
       //straight to PD
       if ((*itr).second == AC.closed_traverse)
@@ -194,6 +194,7 @@ std::set<PointID> AcordTraverse::add_same_points()
                   AC.new_points_xy_++;
                 }
             }
+		  continue;
         }
       /* tr_type should now only be closed_start_traverse
        * this is the only unknown point that can occur in more traverses
@@ -208,11 +209,11 @@ std::set<PointID> AcordTraverse::add_same_points()
             {
               if (!found_already)
                 {
-                  AC.same_points_xy_.insert({ comp_point.id, comp_point.coords });
+                  AC.candidate_xy_.insert({ comp_point.id, comp_point.coords });
                   found_already = true;
                   added_points.insert(comp_point.id);
                 }
-              AC.same_points_xy_.insert({ (*initr).first.back().id, (*initr).first.back().coords });
+              AC.candidate_xy_.insert({ (*initr).first.back().id, (*initr).first.back().coords });
             }
         }
 
@@ -275,7 +276,7 @@ Acord2::Traverse_type AcordTraverse::get_connecting_points()
               if (end_pt) tr_type = AC.closed_traverse;
               else tr_type = AC.closed_start_traverse;
             }
-          else //this means the traverse only has a known point at the end
+          else if(end_pt) //this means the traverse only has a known point at the end
             {
               //would it be better to use reverse iterators later instead?
               std::reverse(traverse_points_.begin(), traverse_points_.end());
@@ -360,7 +361,7 @@ bool AcordTraverse::calculate_traverse()
                 {
                   if (i == 0 && !AC.in_missingXY(it->second->to()) && !front_ori.second)
                     {
-					  StandPoint* sp = AC.find_standpoint(it->second->from());
+                      StandPoint* sp = AC.find_standpoint(it->second->from());
                       if (sp != nullptr)
                         {
                           if (!sp->test_orientation())
@@ -375,7 +376,7 @@ bool AcordTraverse::calculate_traverse()
                             {
                               traverse.push_back({ it->second->to(),PD[it->second->to()] });
                               known_dirs += 1;
-                              angle_from_dirs -= (dir.first + sp->orientation());
+                              angle_from_dirs -= (dir.first /*+ sp->orientation()*/);
                               front_ori = { dir.first + sp->orientation(), true };
                             }
                         }
@@ -417,27 +418,28 @@ bool AcordTraverse::calculate_traverse()
           auto dir = AC.get_dir(itt->second);
           if (dir.second)
             {
-              if (itt->second->from() == traverse_points_[i + 1] && (known_dirs == 00 || known_dirs == 01))
+              StandPoint* sp = AC.find_standpoint(itt->second->from());
+              if (!sp->test_orientation())
+              {
+                Orientation ori(PD, sp->observation_list);
+                double orientation_shift;
+                int n;
+                ori.orientation(sp, orientation_shift, n);
+                if (n > 0) sp->set_orientation(orientation_shift);
+              }
+              if (sp->test_orientation() && itt->second->from() == traverse_points_[i + 1] && (known_dirs == 00 || known_dirs == 01))
                 {
-                  known_dirs += 10;
-                  double dirval = M_PI - dir.first;
-                  angle_from_dirs -= dirval;
+				  known_dirs += 10;
+                  double dirval = dir.first-M_PI;
+                  angle_from_dirs += dirval+ sp->orientation();
                 }
-              else if ((known_dirs == 00 || known_dirs == 10))
+              else if (sp->test_orientation() && (known_dirs == 00 || known_dirs == 10))
                 {
                   if (i == 0 && !AC.in_missingXY(itt->second->from()) && !front_ori.second)
                     {
-                      StandPoint* sp = AC.find_standpoint(itt->second->from());
+
                       if (sp != nullptr)
                         {
-                          if (!sp->test_orientation())
-                            {
-                              Orientation ori(PD, sp->observation_list);
-                              double orientation_shift;
-                              int n;
-                              ori.orientation(sp, orientation_shift, n);
-                              if (n > 0) sp->set_orientation(orientation_shift);
-                            }
                           if (sp->test_orientation())
                             {
                               traverse.push_back({ itt->second->from(),PD[itt->second->from()] });
@@ -453,9 +455,9 @@ bool AcordTraverse::calculate_traverse()
                       if (itt->second->from() == traverse_points_[i - 1])
                         {
                           known_dirs += 1;
-                          double dirval = M_PI - dir.first;
-                          angle_from_dirs += dirval;
-                        } 
+                          double dirval = M_PI + dir.first;
+                          angle_from_dirs -= dirval+ sp->orientation();
+                        }
                     }
                 }
             }
@@ -472,17 +474,17 @@ bool AcordTraverse::calculate_traverse()
             }
           ++itt;
         }
-	  if(tmp_bearings.empty() && known_dirs == 10 && i==0 && tr_type == AC.closed_traverse)
-		{
-		  front_ori = { 0, true };
-		  while (angle_from_dirs > 2 * M_PI)
-			  angle_from_dirs -= 2 * M_PI;
-		  while (angle_from_dirs < 0)
-			  angle_from_dirs += 2 * M_PI;
-		  tmp_bearings.push_back(angle_from_dirs);
-		  angle_from_dirs = 0;
-		  known_dirs = 0;
-	    }
+      if(tmp_bearings.empty() && known_dirs == 10 && i==0 && tr_type == AC.closed_traverse)
+        {
+          front_ori = { 0, true };
+          while (angle_from_dirs > 2 * M_PI)
+            angle_from_dirs -= 2 * M_PI;
+          while (angle_from_dirs < 0)
+            angle_from_dirs += 2 * M_PI;
+          tmp_bearings.push_back(angle_from_dirs);
+          angle_from_dirs = 0;
+          known_dirs = 0;
+        }
       if (!tmp_dists.empty() &&!tmp_bearings.empty())
         {
           distances.push_back(AC.median(tmp_dists));
@@ -501,12 +503,12 @@ bool AcordTraverse::calculate_traverse()
               traverse_points_.pop_back();
               i = -1;
             }
-		  else if(i==0)
-			{
-			  //the point is in the first place, but type is not closed
-			  //there is no other choice but to go back
-			  return false;
-			}
+          else if(i==0)
+            {
+              //the point is in the first place, but type is not closed
+              //there is no other choice but to go back
+              return false;
+            }
           else
             {
               //if the point is in the middle we can try
@@ -515,12 +517,12 @@ bool AcordTraverse::calculate_traverse()
               tr_type = AC.closed_start_traverse;
               for (auto t = traverse_points_.size()-1; t>i; --t)
                 {
-                  candidate_traverse_points_.insert(traverse_points_[t]);
+                auto found = std::find(etalon_candidate_points.begin(), etalon_candidate_points.end(), traverse_points_[t]);
+                if (found != etalon_candidate_points.end()) candidate_traverse_points_.insert(traverse_points_[t]);
                   traverse_points_.pop_back();
                 }
               if (traverse_points_.size() < 1) return false;
-			  
-			  
+
             }
         }
     }
@@ -565,22 +567,6 @@ bool AcordTraverse::calculate_traverse()
       Y += dY[k];
       XY.push_back(LocalPoint(X,Y));
       traverse.push_back({ traverse_points_[k + 1], LocalPoint(X,Y) });
-    }
-
-  //look for second orientation
-  if ((tr_type == AC.closed_traverse || tr_type == AC.closed_start_traverse))
-    {
-      std::set<PointID> neighbours = get_neighbours(traverse_points_.back());
-      std::pair<double, bool> ori_back = { 0, false };
-      for (auto n : neighbours)
-        {
-          if (!AC.in_missingXY(n))
-            {
-              traverse.push_back({n, PD[n]});
-              ori_back.second = true;
-			     tr_type = AC.closed_traverse;
-            }
-        }
     }
   return AC.transform_traverse(traverse);
 }

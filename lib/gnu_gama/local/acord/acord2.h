@@ -42,7 +42,9 @@ namespace GNU_gama { namespace local {
 
       friend class AcordAlgorithm;
       friend class AcordAzimuth;
+      friend class AcordZderived;
       friend class AcordHdiffs;
+      friend class AcordVectors;
       friend class AcordPolar;
       friend class AcordTraverse;
       friend class AcordWeakChecks;
@@ -67,19 +69,22 @@ namespace GNU_gama { namespace local {
       std::pair<double, bool> get_dir(Observation* o);
       bool in_missingXY(PointID pt);
 
-      double MAX_NORM = 0.1;
+      double median_max_norm_ = 0.1;     // tollerance for rejecting median of xy / z
       bool slope_observations_ = false;
 
       PointData&       PD_;
       ObservationData& OD_;
       std::vector<StandPoint*> SPClusters_;
+      std::vector<HeightDifferences*> HDiffClusters_;
+      std::vector<Vectors*> VectorsClusters_;
       std::set<PointID> missing_xy_;
       std::set<PointID> missing_z_;
-      std::multimap<PointID,LocalPoint> same_points_xy_;
-      std::multimap<PointID,LocalPoint> same_points_z_;
+      std::multimap<PointID,LocalPoint> candidate_xy_;
+      std::multimap<PointID,double>     candidate_z_;
       std::multimap<PointID,Observation*> obs_from_;
       std::multimap<PointID,Observation*> obs_to_;
       bool get_medians();
+      void get_medians_z();
       size_type new_points_xy_, new_points_z_;
 
       using Traverse = std::vector<Point>;

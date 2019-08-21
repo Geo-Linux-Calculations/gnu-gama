@@ -22,6 +22,10 @@ set(INPUT_FILES
     extern-azimuth-distance
     extern-tst-tetrahedron-3-gon
     extern-seq-dsuloha-d
+    bug-2019-04-23-oleg-goussev
+    bug-2019-08-06-integer-coordinates
+    bug-2019-08-13-traverse-knin_male
+    bug-2019-08-20-knin_test
   )
 
 set(RESULT_DIR ${CMAKE_BINARY_DIR}/tests/gama-local/results/${PROJECT_VERSION})

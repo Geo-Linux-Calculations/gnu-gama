@@ -21,6 +21,7 @@
 #include <gnu_gama/local/acord/acordhdiffs.h>
 #include <gnu_gama/local/observation.h>
 #include <utility>
+#include <unordered_set>
 #include <algorithm>
 #include <cmath>
 
@@ -37,31 +38,27 @@ void AcordHdiffs::prepare()
 {
   if (prepared_) return;
 
-  // local working copy of points with active coordinate z
-  for (auto pd : AC.PD_)
-    {
-      PointID    id    = pd.first;
-      LocalPoint point = pd.second;
-
-      // ignoring points with active xy is a temporary hack before
-      // AcordHdiffs and AcordAzimuths are fully integrated into Acord2
-      if (point.active_xy()) continue;
-      if (point.active_z())
-        {
-          lpd_[id] = point;
-        }
-    }
-
   // local working copy of all height differences
-  for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
-    if (H_Diff* hd = dynamic_cast<H_Diff*>(*i))
+  std::unordered_set<PointID> hdiff_ids;
+  for (auto hdc : AC.HDiffClusters_)
+    for (auto hd : hdc->observation_list)
       {
         hdiff t;
         t.from = hd->from();
         t.to   = hd->to();
         t.hd   = hd->value();
         hdiffs_.push_back(t);
+
+        // set of points' IDs from heigth difference observations
+        hdiff_ids.insert(hd->from());
+        hdiff_ids.insert(hd->to());
       }
+
+  // local working copy of points with active coordinate z from hd observations
+  for (PointID pid : hdiff_ids)
+    {
+      lpd_[pid] = AC.PD_[pid];
+    }
 
   remove_hdiffs_between_known_heights();
 
@@ -120,6 +117,7 @@ void AcordHdiffs::execute()
   for (auto lp : lpd_)
     {
       AC.PD_[lp.first].set_z(lp.second.z());
+      AC.missing_z_.erase(lp.first);
     }
 
   if (hdiffs_.empty()) completed_ = true;

@@ -23,6 +23,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/acord/acord.h>
+#include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/test_linearization_visitor.h>
 
 double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
@@ -31,7 +32,7 @@ double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
   double maxdiff = 0;
 
   using namespace GNU_gama::local;
-  const int y_sign = lnet1->y_sign();
+  const double y_sign = lnet1->y_sign();
   const Vec&    x1 = lnet1->solve();
   const Vec&    x2 = lnet2->solve();
 
@@ -157,6 +158,9 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
 	//     cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
         //  }
 	lnet->remove_inconsistency();
+
+        Acord2 acord2(lnet->PD, lnet->OD);
+        acord2.execute();
 
         Acord acord(lnet->PD, lnet->OD);
         acord.execute();

@@ -223,7 +223,7 @@ namespace GNU_gama { namespace local
 
     double studentized_residual(int i)
     {
-      return residuals()(i)/stdev_res(i);
+      return stdev_res(i) > 0 ? residuals()(i)/stdev_res(i) : 0;
     }
     double obs_control(int i)
     {

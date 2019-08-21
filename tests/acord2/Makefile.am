@@ -55,7 +55,8 @@ ACORD2_A2DIFF_FILES = \
   traverse-01-wn-right.gkf \
   traverse-01-ws-left.gkf  \
   traverse-01-ws-right.gkf \
-  gama-local.gkf
+  gama-local.gkf \
+  kokes-traverse-01.gkf
 
 # $(srcdir)/scripts
 ACORD2_SCRIPT  = $(srcdir)

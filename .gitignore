@@ -91,3 +91,4 @@ octave-workspace
 CMakeLists.txt.user*
 .vs
 .vscode
+run.bat

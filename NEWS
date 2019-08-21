@@ -1,5 +1,14 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.07 August 2019
+
+* Fixed some bugs in AcordPolar and AcordTraverse classes.
+  More algorithms in Acord2 class
+
+Version 2.06 July 2019
+
+* Fixed two bugs (html output format and segmentation fault)
+
 Version 2.05 May 2019
 
 * The program gama-local for adjustment of local surveying networks

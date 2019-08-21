@@ -24,7 +24,7 @@
 
 using GNU_gama::LocalNetworkAdjustmentResults;
 
-int main(int argc, char* argv[])
+int main(int /*argc*/, char* argv[])
 {
   std::cout << "max.diff XML-XML for "
             << argv[1] << "\n";
