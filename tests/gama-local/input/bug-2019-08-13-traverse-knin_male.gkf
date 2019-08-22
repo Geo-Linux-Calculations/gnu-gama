@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gama-local>
+  <network axes-xy="sw">
+    <description>vyrovnani site, zdrojovy soubor automaticky generovan programem KOKES</description>
+    <parameters sigma-apr="10" conf-pr="0.95" tol-abs="1000" sigma-act="aposteriori" />
+    <points-observations direction-stdev="10" distance-stdev="5 5"  >
+  <obs from="4253">
+    <distance  to="4254"              val="72.150"           stdev="5.361"          />
+    <direction to="4254"              val="170.8290"         stdev="9.995"          />
+  </obs>
+  <obs from="4254">
+    <distance  to="4253"              val="72.150"           stdev="5.361"          />
+    <direction to="4253"              val="399.9990"         stdev="9.995"          />
+    <distance  to="4261"              val="39.480"           stdev="5.197"          />
+    <direction to="4261"              val="90.7710"          stdev="9.995"          />
+  </obs>
+  <obs from="4261">
+    <distance  to="4254"              val="39.490"           stdev="5.197"          />
+    <direction to="4254"              val="399.9990"         stdev="9.995"          />
+    <distance  to="4262"              val="56.550"           stdev="5.283"          />
+    <direction to="4262"              val="218.1870"         stdev="9.995"          />
+  </obs>
+  <obs from="4262">
+    <distance  to="4261"              val="56.550"           stdev="5.283"          />
+    <direction to="4261"              val="0.0000"           stdev="9.995"          />
+    <distance  to="4263"              val="43.640"           stdev="5.218"          />
+    <direction to="4263"              val="177.2970"         stdev="9.995"          />
+  </obs>
+  <obs from="4263">
+    <distance  to="4262"              val="43.650"           stdev="5.218"          />
+    <direction to="4262"              val="0.0000"           stdev="9.995"          />
+    <distance  to="4264"              val="24.700"           stdev="5.124"          />
+    <direction to="4264"              val="207.6940"         stdev="9.995"          />
+  </obs>
+  <obs from="4264">
+    <distance  to="4263"              val="24.710"           stdev="5.124"          />
+    <direction to="4263"              val="0.0000"           stdev="9.995"          />
+  </obs>
+  <point id="4253"   y="759010.685" x="1075177.191"                       fix="XY" />
+  <point id="4254"   y="758998.005" x="1075248.205"                       fix="XY" />
+  <point id="4261"                                                        adj="xy" />
+  <point id="4262"                                                        adj="xy" />
+  <point id="4263"                                                        adj="xy" />
+  <point id="4264"   y="758839.942" x="1075210.370"                       fix="XY" />
+</points-observations>
+</network>
+</gama-local>

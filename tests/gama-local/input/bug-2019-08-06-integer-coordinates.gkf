@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network>
+
+<description>
+  Simple vector demo with all coordinates and vector elements being
+  integers and the sum of residual squares zero; must be explicitly
+  handled in studentized residuals to avoid division by zero.
+</description>
+
+<!-- Octave
+
+A = [100 100 100];
+B = [200 200 150];
+C = [300  50 120];
+D = [390 200 160];
+E = [400   0 130];
+
+fmt = '%2s = %7.2f  %7.2f %7.2f \n';
+
+printf(fmt, 'A', A);
+printf(fmt, 'B', B);
+printf(fmt, 'C', C);
+printf(fmt, 'D', D);
+printf(fmt, 'E', E);
+
+printf('\n\n');
+
+printf(fmt, 'ab', B - A)
+printf(fmt, 'ea', A - E);
+printf(fmt, 'cb', B - C);
+printf(fmt, 'dc', C - D);
+printf(fmt, 'de', E - D);
+
+-->
+
+<parameters
+   sigma-act = "aposteriori"
+/>
+
+<points-observations>
+
+<point id="A" x="100.000" y="100.000" z="100.000" fix="xyz" />
+<point id="B" adj="XYZ" />
+<point id="C" adj="XYZ" />
+<point id="D" adj="XYZ" />
+<point id="E" adj="XYZ" />
+
+<vectors>
+   <vec from="A" to="B" dx=" 100" dy=" 100" dz=" 50" />
+   <vec from="E" to="A" dx="-300" dy=" 100" dz="-30" />
+   <vec from="C" to="B" dx="-100" dy=" 150" dz=" 30" />
+   <vec from="D" to="C" dx=" -90" dy="-150" dz="-40" />
+   <vec from="D" to="E" dx="  10" dy="-200" dz="-30" />
+
+   <cov-mat dim="15" band="0">
+      10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+   </cov-mat>
+</vectors>
+
+</points-observations>
+</network>
+</gama-local>
