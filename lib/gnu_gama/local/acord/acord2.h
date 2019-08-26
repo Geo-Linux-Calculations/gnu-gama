@@ -43,10 +43,11 @@ namespace GNU_gama { namespace local {
       friend class AcordAlgorithm;
       friend class AcordAzimuth;
       friend class AcordZderived;
-      friend class AcordHdiffs;
-      friend class AcordVectors;
+      friend class AcordHdiff;
+      friend class AcordVector;
       friend class AcordPolar;
       friend class AcordTraverse;
+      friend class AcordIntersection;
       friend class AcordWeakChecks;
 
       struct Point
@@ -69,7 +70,9 @@ namespace GNU_gama { namespace local {
       std::pair<double, bool> get_dir(Observation* o);
       bool in_missingXY(PointID pt);
 
-      double median_max_norm_ = 0.1;     // tollerance for rejecting median of xy / z
+      // tolerance for rejecting median of xy / z
+      double median_max_norm_ = 0.1;
+
       bool slope_observations_ = false;
 
       PointData&       PD_;

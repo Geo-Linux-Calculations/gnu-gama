@@ -18,7 +18,7 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gnu_gama/local/acord/acordhdiffs.h>
+#include <gnu_gama/local/acord/acordhdiff.h>
 #include <gnu_gama/local/observation.h>
 #include <utility>
 #include <unordered_set>
@@ -28,13 +28,13 @@
 using namespace GNU_gama::local;
 
 
-AcordHdiffs::AcordHdiffs(Acord2* acord2)
+AcordHdiff::AcordHdiff(Acord2* acord2)
   : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
 {
 }
 
 
-void AcordHdiffs::prepare()
+void AcordHdiff::prepare()
 {
   if (prepared_) return;
 
@@ -66,7 +66,7 @@ void AcordHdiffs::prepare()
 }
 
 
-void AcordHdiffs::remove_hdiffs_between_known_heights()
+void AcordHdiff::remove_hdiffs_between_known_heights()
 {
   auto f = [&](hdiff h)
     {
@@ -78,7 +78,7 @@ void AcordHdiffs::remove_hdiffs_between_known_heights()
 }
 
 
-void AcordHdiffs::execute()
+void AcordHdiff::execute()
 {
   if (!prepared_) prepare();
 

@@ -18,8 +18,8 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_GAMA_LOCAL_ACORVECTORS_H_
-#define GNU_GAMA_LOCAL_ACORVECTORS_H_
+#ifndef GNU_GAMA_LOCAL_ACORVECTOR_H_
+#define GNU_GAMA_LOCAL_ACORVECTOR_H_
 
 #include <map>
 #include <gnu_gama/local/acord/acordalgorithm.h>
@@ -28,15 +28,15 @@
 namespace GNU_gama {
   namespace local {
 
-    class AcordVectors final : public AcordAlgorithm
+    class AcordVector final : public AcordAlgorithm
     {
     public:
-      AcordVectors(Acord2* acord2);
+      AcordVector(Acord2* acord2);
 
       virtual void prepare();
       virtual void execute();
 
-      virtual const char* className() const { return "AcordVectors"; }
+      virtual const char* className () const { return "AcordVectors"; }
 
     private:
       Acord2& AC;

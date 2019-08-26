@@ -24,12 +24,13 @@
 #include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acordazimuth.h>
 #include <gnu_gama/local/acord/acordzderived.h>
-#include <gnu_gama/local/acord/acordhdiffs.h>
+#include <gnu_gama/local/acord/acordhdiff.h>
 #include <gnu_gama/local/acord/acordpolar.h>
 #include <gnu_gama/local/acord/acordtraverse.h>
-#include <gnu_gama/local/acord/acordvectors.h>
+#include <gnu_gama/local/acord/acordvector.h>
 #include <gnu_gama/local/acord/acordweakchecks.h>
 #include <gnu_gama/local/acord/acordstatistics.h>
+#include <gnu_gama/local/acord/acordintersection.h>
 #include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_helper.h>
@@ -144,7 +145,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
     }
   if (!HDiffClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordHdiffs>  (this) );
+      algorithms_.push_back( make_shared<AcordHdiff>  (this) );
     }
   if (slope_observations_)
     {
@@ -152,12 +153,13 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
     }
   if (!VectorsClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordVectors>(this) );
+      algorithms_.push_back( make_shared<AcordVector>(this) );
     }
   if (!SPClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordPolar>   (this) );
-      algorithms_.push_back( make_shared<AcordTraverse>(this) );
+      algorithms_.push_back( make_shared<AcordPolar>       (this) );
+      algorithms_.push_back( make_shared<AcordTraverse>    (this) );
+      algorithms_.push_back( make_shared<AcordIntersection>(this) );
     }
   algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
 }

@@ -1,8 +1,8 @@
 /*
-  GNU Gama C++ library
+  GNU Gama -- Heights derived from zenith angles and distances
   Copyright (C) 2019  Ales Cepek <cepek@gnu.org>
 
-  This file is part of the GNU Gama C++ library
+  This file is part of the GNU Gama C++ library.
 
   GNU Gama is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,45 +18,37 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GNU_GAMA_LOCAL_ACORDHDIFFS_H_
-#define GNU_GAMA_LOCAL_ACORDHDIFFS_H_
+#ifndef GAMA_LOCAL_ACORD2_INTERSECTION_H_
+#define GAMA_LOCAL_ACORD2_INTERSECTION_H_
 
-#include <map>
 #include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acord2.h>
 
-namespace GNU_gama {
-  namespace local {
+namespace GNU_gama {  namespace local
+  {
 
-    class AcordHdiffs final : public AcordAlgorithm
+    class AcordIntersection final : public AcordAlgorithm
     {
     public:
-      AcordHdiffs(Acord2* acord2);
+
+      AcordIntersection(Acord2* acord2);
 
       virtual void prepare();
       virtual void execute();
+      virtual const char* className() const { return "AcordIntersection"; }
 
-      virtual const char* className() const { return "AcordHdiffs"; }
+      inline bool completed() const
+      {
+        return completed_;
+      }
+
 
     private:
       Acord2& AC;
       PointData & PD;
       ObservationData& OD;
-
-      struct hdiff
-      {
-        PointID from;
-        PointID to;
-        double  hd;
-        bool    active;
-      };
-
-      void remove_hdiffs_between_known_heights();
-
-      std::vector<hdiff> hdiffs_;
-      GNU_gama::local::PointData lpd_;
     };
 
-  }
-}
+  }} //namespace GNU_gama::local
+
 #endif

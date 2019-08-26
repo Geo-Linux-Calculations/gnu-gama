@@ -18,7 +18,7 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gnu_gama/local/acord/acordvectors.h>
+#include <gnu_gama/local/acord/acordvector.h>
 #include <gnu_gama/local/observation.h>
 #include <utility>
 #include <unordered_set>
@@ -28,13 +28,13 @@
 using namespace GNU_gama::local;
 
 
-AcordVectors::AcordVectors(Acord2* acord2)
+AcordVector::AcordVector(Acord2* acord2)
   : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
 {
 }
 
 
-void AcordVectors::prepare()
+void AcordVector::prepare()
 {
   if (prepared_) return;
 
@@ -92,7 +92,7 @@ void AcordVectors::prepare()
 }
 
 
-void AcordVectors::remove_vectors_between_known_xyz()
+void AcordVector::remove_vectors_between_known_xyz()
 {
   auto f = [&](pvector h)
     {
@@ -107,7 +107,7 @@ void AcordVectors::remove_vectors_between_known_xyz()
 }
 
 
-void AcordVectors::execute()
+void AcordVector::execute()
 {
   if (!prepared_) prepare();
 
