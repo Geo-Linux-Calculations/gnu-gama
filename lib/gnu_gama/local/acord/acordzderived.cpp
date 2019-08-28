@@ -102,6 +102,18 @@ void AcordZderived::execute()
                       double h = AC.PD_[s->to()].z() - s->value()*sin(vertical_angle);
                       sp_height.push_back(h);
                     }
+
+                const LocalPoint& from = AC.PD_[za->from()];
+                const LocalPoint& to   = AC.PD_[za->to()];
+                if (from.test_xy() && to.test_xy())
+                  {
+                    double dx = from.x() - to.x();
+                    double dy = from.y() - to.y();
+                    double d  = std::sqrt(dx*dx + dy*dy);
+                    double h  = to.z() - d*tan(vertical_angle);
+                    sp_height.push_back(h);
+                    std::cerr << __LINE__ << " " << h << "\n";
+                  }
               }
 
             if (sp_height.empty()) continue;  // next spc
@@ -139,7 +151,7 @@ void AcordZderived::execute()
             }
         }
 
-        if (zangle.empty() || (distance.empty() && sdistance.empty())) continue; // next spc
+        //if (zangle.empty() /*|| (distance.empty() && sdistance.empty())*/) continue; // next spc
 
         for (Z_Angle* za : zangle)
           {
@@ -156,6 +168,17 @@ void AcordZderived::execute()
                   double h = station_z + s->value()*sin(vertical_angle);
                   AC.candidate_z_.insert({s->to(), h});
                 }
+
+            const LocalPoint& from = AC.PD_[za->from()];
+            const LocalPoint& to   = AC.PD_[za->to()];
+            if (from.test_xy() && to.test_xy())
+              {
+                double dx = from.x() - to.x();
+                double dy = from.y() - to.y();
+                double d  = std::sqrt(dx*dx + dy*dy);
+                double h  = station_z + d*tan(vertical_angle);
+                AC.candidate_z_.insert({za->to(), h});
+              }
           }
 
     }  // spc loop for all stand point clusters

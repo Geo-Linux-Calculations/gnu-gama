@@ -427,7 +427,7 @@ void Acord2::get_medians_z()
       auto n = values.size();
       double median = (values[(n-1)/2] + values[n/2])/2;
       PD_[id].set_z(median);
-      candidate_z_.erase(id);
+      missing_z_.erase(id);
     }
 }
 
@@ -482,14 +482,19 @@ void Acord2::debug_info(std::string text) const
   using std::setw;
   using Pair = std::pair<PointID, LocalPoint>;
 
-  if (text.find("start") != std::string::npos) cerr << endl;
+  bool start = text.find("start") != std::string::npos;
+  bool end   = text.find("end")   != std::string::npos;
+
+  if (start) cerr << endl;
 
   cerr << setw(17) << text;
-  if (text[0] != '-')
-    cerr
+  if (start)
+    cerr << "           ---- known/candidate/missing ----";
+  else
+    if (!end) cerr
       << " : "
       << "alg " << setw(2)  << algorithms_.size()
-      << "   known/same/missing   xy " << setw(2)
+      << "  xy " << setw(2)
       << count_if(PD_.begin(),PD_.end(),[](Pair p) {
          return p.second.test_xy() && p.second.active_xy();})
       << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
