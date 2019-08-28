@@ -103,7 +103,7 @@ namespace GNU_gama { namespace local {
       std::vector<std::shared_ptr<AcordAlgorithm>> algorithms_;
 
 #ifdef DEBUG_ACORD2
-      void debug_info(const char* text) const;
+      void debug_info(std::string text) const;
 #endif
     };
 

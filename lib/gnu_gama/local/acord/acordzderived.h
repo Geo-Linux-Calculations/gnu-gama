@@ -42,9 +42,6 @@ namespace GNU_gama {  namespace local
         return completed_;
       }
 
-      // bool prepared_  { false };
-      // bool completed_ { false };
-
     private:
       Acord2& AC;
       PointData & PD;

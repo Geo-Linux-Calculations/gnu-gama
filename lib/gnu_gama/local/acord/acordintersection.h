@@ -23,6 +23,7 @@
 
 #include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acord2.h>
+#include <gnu_gama/local/median/g2d_coordinates.h>
 
 namespace GNU_gama {  namespace local
   {
@@ -47,6 +48,8 @@ namespace GNU_gama {  namespace local
       Acord2& AC;
       PointData & PD;
       ObservationData& OD;
+
+      ApproximateCoordinates approxy_;
     };
 
   }} //namespace GNU_gama::local

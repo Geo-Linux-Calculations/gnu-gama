@@ -22,8 +22,8 @@
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_cogo.h>
 #include <gnu_gama/local/median/g2d_coordinates.h>
-//#include <gnu_gama/local/acord/approx_heights.h>
-//#include <gnu_gama/local/acord/approx_vectors.h>
+#include <gnu_gama/local/acord/approx_heights.h>
+#include <gnu_gama/local/acord/approx_vectors.h>
 #include <gnu_gama/local/acord/reduce_observations.h>
 
 #include <iomanip>
@@ -74,11 +74,11 @@ void Acord::execute()
         computed_xy = computed_z = computed_xyz = 0;
         total_xy = total_z = total_xyz = 0;
 
-        // ApproximateHeights ah(PD, OD);
-        // ah.execute();
-        //
-        // ApproximateVectors av(PD, OD);
-        // av.execute();
+        ApproximateHeights ah(PD, OD);
+        ah.execute();
+
+        ApproximateVectors av(PD, OD);
+        av.execute();
 
         {
           // all transformed slope distances go to a single standpoint

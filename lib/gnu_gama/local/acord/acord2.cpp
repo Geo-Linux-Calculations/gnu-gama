@@ -141,11 +141,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 
   if (has_azimuths)
     {
-      algorithms_.push_back( make_shared<AcordAzimuth> (this) );
+      algorithms_.push_back( make_shared<AcordAzimuth>(this) );
     }
   if (!HDiffClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordHdiff>  (this) );
+      algorithms_.push_back( make_shared<AcordHdiff>(this) );
     }
   if (slope_observations_)
     {
@@ -157,11 +157,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
     }
   if (!SPClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordPolar>       (this) );
-      algorithms_.push_back( make_shared<AcordTraverse>    (this) );
+      algorithms_.push_back( make_shared<AcordPolar>(this) );
+      algorithms_.push_back( make_shared<AcordTraverse>(this) );
+      algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
       algorithms_.push_back( make_shared<AcordIntersection>(this) );
     }
-  algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
 }
 
 
@@ -178,8 +178,6 @@ StandPoint* Acord2::find_standpoint(PointID pt)
 
 void Acord2::execute()
 {
-  //DBG_prnt("Acord2::execute xy known/same/missing")
-
   size_type after {},  before = missing_xy_.size() + missing_z_.size();
   if (before == 0) return;
 
@@ -187,7 +185,7 @@ void Acord2::execute()
     {
       before = missing_xy_.size() + missing_z_.size();
 
-      DBG("\n---- start ----");
+      DBG("---- start ----");
       for (auto a : algorithms_)
 	{
 	  a->execute();
@@ -231,6 +229,10 @@ void Acord2::execute()
         }
     }
 
+#ifdef DEBUG_ACORD2
+  std::cerr << "\nACORD2::execute() : missing xy " << missing_xy_.size()
+            << "  missing z " << missing_z_.size() << std::endl;
+#endif
 }
 
 
@@ -473,28 +475,32 @@ bool Acord2::transform_traverse(Traverse& traverse)
 
 
 #ifdef DEBUG_ACORD2
-void Acord2::debug_info(const char* text) const
+void Acord2::debug_info(std::string text) const
 {
   using std::cerr;
   using std::endl;
   using std::setw;
   using Pair = std::pair<PointID, LocalPoint>;
 
-  cerr
-    << setw(15) << text << " : "
-    << "alg " << setw(2)  << algorithms_.size()
-    << "   known/same/missing   xy " << setw(2)
-    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-        return p.second.test_xy() && p.second.active_xy();})
-    << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
-    << count_if(PD_.begin(),PD_.end(),[](Pair p){
-        return !p.second.test_xy() && p.second.active_xy();})
-    << "    z " << setw(2)
-    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-        return p.second.test_z() && p.second.active_z();})
-    << " / "  << setw(2) << candidate_z_.size() << " / " << setw(2)
-    << count_if(PD_.begin(),PD_.end(),[](Pair p){
-        return !p.second.test_z() && p.second.active_z();})
-    << std::endl;
+  if (text.find("start") != std::string::npos) cerr << endl;
+
+  cerr << setw(17) << text;
+  if (text[0] != '-')
+    cerr
+      << " : "
+      << "alg " << setw(2)  << algorithms_.size()
+      << "   known/same/missing   xy " << setw(2)
+      << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+         return p.second.test_xy() && p.second.active_xy();})
+      << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
+      << count_if(PD_.begin(),PD_.end(),[](Pair p){
+         return !p.second.test_xy() && p.second.active_xy();})
+      << "    z " << setw(2)
+      << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+         return p.second.test_z() && p.second.active_z();})
+      << " / "  << setw(2) << candidate_z_.size() << " / " << setw(2)
+      << count_if(PD_.begin(),PD_.end(),[](Pair p){
+         return !p.second.test_z() && p.second.active_z();});
+  cerr << std::endl;
 }
 #endif
