@@ -179,53 +179,59 @@ StandPoint* Acord2::find_standpoint(PointID pt)
 void Acord2::execute()
 {
   size_type after {},  before = missing_xy_.size() + missing_z_.size();
-  if (before == 0) return;
 
-  do  // while some points need/can be solved
+  if (before > 0)
     {
-      before = missing_xy_.size() + missing_z_.size();
+      do  // while some points need/can be solved
+        {
+          before = missing_xy_.size() + missing_z_.size();
 
-      DBG("---- start ----");
-      for (auto a : algorithms_)
-	{
-	  a->execute();
-	  DBG(a->className());
-	}
+          DBG("---- start ----");
 
-      algorithms_.erase(
-	  std::remove_if(
-	     algorithms_.begin(),algorithms_.end(),
-	     [](std::shared_ptr<AcordAlgorithm> a){ return a->completed ();}
-	  ),
-	  algorithms_.end()
-	);
-      DBG("----  end  ----");
-
-
-      after = missing_xy_.size() + missing_z_.size();
-
-      get_medians();
-      candidate_xy_.clear();
-      get_medians_z();
-      candidate_z_.clear();
-      traverses.clear();
-    }
-  while (after != 0 && after < before);
-
-  //iterate once more over all SPClusters
-  // and compute missing orientations
-  for (auto cluster : OD_.clusters)
-    {
-      if (StandPoint* sp = dynamic_cast<StandPoint*>(cluster))
-       {
-          if (!sp->test_orientation())
+          for (auto a : algorithms_)
             {
-              Orientation ori(PD_, sp->observation_list);
-              double orientation_shift;
-              int n;
-              ori.orientation(sp, orientation_shift, n);
-              if (n > 0) sp->set_orientation(orientation_shift);
+              a->execute();
+              DBG(a->className());
             }
+
+          using std::shared_ptr;
+          algorithms_.erase
+            (
+              std::remove_if
+                (
+                  algorithms_.begin(),algorithms_.end(),
+                  [](shared_ptr<AcordAlgorithm> a) { return a->completed(); }
+                ),
+              algorithms_.end()
+            );
+
+          DBG("----  end  ----");
+
+          after = missing_xy_.size() + missing_z_.size();
+
+          get_medians();
+          candidate_xy_.clear();
+          get_medians_z();
+          candidate_z_.clear();
+          traverses.clear();
+        }
+      while (after != 0 && after < before);
+    }
+
+  /* Iterate once more over all SPClusters  and compute missing orientations.
+   *
+   * This loop is needed even in the case when all approximat coordinates
+   * are available.
+   */
+  for (StandPoint* sp : SPClusters_)
+    {
+      if (!sp->test_orientation())
+        {
+          Orientation ori(PD_, sp->observation_list);
+          double orientation_shift;
+          int n;
+          ori.orientation(sp, orientation_shift, n);
+          if (n > 0) sp->set_orientation(orientation_shift);
         }
     }
 
