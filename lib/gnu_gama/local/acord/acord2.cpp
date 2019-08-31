@@ -40,18 +40,13 @@
 #include <algorithm>
 #include <unordered_set>
 
-using namespace GNU_gama::local;
-
 #ifdef DEBUG_ACORD2
-
 #include <iostream>
 #include <iomanip>
-
-#define DBG(text) debug_info(text)
-
-#else
-#define DBG
 #endif
+
+using namespace GNU_gama::local;
+
 
 Acord2::Acord2(PointData& pd, ObservationData& od)
   : PD_(pd), OD_(od)
@@ -190,12 +185,17 @@ void Acord2::execute()
         {
           before = missing_xy_.size() + missing_z_.size();
 
-          DBG("---- start ----");
-
+#ifdef DEBUG_ACORD2
+          std::cerr << "\n" << std::setw(27) << " "
+                    << " ---- known/candidate/missing ----\n";
+#endif
           for (auto a : algorithms_)
             {
               a->execute();
-              DBG(a->className());
+
+#ifdef DEBUG_ACORD2
+             debug_info(a->className());
+#endif
             }
 
           using std::shared_ptr;
@@ -208,8 +208,6 @@ void Acord2::execute()
                 ),
               algorithms_.end()
             );
-
-          DBG("----  end  ----");
 
           after = missing_xy_.size() + missing_z_.size();
 
