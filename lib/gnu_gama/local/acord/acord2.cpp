@@ -483,39 +483,27 @@ bool Acord2::transform_traverse(Traverse& traverse)
     }
 }
 
-
 #ifdef DEBUG_ACORD2
 void Acord2::debug_info(std::string text) const
 {
-  using std::cerr;
-  using std::endl;
-  using std::setw;
   using Pair = std::pair<PointID, LocalPoint>;
 
-  bool start = text.find("start") != std::string::npos;
-  bool end   = text.find("end")   != std::string::npos;
-
-  if (start) cerr << endl;
-
-  cerr << setw(17) << text;
-  if (start)
-    cerr << "           ---- known/candidate/missing ----";
-  else
-    if (!end) cerr
-      << " : "
-      << "alg " << setw(2)  << algorithms_.size()
-      << "  xy " << setw(2)
-      << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-         return p.second.test_xy() && p.second.active_xy();})
-      << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
-      << count_if(PD_.begin(),PD_.end(),[](Pair p){
-         return !p.second.test_xy() && p.second.active_xy();})
-      << "    z " << setw(2)
-      << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-         return p.second.test_z() && p.second.active_z();})
-      << " / "  << setw(2) << candidate_z_.size() << " / " << setw(2)
-      << count_if(PD_.begin(),PD_.end(),[](Pair p){
-         return !p.second.test_z() && p.second.active_z();});
-  cerr << std::endl;
+  std::cerr
+    << setw(17) << text
+    << " : "
+    << "alg "  << std::setw(2)  << algorithms_.size()
+    << "  xy " << std::setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+       return p.second.test_xy() && p.second.active_xy();})
+    << " / "  << std::setw(2) << candidate_xy_.size() << " / " << std::setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p){
+       return !p.second.test_xy() && p.second.active_xy();})
+    << "    z " << std::setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p) {
+       return p.second.test_z() && p.second.active_z();})
+    << " / "  << std::setw(2) << candidate_z_.size() << " / " << std::setw(2)
+    << count_if(PD_.begin(),PD_.end(),[](Pair p){
+       return !p.second.test_z() && p.second.active_z();})
+    << std::endl;
 }
 #endif
