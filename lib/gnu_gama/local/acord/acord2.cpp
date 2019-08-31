@@ -31,6 +31,7 @@
 #include <gnu_gama/local/acord/acordweakchecks.h>
 #include <gnu_gama/local/acord/acordstatistics.h>
 #include <gnu_gama/local/acord/acordintersection.h>
+#include <gnu_gama/local/acord/reduce_observations.h>
 #include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_helper.h>
@@ -178,6 +179,9 @@ StandPoint* Acord2::find_standpoint(PointID pt)
 
 void Acord2::execute()
 {
+  ReducedObservations RO(PD_, OD_);
+  RO.execute();
+
   size_type after {},  before = missing_xy_.size() + missing_z_.size();
 
   if (before > 0)
@@ -217,6 +221,8 @@ void Acord2::execute()
         }
       while (after != 0 && after < before);
     }
+
+  RO.execute();
 
   /* Iterate once more over all SPClusters  and compute missing orientations.
    *
