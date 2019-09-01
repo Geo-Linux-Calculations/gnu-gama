@@ -51,7 +51,7 @@ using namespace GNU_gama::local;
 Acord2::Acord2(PointData& pd, ObservationData& od)
   : PD_(pd), OD_(od)
 {
-  bool has_azimuths = false;
+  has_azimuths_ = false;
   slope_observations_ = false;
 
   for (auto i : OD_.clusters)
@@ -60,13 +60,13 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 	{
 	  SPClusters_.push_back(sp);
 
-	  if (!has_azimuths)
+	  if (!has_azimuths_)
 	    {
 	      for (const auto observation : sp->observation_list)
 		{
 		  if (dynamic_cast<const Azimuth*>(observation) != nullptr)
 		    {
-		      has_azimuths = true;
+		      has_azimuths_ = true;
 		      break;
 		    }
 		}
@@ -81,11 +81,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 		      slope_observations_ = true;
 		      break;
 		    }
-		  /*if (dynamic_cast<const S_Distance*>(observation) != nullptr)
+		  if (dynamic_cast<const S_Distance*>(observation) != nullptr)
 		    {
 		      slope_observations_ = true;
 		      break;
-		    }*/
+		    }
 		}
 	    }
 	}
@@ -135,7 +135,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 
   using std::make_shared;
 
-  if (has_azimuths)
+  if (has_azimuths_)
     {
       algorithms_.push_back( make_shared<AcordAzimuth>(this) );
     }
@@ -489,7 +489,7 @@ void Acord2::debug_info(std::string text) const
   using Pair = std::pair<PointID, LocalPoint>;
 
   std::cerr
-    << setw(17) << text
+    << std::setw(17) << text
     << " : "
     << "alg "  << std::setw(2)  << algorithms_.size()
     << "  xy " << std::setw(2)

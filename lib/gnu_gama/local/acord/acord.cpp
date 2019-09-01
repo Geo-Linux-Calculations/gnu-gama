@@ -81,7 +81,9 @@ void Acord::execute()
         av.execute();
 
         {
-          // all transformed slope distances go to a single standpoint
+          /* all transformed slope distances and azimuths
+           * go to a temporary single standpoint
+           */
           StandPoint* standpoint = new StandPoint(&OD);
           standpoint->set_orientation(PD.xNorthAngle());
           for (ObservationData::iterator t=OD.begin(), e=OD.end(); t!=e; ++t)
