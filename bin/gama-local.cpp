@@ -438,7 +438,7 @@ int main(int argc, char **argv)
         acord2.execute();
 
         Acord acord(IS->PD, IS->OD);
-        acord.execute();
+        //acord.execute();
 
         ReducedObservationsText(IS,&(acord.RO), cout);
 

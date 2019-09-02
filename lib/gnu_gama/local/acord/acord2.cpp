@@ -177,7 +177,7 @@ void Acord2::execute()
   ReducedObservations RO(PD_, OD_);
   RO.execute();
 
-  size_type after {},  before = missing_xy_.size() + missing_z_.size();
+  size_type after {}, before = missing_xy_.size() + missing_z_.size();
 
   if (before > 0)
     {
@@ -209,13 +209,13 @@ void Acord2::execute()
               algorithms_.end()
             );
 
-          after = missing_xy_.size() + missing_z_.size();
-
           get_medians();
           candidate_xy_.clear();
           get_medians_z();
           candidate_z_.clear();
           traverses.clear();
+
+          after = missing_xy_.size() + missing_z_.size();
         }
       while (after != 0 && after < before);
     }

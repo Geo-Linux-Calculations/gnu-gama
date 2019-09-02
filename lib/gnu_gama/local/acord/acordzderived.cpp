@@ -112,7 +112,6 @@ void AcordZderived::execute()
                     double d  = std::sqrt(dx*dx + dy*dy);
                     double h  = to.z() - d*tan(vertical_angle);
                     sp_height.push_back(h);
-                    std::cerr << __LINE__ << " " << h << "\n";
                   }
               }
 
