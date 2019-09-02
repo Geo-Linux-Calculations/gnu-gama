@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 
     std::cout << "         adjusted coordinates "
               << std::scientific << std::setprecision(3) << std::setw(11)
-              << maxdiffxyz << " [m] ";
+              << maxdiffxyz << " [m]";
     if (std::abs(maxdiffxyz) >= 1e-5)
       {
         std::cout << " FAILED";

@@ -21,6 +21,9 @@
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
 #include <gnu_gama/local/sqlitereader.h>
 #endif
+#ifdef DEBUG_DISABLE_ACORD2
+#include <gnu_gama/local/results/text/reduced_observations.h>
+#endif
 
 #include <gnu_gama/outstream.h>
 
@@ -47,7 +50,6 @@
 #include <gnu_gama/local/results/text/adjusted_observations.h>
 #include <gnu_gama/local/results/text/adjusted_unknowns.h>
 #include <gnu_gama/local/results/text/outlying_abs_terms.h>
-#include <gnu_gama/local/results/text/reduced_observations.h>
 #include <gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h>
 #include <gnu_gama/local/results/text/residuals_observations.h>
 #include <gnu_gama/local/results/text/error_ellipses.h>
@@ -434,13 +436,26 @@ int main(int argc, char **argv)
 
         AcordStatistics stats(IS->PD, IS->OD);
 
+        /* Acord2 class for computing approximate values of unknown paramaters
+         * (needed for linearization of project equations) superseded previous
+         * class Acord.
+         *
+         * Acord2 apart from other algorithms relies on a class
+         * ApproximateCoordinates (used also in Acord) for solving unknown xy
+         * by intersections and local transformations. Original author
+         * of ApproximateCoordinates is Jiri Vesely.
+         *
+         * Class Acord2 was introduced for better handling of traverses.
+         */
+#ifndef DEBUG_DISABLE_ACORD2
         Acord2 acord2(IS->PD, IS->OD);
         acord2.execute();
-
+#else
         Acord acord(IS->PD, IS->OD);
-        //acord.execute();
+        acord.execute();
 
         ReducedObservationsText(IS,&(acord.RO), cout);
+#endif
 
         if (IS->correction_to_ellipsoid())
           {
