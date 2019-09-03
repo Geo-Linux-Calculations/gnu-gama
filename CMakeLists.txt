@@ -9,7 +9,6 @@ add_definitions(-DGNU_gama_expat_1_1)
 #add_definitions(-DA2G_DEBUG)
 
 # Library
-#file(GLOB_RECURSE SRC_GAMA lib/lib/gnu_gama/*.cpp lib/lib/gnu_gama/*.h)
 set(SRC_GAMA
    lib/gnu_gama/e3.cpp
    lib/gnu_gama/e3.h

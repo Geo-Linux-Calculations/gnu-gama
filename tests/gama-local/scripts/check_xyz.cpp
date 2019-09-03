@@ -18,13 +18,17 @@
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
 #include "check_xyz.h"
-
+#include <iostream>
 #include <gnu_gama/xml/gkfparser.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/test_linearization_visitor.h>
+#include <gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h>
+#ifdef DEBUG_DISABLE_ACORD2
+#include <gnu_gama/local/results/text/reduced_observations.h>
+#endif
 
 double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
 		  GNU_gama::local::LocalNetwork* lnet2)
@@ -159,21 +163,26 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
         //  }
 	lnet->remove_inconsistency();
 
+#ifndef DEBUG_DISABLE_ACORD2
         Acord2 acord2(lnet->PD, lnet->OD);
         acord2.execute();
-
+#else
         Acord acord(lnet->PD, lnet->OD);
         acord.execute();
-        //ReducedObservationsText(lnet,&(acord.RO), cout);
 
-        /*
-        if (correction_to_ellipsoid)
+        // ReducedObservationsText(lnet,&(acord.RO), std::cout);
+#endif
+
+        if (lnet->correction_to_ellipsoid())
           {
-            ReduceToEllipsoid reduce_to_el(lnet->PD, lnet->OD, el, latitude);
+            using namespace GNU_gama;
+            gama_ellipsoid elnum = ellipsoid(lnet->ellipsoid().c_str());
+            Ellipsoid el;
+            GNU_gama::set(&el, elnum);
+            ReduceToEllipsoid reduce_to_el(lnet->PD, lnet->OD, el, lnet->latitude());
             reduce_to_el.execute();
-            ReducedObservationsToEllipsoidText(lnet, reduce_to_el.getMap(), cout);
+            ReducedObservationsToEllipsoidText(lnet, reduce_to_el.getMap(), std::cout);
           }
-        */
 
         //ApproximateCoordinates(&acord, std::cout);
 
