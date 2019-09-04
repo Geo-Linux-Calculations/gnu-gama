@@ -90,12 +90,12 @@ void AcordWeakChecks::execute()
   std::set<PointID> keys;
   for (auto i : AC.candidate_xy_) keys.insert(i.first);
   for (auto p : keys)
-  {
-	  if (!AC.in_missingXY(p))
-	  {
-		  AC.candidate_xy_.erase(p);
-	  }
-  }
+    {
+      if (!AC.in_missingXY(p))
+        {
+          AC.candidate_xy_.erase(p);
+        }
+    }
 }
 
 // check traverse endpoint: find if there are any observations from
@@ -166,23 +166,23 @@ AcordWeakChecks::check_traverse_endpoint(Acord2::Point pt)
   eit = AC.obs_from_.upper_bound(pt.id);
 
   while (it != eit)
-  {
-	  Observation* obs = (*it).second;
-	  // this means there is an observation from a known point to our
-	  // point
-	  if (!AC.in_missingXY(obs->to()))
-	  {
-		  auto dist = AC.get_dist(obs);
-		  if (dist.second)
-		  {
-			  double calc_dist = distance(PD[obs->to()], pt.coords);
-			  if (std::abs(dist.first - calc_dist) <= AC.median_max_norm_)
-				  return {true, obs->to()};
-		  }
-		  //no point in testing direction if we would not know the orientation anyway
-	  }
-	  ++it;
-  }
+    {
+      Observation* obs = (*it).second;
+      // this means there is an observation from a known point to our
+      // point
+      if (!AC.in_missingXY(obs->to()))
+        {
+          auto dist = AC.get_dist(obs);
+          if (dist.second)
+            {
+              double calc_dist = distance(PD[obs->to()], pt.coords);
+              if (std::abs(dist.first - calc_dist) <= AC.median_max_norm_)
+                return {true, obs->to()};
+            }
+          //no point in testing direction if we would not know the orientation anyway
+        }
+      ++it;
+    }
 
   return {false, PointID()};
 }

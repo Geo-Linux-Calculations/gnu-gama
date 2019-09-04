@@ -63,17 +63,17 @@ void AcordPolar::execute()
                                         AC.SPClusters_.end(),
                                         nullptr),
                             AC.SPClusters_.end() );*/
-	  int N = AC.SPClusters_.size()-1;
-	  int i = 0;
-	  while (i <= N && N > 0)
-	    {
-		  if (!points_from_SPCluster(AC.SPClusters_[i]))
-		    {
-			  std::swap(AC.SPClusters_[i], AC.SPClusters_[N]);
-			  --N;
-		    }
-		  else ++i;
-	    }
+      int N = AC.SPClusters_.size()-1;
+      int i = 0;
+      while (i <= N && N > 0)
+        {
+          if (!points_from_SPCluster(AC.SPClusters_[i]))
+            {
+              std::swap(AC.SPClusters_[i], AC.SPClusters_[N]);
+              --N;
+            }
+          else ++i;
+        }
 
       AC.get_medians();
     }

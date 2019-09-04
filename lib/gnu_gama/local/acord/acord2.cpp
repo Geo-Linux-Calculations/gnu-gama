@@ -31,6 +31,7 @@
 #include <gnu_gama/local/acord/acordweakchecks.h>
 #include <gnu_gama/local/acord/acordstatistics.h>
 #include <gnu_gama/local/acord/acordintersection.h>
+#include <gnu_gama/local/acord/reduce_observations.h>
 #include <gnu_gama/local/bearing.h>
 #include <gnu_gama/local/orientation.h>
 #include <gnu_gama/local/median/g2d_helper.h>
@@ -39,23 +40,18 @@
 #include <algorithm>
 #include <unordered_set>
 
-using namespace GNU_gama::local;
-
 #ifdef DEBUG_ACORD2
-
 #include <iostream>
 #include <iomanip>
-
-#define DBG(text) debug_info(text)
-
-#else
-#define DBG
 #endif
+
+using namespace GNU_gama::local;
+
 
 Acord2::Acord2(PointData& pd, ObservationData& od)
   : PD_(pd), OD_(od)
 {
-  bool has_azimuths = false;
+  has_azimuths_ = false;
   slope_observations_ = false;
 
   for (auto i : OD_.clusters)
@@ -64,13 +60,13 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 	{
 	  SPClusters_.push_back(sp);
 
-	  if (!has_azimuths)
+	  if (!has_azimuths_)
 	    {
 	      for (const auto observation : sp->observation_list)
 		{
 		  if (dynamic_cast<const Azimuth*>(observation) != nullptr)
 		    {
-		      has_azimuths = true;
+		      has_azimuths_ = true;
 		      break;
 		    }
 		}
@@ -85,11 +81,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 		      slope_observations_ = true;
 		      break;
 		    }
-		  /*if (dynamic_cast<const S_Distance*>(observation) != nullptr)
+		  if (dynamic_cast<const S_Distance*>(observation) != nullptr)
 		    {
 		      slope_observations_ = true;
 		      break;
-		    }*/
+		    }
 		}
 	    }
 	}
@@ -139,13 +135,13 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 
   using std::make_shared;
 
-  if (has_azimuths)
+  if (has_azimuths_)
     {
-      algorithms_.push_back( make_shared<AcordAzimuth> (this) );
+      algorithms_.push_back( make_shared<AcordAzimuth>(this) );
     }
   if (!HDiffClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordHdiff>  (this) );
+      algorithms_.push_back( make_shared<AcordHdiff>(this) );
     }
   if (slope_observations_)
     {
@@ -157,11 +153,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
     }
   if (!SPClusters_.empty())
     {
-      algorithms_.push_back( make_shared<AcordPolar>       (this) );
-      algorithms_.push_back( make_shared<AcordTraverse>    (this) );
+      algorithms_.push_back( make_shared<AcordPolar>(this) );
+      algorithms_.push_back( make_shared<AcordTraverse>(this) );
+      algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
       algorithms_.push_back( make_shared<AcordIntersection>(this) );
     }
-  algorithms_.push_back( make_shared<AcordWeakChecks>(this) );
 }
 
 
@@ -178,59 +174,75 @@ StandPoint* Acord2::find_standpoint(PointID pt)
 
 void Acord2::execute()
 {
-  //DBG_prnt("Acord2::execute xy known/same/missing")
+  ReducedObservations RO(PD_, OD_);
+  RO.execute();
 
-  size_type after {},  before = missing_xy_.size() + missing_z_.size();
-  if (before == 0) return;
+  size_type after {}, before = missing_xy_.size() + missing_z_.size();
 
-  do  // while some points need/can be solved
+  if (before > 0)
     {
-      before = missing_xy_.size() + missing_z_.size();
+      do  // while some points need/can be solved
+        {
+          before = missing_xy_.size() + missing_z_.size();
 
-      DBG("\n---- start ----");
-      for (auto a : algorithms_)
-	{
-	  a->execute();
-	  DBG(a->className());
-	}
-
-      algorithms_.erase(
-	  std::remove_if(
-	     algorithms_.begin(),algorithms_.end(),
-	     [](std::shared_ptr<AcordAlgorithm> a){ return a->completed ();}
-	  ),
-	  algorithms_.end()
-	);
-      DBG("----  end  ----");
-
-
-      after = missing_xy_.size() + missing_z_.size();
-
-      get_medians();
-      candidate_xy_.clear();
-      get_medians_z();
-      candidate_z_.clear();
-      traverses.clear();
-    }
-  while (after != 0 && after < before);
-
-  //iterate once more over all SPClusters
-  // and compute missing orientations
-  for (auto cluster : OD_.clusters)
-    {
-      if (StandPoint* sp = dynamic_cast<StandPoint*>(cluster))
-       {
-          if (!sp->test_orientation())
+#ifdef DEBUG_ACORD2
+          std::cerr << "\n" << std::setw(27) << " "
+                    << " ---- known/candidate/missing ----\n";
+#endif
+          for (auto a : algorithms_)
             {
-              Orientation ori(PD_, sp->observation_list);
-              double orientation_shift;
-              int n;
-              ori.orientation(sp, orientation_shift, n);
-              if (n > 0) sp->set_orientation(orientation_shift);
+              a->execute();
+
+#ifdef DEBUG_ACORD2
+             debug_info(a->className());
+#endif
             }
+
+          using std::shared_ptr;
+          algorithms_.erase
+            (
+              std::remove_if
+                (
+                  algorithms_.begin(),algorithms_.end(),
+                  [](shared_ptr<AcordAlgorithm> a) { return a->completed(); }
+                ),
+              algorithms_.end()
+            );
+
+          get_medians();
+          candidate_xy_.clear();
+          get_medians_z();
+          candidate_z_.clear();
+          traverses.clear();
+
+          after = missing_xy_.size() + missing_z_.size();
+        }
+      while (after != 0 && after < before);
+    }
+
+  RO.execute();
+
+  /* Iterate once more over all SPClusters  and compute missing orientations.
+   *
+   * This loop is needed even in the case when all approximat coordinates
+   * are available.
+   */
+  for (StandPoint* sp : SPClusters_)
+    {
+      if (!sp->test_orientation())
+        {
+          Orientation ori(PD_, sp->observation_list);
+          double orientation_shift;
+          int n;
+          ori.orientation(sp, orientation_shift, n);
+          if (n > 0) sp->set_orientation(orientation_shift);
         }
     }
 
+#ifdef DEBUG_ACORD2
+  std::cerr << "\nACORD2::execute() : missing xy " << missing_xy_.size()
+            << "  missing z " << missing_z_.size() << std::endl;
+#endif
 }
 
 
@@ -425,7 +437,7 @@ void Acord2::get_medians_z()
       auto n = values.size();
       double median = (values[(n-1)/2] + values[n/2])/2;
       PD_[id].set_z(median);
-      candidate_z_.erase(id);
+      missing_z_.erase(id);
     }
 }
 
@@ -471,30 +483,27 @@ bool Acord2::transform_traverse(Traverse& traverse)
     }
 }
 
-
 #ifdef DEBUG_ACORD2
-void Acord2::debug_info(const char* text) const
+void Acord2::debug_info(std::string text) const
 {
-  using std::cerr;
-  using std::endl;
-  using std::setw;
   using Pair = std::pair<PointID, LocalPoint>;
 
-  cerr
-    << setw(15) << text << " : "
-    << "alg " << setw(2)  << algorithms_.size()
-    << "   known/same/missing   xy " << setw(2)
+  std::cerr
+    << std::setw(17) << text
+    << " : "
+    << "alg "  << std::setw(2)  << algorithms_.size()
+    << "  xy " << std::setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-        return p.second.test_xy() && p.second.active_xy();})
-    << " / "  << setw(2) << candidate_xy_.size() << " / " << setw(2)
+       return p.second.test_xy() && p.second.active_xy();})
+    << " / "  << std::setw(2) << candidate_xy_.size() << " / " << std::setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p){
-        return !p.second.test_xy() && p.second.active_xy();})
-    << "    z " << setw(2)
+       return !p.second.test_xy() && p.second.active_xy();})
+    << "    z " << std::setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p) {
-        return p.second.test_z() && p.second.active_z();})
-    << " / "  << setw(2) << candidate_z_.size() << " / " << setw(2)
+       return p.second.test_z() && p.second.active_z();})
+    << " / "  << std::setw(2) << candidate_z_.size() << " / " << std::setw(2)
     << count_if(PD_.begin(),PD_.end(),[](Pair p){
-        return !p.second.test_z() && p.second.active_z();})
+       return !p.second.test_z() && p.second.active_z();})
     << std::endl;
 }
 #endif

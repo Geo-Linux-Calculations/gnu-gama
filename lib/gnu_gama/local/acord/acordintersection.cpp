@@ -21,6 +21,7 @@
 #include <gnu_gama/local/acord/acordintersection.h>
 #include <cmath>
 #include <algorithm>
+#include <gnu_gama/local/acord/acord.h>
 
 using namespace GNU_gama::local;
 using std::sin;
@@ -28,137 +29,123 @@ using std::tan;
 using std::sort;
 
 AcordIntersection::AcordIntersection(Acord2* acord2)
-  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_)
+  : AC(*acord2), PD(acord2->PD_), OD(acord2->OD_),
+    approxy_(PD, OD)
 {
+  try
+    {
+    }
+  catch (...)
+    {
+      throw;
+    }
 }
 
 
 void AcordIntersection::prepare()
 {
-  return;
   if (prepared_) return;
 
-  completed_ = AC.missing_z_.empty();
+  completed_ = AC.missing_xy_.empty();
   prepared_  = true;
 }
 
 
 void AcordIntersection::execute()
 {
-  return;
   if (!prepared_) prepare();
-
-  completed_ = AC.missing_z_.empty();
   if (completed_) return;
 
-  const double pi = std::acos(-1);
+  approxy_.calculation();
 
-  for (StandPoint* spc : AC.SPClusters_)
+
+  /* the following code is based on Acord::execute() */
+  /* *********************************************** */
+
+  for (int loop=1; loop<=2; loop++)
     {
-      PointID station = spc->station;
-      LocalPoint point = AC.PD_[station];
-      double station_z {};
-
-      if (point.test_z())
+      auto tmp = AC.missing_xy_;
+      AC.missing_xy_.clear();
+      for (auto pid : tmp)
         {
-          station_z = point.z();
-        }
-      else
-        {
-          std::vector<Z_Angle*> zangle;
-          std::vector<Distance*> distance;
-          std::vector<S_Distance*> sdistance;
-
-          for (Observation* obs : spc->observation_list)
-            {
-              if (Distance* d = dynamic_cast<Distance*>(obs))
-                {
-                  if (AC.PD_[d->to()].test_z()) distance.push_back(d);
-                }
-              else if (S_Distance* s = dynamic_cast<S_Distance*>(obs))
-                {
-                  if (AC.PD_[s->to()].test_z()) sdistance.push_back(s);
-                }
-              else if (Z_Angle* z = dynamic_cast<Z_Angle*>(obs))
-                {
-                  if (AC.PD_[z->to()].test_z()) zangle.push_back(z);
-                }
-            }
-
-            if (zangle.empty() || (distance.empty() && sdistance.empty())) continue; // next spc
-
-            std::vector<double> sp_height;
-
-            for (Z_Angle* za : zangle)
-              {
-                double vertical_angle = pi/2 - za->value();
-                for (Distance* d : distance)
-                  if (za->to() == d->to())
-                    {
-                      double h = AC.PD_[d->to()].z() - d->value()*tan(vertical_angle);
-                      sp_height.push_back(h);
-                    }
-                for (S_Distance* s : sdistance)
-                  if (za->to() == s->to())
-                    {
-                      double h = AC.PD_[s->to()].z() - s->value()*sin(vertical_angle);
-                      sp_height.push_back(h);
-                    }
-              }
-
-            if (sp_height.empty()) continue;  // next spc
-
-            sort(sp_height.begin(), sp_height.end());
-
-            auto N = sp_height.size();
-            station_z = (sp_height[(N-1)/2] + sp_height[N/2])/2;
-
-            AC.candidate_z_.insert({station, station_z});
+          if (!AC.PD_[pid].test_xy()) AC.missing_xy_.insert(pid);
         }
 
-      /*
-       * with known standpoint height we compute heights of all targets
-       * without known coordinate z
-       */
+      completed_ = AC.missing_xy_.empty();
+      if (completed_) return;
 
-      std::vector<Z_Angle*> zangle;
-      std::vector<Distance*> distance;
-      std::vector<S_Distance*> sdistance;
+      /* all transformed slope distances and azimuths
+       * go to a temporary single standpoint */
 
-      for (Observation* obs : spc->observation_list)
+      StandPoint* standpoint = new StandPoint(&OD);
+      standpoint->set_orientation(PD.xNorthAngle());
+      for (ObservationData::iterator t=OD.begin(), e=OD.end(); t!=e; ++t)
         {
-          if (Distance* d = dynamic_cast<Distance*>(obs))
+          Observation* obs = *t;
+
+          // azimuths transformed to directions with the given
+          // orientation shift (angle between x-axis and the North)
+          if (Azimuth* a = dynamic_cast<Azimuth*>(obs))
             {
-              if (!AC.PD_[d->to()].test_z()) distance.push_back(d);
+              Direction* d = new Direction(a->from(), a->to(), a->value());
+              standpoint->observation_list.push_back(d);
+              continue;
             }
-          else if (S_Distance* s = dynamic_cast<S_Distance*>(obs))
+
+          S_Distance* s = dynamic_cast<S_Distance*>(obs);
+          if (s == nullptr) continue;
+
+          StandPoint* c = dynamic_cast<StandPoint*>(s->ptr_cluster());
+          if (c == nullptr) continue;   // this should never happen
+
+          PointID from = s->from();
+          PointID to   = s->to();
+
+          // search for a zenith angle corresponding to the given
+          // slope distance
+          ObservationList::iterator i   = c->observation_list.begin();
+          ObservationList::iterator end = c->observation_list.end();
+          for ( ;i!=end; ++i)
+            if (Z_Angle* z = dynamic_cast<Z_Angle*>(*i))
+              if (from == z->from() && to == z->to())
+                {
+                  // ... and fake a horizontal distance
+                  Distance* d = new Distance(from, to,
+                                             s->value()*fabs(sin(z->value())));
+                  standpoint->observation_list.push_back(d);
+                  continue;
+                }
+
+          // slope distance reduced to horizontal if heights are available
+          LocalPoint a = PD[from];
+          LocalPoint b = PD[to];
+          if (a.test_z() && b.test_z())
             {
-              if (!AC.PD_[s->to()].test_z()) sdistance.push_back(s);
-            }
-          else if (Z_Angle* z = dynamic_cast<Z_Angle*>(obs))
-            {
-              if (!AC.PD_[z->to()].test_z()) zangle.push_back(z);
+              double dz = a.z() - b.z();
+              dz = dz*dz;
+              double ds = s->value();
+              ds = ds*ds;
+              if (ds > dz)
+                {
+                  ds = std::sqrt(ds - dz);
+                  Distance* d = new Distance(from, to, ds);
+                  standpoint->observation_list.push_back(d);
+                  continue;
+                }
             }
         }
 
-        if (zangle.empty() || (distance.empty() && sdistance.empty())) continue; // next spc
+      // bind observations to the cluster
+      standpoint->update();
+      // insert standpoint into 'observation data'
+      OD.clusters.push_back(standpoint);
 
-        for (Z_Angle* za : zangle)
-          {
-            double vertical_angle = pi/2 - za->value();
-            for (Distance* d : distance)
-              if (za->to() == d->to())
-                {
-                  double h = station_z + d->value()*tan(vertical_angle);
-                  AC.candidate_z_.insert({d->to(), h});
-                }
-            for (S_Distance* s : sdistance)
-              if (za->to() == s->to())
-                {
-                  double h = station_z + s->value()*sin(vertical_angle);
-                  AC.candidate_z_.insert({s->to(), h});
-                }
-          }
+      ApproximateCoordinates ps(PD, OD);
+      double limit = ps.small_angle_limit() / 1.5;   // relax from 10 to 6 gon
+      ps.set_small_angle_limit(limit);
+      ps.calculation();
 
-    }  // spc loop for all stand point clusters
+      OD.clusters.pop_back();
+      delete standpoint;
+    }
 }
