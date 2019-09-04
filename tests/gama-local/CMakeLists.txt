@@ -15,6 +15,8 @@ set(INPUT_FILES
     azimuth-angle
     azimuth-azimuth
     azimuth-distance
+    jezerka-ang
+    jezerka-dir
     triangle-1
     triangle-2
     stroner-levelling-a
@@ -135,4 +137,18 @@ foreach(test ${EQUIVALENTS_TESTS})
         COMMAND check_equivalents ${input_a}
         ${INPUT_DIR}/${input_a}.gkf ${input_b} ${INPUT_DIR}/${input_b}.gkf
     )
+endforeach(test)
+
+# -------------------------------------------------------------------------
+#
+# check_xml_results
+#
+add_executable(check_xml_results  scripts/check_xml_results.cpp
+  scripts/check_xyz.h scripts/check_xyz.cpp $<TARGET_OBJECTS:libgama>)
+foreach(test ${INPUT_FILES})
+  add_test(
+    NAME check_xml_results_${test}
+    COMMAND check_xml_results ${test}
+      ${INPUT_DIR}/${test}.gkf ${INPUT_DIR}/${test}.xml
+  )
 endforeach(test)
