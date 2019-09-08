@@ -141,9 +141,9 @@ int main(int argc, char **argv)
     const char* argv_updated_xml = nullptr;
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
-    const char* argv_confname = 0;
-    const char* argv_readonly = 0;
-    const char* argv_sqlitedb = 0;
+    const char* argv_confname = nullptr;
+    const char* argv_readonly = nullptr;
+    const char* argv_sqlitedb = nullptr;
 #endif
 
 
@@ -161,8 +161,8 @@ int main(int argc, char **argv)
 
         // ****  options  ****
 
-        if(*c && *c == '-') c++;
-        if(*c && *c == '-') c++;
+        if(*c == '-') c++;
+        if(*c == '-') c++;
         string name = string(c);
         c = argv[++i];
 
@@ -461,7 +461,7 @@ int main(int argc, char **argv)
           {
             using namespace GNU_gama;
             gama_ellipsoid elnum = ellipsoid(IS->ellipsoid().c_str());
-            Ellipsoid el;
+            Ellipsoid el {};
             GNU_gama::set(&el, elnum);
             ReduceToEllipsoid reduce_to_el(IS->PD, IS->OD, el, IS->latitude());
             reduce_to_el.execute();
@@ -473,7 +473,7 @@ int main(int argc, char **argv)
 
 
       }
-    catch(GNU_gama::local::Exception e)
+    catch(GNU_gama::local::Exception& e)
       {
         if (xmlerr.isValid())
           {
@@ -502,7 +502,8 @@ int main(int argc, char **argv)
       {
         throw GNU_gama::local::Exception(T_GaMa_No_network_points_defined);
       }
-    else
+
+    //else ... do not use else after throw
       {
         if (IS->huge_abs_terms())
           {
