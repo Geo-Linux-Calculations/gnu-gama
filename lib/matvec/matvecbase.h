@@ -33,8 +33,8 @@ namespace GNU_gama {   /** \brief Matrix/vector base class */
   {
   public:
 
-    typedef typename MemRep<Float, Index, Exc>::iterator       iterator;
-    typedef typename MemRep<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MemRep<Float, Index, Exc>::iterator;
+    using const_iterator = typename MemRep<Float, Index, Exc>::const_iterator;
 
     void operator*=(Float f)
     {
@@ -57,7 +57,7 @@ namespace GNU_gama {   /** \brief Matrix/vector base class */
 
   protected:
 
-    MatVecBase() {}
+    MatVecBase() = default;
     MatVecBase(Index nsz) : MemRep<Float, Index, Exc>(nsz) {}
     MatVecBase(const MemRep<Float, Index, Exc>& mem)
       : MemRep<Float, Index, Exc>(mem)
@@ -105,11 +105,11 @@ namespace GNU_gama {   /** \brief Matrix/vector base class */
         *x++ = *a++ - *b++;
     }
 
-    const Float Abs(Float x) const
+    Float Abs(Float x) const
     {
       return (x >= Float()) ? x : -x ;
     }
-    const Float Sign(Float a, Float b) const
+    Float Sign(Float a, Float b) const
     {
       return b >= Float() ? Abs(a) : -Abs(a);
     }

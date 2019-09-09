@@ -37,14 +37,14 @@ namespace GNU_gama {
   template <typename Float=double,
     typename Index=int,
     typename Exc=Exception::matvec>
-    class Mat : public MatBase<Float, Index, Exc>
+    class Mat final : public MatBase<Float, Index, Exc>
     {
     public:
 
-    typedef typename MatBase<Float, Index, Exc>::iterator       iterator;
-    typedef typename MatBase<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MatBase<Float, Index, Exc>::iterator;
+    using const_iterator = typename MatBase<Float, Index, Exc>::const_iterator;
 
-    Mat() {}
+    Mat() = default;
     Mat(Index r, Index c) : MatBase<Float, Index, Exc>(r, c, r*c) {}
     Mat(const TransMat<Float, Index, Exc>&);
     Mat(std::initializer_list<std::initializer_list<Float>> init)
@@ -61,11 +61,11 @@ namespace GNU_gama {
       }
     }
 
-    Float& operator()(Index r, Index c) {
+    Float& operator()(Index r, Index c) final {
       Float *m = this->begin();
       return m[--r*this->cols() + --c];
     }
-    Float  operator()(Index r, Index c) const {
+    Float  operator()(Index r, Index c) const final {
       const Float *m = this->begin();
       return m[--r*this->cols() + --c];
     }
@@ -90,12 +90,12 @@ namespace GNU_gama {
       return T;
     }
 
-    void transpose() { *this = trans(*this); }
+    void transpose() final { *this = trans(*this); }
     void invert(Float tol=std::numeric_limits<Float>::epsilon()*1000);
 
     private:
 
-    Float* pentry;  // not initialized in constructor !!!
+    Float* pentry {nullptr};  // not initialized in constructor !!!
     Float& entry(Index i, Index j) { return *(pentry + i*this->col_ + j); }
 
     };

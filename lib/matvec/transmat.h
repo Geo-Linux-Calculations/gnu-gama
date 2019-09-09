@@ -30,32 +30,32 @@ namespace GNU_gama {   /** \brief Transpose matrix */
 
 
   template <typename Float, typename Index, typename Exc>
-  class TransMat : public MatBase<Float, Index, Exc> {
+  class TransMat final : public MatBase<Float, Index, Exc> {
 
   public:
 
-    typedef typename MatBase<Float, Index, Exc>::iterator       iterator;
-    typedef typename MatBase<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MatBase<Float, Index, Exc>::iterator;
+    using const_iterator = typename MatBase<Float, Index, Exc>::const_iterator;
 
-    TransMat() {}
+    TransMat() = default;
     TransMat(Index r, Index c) : MatBase<Float, Index, Exc>(c, r, r*c) {}
     TransMat(const Mat<Float, Index, Exc> &M)
       :  MatBase<Float, Index, Exc>(M.cols(), M.rows(), M)
     {
     }
 
-    Float& operator()(Index r, Index c)
+    Float& operator()(Index r, Index c) final
     {
       Float *m = this->begin();
       return m[--c*this->rows() + --r];
     }
-    Float  operator()(Index r, Index c) const
+    Float  operator()(Index r, Index c) const final
     {
       const Float *m = this->begin();
       return m[--c*this->rows() + --r];
     }
 
-    void reset(Index r, Index c)
+    void reset(Index r, Index c) final
     {
       if (r != this->row_ || c != this->col_) {
         this->row_ = r; this->col_ = c; this->resize(r*c);

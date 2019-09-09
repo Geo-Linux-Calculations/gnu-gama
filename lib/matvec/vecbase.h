@@ -36,13 +36,15 @@ namespace GNU_gama {   /** \brief Vector base class. */
   protected:
   public:
 
-    VecBase() {}
+    VecBase() = default;
     VecBase(Index nsz) :  MatVecBase<Float, Index, Exc>(nsz) {}
 
   public:
 
-    typedef typename MatVecBase<Float, Index, Exc>::iterator       iterator;
-    typedef typename MatVecBase<Float, Index, Exc>::const_iterator const_iterator;
+    // typedef typename MatVecBase<Float, Index, Exc>::iterator       iterator;
+    // typedef typename MatVecBase<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MatVecBase<Float, Index, Exc>::iterator;
+    using const_iterator = typename MatVecBase<Float, Index, Exc>::const_iterator;
 
     Index dim() const { return this->size(); }
 

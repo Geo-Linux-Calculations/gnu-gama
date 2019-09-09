@@ -965,7 +965,7 @@ int LocalNetwork::null_space()
     }
   catch(const MatVecException& vs)
     {
-      if (vs.error != GNU_gama::Exception::BadRegularization) throw;
+      if (vs.error() != GNU_gama::Exception::BadRegularization) throw;
 
       for (int i=1; i<=sum_unknowns(); i++)
         if (lindep(i))

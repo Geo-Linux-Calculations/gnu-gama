@@ -58,18 +58,17 @@ namespace GNU_gama {
     class matvec : public base
     {
     public:
-      const int    error;
-      const char*  description;
+      matvec(int e, const char* t) : error_(e), description_(t) {}
 
-      matvec(int e, const char* t) : error(e), description(t) {}
+      matvec* clone() const final { return new matvec(*this); }
+      void    raise() const final { throw *this; }
 
-      matvec* clone() const { return new matvec(*this); }
-      void    raise() const { throw *this; }
+      const char* what()  const noexcept final { return description_; }
+      int         error() const { return error_; }
 
-      const char* what() const noexcept
-      {
-        return description;
-      }
+    private:
+      const int    error_;
+      const char*  description_;
     };
   }
 }

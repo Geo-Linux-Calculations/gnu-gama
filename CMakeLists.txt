@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.07)
+project (gnu-gama VERSION 2.07.1)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -215,6 +215,15 @@ set(SRC_GAMA
    lib/gnu_gama/xml/dataparser_g3.cpp
    lib/gnu_gama/xml/dataparser_g3adj.cpp
    lib/gnu_gama/xml/dataparser.h
+
+   lib/matvec/array.h      lib/matvec/bandmat.h      lib/matvec/choldec.h
+   lib/matvec/covmat.h     lib/matvec/gso.h          lib/matvec/hilbert.h
+   lib/matvec/inderr.h     lib/matvec/jacobian.h     lib/matvec/matbase.h
+   lib/matvec/mat.h        lib/matvec/matvecbase.h   lib/matvec/matvec.h
+   lib/matvec/memrep.h     lib/matvec/pinv.h         lib/matvec/sortvec.h
+   lib/matvec/svd.h        lib/matvec/symmat.h       lib/matvec/transmat.h
+   lib/matvec/transvec.h   lib/matvec/unsigned.h     lib/matvec/vecbase.h
+   lib/matvec/vec.h
 )
 
 set(SRC_EXPAT

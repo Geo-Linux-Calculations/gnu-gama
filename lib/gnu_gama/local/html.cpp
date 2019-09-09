@@ -765,7 +765,7 @@ void GamaLocalHTML::htmlInfo()
     }
     catch (const MatVecException& vs)
       {
-        if (vs.error != GNU_gama::Exception::BadRegularization) throw;
+        if (vs.error() != GNU_gama::Exception::BadRegularization) throw;
 
         out << "<h3>" << T_GaMa_Free_network << "</h3>\n";
 

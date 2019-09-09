@@ -40,8 +40,8 @@ namespace GNU_gama {   /** \brief Symmetrix matrix */
 
   public:
 
-    typedef typename MatBase<Float, Index, Exc>::iterator       iterator;
-    typedef typename MatBase<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MatBase<Float, Index, Exc>::iterator;
+    using const_iterator = typename MatBase<Float, Index, Exc>::const_iterator;
 
     explicit SymMat(Index d = Index())
       : MatBase<Float, Index, Exc>(d, d, d*(d+1)/2), dim_(d), idf_(0)

@@ -233,7 +233,7 @@ int main(int argc, char* argv[])
   catch (GNU_gama::Exception::matvec m)
     {
       std::cerr <<  "\n### gama-g3 : "
-                << m.description << " (" << m.error << ")\n";
+                << m.what() << " (" << m.error() << ")\n";
     }
   catch (GNU_gama::Exception::string s)
     {

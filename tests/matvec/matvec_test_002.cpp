@@ -115,7 +115,7 @@ int main()
         cout << MaxEl(C-B)/maxe << "\t" << MaxEl(C*A - I);
       }
       catch (Exception::matvec e) {
-        cout << " err = " << int(e.error) << " : " << e.description;
+        cout << " err = " << e.error() << " : " << e.what();
       }
       catch (...) {
         cout << "?????????????????????????????????\n";

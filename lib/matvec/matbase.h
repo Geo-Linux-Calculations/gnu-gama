@@ -43,14 +43,12 @@ namespace GNU_gama {   /** \brief Base matrix class */
       : MatVecBase<Float, Index, Exc>(nsz), row_(r), col_(c) {}
     MatBase(Index r, Index c, const MatBase& m)
       : MatVecBase<Float, Index, Exc>(m), row_(r), col_(c) {}
-    virtual ~MatBase() {}
+    virtual ~MatBase() = default;
 
   public:
 
-    typedef typename
-    MatVecBase<Float, Index, Exc>::iterator       iterator;
-    typedef typename
-    MatVecBase<Float, Index, Exc>::const_iterator const_iterator;
+    using iterator = typename MatVecBase<Float, Index, Exc>::iterator;
+    using const_iterator = typename MatVecBase<Float, Index, Exc>::const_iterator;
 
     Index rows() const { return row_; }
     Index cols() const { return col_; }

@@ -83,7 +83,7 @@ int main()
       }
     catch (const Exception::matvec& e)
       {
-        cout << e.description << endl;
+        cout << e.what() << endl;
         return 1;
       }
     

@@ -35,10 +35,10 @@ class TransVec : public VecBase<Float, Index, Exc> {
 
 public:
 
-  typedef typename VecBase<Float, Index, Exc>::iterator       iterator;
-  typedef typename VecBase<Float, Index, Exc>::const_iterator const_iterator;
+  using iterator = typename VecBase<Float, Index, Exc>::iterator;
+  using const_iterator = typename VecBase<Float, Index, Exc>::const_iterator;
 
-  TransVec() {}
+  TransVec() = default;
   TransVec(Index nsz) : VecBase<Float, Index, Exc>(nsz) {}
   TransVec(const VecBase<Float, Index, Exc>& v)
     : VecBase<Float, Index, Exc>(v)

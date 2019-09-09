@@ -288,7 +288,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
     }
     catch (const MatVecException& vs)
       {
-        if (vs.error != GNU_gama::Exception::BadRegularization) throw;
+        if (vs.error() != GNU_gama::Exception::BadRegularization) throw;
 
         out << T_GaMa_Free_network << "\n"
             << underline(T_GaMa_Free_network, '*') << "\n\n";

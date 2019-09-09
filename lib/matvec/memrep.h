@@ -72,7 +72,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
       std::memcpy(rep, x.rep, sz*sizeof(Float));
     }
 
-    MemRep(MemRep&& x)
+    MemRep(MemRep&& x) noexcept
     {
       sz = x.sz;  rep = x.rep;
       x.sz = 0;   x.rep = nullptr;
@@ -101,7 +101,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
       return *this;
     }
 
-    MemRep& operator = (MemRep&& x)
+    MemRep& operator = (MemRep&& x) noexcept
     {
       if (&x != this)
         {
@@ -135,7 +135,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
   private:
 
     Float* rep;
-    size_t sz;
+    size_type sz;
 
   };      /* class MemRep; */
 
