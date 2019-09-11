@@ -60,10 +60,10 @@ namespace GNU_gama {
     public:
       matvec(int e, const char* t) : error_(e), description_(t) {}
 
-      matvec* clone() const final { return new matvec(*this); }
-      void    raise() const final { throw *this; }
+      matvec* clone() const override { return new matvec(*this); }
+      void    raise() const override { throw *this; }
 
-      const char* what()  const noexcept final { return description_; }
+      const char* what()  const noexcept override { return description_; }
       int         error() const { return error_; }
 
     private:

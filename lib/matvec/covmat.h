@@ -46,8 +46,8 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
   template <typename Float=double,
             typename Index=int,
             typename Exc=Exception::matvec>
-  class CovMat final:
-      public MatBase<Float, Index, Exc>, public CholDecLD<Float, Index, Exc> {
+  class CovMat : public MatBase<Float, Index, Exc>,
+                 public CholDecLD<Float, Index, Exc> {
   public:
 
     CovMat() : band_(0), band_1(0), dim_b(0)
@@ -65,13 +65,13 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
       this->resize(0);
     }
 
-    void   reset    (Index d, Index b);
+    void   reset    (Index d, Index b) override;
     Index  dim      () const { return this->row_; }
     Index  bandWidth() const { return band_; }
-    Float  operator ()(Index, Index) const;
-    Float& operator ()(Index, Index);
-    void   cholDec  ();
-    void   solve    (Vec<Float, Index, Exc>&) const;
+    Float  operator ()(Index, Index) const override;
+    Float& operator ()(Index, Index) override;
+    void   cholDec  () override;
+    void   solve    (Vec<Float, Index, Exc>&) const override;
 
     const Float* operator[](Index row) const
     {
@@ -96,8 +96,8 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
 
     Vec<Float, Index, Exc> operator*(const Vec<Float, Index, Exc>&) const;
 
-    std::istream&  read (std::istream&);
-    std::ostream&  write(std::ostream&) const;
+    std::istream&  read (std::istream&) override;
+    std::ostream&  write(std::ostream&) const override;
 
   private:
 

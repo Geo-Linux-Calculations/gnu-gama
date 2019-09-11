@@ -70,13 +70,8 @@ namespace GNU_gama {   /** \brief Gram-Schmidt Ortogonalization */
   {
   public:
 
-    GSO(): pA(0), M(0), N(0), sc(true), tol_(0),
-           minx_n(0), minx(0), clist(0), rlist(0)
-    {
-    }
+    GSO() = default;
     GSO(Mat<Float, Index, Exc>& a, Index m, Index n)
-      : pA(0), M(0), N(0), sc(true), tol_(0),
-        minx_n(0), minx(0), clist(0), rlist(0)
     {
       reset(a, m, n);     // where m, n are dimensions of A1(m, n)
     }
@@ -100,28 +95,30 @@ namespace GNU_gama {   /** \brief Gram-Schmidt Ortogonalization */
     void  min_x();               // minx = all
     void  min_x(Index, Index[]); // minx = subset
 
-  private:
+    GSO(const GSO&) = delete;
+    GSO& operator=(const GSO&) = delete;
+    GSO(const GSO&&) = delete;
+    GSO& operator=(const GSO&&) = delete;
 
-    GSO(const GSO&);
-    void operator=(const GSO&);
+  private:
 
     void modified_gso(Index r_first, Index r_last,
                       Index c_last, Index r_dim, bool first);
 
-    Mat<Float, Index, Exc> *pA;
-    Index M, N;
+    Mat<Float, Index, Exc> *pA {nullptr};
+    Index M {0}, N {0};
     Index defect_;
-    bool  solved;
-    bool  sc;
+    bool  solved {false};
+    bool  sc {true};
     Vec<Float, Index, Exc> norm;
-    Float tol_;
+    Float tol_ {0};
 
-    Index  minx_n;
-    Index *minx;
-    Index *clist;
-    Index *rlist;
+    Index  minx_n {0};
+    Index *minx  {nullptr};
+    Index *clist {nullptr};
+    Index *rlist {nullptr};
 
-    template <typename T> inline const T ABS(const T& x)
+    template <typename T> inline T ABS(const T& x)
     {
       return (x >= T(0)) ? x : -x ;
     }

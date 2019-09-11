@@ -30,7 +30,7 @@ namespace GNU_gama {   /** \brief Transpose matrix */
 
 
   template <typename Float, typename Index, typename Exc>
-  class TransMat final : public MatBase<Float, Index, Exc> {
+  class TransMat : public MatBase<Float, Index, Exc> {
 
   public:
 
@@ -44,18 +44,18 @@ namespace GNU_gama {   /** \brief Transpose matrix */
     {
     }
 
-    Float& operator()(Index r, Index c) final
+    Float& operator()(Index r, Index c) override
     {
       Float *m = this->begin();
       return m[--c*this->rows() + --r];
     }
-    Float  operator()(Index r, Index c) const final
+    Float  operator()(Index r, Index c) const override
     {
       const Float *m = this->begin();
       return m[--c*this->rows() + --r];
     }
 
-    void reset(Index r, Index c) final
+    void reset(Index r, Index c) override
     {
       if (r != this->row_ || c != this->col_) {
         this->row_ = r; this->col_ = c; this->resize(r*c);

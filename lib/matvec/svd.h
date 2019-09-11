@@ -133,10 +133,12 @@ namespace GNU_gama {
 
     void solve(const Vec<Float, Index, Exc>& rhs, Vec<Float, Index, Exc>& x);
 
-  private:
-    SVD(const SVD&);
-    SVD& operator=(const SVD&);
+    SVD(const SVD&) = delete;
+    SVD& operator=(const SVD&) = delete;
+    SVD(const SVD&&) = delete;
+    SVD& operator=(const SVD&&) = delete;
 
+  private:
     Index m, n;                // m = A.rows(), n = A.cols()
     Mat<Float, Index, Exc> U_;
     Vec<Float, Index, Exc> W_;
@@ -168,7 +170,7 @@ namespace GNU_gama {
   // ------ Exception::Singular Value Decompiosition member functions --------
 
 
-  template <typename T> inline const T ABS(const T& x)
+  template <typename T> inline T ABS(const T& x)
   {
     return (x >= T(0)) ? x : -x ;
   }

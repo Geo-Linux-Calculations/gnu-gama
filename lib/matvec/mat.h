@@ -37,7 +37,7 @@ namespace GNU_gama {
   template <typename Float=double,
     typename Index=int,
     typename Exc=Exception::matvec>
-    class Mat final : public MatBase<Float, Index, Exc>
+    class Mat : public MatBase<Float, Index, Exc>
     {
     public:
 
@@ -61,11 +61,11 @@ namespace GNU_gama {
       }
     }
 
-    Float& operator()(Index r, Index c) final {
+    Float& operator()(Index r, Index c) override {
       Float *m = this->begin();
       return m[--r*this->cols() + --c];
     }
-    Float  operator()(Index r, Index c) const final {
+    Float  operator()(Index r, Index c) const override {
       const Float *m = this->begin();
       return m[--r*this->cols() + --c];
     }
@@ -90,7 +90,7 @@ namespace GNU_gama {
       return T;
     }
 
-    void transpose() final { *this = trans(*this); }
+    void transpose() override { *this = trans(*this); }
     void invert(Float tol=std::numeric_limits<Float>::epsilon()*1000);
 
     private:
