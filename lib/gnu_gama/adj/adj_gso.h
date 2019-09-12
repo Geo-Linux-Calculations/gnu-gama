@@ -32,7 +32,7 @@ namespace GNU_gama {
 
   public:
 
-    AdjGSO() {}
+    AdjGSO() = default;
     AdjGSO(const Mat<Float, Index, Exc>& A, const Vec<Float, Index, Exc>& b)
       : AdjBaseFull<Float, Index, Exc>(A, b) {}
 

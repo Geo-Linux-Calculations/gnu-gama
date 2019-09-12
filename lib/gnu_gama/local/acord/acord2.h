@@ -28,6 +28,7 @@
 #include <set>
 #include <map>
 #include <memory>
+#include <utility>
 
 namespace GNU_gama { namespace local {
 
@@ -56,19 +57,19 @@ namespace GNU_gama { namespace local {
         LocalPoint coords;
 
         Point(PointID pt_id_, LocalPoint pt_xy_)
-          : id(pt_id_), coords(pt_xy_)
+          : id(std::move(pt_id_)), coords(pt_xy_)
         {}
-        Point() :id(PointID()), coords(LocalPoint())
+        Point() : id(PointID()), coords(LocalPoint())
         {}
         bool operator< (const Point &p)	{ return (id <  p.id); }
         bool operator==(const Point &p)	{ return (id == p.id); }
       };
 
-      StandPoint* find_standpoint(PointID pt);
+      StandPoint* find_standpoint(const PointID& pt);
       double median(std::vector<double>);
       std::pair<double,bool> get_dist(Observation* o);
       std::pair<double, bool> get_dir(Observation* o);
-      bool in_missingXY(PointID pt);
+      bool in_missingXY(const PointID& pt);
 
       // tolerance for rejecting median of xy / z
       double median_max_norm_ = 0.1;
@@ -89,7 +90,7 @@ namespace GNU_gama { namespace local {
       std::multimap<PointID,Observation*> obs_to_;
       bool get_medians();
       void get_medians_z();
-      size_type new_points_xy_, new_points_z_;
+      size_type new_points_xy_{}, new_points_z_{};
 
       using Traverse = std::vector<Point>;
       enum Traverse_type

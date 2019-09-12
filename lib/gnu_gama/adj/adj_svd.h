@@ -33,7 +33,7 @@ namespace GNU_gama {
     SVD<Float, Index, Exc> svd;
 
   public:
-    AdjSVD() {}
+    AdjSVD() = default;
     AdjSVD(const Mat<Float, Index, Exc>& A,
 	   const Vec<Float, Index, Exc>& b)
       : AdjBaseFull<Float, Index, Exc>(A, b) {}

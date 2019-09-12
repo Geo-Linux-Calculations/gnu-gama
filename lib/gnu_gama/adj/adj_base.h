@@ -32,7 +32,7 @@ namespace GNU_gama {
 
   public:
 
-    virtual ~AdjBase() {}
+    virtual ~AdjBase() = default;
 
     /* unknown parameters and adjusted residuals */
 

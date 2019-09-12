@@ -42,9 +42,7 @@ namespace GNU_gama {
     {
     }
 
-    virtual ~AdjBaseSparse()
-    {
-    }
+    virtual ~AdjBaseSparse() = default;
 
     virtual void reset(const AdjInputData *data)
     {

@@ -42,9 +42,7 @@ namespace GNU_gama {
       {
       }
 
-    virtual ~AdjBaseFull()
-    {
-    }
+    virtual ~AdjBaseFull() = default;
 
     virtual void reset(const Mat<Float, Index, Exc>& A,
                        const Vec<Float, Index, Exc>& b)

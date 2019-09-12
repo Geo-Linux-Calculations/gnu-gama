@@ -28,16 +28,12 @@
 
 namespace GNU_gama { namespace local {
 
-    /** A removed class \a MatVecException has been replaced by a typedef to
-        \a GNU_gama::Exception::matvec.
-    */
+    using MatVecException = GNU_gama::Exception::matvec;
 
-    typedef GNU_gama::Exception::matvec MatVecException;
-
-    typedef GNU_gama::Vec   <double, int, MatVecException>   Vec;
-    typedef GNU_gama::Mat   <double, int, MatVecException>   Mat;
-    typedef GNU_gama::SVD   <double, int, MatVecException>   SVD;
-    typedef GNU_gama::CovMat<double, int, MatVecException>   CovMat;
+    using Vec = GNU_gama::Vec   <double, int, MatVecException>;
+    using Mat = GNU_gama::Mat   <double, int, MatVecException>;
+    using SVD = GNU_gama::SVD   <double, int, MatVecException>;
+    using CovMat = GNU_gama::CovMat<double, int, MatVecException>;
 
   }}      // GNU_gama::local
 

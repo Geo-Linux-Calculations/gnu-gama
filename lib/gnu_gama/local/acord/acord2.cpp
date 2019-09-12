@@ -56,7 +56,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 
   for (auto i : OD_.clusters)
     {
-      if (StandPoint* sp = dynamic_cast<StandPoint*>(i))
+      if (auto sp = dynamic_cast<StandPoint*>(i))
 	{
 	  SPClusters_.push_back(sp);
 
@@ -89,11 +89,11 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 		}
 	    }
 	}
-      else if (HeightDifferences* hcl = dynamic_cast<HeightDifferences*>(i))
+      else if (auto hcl = dynamic_cast<HeightDifferences*>(i))
 	{
 	  HDiffClusters_.push_back(hcl);
 	}
-      else if (Vectors* vcl = dynamic_cast<Vectors*>(i))
+      else if (auto vcl = dynamic_cast<Vectors*>(i))
 	{
 	  VectorsClusters_.push_back(vcl);
 	}
@@ -121,7 +121,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 	{
 	  PointID from = obs->from();
 	  obs_from_.insert({obs->from(), obs});
-	  if (Angle* angle = dynamic_cast<Angle*>(obs))
+	  if (auto angle = dynamic_cast<Angle*>(obs))
 	    {
 	      obs_to_.insert({angle->bs(), obs});
 	      obs_to_.insert({angle->fs(), obs});
@@ -161,7 +161,7 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
 }
 
 
-StandPoint* Acord2::find_standpoint(PointID pt)
+StandPoint* Acord2::find_standpoint(const PointID& pt)
 {
   for (auto sp : SPClusters_)
     {
@@ -189,7 +189,7 @@ void Acord2::execute()
           std::cerr << "\n" << std::setw(27) << " "
                     << " ---- known/candidate/missing ----\n";
 #endif
-          for (auto a : algorithms_)
+          for (const auto& a : algorithms_)
             {
               a->execute();
 
@@ -204,7 +204,7 @@ void Acord2::execute()
               std::remove_if
                 (
                   algorithms_.begin(),algorithms_.end(),
-                  [](shared_ptr<AcordAlgorithm> a) { return a->completed(); }
+                  [](const shared_ptr<AcordAlgorithm>& a) { return a->completed(); }
                 ),
               algorithms_.end()
             );
@@ -272,7 +272,7 @@ double Acord2::median(std::vector<double> v)
 
 std::pair<double, bool> Acord2::get_dir(Observation* o)
 {
-  if (Azimuth* a = dynamic_cast<Azimuth*>(o))
+  if (auto a = dynamic_cast<Azimuth*>(o))
     {
       return {a->value() + PD_.xNorthAngle(), true};
     }
@@ -284,7 +284,7 @@ std::pair<double, bool> Acord2::get_dir(Observation* o)
     return {d.first, true};
     }
     }*/
-  if (Direction* d = dynamic_cast<Direction*>(o))
+  if (auto d = dynamic_cast<Direction*>(o))
     {
       return {d->value(), true};
     }
@@ -294,20 +294,20 @@ std::pair<double, bool> Acord2::get_dir(Observation* o)
 
 std::pair<double,bool> Acord2::get_dist(Observation* o)
 {
-  if (Distance* d = dynamic_cast<Distance*>(o))
+  if (auto d = dynamic_cast<Distance*>(o))
     {
       return {d->value(),true};
     }
   if (slope_observations_)
     {
-      if (S_Distance* sd = dynamic_cast<S_Distance*>(o))
+      if (auto* sd = dynamic_cast<S_Distance*>(o))
         {
           //search for zenith angle so we can calculate horizontal distance
           auto i = obs_from_.lower_bound(o->from());
           auto ei = obs_from_.upper_bound(o->from());
           while (i != ei)
             {
-              if (Z_Angle* za = dynamic_cast<Z_Angle*>(i->second))
+              if (auto za = dynamic_cast<Z_Angle*>(i->second))
                 {
                   if (o->to() == za->to())
                     {
@@ -324,11 +324,10 @@ std::pair<double,bool> Acord2::get_dist(Observation* o)
 
 // in_missingXY: returns true if point is in the missing_xy_ set
 
-bool Acord2::in_missingXY(PointID pt)
+bool Acord2::in_missingXY(const PointID& pt)
 {
-  std::set<PointID>::iterator it_stpt = missing_xy_.find(pt);
-  if (it_stpt == missing_xy_.end()) return false;
-  else return true;
+  auto   it_stpt = missing_xy_.find(pt);
+  return it_stpt != missing_xy_.end();
 }
 
 // get_medians: goes through same_points and if there are two or more
@@ -340,11 +339,11 @@ bool Acord2::get_medians()
   bool res = false;
   // get unique keys from same_points_
   std::set<PointID> keys;
-  for (auto i : candidate_xy_) keys.insert(i.first);
+  for (const auto& i : candidate_xy_) keys.insert(i.first);
 
   // for (std::vector<Acord2::Point>::iterator j, i =
   // same_points_.begin(), e = same_points_.end(); i != e; )
-  for (auto pt : keys)
+  for (const auto& pt : keys)
     {
       auto p = candidate_xy_.equal_range(pt);
       if (p.first == p.second) continue;    // should never happen
@@ -407,7 +406,7 @@ bool Acord2::get_medians()
     }
 
   // same_points cleanup - we can delete already computed points
-  for (auto p : keys)
+  for (const auto& p : keys)
     {
       if (!in_missingXY(p))
         {
@@ -423,9 +422,9 @@ bool Acord2::get_medians()
 void Acord2::get_medians_z()
 {
   std::unordered_set<PointID> set;
-  for (auto p : candidate_z_) set.insert(p.first);
+  for (const auto& p : candidate_z_) set.insert(p.first);
 
-  for (PointID id : set)
+  for (const PointID& id : set)
     {
       std::vector<double> values;
       auto range = candidate_z_.equal_range(id);
@@ -448,12 +447,12 @@ bool Acord2::transform_traverse(Traverse& traverse)
   //now we must somehow transform the coords from local
   PointData local_traverse;
   PointIDList unknown_traverse_pts;
-  for (auto p : traverse)
+  for (const auto& p : traverse)
     {
       local_traverse[p.id] = p.coords;
       if (in_missingXY(p.id)) unknown_traverse_pts.push_back(p.id);
     }
-  if (unknown_traverse_pts.size() == 0) return true;
+  if (unknown_traverse_pts.empty()) return true;
   SimilarityTr2D transformation(PD_, local_traverse, unknown_traverse_pts);
   transformation.calculation();
   if (transformation.state() < unique_solution)
@@ -477,10 +476,8 @@ bool Acord2::transform_traverse(Traverse& traverse)
         }
       return true;
     }
-  else
-    {
-      return false;
-    }
+
+  return false;
 }
 
 #ifdef DEBUG_ACORD2
