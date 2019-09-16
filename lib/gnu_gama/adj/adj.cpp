@@ -238,13 +238,6 @@ double Adj::q_bb(int   i, int   j)
   return sum;
 }
 
-
-
-/* ######################################################################
- * functions cholesky() and forwardSubstitution are identical in Adj and
- * in LocalNetwork and shall be moved to a single class
- * ###################################################################### */
-
 void Adj::choldec(CovMat<>& chol)
 {
   chol.cholDec();
@@ -279,4 +272,3 @@ void Adj::forwardSubstitution(const CovMat<>& chol, Vec<>& v)
       v(i) /= chol(i,i);
     }
 }
-

@@ -34,9 +34,7 @@ namespace GNU_gama {
   {
   public:
 
-    AdjBaseSparse() : input(0), stage(0)
-    {
-    }
+    AdjBaseSparse() = default;
 
     AdjBaseSparse(const AdjInputData *data) : input(data), stage(0)
     {
@@ -52,8 +50,8 @@ namespace GNU_gama {
 
   protected:
 
-    const AdjInputData* input;
-    int                 stage;
+    const AdjInputData* input {nullptr};
+    int                 stage {0};
 
   };
 

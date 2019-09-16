@@ -387,8 +387,15 @@ namespace GNU_gama { namespace local
 
     // preparation for design matrix
 
-    void cholesky(CovMat& chol);
+    /* ######################################################################
+     * Functions choldec() and forwardSubstitution were identical in Adj and
+     * LocalNetwork classes. They were declared static in Adj class and
+     * commented out in LocalNetwork in version 2.08.
+     * ######################################################################
+    void cholesky(CovMat& chol);           // renamed to choldec()
     void forwardSubstitution(const CovMat& chol, Vec& v);
+    */
+
     // void backwardSubstitution(const Cov& chol, Vec& v);
     void prepareProjectEquations();
     bool singular_coords(const Mat&);

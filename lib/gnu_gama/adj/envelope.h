@@ -38,27 +38,24 @@ namespace GNU_gama {
   {
   public:
 
-    Envelope() : dim_(0), defect_(0), diag(0), env(0), xenv(0)
-    {
-    }
-    Envelope(const Envelope& envelope) : diag(0), env(0), xenv(0)
+    Envelope() = default;
+    Envelope(const Envelope& envelope)
     {
       copy(envelope);
     }
     Envelope(const SparseMatrix         <Float, Index>* sm,
              const SparseMatrixGraph    <Float, Index>* graph,
              const SparseMatrixOrdering <Index>*        ordering)
-      : diag(0), env(0), xenv(0)
     {
       set(sm, graph, ordering);
     }
-    Envelope(const BlockDiagonal<Float, Index>& cov) : diag(0), env(0), xenv(0)
+    Envelope(const BlockDiagonal<Float, Index>& cov)
     {
       set(cov);
     }
     Envelope(const Float* bdiag, const Float* ediag,
              const Float* benv,  const Float* eenv,
-             const Index* bbend, const Index* eband) : diag(0), env(0), xenv(0)
+             const Index* bbend, const Index* eband)
     {
       set(bdiag, ediag, benv, eenv, bbend, eband);
     }
@@ -89,16 +86,16 @@ namespace GNU_gama {
              const SparseMatrixGraph    <Float, Index>* graph,
              const SparseMatrixOrdering <Index>*        ordering);
     void set(const BlockDiagonal<Float, Index>& cov);
-    void set(const Float* b_diad, const Float* e_diag,
-             const Float* b_env,  const Float* e_envxo,
-             const Index* b_bend, const Index* e_band);
+    void set(const Float* b_diag, const Float* e_diag,
+             const Float* b_env,  const Float* e_env,
+             const Index* b_bend, const Index* e_bend);
     void inverse  (const Envelope& choldec);
     void write_xml(std::ostream&) const;
 
-    Float& diagonal(Index i)       { return diag[--i]; }
-    Float  diagonal(Index i) const { return diag[--i]; }
-    Float* begin   (Index i) const { return xenv[i];   }
-    Float* end     (Index i) const { return xenv[i+1]; }
+    Float& diagonal(Index i)       { return diag_[--i]; }
+    Float  diagonal(Index i) const { return diag_[--i]; }
+    Float* begin   (Index i) const { return xenv_[i];   }
+    Float* end     (Index i) const { return xenv_[i+1]; }
 
     Float* element(Index i, Index j)
     {
@@ -107,24 +104,24 @@ namespace GNU_gama {
       Index  n;
       if (i > j)
         {
-          b = xenv[i];
-          e = xenv[i+1];
+          b = xenv_[i];
+          e = xenv_[i+1];
           n = i - j;
-          if (n > Index(e-b)) return 0;
+          if (n > Index(e-b)) return nullptr;
 
           return e - n;
         }
-      else if (i < j)
+      if (i < j)
         {
-          b = xenv[j];
-          e = xenv[j+1];
+          b = xenv_[j];
+          e = xenv_[j+1];
           n = j - i;
-          if (n > Index(e-b)) return 0;
+          if (n > Index(e-b)) return nullptr;
 
           return e - n;
         }
 
-      return diag + --i;
+      return diag_ + --i;
     }
     const Float* element(Index i, Index j) const
     {
@@ -133,41 +130,41 @@ namespace GNU_gama {
       Index  n;
       if (i > j)
         {
-          b = xenv[i];
-          e = xenv[i+1];
+          b = xenv_[i];
+          e = xenv_[i+1];
           n = i - j;
-          if (n > Index(e-b)) return 0;
+          if (n > Index(e-b)) return nullptr;
 
           return e - n;
         }
-      else if (i < j)
+      if (i < j)
         {
-          b = xenv[j];
-          e = xenv[j+1];
+          b = xenv_[j];
+          e = xenv_[j+1];
           n = j - i;
-          if (n > Index(e-b)) return 0;
+          if (n > Index(e-b)) return nullptr;
 
           return e - n;
         }
 
-      return diag + --i;
+      return diag_ + --i;
     }
 
   private:
 
-    Index   dim_;
-    Index   defect_;
-    Float*  diag;   // diagonal elements
-    Float*  env;    // of-diagonal elements
-    Float** xenv;
+    Index   dim_ {0};
+    Index   defect_{0};
+    Float*  diag_{nullptr};   // diagonal elements
+    Float*  env_{nullptr};    // of-diagonal elements
+    Float** xenv_{nullptr};
 
     void clear()
     {
       defect_ = 0;
 
-      delete[] diag;   diag = 0;
-      delete[] env;    env  = 0;
-      delete[] xenv;   xenv = 0;
+      delete[] diag_;   diag_ = nullptr;
+      delete[] env_;    env_  = nullptr;
+      delete[] xenv_;   xenv_ = nullptr;
     }
 
     void copy(const Envelope&);
@@ -204,14 +201,14 @@ namespace GNU_gama {
         lowerSolve   (start, stop, begin(row));   // L(Dx) = LDu'
         diagonalSolve(start, stop, begin(row));   // Dx = Du'
 
-        Float* d = diag + (start - 1);            // 1 based indexes
+        Float* d = diag_ + (start - 1);            // 1 based indexes
         Float  s = Float();
         while (b != e)
           {
             s += *b * *b * *d++;
             b++;
           }
-        *d -= s;                                  // d = diag - uDu'
+        *d -= s;                                  // d = diag_ - uDu'
 
         if (std::abs(*d) < tol)
           {
@@ -243,8 +240,8 @@ namespace GNU_gama {
     rhs++;
     for (Index row=start+1; row<=stop; row++)
       {
-         b = xenv[row];
-         e = xenv[row+1];
+         b = xenv_[row];
+         e = xenv_[row+1];
          x = rhs;
          s = Float();
          while (b != e && x != rhs0)  s += *--x * *--e;
@@ -256,7 +253,7 @@ namespace GNU_gama {
   template <typename Float, typename Index>
   void Envelope<Float, Index>::diagonalSolve(Index start, Index stop, Float* rhs) const
   {
-    const Float* d = diag + start - 1;     // 1 based indexes
+    const Float* d = diag_ + start - 1;     // 1 based indexes
     while (start++ <= stop)
       if (*d)
         {
@@ -280,8 +277,8 @@ namespace GNU_gama {
     rhs += stop - 1;
     for (Index row=stop; row>=start; row--)
       {
-        b = xenv[row];
-        e = xenv[row+1];
+        b = xenv_[row];
+        e = xenv_[row+1];
 
         const Float x = *rhs;
         col = rhs - (e-b);
@@ -303,8 +300,8 @@ namespace GNU_gama {
     if (dim_ == 0) return;
 
 
-    diag = new Float[dim_];
-    xenv = new Float*[dim_+2];    // 1 based indexes
+    diag_ = new Float[dim_];
+    xenv_ = new Float*[dim_+2];    // 1 based indexes
     Index env_size = 0;
     for (Index block=1; block<=cov.blocks(); block++)
       {
@@ -313,11 +310,11 @@ namespace GNU_gama {
 
         env_size += (dim + -1 + dim - band)*band/2;
       }
-    if (env_size) env = new Float[env_size];
+    if (env_size) env_ = new Float[env_size];
 
 
-    Float* d = diag;
-    Float* e = env;
+    Float* d = diag_;
+    Float* e = env_;
     for (Index row=1, block=1; block<=cov.blocks(); block++)
       {
         const Index dim  = cov.dim  (block);
@@ -327,12 +324,12 @@ namespace GNU_gama {
         for (Index r=1; r<=dim; r++)
           {
             Index c = r > band ? r-band : 1;
-            xenv[row] = e;
+            xenv_[row] = e;
             while (c++ < r)
               {
                 *e++ = *b++;
               }
-            xenv[++row] = e;
+            xenv_[++row] = e;
 
             *d++ = *b++;
           }
@@ -345,11 +342,11 @@ namespace GNU_gama {
   {
     cout << "<envelope> " << "<dim>" << dim_ << "</dim>\n\n";
 
-    Float* d = diag;
+    Float* d = diag_;
     for (Index i=1; i<=dim_; i++)
       {
-        Float* b = xenv[i];
-        Float* e = xenv[i+1];
+        Float* b = xenv_[i];
+        Float* e = xenv_[i+1];
         while (b != e)
           {
             cout << "<env>" << *b++ << "</env> ";
@@ -394,27 +391,27 @@ namespace GNU_gama {
     dim_ = envelope.dim();
     if (dim_ == 0) return;
 
-    diag = new Float[dim_];
-    xenv = new Float*[dim_+2];    // 1 based indexes
-    const Index env_size = envelope.xenv[dim_+1] - envelope.xenv[1];
-    if (env_size) env = new Float[env_size];
+    diag_ = new Float[dim_];
+    xenv_ = new Float*[dim_+2];    // 1 based indexes
+    const Index env_size = envelope.xenv_[dim_+1] - envelope.xenv_[1];
+    if (env_size) env_ = new Float[env_size];
 
-    Float* t = env;
-    Float* d = diag;
-    const Float* cd = envelope.diag;
+    Float* t = env_;
+    Float* d = diag_;
+    const Float* cd = envelope.diag_;
     for (Index i=1; i<=dim_; i++)
       {
         *d++ = *cd++;
 
         // pointers to off-diagonal elements
-        const Index bw = envelope.xenv[i+1] - envelope.xenv[i];
-        xenv[i] = t;
+        const Index bw = envelope.xenv_[i+1] - envelope.xenv_[i];
+        xenv_[i] = t;
         t += bw;
       }
-    xenv[dim_+1] = t;
+    xenv_[dim_+1] = t;
 
-    Float* e = env;
-    const Float* ce = envelope.env;
+    Float* e = env_;
+    const Float* ce = envelope.env_;
     for (Index i=1; i<=env_size; i++) *e++ = *ce++;
   }
 
@@ -428,8 +425,8 @@ namespace GNU_gama {
     dim_ = sm->columns();
     if (dim_ == 0) return;
 
-    diag = new Float[dim_];
-    xenv = new Float*[dim_+2];    // 1 based indexes
+    diag_ = new Float[dim_];
+    xenv_ = new Float*[dim_+2];    // 1 based indexes
 
     Index* min_neighbour = new Index[dim_+1];
     for (Index i=1; i<=dim_; i++) min_neighbour[i] = i;
@@ -439,7 +436,7 @@ namespace GNU_gama {
         const Index i = ordering->perm(node);
 
         // scan all neighbours
-        typedef typename SparseMatrixGraph<Float, Index>::const_iterator const_iterator;
+        using const_iterator = typename SparseMatrixGraph<Float, Index>::const_iterator;
         const_iterator b = graph->begin(i);
         const_iterator e = graph->end(i);
         while (b != e)
@@ -455,19 +452,19 @@ namespace GNU_gama {
       {
         env_size +=  i - min_neighbour[i];
       }
-    if (env_size) env = new Float[env_size];
-    Float* e = env;
+    if (env_size) env_ = new Float[env_size];
+    Float* e = env_;
     for (Index i=1; i<=dim_; i++)
       {
-        xenv[i] = e;
+        xenv_[i] = e;
         e += i - min_neighbour[i];
-        xenv[i+1] = e;
+        xenv_[i+1] = e;
       }
     delete[] min_neighbour;
 
 
-    for (Index i=0; i<dim_; i++) diag[i] = 0;
-    for (Index i=0; i<env_size; i++) env[i] = 0;
+    for (Index i=0; i<dim_; i++) diag_[i] = 0;
+    for (Index i=0; i<env_size; i++) env_[i] = 0;
 
     Float* a = new Float[dim_];  // nonzeroe row elements
     Index* c = new Index[dim_];  //              indexes
@@ -489,7 +486,7 @@ namespace GNU_gama {
           {
             const Index ia = c[i];
             const Float fa = a[i];
-            diag[ia-1] += fa*fa;
+            diag_[ia-1] += fa*fa;
 
             for (Index j=i+1; j<count; j++)
               {
@@ -512,31 +509,31 @@ namespace GNU_gama {
   template <typename Float, typename Index>
   void Envelope<Float, Index>::set(const Float* b_diag, const Float* e_diag,
                                    const Float* b_env,  const Float* e_env,
-                                   const Index* b_bend, const Index* e_bend)
+                                   const Index* b_bend, const Index* /*e_bend*/)
   {
     clear();
     dim_ = e_diag - b_diag;
     if (dim_ == 0) return;
 
-    diag = new Float[dim_];
-    xenv = new Float*[dim_+2];    // 1 based indexes
+    diag_ = new Float[dim_];
+    xenv_ = new Float*[dim_+2];    // 1 based indexes
 
     const Index env_size = e_env - b_env;
-    if (env_size) env = new Float[env_size];
+    if (env_size) env_ = new Float[env_size];
 
-    Float* t = env;
-    Float* d = diag;
+    Float* t = env_;
+    Float* d = diag_;
     for (Index i=1; i<=dim_; i++)
       {
         *d++ = *b_diag++;
 
         // poiners to off-diagonal elements
-        xenv[i] = t;
+        xenv_[i] = t;
         t += *b_bend++;
       }
-    xenv[dim_+1] = t;
+    xenv_[dim_+1] = t;
 
-    Float* e = env;
+    Float* e = env_;
     while (b_env != e_env) *e++ = *b_env++;
   }
 
@@ -555,19 +552,19 @@ namespace GNU_gama {
     dim_ = chol.dim();
     if (dim_ == 0) return;
 
-    diag = new Float[dim_];
-    xenv = new Float*[dim_+2];
-    const Index env_size = chol.xenv[dim_+1] - chol.xenv[1];
-    if (env_size) env = new Float[env_size];
+    diag_ = new Float[dim_];
+    xenv_ = new Float*[dim_+2];
+    const Index env_size = chol.xenv_[dim_+1] - chol.xenv_[1];
+    if (env_size) env_ = new Float[env_size];
 
-    Float* t = env;
+    Float* t = env_;
     for (Index i=1; i<=dim_; i++)
       {
-        const Index bw = chol.xenv[i+1] - chol.xenv[i];
-        xenv[i] = t;
+        const Index bw = chol.xenv_[i+1] - chol.xenv_[i];
+        xenv_[i] = t;
         t += bw;
       }
-    xenv[dim_+1] = t;
+    xenv_[dim_+1] = t;
 
     // Z = inv(D)*inv(L) + (I - L')*Z
 
@@ -591,7 +588,7 @@ namespace GNU_gama {
           {
             // d -= U(k, step)*Z(step, k);
             u = chol.element(k, step);
-            if (u == 0) continue;
+            if (u == nullptr) continue;
             z = element(step, k);
             d -= *u * *z;
           }
@@ -606,7 +603,7 @@ namespace GNU_gama {
               {
                 // s -= U(i, k)*Z(k, step);
                 u = chol.element(i,k);
-                if (u == 0) continue;
+                if (u == nullptr) continue;
                 z = element(k, step);
                 s -= *u * *z;
               }

@@ -51,11 +51,16 @@ namespace GNU_gama {
         cholesky   /*!< Cholesky decomposition of normal equations     */
       };
 
-    Adj () : data(nullptr), algorithm_(envelope), minx_dim(0), minx(nullptr)
+    Adj ()
     {
       init(nullptr);
     }
     virtual ~Adj();
+
+    Adj(const Adj&) = delete;
+    Adj& operator=(const Adj&) = delete;
+    Adj(const Adj&&) = delete;
+    Adj& operator=(const Adj&&) = delete;
 
     int n_obs() const { return n_obs_; }   /*!< number of observations */
     int n_par() const { return n_par_; }   /*!< number of parameters   */
@@ -78,32 +83,37 @@ namespace GNU_gama {
     /** weight coefficients of adjusted observations */
     double q_bb(int i, int j);
 
-  private:
+    /* ######################################################################
+     * Functions choldec() and forwardSubstitution were identical in Adj and
+     * LocalNetwork classes. They were declared static in Adj class and
+     * commented out in LocalNetwork in version 2.08.
+     * ################################################################### */
+    static void choldec (CovMat<>& chol);
+    static void forwardSubstitution(const CovMat<>& chol, Vec<>& v);
 
-    const AdjInputData* data;
+  private:
 
     using Exc = GNU_gama::Exception::matvec;
     using AdjBase = GNU_gama::AdjBase<double, int, Exc>;
     using AdjBaseFull = GNU_gama::AdjBaseFull<double, int, Exc>;
     using AdjBaseSparse = GNU_gama::AdjBaseSparse<double, int, Exc, AdjInputData>;
-    AdjBase* least_squares;
 
-    bool      solved;
-    algorithm algorithm_;
-    int       n_obs_, n_par_;
+    const AdjInputData* data {nullptr};
+    AdjBase* least_squares {nullptr};
+
+    bool      solved {false};
+    algorithm algorithm_ {envelope};
+    int       n_obs_{0}, n_par_{0};
+    double    rtr_ {0};
+    int       minx_dim {0};
+    int*      minx {nullptr};
     Mat <>    A_dot;
     Vec <>    b_dot;
     Vec <>    x_;
     Vec <>    r_;
-    double    rtr_;
 
     void init(const AdjInputData*);
     void init_least_squares();
-    void choldec (CovMat<>& chol);                            // move it away!
-    void forwardSubstitution(const CovMat<>& chol, Vec<>& v); // move it away!
-
-    int  minx_dim;
-    int* minx;
   };
 
 }  // namespace GNU_gama

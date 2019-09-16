@@ -33,26 +33,27 @@ namespace GNU_gama {
   public:
 
     AdjGSO() = default;
+   ~AdjGSO() override = default;
     AdjGSO(const Mat<Float, Index, Exc>& A, const Vec<Float, Index, Exc>& b)
       : AdjBaseFull<Float, Index, Exc>(A, b) {}
 
     void reset(const Mat<Float, Index, Exc>& A,
-               const Vec<Float, Index, Exc>& b)
+               const Vec<Float, Index, Exc>& b) override
     {
       AdjBaseFull<Float, Index, Exc>::reset(A, b);
     }
 
-    Index defect() { return gso.defect(); }
-    bool  lindep(Index i) { return gso.lindep(i); }
+    Index defect() override { return gso.defect(); }
+    bool  lindep(Index i) override { return gso.lindep(i); }
 
-    Float q_xx(Index i, Index j);
-    Float q_bb(Index i, Index j);
-    Float q_bx(Index i, Index j);
+    Float q_xx(Index i, Index j) override;
+    Float q_bb(Index i, Index j) override;
+    Float q_bx(Index i, Index j) override;
 
-    void min_x() { gso.min_x(); }
-    void min_x(Index n, Index x[]) { gso.min_x(n, x); }
+    void min_x() override { gso.min_x(); }
+    void min_x(Index n, Index x[]) override { gso.min_x(n, x); }
 
-    void solve();
+    void solve() override;
 
   private:
 

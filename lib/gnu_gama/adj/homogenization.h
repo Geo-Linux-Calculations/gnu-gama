@@ -38,7 +38,7 @@ namespace GNU_gama {
   {
   public:
 
-    Homogenization() : data(nullptr), sm(nullptr), ready(false)
+    Homogenization() : data(nullptr), sm(nullptr)
     {
     }
     Homogenization(const AdjInputData* aid) : sm(nullptr)
@@ -54,7 +54,7 @@ namespace GNU_gama {
     {
       delete sm;
       pr.reset();
-      sm    = 0;
+      sm    = nullptr;
       data  = aid;
       ready = false;
     }
@@ -69,14 +69,14 @@ namespace GNU_gama {
 
   private:
 
-    const AdjInputData* data;
+    const AdjInputData* data {nullptr};
 
     using Sparse  = SparseMatrix<Float, Index>;
     using Indices = std::set<Index>;
 
     Sparse*        sm;
     Vec<Float>     pr;   // right hand side
-    bool        ready;
+    bool        ready {false};
 
 
     void run()

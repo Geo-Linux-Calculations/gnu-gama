@@ -39,36 +39,36 @@ namespace GNU_gama {
       : AdjBaseFull<Float, Index, Exc>(A, b) {}
 
     void reset(const Mat<Float, Index, Exc>& A,
-               const Vec<Float, Index, Exc>& b)
+               const Vec<Float, Index, Exc>& b) override
     {
       AdjBaseFull<Float, Index, Exc>::reset(A, b);
       svd.reset(A);
     }
 
-    Index defect() { return svd.nullity(); }
-    bool  lindep(Index i) { return svd.lindep(i); }
+    Index defect() override{ return svd.nullity(); }
+    bool  lindep(Index i) override { return svd.lindep(i); }
 
-    Float q_xx(Index i, Index j)
+    Float q_xx(Index i, Index j) override
     {
       if(!this->is_solved) solve();
       return svd.q_xx(i, j);
     }
-    Float q_bb(Index i, Index j)
+    Float q_bb(Index i, Index j) override
     {
       if (!this->is_solved) solve();
       return svd.q_bb(i, j);
     }
-    Float q_bx(Index i, Index j)
+    Float q_bx(Index i, Index j) override
     {
       if (!this->is_solved) solve();
       return svd.q_bx(i, j);
     }
 
-    void min_x()   {  svd.min_x(); }
-    void min_x(Index n, Index x[]) { svd.min_x(n, x); }
+    void min_x() override {  svd.min_x(); }
+    void min_x(Index n, Index x[]) override { svd.min_x(n, x); }
 
-    Float cond();
-    void solve();
+    Float cond() override;
+    void solve() override;
 
   };
 

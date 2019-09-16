@@ -39,27 +39,27 @@ namespace GNU_gama {
   {
   public:
 
-    AdjEnvelope() : min_x_list(0) {}
-    ~AdjEnvelope() { delete[] min_x_list; }
+    AdjEnvelope() : min_x_list(nullptr) {}
+    ~AdjEnvelope() override { delete[] min_x_list; }
 
-    virtual const GNU_gama::Vec<Float, Index, Exc>& unknowns();
-    virtual const GNU_gama::Vec<Float, Index, Exc>& residuals();
-    virtual Float sum_of_squares();
-    virtual Index defect();
+    const GNU_gama::Vec<Float, Index, Exc>& unknowns() override;
+    const GNU_gama::Vec<Float, Index, Exc>& residuals() override;
+    Float sum_of_squares() override;
+    Index defect() override;
 
-    virtual Float q_xx(Index i, Index j);
-    virtual Float q_bb(Index i, Index j);
-    virtual Float q_bx(Index i, Index j);
+    Float q_xx(Index i, Index j) override;
+    Float q_bb(Index i, Index j) override;
+    Float q_bx(Index i, Index j) override;
 
-    virtual Float q0_xx(Index i, Index j);
+    Float q0_xx(Index i, Index j) override;
 
-    virtual bool lindep(Index i);
-    virtual void min_x();
-    virtual void min_x(Index n, Index m[]);
+    bool lindep(Index i) override;
+    void min_x() override;
+    void min_x(Index n, Index m[]) override;
 
     void solve();
 
-    virtual void reset(const AdjInputData *data);
+    void reset(const AdjInputData *data) override;
 
   private:
 
@@ -69,7 +69,7 @@ namespace GNU_gama {
 
     Index                    observations;
     Index                      parameters;
-    const SparseMatrix<>*   design_matrix;
+    const SparseMatrix<>*   design_matrix {nullptr};
     GNU_gama::Vec<Float, Index, Exc>   x0;    // particular solution
     GNU_gama::Vec<Float, Index, Exc>    x;    // unique or regularized solution
     GNU_gama::Vec<Float, Index, Exc>resid;        // residuals
@@ -89,10 +89,10 @@ namespace GNU_gama {
       stage_q0
     };
 
-    bool init_q_bb;         // weight coefficieants of adjusted observations
-    bool init_residuals;    // residuals r = Ax - b
-    bool init_q0;           // weight coefficients of particular solution x0
-    bool init_x;            // unique or regularized solution
+    bool init_q_bb{};         // weight coefficieants of adjusted observations
+    bool init_residuals{};    // residuals r = Ax - b
+    bool init_q0{};           // weight coefficients of particular solution x0
+    bool init_x{};            // unique or regularized solution
 
     void set_stage(Stage s);
     void solve_ordering();

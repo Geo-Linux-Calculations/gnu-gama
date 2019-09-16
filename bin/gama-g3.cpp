@@ -128,7 +128,7 @@ namespace
     using namespace GNU_gama::g3;
 
     std::ifstream input(file);
-    if (!input) return 0;
+    if (!input) return nullptr;
 
     std::list<GNU_gama::DataObject::Base*> objects;
     GNU_gama::DataParser parser(objects);
@@ -149,15 +149,15 @@ namespace
                   << " of input data  "
                   << "\t(error code " << p.error_code << ")\n"
                   << p.str << "\n\n";
-        return 0;
+        return nullptr;
       }
     catch(...)
       {
         error("catch ... ");
-        return 0;
+        return nullptr;
       }
 
-    GNU_gama::g3::Model* model = 0;
+    GNU_gama::g3::Model* model = nullptr;
     std::list<GNU_gama::DataObject::Base*>::iterator i = objects.begin();
     std::list<GNU_gama::DataObject::Base*>::iterator e = objects.end();
     while (i != e)
@@ -184,7 +184,7 @@ int main_g3()
   using namespace GNU_gama::g3;
 
   Model* model = get_xml_input(arg_input);
-  if (model == 0) return error("error on reading XML input data");
+  if (model == nullptr) return error("error on reading XML input data");
 
   if (arg_algorithm) model->set_algorithm(algorithm);
 
@@ -230,12 +230,12 @@ int main(int argc, char* argv[])
     {
       return main_g3();
     }
-  catch (GNU_gama::Exception::matvec m)
+  catch (GNU_gama::Exception::matvec& m)
     {
       std::cerr <<  "\n### gama-g3 : "
                 << m.what() << " (" << m.error() << ")\n";
     }
-  catch (GNU_gama::Exception::string s)
+  catch (GNU_gama::Exception::string& s)
     {
       std::cerr << "\n### gama-g3 : " << s.str << "\n";
     }

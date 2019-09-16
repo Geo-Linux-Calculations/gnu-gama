@@ -28,6 +28,7 @@
 #include <gnu_gama/adj/adj_chol.h>
 
 #include <iostream>
+#include <utility>
 
 #ifndef gama_local_Adj_input_data_h
 #define gama_local_Adj_input_data_h

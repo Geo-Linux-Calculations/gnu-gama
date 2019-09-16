@@ -37,16 +37,21 @@ namespace GNU_gama {
   public:
 
     AdjCholDec()  { init();          }
-    ~AdjCholDec() { delete[] minx_i; }
+    ~AdjCholDec() override { delete[] minx_i; }
 
-    Index defect  ();
-    Float q_xx    (Index, Index);
-    Float q_bb    (Index, Index);
-    Float q_bx    (Index, Index);
-    bool  lindep  (Index);
-    void  min_x   ();
-    void  min_x   (Index, Index[]);
-    void  solve   ();
+    AdjCholDec(const AdjCholDec&) = delete;
+    AdjCholDec& operator=(const AdjCholDec&) = delete;
+    AdjCholDec(const AdjCholDec&&) = delete;
+    AdjCholDec& operator=(const AdjCholDec&&) = delete;
+
+    Index defect  () override;
+    Float q_xx    (Index, Index) override;
+    Float q_bb    (Index, Index) override;
+    Float q_bx    (Index, Index) override;
+    bool  lindep  (Index) override;
+    void  min_x   () override;
+    void  min_x   (Index, Index[]) override;
+    void  solve   () override;
 
   private:
 
@@ -71,7 +76,7 @@ namespace GNU_gama {
       s_tol   = Float();
       nullity = Index();
       minx_t  = ALL;
-      minx_i  = 0;
+      minx_i  = nullptr;
       N0      = 0;
     }
 

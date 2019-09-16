@@ -1056,6 +1056,12 @@ void LocalNetwork::refine_approx()
 // preparing for project equations - Cholesky decomposition of
 // covariance matrix
 
+/* ######################################################################
+ * Functions choldec() and forwardSubstitution were identical in Adj and
+ * LocalNetwork classes. They were declared static in Adj class and
+ * commented out in LocalNetwork in version 2.08.
+ * ######################################################################
+
 void LocalNetwork::cholesky(CovMat& chol)
 {
   chol.cholDec();
@@ -1090,6 +1096,7 @@ void LocalNetwork::forwardSubstitution(const CovMat& chol, Vec& v)
       v(i) /= chol(i,i);
     }
 }
+*/
 
 
 void LocalNetwork::prepareProjectEquations()
@@ -1103,7 +1110,7 @@ void LocalNetwork::prepareProjectEquations()
           Vec t(N);
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);        // covariances ==> cofactors
-          cholesky(C);                     // cofactors   ==> weights
+          Adj::choldec(C);                     // cofactors   ==> weights
 
           for (int j=1; j<=A.cols(); j++)
             {
@@ -1116,12 +1123,12 @@ void LocalNetwork::prepareProjectEquations()
                 }
                 if (empty) continue;
 
-                forwardSubstitution(C, t);
+                Adj::forwardSubstitution(C, t);
                 for (int l=1; l<=N; l++) A(ind_0+l,j) = t(l);
             }
 
           for (int k=1; k<=N; k++) t(k) = b(ind_0+k);
-          forwardSubstitution(C, t);
+          Adj::forwardSubstitution(C, t);
           for (int l=1; l<=N; l++) b(ind_0+l) = t(l);
 
           ind_0 += N;
@@ -1203,7 +1210,7 @@ void LocalNetwork::vyrovnani_()
           Vec t(N), u(N);
           CovMat C = (*cluster)->activeCov();
           C /= (m_0_apr_*m_0_apr_);
-          cholesky(C);
+          Adj::choldec(C);
 
           for (int k=1; k<=N; k++)
             {

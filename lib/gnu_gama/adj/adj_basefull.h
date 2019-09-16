@@ -32,17 +32,15 @@ namespace GNU_gama {
   {
   public:
 
-    AdjBaseFull() : pA(0), pb(0), is_solved(false)
-      {
-      }
+    AdjBaseFull() = default;
 
     AdjBaseFull(const Mat<Float, Index, Exc>& A,
                 const Vec<Float, Index, Exc>& b)
-      : pA(&A), pb(&b), is_solved(false)
+      : pA(&A), pb(&b)
       {
       }
 
-    virtual ~AdjBaseFull() = default;
+    ~AdjBaseFull() override = default;
 
     virtual void reset(const Mat<Float, Index, Exc>& A,
                        const Vec<Float, Index, Exc>& b)
@@ -52,19 +50,19 @@ namespace GNU_gama {
       is_solved = false;
     }
 
-    const Vec<Float, Index, Exc>& unknowns()
+    const Vec<Float, Index, Exc>& unknowns() override
     {
       if (!is_solved) solve();
       return x;
     }
 
-    const Vec<Float, Index, Exc>& residuals()
+    const Vec<Float, Index, Exc>& residuals() override
     {
       if (!is_solved) solve();
       return r;
     }
 
-    Float sum_of_squares()
+    Float sum_of_squares() override
     {
       const Vec<Float, Index, Exc>& res = residuals();
       return res.dot(res);
@@ -76,12 +74,12 @@ namespace GNU_gama {
 
   protected:
 
-    const Mat<Float, Index, Exc>* pA;
-    const Vec<Float, Index, Exc>* pb;
+    const Mat<Float, Index, Exc>* pA {nullptr};
+    const Vec<Float, Index, Exc>* pb {nullptr};
 
     Vec<Float, Index, Exc> x;
     Vec<Float, Index, Exc> r;
-    bool is_solved;
+    bool is_solved {false};
 
   };
 

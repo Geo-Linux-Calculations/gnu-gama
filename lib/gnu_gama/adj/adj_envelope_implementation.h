@@ -344,7 +344,7 @@ namespace GNU_gama {
         while (b2 != e2)
           {
             qk = q0.element(k, ordering.invp(*n2++));
-            if (qk == 0) goto FULL_VECTOR;
+            if (qk == nullptr) goto FULL_VECTOR;
             s += *qk * *b2++;
           }
         qbb += *b++ * s;
@@ -406,7 +406,7 @@ namespace GNU_gama {
   void AdjEnvelope<Float, Index, Exc>::min_x()
   {
     delete[] min_x_list;
-    min_x_list = 0;
+    min_x_list = nullptr;
 
     init_x = true;
   }
@@ -465,7 +465,7 @@ namespace GNU_gama {
   {
     if (init_x)
       {
-        if (min_x_list == 0)   // regularization for all parameters
+        if (min_x_list == nullptr)   // regularization for all parameters
           {
             min_x_size = parameters;
             min_x_list = new Index[min_x_size];
