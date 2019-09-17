@@ -32,7 +32,13 @@ namespace GNU_gama {
 
   public:
 
+    AdjBase() = default;
     virtual ~AdjBase() = default;
+
+    AdjBase(const AdjBase&) = delete;
+    AdjBase& operator= (const AdjBase&) = delete;
+    AdjBase(const AdjBase&&) = delete;
+    AdjBase& operator= (const AdjBase&&) = delete;
 
     /* unknown parameters and adjusted residuals */
 

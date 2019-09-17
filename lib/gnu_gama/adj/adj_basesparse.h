@@ -35,12 +35,16 @@ namespace GNU_gama {
   public:
 
     AdjBaseSparse() = default;
+    ~AdjBaseSparse() override = default;
 
-    AdjBaseSparse(const AdjInputData *data) : input(data), stage(0)
+    AdjBaseSparse (const AdjBaseSparse&) = delete;
+    AdjBaseSparse& operator=(const AdjBaseSparse&) = delete;
+    AdjBaseSparse (const AdjBaseSparse&&) = delete;
+    AdjBaseSparse& operator=(const AdjBaseSparse&&) = delete;
+
+    AdjBaseSparse(const AdjInputData *data) : input(data)
     {
     }
-
-    virtual ~AdjBaseSparse() = default;
 
     virtual void reset(const AdjInputData *data)
     {

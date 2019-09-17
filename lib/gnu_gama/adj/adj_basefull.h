@@ -33,14 +33,18 @@ namespace GNU_gama {
   public:
 
     AdjBaseFull() = default;
+    ~AdjBaseFull() override = default;
+
+    AdjBaseFull (const AdjBaseFull&) = delete;
+    AdjBaseFull& operator=(const AdjBaseFull&) = delete;
+    AdjBaseFull (const AdjBaseFull&&) = delete;
+    AdjBaseFull& operator=(const AdjBaseFull&&) = delete;
 
     AdjBaseFull(const Mat<Float, Index, Exc>& A,
                 const Vec<Float, Index, Exc>& b)
       : pA(&A), pb(&b)
       {
       }
-
-    ~AdjBaseFull() override = default;
 
     virtual void reset(const Mat<Float, Index, Exc>& A,
                        const Vec<Float, Index, Exc>& b)

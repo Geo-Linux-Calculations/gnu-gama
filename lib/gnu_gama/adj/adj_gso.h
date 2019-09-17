@@ -34,6 +34,12 @@ namespace GNU_gama {
 
     AdjGSO() = default;
    ~AdjGSO() override = default;
+
+    AdjGSO (const AdjGSO&) = delete;
+    AdjGSO& operator=(const AdjGSO&) = delete;
+    AdjGSO (const AdjGSO&&) = delete;
+    AdjGSO& operator=(const AdjGSO&&) = delete;
+
     AdjGSO(const Mat<Float, Index, Exc>& A, const Vec<Float, Index, Exc>& b)
       : AdjBaseFull<Float, Index, Exc>(A, b) {}
 

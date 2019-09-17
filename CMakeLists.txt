@@ -49,9 +49,7 @@ set(SRC_GAMA
    lib/gnu_gama/adj/adj_basefull.h
    lib/gnu_gama/adj/adj_basesparse.h
    lib/gnu_gama/adj/adj_chol.h
-   lib/gnu_gama/adj/adj_chol_implementation.h
    lib/gnu_gama/adj/adj_envelope.h
-   lib/gnu_gama/adj/adj_envelope_implementation.h
    lib/gnu_gama/adj/adj.cpp
    lib/gnu_gama/adj/adj.h
    lib/gnu_gama/adj/adj_input_data.cpp

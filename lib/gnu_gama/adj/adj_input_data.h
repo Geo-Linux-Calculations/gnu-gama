@@ -45,6 +45,11 @@ namespace GNU_gama {
     AdjInputData();
     ~AdjInputData();
 
+    AdjInputData(const AdjInputData&) = delete;
+    AdjInputData& operator= (const AdjInputData&) = delete;
+    AdjInputData(const AdjInputData&&) = delete;
+    AdjInputData& operator= (const AdjInputData&&) = delete;
+
     void write_xml(std::ostream&) const;
 
     /** Sparse design matrix */
@@ -58,7 +63,7 @@ namespace GNU_gama {
 
     void set_mat (SparseMatrix <> * p) { delete A;     A     = p; }
     void set_cov (BlockDiagonal<> * p) { delete pcov;  pcov  = p; }
-    void set_rhs (Vec          <>   p) {               prhs  = p; }
+    void set_rhs (Vec          <>   p) {               prhs  = std::move(p); }
     void set_minx(IntegerList  <> * p) { delete pminx; pminx = p; }
 
 
