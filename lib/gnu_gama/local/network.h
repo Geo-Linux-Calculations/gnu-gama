@@ -48,7 +48,7 @@ namespace GNU_gama { namespace local
     typedef GNU_gama::AdjBaseSparse<double, int, MVE,
                                     GNU_gama::AdjInputData>  AdjBaseSparse;
 
-    AdjBase                *least_squares;
+    AdjBase                *least_squares {nullptr};
     GNU_gama::AdjInputData  input;
 
   public:

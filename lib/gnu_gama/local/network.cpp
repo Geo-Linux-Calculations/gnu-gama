@@ -213,7 +213,7 @@ LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
     m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000),
     update_constrained_coordinates_(false), typ_m_0_(empiricka_),
-    tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(0),
+    tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(nullptr),
     gons_(true)
 {
   least_squares = nullptr;
@@ -237,6 +237,7 @@ LocalNetwork::~LocalNetwork()
 {
   delete[] min_x_;
   delete   Asp;
+  delete   least_squares;
 }
 
 
@@ -285,7 +286,7 @@ void LocalNetwork::set_algorithm(std::string alg)
   algorithm_ = alg;
   has_algorithm_ = true;
 
-  if (least_squares != nullptr) delete least_squares;
+  delete least_squares;
   least_squares = adjb;
 
   update(Points);
