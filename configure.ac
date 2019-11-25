@@ -57,7 +57,7 @@ dnl Check for makeinfo
 AC_CHECK_PROG([gnu_gama_makeinfo],[makeinfo], [yes], [no])
 AM_CONDITIONAL([GNU_GAMA_MAKEINFO], [test "x$gnu_gama_makeinfo" = xyes])
 AM_COND_IF([GNU_GAMA_MAKEINFO],,
-   AC_MSG_WARN([*** 'makeinfo' is missing on your system])
+   AC_MSG_WARN([makeinfo is missing on your system])
    MAKEINFO=true
 )
 
@@ -70,7 +70,8 @@ AC_ARG_ENABLE(
 )
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [false])
 AS_IF([test x$enable_expat_1_1 != xyes], enable_expat_1_1=no)
-if test x$enable_expat_1_1 = xyes; then
+if test x$enable_expat_1_1 = xyes
+then
    AC_MSG_WARN([build with local copy of expat 1.1 XML parser])
    AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [true])
    AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DGNU_gama_expat_1_1")
@@ -86,7 +87,8 @@ dnl Check for sqlite3 support
 
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [false])
 AC_CHECK_LIB([sqlite3], [sqlite3_open])
-if test "x$ac_cv_lib_sqlite3_sqlite3_open" = "xyes"; then
+if test "x$ac_cv_lib_sqlite3_sqlite3_open" = "xyes";
+then
        AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_SQLITE_READER], [true])
        AC_DEFINE([GNU_GAMA_LOCAL_SQLITE_READER],1,
                  [Conditional support for sqlite3 databases])
@@ -100,8 +102,9 @@ AC_CHECK_PROG(GNU_GAMA_LOCAL_TEST_XMLLINT, xmllint, yes, no)
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_XMLLINT],
                [test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" = "xyes"])
 
-if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes"; then
-   AC_MSG_WARN([*** 'xmllint' not found, XML files will not be validated])
+if test "x$GNU_GAMA_LOCAL_TEST_XMLLINT" != "xyes";
+then
+   AC_MSG_WARN([xmllint not found, XML files will not be validated])
 fi
 
 
@@ -111,8 +114,9 @@ AC_CHECK_PROG(GNU_GAMA_LOCAL_TEST_OCTAVE, octave, yes, no)
 AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_OCTAVE],
                [test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" = "xyes"])
 
-if test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" != "xyes"; then
-   AC_MSG_WARN([*** 'octave' not found, .m files will not be validated])
+if test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" != "xyes";
+then
+   AC_MSG_WARN([octave not found, .m files will not be validated])
 fi
 
 
