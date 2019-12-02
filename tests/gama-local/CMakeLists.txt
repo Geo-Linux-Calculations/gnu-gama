@@ -152,3 +152,16 @@ foreach(test ${INPUT_FILES})
       ${INPUT_DIR}/${test}.gkf ${INPUT_DIR}/${test}.xml
   )
 endforeach(test)
+
+
+
+# ------------------------------------------------------------------------
+#
+# check externs
+#
+add_executable(check_externs scripts/check_externs.cpp
+  $<TARGET_OBJECTS:libgama>)
+add_test(NAME check_externs COMMAND check_externs
+  ${INPUT_DIR} ${RESULT_DIR}/gama-local-adjustment ${INPUT_FILES})
+
+

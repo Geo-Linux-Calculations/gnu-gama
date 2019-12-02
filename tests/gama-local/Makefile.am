@@ -8,7 +8,8 @@ TESTA = gama-local-version.sh \
 	gama-local-equivalents.sh \
 	gama-local-xml-results.sh \
 	gama-local-parameters.sh \
-	gama-local-updated-xml.sh
+	gama-local-updated-xml.sh \
+	gama-local-externs.sh
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader.sh
@@ -126,6 +127,12 @@ gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in \
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-updated-xml.in \
 				> gama-local-updated-xml.sh
 	@chmod +x gama-local-updated-xml.sh
+
+gama-local-externs.sh: $(GAMA_SCRIPT)/gama-local-externs.in \
+		$(GAMA_OTHERS)
+	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-externs.in \
+				> gama-local-externs.sh
+	@chmod +x gama-local-externs.sh
 
 
 
