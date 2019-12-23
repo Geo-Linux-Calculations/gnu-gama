@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+# depends on gama-local-adjustment.in
+
+scripts/check_externs \
+    @GAMA_INPUT@/ \
+    @GAMA_RESULTS@/gama-local-adjustment/ \
+    @INPUT_FILES@ \
+    @BUG_FILES@
