@@ -23,7 +23,6 @@
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/gon2deg.h>
-#include <gnu_gama/simplified.h>
 
 
 namespace GNU_gama { namespace local
@@ -39,6 +38,21 @@ namespace GNU_gama { namespace local
 using namespace GNU_gama::local;
 using namespace std;
 
+Observation::~Observation() = default;
+Distance::~Distance() = default;
+Direction::~Direction() = default;
+Angle::~Angle() = default;
+H_Diff::~H_Diff() = default;
+Xdiff::~Xdiff() = default;
+Ydiff::~Ydiff() = default;
+Zdiff::~Zdiff() = default;
+X::~X() = default;
+Y::~Y() = default;
+Z::~Z() = default;
+S_Distance::~S_Distance() = default;
+Z_Angle::~Z_Angle() = default;
+Azimuth::~Azimuth() = default;
+
 bool  Observation::check_std_dev() const
 {
   return cluster && cluster->covariance_matrix.dim();
@@ -49,70 +63,46 @@ double Observation::stdDev() const
    return cluster->stdDev(cluster_index);
 }
 
-void Observation::set_extern(std::string s)
-{
-  extern_.clear();
-  if (s.empty()) return;
-
-  while (!s.empty() && isspace(s.back())) s.pop_back();
-  string::const_iterator i = s.begin();
-  string::const_iterator e = s.end();
-  while (i != e && std::isspace(*i)) i++;
-
-  while (i != e)
-    {
-      if (!std::isspace(*i))
-        {
-          extern_.push_back(*i++);
-        }
-      else
-        {
-          extern_.push_back(' ');
-          while (i != e && std::isspace(*i)) i++;
-        }
-    }
-}
-
 double Direction::orientation() const
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   return sp->orientation();
 }
 
 void Direction::set_orientation(double p)
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   sp->set_orientation(p);
 }
 
 bool Direction::test_orientation() const
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   return sp->test_orientation();
 }
 
 void Direction::delete_orientation()
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   sp->delete_orientation();
 }
 
 void Direction::index_orientation(int n)
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   sp->index_orientation(n);
 }
 
 int Direction::index_orientation() const
 {
-  StandPoint* sp = static_cast<StandPoint*>(cluster);
+  auto* sp = dynamic_cast<StandPoint*>(cluster);
   return sp->index_orientation();
 }
 
 // -------------------------------------------------------------------
 
 DisplayObservationVisitor::DisplayObservationVisitor(LocalNetwork* ln)
-  : lnet(ln), scale(ln->gons() ? 1.0 : 0.324)
+  : lnet(ln), scale(ln->gons() ? 1.0 : 0.324) // 360*60*60/400/100/100
 {
 }
 

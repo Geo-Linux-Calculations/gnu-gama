@@ -12,6 +12,7 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              fixed-constrained.gkf \
              jezerka-ang.gkf           jezerka-ang.xml \
              jezerka-dir.gkf           jezerka-dir.xml \
+             krasovsky-1926.gkf        krasovsky-1926.xml \
              fixed-azimuth.gkf         fixed-azimuth.xml \
              azimuth-angle.gkf         azimuth-angle.xml \
              azimuth-azimuth.gkf       azimuth-azimuth.xml \
@@ -31,8 +32,6 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              gama-local-deprecated.gkf \
              mikhail-7.4.gkf minimal.gkf prostorovka.gkf \
              seq-dsuloha-d.gkf skorepa-dusek.gkf \
-             bug-2019-04-23-oleg-goussev.gkf \
-             bug-2019-04-23-oleg-goussev.xml \
              bug-2019-08-06-integer-coordinates.gkf \
              bug-2019-08-06-integer-coordinates.xml \
              bug-2019-08-13-traverse-knin_male.gkf \

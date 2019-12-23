@@ -8,7 +8,8 @@ TESTA = gama-local-version.sh \
 	gama-local-equivalents.sh \
 	gama-local-xml-results.sh \
 	gama-local-parameters.sh \
-	gama-local-updated-xml.sh
+	gama-local-updated-xml.sh \
+	gama-local-externs.sh
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader.sh
@@ -41,6 +42,7 @@ INPUT_FILES = gama-local \
               azimuth-distance \
               jezerka-ang \
               jezerka-dir \
+              krasovsky-1926 \
               triangle-1 \
               triangle-2 \
               stroner-levelling-a \
@@ -49,8 +51,7 @@ INPUT_FILES = gama-local \
               extern-tst-tetrahedron-3-gon \
               extern-seq-dsuloha-d
 
-BUG_FILES = bug-2019-04-23-oleg-goussev \
-            bug-2019-08-06-integer-coordinates \
+BUG_FILES = bug-2019-08-06-integer-coordinates \
             bug-2019-08-13-traverse-knin_male \
             bug-2019-08-20-knin_test
 
@@ -126,6 +127,12 @@ gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in \
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-updated-xml.in \
 				> gama-local-updated-xml.sh
 	@chmod +x gama-local-updated-xml.sh
+
+gama-local-externs.sh: $(GAMA_SCRIPT)/gama-local-externs.in \
+		$(GAMA_OTHERS)
+	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-externs.in \
+				> gama-local-externs.sh
+	@chmod +x gama-local-externs.sh
 
 
 

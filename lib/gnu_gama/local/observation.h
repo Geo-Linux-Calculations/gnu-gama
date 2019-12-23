@@ -2,7 +2,7 @@
   GNU Gama -- adjustment of geodetic networks
   Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
   2011  Vaclav Petras <wenzeslaus@gmail.com>
-  2013, 2014, 2018  Ales Cepek <cepek@gnu.org>
+  2013, 2014, 2018, 2019  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -35,9 +35,11 @@
 #include <gnu_gama/local/exception.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/visitor.h>
+#include <gnu_gama/simplified.h>
 
 #include <iostream>
 #include <vector>
+#include <utility>
 
 #include <gnu_gama/obsdata.h>
 #include <gnu_gama/local/matvec.h>
@@ -48,7 +50,7 @@ namespace GNU_gama { namespace local {
   class Observation;
 
 
-  typedef std::list<Observation*> ObservationList;
+  using ObservationList = std::list<Observation*>;
 
 
   /** \brief Local observation base class
@@ -63,16 +65,21 @@ namespace GNU_gama { namespace local {
     {
     public:
 
-      typedef GNU_gama::local::CovMat CovarianceMatrix;
+      using CovarianceMatrix = GNU_gama::local::CovMat;
 
       Observation(const PointID& s, const PointID& c, double m)
         :
-        cluster(0), from_(s), to_(c), value_(m), active_(true),
+        cluster(nullptr), from_(s), to_(c), value_(m), active_(true),
         from_dh_(0), to_dh_(0)
         {
           if (s == c) throw GNU_gama::local::Exception(T_GaMa_from_equals_to);
         }
-      virtual ~Observation() {}
+      virtual ~Observation();
+      Observation(const Observation&) = default;
+      Observation& operator=(const Observation&) = default;
+      Observation(Observation&&) = default;
+      Observation& operator=(Observation&&) = default;
+
 
       /** \brief Cloning method
        *
@@ -139,8 +146,8 @@ namespace GNU_gama { namespace local {
       virtual bool angular() const { return false; }
 
       /** \brief XML attribute "extern" is not processed by gama-local. */
-      std::string get_extern()   const { return extern_; }
-      void set_extern(std::string s);
+      std::string get_extern() const { return extern_; }
+      void set_extern(std::string s) { extern_ = GNU_gama::simplified(std::move(s)); }
 
     protected:
 
@@ -149,7 +156,7 @@ namespace GNU_gama { namespace local {
        * It is necessary to call init().
        */
       Observation()
-          : cluster(0), from_(""), to_(""), value_(0), active_(true),
+          : cluster(nullptr), from_(""), to_(""), value_(0), active_(true),
             from_dh_(0), to_dh_(0)
       {}
 
@@ -167,19 +174,19 @@ namespace GNU_gama { namespace local {
           while (value_ <   0    ) value_ += 2*M_PI;
       }
 
-      GNU_gama::Cluster<Observation>* cluster;
-      int      cluster_index;
+      GNU_gama::Cluster<Observation>* cluster {nullptr};
+      int      cluster_index {0};
       friend   class GNU_gama::Cluster<Observation>;
 
     private:
 
       PointID from_;
       PointID to_;
-      double        value_;        // observed value
-      mutable bool  active_;       // set false for unused observation
-      double        from_dh_;      // height of instrument
-      double        to_dh_;        // height of reflector
-      std::string   extern_;
+      double        value_{0};        // observed value
+      mutable bool  active_{false};   // set false for unused observation
+      double        from_dh_{0};      // height of instrument
+      double        to_dh_{0};        // height of reflector
+      std::string   extern_{};
     };
 
 
@@ -192,9 +199,13 @@ namespace GNU_gama { namespace local {
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           init(s, c, d);
         }
-      ~Distance() {}
+      ~Distance() final;
+      Distance(const Distance&) = default;
+      Distance& operator=(const Distance&) = default;
+      Distance(Distance&&) = default;
+      Distance& operator=(Distance&&) = default;
 
-      Distance* clone() const { return new Distance(*this); }
+      Distance* clone() const final { return new Distance(*this); }
     };
 
 
@@ -206,11 +217,15 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
           norm_rad_val();
         }
-      ~Direction() {}
+      ~Direction() final;
+      Direction(const Direction&) = default;
+      Direction& operator=(const Direction&) = default;
+      Direction(Direction&&) = default;
+      Direction& operator=(Direction&&) = default;
 
-      Direction* clone() const { return new Direction(*this); }
+      Direction* clone() const final { return new Direction(*this); }
 
-      bool angular() const { return true; }
+      bool angular() const final { return true; }
 
       double orientation() const;
       void   set_orientation(double p);
@@ -239,11 +254,15 @@ namespace GNU_gama { namespace local {
           init(s, b, d);
           norm_rad_val();
         }
-      ~Angle() {}
+      ~Angle() final;
+      Angle(const Angle&) = default;
+      Angle& operator=(const Angle&) = default;
+      Angle(Angle&&) = default;
+      Angle& operator=(Angle&&) = default;
 
-      Angle* clone() const { return new Angle(*this); }
+      Angle* clone() const final { return new Angle(*this); }
 
-      bool angular() const { return true; }
+      bool angular() const final { return true; }
 
       const PointID& bs() const { return to(); }     // backsight station
       const PointID& fs() const { return fs_;  }     // foresight station
@@ -269,9 +288,13 @@ namespace GNU_gama { namespace local {
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           init(s, c, dh);
         }
-      ~H_Diff() {}
+      ~H_Diff() final;
+      H_Diff(const H_Diff&) = default;
+      H_Diff& operator=(const H_Diff&) = default;
+      H_Diff(H_Diff&&) = default;
+      H_Diff& operator=(H_Diff&&) = default;
 
-      H_Diff* clone() const { return new H_Diff(*this); }
+      H_Diff* clone() const final { return new H_Diff(*this); }
 
       void   set_dist(double d)
         {
@@ -292,9 +315,13 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dx);
       }
-      ~Xdiff() {}
+      ~Xdiff() final;
+      Xdiff(const Xdiff&) = default;
+      Xdiff& operator=(const Xdiff&) = default;
+      Xdiff(Xdiff&&) = default;
+      Xdiff& operator=(Xdiff&&) = default;
 
-      Xdiff* clone() const { return new Xdiff(*this); }
+      Xdiff* clone() const final { return new Xdiff(*this); }
     };
 
   class Ydiff : public Accept<Ydiff, Observation>
@@ -304,9 +331,13 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dy);
       }
-      ~Ydiff() {}
+      ~Ydiff() final;
+      Ydiff(const Ydiff&) = default;
+      Ydiff& operator=(const Ydiff&) = default;
+      Ydiff(Ydiff&&) = default;
+      Ydiff& operator=(Ydiff&&) = default;
 
-      Ydiff* clone() const { return new Ydiff(*this); }
+      Ydiff* clone() const final { return new Ydiff(*this); }
     };
 
   class Zdiff : public Accept<Zdiff, Observation>
@@ -316,9 +347,13 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dz);
       }
-      ~Zdiff() {}
+      ~Zdiff() final;
+      Zdiff(const Zdiff&) = default;
+      Zdiff& operator=(const Zdiff&) = default;
+      Zdiff(Zdiff&&) = default;
+      Zdiff& operator=(Zdiff&&) = default;
 
-      Zdiff* clone() const { return new Zdiff(*this); }
+      Zdiff* clone() const final { return new Zdiff(*this); }
     };
 
 
@@ -332,9 +367,13 @@ namespace GNU_gama { namespace local {
           init(point, "", x);
       }
 
-      ~X() {}
+      ~X() final;
+      X(const X&) = default;
+      X& operator=(const X&) = default;
+      X(X&&) = default;
+      X& operator=(X&&) = default;
 
-      X* clone() const { return new X(*this); }
+      X* clone() const final { return new X(*this); }
     };
 
   class Y : public Accept<Y, Observation>
@@ -345,9 +384,13 @@ namespace GNU_gama { namespace local {
           init(point, "", y);
       }
 
-      ~Y() {}
+      ~Y() final;
+      Y(const Y&) = default;
+      Y& operator=(const Y&) = default;
+      Y(Y&&) = default;
+      Y& operator=(Y&&) = default;
 
-      Y* clone() const { return new Y(*this); }
+      Y* clone() const final{ return new Y(*this); }
     };
 
   class Z : public Accept<Z, Observation>
@@ -358,9 +401,13 @@ namespace GNU_gama { namespace local {
           init(point, "", z);
       }
 
-      ~Z() {}
+      ~Z() final;
+      Z(const Z&) = default;
+      Z& operator=(const Z&) = default;
+      Z(Z&&) = default;
+      Z& operator=(Z&&) = default;
 
-      Z* clone() const { return new Z(*this); }
+      Z* clone() const final { return new Z(*this); }
     };
 
 
@@ -376,9 +423,13 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
         }
 
-      ~S_Distance() {}
+      ~S_Distance() final;
+      S_Distance(const S_Distance&) = default;
+      S_Distance& operator=(const S_Distance&) = default;
+      S_Distance(S_Distance&&) = default;
+      S_Distance& operator=(S_Distance&&) = default;
 
-      S_Distance* clone() const { return new S_Distance(*this); }
+      S_Distance* clone() const final { return new S_Distance(*this); }
     };
 
 
@@ -392,11 +443,15 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
         }
 
-      ~Z_Angle() {}
+      ~Z_Angle() final;
+      Z_Angle(const Z_Angle&) = default;
+      Z_Angle& operator=(const Z_Angle&) = default;
+      Z_Angle(Z_Angle&&) = default;
+      Z_Angle& operator=(Z_Angle&&) = default;
 
-      Z_Angle* clone() const { return new Z_Angle(*this); }
+      Z_Angle* clone() const final { return new Z_Angle(*this); }
 
-      bool angular() const { return true; }
+      bool angular() const final { return true; }
     };
 
 
@@ -408,11 +463,15 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
           norm_rad_val();
         }
-      ~Azimuth() {}
+      ~Azimuth() final;
+      Azimuth(const Azimuth&) = default;
+      Azimuth& operator=(const Azimuth&) = default;
+      Azimuth(Azimuth&&) = default;
+      Azimuth& operator=(Azimuth&&) = default;
 
-      Azimuth* clone() const { return new Azimuth(*this); }
+      Azimuth* clone() const final { return new Azimuth(*this); }
 
-      bool angular() const { return true; }
+      bool angular() const final { return true; }
     };
 
 
@@ -501,19 +560,19 @@ namespace GNU_gama { namespace local {
     std::string str_bs;
     std::string str_fs;
 
-    void visit(Distance* obs);
-    void visit(Direction* obs);
-    void visit(Angle* obs);
-    void visit(H_Diff* obs);
-    void visit(S_Distance* obs);
-    void visit(Z_Angle* obs);
-    void visit(X* obs);
-    void visit(Y* obs);
-    void visit(Z* obs);
-    void visit(Xdiff* obs);
-    void visit(Ydiff* obs);
-    void visit(Zdiff* obs);
-    void visit(Azimuth* obs);
+    void visit(Distance* obs) final;
+    void visit(Direction* obs) final;
+    void visit(Angle* obs) final;
+    void visit(H_Diff* obs) final;
+    void visit(S_Distance* obs) final;
+    void visit(Z_Angle* obs) final;
+    void visit(X* obs) final;
+    void visit(Y* obs) final;
+    void visit(Z* obs) final;
+    void visit(Xdiff* obs) final;
+    void visit(Ydiff* obs) final;
+    void visit(Zdiff* obs) final;
+    void visit(Azimuth* obs) final;
 
   private:
 

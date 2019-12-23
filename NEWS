@@ -1,5 +1,26 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.08 December 2019
+
+Maintainer's release
+
+* new test data krasovsky-1926 with full reference in biblatex
+  (renamed from bug-2019-04-23-oleg-goussev)
+
+* new unit test for extern attributes in gama-local/scripts/check_externs.cpp 
+
+* new HACKING.md by Greg Troxel explicitly declares that autotools are
+  the primary build system and alternative build like CMake must never
+  influence the primary Gama builds.
+
+* Legacy builds with expat-1.1 is available only as an testing option
+
+* C++ sources cleanup mainly in lib/gama/local to conform with C++11
+
+* C++11 standard is explicitly set in configure.ac (for testing C++14
+  is set on in the alternative builds in the main CMakeLists.txt)
+
+
 Version 2.07 August 2019
 
 * Fixed some bugs in AcordPolar and AcordTraverse classes.
