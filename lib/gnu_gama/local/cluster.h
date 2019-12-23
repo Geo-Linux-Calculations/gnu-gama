@@ -27,6 +27,8 @@
 #include <gnu_gama/local/matvec.h>
 #include <vector>
 #include <cmath>
+#include <string>
+#include <unordered_map>
 
 namespace GNU_gama { namespace local {
 
@@ -35,7 +37,7 @@ namespace GNU_gama { namespace local {
   // angles
 
 
-  typedef GNU_gama::ObservationData<Observation> ObservationData;
+  using ObservationData = GNU_gama::ObservationData<Observation>;
 
 
   class StandPoint : public GNU_gama::Cluster<Observation> {
@@ -43,14 +45,14 @@ namespace GNU_gama { namespace local {
 
     PointID  station;
 
-    StandPoint(const ObservationData* od)
+    StandPoint(const GNU_gama::ObservationData<Observation>* od)
       :
       GNU_gama::Cluster<Observation>(od),
       test_or(false), indx_or(0)
       {
       }
 
-    StandPoint* clone(const ObservationData*p) const
+    StandPoint* clone(const GNU_gama::ObservationData<Observation>*p) const
       {
         return new StandPoint(p);
       }
@@ -68,7 +70,7 @@ namespace GNU_gama { namespace local {
 
   private:
 
-    double   attr_or;
+    double   attr_or {};
     bool     test_or;
     int      indx_or;
 
@@ -80,11 +82,11 @@ namespace GNU_gama { namespace local {
   class Coordinates : public GNU_gama::Cluster<Observation> {
   public:
 
-    Coordinates(const ObservationData* od)
+    Coordinates(const GNU_gama::ObservationData<Observation>* od)
       : GNU_gama::Cluster<Observation>(od)
       {
       }
-    Coordinates* clone(const ObservationData*p) const
+    Coordinates* clone(const GNU_gama::ObservationData<Observation>*p) const
       {
         return new Coordinates(p);
       }
@@ -103,11 +105,11 @@ namespace GNU_gama { namespace local {
   class HeightDifferences : public GNU_gama::Cluster<Observation> {
   public:
 
-    HeightDifferences(const ObservationData* od)
+    HeightDifferences(const GNU_gama::ObservationData<Observation>* od)
       : GNU_gama::Cluster<Observation>(od)
       {
       }
-    HeightDifferences* clone(const ObservationData*p) const
+    HeightDifferences* clone(const GNU_gama::ObservationData<Observation>*p) const
       {
         return new HeightDifferences(p);
       }
@@ -119,11 +121,11 @@ namespace GNU_gama { namespace local {
   class Vectors : public GNU_gama::Cluster<Observation> {
   public:
 
-    Vectors(const ObservationData* od)
+    Vectors(const GNU_gama::ObservationData<Observation>* od)
       : GNU_gama::Cluster<Observation>(od)
       {
       }
-    Vectors* clone(const ObservationData*p) const
+    Vectors* clone(const GNU_gama::ObservationData<Observation>*p) const
       {
         return new Vectors(p);
       }
