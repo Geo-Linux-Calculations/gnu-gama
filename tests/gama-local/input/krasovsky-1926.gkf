@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Bug reported by Oleg Goussev
 
@@ -13,12 +14,33 @@ always a bug, the constant was set to std::numeric_limits<double>::max()
 -->
 
 <gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
-  <network angles="left-handed" axes-xy="en">
+<network angles="left-handed" axes-xy="en">
 
-    <points-observations distance-stdev='   5.0'
-                         direction-stdev= "10.0"
-                         angle-stdev=     "10.0"
-                         azimuth-stdev="   10.0" >
+<description>
+% Encoding: UTF-8
+
+@Book{krasovsky:1926,
+  author    = {Феодосий Николаевич Красовский},
+  title     = {Руководство по Высшей Геодезии
+               [Handbook of Theoretical Geodesy]},
+  year      = {1926},
+  language  = {Русский [Russian]},
+  volume    = {I},
+  note      = {Example from pages 281--283},
+  publisher = {Геодезический Факультет Межевого Института},
+  location  = {Москва [Moscow]},
+  pages     = {463},
+  pubstate  = {CCCP [USSR]},
+  url       = {http://gis-lab.info/docs/krasov-kurs-1.7z},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
+</description>
+
+<points-observations distance-stdev='   5.0'
+                     direction-stdev= "10.0"
+                     angle-stdev=     "10.0"
+                     azimuth-stdev="   10.0" >
 
 <point id="Gladkije_Poshni" adj="xy" />
 <point id="Gwjerosna" x="4766.294" y="6518317.117" fix="xy" />

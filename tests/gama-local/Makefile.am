@@ -42,6 +42,7 @@ INPUT_FILES = gama-local \
               azimuth-distance \
               jezerka-ang \
               jezerka-dir \
+              krasovsky-1926 \
               triangle-1 \
               triangle-2 \
               stroner-levelling-a \
@@ -50,8 +51,7 @@ INPUT_FILES = gama-local \
               extern-tst-tetrahedron-3-gon \
               extern-seq-dsuloha-d
 
-BUG_FILES = bug-2019-04-23-oleg-goussev \
-            bug-2019-08-06-integer-coordinates \
+BUG_FILES = bug-2019-08-06-integer-coordinates \
             bug-2019-08-13-traverse-knin_male \
             bug-2019-08-20-knin_test
 

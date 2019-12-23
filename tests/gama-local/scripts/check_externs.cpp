@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 
   string argv1 = argv[1]; if (argv1.back() != '/') argv1 += '/';
   string argv2 = argv[2]; if (argv2.back() != '/') argv2 += '/';
-  
+
   cout << "input  directory: " << argv1 << endl;
   cout << "output directory: " << argv2 << endl << endl;
 
