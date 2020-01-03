@@ -23,7 +23,6 @@
 #define GaMa_GaMaProg_Priblizne_Souradnice_h_
 
 #include <gnu_gama/local/results/text/underline.h>
-#include <gnu_gama/local/acord/acord.h>
 #include <cctype>
 #include <iomanip>
 

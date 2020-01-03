@@ -21,7 +21,6 @@
 #include <gnu_gama/local/acord/acordintersection.h>
 #include <cmath>
 #include <algorithm>
-#include <gnu_gama/local/acord/acord.h>
 
 using namespace GNU_gama::local;
 using std::sin;

@@ -1,0 +1,10 @@
+! A   0.000 400.000   # fixed point A
+! B 100.000 100.000   # fixed point B
+! C 450.000   0.000   # fixed point C
+? X 500.000 500.000   # adjusted point X with unknown xy
+
+( X     # standpoint X
+- A     # X --> A distance
+- B     #       B
+- C     #       C
+)       # end of the cluster

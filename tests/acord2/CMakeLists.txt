@@ -24,7 +24,7 @@ add_test(NAME acord2-a2g COMMAND a2g ${RESULT_DIR}/a2g
          ${INPUT_DIR}/a2g ${A2G_FILES})
 
 
-add_executable(a2diff a2diff-main.cpp $<TARGET_OBJECTS:libgama>)
+add_executable(a2diff a2diff-main.cpp acord.cpp $<TARGET_OBJECTS:libgama>)
 
 set(A2DIFF_FILES
   traverse-01-en-right.gkf

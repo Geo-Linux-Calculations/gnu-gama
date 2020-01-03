@@ -26,7 +26,7 @@
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/xml/gkfparser.h>
 #include <gnu_gama/local/language.h>
-#include <gnu_gama/local/acord/acord.h>
+#include "acord.h"
 #include <gnu_gama/local/acord/acord2.h>
 
 using std::cerr;

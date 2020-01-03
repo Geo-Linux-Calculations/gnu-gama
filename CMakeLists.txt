@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.08)
+project (gnu-gama VERSION 2.08.1)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -105,8 +105,6 @@ set(SRC_GAMA
    lib/gnu_gama/local/acord/approx_heights.h
    lib/gnu_gama/local/acord/approx_vectors.cpp
    lib/gnu_gama/local/acord/approx_vectors.h
-   lib/gnu_gama/local/acord/acord.cpp
-   lib/gnu_gama/local/acord/acord.h
    lib/gnu_gama/local/acord/acord2.cpp
    lib/gnu_gama/local/acord/acord2.h
    lib/gnu_gama/local/acord/acordalgorithm.cpp

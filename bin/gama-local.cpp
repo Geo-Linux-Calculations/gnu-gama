@@ -38,7 +38,6 @@
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/acord/acord2.h>
-#include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/acord/acordstatistics.h>
 #include <gnu_gama/local/svg.h>
 #include <gnu_gama/local/html.h>

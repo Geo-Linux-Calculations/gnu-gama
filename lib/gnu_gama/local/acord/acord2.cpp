@@ -1,7 +1,7 @@
 /*
   GNU Gama -- Approximate coordinates version 2
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
-		2019  Ales Cepek <cepek@gnu.org>
+		2019, 2020  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -19,7 +19,6 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gnu_gama/local/acord/acord.h>
 #include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/acord/acordalgorithm.h>
 #include <gnu_gama/local/acord/acordazimuth.h>
