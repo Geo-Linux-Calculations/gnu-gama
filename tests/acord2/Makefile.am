@@ -35,7 +35,8 @@ ACORD2_A2G_FILES = \
   traverse-03.a2g \
   traverse-04.a2g \
   trivial-01.a2g  \
-  trivial-02.a2g
+  trivial-02.a2g  \
+  trivial-03.a2g
 
 #   azimuth-01.a2g
 
