@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2020  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -25,9 +25,7 @@
 #include <gnu_gama/local/acord/acord2.h>
 #include <gnu_gama/local/test_linearization_visitor.h>
 #include <gnu_gama/local/results/text/reduced_observations_to_ellipsoid.h>
-#ifdef DEBUG_DISABLE_ACORD2
-#include <gnu_gama/local/results/text/reduced_observations.h>
-#endif
+
 
 double xyzMaxDiff(GNU_gama::local::LocalNetwork* lnet1,
 		  GNU_gama::local::LocalNetwork* lnet2)
@@ -162,15 +160,8 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
         //  }
 	lnet->remove_inconsistency();
 
-#ifndef DEBUG_DISABLE_ACORD2
         Acord2 acord2(lnet->PD, lnet->OD);
         acord2.execute();
-#else
-        Acord acord(lnet->PD, lnet->OD);
-        acord.execute();
-
-        // ReducedObservationsText(lnet,&(acord.RO), std::cout);
-#endif
 
         if (lnet->correction_to_ellipsoid())
           {

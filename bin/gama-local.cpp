@@ -1,5 +1,5 @@
 /* GNU Gama C++ library
-   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014, 2018
+   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014, 2018, 2020
                  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
@@ -20,9 +20,6 @@
 
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
 #include <gnu_gama/local/sqlitereader.h>
-#endif
-#ifdef DEBUG_DISABLE_ACORD2
-#include <gnu_gama/local/results/text/reduced_observations.h>
 #endif
 
 #include <gnu_gama/outstream.h>
@@ -446,15 +443,9 @@ int main(int argc, char **argv)
          *
          * Class Acord2 was introduced for better handling of traverses.
          */
-#ifndef DEBUG_DISABLE_ACORD2
+
         Acord2 acord2(IS->PD, IS->OD);
         acord2.execute();
-#else
-        Acord acord(IS->PD, IS->OD);
-        acord.execute();
-
-        ReducedObservationsText(IS,&(acord.RO), cout);
-#endif
 
         if (IS->correction_to_ellipsoid())
           {
