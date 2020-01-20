@@ -92,7 +92,7 @@ namespace GNU_gama {
     ;
   }
 
-  std::string GNU_gama_year = "2019";
+  std::string GNU_gama_year = "2020";
 
 
   int version(const char* program, const char* copyright_holder)

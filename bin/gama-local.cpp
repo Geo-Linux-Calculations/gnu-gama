@@ -58,14 +58,14 @@ int help()
   using namespace std;
   using namespace GNU_gama::local;
 
-  cerr << "\n"
+  cout << "\n"
        << "Adjustment of local geodetic network"
        << "        version: "<< GNU_gama::GNU_gama_version()
        << " / " << GNU_gama::GNU_gama_compiler() << "\n"
        << "************************************\n"
-       << "http://www.gnu.org/software/gama/\n\n";
+       << "https://www.gnu.org/software/gama/\n\n";
 
-  cerr <<
+  cout <<
     "Usage: gama-local  input.xml  [options]\n"
 
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
@@ -101,7 +101,12 @@ int help()
 
 //  "--obs        observation_equations.txt (obsolete format)\n"
 
-  return 1;
+  cout <<
+    "Report bugs to: <bug-gama@gnu.org>\n"
+    "GNU gama home page: <https://www.gnu.org/software/gama/>\n"
+    "General help using GNU software: <https://www.gnu.org/gethelp/>\n\n";
+
+  return 0;
 }
 
 GNU_gama::local::XMLerror xmlerr;
