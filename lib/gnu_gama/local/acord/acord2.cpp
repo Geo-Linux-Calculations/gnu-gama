@@ -1,7 +1,7 @@
 /*
   GNU Gama -- Approximate coordinates version 2
   Copyright (C) 2018  Petra Millarova <petramillarova@gmail.com>
-		2019, 2020  Ales Cepek <cepek@gnu.org>
+                2019, 2020  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -56,46 +56,46 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
   for (auto i : OD_.clusters)
     {
       if (auto sp = dynamic_cast<StandPoint*>(i))
-	{
-	  SPClusters_.push_back(sp);
+        {
+          SPClusters_.push_back(sp);
 
-	  if (!has_azimuths_)
-	    {
-	      for (const auto observation : sp->observation_list)
-		{
-		  if (dynamic_cast<const Azimuth*>(observation) != nullptr)
-		    {
-		      has_azimuths_ = true;
-		      break;
-		    }
-		}
-	    }
+          if (!has_azimuths_)
+            {
+              for (const auto observation : sp->observation_list)
+                {
+                  if (dynamic_cast<const Azimuth*>(observation) != nullptr)
+                    {
+                      has_azimuths_ = true;
+                      break;
+                    }
+                }
+            }
 
-	  if (!slope_observations_)
-	    {
-	      for (const auto observation : sp->observation_list)
-		{
-		  if (dynamic_cast<const Z_Angle*>(observation) != nullptr)
-		    {
-		      slope_observations_ = true;
-		      break;
-		    }
-		  if (dynamic_cast<const S_Distance*>(observation) != nullptr)
-		    {
-		      slope_observations_ = true;
-		      break;
-		    }
-		}
-	    }
-	}
+          if (!slope_observations_)
+            {
+              for (const auto observation : sp->observation_list)
+                {
+                  if (dynamic_cast<const Z_Angle*>(observation) != nullptr)
+                    {
+                      slope_observations_ = true;
+                      break;
+                    }
+                  if (dynamic_cast<const S_Distance*>(observation) != nullptr)
+                    {
+                      slope_observations_ = true;
+                      break;
+                    }
+                }
+            }
+        }
       else if (auto hcl = dynamic_cast<HeightDifferences*>(i))
-	{
-	  HDiffClusters_.push_back(hcl);
-	}
+        {
+          HDiffClusters_.push_back(hcl);
+        }
       else if (auto vcl = dynamic_cast<Vectors*>(i))
-	{
-	  VectorsClusters_.push_back(vcl);
-	}
+        {
+          VectorsClusters_.push_back(vcl);
+        }
     }
 
   for (PointData::const_iterator i = PD_.begin(); i != PD_.end(); ++i)
@@ -103,33 +103,33 @@ Acord2::Acord2(PointData& pd, ObservationData& od)
       const PointID& c = (*i).first;
       const LocalPoint& p = (*i).second;
       if (p.active_xy() && !p.test_xy())
-	{ // this means the a network point xy were not set and are
-	  // part of the network
-	  // find and add all missing points into one set
-	  missing_xy_.insert(c);
-	}
+        { // this means the a network point xy were not set and are
+          // part of the network
+          // find and add all missing points into one set
+          missing_xy_.insert(c);
+        }
       if (p.active_z() && !p.test_z())
-	{
-	  missing_z_.insert(c);
-	}
+        {
+          missing_z_.insert(c);
+        }
     }
 
   for (auto sp : SPClusters_)
     {
       for (auto obs : sp->observation_list)
-	{
-	  PointID from = obs->from();
-	  obs_from_.insert({obs->from(), obs});
-	  if (auto angle = dynamic_cast<Angle*>(obs))
-	    {
-	      obs_to_.insert({angle->bs(), obs});
-	      obs_to_.insert({angle->fs(), obs});
-	    }
-	  else
-	    {
-	      obs_to_.insert({obs->to(), obs});
-	    }
-	}
+        {
+          PointID from = obs->from();
+          obs_from_.insert({obs->from(), obs});
+          if (auto angle = dynamic_cast<Angle*>(obs))
+            {
+              obs_to_.insert({angle->bs(), obs});
+              obs_to_.insert({angle->fs(), obs});
+            }
+          else
+            {
+              obs_to_.insert({obs->to(), obs});
+            }
+        }
     }
 
   using std::make_shared;
@@ -171,8 +171,12 @@ StandPoint* Acord2::find_standpoint(const PointID& pt)
 }
 
 
-void Acord2::execute()
+std::pair<std::size_t, std::size_t> Acord2::execute()
 {
+  std::pair<std::size_t, std::size_t> solved;
+  solved.first  = missing_xy_.size();
+  solved.second = missing_z_.size();
+
   ReducedObservations RO(PD_, OD_);
   RO.execute();
 
@@ -242,6 +246,10 @@ void Acord2::execute()
   std::cerr << "\nACORD2::execute() : missing xy " << missing_xy_.size()
             << "  missing z " << missing_z_.size() << std::endl;
 #endif
+
+  solved.first  -= missing_xy_.size();
+  solved.second -= missing_z_.size();
+  return solved;
 }
 
 

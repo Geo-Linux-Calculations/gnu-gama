@@ -36,7 +36,7 @@ namespace GNU_gama { namespace local {
     {
     public:
       Acord2(PointData&, ObservationData&);
-      void execute();
+      std::pair<std::size_t, std::size_t> execute();
 
     private:
       using size_type = std::size_t;
