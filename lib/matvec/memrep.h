@@ -1,6 +1,6 @@
 /*
   C++ Matrix/Vector templates (GNU Gama / matvec)
-  Copyright (C) 1999, 2007, 2014, 2017, 2018, 2019
+  Copyright (C) 1999, 2007, 2014, 2017, 2018, 2019, 2020
                 Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ Matrix/Vector template library.
@@ -52,7 +52,7 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
     {
       if (nsz > 0)
         {
-          sz  = size_t(nsz);
+          sz  = nsz;
           rep = new Float[sz];
         }
       else if (nsz == 0)
@@ -118,9 +118,9 @@ namespace GNU_gama {   /** \brief Memory repository for matvec objects */
 
     void resize(Index nsz)
     {
-      if (size_t(nsz) == sz) return;
+      if (nsz == sz) return;
 
-      sz = size_t(nsz);
+      sz = nsz;
       delete[] rep;
 
       if (sz > 0)

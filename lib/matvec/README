@@ -1,3 +1,8 @@
+1.03  2020-06-04
+
+        - removed explicit conversions size_t() in memrep.h
+          these are not needed after symbolic type size_type was introduced
+
 1.02  2017-05-01
 
         - user defined initializer replaced by std::initializer_list
