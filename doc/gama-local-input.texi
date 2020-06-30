@@ -273,12 +273,16 @@ use in statistical tests (@code{aposteriori | apriori}); default value
 is @code{aposteriori}
 
 @item
-@code{update-constrained-coordinates = "no"} enables user to control
-if coordinates of constrained points are updated in iterative
-adjustment. If test on linerarization fails (@pxref{Linearization}),
-Gama tries to improve approximate coordinates of adjusted points and
-repeats the whole adjustment. Coordinates of constrained points are
-implicitly not changed during iterations.
+@code{update-constrained-coordinates = "yes"} enables user to control
+if coordinates of constrained points are to be updated during
+iterative adjustment runs. If test on linerarization fails
+(@pxref{Linearization}), Gama tries to improve approximate coordinates
+of adjusted points and repeats the whole adjustment. Coordinates of
+constrained points are also changed during these iterations. You can
+disable this feature, but you are discouraged to do so.  This
+option is available only for backward compatibility of XML input
+format and we recommend not to use it explicitly and rely on its
+default value.
 
 @item
 @code{algorithm = "gso"} numerical algortihm used in the adjistment
@@ -319,8 +323,7 @@ between attribute names, values, and the @emph{equal} sign.
 @example
 <parameters sigma-apr = "15"
             conf-pr   = '0.90'
-            sigma-act = "apriori"
-            update-constrained-coordinates = "no" />
+            sigma-act = "apriori" />
 @end example
 
 

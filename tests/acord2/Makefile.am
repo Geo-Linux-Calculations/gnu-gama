@@ -10,7 +10,7 @@ a2g_SOURCES  = a2g-main.cpp a2g.h a2g.cpp
 #a2g_LDADD    = $(top_builddir)/lib/libgama.a
 #a2g_CPPFLAGS = -I $(top_srcdir)/lib
 
-a2diff_SOURCES  = a2diff-main.cpp acord.cpp
+a2diff_SOURCES  = a2diff-main.cpp acord.h acord.cpp
 #a2diff_LDADD    = $(top_builddir)/lib/libgama.a
 #a2diff_CPPFLAGS = -I $(top_srcdir)/lib
 

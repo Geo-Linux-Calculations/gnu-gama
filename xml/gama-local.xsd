@@ -85,7 +85,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="update-constrained-coordinates" default="no">
+      <xs:attribute name="update-constrained-coordinates" default="yes">
         <xs:simpleType>
           <xs:restriction base="xs:token">
             <xs:enumeration value="yes"/>

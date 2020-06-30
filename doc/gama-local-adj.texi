@@ -1624,16 +1624,18 @@ was chosen so strict to guarantee that listed output results would
 never be influenced by linearization and could serve for verification
 and testing of numerical solutions produced by other programs.
 
-Implicitly coordinates of constrained points are not changed in
-iterative adjustments. This feature can be changed in XML input data
-by setting @code{<parameters update-constrained-coordinates = "yes" />}
-(@pxref{Network parameters}).
+Implicitly coordinates of constrained points are updated during
+iterative adjustment cycles. This feature can be changed in XML input
+data by setting @code{<parameters update-constrained-coordinates =
+"yes" />} (@pxref{Network parameters}). We strongly recommend not to do
+so, most likely you will get linearization errors. This option is
+available only for backward compatibility of input XML format.
 
 
 Iterated adjustement with successive improvement of approximate
 coordinates converges usually even for gross errors in initial estimates
 of unknown coordinates. If the influence of linearization is detected
-after adjustment, quite often only one iteration is sufficient for
+after adjustment, typically only one iteration is sufficient for
 recovering.
 
 

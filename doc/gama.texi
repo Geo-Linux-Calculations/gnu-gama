@@ -25,7 +25,7 @@
 @ifinfo
 This is a documentation version of GNU Gama @value{VERSION}.
 
-Copyright @copyright{} 2003, 2013 Aleš Čepek.
+Copyright @copyright{} 2003, 2013, 2020 Aleš Čepek.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.1 or

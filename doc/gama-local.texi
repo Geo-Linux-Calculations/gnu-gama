@@ -1,10 +1,7 @@
 Program @code{gama-local} is a simple command line tool for adjustment
 of geodetic @emph{free networks.} It is available for GNU Linux (the
-main platform on which project GNU Gama is being developed) or for MS
-Windows (tested with Borland compiler from Borland free command line
-tools and with Microsoft Visual C++ compiler; support for Windows
-platform is currently limited to maintaing compatibility with the two
-mentioned compilers).
+main platform on which project GNU Gama is being developed), BSD or
+Windows.
 
 
 Program @code{gama-local} reads input data in XML format (@ref{XML
@@ -56,9 +53,8 @@ Options:
 @noindent
 Program @code{gama-local} version is followed by information on
 compiler used to build the program (apart from GNU @code{g++}
-compiler, two other possibilities are @code{bcc} and @code{msc} for
-Borland and Microsoft compilers respectively, when build under
-Microsoft Windows).
+compiler, other possibilities are Clang, Intel C++ compiler and
+Visual C++, when build under Microsoft Windows).
 
 
 Option @code{--algorithm} enables to select numerical method used for

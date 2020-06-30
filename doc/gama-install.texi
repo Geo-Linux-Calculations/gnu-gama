@@ -75,7 +75,7 @@ Doxygen output will be in the @code{doxygen} directory.
 
 @menu
 * CMake::
-* Precompiled binaries for Windows::
+* Precompiled executables for Windows::
 @end menu
 
 @node       CMake
@@ -98,19 +98,12 @@ $ make
 where @code{build} is an arbitrary directory name for
 @emph{out-of-place build}.
 
-@node       Precompiled binaries for Windows
-@subsection Precompiled binaries for Windows
-@cindex     Windows, precompiled binaries 
+@node       Precompiled executables for Windows
+@subsection Precompiled executables for Windows
+@cindex     Windows, precompiled executables 
 
 
-@itemize @bullet
-
-@item
-GNU Gama builds for Windows are available from
-@uref{https://sourceforge.net/projects/gnu-gama-builds}.
-
-@item
-Binary builds of Qt based GUI gama-q2 are available from
+Executebles of Qt based GUI @code{gama-q2} and command line programs
+@code{gama-local} and @code{gama-g3} are available from
 @uref{https://sourceforge.net/projects/gnu-gama-q2}.
 
-@end itemize

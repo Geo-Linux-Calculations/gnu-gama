@@ -179,7 +179,7 @@ Gama tries to improve approximate coordinates of adjusted points and
 repeats the whole adjustment. Coordinates of constrained points are
 implicitly not changed during iterations.
 Acceptable values are @code{yes}, @code{no}, default value
-is @code{no}.
+is @code{yes}.
 
 @item
 @code{axes_xy}

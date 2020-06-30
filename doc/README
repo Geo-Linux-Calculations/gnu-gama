@@ -2,8 +2,14 @@
    make download-gendocs.sh 
    make run-gendocs.sh
    
-2) copy manual to web-gama
+2) copy manual to gama-web
    find . -type f -print0| xargs -0 cvs add
+
+   ###########################
+   ### working alternative ###
+   ###########################
+   cd manual
+   cvs add `find -type f | grep -v CVS`
 
 3) copy and add .symlinks where needed (manual, manual/html_node, ...)
    example: echo ../fig fig > html_chapter/.symlinks

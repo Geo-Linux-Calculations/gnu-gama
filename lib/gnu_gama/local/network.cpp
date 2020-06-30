@@ -1,7 +1,8 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015, 2018, 2019  Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2018, 2019, 2020
+                  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -212,7 +213,7 @@ private:
 LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
     m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000),
-    update_constrained_coordinates_(false), typ_m_0_(empiricka_),
+    update_constrained_coordinates_(true), typ_m_0_(empiricka_),
     tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(nullptr),
     gons_(true)
 {
