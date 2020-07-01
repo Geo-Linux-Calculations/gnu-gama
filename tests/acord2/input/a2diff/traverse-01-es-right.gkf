@@ -10,8 +10,7 @@ traverse-01
 <parameters  sigma-apr = '10'
              conf-pr = '0.95'
              tol-abs = '1000'
-             sigma-act = 'aposteriori'
-             update-constrained-coordinates = 'yes'/>
+             sigma-act = 'aposteriori' />
 
 <points-observations distance-stdev='5'
                      direction-stdev='10'
