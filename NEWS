@@ -1,5 +1,21 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.09 June 2020
+
+* There is one major fix visible to end users. Implicit value of XML
+  parameter 'update_constrained_coordinates' was changed to "yes". The
+  behavior of adjustment calculation was well and clearly described in
+  the documentation, but in some cases the old implicit value ("no")
+  might have led to poor numerical results. The input data XML
+  parameter 'update_constrained_coordinates' is preserved only for
+  backward compatibility and is likely to be removed in some future
+  release.
+
+  This release is a kind of preparation stage for the next release
+  where 'update-constrained-coordinates' parameter shall be removed
+  from the input XML data format.
+
+
 Version 2.08 December 2019
 
 Maintainer's release
