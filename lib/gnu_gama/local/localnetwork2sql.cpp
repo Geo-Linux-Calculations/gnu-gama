@@ -2,7 +2,8 @@
     GNU Gama -- adjudstment of geodetic networks
     Copyright (C) 2010  Ales Cepek <cepek@gnu.org>,
                   2010 Jiri Novak <jiri.novak@petriny.net>,
-                  2012, 2013, 2014, 2015, 2017, 2019 Ales Cepek <cepek@gnu.org>
+                  2012, 2013, 2014, 2015, 2017, 2019, 2020
+                  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -281,7 +282,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
   {
     ostr <<  "insert into gnu_gama_local_configurations"
          <<  " (conf_id, conf_name, sigma_apr, conf_pr, tol_abs, sigma_act,"
-         <<  " update_cc, axes_xy, angles, ang_units,"
+         <<  " axes_xy, angles, ang_units,"
          <<  " cov_band, algorithm, epoch, latitude, ellipsoid) values ("
          <<  "(select new_id from (select coalesce(max(conf_id), 0)+1 as "
          <<  "new_id from gnu_gama_local_configurations)x),"
@@ -291,8 +292,6 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
          <<  localNetwork.tol_abs() << ", "
          << (localNetwork.m_0_apriori()
              ? "'apriori'" : "'aposteriori'") << ", "
-         << (localNetwork.update_constrained_coordinates()
-             ? "'yes'" : "'no'") << ", "
          <<  axes
          << (localNetwork.PD.left_handed_angles()
              ? "'left-handed'" : "'right-handed'") << ", "

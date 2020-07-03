@@ -1335,8 +1335,6 @@ std::string LocalNetwork::updated_xml()
   xml += "  tol-abs=\""   + std::to_string(tol_abs())     + "\"\n";
   xml += "  sigma-act=\"";
   xml +=         m_0_apriori() ? "apriori\"\n" : "aposteriori\"\n";
-  xml += "  update-constrained-coordinates=\"";
-  xml +=         update_constrained_coordinates() ? "yes\"\n" : "no\"\n";
   xml += "  angles=\"" + std::string(gons() ? "400" : "360") + "\"\n";
   if (has_algorithm()) xml += "  algorithm=\"" + algorithm() + "\"\n";
   if (has_latitude())

@@ -1,7 +1,7 @@
 /*
     GNU Gama C++ library
     Copyright (C) 2011  Vaclav Petras <vaclav.petras@fsv.cvut.cz>
-                  2013, 2014, 2019  Ales Cepek <cepek@gnu.org>
+                  2013, 2014, 2019, 2020  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -15,9 +15,8 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+   You should have received a copy of the GNU General Public License
+   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
@@ -377,8 +376,8 @@ void SqliteReader::retrieve(LocalNetwork*& locnet, const std::string& configurat
 
   // configuration info
   std::string query("select conf_id, "
-                    "       algorithm, sigma_apr, conf_pr, tol_abs, sigma_act,"
-                    "       update_cc, axes_xy, angles, epoch, ang_units, "
+                    "       algorithm, sigma_apr, conf_pr, tol_abs, sigma_act, "
+                    "       axes_xy, angles, epoch, ang_units, "
                     "       latitude, ellipsoid, cov_band "
                     "  from gnu_gama_local_configurations "
                     " where conf_name = '" + configuration + "'");
@@ -452,8 +451,24 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
 {
   ReaderData* d = static_cast<ReaderData*>(data);
 
+  /* Changes in gama-2.10  Aleš Čepek 2020
+   * --------------------
+   *
+   * Input XML parameter update_constrainded coordinates was removed,
+   * it is now considered always true/'yes'. The corresponding column
+   * was also removed from sql table 'gnu_gama_local_configurations',
+   * column name 'update_cc' defined in 'gama-local-schema.sql'.
+   *
+   * In SqliteReader::retrieve 'update_cc' column name was removed in
+   * the query (configuration info) and SqlReader now should read both
+   * previous and current sql schema.
+   *
+   * In this function we must change number of arguments from 14 to
+   * 13, and decrease index values from 'axes_xy' to 'cov_band'
+   */
+
   try {
-    if (argc == 14 && argv[0])
+    if (argc == 13 /* was 14, see the comment above */ && argv[0])
       {
         d->configurationId = argv[0];
 
@@ -477,9 +492,10 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         else
           d->lnet->set_m_0_aposteriori();
 
-        d->lnet->update_constrained_coordinates((std::string(argv[6]) == "yes"));
+        // !!! UNUSED from gama-2.10 !!!
+        // d->lnet->update_constrained_coordinates((std::string(argv[6]) == "yes"));
 
-        std::string val = argv[7];
+        std::string val = argv[6]/* was 7 */;
         LocalCoordinateSystem::CS& lcs = d->lnet->PD.local_coordinate_system;
         if      (val == "ne") lcs = LocalCoordinateSystem::CS::NE;
         else if (val == "sw") lcs = LocalCoordinateSystem::CS::SW;
@@ -492,27 +508,27 @@ int sqlite_db_readConfigurationInfo(void* data, int argc, char** argv, char**)
         else lcs = LocalCoordinateSystem::CS::NE;
 
         // d->lnet->PD.right_handed_angles = (std::string(argv[8]) == "right-handed");
-	if (std::string(argv[8]) == "right-handed")
+	if (std::string(argv[7]/* was 8 */) == "right-handed")
 	  d->lnet->PD.setAngularObservations_Righthanded();
 	else
 	  d->lnet->PD.setAngularObservations_Lefthanded();
 
-        if (argv[9])
-          d->lnet->set_epoch(ToDouble(argv[9]));
+        if (argv[8]/* was 9 */)
+          d->lnet->set_epoch(ToDouble(argv[8]/* was 9 */));
 
-        if (std::string(argv[10]) == "400")
+        if (std::string(argv[9]/* was 10 */) == "400")
           d->lnet->set_gons();
         else
           d->lnet->degrees();
 
         using namespace std;
-        if (argv[11])
-          d->lnet->set_latitude(atoi(argv[11]) * M_PI / 200);
+        if (argv[10]/* was 11 */)
+          d->lnet->set_latitude(atoi(argv[10]/* was 11 */) * M_PI / 200);
 
-        if (argv[12])
-          d->lnet->set_ellipsoid(argv[12]);
+        if (argv[11]/* was 12 */)
+          d->lnet->set_ellipsoid(argv[11]/* was 12 */);
 
-        d->lnet->set_adj_covband(atoi(argv[13]));
+        d->lnet->set_adj_covband(atoi(argv[12]/* was 13 */));
 
         return 0;
       }

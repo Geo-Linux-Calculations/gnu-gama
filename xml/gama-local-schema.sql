@@ -1,8 +1,9 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2010 Ales Cepek <cepek@gnu.org>, 2010 Jiri Novak
-    <jiri.novak@petriny.net>, 2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>,
-    2013, 2014, 2015 Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2010 Ales Cepek <cepek@gnu.org>,
+    2010 Jiri Novak  <jiri.novak@petriny.net>,
+    2010 Vaclav Petras <vaclav.petras@fsv.cvut.cz>,
+    2013, 2014, 2015, 2020 Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -17,17 +18,16 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  $
+    along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
 create table gnu_gama_local_schema_version (
    major integer default 1 not null check (major = 1),
-   minor integer default 1 not null check (minor = 93),
+   minor integer default 1 not null check (minor = 94),
    primary key (major, minor)
 );
-insert into gnu_gama_local_schema_version (major, minor) values (1, 93);
+insert into gnu_gama_local_schema_version (major, minor) values (1, 94);
 
 create table gnu_gama_local_options (
    opt_key varchar(40),
@@ -41,7 +41,6 @@ create table gnu_gama_local_configurations (
    conf_pr   double precision default 0.95 not null check (conf_pr > 0 and conf_pr <1),
    tol_abs   double precision default 1000 not null check (tol_abs > 0),
    sigma_act varchar(11) default 'aposteriori' not null check (sigma_act in ('apriori', 'aposteriori')),
-   update_cc varchar(3) default 'no' not null check (update_cc in ('yes', 'no')),
    axes_xy   varchar(2) default 'ne' not null check (axes_xy in ('ne', 'sw', 'es', 'wn', 'en', 'nw', 'se', 'ws')),
    angles    varchar(12) default 'left-handed' not null check (angles in ('left-handed', 'right-handed')),
    ang_units int default 400 not null check (ang_units in (400, 360)),
