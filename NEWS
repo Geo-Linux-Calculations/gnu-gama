@@ -1,5 +1,10 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.09 ... 2020
+
+* Removed obscure adjustment parameter 'update-constrained-parameters'.
+
+
 Version 2.09 June 2020
 
 * There is one major fix visible to end users. Implicit value of XML

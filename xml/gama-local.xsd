@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema version="1.00"
+<xs:schema version="1.01"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.gnu.org/software/gama/gama-local"
   targetNamespace="http://www.gnu.org/software/gama/gama-local"
@@ -10,6 +10,8 @@
     <xs:documentation xml:lang="en">
       GNU Gama local schema
       http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gama-local.xsd
+
+      1.01 removed parameter update-constrained coordinates parameters
 
       1.00 fixed a formal error in the definition of obs attribute
            from_dh type=xs:double
@@ -82,14 +84,6 @@
           <xs:restriction base="xs:token">
             <xs:enumeration value="aposteriori"/>
             <xs:enumeration value="apriori"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="update-constrained-coordinates" default="yes">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="yes"/>
-            <xs:enumeration value="no"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
