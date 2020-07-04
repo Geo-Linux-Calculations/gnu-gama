@@ -205,15 +205,6 @@ namespace GNU_gama { namespace local
     void   tol_abs(double m)      { tol_abs_ = m; }
     double tol_abs() const        { return tol_abs_; }
 
-    void   update_constrained_coordinates(bool par)
-    {
-      update_constrained_coordinates_ = par;
-    }
-    bool   update_constrained_coordinates() const
-    {
-      return update_constrained_coordinates_;
-    }
-
     double stdev_obs(int i) { return sigma_L(i); }
     double wcoef_res(int i) { return vahkopr(i); }
     double stdev_res(int i)
@@ -345,7 +336,6 @@ namespace GNU_gama { namespace local
     double m_0_apr_;         // a priori reference standard deviation
     double konf_pr_;         // (confidence) probability
     double tol_abs_;         // tollerance for testing absolute terms
-    bool update_constrained_coordinates_{true};
     enum ApEm_ { apriorni_, empiricka_ };
     ApEm_ typ_m_0_;          // type of reference standard deviation
 

@@ -15,10 +15,10 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Angle* obs)
 {
   double ds, dd;
   computeBearingAndDistance(obs, ds, dd);
-  
+
   double sx, sy, cx, cy;
   computeFromTo(obs, sx, sy, cx, cy);
-  
+
   const LocalPoint& cil2 = IS->PD[obs->fs() ];
   double cy2 = cil2.y() + x(cil2.index_y())/1000;
   double cx2 = cil2.x() + x(cil2.index_x())/1000;
@@ -41,23 +41,23 @@ void GNU_gama::local::TestLinearizationVisitor::visit(S_Distance* obs)
       dy += point.y();
       dz += point.z();
       if (point.free_xy())
-	{
-	  dx += x(point.index_x())/1000;
-	  dy += x(point.index_y())/1000;
-	}
+        {
+          dx += x(point.index_x())/1000;
+          dy += x(point.index_y())/1000;
+        }
       if (point.free_z())
-	{
-	  dz += x(point.index_z())/1000;
-	}
+        {
+          dz += x(point.index_z())/1000;
+        }
       dx *= -1;
       dy *= -1;
       dz *= -1;
     };
-  
+
   f(obs->from());
   f(obs->to());
   double slope = std::sqrt(dx*dx + dy*dy + dz*dz);
-  
+
   mer  = obs->value() + v(i)/1000;
   mer -= slope;
   mer *= 1000;
@@ -90,14 +90,14 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Direction* obs)
 
 
 bool GNU_gama::local::TestLinearization(GNU_gama::local::LocalNetwork* IS,
-					double /*max_pyx*/,
-					double max_dif)
+                                        double /*max_pyx*/,
+                                        double max_dif)
 {
   using namespace std;
   using namespace GNU_gama::local;
-  
+
   bool test  = false;     // result of bad linearization test
-  
+
   // difference in adjusted observations computed from residuals and
   // from adjusted coordinates
   // ===============================================================
@@ -149,23 +149,7 @@ bool GNU_gama::local::TestLinearization(GNU_gama::local::LocalNetwork* IS,
     }
     if (max_pol >= max_dif) test = true;
 
-    if (test && !(IS->update_constrained_coordinates()))
-      {
-        // if all adjusted points are constrained, adjustment is never
-        // repeated (unless explicitly asked for)
-        // ------------------------------------------------------
-
-        test = false;
-        for (PointData::const_iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
-          {
-            const LocalPoint& b = (*i).second;
-            if (b.free_xy() && !b.constrained_xy())
-              {
-                test = true;
-                break;
-              }
-          }
-      }
   }
+
   return test;
 }

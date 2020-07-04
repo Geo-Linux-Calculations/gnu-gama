@@ -212,8 +212,7 @@ private:
 
 LocalNetwork::LocalNetwork()
   : pocbod_(0), tst_redbod_(false), pocmer_(0), tst_redmer_(false),
-    m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000),
-    update_constrained_coordinates_(true), typ_m_0_(empiricka_),
+    m_0_apr_(10), konf_pr_(0.95), tol_abs_(1000), typ_m_0_(empiricka_),
     tst_rov_opr_(false), tst_vyrovnani_(false), min_n_(0), min_x_(nullptr),
     gons_(true)
 {
@@ -1033,15 +1032,13 @@ void LocalNetwork::refine_approx()
       {
         const PointID& cb = unknown_pointid(i);
         LocalPoint& b = PD[cb];
-        if (!b.constrained_xy() || update_constrained_coordinates())
-            b.set_xy(b.x() + x(i)/1000, b.y() + x(i+1)/1000);
+        b.set_xy(b.x() + x(i)/1000, b.y() + x(i+1)/1000);
       }
     else if (unknown_type(i) == 'Z')
       {
         const PointID& cb = unknown_pointid(i);
         LocalPoint& b = PD[cb];
-        if (!b.constrained_z() || update_constrained_coordinates())
-          b.set_z(b.z() + x(i)/1000);
+        b.set_z(b.z() + x(i)/1000);
       }
     else if (unknown_type(i) == 'R')
       {

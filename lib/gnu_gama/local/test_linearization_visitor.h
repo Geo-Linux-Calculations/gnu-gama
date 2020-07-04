@@ -374,28 +374,6 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
       }
   }
 
-  if (test && !(IS->update_constrained_coordinates()))
-    {
-      out << "\n\n";
-      out.flush();
-
-
-      // if all adjusted points are constrained, adjustment is never
-      // repeated (unless explicitly asked for)
-      // ------------------------------------------------------
-
-      test = false;
-      for (PointData::const_iterator i=IS->PD.begin(); i!=IS->PD.end(); ++i)
-        {
-          const LocalPoint& b = (*i).second;
-          if (b.free_xy() && !b.constrained_xy())
-            {
-              test = true;
-              break;
-            }
-        }
-    }
-
   return test;
 }
 
