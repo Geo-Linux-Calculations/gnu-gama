@@ -61,7 +61,16 @@ int main(int argc, char* argv[])
 
   try
     {
-      return compare_xml_adjustment(html, xml, 1e-1);
+      /* GNU gama 2.10: Because there was a problem in gama-q2 with
+       * rendering of HTML table of adjustment results (Qt 5.14.2),
+       * see id='confidence_scale', the output was changed and
+       * confidence coefficent is printed with 3 decimal digits only
+       * (was 5). To keep original precision for XML XML check a new
+       * parameter was added to compare_xml_adjustement() with
+       * implicit value 1e-5 and for the check of HTML output it is
+       * explicitly set to 1e-3.
+       */
+      return compare_xml_adjustment(html, xml, 1e-1, 1e-3);
     }
   catch (...)
     {

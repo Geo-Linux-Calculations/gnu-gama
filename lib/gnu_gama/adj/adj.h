@@ -78,7 +78,7 @@ namespace GNU_gama {
     const Vec<>& x();                          /*!< adjusted parameters     */
     const Vec<>& r();                          /*!< adjusted residuals      */
 
-    /** weight coeficients of adjusted parameters    */
+    /** weight coefficients of adjusted parameters    */
     double q_xx(int i, int j) { return least_squares->q_xx(i,j); }
     /** weight coefficients of adjusted observations */
     double q_bb(int i, int j);

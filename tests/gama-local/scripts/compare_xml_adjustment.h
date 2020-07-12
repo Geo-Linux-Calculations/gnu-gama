@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2020  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -24,5 +24,6 @@
 
 int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
                            GNU_gama::LocalNetworkAdjustmentResults* xml,
-                           double covmat_tol);
+                           double covmat_tol,
+                           double confidence_tol=1e-5);
 #endif

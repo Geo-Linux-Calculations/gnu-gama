@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012, 2014, 2018  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014, 2018, 2020  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -27,7 +27,7 @@ using GNU_gama::LocalNetworkAdjustmentResults;
 
 int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
                            GNU_gama::LocalNetworkAdjustmentResults* xml,
-                           double covmat_tol)
+                           double covmat_tol, double confidence_tol)
 {
   int result_gp = 0, rcoord = 0, robs = 0;
 
@@ -193,7 +193,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
           double qcscale = (html->standard_deviation.confidence_scale
                           + xml->standard_deviation.confidence_scale)/2;
           if (qcscale) mcscale /= qcscale;
-          if (mcscale > 1e-5)
+          if (mcscale > confidence_tol)
             {
               std::cout << "         confidence scale failed\n";
               result_gp = 1;

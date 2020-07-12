@@ -866,8 +866,8 @@ void GamaLocalHTML::htmlInfo()
                   T_GaMa_interval_contains :
                   T_GaMa_interval_doesnt_contain)
               << "</td>"
-              << "<td>(</td><td>" << double2str(dolni, 'F',3)
-              << "</td><td>,</td>"
+              << "<td>&nbsp;(</td><td>" << double2str(dolni, 'F',3)
+              << "</td><td>,&nbsp;</td>"
               << "<td>" << double2str(horni, 'F',3)
               << "</td><td>)</td></tr>\n";
 
@@ -921,11 +921,12 @@ void GamaLocalHTML::htmlInfo()
                 }
             }
           out << "<tr id='confidence_scale'>"
-              << tdLeft("Confidence coeficient:")
-              << "<td colspan='1'></td>"
-              << "<td colspan='5' align='left'>"
-              << double2str(lnet->conf_int_coef(), 'F', 5)
-              << "</td></tr>\n";
+              << tdLeft("Confidence coefficient:")
+              << "<td></td>"
+              << "<td align='left'>"
+              << double2str(lnet->conf_int_coef(), 'F', 3)
+              << "</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>"
+              << "</tr>\n";
 
           out << "</table>\n";
         }
