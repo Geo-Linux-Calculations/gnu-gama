@@ -91,3 +91,8 @@ CMakeLists.txt.user*
 .vs
 .vscode
 run.bat
+#
+results
+*.log
+*.trs
+*.sh

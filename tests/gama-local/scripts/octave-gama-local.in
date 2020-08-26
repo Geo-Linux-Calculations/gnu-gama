@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+RES=@GAMA_RESULTS@/gama-local-adjustment
+if [ ! -d $RES ]; then
+    mkdir -p $RES
+fi;
+
+for g in @INPUT_FILES@ # @BUG_FILES@
+do
+for a in envelope # svd gso cholesky
+do
+    echo  @PACKAGE_VERSION@ $g $a
+    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+        --algorithm $a \
+        --text /dev/null \
+	--iterations 0 \
+	--octave $RES/$g-$a.m
+    octave < $RES/$g-$a.m
+done
+done

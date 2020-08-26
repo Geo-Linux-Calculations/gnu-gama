@@ -1,15 +1,15 @@
 EXTRA_DIST = CMakeLists.txt
 
 TESTA = gama-local-version.sh \
-	gama-local-adjustment.sh \
-	gama-local-algorithms.sh \
-	gama-local-xml-xml.sh \
-	gama-local-html.sh \
-	gama-local-equivalents.sh \
-	gama-local-xml-results.sh \
-	gama-local-parameters.sh \
-	gama-local-updated-xml.sh \
-	gama-local-externs.sh
+        gama-local-adjustment.sh \
+        gama-local-algorithms.sh \
+        gama-local-xml-xml.sh \
+        gama-local-html.sh \
+        gama-local-equivalents.sh \
+        gama-local-xml-results.sh \
+        gama-local-parameters.sh \
+        gama-local-updated-xml.sh \
+        gama-local-externs.sh
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader.sh
@@ -20,10 +20,14 @@ TESTC = xmllint-gama-local-xsd.sh xmllint-gama-local-adjustment-xsd.sh
 endif
 
 if GNU_GAMA_LOCAL_TEST_OCTAVE
-TESTD = octave-gama-local-read.sh
+TESTD = octave-gama-local.sh
 endif
 
-TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD)
+if GNU_GAMA_LOCAL_EXTRA_TESTS
+TESTX = gama-local-extra-tests.sh
+endif
+
+TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD) $(TESTX)
 
 SUBDIRS = scripts input
 
@@ -32,10 +36,6 @@ INPUT_FILES = gama-local \
               zoltan-test_2d_gon \
               zoltan-test_3d_dms \
               zoltan-test_3d_gon \
-              tst-tetrahedron-1 \
-              tst-tetrahedron-2 \
-              tst-tetrahedron-3-deg \
-              tst-tetrahedron-3-gon \
               fixed-azimuth \
               azimuth-angle \
               azimuth-azimuth \
@@ -48,10 +48,14 @@ INPUT_FILES = gama-local \
               stroner-levelling-a \
               stroner-levelling-b \
               extern-azimuth-distance \
-              extern-tst-tetrahedron-3-gon \
               extern-seq-dsuloha-d
 
-BUG_FILES = bug-2019-08-06-integer-coordinates \
+BUG_FILES = tst-tetrahedron-1 \
+            tst-tetrahedron-2 \
+            tst-tetrahedron-3-deg \
+            tst-tetrahedron-3-gon \
+            extern-tst-tetrahedron-3-gon \
+            bug-2019-08-06-integer-coordinates \
             bug-2019-08-13-traverse-knin_male \
             bug-2019-08-20-knin_test
 
@@ -79,94 +83,105 @@ $(GAMA_RESULTS):
 
 gama-local-version.sh: $(GAMA_SCRIPT)/gama-local-version.in $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-version.in \
-		> gama-local-version.sh
+	             > gama-local-version.sh
 	@chmod +x gama-local-version.sh
 
-gama-local-adjustment.sh: $(GAMA_SCRIPT)/gama-local-adjustment.in $(GAMA_OTHERS)
+gama-local-adjustment.sh: $(GAMA_SCRIPT)/gama-local-adjustment.in \
+	                  $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-adjustment.in \
-				> gama-local-adjustment.sh
+	             > gama-local-adjustment.sh
 	@chmod +x gama-local-adjustment.sh
 
-gama-local-algorithms.sh: $(GAMA_SCRIPT)/gama-local-algorithms.in $(GAMA_OTHERS)
+gama-local-algorithms.sh: $(GAMA_SCRIPT)/gama-local-algorithms.in \
+	                  $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-algorithms.in \
-				> gama-local-algorithms.sh
+	             > gama-local-algorithms.sh
 	@chmod +x gama-local-algorithms.sh
 
 gama-local-equivalents.sh: $(GAMA_SCRIPT)/gama-local-equivalents.in \
-		$(GAMA_OTHERS)
+	                   $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-equivalents.in \
-				> gama-local-equivalents.sh
+	             > gama-local-equivalents.sh
 	@chmod +x gama-local-equivalents.sh
 
 gama-local-xml-results.sh: $(GAMA_SCRIPT)/gama-local-xml-results.in \
-		$(GAMA_OTHERS)
+	                   $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-results.in \
-				> gama-local-xml-results.sh
+	             > gama-local-xml-results.sh
 	@chmod +x gama-local-xml-results.sh
 
 gama-local-html.sh: $(GAMA_SCRIPT)/gama-local-html.in $(GAMA_OTHERS) \
-                 gama-local-adjustment.sh
+                    gama-local-adjustment.sh
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-html.in \
-				> gama-local-html.sh
+	             > gama-local-html.sh
 	@chmod +x gama-local-html.sh
 
 gama-local-xml-xml.sh: $(GAMA_SCRIPT)/gama-local-xml-xml.in $(GAMA_OTHERS) \
-                    gama-local-adjustment.sh
+                       gama-local-adjustment.sh
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-xml-xml.in \
-				> gama-local-xml-xml.sh
+	             > gama-local-xml-xml.sh
 	@chmod +x gama-local-xml-xml.sh
 
 gama-local-parameters.sh: $(GAMA_SCRIPT)/gama-local-parameters.in \
-		$(GAMA_OTHERS)
+	                  $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-parameters.in \
-				> gama-local-parameters.sh
+	             > gama-local-parameters.sh
 	@chmod +x gama-local-parameters.sh
 
 gama-local-updated-xml.sh: $(GAMA_SCRIPT)/gama-local-updated-xml.in \
-		$(GAMA_OTHERS)
+	                   $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-updated-xml.in \
-				> gama-local-updated-xml.sh
+	             > gama-local-updated-xml.sh
 	@chmod +x gama-local-updated-xml.sh
 
 gama-local-externs.sh: $(GAMA_SCRIPT)/gama-local-externs.in \
-		$(GAMA_OTHERS)
+	               $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-externs.in \
-				> gama-local-externs.sh
+	             > gama-local-externs.sh
 	@chmod +x gama-local-externs.sh
 
 
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 gama-local-sqlite-reader.sh: $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
-		$(GAMA_OTHERS)
+	                     $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-sqlite-reader.in \
-				> gama-local-sqlite-reader.sh
+	             > gama-local-sqlite-reader.sh
 	@chmod +x gama-local-sqlite-reader.sh
 endif
 
 
 if GNU_GAMA_LOCAL_TEST_XMLLINT
 xmllint-gama-local-xsd.sh: $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in \
-		$(GAMA_OTHERS)
+	                   $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-xsd.in \
-				> xmllint-gama-local-xsd.sh
+	             > xmllint-gama-local-xsd.sh
 	@chmod +x xmllint-gama-local-xsd.sh
 
 xmllint-gama-local-adjustment-xsd.sh: \
-		$(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
-		$(GAMA_OTHERS)
+	      $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
+	      $(GAMA_OTHERS)
 	@$(do_subst) < $(GAMA_SCRIPT)/xmllint-gama-local-adjustment-xsd.in \
-				> xmllint-gama-local-adjustment-xsd.sh
+	             > xmllint-gama-local-adjustment-xsd.sh
 	@chmod +x xmllint-gama-local-adjustment-xsd.sh
 endif
 
 
 if GNU_GAMA_LOCAL_TEST_OCTAVE
-octave-gama-local-read.sh : $(GAMA_SCRIPT)/octave-gama-local-read.in \
-		$(GAMA_OTHERS) gama-local-adjustment.sh
-	@$(do_subst) < $(GAMA_SCRIPT)/octave-gama-local-read.in \
-				> octave-gama-local-read.sh
-	@chmod +x octave-gama-local-read.sh
+octave-gama-local.sh : $(GAMA_SCRIPT)/octave-gama-local.in \
+	               $(GAMA_OTHERS) gama-local-adjustment.sh
+	@$(do_subst) < $(GAMA_SCRIPT)/octave-gama-local.in \
+	             > octave-gama-local.sh
+	@chmod +x octave-gama-local.sh
+endif
+
+
+if GNU_GAMA_LOCAL_EXTRA_TESTS
+gama-local-extra-tests.sh : $(GAMA_SCRIPT)/gama-local-extra-tests.in \
+	                    gama-local-adjustment.sh gama-local-xml-xml.sh
+	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-extra-tests.in \
+	             > gama-local-extra-tests.sh
+	@chmod +x gama-local-extra-tests.sh
 endif
 
 

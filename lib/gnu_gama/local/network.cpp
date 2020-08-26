@@ -241,6 +241,21 @@ LocalNetwork::~LocalNetwork()
 }
 
 
+/* Private member 'AdjInputData input' is defined as an automatic variable,
+ * this can be changed in future versions.
+ *
+ * The following method getAdjInputDat() is designed to mimic situation
+ * where 'input' is declared as a pointer to dynamically allocated object
+ * of type AdjInputData* and getAdjInputData() may return nullptr.
+ */
+const GNU_gama::AdjInputData* LocalNetwork::getAdjInputData() const
+{
+  if (input.mat() == nullptr) return nullptr;
+
+  return &input;
+}
+
+
 double LocalNetwork::cond()
 {
   return least_squares->cond();

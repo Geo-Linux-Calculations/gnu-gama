@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# to enable run ./configure --enable-extra-tests
+
+set -e
+
+RES=@GAMA_RESULTS@/gama-local-extra-tests
+if [ ! -d $RES ]; then
+    mkdir -p $RES
+fi;
+
+
+for f in railway-survey
+do
+    @top_builddir@/bin/gama-local @GAMA_INPUT@/extra/$f.gkf \
+        --algorithm envelope  --text $RES/$f.txt  --xml $RES/$f.xml
+
+    scripts/check_xml_xml $f @GAMA_INPUT@/extra/$f.xml $RES/$f.xml
+done

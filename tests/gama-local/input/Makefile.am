@@ -37,4 +37,7 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              bug-2019-08-13-traverse-knin_male.gkf \
              bug-2019-08-13-traverse-knin_male.xml \
              bug-2019-08-20-knin_test.gkf \
-             bug-2019-08-20-knin_test.xml
+             bug-2019-08-20-knin_test.xml \
+             extra/railway-survey.gkf \
+             extra/railway-survey.xml \
+             extra/railway-survey-with-aproximate-xy.gkf

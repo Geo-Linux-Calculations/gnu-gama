@@ -1,6 +1,10 @@
-2020-??-??	Ales Cepek <cepek@gnu.org>
+2020-??-??   Ales Cepek <cepek@gnu.org>
 
 	* new release 2.10
+
+	* Added a new option --enable-extra-tests (default is no) to the
+	configure.ac script. Extra gama-local test may be running
+	substantially longer (for example see railway-control.gkf).
 
 	* Removed obscure adjustment parameter
 	'update-constraiend-parameters'. The update effected SqliteReader

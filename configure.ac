@@ -5,7 +5,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
 
-AC_INIT([gama], [2.09.4], [bug-gama@gnu.org])
+AC_INIT([gama], [2.09.5], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -17,7 +17,7 @@ AM_SILENT_RULES([yes])
 dnl You can comment out the following macro if you have the package
 dnl autoconf-archive installed
 
-AC_CONFIG_MACRO_DIR([m4])
+dnl AC_CONFIG_MACRO_DIR([m4]) ... commented out in version 2.10
 
 dnl Install package autoconf-archive or download from
 dnl git://git.sv.gnu.org/autoconf-archive.git
@@ -35,6 +35,21 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+
+
+dnl Optional extra tests
+
+AC_ARG_ENABLE([extra-tests],
+   [AS_HELP_STRING([--enable-extra-tests[[yes|=no]]],
+                   [Turn on/off extra tests] (default is no))],
+   [AM_CONDITIONAL([GNU_GAMA_LOCAL_EXTRA_TESTS],
+                   [AS_IF([test "x$enable_extra_tests" != "xyes"],
+                          enable_extra_tests=no)]
+                   [test "x$enable_extra_tests" = "xyes"])],
+   [AM_CONDITIONAL([GNU_GAMA_LOCAL_EXTRA_TESTS], [false])
+    enable_extra_tests=no]
+)
+AC_MSG_NOTICE([checking whether extra tests are enabled... $enable_extra_tests])
 
 
 dnl Optional build of gama-g3

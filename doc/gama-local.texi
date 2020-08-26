@@ -6,13 +6,14 @@ Windows.
 
 Program @code{gama-local} reads input data in XML format (@ref{XML
 input data format for gama-local}) and prints adjustment results into
-ASCII text file. If output file name is not given, input file name
-with extension@code{.txt} is used.
+ASCII text file. If output file name is not given, adjustment results
+in XML format are sent to the standard output device.
 @c
 If development files for Sqlite3 (package @code{libsqlite3-dev}) are
 installed during the build, @code{gama-local} also supports reading
 adjustment input data from an sqlite3 database.
 @c
+
 If run without arguments @code{gama-local}
 prints a short help
 
@@ -92,9 +93,51 @@ string. If no output is given, XML adjustment format is implicitly
 send to standard output.
 
 Option @code{--octave} is used to output simplified adjustment results
-for @uref{https://www.gnu.org/software/octave/, GNU Octave};
-only points' names (identifiers), adjusted coordinates with indexes
-and corresponding covariances are given in the .m file.
+for @uref{https://www.gnu.org/software/octave/, GNU Octave}, i.e. in
+an .m file. The following information is give in the output
+file
+
+@itemize @bullet
+@item
+general adjustment paramameters (number of unknowns, observetions etc.)
+
+@item
+list of fixed points' ids (may be empty)
+
+@item
+adjustment points; ids
+
+@item
+adjustment indexes of unknouwns
+
+@item
+indexes of constrained coordinates (subset of adjustment indexes)
+
+@item
+approximate and adjusted coordinates (zero if not available)
+
+@item
+full covariance matrix of adjusted coordinates
+
+@item
+sparse design matrix, rhs and weights (Ax = b, P = inv(C_ll))
+
+@item
+and adjustment results in matrix format
+
+@end itemize
+
+In the case of free networks system of normal equations is augmented
+with matrix of constrains. Adjustmment can be then computed
+independetly in Octave and compared with results from Gama for unknown
+coordinates. We suggest that for comaprision of Gama and Octave
+results number of itereations is set to zero (@code{--iterations 0}).
+
+This Octave output is currently available only for algorithm
+@emph{envelope} (Gama version 2.10), also adjustment in Octave is not
+supported for the special case of @emph{one fixed point and one
+constrained} (where normal equation cannot be directly augmented with
+constraints because of different number of unknowns).
 
 Option @code{--cov-band} is used to reduce the number of computed
 covariances (cofactors) in XML adjustment output. Implicitly full

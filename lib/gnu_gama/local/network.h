@@ -44,8 +44,8 @@ namespace GNU_gama { namespace local
   {
     using MVE = GNU_gama::Exception::matvec;
     typedef std::vector<GNU_gama::local::Observation*>       RevisedObsList;
-    typedef GNU_gama::AdjBase<double,     int, MVE>  AdjBase;
-    typedef GNU_gama::AdjBaseFull<double, int, MVE>  AdjBaseFull;
+    typedef GNU_gama::AdjBase<double,     int, MVE>          AdjBase;
+    typedef GNU_gama::AdjBaseFull<double, int, MVE>          AdjBaseFull;
     typedef GNU_gama::AdjBaseSparse<double, int, MVE,
                                     GNU_gama::AdjInputData>  AdjBaseSparse;
 
@@ -61,6 +61,8 @@ namespace GNU_gama { namespace local
     ObservationData  OD;      // observation list
 
     std::string   description;
+
+    const GNU_gama::AdjInputData* getAdjInputData() const;
 
 
     // ...  information on points removed from adjustment  .................

@@ -17,7 +17,6 @@ do
 	--text   $RES/$g-$a.txt \
 	--html   $RES/$g-$a.html \
 	--xml    $RES/$g-$a.xml \
-	--octave $RES/$g-$a.m \
 	--svg    $RES/$g-$a.svg
 done
 done
