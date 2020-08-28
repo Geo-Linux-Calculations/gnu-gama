@@ -23,11 +23,8 @@ if GNU_GAMA_LOCAL_TEST_OCTAVE
 TESTD = octave-gama-local.sh
 endif
 
-if GNU_GAMA_LOCAL_EXTRA_TESTS
-TESTX = gama-local-extra-tests.sh
-endif
 
-TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD) $(TESTX)
+TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD)
 
 SUBDIRS = scripts input
 
@@ -173,15 +170,6 @@ octave-gama-local.sh : $(GAMA_SCRIPT)/octave-gama-local.in \
 	@$(do_subst) < $(GAMA_SCRIPT)/octave-gama-local.in \
 	             > octave-gama-local.sh
 	@chmod +x octave-gama-local.sh
-endif
-
-
-if GNU_GAMA_LOCAL_EXTRA_TESTS
-gama-local-extra-tests.sh : $(GAMA_SCRIPT)/gama-local-extra-tests.in \
-	                    gama-local-adjustment.sh gama-local-xml-xml.sh
-	@$(do_subst) < $(GAMA_SCRIPT)/gama-local-extra-tests.in \
-	             > gama-local-extra-tests.sh
-	@chmod +x gama-local-extra-tests.sh
 endif
 
 

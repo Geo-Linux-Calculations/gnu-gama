@@ -17,7 +17,7 @@ AM_SILENT_RULES([yes])
 dnl You can comment out the following macro if you have the package
 dnl autoconf-archive installed
 
-dnl AC_CONFIG_MACRO_DIR([m4]) ... commented out in version 2.10
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl Install package autoconf-archive or download from
 dnl git://git.sv.gnu.org/autoconf-archive.git
@@ -158,4 +158,7 @@ AC_OUTPUT([
    tests/gama-g3/Makefile
    tests/gama-g3/input/Makefile
    tests/gama-g3/scripts/Makefile
+   tests/extra-tests/Makefile
+   tests/extra-tests/input/Makefile
+   tests/extra-tests/scripts/Makefile
 ])

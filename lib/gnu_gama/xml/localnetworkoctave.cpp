@@ -342,8 +342,8 @@ void LocalNetworkOctave::write(std::ostream& out) const
 
   if (exit())
     {
-      out << "warning(\"full adjustment output is available only "
-             "for 'envelope' algorithm\")\n";
+      out << "warning('full adjustment output is available only "
+             "for 'envelope' algorithm')\n";
 
       return;
     }
@@ -436,9 +436,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
         out <<"clear tmp;\n\n";
 
         out << "if (rank(H) < H_rows)\n"
-            << " warning(\"rank(H) is less than H_rows, cannot solve normal equations\")\n"
+            << " warning('rank(H) is less than H_rows, cannot solve normal equations')\n"
             << "exit;\n"
-            << "endif\n\n";
+            << "end   % should be endif in Octave\n\n";
 
         out << "Z = zeros(H_rows, H_rows);\n";
         out << "z = zeros(H_rows, 1);\n";
@@ -475,7 +475,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
       out << "xyzdiff_mm = norm(tmp); clear tmp;\n\n";
     }
 
-    out << "if (xyzdiff_mm > 1e-3) \n error(\"xyzdiff_mm > 1e-3\")\nend\n\n";
+    out << "if (xyzdiff_mm > 1e-3) \n error('xyzdiff_mm > 1e-3')\nend\n\n";
 
 
     out << "% Example: Reliability matrix R\n";
