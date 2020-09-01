@@ -1,5 +1,3 @@
-EXTRA_DIST = CMakeLists.txt
-
 TESTS = gama-local-extra-tests.sh
 
 SUBDIRS = scripts input
