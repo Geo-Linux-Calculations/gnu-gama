@@ -80,3 +80,6 @@ Contributors:
           places where SS belong)
         - bug in gkf input data resulting in segmentation fault (network
           with observed angles and one distance)
+
+    Jan Holešovský
+        - consultations and testing of Octave format with MATLAB

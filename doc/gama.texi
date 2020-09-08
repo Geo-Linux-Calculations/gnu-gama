@@ -69,7 +69,7 @@ Free Documentation License''.
 @end ifnottex
 
 @menu
-* Introduction::                
+* Introduction::
 * XML input data format for gama-local::
 * SQL schema SQLite and gama-local::
 * Network adjustment with gama-local::
@@ -77,7 +77,7 @@ Free Documentation License''.
 * Gama-local test suite::
 
 * Copying This Manual::
-* Concept Index::               
+* Concept Index::
 @end menu
 
 
@@ -88,13 +88,13 @@ Free Documentation License''.
 @chapter Introduction
 @include gama-introduction.texi
 
-@c Program gama-g3:: 
+@c Program gama-g3::
 
 @menu
 * Download::
 * Install::
 * Program gama-local::
-* Reporting bugs::              
+* Reporting bugs::
 * Contributors::
 @end menu
 
@@ -132,7 +132,7 @@ Undoubtedly there are numerous bugs remaining, both in the C++
 source code and in the documentation.  If you find a bug in either,
 please send a bug report to
 
-@center @uref{mailto:bug-gama@@gnu.org, bug-gama@@gnu.org}  
+@center @uref{mailto:bug-gama@@gnu.org, bug-gama@@gnu.org}
 
 @noindent
 We will try to be as quick as possible in fixing the bugs and
@@ -152,7 +152,8 @@ Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
 Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang), Tomáš Kubín,
-Greg Troxel, Kristian Evers and Petra Millarová.
+Greg Troxel, Kristian Evers, Oleg Goussev, Petra Millarová and Jan
+Holešovský.
 
 Jiří Veselý is the author of calculation of approximate coordinates by
 intersections and transformations (class Acord).
@@ -211,5 +212,5 @@ coordinates.
 @unnumbered Concept Index
 
 @printindex cp
-     
+
 @bye
