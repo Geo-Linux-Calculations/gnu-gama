@@ -435,9 +435,55 @@ void LocalNetworkOctave::write(std::ostream& out) const
         out << "H = sparse(tmp(:,1), tmp(:,2), tmp(:,3), H_rows, unknowns);\n";
         out <<"clear tmp;\n\n";
 
+        { /* Special case of fixed point to constrained point fixed bearing
+           * --------------------------------------------------------------
+           */
+
+          GNU_gama::local::LocalPoint fixed, constrained;
+          int fixed_points = 0, constraint_points = 0;
+          int index_x = 0, index_y = 0;
+          for (auto point : netinfo->PD)
+          {
+            if (point.second.fixed_xy())
+            {
+              fixed_points++;
+              fixed = point.second;
+            }
+            if (point.second.constrained_xy())
+            {
+              constraint_points++;
+              constrained = point.second;
+
+              index_x = point.second.index_x();
+              index_y = point.second.index_y();
+            }
+          }
+
+          if (fixed_points == 1 && constraint_points == 1)
+          {
+            out << "\n% We have to handle the special case of a free"
+                << " network with one fixed\n"
+                << "% bearing, i.e. the bearing from a fixed point to a"
+                << " constrained point\n\n";
+
+            out << "tmp = size(H);           % reduce 3 xy equations to 1\n";
+            out << "H_rows = H_rows - 2;\n";
+            out << "H(3,:) = zeros(1,tmp(2));\n";
+            out << "H(1:2,:) = [];\n\n";
+
+            double dx = constrained.x() - fixed.x();
+            double dy = constrained.y() - fixed.y();
+            double d2 = dx*dx + dy*dy;
+            out << "H(1," << index_x << ") = " << -dy/d2 << ";\n";
+            out << "H(1," << index_y << ") = " <<  dx/d2 << ";\n\n";
+          }
+
+        }   /* end of the fixed bearing section */
+
+
         out << "if (rank(H) < H_rows)\n"
-            << " warning('rank(H) is less than H_rows, cannot solve normal equations')\n"
-            << "exit;\n"
+            << " error('rank(H) is less than H_rows, cannot solve normal equations')\n"
+            << " return;\n"
             << "end   % should be endif in Octave\n\n";
 
         out << "Z = zeros(H_rows, H_rows);\n";
