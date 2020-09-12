@@ -1,6 +1,6 @@
 /*
   GNU Gama C++ library
-  Copyright (C) 2018  Ales Cepek <cepek@gnu.org>
+  Copyright (C) 2018, 2020  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
 
@@ -37,7 +37,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
 
   out << "% gama-local adjustment results for GNU Octave (.m script)\n"
       << "%\n"
-      << "% version    1.01\n"
+      << "% version    1.02\n"
       << "% gama-local " << GNU_gama_version() << "\n"
       << "%\n"
       << "% https://www.gnu.org/software/octave/\n"
@@ -342,8 +342,8 @@ void LocalNetworkOctave::write(std::ostream& out) const
 
   if (exit())
     {
-      out << "warning('full adjustment output is available only "
-             "for 'envelope' algorithm')\n";
+      out << "error('full adjustment output is available only "
+             "for ''envelope'' algorithm')\n";
 
       return;
     }
@@ -466,10 +466,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
                 << "% bearing, i.e. the bearing from a fixed point to a"
                 << " constrained point\n\n";
 
-            out << "tmp = size(H);           % reduce 3 xy equations to 1\n";
-            out << "H_rows = H_rows - 2;\n";
-            out << "H(3,:) = zeros(1,tmp(2));\n";
-            out << "H(1:2,:) = [];\n\n";
+            out << "H_rows = H_rows - 2;     % reduce 3 xy equations to 1\n";
+            out << "H(1:2,:) = [];\n";
+            out << "H(1,:) = zeros(1,unknowns);\n\n";
 
             double dx = constrained.x() - fixed.x();
             double dy = constrained.y() - fixed.y();

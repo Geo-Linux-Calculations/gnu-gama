@@ -7,6 +7,16 @@ if [ ! -d $RES ]; then
     mkdir -p $RES
 fi;
 
+# Generated GNU Octave scripts are stored here with file names renamed
+# to be conforming rules for variable names (dashes are replaced by
+# undescores)
+#
+OCT=gama-@PACKAGE_VERSION@-octave
+if [ ! -d $RES/$OCT ]; then
+    mkdir -p $RES/$OCT
+fi;
+
+
 for g in @INPUT_FILES@ # @BUG_FILES@
 do
 for a in envelope # svd gso cholesky
@@ -15,8 +25,14 @@ do
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
         --algorithm $a \
         --text /dev/null \
-	--iterations 0 \
-	--octave $RES/$g-$a.m
+        --iterations 0 \
+        --octave $RES/$g-$a.m
     octave < $RES/$g-$a.m
+
+    cp $RES/$g-$a.m $RES/$OCT/`echo $g-$a|sed s/-/_/g`.m
 done
 done
+
+cd  $RES
+zip $OCT.zip $OCT/*.m
+mv  $OCT.zip ..
