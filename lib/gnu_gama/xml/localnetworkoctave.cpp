@@ -462,9 +462,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
           if (fixed_points == 1 && constraint_points == 1)
           {
             out << "\n% We have to handle the special case of a free"
-                << " network with one fixed\n"
+                   " network with one fixed\n"
                 << "% bearing, i.e. the bearing from a fixed point to a"
-                << " constrained point\n\n";
+                   " constrained point\n\n";
 
             out << "H_rows = H_rows - 2;     % reduce 3 xy equations to 1\n";
             out << "H(1:2,:) = [];\n";
@@ -480,9 +480,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
         }   /* end of the fixed bearing section */
 
 
-        out << "if (rank(H) < H_rows)\n"
-            << " error('rank(H) is less than H_rows, cannot solve normal equations')\n"
-            << " return;\n"
+        out << "if sprank(H) < H_rows\n"
+            << "    error('rank H is less than H_rows, "
+               "cannot solve normal equations')\n"
             << "end   % should be endif in Octave\n\n";
 
         out << "Z = zeros(H_rows, H_rows);\n";
@@ -520,7 +520,9 @@ void LocalNetworkOctave::write(std::ostream& out) const
       out << "xyzdiff_mm = norm(tmp); clear tmp;\n\n";
     }
 
-    out << "if (xyzdiff_mm > 1e-3) \n error('xyzdiff_mm > 1e-3')\nend\n\n";
+    out << "if xyzdiff_mm > 1e-3\n"
+        << "    error('xyzdiff_mm > 1e-3')\n"
+        << "end\n\n";
 
 
     out << "% Example: Reliability matrix R\n";
