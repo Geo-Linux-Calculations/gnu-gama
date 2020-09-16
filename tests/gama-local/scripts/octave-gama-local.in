@@ -42,3 +42,9 @@ done
 cd  $RES
 zip $OCT.zip $OCT/*.m
 mv  $OCT.zip ..
+
+cd  $OCT
+echo
+echo running FOR_EACH.m
+echo
+octave < FOR_EACH.m
