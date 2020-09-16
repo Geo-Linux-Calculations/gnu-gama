@@ -17,6 +17,8 @@ if [ ! -d $RES/$OCT ]; then
 fi;
 
 
+printf "display('   diff_mm   condest(N)')\n" > $RES/$OCT/FOR_EACH.m
+
 for g in @INPUT_FILES@ # @BUG_FILES@
 do
 for a in envelope # svd gso cholesky
@@ -29,7 +31,11 @@ do
         --octave $RES/$g-$a.m
     octave < $RES/$g-$a.m
 
-    cp $RES/$g-$a.m $RES/$OCT/`echo $g-$a|sed s/-/_/g`.m
+    f=`echo $g | sed s/-/_/g`
+    cp $RES/$g-$a.m $RES/$OCT/$f.m
+
+    printf "\n%s\n" $f >> $RES/$OCT/FOR_EACH.m
+    printf "display(sprintf('  %%0.3e  %%0.3e   %%s', xyzdiff_mm, condest(N), '%s'))\n" $f >> $RES/$OCT/FOR_EACH.m
 done
 done
 
