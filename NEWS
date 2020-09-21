@@ -3,8 +3,11 @@ GNU Gama NEWS - History of user-visible changes.
 Version 2.10 ... 2020
 
 * Adjustment results output in Octave format (.m file) with independent
-  test of adjustment results (regularization of signular systems by
-  the set of nocstraints).
+  test of adjustment results (regularization of singular systems by
+  the set of constraints).
+
+* update-constrained-coordinates parameter removed from the input XML 
+  data format
 
 
 Version 2.09 June 2020
