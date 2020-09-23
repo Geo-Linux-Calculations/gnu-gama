@@ -91,10 +91,11 @@ then
    AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_EXPAT_1_1], [true])
    AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DGNU_gama_expat_1_1")
 else
+   m4_define([install_expat], [please install libexpat1-dev])
    AC_CHECK_LIB([expat], [XML_ParserCreate],,
-      [AC_MSG_ERROR([Expat XML parser library is not installed])])
+      [AC_MSG_ERROR([XML expat parser is missing,] install_expat)])
    AC_CHECK_HEADERS([expat.h],,
-      [AC_MSG_ERROR([Cannot find expat.h, please install libexpat1-dev])])
+      [AC_MSG_ERROR([Cannot find expat.h,] install_expat)])
 fi
 
 
