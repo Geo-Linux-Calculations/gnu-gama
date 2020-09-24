@@ -239,6 +239,10 @@ add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
 
+# https://cmake.org/cmake/help/latest/prop_tgt/MSVC_RUNTIME_LIBRARY.html
+set_property(TARGET gama-local gama-g3 PROPERTY
+  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+
 # Installation
 install(TARGETS gama-local gama-g3 DESTINATION bin)
 
