@@ -1,6 +1,6 @@
 GNU Gama NEWS - History of user-visible changes.
 
-Version 2.10 ... 2020
+Version 2.10 September 2020
 
 * Adjustment results output in Octave format (.m file) with independent
   test of adjustment results (regularization of singular systems by
