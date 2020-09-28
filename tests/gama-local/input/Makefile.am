@@ -30,7 +30,7 @@ EXTRA_DIST = gama-local.gkf            gama-local.xml \
              gama-local-nop.gkf \
              gama-local-par.gkf \
              gama-local-deprecated.gkf \
-             mikhail-7.4.gkf minimal.gkf prostorovka.gkf \
+             mikhail-7.4.gkf minimal.gkf local_3d.gkf \
              seq-dsuloha-d.gkf skorepa-dusek.gkf \
              bug-2019-08-06-integer-coordinates.gkf \
              bug-2019-08-06-integer-coordinates.xml \

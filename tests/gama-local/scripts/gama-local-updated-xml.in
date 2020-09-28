@@ -10,7 +10,7 @@ fi
 GAMA_LOCAL=@top_builddir@/bin/gama-local
 GAMA_LOCAL_XSD=@GAMA_XML@/gama-local.xsd
 
-for t in gama-local.gkf azimuth-angle.gkf prostorovka.gkf skorepa-dusek.gkf \
+for t in gama-local.gkf azimuth-angle.gkf local_3d.gkf skorepa-dusek.gkf \
          mikhail-7.4.gkf minimal.gkf seq-dsuloha-d.gkf tst-tetrahedron-2.gkf \
          tst-tetrahedron-3-gon.gkf tst-tetrahedron-3-deg.gkf
 do
