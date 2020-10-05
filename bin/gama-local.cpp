@@ -511,13 +511,17 @@ int main(int argc, char **argv)
         if (!IS->connected_network())
           cout  << T_GaMa_network_not_connected << "\n\n\n";
 
-        bool network_can_be_adjusted;
+        bool network_can_be_adjusted {false};
         {
           std::ostringstream tmp_out;
-          if (!(network_can_be_adjusted = GeneralParameters(IS, tmp_out)))
+          network_can_be_adjusted = GeneralParameters(IS, tmp_out);
+          if (!network_can_be_adjusted)
             {
               NetworkDescription(IS->description, cout);
               cout << tmp_out.str();
+
+              // delete IS;
+              return 1;
             }
         }
 
