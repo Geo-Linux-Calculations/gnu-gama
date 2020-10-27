@@ -38,7 +38,7 @@ file(MAKE_DIRECTORY ${RESULT_DIR})
 #
 # check version
 #
-add_executable(check_version scripts/check_version.cpp
+add_executable(check_version src/check_version.cpp
   $<TARGET_OBJECTS:libgama>)
 add_test(NAME check_version COMMAND check_version
   ${PROJECT_SOURCE_DIR}/configure.ac ${PROJECT_SOURCE_DIR}/CMakeLists.txt)
@@ -71,8 +71,8 @@ endforeach(test)
 #
 # check_algorithms
 #
-add_executable(check_algorithms scripts/check_xyz.h scripts/check_xyz.cpp
-  scripts/check_algorithms.cpp $<TARGET_OBJECTS:libgama>)
+add_executable(check_algorithms src/check_xyz.h src/check_xyz.cpp
+  src/check_algorithms.cpp $<TARGET_OBJECTS:libgama>)
 
 foreach(test ${INPUT_FILES})
   add_test(NAME check_algorithms_${test}
@@ -86,8 +86,8 @@ endforeach(test)
 #
 # check_xml_xml
 #
-add_executable(check_xml_xml scripts/check_xml_xml.cpp
-  scripts/compare_xml_adjustment.h scripts/compare_xml_adjustment.cpp
+add_executable(check_xml_xml src/check_xml_xml.cpp
+  src/compare_xml_adjustment.h src/compare_xml_adjustment.cpp
   $<TARGET_OBJECTS:libgama>)
 
 set(RES ${RESULT_DIR}/gama-local-adjustment)
@@ -110,8 +110,8 @@ endforeach(z)
 #
 # check_equivalents
 #
-add_executable(check_equivalents scripts/check_xyz.h
-  scripts/check_xyz.cpp scripts/check_equivalents.cpp
+add_executable(check_equivalents src/check_xyz.h
+  src/check_xyz.cpp src/check_equivalents.cpp
   $<TARGET_OBJECTS:libgama>)
 
 set(EQUIVALENTS_TESTS
@@ -143,8 +143,8 @@ endforeach(test)
 #
 # check_xml_results
 #
-add_executable(check_xml_results  scripts/check_xml_results.cpp
-  scripts/check_xyz.h scripts/check_xyz.cpp $<TARGET_OBJECTS:libgama>)
+add_executable(check_xml_results  src/check_xml_results.cpp
+  src/check_xyz.h src/check_xyz.cpp $<TARGET_OBJECTS:libgama>)
 foreach(test ${INPUT_FILES})
   add_test(
     NAME check_xml_results_${test}
@@ -159,9 +159,7 @@ endforeach(test)
 #
 # check externs
 #
-add_executable(check_externs scripts/check_externs.cpp
+add_executable(check_externs src/check_externs.cpp
   $<TARGET_OBJECTS:libgama>)
 add_test(NAME check_externs COMMAND check_externs
   ${INPUT_DIR} ${RESULT_DIR}/gama-local-adjustment ${INPUT_FILES})
-
-

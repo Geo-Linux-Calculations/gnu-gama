@@ -5,7 +5,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
 
-AC_INIT([gama], [2.10], [bug-gama@gnu.org])
+AC_INIT([gama], [2.11], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -161,5 +161,4 @@ AC_OUTPUT([
    tests/gama-g3/src/Makefile
    tests/extra-tests/Makefile
    tests/extra-tests/input/Makefile
-   tests/extra-tests/scripts/Makefile
 ])
