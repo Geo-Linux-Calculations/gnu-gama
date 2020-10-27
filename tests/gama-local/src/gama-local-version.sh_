@@ -5,4 +5,4 @@ set -e
 echo Package version @PACKAGE_VERSION@
 @top_builddir@/bin/gama-local --version
 
-scripts/check_version @top_srcdir@/configure.ac @top_srcdir@/CMakeLists.txt
+src/check_version @top_srcdir@/configure.ac @top_srcdir@/CMakeLists.txt

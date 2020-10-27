@@ -9,7 +9,7 @@ do
     @top_builddir@/bin/gama-g3 --algorithm $a @G3_INPUT@/$g.xml \
        > @G3_RESULTS@/$g-$a.adj.xml
 
-    scripts/check_adjustment @G3_INPUT@/$g-adj.xml @G3_RESULTS@/$g-$a.adj.xml
+    src/check_adjustment @G3_INPUT@/$g-adj.xml @G3_RESULTS@/$g-$a.adj.xml
 done
 done
 
@@ -20,6 +20,6 @@ do
                              @G3_INPUT@/sjtsk05/$g.xml > \
                              @G3_RESULTS@/$g-envelope.adj.xml
 
-    scripts/check_adjustment @G3_INPUT@/sjtsk05/$g.adj.xml \
-                             @G3_RESULTS@/$g-envelope.adj.xml
+    src/check_adjustment @G3_INPUT@/sjtsk05/$g.adj.xml \
+                         @G3_RESULTS@/$g-envelope.adj.xml
 done

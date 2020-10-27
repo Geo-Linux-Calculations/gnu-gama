@@ -6,14 +6,14 @@ set -e
 
 for g in @INPUT_FILES@
 do
-    scripts/check_html $g \
+    src/check_html $g \
         @GAMA_RESULTS@/gama-local-adjustment/$g-gso.html \
         @GAMA_INPUT@/$g.xml
 done
 
 for g in @INPUT_FILES@
 do
-    scripts/check_html $g-360 \
+    src/check_html $g-360 \
         @GAMA_RESULTS@/gama-local-adjustment/$g-gso-360.html \
         @GAMA_INPUT@/$g.xml
 done

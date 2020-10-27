@@ -155,10 +155,10 @@ AC_OUTPUT([
    tests/acord2/input/a2diff/Makefile
    tests/gama-local/Makefile
    tests/gama-local/input/Makefile
-   tests/gama-local/scripts/Makefile
+   tests/gama-local/src/Makefile
    tests/gama-g3/Makefile
    tests/gama-g3/input/Makefile
-   tests/gama-g3/scripts/Makefile
+   tests/gama-g3/src/Makefile
    tests/extra-tests/Makefile
    tests/extra-tests/input/Makefile
    tests/extra-tests/scripts/Makefile

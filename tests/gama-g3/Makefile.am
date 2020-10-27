@@ -20,11 +20,11 @@ endif
 
 TESTS = $(TESTSA) $(TESTXML)
 
-SUBDIRS = input scripts
+SUBDIRS = input src
 
 INPUT_FILES = demo-g3-01 demo-g3-02 demo-g3-03
 
-G3_SCRIPT  = $(srcdir)/scripts
+G3_SRC     = $(srcdir)/src
 G3_INPUT   = $(srcdir)/input
 G3_RESULTS = results/$(PACKAGE_VERSION)
 G3_OTHERS  = Makefile $(G3_RESULTS)
@@ -44,12 +44,12 @@ clean-local-check:
 $(G3_RESULTS):
 	mkdir -p $(G3_RESULTS)
 
-gama-g3-adjustment.sh: $(G3_SCRIPT)/gama-g3-adjustment.sh_ $(G3_OTHERS)
-	@$(do_subst) < $(G3_SCRIPT)/gama-g3-adjustment.sh_ \
+gama-g3-adjustment.sh: $(G3_SRC)/gama-g3-adjustment.sh_ $(G3_OTHERS)
+	@$(do_subst) < $(G3_SRC)/gama-g3-adjustment.sh_ \
 	        > gama-g3-adjustment.sh
 	@chmod +x gama-g3-adjustment.sh
 
-gama-g3-xmllint-xsd.sh: $(G3_SCRIPT)/gama-g3-xmllint-xsd.sh_ $(G3_OTHERS)
-	@$(do_subst)  < $(G3_SCRIPT)/gama-g3-xmllint-xsd.sh_ \
+gama-g3-xmllint-xsd.sh: $(G3_SRC)/gama-g3-xmllint-xsd.sh_ $(G3_OTHERS)
+	@$(do_subst)  < $(G3_SRC)/gama-g3-xmllint-xsd.sh_ \
 	        > gama-g3-xmllint-xsd.sh
 	@chmod +x gama-g3-xmllint-xsd.sh

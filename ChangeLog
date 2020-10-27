@@ -1,9 +1,10 @@
 2020-10-27   Ales Cepek <cepek@gnu.org>
 
-	* new release 2.10
+	* new release 2.11
 
 	* In test suites all template input files *.in (used to generate
-	test shell scripts *.sh) were renamed to *.sh_ .
+	test shell scripts *.sh) were renamed to *.sh_ . Tests suit
+	subdirectory scripts were renamed to src.
 
 	It was slightly confusing to have input files named as *.in
 	because this extension is used in Makefile.in files which are
@@ -22,6 +23,10 @@
 	.xsd), several XML files were updated in tests/gama-g3 to use
 	gnu-gama-data xsd definition.
 
+
+2020-09-25   Petra Millarova <millapet@gnu.org>
+
+	* new release 2.10
 
 	#######################################
 	#  See ChangeLog.3 for older changes  #

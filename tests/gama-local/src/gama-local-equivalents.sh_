@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -e
+
+# testing equivalent adjustment input data (like two configurations,
+# one in degrees and the other one in gons]
+
+a=zoltan-test_2d_dms; b=zoltan-test_2d_gon
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=zoltan-test_3d_dms; b=zoltan-test_3d_gon
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=scale-cov-gon; b=scale-cov-dms
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=fixed-constrained; b=fixed-azimuth
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=gama-local; b=gama-local-deprecated
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=stroner-levelling-a; b=stroner-levelling-b
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=tst-tetrahedron-3-gon; b=extern-tst-tetrahedron-3-gon
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=azimuth-distance; b=extern-azimuth-distance
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=jezerka-dir; b=jezerka-ang
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf

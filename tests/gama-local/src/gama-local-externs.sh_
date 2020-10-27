@@ -4,7 +4,7 @@ set -e
 
 # depends on gama-local-adjustment.in
 
-scripts/check_externs \
+src/check_externs \
     @GAMA_INPUT@/ \
     @GAMA_RESULTS@/gama-local-adjustment/ \
     @INPUT_FILES@ \

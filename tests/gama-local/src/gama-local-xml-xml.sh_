@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+# depends on gama-local-adjustment
+
+RES=@GAMA_RESULTS@/gama-local-adjustment
+
+a=gso
+b=svd
+c=cholesky
+d=envelope
+
+for z in @INPUT_FILES@ @BUG_FILES@
+do
+    src/check_xml_xml "$a $b $z" $RES/$z-$a.xml $RES/$z-$b.xml
+    src/check_xml_xml "$a $c $z" $RES/$z-$a.xml $RES/$z-$c.xml
+    src/check_xml_xml "$a $d $z" $RES/$z-$a.xml $RES/$z-$d.xml
+
+    src/check_xml_xml "$b $c $z" $RES/$z-$b.xml $RES/$z-$c.xml
+    src/check_xml_xml "$b $d $z" $RES/$z-$b.xml $RES/$z-$d.xml
+
+    src/check_xml_xml "$c $d $z" $RES/$z-$c.xml $RES/$z-$d.xml
+done

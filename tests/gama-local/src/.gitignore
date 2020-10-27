@@ -1,0 +1,9 @@
+check_version
+check_externs
+check_algorithms
+check_equivalents
+check_html
+check_xml_coordinates
+check_xml_results
+check_xml_xml
+sqlite_init_db

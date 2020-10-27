@@ -19,7 +19,7 @@ do
         --updated-xml $RES/$t-1.gkf
     $GAMA_LOCAL $RES/$t-1.gkf \
         --xml $RES/$t-2.xml
-    scripts/check_xml_xml "updated xml $t" \
+    src/check_xml_xml "updated xml $t" \
         $RES/$t-1.xml \
         $RES/$t-2.xml
 

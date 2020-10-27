@@ -15,6 +15,6 @@ do
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$f.gkf \
         --algorithm envelope  --text $RES/$f.txt  --xml $RES/$f.xml
 
-    @top_srcdir@/tests/gama-local/scripts/check_xml_xml \
+    @top_srcdir@/tests/gama-local/src/check_xml_xml \
         $f @GAMA_INPUT@/$f.xml $RES/$f.xml
 done
