@@ -1,6 +1,13 @@
-2020-??-??   Ales Cepek <cepek@gnu.org>
+2020-10-27   Ales Cepek <cepek@gnu.org>
 
 	* new release 2.10
+
+	* In test suites all template input files *.in (used to generate
+	test shell scripts *.sh) were renamed to *.sh_ .
+
+	It was slightly confusing to have input files named as *.in
+	because this extension is used in Makefile.in files which are
+	generated from Makefile.am.
 
 	* Added a new option --enable-extra-tests (default is no) to the
 	configure.ac script. Extra gama-local test may be running

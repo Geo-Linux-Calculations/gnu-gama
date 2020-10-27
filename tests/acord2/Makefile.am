@@ -1,4 +1,4 @@
-EXTRA_DIST = CMakeLists.txt acord2-a2g.in acord2-a2diff.in
+EXTRA_DIST = CMakeLists.txt acord2-a2g.sh_ acord2-a2diff.sh_
 
 AM_CPPFLAGS = -I$(top_srcdir)/lib
 AM_DEFAULT_SOURCE_EXT = .cpp
@@ -82,10 +82,10 @@ clean-local-check:
 $(ACORD2_RESULTS):
 	mkdir -p $(ACORD2_RESULTS)
 
-acord2-a2g.sh : $(ACORD2_SCRIPT)/acord2-a2g.in $(ACORD2_OTHERS)
-	@$(do_subst) < $(ACORD2_SCRIPT)/acord2-a2g.in > acord2-a2g.sh
+acord2-a2g.sh : $(ACORD2_SCRIPT)/acord2-a2g.sh_ $(ACORD2_OTHERS)
+	@$(do_subst) < $(ACORD2_SCRIPT)/acord2-a2g.sh_ > acord2-a2g.sh
 	@chmod +x acord2-a2g.sh
 
-acord2-a2diff.sh : $(ACORD2_SCRIPT)/acord2-a2diff.in $(ACORD2_OTHERS)
-	@$(do_subst) < $(ACORD2_SCRIPT)/acord2-a2diff.in > acord2-a2diff.sh
+acord2-a2diff.sh : $(ACORD2_SCRIPT)/acord2-a2diff.sh_ $(ACORD2_OTHERS)
+	@$(do_subst) < $(ACORD2_SCRIPT)/acord2-a2diff.sh_ > acord2-a2diff.sh
 	@chmod +x acord2-a2diff.sh
