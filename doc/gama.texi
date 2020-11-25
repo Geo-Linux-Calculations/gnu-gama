@@ -71,6 +71,7 @@ Free Documentation License''.
 @menu
 * Introduction::
 * XML input data format for gama-local::
+* YAML input data format for gama-local::
 * SQL schema SQLite and gama-local::
 * Network adjustment with gama-local::
 * Data structures and algorithms::
@@ -171,6 +172,14 @@ coordinates.
 @node    XML input data format for gama-local
 @chapter XML input data format for @code{gama-local}
 @include gama-local-input.texi
+
+
+@node    YAML input data format for gama-local
+@chapter YAML input data format for @code{gama-local}
+@include gama-local-yaml.texi
+
+
+
 
 @c Unfortunately, you cannot use periods, commas, colons or
 @c parentheses within a node name; these confuse the Texinfo

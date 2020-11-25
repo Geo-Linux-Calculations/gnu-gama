@@ -1,0 +1,155 @@
+YAML is a human-readable data-serialization language. It is commonly
+used for configuration files and in applications where data is being
+stored or transmitted. YAML targets many of the same communications
+applications as Extensible Markup Language but has a minimal syntax
+which intentionally differs from SGML. @cite{Wikipedia}
+
+In version 2.12 YAML support was added for gama-local as an
+alternative to the existing XML input format. The YAML support is
+limited only to conversion program @code{gama-local-yaml2gkf} but it
+may be fully integrated in @code{gama-local} program later.
+
+In GNU Gama YAML documents are based on four main nodes
+
+@verbatim
+   defaults:
+
+   description:
+
+   points:
+
+   observations:
+@end verbatim
+
+Where @code{defaults} and @code{desctiopions} are optional and
+@code{points} and @code{observations} are mandatory and each can be
+used only once.
+
+Lets start with a full example
+
+@verbatim
+   defaults:
+     sigma-apr : 5
+     conf-pr:    0.95
+
+   description:
+     Example of a simple network
+
+   points:
+     - id:  1783
+       y:   453500.000
+       x:   104500.000
+       adj: xy
+
+     - id:  2044
+       y:   461000.000
+       x:   101000.000
+       fix: xy
+
+   observations:
+     - from: 1783
+       obs:
+         - type:  direction
+           to:    776
+           val:   29.51661
+           stdev: 2.0
+
+         - type:  direction
+           to:    351
+           val:   94.22790
+           stdev: 2.0
+
+     - from: 351
+       obs:
+         - type:  direction
+           to:    2044
+           val:   170.48370
+           stdev: 2.0
+
+         - type:  distance
+           to:    1783
+           val:   5522.668
+           stdev: 10.0
+
+     - from: 462
+       obs:
+         - type:  direction
+           to:    2505
+           val:   299.99973
+           stdev: 2.0
+@end verbatim
+
+The data structure of the YAML document is defined by
+@emph{indentation}, this principle was inspired by Python programming
+language, where indentation is very important; Python uses indentation
+to indicate a block of code.
+
+Practically all attribute names used in out YAML format are the same
+as in XML data format.
+
+Lets have a look on some more examples. Within @code{observations:}
+section we can define height differerence (another kind of a
+measurement).
+
+@verbatim
+   observations:
+
+     - height-differences:
+         - dh:
+             from: A
+             to  : B
+             val : 25.42
+             dist: 18.1     # distance in km
+         - dh:
+             from: B
+             to:   C
+             val:  10.34
+             dist:  9.4
+@end verbatim
+
+Two remaining observation types are @code{vectors} and
+@code{coordinates}.
+
+@verbatim
+   observations:
+     - vectors:
+       - vec:
+           from: A
+           to: S
+           dx: 60.0070
+           dy: 35.0053
+           dz: 54.9953
+       - vec:
+           from: B
+           to: S
+           dx: -39.9974
+           dy: 34.9928
+           dz: 54.9976
+@end verbatim
+
+and
+
+@verbatim
+   observations:
+     - coordinates:
+       - id: 403
+         x: 1054612.59853
+         y: 644373.60446
+       - id: 407
+         x: 1054821.17131
+         y: 644025.97479
+
+   ....
+
+       - cov-mat:
+           dim: 20
+           band: 19
+           upper-part:
+             6.7589719e+01 1.8437742e+01 1.3176856e+01 ...
+@end verbatim
+
+Typically any observation set can define its covariance matrix.
+
+You may wish to compare YAML and XML data files available from Gama
+tests suite in tests/gama-local/input directory (files *.gkf and
+*.yaml).
