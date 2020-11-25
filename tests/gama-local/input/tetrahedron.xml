@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Tetrahedron
+</description>
+
+<network-general-parameters
+   gama-local-version="2.11"
+   gama-local-algorithm="envelope"
+   gama-local-compiler="GNU C/C++ 8.3"
+   axes-xy="ne"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>1</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>3</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>3</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>9</equations>
+   <unknowns>3</unknowns>
+   <degrees-of-freedom>6</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>0.0000000e+00</sum-of-squares>
+   <disconnected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>0.0000000e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.000</ratio>
+   <lower>0.454</lower>
+   <upper>1.552</upper>
+   <failed/>
+
+   <confidence-scale>2.4469118e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>A</id> <x>0.000000</x> <y>0.000000</y> <z>0.000000</z> </point>
+   <point> <id>B</id> <x>100.000000</x> <y>0.000000</y> <z>0.000000</z> </point>
+   <point> <id>C</id> <x>50.000000</x> <y>86.602540</y> <z>0.000000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>D</id> <x>50.000000</x> <y>28.867513</y> <z>81.649658</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>D</id> <x>50.0000000000000000</x> <y>28.8675129999999989</y> <z>81.6496580000000023</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>3</dim> <band>2</band>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<dx> <from>A</from> <to>D</to>
+   <obs>50.0000000000000000</obs> <adj>50.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>A</from> <to>D</to>
+   <obs>28.8675129999999989</obs> <adj>28.8675129999999989</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>A</from> <to>D</to>
+   <obs>81.6496580000000023</obs> <adj>81.6496580000000023</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>B</from> <to>D</to>
+   <obs>-50.0000000000000000</obs> <adj>-50.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>B</from> <to>D</to>
+   <obs>28.8675129999999989</obs> <adj>28.8675129999999989</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>B</from> <to>D</to>
+   <obs>81.6496580000000023</obs> <adj>81.6496580000000023</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+<dx> <from>C</from> <to>D</to>
+   <obs>0.0000000000000000</obs> <adj>0.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dx>
+<dy> <from>C</from> <to>D</to>
+   <obs>-57.7350270000000023</obs> <adj>-57.7350270000000023</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dy>
+<dz> <from>C</from> <to>D</to>
+   <obs>81.6496580000000023</obs> <adj>81.6496580000000023</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.007</qrr> <f>42.265</f> <std-residual>0.000</std-residual>
+   <err-obs>0.000</err-obs> <err-adj>0.000</err-adj>
+   </dz>
+
+</observations>
+
+</gama-local-adjustment>

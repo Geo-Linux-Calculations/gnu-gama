@@ -174,6 +174,12 @@ libgama_src = \
    gnu_gama/local/xmlerror.h \
    gnu_gama/local/xmlerror.cpp
 
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+libyaml_src = \
+   gnu_gama/local/yaml2gkf.cpp \
+   gnu_gama/local/yaml2gkf.h
+endif
+
 if GNU_GAMA_G3_ENABLED
 libg3_src = \
    gnu_gama/g3/g3_adjres.cpp \
@@ -270,12 +276,16 @@ expat_extra = \
 
 noinst_LIBRARIES  = libgama.a
 
+libgama_a_SOURCES = $(libgama_src) $(libg3_src) $(matvec_src)
+
 if GNU_GAMA_LOCAL_TEST_EXPAT_1_1
 AM_CFLAGS= -I@top_srcdir@/lib/expat/xmltok
 AM_CPPFLAGS= -I@top_srcdir@/lib/expat/xmltok
-libgama_a_SOURCES = $(libgama_src) $(libg3_src) $(matvec_src) $(expat_src)
-else
-libgama_a_SOURCES = $(libgama_src) $(libg3_src) $(matvec_src)
+libgama_a_SOURCES += $(expat_src)
+endif
+
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+libgama_a_SOURCES += $(libyaml_src)
 endif
 
 EXTRA_DIST = $(expat_src) $(expat_extra) $(matvec_extra)

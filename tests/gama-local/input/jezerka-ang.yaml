@@ -1,0 +1,352 @@
+# based on jezerka-ang.gkf
+#
+
+defaults:
+  axes-xy: sw
+  angles: left-handed
+  sigma-act: aposteriori
+  sigma-apr: 0.31
+  conf-pr: 0.9
+
+description:
+  Jezerka
+
+points:
+  - id: 51
+    y: 1514.1413
+    x: 3725.0685
+    adj: xy
+  - id: 52
+    y: 1556.8089
+    x: 3446.1750
+    adj: xy
+  - id: 53
+    y: 1289.4689
+    x: 3306.6944
+    adj: XY
+  - id: 54
+    y: 1068.4168
+    x: 3138.7648
+    fix: xy
+  - id: 55
+    y: 1141.6977
+    x: 3321.3128
+    adj: xy
+  - id: 56
+    y: 1163.9692
+    x: 3446.8404
+    adj: xy
+  - id: 57
+    y: 1351.1271
+    x: 3674.5652
+    adj: xy
+  - id: 59
+    y: 1037.3041
+    x: 3443.6549
+    adj: xy
+
+
+observations:
+  - from: 51
+    obs:
+      - type: angle
+        bs: 54
+        fs: 55
+        val:   6.0549
+      - type: angle
+        bs: 55
+        fs: 56
+        val:   9.8243
+      - type: angle
+        bs: 56
+        fs: 59
+        val:   8.8025
+      - type: angle
+        bs: 59
+        fs: 57
+        val:  14.8140
+      - type: angle
+        bs: 57
+        fs: 52
+        val: 309.4591
+      - cov-mat:
+          dim: 5
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 52
+    obs:
+      - type: angle
+        bs: 53
+        fs: 55
+        val:  12.0165
+      - type: angle
+        bs: 55
+        fs: 59
+        val:  18.2931
+      - type: angle
+        bs: 59
+        fs: 56
+        val:   0.4155
+      - type: angle
+        bs: 56
+        fs: 51
+        val:  90.2245
+      - cov-mat:
+          dim: 4
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 53
+    obs:
+      - type: angle
+        bs: 54
+        fs: 55
+        val:  47.6425
+      - type: angle
+        bs: 55
+        fs: 56
+        val:  47.2221
+      - type: angle
+        bs: 56
+        fs: 52
+        val: 115.8812
+      - cov-mat:
+          dim: 3
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 54
+    obs:
+      - type: angle
+        bs: 51
+        fs: 53
+        val:  17.2602
+      - type: angle
+        bs: 53
+        fs: 59
+        val: 334.8788
+      - type: angle
+        bs: 59
+        fs: 56
+        val:  25.6211
+      - type: angle
+        bs: 56
+        fs: 55
+        val:   5.1537
+      - type: angle
+        bs: 55
+        fs: 57
+        val:   6.6129
+      - cov-mat:
+          dim: 5
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 55
+    obs:
+      - type: angle
+        bs: 51
+        fs: 52
+        val:  33.9661
+      - type: angle
+        bs: 52
+        fs: 53
+        val:  24.8809
+      - type: angle
+        bs: 53
+        fs: 54
+        val: 118.0121
+      - type: angle
+        bs: 54
+        fs: 59
+        val: 130.7353
+      - type: angle
+        bs: 59
+        fs: 56
+        val:  56.1477
+      - type: angle
+        bs: 56
+        fs: 57
+        val:  22.8932
+      - cov-mat:
+          dim: 6
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61
+            19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 56
+    obs:
+      - type: angle
+        bs: 54
+        fs: 59
+        val:  79.2650
+      - type: angle
+        bs: 59
+        fs: 51
+        val: 158.8538
+      - type: angle
+        bs: 51
+        fs: 52
+        val:  42.8500
+      - type: angle
+        bs: 52
+        fs: 53
+        val:  53.3951
+      - type: angle
+        bs: 53
+        fs: 55
+        val:  57.6726
+      - cov-mat:
+          dim: 5
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 57
+    obs:
+      - type: angle
+        bs: 54
+        fs: 55
+        val:   3.1630
+      - type: angle
+        bs: 55
+        fs: 51
+        val: 246.8059
+      - cov-mat:
+          dim: 2
+          band: 1
+          upper-part:
+            19.22 -9.61  19.22
+
+  - from: 59
+    obs:
+      - type: angle
+        bs: 51
+        fs: 56
+        val:  32.3442
+      - type: angle
+        bs: 56
+        fs: 52
+        val:   1.2879
+      - type: angle
+        bs: 52
+        fs: 55
+        val:  55.3355
+      - type: angle
+        bs: 55
+        fs: 54
+        val:  38.4899
+      - cov-mat:
+          dim: 4
+          band: 1
+          upper-part:
+            19.22 -9.61   19.22 -9.61   19.22 -9.61   19.22
+
+  - from: 51
+    obs:
+      - type: distance
+        to: 52
+        val: 282.1400
+        stdev: 2.0
+      - type: distance
+        to: 54
+        val: 736.4970
+        stdev: 2.0
+      - type: distance
+        to: 55
+        val: 549.3090
+        stdev: 2.0
+      - type: distance
+        to: 56
+        val: 447.2560
+        stdev: 2.0
+      - type: distance
+        to: 57
+        val: 170.6630
+        stdev: 2.0
+      - type: distance
+        to: 59
+        val: 553.6970
+        stdev: 2.0
+
+  - from: 52
+    obs:
+      - type: distance
+        to: 53
+        val: 301.5400
+        stdev: 2.0
+      - type: distance
+        to: 55
+        val: 433.4990
+        stdev: 2.0
+      - type: distance
+        to: 56
+        val: 392.8620
+        stdev: 2.0
+      - type: distance
+        to: 59
+        val: 519.5400
+        stdev: 2.0
+
+
+  - from: 53
+    obs:
+      - type: distance
+        to: 54
+        val: 277.6030
+        stdev: 2.0
+      - type: distance
+        to: 55
+        val: 148.5150
+        stdev: 2.0
+      - type: distance
+        to: 56
+        val: 188.1510
+        stdev: 2.0
+
+  - from: 54
+    obs:
+      - type: distance
+        to: 55
+        val: 196.7120
+        stdev: 2.0
+      - type: distance
+        to: 56
+        val: 322.5640
+        stdev: 2.0
+      - type: distance
+        to: 57
+        val: 605.8160
+        stdev: 2.0
+      - type: distance
+        to: 59
+        val: 306.5200
+        stdev: 2.0
+
+  - from: 55
+    obs:
+      - type: distance
+        to: 56
+        val: 127.4900
+        stdev: 2.0
+      - type: distance
+        to: 57
+        val: 410.6710
+        stdev: 2.0
+      - type: distance
+        to: 59
+        val: 160.8490
+        stdev: 2.0
+
+  - from: 56
+    obs:
+      - type: distance
+        to: 59
+        val: 126.7150
+        stdev: 2.0

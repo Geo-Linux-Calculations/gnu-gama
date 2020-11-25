@@ -1,0 +1,25 @@
+The primary build system (autotools)
+====================================
+
+To build GNU Gama with YAML support you need to have library yaml-cpp
+installed (on Debian based systems package libyaml-cpp-dev).
+
+
+
+Alternative build system (cmake)
+--------------------------------
+
+Alternatively with cmake build you can compile gama with source codes
+of yaml-cpp C++ parser included. To do this you must clone the
+yaml-cpp project from the git repository
+
+   cd "GNU Gama sources"/lib
+
+   git clone https://github.com/jbeder/yaml-cpp
+
+and run
+
+   mkdir build
+   cd build
+   cmake .. -G Ninja
+   cmake --build .

@@ -1,0 +1,151 @@
+# based on cube-1.m
+#
+
+description:
+  Cube-1
+
+defaults:
+  sigma-act: aposteriori
+
+points:
+  - id: A
+    x: 0.000
+    y: 0.000
+    z: 0.000
+    fix: xyz
+  - id: B
+    x: 100.01
+    y: 0.01
+    z: -0.00
+    adj: xyz
+  - id: C
+    x: 100.00
+    y: 100.00
+    z: -0.01
+    adj: xyz
+  - id: D
+    x: -0.00
+    y: 100.01
+    z: 0.00
+    adj: xyz
+  - id: E
+    x: -0.00
+    y: -0.00
+    z: 99.99
+    adj: xyz
+  - id: F
+    x: 100.01
+    y: -0.00
+    z: 99.99
+    adj: xyz
+  - id: G
+    x: 100.02
+    y: 100.00
+    z: 100.02
+    adj: xyz
+  - id: H
+    x: 0.01
+    y: 100.01
+    z: 100.00
+    adj: xyz
+  - id: S
+    x: 60.01
+    y: 35.00
+    z: 54.99
+    adj: xyz
+
+observations:
+  - vectors:
+    - vec:
+        from: A
+        to: S
+        dx: 60.0070
+        dy: 35.0053
+        dz: 54.9953
+    - vec:
+        from: B
+        to: S
+        dx: -39.9974
+        dy: 34.9928
+        dz: 54.9976
+    - vec:
+        from: C
+        to: S
+        dx: -39.9910
+        dy: -65.0015
+        dz: 54.9973
+    - vec:
+        from: D
+        to: S
+        dx: 60.0062
+        dy: -65.0098
+        dz: 54.9893
+    - vec:
+        from: E
+        to: S
+        dx: 60.0103
+        dy: 35.0098
+        dz: -44.9976
+    - vec:
+        from: F
+        to: S
+        dx: -40.0042
+        dy: 35.0036
+        dz: -44.9916
+    - vec:
+        from: G
+        to: S
+        dx: -40.0129
+        dy: -64.9980
+        dz: -45.0262
+    - vec:
+        from: H
+        to: S
+        dx: 59.9956
+        dy: -65.0105
+        dz: -45.0074
+    - vec:
+        from: A
+        to: G
+        dx: 100.0179
+        dy: 99.9931
+        dz: 100.0194
+    - vec:
+        from: D
+        to: H
+        dx: 0.0078
+        dy: 0.0033
+        dz: 100.0021
+    - vec:
+        from: A
+        to: B
+        dx: 100.0083
+        dy: 0.0095
+        dz: -0.0015
+    - vec:
+        from: C
+        to: G
+        dx: 0.0114
+        dy: -0.0028
+        dz: 100.0188
+    - vec:
+        from: E
+        to: C
+        dx: 100.0074
+        dy: 100.0028
+        dz: -99.9950
+    - vec:
+        from: F
+        to: D
+        dx: -100.0110
+        dy: 100.0069
+        dz: -99.9910
+    - cov-mat:
+        dim: 42
+        band: 0
+        upper-part:
+          1 1 1 1 1  1 1 1 1 1
+          1 1 1 1 1  1 1 1 1 1
+          1 1 1 1 1  1 1 1 1 1
+          1 1 1 1 1  1 1 1 1 1
+          1 1

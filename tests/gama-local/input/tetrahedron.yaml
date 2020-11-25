@@ -1,0 +1,55 @@
+# based on tetrahedron.m
+#
+
+description:
+  Tetrahedron
+
+points:
+
+  - id: A
+    x: 0.000000
+    y: 0.000000
+    z: 0.000000
+    fix: xyz
+  - id: B
+    x: 100.000000
+    y: 0.000000
+    z: 0.000000
+    fix: xyz
+  - id: C
+    x: 50.000000
+    y: 86.602540
+    z: 0.000000
+    fix: xyz
+  - id: D
+    x: 50.000000
+    y: 28.867513
+    z: 81.649658
+    adj: xyz
+
+observations:
+
+  - vectors:
+    - vec:
+        from: A
+        to: D
+        dx: 50.000000
+        dy: 28.867513
+        dz: 81.649658
+    - vec:
+        from: B
+        to: D
+        dx: -50.000000
+        dy: 28.867513
+        dz: 81.649658
+    - vec:
+        from: C
+        to: D
+        dx: 0.000000
+        dy: -57.735027
+        dz: 81.649658
+    - cov-mat:
+        dim: 9
+        band: 0
+        upper-part:
+          1 1 1   1 1 1   1 1 1

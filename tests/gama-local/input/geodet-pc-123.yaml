@@ -1,0 +1,125 @@
+# based on geodet-pc-123.gkf
+#
+
+defaults   :
+  axes-xy : sw
+  angles  : left-handed
+  sigma-apr:    10
+  conf-pr  :  0.95
+  tol-abs  :  1000
+  sigma-act: aposteriori
+  algorithm: gso
+  cov-band : -1
+  distance-stdev :  5.0
+  direction-stdev: 10.0
+
+description:
+  geodet-pc-123.gkf
+
+points:
+    - id: 201
+      y: 9498.260
+      x: 78594.910
+      fix: xy
+
+    - id: 202
+      y: 10367.590
+      x: 75913.250
+      fix: xy
+
+    - id: 203
+      y: 9300.430
+      x: 75306.800
+      fix: xy
+
+    - id: 204
+      y: 7115.090
+      x: 75723.680
+      fix: xy
+
+    - id: 205
+      y: 7206.650
+      x: 78907.880
+      fix: xy
+
+    - id: 206
+      y: 6633.270
+      x: 76701.570
+      fix: xy
+
+    - id: 207
+      adj: xy
+
+observations:
+    - from: 201
+      from_dh: 0    # we can set the height of theodolite
+      obs:
+        - type: direction
+          to: 202
+          val: 0.0000
+          stdev: 20.0
+          extern: TEST EXTERN ATTRIBUTE
+
+        - type: direction
+          to: 207
+          val: 52.0596
+          stdev: 20.0
+
+        - type: direction
+          to: 205
+          val: 128.6019
+          stdev: 20.0
+
+    - from: 203
+      obs:
+        - type: direction
+          to: 202
+          val: 0.0000
+          stdev: 20.0
+        - type: direction
+          to: 204
+          val: 244.8923
+          stdev: 20.0
+        - type: direction
+          to: 207
+          val: 294.4157
+          stdev: 20.0
+
+    - from: 204
+      obs:
+        - type: direction
+          to: 205
+          val: 0.0000
+          stdev: 20.0
+        - type: direction
+          to: 207
+          val: 59.8493
+          stdev: 20.0
+        - type: direction
+          to: 203
+          val: 110.1815
+          stdev: 20.0
+        - type: direction
+          to: 206
+          val: 369.0330
+          stdev: 20.0
+
+
+    - from: 207
+      obs:
+        - type: direction
+          to: 201
+          val: 0.0000
+          stdev: 20.0
+        - type: direction
+          to: 202
+          val: 89.5219
+          stdev: 20.0
+        - type: direction
+          to: 203
+          val: 129.4256
+          stdev: 20.0
+        - type: direction
+          to: 205
+          val: 337.3908
+          stdev: 20.0

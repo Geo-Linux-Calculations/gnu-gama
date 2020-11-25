@@ -6,8 +6,11 @@ if GNU_GAMA_G3_ENABLED
    GAMA_G3 = gama-g3
 endif
 
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+   GAMA_YAML = gama-local-yaml2gkf
+endif
 
-bin_PROGRAMS = $(GAMA_LOCAL) $(GAMA_G3)
+bin_PROGRAMS = $(GAMA_LOCAL) $(GAMA_G3) $(GAMA_YAML)
 
 gama_local_SOURCES = gama-local.cpp
 gama_local_LDADD   = $(top_builddir)/lib/libgama.a
@@ -25,4 +28,10 @@ if GNU_GAMA_G3_ENABLED
    gama_g3_SOURCES  = gama-g3.cpp
    gama_g3_LDADD    = $(top_builddir)/lib/libgama.a
    gama_g3_CPPFLAGS = -I $(top_srcdir)/lib
+endif
+
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+   gama_local_yaml2gkf_SOURCES = gama-local-yaml2gkf.cpp
+   gama_local_yaml2gkf_LDADD   = $(top_builddir)/lib/libgama.a -lyaml-cpp
+   gama_local_yaml2gkf_CPPFLAGS = -I $(top_srcdir)/lib
 endif

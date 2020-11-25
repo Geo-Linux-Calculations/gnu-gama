@@ -1,18 +1,3 @@
-EXTRA_DIST = gama-local-adjustment.sh_  \
-             gama-local-algorithms.sh_  \
-             gama-local-equivalents.sh_ \
-             gama-local-html.sh_ \
-             gama-local-xml-results.sh_ \
-             gama-local-xml-xml.sh_ \
-             gama-local-sqlite-reader.sh_ \
-             gama-local-version.sh_ \
-             gama-local-parameters.sh_ \
-             gama-local-updated-xml.sh_ \
-             gama-local-externs.sh_ \
-             xmllint-gama-local-xsd.sh_ \
-             xmllint-gama-local-adjustment-xsd.sh_ \
-             octave-gama-local.sh_
-
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 SQLITE_READER_PROG = check_xml_coordinates sqlite_init_db
 endif

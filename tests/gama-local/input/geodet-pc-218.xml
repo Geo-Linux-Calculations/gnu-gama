@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Frantisek Charamza: GEODET/PC, Prirucka uzivatele, Zdiby 1990
+-------------------------------------------------------------------
+
+Program GETU03 pro vyrovnani mistni trigonometricke sitee
+priklad: str. 218,  Vlozena sit ZDIBY / 15-F
+</description>
+
+<network-general-parameters
+   gama-local-version="2.10"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 8.3"
+   axes-xy="sw"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>3</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>3</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>3</distances>
+   <directions>12</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>15</equations>
+   <unknowns>9</unknowns>
+   <degrees-of-freedom>6</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.2396427e+02</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>5.0000000e+00</apriori>
+   <aposteriori>4.5454056e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.909</ratio>
+   <lower>0.454</lower>
+   <upper>1.552</upper>
+   <passed/>
+
+   <confidence-scale>2.4469118e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>776</id> <x>109500.000000</x> <y>456000.000000</y> </point>
+   <point> <id>2044</id> <x>101000.000000</x> <y>461000.000000</y> </point>
+   <point> <id>2505</id> <x>101000.000000</x> <y>451000.000000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>351</id> <x>105000.000000</x> <y>459000.000000</y> </point>
+   <point> <id>462</id> <x>101000.000000</x> <y>456000.000000</y> </point>
+   <point> <id>1783</id> <x>104500.000000</x> <y>453500.000000</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>351</id> <x>105000.0604306217865087</x> <y>458999.9822689490974881</y> </point>
+   <point> <id>462</id> <x>101000.0493538945447654</x> <y>456000.0143116523977369</y> </point>
+   <point> <id>1783</id> <x>104500.0355953994148877</x> <y>453500.0009782182751223</y> </point>
+</adjusted>
+
+<orientation-shifts>
+   <orientation> <id>1783</id> <approx>0.000512</approx> <adj>0.000242</adj> </orientation>
+   <orientation> <id>351</id> <approx>399.999902</approx> <adj>399.999711</adj> </orientation>
+   <orientation> <id>462</id> <approx>0.000027</approx> <adj>399.999654</adj> </orientation>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>9</dim> <band>8</band>
+<flt>1.2984222e+02</flt> <flt>-3.4653401e+01</flt> <flt>6.4414178e+01</flt>
+<flt>-1.6657707e-01</flt> <flt>6.0890297e+01</flt> <flt>-9.1898562e+00</flt>
+<flt>-2.9698526e+00</flt> <flt>-4.4806830e+00</flt> <flt>-2.4752674e+00</flt>
+<flt>9.4638762e+01</flt> <flt>-6.8331921e+00</flt> <flt>6.6062866e+01</flt>
+<flt>8.5892830e+00</flt> <flt>6.5544875e+01</flt> <flt>1.8622020e+00</flt>
+<flt>3.2853044e+00</flt> <flt>1.5751069e+00</flt> <flt>7.3845051e+01</flt>
+<flt>1.6149727e+00</flt> <flt>5.9549161e+01</flt> <flt>5.7903503e+00</flt>
+<flt>-8.4995386e-01</flt> <flt>-2.8405746e-01</flt> <flt>-2.1675985e-01</flt>
+<flt>1.2038167e+02</flt> <flt>1.0216586e+01</flt> <flt>6.9534037e+01</flt>
+<flt>-8.2372617e-01</flt> <flt>-5.7491085e-01</flt> <flt>-2.6952358e+00</flt>
+<flt>1.0660513e+02</flt> <flt>2.5118259e+01</flt> <flt>1.9108675e+00</flt>
+<flt>1.2400853e+00</flt> <flt>1.3936952e+00</flt> <flt>8.9408520e+01</flt>
+<flt>2.1314480e+00</flt> <flt>1.5921180e+00</flt> <flt>1.1986397e+00</flt>
+<flt>1.1072966e+00</flt> <flt>2.6314919e-01</flt> <flt>2.5724330e-01</flt>
+<flt>1.1994429e+00</flt> <flt>2.7647970e-01</flt> <flt>1.1301890e+00</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>4</ind>
+<ind>5</ind>
+<ind>6</ind>
+<ind>7</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>1</ind>
+<ind>8</ind>
+<ind>9</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<direction> <from>1783</from> <to>776</to>
+   <obs>29.5166099999999965</obs> <adj>29.5166525660103396</adj> <stdev>1.5134123768943029</stdev>
+   <qrr>0.049</qrr> <f>16.761</f> <std-residual>0.422</std-residual>
+   <err-obs>1.386</err-obs> <err-adj>0.960</err-adj>
+   </direction>
+<direction> <from>1783</from> <to>351</to>
+   <obs>94.2279000000000053</obs> <adj>94.2278654040439108</adj> <stdev>1.2372076055124455</stdev>
+   <qrr>0.086</qrr> <f>31.953</f> <std-residual>0.260</std-residual>
+   <err-obs>-0.644</err-obs> <err-adj>-0.298</err-adj>
+   </direction>
+<direction> <from>1783</from> <to>462</to>
+   <obs>160.5131800000000055</obs> <adj>160.5131701024384370</adj> <stdev>1.2738449339255649</stdev>
+   <qrr>0.081</qrr> <f>29.938</f> <std-residual>0.076</std-residual>
+   <err-obs>-0.194</err-obs> <err-adj>-0.095</err-adj>
+   </direction>
+<direction> <from>1783</from> <to>2505</to>
+   <obs>239.4857700000000023</obs> <adj>239.4857719275073293</adj> <stdev>1.5773689267754478</stdev>
+   <qrr>0.040</qrr> <f>13.244</f> <std-residual>0.021</std-residual>
+   <err-obs>0.078</err-obs> <err-adj>0.059</err-adj>
+   </direction>
+<direction> <from>351</from> <to>2044</to>
+   <obs>170.4836999999999989</obs> <adj>170.4837239817940713</adj> <stdev>1.5594941689328834</stdev>
+   <qrr>0.042</qrr> <f>14.227</f> <std-residual>0.257</std-residual>
+   <err-obs>0.907</err-obs> <err-adj>0.668</err-adj>
+   </direction>
+<distance> <from>351</from> <to>462</to>
+   <obs>4999.9840000000003783</obs> <adj>4999.9896357598163377</adj> <stdev>7.2632421016876130</stdev>
+   <qrr>1.447</qrr> <f>20.103</f> <std-residual>1.031</std-residual>
+   <err-obs>15.583</err-obs> <err-adj>9.948</err-adj>
+   </distance>
+<direction> <from>351</from> <to>462</to>
+   <obs>240.9666699999999935</obs> <adj>240.9664304929139007</adj> <stdev>1.2140954491679219</stdev>
+   <qrr>0.089</qrr> <f>33.224</f> <std-residual>1.770</std-residual>
+   <err-obs>-4.322</err-obs> <err-adj>-1.927</err-adj>
+   </direction>
+<distance> <from>351</from> <to>1783</to>
+   <obs>5522.6679999999996653</obs> <adj>5522.6641246349381618</adj> <stdev>7.2008468231576614</stdev>
+   <qrr>1.490</qrr> <f>20.790</f> <std-residual>0.698</std-residual>
+   <err-obs>-10.402</err-obs> <err-adj>-6.526</err-adj>
+   </distance>
+<direction> <from>351</from> <to>1783</to>
+   <obs>294.2281699999999773</obs> <adj>294.2283962472973826</adj> <stdev>1.1785550772355540</stdev>
+   <qrr>0.093</qrr> <f>35.179</f> <std-residual>1.634</std-residual>
+   <err-obs>3.902</err-obs> <err-adj>1.640</err-adj>
+   </direction>
+<direction> <from>351</from> <to>776</to>
+   <obs>362.5666699999999878</obs> <adj>362.5666592779946313</adj> <stdev>1.5086490071798830</stdev>
+   <qrr>0.050</qrr> <f>17.023</f> <std-residual>0.106</std-residual>
+   <err-obs>-0.344</err-obs> <err-adj>-0.237</err-adj>
+   </direction>
+<direction> <from>462</from> <to>2505</to>
+   <obs>299.9997299999999427</obs> <adj>299.9997180257192895</adj> <stdev>1.5073561217115412</stdev>
+   <qrr>0.050</qrr> <f>17.095</f> <std-residual>0.118</std-residual>
+   <err-obs>-0.383</err-obs> <err-adj>-0.263</err-adj>
+   </direction>
+<distance> <from>462</from> <to>1783</to>
+   <obs>4301.1629999999995562</obs> <adj>4301.1591876744751062</adj> <stdev>7.3736686318183775</stdev>
+   <qrr>1.368</qrr> <f>18.889</f> <std-residual>0.717</std-residual>
+   <err-obs>-11.144</err-obs> <err-adj>-7.332</err-adj>
+   </distance>
+<direction> <from>462</from> <to>1783</to>
+   <obs>360.5138999999999783</obs> <adj>360.5137588073674237</adj> <stdev>1.2717654573232149</stdev>
+   <qrr>0.082</qrr> <f>30.052</f> <std-residual>1.087</std-residual>
+   <err-obs>-2.765</err-obs> <err-adj>-1.353</err-adj>
+   </direction>
+<direction> <from>462</from> <to>351</to>
+   <obs>40.9662899999999937</obs> <adj>40.9664883545895009</adj> <stdev>1.2717491954686149</stdev>
+   <qrr>0.082</qrr> <f>30.053</f> <std-residual>1.527</std-residual>
+   <err-obs>3.884</err-obs> <err-adj>1.900</err-adj>
+   </direction>
+<direction> <from>462</from> <to>2044</to>
+   <obs>100.0010199999999827</obs> <adj>100.0009748123236761</adj> <stdev>1.5435405290781579</stdev>
+   <qrr>0.045</qrr> <f>15.104</f> <std-residual>0.470</std-residual>
+   <err-obs>-1.618</err-obs> <err-adj>-1.166</err-adj>
+   </direction>
+
+</observations>
+
+</gama-local-adjustment>

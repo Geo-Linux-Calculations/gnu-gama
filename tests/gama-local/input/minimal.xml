@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description></description>
+
+<network-general-parameters
+   gama-local-version="2.11"
+   gama-local-algorithm="envelope"
+   gama-local-compiler="GNU C/C++ 8.3"
+   axes-xy="ne"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>1</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>1</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>1</equations>
+   <unknowns>1</unknowns>
+   <degrees-of-freedom>0</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>0.0000000e+00</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+00</apriori>
+   <aposteriori>0.0000000e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.000</ratio>
+   <lower>0.000</lower>
+   <upper>0.000</upper>
+   <failed/>
+
+   <confidence-scale>0.0000000e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+</fixed>
+
+<approximate>
+   <point> <id>A</id> <z>100.000000</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>A</id> <z>100.0000000000000000</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>1</dim> <band>0</band>
+<flt>0.0000000e+00</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<coordinate-z> <id>A</id>
+   <obs>100.0000000000000000</obs> <adj>100.0000000000000000</adj> <stdev>0.0000000000000000</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </coordinate-z>
+
+</observations>
+
+</gama-local-adjustment>

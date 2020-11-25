@@ -1,0 +1,13 @@
+The mikhail-7.4-covmat files are derived from mikhail-7.4 example
+
+Files mikhail-7.4.gkf and mikhail-7.4-cov.gkf are identical.
+Files mikhail-7.4.xml and mikhail-7.4-cov.xml are identical.
+
+In the testing file mikhail-7.4-cov.yaml distances in kilometres
+are removed and replaced with commond diagonal variance-covariance
+matrix, where
+
+    dh weight = 1/dist_km, var = apr_0^2/weight and apr_0 is 10
+
+This test proves that results are same as in original observation
+data.

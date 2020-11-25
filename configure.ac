@@ -24,6 +24,9 @@ dnl git://git.sv.gnu.org/autoconf-archive.git
 dnl
 dnl https://www.gnu.org/software/autoconf-archive/ax_valgrind_check.html
 
+AC_LANG(C++)
+AC_PROG_CXX
+
 AX_CXX_COMPILE_STDCXX([14], [noext], [mandatory])
 AX_VALGRIND_DFLT([sgcheck], [off])
 AX_VALGRIND_CHECK
@@ -31,7 +34,6 @@ AX_VALGRIND_CHECK
 
 dnl Checks for programs.
 
-AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
@@ -97,6 +99,21 @@ else
    AC_CHECK_HEADERS([expat.h],,
       [AC_MSG_ERROR([Cannot find expat.h,] install_expat)])
 fi
+
+
+dnl Check for yaml-cpp library
+
+AC_MSG_CHECKING([for yaml-cpp])
+AC_LINK_IFELSE(
+ [AC_LANG_PROGRAM([#include <yaml-cpp/yaml.h>],[YAML::Node node;])],
+
+ [AC_MSG_RESULT([yes])]
+ [AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_YAML_CPP],[true])],
+
+ [AC_MSG_RESULT([no])]
+ [AM_CONDITIONAL([GNU_GAMA_LOCAL_TEST_YAML_CPP],[false])]
+ [AC_MSG_WARN([libyaml-cpp-dev is not installed.])]
+ )
 
 
 dnl Check for sqlite3 support

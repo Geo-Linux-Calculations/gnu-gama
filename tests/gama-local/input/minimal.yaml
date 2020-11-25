@@ -1,0 +1,18 @@
+defaults:
+  sigma-apr: 1
+
+points:
+
+  - id: A
+    adj: z
+
+observations:
+
+  - coordinates:
+      - id: A
+        z: 100.000
+      - cov-mat:
+          dim: 1
+          band: 0
+          upper-part:
+            1.0
