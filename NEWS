@@ -1,12 +1,30 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Version 2.12 December 2020
+
+* Alternative support of input data based on YAML format. YAML support
+  was added for gama-local as an alternative to the existing XML input
+  format. The YAML support is currently limited only to a conversion
+  program gama-local-yaml2gkf but it may be fully integrated in
+  gama-local program later.
+
+
+Version 2.11 October 2020
+
+* Maintainers' release
+
+* Removed gnu-gama-data.dtd and all its references (superseded by
+  .xsd), several XML files were updated in tests/gama-g3 to use
+  gnu-gama-data xsd definition.
+
+
 Version 2.10 September 2020
 
 * Adjustment results output in Octave format (.m file) with independent
   test of adjustment results (regularization of singular systems by
   the set of constraints).
 
-* update-constrained-coordinates parameter removed from the input XML 
+* update-constrained-coordinates parameter removed from the input XML
   data format
 
 
