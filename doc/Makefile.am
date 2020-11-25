@@ -14,6 +14,7 @@ gama_TEXINFOS =               \
    gama-local-macros.texi     \
    gama-local-test-suite.texi \
    gama-local.texi            \
+   gama-local-yaml.texi       \
    gama-local-input.texi      \
    obsdata.texi               \
    xyz2blh.texi               \
@@ -50,5 +51,5 @@ run-gendocs.sh:
 	make info
 	rm -rf manual
 	./gendocs.sh --texi2html --email cepek@gnu.org gama "GNU Gama manual"
-	ls -l  manual/html_*/index.html 
-	rm -fv manual/html_*/index.html 
+	ls -l  manual/html_*/index.html
+	rm -fv manual/html_*/index.html

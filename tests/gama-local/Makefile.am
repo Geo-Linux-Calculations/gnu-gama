@@ -11,6 +11,7 @@ EXTRA_DIST = CMakeLists.txt \
              gama-local-updated-xml.sh_ \
              gama-local-externs.sh_ \
              gama-local-yaml2gkf.sh_ \
+             xmllint-gama-local-yaml2gkf.sh_ \
              xmllint-gama-local-xsd.sh_ \
              xmllint-gama-local-adjustment-xsd.sh_ \
              octave-gama-local.sh_
@@ -31,20 +32,26 @@ if GNU_GAMA_LOCAL_TEST_SQLITE_READER
 TESTB = gama-local-sqlite-reader.sh
 endif
 
-if GNU_GAMA_LOCAL_TEST_XMLLINT
-TESTC = xmllint-gama-local-xsd.sh xmllint-gama-local-adjustment-xsd.sh
-endif
-
 if GNU_GAMA_LOCAL_TEST_OCTAVE
-TESTD = octave-gama-local.sh
+TESTC = octave-gama-local.sh
 endif
 
 if GNU_GAMA_LOCAL_TEST_YAML_CPP
 TESTD = gama-local-yaml2gkf.sh
 endif
 
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+TESTE = xmllint-gama-local-yaml2gkf.sh
+endif
+endif
 
-TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD) $(TESTD)
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+TESTF = xmllint-gama-local-xsd.sh xmllint-gama-local-adjustment-xsd.sh
+endif
+
+
+TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD) $(TESTE) $(TESTF)
 
 SUBDIRS = src input
 
@@ -201,6 +208,17 @@ gama-local-yaml2gkf.sh : $(srcdir)/gama-local-yaml2gkf.sh_ \
 	@$(do_subst) < $(srcdir)/gama-local-yaml2gkf.sh_ \
 	             > gama-local-yaml2gkf.sh
 	@chmod +x gama-local-yaml2gkf.sh
+endif
+
+
+if GNU_GAMA_LOCAL_TEST_XMLLINT
+if GNU_GAMA_LOCAL_TEST_YAML_CPP
+xmllint-gama-local-yaml2gkf.sh: $(srcdir)/xmllint-gama-local-yaml2gkf.sh_ \
+                              $(GAMA_OTHERS)
+	@$(do_subst) < $(srcdir)/xmllint-gama-local-yaml2gkf.sh_ \
+	             > xmllint-gama-local-yaml2gkf.sh
+	@chmod +x xmllint-gama-local-yaml2gkf.sh
+endif
 endif
 
 

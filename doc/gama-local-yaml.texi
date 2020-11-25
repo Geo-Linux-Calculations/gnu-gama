@@ -153,3 +153,10 @@ Typically any observation set can define its covariance matrix.
 You may wish to compare YAML and XML data files available from Gama
 tests suite in tests/gama-local/input directory (files *.gkf and
 *.yaml).
+
+
+The gama-local input xml data can be formally validated against the XSD
+definition. Unfortunatelly there is no formal definition of YAML
+input. Within the testing suite of GNU Gama project we have a test
+that validates all available YAML files converted to XML by the formal
+XSD definition, see the test @code{xmllint-gama-local-yaml2gkf}.

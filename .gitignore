@@ -72,6 +72,8 @@ doc/gama.tp
 doc/gama.vr
 doc/gama.pdf
 doc/gama.t2p
+doc/gama.t2d
+doc/gama.dvi
 #
 bin/gama-g3
 bin/gama-local
