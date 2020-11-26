@@ -292,7 +292,7 @@ add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
 
-if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/lib/yaml-cpp)
+if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)
    add_library(libyaml OBJECT ${SRC_YAMLCPP})
    add_executable(gama-local-yaml2gkf bin/gama-local-yaml2gkf.cpp

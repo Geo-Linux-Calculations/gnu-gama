@@ -173,7 +173,7 @@ add_test(NAME check_externs COMMAND check_externs
 # Testing of gama-local-yaml2gkf is implemented in three independent
 # steps
 #
-if (EXISTS ${CMAKE_BINARY_DIR}/gama-local-yaml2gkf)
+if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
 
   file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-yaml2gkf)
   set(YAML_FILES geodet-pc-123 geodet-pc-218
