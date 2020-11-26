@@ -163,3 +163,58 @@ add_executable(check_externs src/check_externs.cpp
   $<TARGET_OBJECTS:libgama>)
 add_test(NAME check_externs COMMAND check_externs
   ${INPUT_DIR} ${RESULT_DIR}/gama-local-adjustment ${INPUT_FILES})
+
+
+
+# ------------------------------------------------------------------------
+#
+# check gama-local-yaml2gkf
+#
+# Testing of gama-local-yaml2gkf is implemented in three independent
+# steps
+#
+if (EXISTS ${CMAKE_BINARY_DIR}/gama-local-yaml2gkf)
+
+  file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-yaml2gkf)
+  set(YAML_FILES geodet-pc-123 geodet-pc-218
+                 jezerka-ang   jezerka-dir
+                 zoltan-test_3d_dms
+                 seq-dsuloha-d
+                 mikhail-7.4
+                 mikhail-7.4-cov
+                 tetrahedron
+                 cube-1
+                 minimal)
+
+  # A) We run all yaml files through gama-local-yaml2gkf to generate
+  # input gkf files for gama-local adjustment in the next step
+  foreach(test ${YAML_FILES})
+    add_test(NAME A_gama_local_yaml2gkf_${test}
+      COMMAND
+      ${CMAKE_BINARY_DIR}/gama-local-yaml2gkf
+      ${INPUT_DIR}/${test}.yaml
+      ${RESULT_DIR}/gama-local-yaml2gkf/${test}.gkf
+      )
+  endforeach(test)
+
+  # B) Now we process all files prepared in the previous step by
+  # gama-local and store the adjustment results (.xml files)
+  foreach(test ${YAML_FILES})
+    add_test(NAME B_gama_local_yaml2gkf_${test}
+      COMMAND
+      ${CMAKE_BINARY_DIR}/gama-local
+      ${RESULT_DIR}/gama-local-yaml2gkf/${test}.gkf
+      --xml ${RESULT_DIR}/gama-local-yaml2gkf/${test}.xml
+      )
+  endforeach(test)
+
+  # C) Finally we compare adjustment results (.xml) from the step B
+  # with adjustment results from check_xml_results
+  foreach(test ${YAML_FILES})
+    add_test(NAME C_gama_local_yaml2gkf_${test}
+      COMMAND
+      check_xml_results ${test}
+      ${INPUT_DIR}/${test}.gkf ${RESULT_DIR}/gama-local-yaml2gkf/${test}.xml
+      )
+  endforeach(test)
+endif()

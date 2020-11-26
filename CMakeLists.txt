@@ -231,6 +231,59 @@ set(SRC_EXPAT
    lib/expat/xmlparse/hashtable.c
 )
 
+set(SRC_YAMLCPP
+  lib/yaml-cpp/src/binary.cpp
+  lib/yaml-cpp/src/collectionstack.h
+  lib/yaml-cpp/src/convert.cpp
+  lib/yaml-cpp/src/depthguard.cpp
+  lib/yaml-cpp/src/directives.cpp
+  lib/yaml-cpp/src/directives.h
+  lib/yaml-cpp/src/emit.cpp
+  lib/yaml-cpp/src/emitfromevents.cpp
+  lib/yaml-cpp/src/emitter.cpp
+  lib/yaml-cpp/src/emitterstate.cpp
+  lib/yaml-cpp/src/emitterstate.h
+  lib/yaml-cpp/src/emitterutils.cpp
+  lib/yaml-cpp/src/emitterutils.h
+  lib/yaml-cpp/src/exceptions.cpp
+  lib/yaml-cpp/src/exp.cpp
+  lib/yaml-cpp/src/exp.h
+  lib/yaml-cpp/src/indentation.h
+  lib/yaml-cpp/src/memory.cpp
+  lib/yaml-cpp/src/nodebuilder.cpp
+  lib/yaml-cpp/src/nodebuilder.h
+  lib/yaml-cpp/src/node.cpp
+  lib/yaml-cpp/src/node_data.cpp
+  lib/yaml-cpp/src/nodeevents.cpp
+  lib/yaml-cpp/src/nodeevents.h
+  lib/yaml-cpp/src/null.cpp
+  lib/yaml-cpp/src/ostream_wrapper.cpp
+  lib/yaml-cpp/src/parse.cpp
+  lib/yaml-cpp/src/parser.cpp
+  lib/yaml-cpp/src/ptr_vector.h
+  lib/yaml-cpp/src/regeximpl.h
+  lib/yaml-cpp/src/regex_yaml.cpp
+  lib/yaml-cpp/src/regex_yaml.h
+  lib/yaml-cpp/src/scanner.cpp
+  lib/yaml-cpp/src/scanner.h
+  lib/yaml-cpp/src/scanscalar.cpp
+  lib/yaml-cpp/src/scanscalar.h
+  lib/yaml-cpp/src/scantag.cpp
+  lib/yaml-cpp/src/scantag.h
+  lib/yaml-cpp/src/scantoken.cpp
+  lib/yaml-cpp/src/setting.h
+  lib/yaml-cpp/src/simplekey.cpp
+  lib/yaml-cpp/src/singledocparser.cpp
+  lib/yaml-cpp/src/singledocparser.h
+  lib/yaml-cpp/src/streamcharsource.h
+  lib/yaml-cpp/src/stream.cpp
+  lib/yaml-cpp/src/stream.h
+  lib/yaml-cpp/src/stringsource.h
+  lib/yaml-cpp/src/tag.cpp
+  lib/yaml-cpp/src/tag.h
+  lib/yaml-cpp/src/token.h
+  )
+
 include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 
 add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
@@ -238,6 +291,13 @@ add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 # Binaries
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
+
+if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/lib/yaml-cpp)
+   include_directories(lib/yaml-cpp/include)
+   add_library(libyaml OBJECT ${SRC_YAMLCPP})
+   add_executable(gama-local-yaml2gkf bin/gama-local-yaml2gkf.cpp
+                  lib/gnu_gama/local/yaml2gkf.cpp $<TARGET_OBJECTS:libyaml>)
+endif()
 
 # https://cmake.org/cmake/help/latest/prop_tgt/MSVC_RUNTIME_LIBRARY.html
 set_property(TARGET gama-local gama-g3 PROPERTY
