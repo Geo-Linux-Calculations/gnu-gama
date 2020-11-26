@@ -160,3 +160,29 @@ definition. Unfortunatelly there is no formal definition of YAML
 input. Within the testing suite of GNU Gama project we have a test
 that validates all available YAML files converted to XML by the formal
 XSD definition, see the test @code{xmllint-gama-local-yaml2gkf}.
+
+
+@menu
+* YAML support::        YAML support
+@end menu
+
+
+@node    YAML support
+@section YAML support
+@c index
+
+GNU Gama YAML input format is dependent on C++ YAML-CPP library
+written by Jesse Beder @cite{https://yaml.org/}. With the Gama primary
+build system (autotools) you need to install the library at your
+system, for example on Debian like systems it is libyaml-cpp-dev
+package.
+
+A different solution is used in the alternative Gama cmake based
+build, where the source codes are expected to be available from the
+@code{lib} directory. Change to @emph{"GNU Gama sources"}/lib and clone the
+git repository.
+
+@verbatim
+   cd "GNU Gama sources"/lib
+   git clone https://github.com/jbeder/yaml-cpp
+@end verbatim
