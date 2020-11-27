@@ -21,9 +21,9 @@ In GNU Gama YAML documents are based on four main nodes
    observations:
 @end verbatim
 
-Where @code{defaults} and @code{desctiopions} are optional and
+Where @code{defaults} and @code{description} are optional and
 @code{points} and @code{observations} are mandatory and each can be
-used only once.
+used only once. The order of the nodes is arbitrary.
 
 Lets start with a full example
 
@@ -32,8 +32,8 @@ Lets start with a full example
      sigma-apr : 5
      conf-pr:    0.95
 
-   description:
-     Example of a simple network
+   description: >-
+     Example: a simple network
 
    points:
      - id:  1783
@@ -78,6 +78,15 @@ Lets start with a full example
            val:   299.99973
            stdev: 2.0
 @end verbatim
+
+The @code{description} node is clearly the simplest one, it just
+describes a simple text attached to the data. But still there may be a
+catch. If the description contains @emph{colon} (:), it might confuse
+the YAML parser because it would be interpreted as a syntax
+construction. To @emph{escape} colon(s) in the description node we use
+@code{>-} to prevent colons to be interpreted as a syntax
+construction. Always using @code{>-} with @code{description} is a safe
+bet.
 
 The data structure of the YAML document is defined by
 @emph{indentation}, this principle was inspired by Python programming

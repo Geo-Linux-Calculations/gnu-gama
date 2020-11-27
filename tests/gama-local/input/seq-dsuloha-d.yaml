@@ -4,7 +4,7 @@ defaults:
   tol-abs: 1000
   sigma-act: apriori
 
-description:
+description: >-
   Frantisek Charamza: GEODET/PC, Prirucka uzivatele, Zdiby 1990
 
 points:

@@ -7,10 +7,10 @@ defaults:
   tol-abs:    1000
   sigma-act : aposteriori
 
-description:
-  "Frantisek Charamza: GEODET/PC, Prirucka uzivatele, Zdiby 1990.
+description: >-
+  Frantisek Charamza: GEODET/PC, Prirucka uzivatele, Zdiby 1990.
   Program GETU03 pro vyrovnani mistni trigonometricke site,
-  priklad: str. 218,  Vlozena sit ZDIBY / 15-F"
+  priklad: str. 218,  Vlozena sit ZDIBY / 15-F
 
 points:
   - id:  1783

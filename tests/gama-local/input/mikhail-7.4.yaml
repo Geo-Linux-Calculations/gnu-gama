@@ -1,7 +1,8 @@
 # based on mikhail-7.4.gkf (see bellow)
 #
 
-description:
+description: >-
+
   Edward M. Mikhail: Observations and Least Squares, 1976, ISBN
   0-7002-2481-5.  Example 7.4: Adjustment of a Level Net (p. 147)
 
