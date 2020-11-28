@@ -1,6 +1,6 @@
 GNU Gama NEWS - History of user-visible changes.
 
-Version 2.12 December 2020
+Changes in release 2.12 (2020-11-28)
 
 * Alternative support of input data based on YAML format. YAML support
   was added for gama-local as an alternative to the existing XML input
@@ -9,7 +9,7 @@ Version 2.12 December 2020
   gama-local program later.
 
 
-Version 2.11 October 2020
+Release 2.11 October 2020
 
 * Maintainers' release
 
@@ -18,7 +18,7 @@ Version 2.11 October 2020
   gnu-gama-data xsd definition.
 
 
-Version 2.10 September 2020
+Release 2.10 September 2020
 
 * Adjustment results output in Octave format (.m file) with independent
   test of adjustment results (regularization of singular systems by
@@ -28,7 +28,7 @@ Version 2.10 September 2020
   data format
 
 
-Version 2.09 June 2020
+Release 2.09 June 2020
 
 * There is one major fix visible to end users. Implicit value of XML
   parameter 'update_constrained_coordinates' was changed to "yes". The
@@ -44,7 +44,7 @@ Version 2.09 June 2020
   from the input XML data format.
 
 
-Version 2.08 December 2019
+Release 2.08 December 2019
 
 Maintainer's release
 
@@ -65,16 +65,16 @@ Maintainer's release
   is set on in the alternative builds in the main CMakeLists.txt)
 
 
-Version 2.07 August 2019
+Release 2.07 August 2019
 
 * Fixed some bugs in AcordPolar and AcordTraverse classes.
   More algorithms in Acord2 class
 
-Version 2.06 July 2019
+Release 2.06 July 2019
 
 * Fixed two bugs (html output format and segmentation fault)
 
-Version 2.05 May 2019
+Release 2.05 May 2019
 
 * The program gama-local for adjustment of local surveying networks
   used a C++ class Acord for computing approximate coordinates of
@@ -94,13 +94,13 @@ Version 2.05 May 2019
   solution of the network. Acord2 is based on the master's thesis by
   Petra Millarová <petramillarova@gmail.com>
 
-Version 2.04 March 2019
+Release 2.04 March 2019
 
 * experimental qmake project file gama-local.pro to be used where
 cmake is not available with Qt distribution on Windows. CMakeLists.txt
 project is prefered over gama-local.pro.
 
-Version 2.03 February 2019
+Release 2.03 February 2019
 
 * The new attribute "extern" suggested by Kristian Evers (Danish
   Agency for Data Supply and Efficiency) was added both to the
@@ -110,7 +110,7 @@ Version 2.03 February 2019
   gama-local and are only passively transfered to XML adjustement
   output.
 
-Version 2.02 November 2018
+Release 2.02 November 2018
 
 * Improved Hungarian translation by Siki Zoltan:
    "I would like to inform you that we just have finished a guide to
@@ -120,24 +120,24 @@ Version 2.02 November 2018
    Gama was used (and GeoEasy).
    During this work we have improved the Hungarian translation."
 
-Version 2.01 September 2018
+Release 2.01 September 2018
 
 * Maintainer's release
 * Conditional build for gama-g3 enabled implicitly
 * XML schema definition for gama-g3 adjustment results with new
   xmllint testsuite
 
-Version 2.00 May 2018
+Release 2.00 May 2018
 
 * Maintainer's release: for the list of internal changes see ChangeLog
 
-Version 1.21 November 2017
+Release 1.21 November 2017
 
 * Maintainer's release : internal matrix/vectors memory management
   replaced with a new implementation using C++11 move constructor and
   move asignment syntax.
 
-Version 1.20 November 2017
+Release 1.20 November 2017
 
 * New test suite for matvec classes and support for valgrind memory
   leak tests for tests/matvec and tests/gama-local.
@@ -146,14 +146,14 @@ Version 1.20 November 2017
      the base matvec memory handling class (MemRep) will reimplemented
      with C++11 move constructor and move assignemnt operator.
 
-Version 1.19 June 2017
+Release 1.19 June 2017
 
 * fixed a bug introduced in 1.16, reported by Pierre Bosser
         <pierre.bosser@ensta-bretagne.fr>. Implicit value of
         covariance band in XML adjustment output is -1 (full
         bandwidth).
 
-Version 1.18 August 2016
+Release 1.18 August 2016
 
 * configure.ac : patch by Greg Troxel <gdt@lexort.com>
      CPPFLAGS was set with +=, which is a bash extension and fails on
@@ -168,12 +168,12 @@ Version 1.18 August 2016
 * fixed a bug in sql export reported by Dominik Hladik
 * added @documentencoding UTF-8 into gama.texi
 
-Version 1.17 November 2015
+Release 1.17 November 2015
 
 * new set of functions for handling inconsistent systems
 * fixed two bugs reported by Greg Troxel
 
-Version 1.16 July 2015
+Release 1.16 July 2015
 
 * minor fixes in documentation
 * fixed a bug in SQL schema
@@ -181,7 +181,7 @@ Version 1.16 July 2015
 * C++11 features enabled (-std=c++11 for g++ compiler)
 * fixed several minor bugs
 
-Version 1.15 February 2014
+Release 1.15 February 2014
 
 * DTD replaced with XSD for gama-local.xsd and
   gama-local-adjustment.xsd. Attribute version describing XML version
@@ -191,7 +191,7 @@ Version 1.15 February 2014
   introduced in revised XML formats which are incompatible with older
   versions.
 
-Version 1.14 June 2013
+Release 1.14 June 2013
 
 * A posteriori standard deviation Chi-Square test is newly always
   performed (even when gama-local uses a priori reference standard
