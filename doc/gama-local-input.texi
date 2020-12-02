@@ -112,7 +112,7 @@ $$
 
 
 Internally @code{gama-local} works with gons but output can be
-transformed to degrees using the option @code{--angles 360}.
+transformed to degrees using the option @code{--angular 360}.
 
 
 
@@ -283,7 +283,7 @@ is @code{aposteriori}
 @code{encoding = "utf-8"} adjustment output encoding.
 
 @item
-@code{angles = "400"} output results angular units (400/360).
+@code{angular = "400"} output results angular units (400/360).
 
 @item
 @code{latitude = "50"}

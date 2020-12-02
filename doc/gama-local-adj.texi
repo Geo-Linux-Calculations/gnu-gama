@@ -5,9 +5,9 @@
 @c @cindex    adjustment
 
 
-@comment LaTex equation ==> Texinfo 
+@comment LaTex equation ==> Texinfo
 
-@ignore 
+@ignore
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -51,7 +51,7 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-where @m{A} is coefficient matrix, @m{b} is vector of absolute terms 
+where @m{A} is coefficient matrix, @m{b} is vector of absolute terms
 (right hand side) and @m{v} is vector of residuals.
 This system is (generally) overdetermined and we seek
 the solution @m{x} satisfying the basic criterion of Least Squares
@@ -76,7 +76,7 @@ defines the shape of adjusted network.
 
 
 
-In the case of @emph{free network} the system (1) 
+In the case of @emph{free network} the system (1)
 is singular (matrix @m{A} has linearly dependent columns)
 and we have to define second regularization criterion
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -100,7 +100,7 @@ corrections of selected parameters is minimal (corrections of unknown
 parameters with indexes from the set
 @c % +++++++++++++++++++++++
 @tex
-$\Omega$).  
+$\Omega$).
 @end tex
 @ifnottex
 of all selected unknowns.
@@ -132,8 +132,8 @@ P}^{1/2}{\bf b}$. Symbol ${\bf P}^{1/2}$
 @end example
 
 @noindent
-where @gmat{~A = P^@{1/2@} A}, @gmat{~b =  P^@{1/2@} A}. 
-Symbol @gmat{P^@{1/2@}} 
+where @gmat{~A = P^@{1/2@} A}, @gmat{~b =  P^@{1/2@} A}.
+Symbol @gmat{P^@{1/2@}}
 @end ifnottex
 @c % ----------------------------------------------------------------------
 denotes diagonal matrix of square roots of
@@ -156,10 +156,10 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-Normal equations are clearly equivalent for both systems.   
+Normal equations are clearly equivalent for both systems.
 @tex
 $$
-   \bf (A'PA)x = (A'Pb) 
+   \bf (A'PA)x = (A'Pb)
                   \quad\equiv\quad
        ({\tilde A}'\tilde A)x = (\tilde A\tilde b).
 $$
@@ -168,7 +168,7 @@ system (4) are the following relations
 $$\eqalign{
       q_{x_i} &= \tilde q_{x_i},          \qquad i=1,\ldots,n, \cr
       q_{L_j} &= \tilde q_{L_j}/p_j,      \qquad j=1,\ldots,m, \cr
-      q_{v_k} &= \tilde q_{v_k}/p_k 
+      q_{v_k} &= \tilde q_{v_k}/p_k
                 = (1-\tilde q_{L_k})/p_k
                 = 1/p_k - q_{L_k},        \qquad k=1,\ldots,m. \cr
 }
@@ -211,14 +211,14 @@ normally used for approximate estimate of orientations
 
 During the phase of computation of approximate coordinate of points,
 program @code{gama-local} walks through the list of computed points
-and for each point gathers all determining elements pointing to 
+and for each point gathers all determining elements pointing to
 points with known or previously computed coordinates.
 Determining elements are
 
 @itemize @w{}
 
-@item 
-@strong{outer bearing}  (oriented half-line) starting from the point 
+@item
+@strong{outer bearing}  (oriented half-line) starting from the point
 with known coordinates and pointing to the computed point
 
 @strong{distance}       between given and computed points
@@ -249,7 +249,7 @@ repeated.  Classes for computation of approximate coordinates have been
 written by Jiri Vesely.
 
 
-If program @code{gama-local} fails to compute approximate coordinates 
+If program @code{gama-local} fails to compute approximate coordinates
 of some of the network points, they are eliminated from the
 adjustment and they are listed in the output listing.
 
@@ -298,7 +298,7 @@ List of unresolved points
 
 
 One of parameters in XML input of program @code{gama-local} is tolerance
-@code{tol-abs} for detecting of gross absolute terms in 
+@code{tol-abs} for detecting of gross absolute terms in
 project equations. Observations with outlying absolute terms
 are always excluded from adjustment.
 
@@ -308,7 +308,7 @@ For measured distances program tests difference between observed value
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-         |d_i - d_0| > @code{tol-abs},            
+         |d_i - d_0| > @code{tol-abs},
 $$
 @end tex
 @c % ......................................................................
@@ -322,7 +322,7 @@ $$
 @c % ----------------------------------------------------------------------
 @noindent
 
-for observed directions program @code{gama-local} tests transverse deviation 
+for observed directions program @code{gama-local} tests transverse deviation
 corresponding to absolute term @gmat{b_i} from
 project equations (1)
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -397,11 +397,11 @@ Program @code{gama-local} uses two basic statistical parameters
 
 @itemize @bullet{}
 
-@item 
+@item
 confidence probability @gmat{P} (default value is 95%, see input XML
 parameter @code{conf-pr}) and
 
-@item 
+@item
 actual type of reference standard deviation @mnakt{} (parameter
 @code{sigma-act}).
 @end itemize
@@ -458,10 +458,10 @@ for adjusted quantity $\theta$ its @emph{confidence interval}
 $(\Theta_1, \Theta_2)$ in which the real value $\Theta$ is located with
 probability $P$
 $$
-            P(\Theta_1 < \Theta < \Theta_2) = P, 
+            P(\Theta_1 < \Theta < \Theta_2) = P,
 $$
 $$
-   \Theta_1 = \theta - k_p m_{\theta}, \qquad 
+   \Theta_1 = \theta - k_p m_{\theta}, \qquad
    \Theta_2 = \theta + k_p m_{\theta},
 $$
 where coefficient $k_p$ depends on confidence probability $P$ and in the
@@ -517,7 +517,7 @@ interval} in which its real value is located with the probability
 
 
 Null hypothesis @gmat{H_0: @mnapr{} = @mnemp{}} is tested versus
-alternative hypothesis @gmat{H_1: @mnapr{} \neq @mnemp{}}. 
+alternative hypothesis @gmat{H_1: @mnapr{} \neq @mnemp{}}.
 Test criterion is ratio of a posteriori estimate of
 reference standard deviation
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -545,15 +545,15 @@ hypothesis @gmat{H_0} is true, probabilities @gmat{P(@mnemp{}/@mnapr{}
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-  L = \sqrt{(\chi^2_{1-\alpha/2,\nadb}/\nadb)}, 
-      \qquad U = \sqrt{(\chi^2_{\alpha/2,\nadb}/\nadb)}. 
+  L = \sqrt{(\chi^2_{1-\alpha/2,\nadb}/\nadb)},
+      \qquad U = \sqrt{(\chi^2_{\alpha/2,\nadb}/\nadb)}.
 $$
 @end tex
 @c % ......................................................................
 @ifnottex
 
 @example
-         L = sqrt((Chi^2_@{1-alpha/2,@nadb{}@})/@nadb{}),    
+         L = sqrt((Chi^2_@{1-alpha/2,@nadb{}@})/@nadb{}),
          U = sqrt((Chi^2_@{ alpha/2 ,@nadb{}@})/@nadb{}).
 @end example
 
@@ -577,7 +577,7 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-is by default 95%, this corresponds to 5% confidence level test.  
+is by default 95%, this corresponds to 5% confidence level test.
 
 
 
@@ -606,7 +606,7 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-where 
+where
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -629,14 +629,14 @@ likely to be detected, but this can not be guaranteed.
 
 
 
-In addition, program @code{gama-local} computes a posteriori estimate 
+In addition, program @code{gama-local} computes a posteriori estimate
 of reference standard deviation separately for horizontal distances
 and directions and/or angles after formula from
 @c %%% \cite[str. 175]{charamza:geodetpc}
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-         m'_{0t} = \sqrt{ \sum{{\tilde v}^2_{i_t}} 
+         m'_{0t} = \sqrt{ \sum{{\tilde v}^2_{i_t}}
                         / \sum{{\tilde q}_{v_{i_t}}}
                           },\qquad t=d,s,
 $$
@@ -800,24 +800,24 @@ $$
       b = \sqrt{{1\over2}(\hbox{cov\ }{yy} + \hbox{cov\ }{xx} - c)},
 $$
 $$
-      c = \sqrt{(\hbox{cov\ }{xx} - \hbox{cov\ }{yy})^2 
+      c = \sqrt{(\hbox{cov\ }{xx} - \hbox{cov\ }{yy})^2
            + 4(\hbox{cov\ }{xy})^2},
 $$
 $$
-      \tan 2\alpha = 2(\hbox{cov\ }{xy})/(\hbox{cov\ }{xx} 
-           - \hbox{cov\ }{yy}). 
+      \tan 2\alpha = 2(\hbox{cov\ }{xy})/(\hbox{cov\ }{xx}
+           - \hbox{cov\ }{yy}).
 $$
 @end tex
 @c % ......................................................................
 @ifnottex
 
 @example
-         a = sqrt(1/2(cov_yy + cov_xx + c), 
-         b = sqrt(1/2(cov_yy + cov_xx - c),         
-         
+         a = sqrt(1/2(cov_yy + cov_xx + c),
+         b = sqrt(1/2(cov_yy + cov_xx - c),
+
          c = sqrt( (cov_xx - cov_yy)^2 + 4(cov_xy)^2 ),
-                  
-         tan 2alpha = 2(cov_xy) / (cov_xx - cov_yy).           
+
+         tan 2alpha = 2(cov_xy) / (cov_xx - cov_yy).
 @end example
 
 @end ifnottex
@@ -863,11 +863,11 @@ respect to its confidence ellipse
 is described by two points $P$ and $V$
 %%% is shown in
 %%%
-%%% Fig.  ref@{priklad-elipsa-g@},  
+%%% Fig.  ref@{priklad-elipsa-g@},
 %%%
 where point $P$ depicts approximate coordinates and $V$ adjusted
-coordinates.  Point $E$ 
-%%% in figure 
+coordinates.  Point $E$
+%%% in figure
 is the intersection of oriented half-line
 $VP$ and the confidence ellipse. Coefficient $g$ is defined as the
 ration of abscissae
@@ -887,7 +887,7 @@ Three cases are possible
 @item
 @gmat{g < 1} approximate coordinates of adjusted point are located
 inside the confidence ellipse
- 
+
 @item
 @gmat{g = 1} approximate coordinates of adjusted point are located on
 the confidence ellipse
@@ -929,7 +929,7 @@ $$
 @ifnottex
 
 @example
-         b_0 = delta_y cos(alpha) - delta_x sin(alpha), 
+         b_0 = delta_y cos(alpha) - delta_x sin(alpha),
          a_0 = delta_y sin(alpha) - delta_x cos(alpha)
 @end example
 
@@ -1003,7 +1003,7 @@ values of normalized or studentized residuals (depending on type of
 @mnakt{} used) and three characteristics.
 @c %%%
 @c %%% adopted from Geodet/PC \cite[180--187]{charamza:geodetpc}.
-@c %%% 
+@c %%%
 Theese are coefficient @code{f} identifying weak network elements and
 estimates of real error of observation @code{e-obs} and real error of
 its adjusted value @code{e-adj}, see definition in the following text.
@@ -1026,9 +1026,9 @@ Residuals and analysis of observations
    i standpoint   target        f[%]        v    |v'|     e-obs.  e-adj.
 ======================================== [mm|cc] =========== [mm|cc] ===
 
-   1          1        2 dir.   47.4       9.170  1.1      12.7    3.5  
-   2                 422 dir.   47.0      -0.873  0.1      -1.2   -0.3  
-   3                 424 dir.   30.3       7.588  1.1      14.8    7.2  
+   1          1        2 dir.   47.4       9.170  1.1      12.7    3.5
+   2                 422 dir.   47.0      -0.873  0.1      -1.2   -0.3
+   3                 424 dir.   30.3       7.588  1.1      14.8    7.2
 
 @end example
 
@@ -1038,19 +1038,19 @@ Residuals and analysis of observations
 
 @c KS @comment this section is not included in texinfo
 @c KS @comment ***************************************
-@c KS 
+@c KS
 @c KS @iftex
-@c KS 
+@c KS
 @c KS @subsection Test on normal distribution of homogenized residuals
-@c KS 
-@c KS 
+@c KS
+@c KS
 @c KS Repeated observations often display a normal frequency distribution.
 @c KS Residual of observed quantities are linear function real errors.
 @c KS From presumption of normal ditribution of real errors follows
 @c KS that homogenized residuals should have normal distribution as well.
-@c KS 
-@c KS 
-@c KS 
+@c KS
+@c KS
+@c KS
 @c KS Program  @code{gama-local} estimates mean value $E(\tilde {v})$ and estimate
 @c KS of variance $V(\tilde {v})$ for the vector of homogenized residuals
 @c KS $$
@@ -1066,10 +1066,10 @@ Residuals and analysis of observations
 @c KS normality of elements of vector ${\bf \nu}$.  Result of the test is a
 @c KS value saying what is the probability that elements of vector ${\bf \nu}$
 @c KS are a random sample form normal distribution $N(0, 1).$
-@c KS 
-@c KS 
-@c KS 
-@c KS 
+@c KS
+@c KS
+@c KS
+@c KS
 @c KS Kolmogorov-Smirnov test for one sample is based on maximal difference
 @c KS between empirical and theoretical cumulative distribution function
 @c KS (normal distribution $N(0, 1)$ in our case).
@@ -1092,43 +1092,43 @@ Residuals and analysis of observations
 @c KS \vbox{\offinterlineskip
 @c KS \halign{
 @c KS \strut
-@c KS \vrule\quad # \quad &\vrule 
-@c KS \hfil\quad # \quad\hfil & 
-@c KS \hfil\quad # \quad\hfil & 
-@c KS \hfil\quad # \quad\hfil & 
-@c KS \hfil\quad # \quad\hfil & 
+@c KS \vrule\quad # \quad &\vrule
+@c KS \hfil\quad # \quad\hfil &
+@c KS \hfil\quad # \quad\hfil &
+@c KS \hfil\quad # \quad\hfil &
+@c KS \hfil\quad # \quad\hfil &
 @c KS \hfil\quad # \quad\hfil\vrule \cr
 @c KS \noalign{\hrule}
 @c KS       & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \cr
 @c KS \noalign{\hrule}
 @c KS Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \cr
-@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \cr  
+@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \cr
 @c KS \noalign{\hrule}
 @c KS }}
 @c KS $$
 @c KS @end iftex
-@c KS 
-@c KS 
+@c KS
+@c KS
 @c KS @ignore
-@c KS 
+@c KS
 @c KS \begin{center}
 @c KS \begin{tabular}{|l|ccccc|}
 @c KS \hline
 @c KS       & 0.005 & 0.010 & 0.025 & 0.050 & 0.100 \\
 @c KS \hline
 @c KS Lower & 0.42  & 0.44  & 0.48  & 0.52  & 0.57  \\
-@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \\   
+@c KS Upper & 1.73  & 1.63  & 1.48  & 1.36  & 1.22  \\
 @c KS \hline
 @c KS \end{tabular}
 @c KS \end{center}
-@c KS 
-@c KS 
-@c KS 
+@c KS
+@c KS
+@c KS
 @c KS %=========================================================================
 @c KS \begin{figure}
-@c KS 
+@c KS
 @c KS \begin{center}
-@c KS 
+@c KS
 @c KS \setlength{\unitlength}{0.6ex}
 @c KS \framebox
 @c KS {
@@ -1136,67 +1136,67 @@ Residuals and analysis of observations
 @c KS     \linethickness{0.03ex}
 @c KS     \qbezier(0,0)(15,40)(50,50)
 @c KS     \qbezier(50,50)(85,60)(100,100)
-@c KS     
+@c KS
 @c KS     \put( 0, 0){\line(1,0){ 7}}
-@c KS     \put( 7, 0){\line(0,1){10}}      
-@c KS     
+@c KS     \put( 7, 0){\line(0,1){10}}
+@c KS
 @c KS     \put( 7,10){\line(1,0){ 6}}   \put( 7,10){\circle*{1}}
 @c KS     \put(13,10){\line(0,1){ 8}}
-@c KS     
+@c KS
 @c KS     \put(13,18){\line(1,0){ 7}}   \put(13,18){\circle*{1}}
 @c KS     \put(20,18){\line(0,1){10}}
-@c KS     
+@c KS
 @c KS     \put(20,28){\line(1,0){ 4}}   \put(20,28){\circle*{1}}
 @c KS     \put(24,28){\line(0,1){11}}
-@c KS 
+@c KS
 @c KS     \put(24,39){\line(1,0){20}}   \put(24,39){\circle*{1}}
 @c KS     \put(44,39){\line(0,1){12}}
-@c KS     
+@c KS
 @c KS     \put(44,51){\line(1,0){25}}   \put(44,51){\circle*{1}}
 @c KS     \put(69,51){\line(0,1){30}}
-@c KS     
+@c KS
 @c KS     \put(69,81){\line(1,0){17}}   \put(69,81){\circle*{1}}
 @c KS     \put(86,81){\line(0,1){ 5}}
-@c KS     
+@c KS
 @c KS     \put(86,86){\line(1,0){ 9}}   \put(86,86){\circle*{1}}
 @c KS     \put(95,86){\line(0,1){14}}
-@c KS 
+@c KS
 @c KS     \put(95,100){\line(1,0){ 5}}   \put(95,100){\circle*{1}}
-@c KS 
+@c KS
 @c KS     %===========================================================
-@c KS 
+@c KS
 @c KS     \put(85,65){$F(x)$}
 @c KS     \put(17, 8){$S_N(x)$}
-@c KS     
+@c KS
 @c KS     \put(60,72.0){\vector(0,1){9}}   % 81 .. 58.5
 @c KS     \put(58.5,68.5){$D$}
 @c KS     \put(60,67.5){\vector(0,-1){9}}
-@c KS 
+@c KS
 @c KS \end{picture}
-@c KS } 
-@c KS 
+@c KS }
+@c KS
 @c KS $x$
-@c KS 
+@c KS
 @c KS \end{center}
-@c KS 
-@c KS    \caption{Empirical cumulative distribution function $S_N(x)$, 
+@c KS
+@c KS    \caption{Empirical cumulative distribution function $S_N(x)$,
 @c KS             theoretical distribution function  $F(x)$ and maximal
 @c KS             difference $D$ of Kolmogorov-Smirnov test}
-@c KS 
+@c KS
 @c KS \label{vyrovnani:obrks}
-@c KS 
+@c KS
 @c KS \end{figure}
 @c KS %=======================================================================
-@c KS 
-@c KS 
+@c KS
+@c KS
 @c KS @heading Example
-@c KS 
+@c KS
 @c KS @example
 @c KS Test of normality of homogenised residuals of observations
 @c KS ==========================================================
-@c KS 
+@c KS
 @c KS Test Kolmogorov-Smirnov : 97.6 %
-@c KS 
+@c KS
 @c KS Condition number        : 1.3e+01
 @c KS @end example
 @c KS @end ignore
@@ -1206,7 +1206,7 @@ Residuals and analysis of observations
 
 
 
-@node     Weak network elements 
+@node     Weak network elements
 @section  Identification of weak network elements
 
 
@@ -1263,7 +1263,7 @@ $$
 @end example
 
 @end ifnottex
-where 
+where
 @tex
 $m_\ell$
 @end tex
@@ -1296,7 +1296,7 @@ with letter @code{w}).
 
 @c % Estimation of real errors of observations and/or real errors of
 @c % residuals is adopted from \cite[pp. 183-187]{charamza:geodetpc}.
- 
+
 Acording to previous section we can consider an observation to be
 controlled if its coefficient @gmat{f > 0.1}.  Any controlled
 observation can be eliminated from the network without corrupting the
@@ -1323,14 +1323,14 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-where 
+where
 @tex
 $\ell_i$
 @end tex
 @ifnottex
 e_li
 @end ifnottex
-is value of @gmat{i}-th observation and 
+is value of @gmat{i}-th observation and
 @tex
 $L_i^{{red}}$
 @end tex
@@ -1375,7 +1375,7 @@ Estimate of real error of an observation computes program @code{gama-local} as
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-         \varepsilon_{\ell_i} = v_i / ( p_i q_{v_i} ) 
+         \varepsilon_{\ell_i} = v_i / ( p_i q_{v_i} )
 $$
 @end tex
 @c % ......................................................................
@@ -1428,7 +1428,7 @@ $$
 
 @end ifnottex
 @c % ----------------------------------------------------------------------
-where 
+where
 @tex
 ${\bf L}^*$
 @end tex
@@ -1464,7 +1464,7 @@ $$
 With approximate values @m{X_0} of unknown parameters
 @tex
 $$
-         {\bf X = X_0 + x}                
+         {\bf X = X_0 + x}
 $$
 @end tex
 @c % ......................................................................
@@ -1479,18 +1479,18 @@ we can linearize the equations (12)
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-         {\bf L + v} = \varphi({\bf X_0}) 
+         {\bf L + v} = \varphi({\bf X_0})
                      + {\partial\varphi \over \partial{\bf X}}
                        {\Bigg\vert}
                        _{\bf X=X_0}
                        {\bf x}
 $$
-yielding the linear set of equations (1) where 
+yielding the linear set of equations (1) where
 $$
         {\bf A} = {\partial\varphi \over \partial{\bf X}}
                        {\Bigg\vert}
                        _{\bf X=X_0}\quad {\rm and} \qquad
-        {\bf b} = {\bf L} - \varphi({\bf X}_0). 
+        {\bf b} = {\bf L} - \varphi({\bf X}_0).
 $$
 @end tex
 @c % ......................................................................
@@ -1587,7 +1587,7 @@ Program @code{gama-local} similarly computes and tests differences in
 values of adjusted observations once computed from residuals
 and once from adjusted coordinates. For measured directions
 and angles @code{gama-local} computes in addition transverse deviation
-corresponding to computed angle difference in the distance 
+corresponding to computed angle difference in the distance
 of target point (or the farther of two targets for angle).
 As a criterion of bad linearization is supposed positional
 deviation greater or equal to 0.0005 millimetres.
@@ -1602,7 +1602,7 @@ Test of linearization error
 
 Diffs in adj. obs from residuals and from adjusted coordinates
 **************************************************************
- 
+
  i standpoint     target          observed     r        difference
 =================================   value  = [mm|cc] = [cc] == [mm]=
 
@@ -1641,5 +1641,3 @@ signals that given network configuration is somehow suspicious.
 @comment iftex
 @comment exampleindent 5
 @comment end iftex
-
-

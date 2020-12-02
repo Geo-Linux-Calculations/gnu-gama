@@ -7,7 +7,7 @@ System (GPS) cannot be used.
 In general, surveying is the technique and science of accurately
 determining the terrestrial or three-dimensional spatial position of
 points and the distances and angles between them.@footnote{Wikipedia,
-@uref{http://en.wikipedia.org/wiki/Surveying}}  
+@uref{http://en.wikipedia.org/wiki/Surveying}}
 
 Adjustment is a technical term traditionally used by geodesists and
 surveyors which simply means ``application of the least squares method to
@@ -56,4 +56,3 @@ by a command-line program @code{gama-local} that adjusts geodetic
 differences, 3D vectors and observed coordinates (coordinates with
 given variance-covariance matrix).  Adjustment in global coordinate
 systems is supported only partly as a @code{gama-g3} program.
-

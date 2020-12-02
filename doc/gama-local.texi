@@ -34,7 +34,7 @@ Options:
 --algorithm  svd | gso | cholesky | envelope
 --language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh
 --encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251
---angles     400 | 360
+--angular    400 | 360
 --latitude   <latitude>
 --ellipsoid  <ellipsoid name>
 --text       adjustment_results.txt
@@ -76,7 +76,7 @@ Option @code{--encoding} enables to change inplicit UTF-8 output
 encoding to iso-8859-2 (latin-2), iso-8859-2-flat (latin-2 without
 diacritics), cp-1250 (MS-EE encoding) cp-12251 (Russian encoding).
 
-Option @code{--angles} selects angular units to be used in output.
+Option @code{--angular} selects angular units to be used in output.
 
 Options @code{--latitude} and/or @code{--ellipsoid} are used when
 observed vertical and/or zenith angles need to be transformed into the
