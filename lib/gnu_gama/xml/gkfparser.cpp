@@ -498,7 +498,14 @@ namespace GNU_gama { namespace local {
             else
               return error(T_GKF_wrong_type_of_standard_deviation);
           }
-        else if (jmeno == "angles")
+        else if (jmeno == "angular")   // supersedes 'angles'
+          {
+            if      (hodnota == "400") lnet.set_gons();
+            else if (hodnota == "360") lnet.set_degrees();
+            else error(T_GKF_bad_network_configuration_unknown_parameter
+                         + jmeno + " = " + hodnota);
+          }
+        else if (jmeno == "angles")    // deprecated
           {
             if      (hodnota == "400") lnet.set_gons();
             else if (hodnota == "360") lnet.set_degrees();

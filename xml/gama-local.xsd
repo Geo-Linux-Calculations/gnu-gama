@@ -11,6 +11,10 @@
       GNU Gama local schema
       http://git.savannah.gnu.org/cgit/gama.git/tree/xml/gama-local.xsd
 
+      1.02 new attribute 'angular' in the element 'parameters' deprecated
+           previous attribute 'angles', which is kept for backward
+           compatibility, but may be removed in future versions.
+
       1.01 removed parameter update-constrained coordinates parameters
 
       1.00 fixed a formal error in the definition of obs attribute
@@ -125,7 +129,15 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="angles" default="400">
+      <xs:attribute name="angular" default="400">  <!-- supersedes angles -->
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="400"/>
+            <xs:enumeration value="360"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="angles" default="400">   <!-- deprecated -->
         <xs:simpleType>
           <xs:restriction base="xs:token">
             <xs:enumeration value="400"/>

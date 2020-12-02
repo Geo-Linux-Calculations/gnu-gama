@@ -81,7 +81,7 @@ int help()
     "--algorithm  gso | svd | cholesky | envelope\n"
     "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh\n"
     "--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251\n"
-    "--angles     400 | 360\n"
+    "--angular    400 | 360\n"
     "--latitude   <latitude>\n"
     "--ellipsoid  <ellipsoid name>\n"
     "--text       adjustment_results.txt\n"
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
     const char* argv_algo = nullptr;
     const char* argv_lang = nullptr;
     const char* argv_enc  = nullptr;
-    const char* argv_angles = nullptr;
+    const char* argv_angular = nullptr;
     const char* argv_ellipsoid = nullptr;
     const char* argv_latitude = nullptr;
     const char* argv_txtout = nullptr;
@@ -174,7 +174,7 @@ int main(int argc, char **argv)
         else if (name == "algorithm" ) argv_algo = c;
         else if (name == "language"  ) argv_lang = c;
         else if (name == "encoding"  ) argv_enc  = c;
-        else if (name == "angles"    ) argv_angles = c;
+        else if (name == "angular"   ) argv_angular = c;
         else if (name == "ellipsoid" ) argv_ellipsoid = c;
         else if (name == "latitude"  ) argv_latitude = c;
         else if (name == "text"      ) argv_txtout = c;
@@ -354,11 +354,11 @@ int main(int argc, char **argv)
 
     if (!IS->has_algorithm()) IS->set_algorithm();
 
-    if (argv_angles)
+    if (argv_angular)
       {
-        if (!strcmp("400", argv_angles))
+        if (!strcmp("400", argv_angular))
           IS->set_gons();
-        else if (!strcmp("360", argv_angles))
+        else if (!strcmp("360", argv_angular))
           IS->set_degrees();
         else
           return help();
