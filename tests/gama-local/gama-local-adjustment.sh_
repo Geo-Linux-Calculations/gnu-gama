@@ -31,8 +31,8 @@ do
     echo  @PACKAGE_VERSION@ $g $a
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
         --algorithm $a \
-        --text   $RES/$g-$a-360.txt \
-        --html   $RES/$g-$a-360.html \
-        --angles 360
+        --text    $RES/$g-$a-360.txt \
+        --html    $RES/$g-$a-360.html \
+        --angular 360
 done
 done
