@@ -542,7 +542,7 @@ std::string Yaml2gkf::obs_list(const YAML::Node& node)
               else
                 {
                   observation_is_angle = (obs->second == 1);
-                  observation_is_angular_ = (obs->second == 2);
+                  observation_is_angular_ = (obs->second > 0);
                 }
 
               continue;

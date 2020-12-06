@@ -99,7 +99,7 @@ private:
   std::string pointid    (std::string key, std::string val);
   std::string attrxyz    (std::string key, std::string val);
   std::string variant     (std::string key, std::string val);
-  bool observation_is_angular_{false};
+  bool observation_is_angular_{};
 };
 
 }}
