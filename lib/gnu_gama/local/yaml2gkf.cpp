@@ -31,10 +31,6 @@
 
 using namespace GNU_gama::local;
 
-using Cset = const std::unordered_set<std::string>;
-//using Cmap = const std::unordered_map<std::string, Cset>;
-//using Cint = const std::unordered_map<std::string, int>;
-
 
 Yaml2gkf::Yaml2gkf(YAML::Node& config, std::ostream& ostr)
   : config_(config), ostream_(ostr)
