@@ -25,14 +25,15 @@
 #include <stack>
 #include <sstream>
 #include <cctype>
-
+#include <utility>
 #include <gnu_gama/local/yaml2gkf.h>
+#include <gnu_gama/gon2deg.h>
 
 using namespace GNU_gama::local;
 
 using Cset = const std::unordered_set<std::string>;
-using Cmap = const std::unordered_map<std::string, Cset>;
-using Cint = const std::unordered_map<std::string, int>;
+//using Cmap = const std::unordered_map<std::string, Cset>;
+//using Cint = const std::unordered_map<std::string, int>;
 
 
 Yaml2gkf::Yaml2gkf(YAML::Node& config, std::ostream& ostr)
@@ -115,102 +116,51 @@ void Yaml2gkf::test_top_nodes()
 
 void Yaml2gkf::defaults()
 {
-  Cint attr_ind
-    {
-      // xml <network> attributes
+  const std::unordered_map<std::string,
+      std::pair<int, Handler>> attr_ind
+  {
+    // xml <network> attributes
 
-      {"axes-xy", 0},
-      {"angles",  0},
-      {"epoch",   0},
+    {"axes-xy", {0, &Yaml2gkf::axes_xy}},
+    {"angles",  {0, &Yaml2gkf::angles}},
+    {"epoch",   {0, &Yaml2gkf::number}},
 
-      // xml <parameters> attributes
+    // xml <parameters> attributes
 
-      {"sigma-apr", 1},
-      {"conf-pr",   1},
-      {"tol-abs",   1},
-      {"sigma-act", 1},
-      {"algorithm", 1},
-      {"language",  1},
-      {"encoding",  1},
-      {"angles",    1},
-      {"latitude",  1},
-      {"ellipsoid", 1},
-      {"cov-band",  1},
+    {"sigma-apr", {1, &Yaml2gkf::positive}},
+    {"conf-pr",   {1, &Yaml2gkf::probability}},
+    {"tol-abs",   {1, &Yaml2gkf::positive}},
+    {"sigma-act", {1, &Yaml2gkf::sigma_act}},
+    {"algorithm", {1, &Yaml2gkf::algorithm}},
+    {"language",  {1, &Yaml2gkf::language}},
+    {"encoding",  {1, &Yaml2gkf::encoding}},
+    {"angular",   {1, &Yaml2gkf::angular}},
+    {"latitude",  {1, &Yaml2gkf::number}},
+    {"ellipsoid", {1, &Yaml2gkf::nop}},
+    {"cov-band",  {1, &Yaml2gkf::nop}},
 
-      // xml <points-observations> attributes
+    // xml <points-observations> attributes
 
-      {"distance-stdev",     2},
-      {"direction-stdev",    2},
-      {"angle-stdev",        2},
-      {"zenith-angle-stdev", 2},
-      {"azimuth-stdev",      2}
-    };
-
-  Cmap cmap_def
-    {
-      // xml <network> attributes
-
-      {"axes-xy", {"ne", "sw", "es", "wn", "en", "nw", "se", "ws"}},
-      {"angles",  {"left-handed", "right-handed"}},
-      {"epoch",   {}},
-
-      // xml <parameters> attributes
-
-      {"sigma-apr", {}},
-      {"conf-pr",   {}},
-      {"tol-abs",   {}},
-      {"sigma-act", {"aposteriori", "apriori"}},
-      {"algorithm", {"gso", "svd", "cholesky", "envelope"}},
-      {"language",  {"en", "ca", "cz", "du", "es", "fi", "fr", "hu", "ru",
-                     "ua","zh"}},
-      {"encoding",  {"utf-8", "iso-8859-2", "iso-8859-2-flat",
-                     "cp-1250", "cp-1251"}},
-      {"angles",    {"400", "360"}},
-      {"latitude",  {}},
-      {"ellipsoid", {}},
-      {"cov-band",  {}},
-
-      // xml <points-observations> attributes
-
-      {"distance-stdev",     {}},
-      {"direction-stdev",    {}},
-      {"angle-stdev",        {}},
-      {"zenith-angle-stdev", {}},
-      {"azimuth-stdev",      {}}
-    };
+    {"distance-stdev",     {2, &Yaml2gkf::positive}},
+    {"direction-stdev",    {2, &Yaml2gkf::positive}},
+    {"angle-stdev",        {2, &Yaml2gkf::positive}},
+    {"zenith-angle-stdev", {2, &Yaml2gkf::positive}},
+    {"azimuth-stdev",      {2, &Yaml2gkf::positive}}
+  };
 
   if (YAML::Node def = config_["defaults"])
     for (auto d : def)
-    {
-      auto key = tostr_(d.first);
-      auto val = tostr_(d.second);
+      {
+        auto key = tostr_(d.first);
+        auto val = tostr_(d.second);
 
-      // message("defaults",  key, val);
+        // attributes for XML tags network, patameters and points-observations
 
-      // *** test key and val  ***
-      auto k = cmap_def.find(key);
-      if (k == cmap_def.end())
-        {
-          error("key not found", key);
-          continue;
-        }
-      if (! k->second.empty())
-        {
-          auto v = k->second.find(val);
-          if (v == k->second.end())
-            {
-              error("value not found", key, val);
-              continue;
-            }
-        }
-
-
-      // attributes for XML tags network, patameters and points-observations
-
-      int index = attr_ind.find(key)->second;
-      std::string s = "\n   " + key + "=\"" + val + "\"";
-      atts_[index] += s;
-    }
+        int index = attr_ind.find(key)->second.first;
+        Handler f = attr_ind.find(key)->second.second;
+        std::string s = "\n   " + (this->*f)(key, val);
+        atts_[index] += s;
+      }
 }
 
 
@@ -275,17 +225,17 @@ void Yaml2gkf::points_observations()
 
 void Yaml2gkf::points()
 {
-  Cmap cmap_pnt
-    {
-      // xml <network> attributes
+  const std::unordered_map<std::string,  Handler> cset_pnt
+  {
+    // xml <network> attributes
 
-      {"id", {}},
-      {"x",  {}},
-      {"y",  {}},
-      {"z",  {}},
-      {"fix",{"xy","XY","z","Z","xyz","XYZ","XYz","xyZ"}},
-      {"adj",{"xy","XY","z","Z","xyz","XYZ","XYz","xyZ"}}
-    };
+    {"id",  &Yaml2gkf::pointid},
+    {"x",   &Yaml2gkf::number},
+    {"y",   &Yaml2gkf::number},
+    {"z",   &Yaml2gkf::number},
+    {"fix", &Yaml2gkf::attrxyz},
+    {"adj", &Yaml2gkf::attrxyz}
+  };
 
   auto pnts = config_["points"];
   if (!pnts.IsDefined()) return;
@@ -299,23 +249,15 @@ void Yaml2gkf::points()
           auto key = tostr_(a.first);
           auto val = tostr_(a.second);
 
-          auto k = cmap_pnt.find(key);
-          if (k == cmap_pnt.end())
+          auto k = cset_pnt.find(key);
+          if (k == cset_pnt.end())
             {
-              error("key not found", key);
+              error("key not found", key, val);
               continue;
             }
-          if (!k->second.empty())
-            {
-              auto v = k->second.find(val);
-              if (v == k->second.end())
-              {
-                error("value not found", key, val);
-                continue;
-              }
-            }
 
-          ostream_ << " " << key << "=\"" << val << "\"";
+          Handler f = cset_pnt.find(key)->second;
+          ostream_ << (this->*f)(key, val);
         }
 
       ostream_ << " />\n";
@@ -362,12 +304,12 @@ void Yaml2gkf::observations()
 
 void Yaml2gkf::observations_obs    (const YAML::Node& node)
 {
-  Cint obs_ae  // <obs> attributes and elements, see gama-local.xsd
+  const std::unordered_map<std::string, std::pair<int, Handler>> obs_ae
   {
-    {"from",        0},   // attributes
-    {"from_dh",     0},
-    {"orientation", 0},
-    {"obs",         1}   // list of measurements
+    {"from",        {0, &Yaml2gkf::pointid}},   // attributes
+    {"from_dh",     {0, &Yaml2gkf::number}},
+    {"orientation", {0, &Yaml2gkf::number}},
+    {"obs",         {1, &Yaml2gkf::nop}}        // list of measurements
   };
 
   std::string obs_attributes {};
@@ -384,9 +326,12 @@ void Yaml2gkf::observations_obs    (const YAML::Node& node)
           continue;
         }
 
-      switch (k->second) {
+      int index = k->second.first;
+      Handler f = k->second.second;
+
+      switch (index) {
       case 0:
-        obs_attributes += " " + key + "=\"" + val + "\"";
+        obs_attributes += (this->*f)(key, val);
         break;
       case 1:
         obs_measurements += obs_list(p.second);
@@ -406,9 +351,14 @@ void Yaml2gkf::observations_hdiffs (const YAML::Node& hdiff_node)
 {
   ostream_ << "<height-differences>\n";
 
-  Cset hdf_ae
+  const std::unordered_map<std::string, Handler> hdf_ae
   {
-   "from", "to", "val", "stdev", "dist", "extern"
+    {"from",   &Yaml2gkf::pointid},
+    {"to",     &Yaml2gkf::pointid},
+    {"val",    &Yaml2gkf::number},
+    {"stdev",  &Yaml2gkf::positive},
+    {"dist",   &Yaml2gkf::positive},
+    {"extern", &Yaml2gkf::nop}
   };
 
   for (auto dh_node : hdiff_node.begin()->second)
@@ -436,9 +386,11 @@ void Yaml2gkf::observations_hdiffs (const YAML::Node& hdiff_node)
           if (iter == hdf_ae.end())
             {
               error("<dh /> unknown key", key);
+              continue;
             }
 
-          observation += " " + key + "=\"" + val + "\"";
+          Handler f = iter->second;
+          observation += (this->*f)(key, val);
         }
       observation += " />\n";
 
@@ -453,9 +405,14 @@ void Yaml2gkf::observations_vectors(const YAML::Node& vector_node)
 {
   ostream_ << "<vectors>\n";
 
-  Cset vec_atr
+  const std::unordered_map<std::string, Handler> vec_atr
   {
-    "from", "to", "dx", "dy", "dz", "extern"
+    {"from",   &Yaml2gkf::pointid},
+    {"to",     &Yaml2gkf::pointid},
+    {"dx",     &Yaml2gkf::number},
+    {"dy",     &Yaml2gkf::number},
+    {"dz",     &Yaml2gkf::number},
+    {"extern", &Yaml2gkf::nop}
   };
 
   for (auto vec_node : vector_node.begin()->second)
@@ -485,7 +442,8 @@ void Yaml2gkf::observations_vectors(const YAML::Node& vector_node)
               error("<vec /> unknown key", key);
             }
 
-          observation += " " + key + "=\"" + val + "\"";
+          Handler f = iter->second;
+          observation += (this->*f)(key, val);
         }
       observation += " />\n";
 
@@ -500,9 +458,13 @@ void Yaml2gkf::observations_coords (const YAML::Node& coords_node)
 {
   ostream_ << "<coordinates>\n";
 
-  Cset coords_atr
+  const std::unordered_map<std::string, Handler> coords_atr
   {
-    "id", "x", "y", "z", "extern"
+    {"id",     &Yaml2gkf::pointid},
+    {"x",      &Yaml2gkf::number},
+    {"y",      &Yaml2gkf::number},
+    {"z",      &Yaml2gkf::number},
+    {"extern", &Yaml2gkf::nop}
   };
 
   for (auto cnode : coords_node.begin()->second)
@@ -532,7 +494,8 @@ void Yaml2gkf::observations_coords (const YAML::Node& coords_node)
               error("<point /> unknown key", key);
             }
 
-          observation += " " + key + "=\"" + val + "\"";
+          Handler f = iter->second;
+          observation += (this->*f)(key, val);
         }
       observation += " />\n";
 
@@ -546,14 +509,15 @@ void Yaml2gkf::observations_coords (const YAML::Node& coords_node)
 
 std::string Yaml2gkf::obs_list(const YAML::Node& node)
 {
-  Cint observations  // <obs> attributes and elements, see gama-local.xsd
+  // <obs> attributes and elements, see gama-local.xsd
+  const std::unordered_map<std::string, int> observations
   {
-    {"direction",   0},
     {"distance",    0},
-    {"angle",       1},
     {"s-distance",  0},
-    {"z-angle",     0},
-    {"azimuth",     0}
+    {"angle",       1},
+    {"direction",   2},
+    {"z-angle",     2},
+    {"azimuth",     2}
   };
 
   std::string measurements;
@@ -563,6 +527,7 @@ std::string Yaml2gkf::obs_list(const YAML::Node& node)
     {
       std::string type, atts;
       bool observation_is_angle = false;
+      observation_is_angular_ = false;
 
       for (auto f : e)
         {
@@ -580,7 +545,8 @@ std::string Yaml2gkf::obs_list(const YAML::Node& node)
                 }
               else
                 {
-                  observation_is_angle = obs->second;
+                  observation_is_angle = (obs->second == 1);
+                  observation_is_angular_ = (obs->second == 2);
                 }
 
               continue;
@@ -593,30 +559,58 @@ std::string Yaml2gkf::obs_list(const YAML::Node& node)
               continue;
             }
 
-          auto set_keyval = [&](Cset& attributes)
-          {
-            auto iter = attributes.find(key);
-            if (iter == attributes.end()) {
-                error("uknown attribute", key, val);
-              }
-            atts += " " + key + "=\"" + val + "\"";
-          };
-
           // observation attributes, see gama-local.xsd
           if (observation_is_angle)
             {
-              Cset obsl_angle {
-                "to", "val", "stdev", "from_dh", "to_dh", "extern",
-                "bs", "fs", "bs_dh", "fs_dh"
+              const std::unordered_map<std::string, Handler> obsl_angle
+              {
+                {"from",    &Yaml2gkf::pointid},
+                {"to",      &Yaml2gkf::pointid},
+                {"val",     &Yaml2gkf::variant},
+                {"stdev",   &Yaml2gkf::positive},
+                {"from_dh", &Yaml2gkf::pointid},
+                {"to_dh",   &Yaml2gkf::number},
+                {"extern",  &Yaml2gkf::nop},
+                {"bs",      &Yaml2gkf::pointid},
+                {"fs",      &Yaml2gkf::pointid},
+                {"bs_dh",   &Yaml2gkf::number},
+                {"fs_dh",   &Yaml2gkf::number}
               };
-              set_keyval(obsl_angle);
+
+              auto iter = obsl_angle.find(key);
+              if (iter == obsl_angle.end())
+              {
+                error("uknown attribute", key, val);
+              }
+              else
+              {
+                Handler f = iter->second;
+                atts += (this->*f)(key, val);
+              }
             }
           else
             {
-              Cset obsl_others{
-                "to", "val", "stdev", "from_dh", "to_dh", "extern"
+              const std::unordered_map<std::string, Handler>  obsl_others
+              {
+                {"from",    &Yaml2gkf::pointid},
+                {"to",      &Yaml2gkf::pointid},
+                {"val",     &Yaml2gkf::variant},
+                {"stdev",   &Yaml2gkf::positive},
+                {"from_dh", &Yaml2gkf::number},
+                {"to_dh",   &Yaml2gkf::number},
+                {"extern",  &Yaml2gkf::nop}
               };
-              set_keyval(obsl_others);
+
+              auto iter = obsl_others.find(key);
+              if (iter == obsl_others.end())
+              {
+                error("uknown attribute", key, val);
+              }
+              else
+              {
+                Handler f = iter->second;
+                atts += (this->*f)(key, val);
+              }
             }
         }
 
@@ -714,4 +708,192 @@ void Yaml2gkf::message(std::string text,
 std::string Yaml2gkf::tostr_(const YAML::Node& n)
 {
   return n.IsScalar() ? n.as<std::string>() : std::string();
+}
+
+std::string Yaml2gkf::keyval(std::string key, std::string val)
+{
+  return " " + key + " = \"" + val + "\"";
+}
+
+int Yaml2gkf::words_count(std::string s)
+{
+  bool previous {true}, current {};
+
+  int count {0};
+  for (char c : s)
+    {
+      current = std::isspace(c);
+      if (previous && !current) count++;
+      previous = current;
+    }
+
+  return count;
+}
+
+// *******************************************************
+// *   key / value handlers                              *
+// *******************************************************
+
+std::string Yaml2gkf::nop(std::string key, std::string val)
+{
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::number(std::string key, std::string val)
+{
+  double result {};
+  std::istringstream inp(val);
+  inp >> result;
+
+  bool test = !inp.fail() && inp.eof();
+
+  if (!test) error("not a number value", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::positive(std::string key, std::string val)
+{
+  double result {};
+  std::istringstream inp(val);
+  inp >> result;
+
+  bool test = !inp.fail() && inp.eof();
+  if (test && result <= 0) test = false;
+
+  if (!test) error("zero or negative value", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::probability(std::string key, std::string val)
+{
+  double result {};
+  std::istringstream inp(val);
+  inp >> result;
+
+  bool test = !inp.fail() && inp.eof();
+  if (test && result <= 0) test = false;
+  if (test && result >  1) test = false;
+
+  if (!test) error("not a probability value", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::axes_xy(std::string key, std::string val)
+{
+  const std::unordered_set<std::string> axes
+  {
+    "ne", "sw", "es", "wn", "en", "nw", "se", "ws"
+  };
+
+  bool test = axes.find(val) != axes.end();
+  if (!test) error("bad axes definition", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::angles(std::string key, std::string val)
+{
+  bool test = val == "left-handed" || val == "right-handed";
+  if (!test) error("bad angles definition", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::sigma_act(std::string key, std::string val)
+{
+  bool test = val == "aposteriori" || val == "apriori";
+  if (!test) error("bad sigma act definition", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::algorithm(std::string key, std::string val)
+{
+  const std::unordered_set<std::string> algo
+  {
+    "gso", "svd", "cholesky", "envelope"
+  };
+
+  bool test = algo.find(val) != algo.end();
+  if (!test) error("unknown algorithm", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::language(std::string key, std::string val)
+{
+  const std::unordered_set<std::string> lang
+  {
+    "en", "ca", "cz", "du", "es", "fi", "fr", "hu", "ru",
+    "ua","zh"
+  };
+
+  bool test = lang.find(val) != lang.end();
+  if (!test) error("unknown language", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::encoding(std::string key, std::string val)
+{
+  const std::unordered_set<std::string> enc
+  {
+    "utf-8", "iso-8859-2", "iso-8859-2-flat", "cp-1250", "cp-1251"
+  };
+
+  bool test = enc.find(val) != enc.end();
+  if (!test) error("unknown encoding", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::angular(std::string key, std::string val)
+{
+  bool test = val == "400" || val == "360";
+  if (!test) error("bad angular units", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::pointid(std::string key, std::string val)
+{
+  bool test = words_count(val) == 1;
+  if (!test) error("bad point id", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::attrxyz(std::string key, std::string val)
+{
+  const std::unordered_set<std::string> coordinates
+  {
+    "xy", "XY", "z", "Z", "xyz", "XYZ", "XYz", "xyZ"
+  };
+
+  bool test = coordinates.find(val) != coordinates.end();
+  if (!test) error("unknown xyz definition", key, val);
+
+  return keyval(key, val);
+}
+
+std::string Yaml2gkf::variant(std::string key, std::string val)
+{
+  if (observation_is_angular_)
+  {
+    double gon;
+    std::istringstream istr(val);
+    int d, m;
+    double s;
+    char c1, c2;
+    istr >> d >> c1 >> m >> c2 >> s;
+
+    bool test = !istr.fail() && istr.eof() &&
+                c1 == '-' && c2 == '-';  /* && m <= 60 && s <= 60; */
+    if (test) return keyval(key, val);
+  }
+
+  return number(key, val);
 }

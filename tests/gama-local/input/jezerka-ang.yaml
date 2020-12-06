@@ -4,6 +4,7 @@
 defaults:
   axes-xy: sw
   angles: left-handed
+  angular: 400
   sigma-act: aposteriori
   sigma-apr: 0.31
   conf-pr: 0.9

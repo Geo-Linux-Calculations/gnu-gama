@@ -34,7 +34,7 @@ public:
 
   int run();
 
-  std::string version() { return "0.90"; }
+  std::string version() { return "0.91"; }
 
   void enable_warnings () { warnings_ = true;  }
   void disable_warnings() { warnings_ = false; }
@@ -75,6 +75,31 @@ private:
                std::string val=std::string());
 
   std::string tostr_(const YAML::Node&);
+  std::string keyval(std::string, std::string);
+  int    words_count(std::string);
+
+  using Handler
+    = std::string (Yaml2gkf::*)(std::string key,
+                                       std::string val);
+
+  // *******************************************************
+  // *  key / value handlers                               *
+  // *******************************************************
+  std::string nop        (std::string key, std::string val);
+  std::string number     (std::string key, std::string val);
+  std::string positive   (std::string key, std::string val);
+  std::string probability(std::string key, std::string val);
+  std::string axes_xy    (std::string key, std::string val);
+  std::string angles     (std::string key, std::string val);
+  std::string sigma_act  (std::string key, std::string val);
+  std::string algorithm  (std::string key, std::string val);
+  std::string language   (std::string key, std::string val);
+  std::string encoding   (std::string key, std::string val);
+  std::string angular    (std::string key, std::string val);
+  std::string pointid    (std::string key, std::string val);
+  std::string attrxyz    (std::string key, std::string val);
+  std::string variant     (std::string key, std::string val);
+  bool observation_is_angular_{false};
 };
 
 }}
