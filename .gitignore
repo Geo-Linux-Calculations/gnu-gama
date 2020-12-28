@@ -80,6 +80,7 @@ bin/gama-local
 bin/gama-local-xml2txt
 bin/gama-local-xml2sql
 bin/gama-local-yaml2gkf
+bin/gama-local-gkf2yaml
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar

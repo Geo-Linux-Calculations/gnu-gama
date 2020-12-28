@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.12.1)
+project (gnu-gama VERSION 2.12.2)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions(-DGNU_gama_expat_1_1)
@@ -291,6 +291,9 @@ add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 # Binaries
 add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
 add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
+
+add_executable(gama-local-gkf2yaml bin/gama-local-gkf2yaml.cpp
+               lib/gnu_gama/local/gkf2yaml.cpp $<TARGET_OBJECTS:libgama>)
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)

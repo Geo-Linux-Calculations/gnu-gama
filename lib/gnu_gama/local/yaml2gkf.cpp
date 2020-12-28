@@ -137,7 +137,7 @@ void Yaml2gkf::defaults()
 
     // xml <points-observations> attributes
 
-    {"distance-stdev",     {2, &Yaml2gkf::positive}},
+    {"distance-stdev",     {2, &Yaml2gkf::nop}},  // up to three values
     {"direction-stdev",    {2, &Yaml2gkf::positive}},
     {"angle-stdev",        {2, &Yaml2gkf::positive}},
     {"zenith-angle-stdev", {2, &Yaml2gkf::positive}},
@@ -152,8 +152,15 @@ void Yaml2gkf::defaults()
 
         // attributes for XML tags network, patameters and points-observations
 
-        int index = attr_ind.find(key)->second.first;
-        Handler f = attr_ind.find(key)->second.second;
+        auto iter = attr_ind.find(key);
+        if (iter == attr_ind.end())
+          {
+            error("unknown defaults' attribute", key, val);
+            continue;
+          }
+
+        int index = iter->second.first;
+        Handler f = iter->second.second;
         std::string s = "\n   " + (this->*f)(key, val);
         atts_[index] += s;
       }
@@ -314,6 +321,9 @@ void Yaml2gkf::observations_obs    (const YAML::Node& node)
     {
       auto key = tostr_(p.first);
       auto val = tostr_(p.second);
+
+      // in <obs> tag from attribute may not defined in yaml
+      if (key == "from" && val.empty()) continue;
 
       auto k = obs_ae.find(key);
       if (k == obs_ae.end())

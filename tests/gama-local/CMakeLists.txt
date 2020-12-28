@@ -7,6 +7,7 @@ set(INPUT_FILES
     zoltan-test_2d_gon
     zoltan-test_3d_dms
     zoltan-test_3d_gon
+    tetrahedron
     tst-tetrahedron-1
     tst-tetrahedron-2
     tst-tetrahedron-3-deg
@@ -178,6 +179,7 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
   file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-yaml2gkf)
   set(YAML_FILES geodet-pc-123 geodet-pc-218
                  jezerka-ang   jezerka-dir
+                 zoltan-test_2d_gon
                  zoltan-test_3d_dms
                  seq-dsuloha-d
                  mikhail-7.4
@@ -217,4 +219,75 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
       ${INPUT_DIR}/${test}.gkf ${RESULT_DIR}/gama-local-yaml2gkf/${test}.xml
       )
   endforeach(test)
+endif()
+
+# ------------------------------------------------------------------------
+#
+# check gama-local-gkf2yaml
+#
+# Testing of gama-local-gk2yaml is implemented in following four steps
+#
+if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
+
+  file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-gkf2yaml)
+  set(GKF2YAML_FILES
+     #${INPUT_FILES}
+     zoltan-test_2d_gon
+     zoltan-test_2d_dms
+     krasovsky-1926
+     gama-local jezerka-ang mikhail-7.4 cube-1 minimal seq-dsuloha-d
+     tst-tetrahedron-1 tst-tetrahedron-2
+     tst-tetrahedron-3-gon tst-tetrahedron-3-deg
+     zoltan-test_3d_gon
+     zoltan-test_3d_dms
+     fixed-azimuth
+     azimuth-angle
+     azimuth-azimuth
+     azimuth-distance
+     extern-azimuth-distance
+     )
+
+  # 1) compute the .yaml file from the given .gkf
+  foreach(test ${GKF2YAML_FILES})
+    add_test(NAME 1_gama_local_gkf2yaml_${test}
+      COMMAND
+      ${CMAKE_BINARY_DIR}/gama-local-gkf2yaml
+      ${INPUT_DIR}/${test}.gkf
+      ${RESULT_DIR}/gama-local-gkf2yaml/${test}.yaml
+      )
+  endforeach(test)
+
+  # 2) compute another .gkf from the generated .yaml (in the results
+  # directory)
+  foreach(test ${GKF2YAML_FILES})
+    add_test(NAME 2_gama_local_gkf2yaml_${test}
+      COMMAND
+      ${CMAKE_BINARY_DIR}/gama-local-yaml2gkf
+      ${RESULT_DIR}/gama-local-gkf2yaml/${test}.yaml
+      ${RESULT_DIR}/gama-local-gkf2yaml/${test}.gkf
+      )
+  endforeach(test)
+
+  # 3) from the generated .gkf from the previous step compute .xml
+  # adjustment results (using gama-local)
+  foreach(test ${GKF2YAML_FILES})
+    add_test(NAME 3_gama_local_gkf2yaml_${test}
+      COMMAND
+      ${CMAKE_BINARY_DIR}/gama-local
+            ${RESULT_DIR}/gama-local-gkf2yaml/${test}.gkf
+      --xml ${RESULT_DIR}/gama-local-gkf2yaml/${test}.xml
+      )
+  endforeach(test)
+
+  # 4) Finally compare adjustment results (.xml) from the step 3)
+  # with archived adjustment results by check_xml_xml
+  foreach(test ${GKF2YAML_FILES})
+    add_test(NAME 4_gama_local_gkf2yaml_${test}
+      COMMAND
+      check_xml_xml ${test}
+      ${INPUT_DIR}/${test}.xml
+      ${RESULT_DIR}/gama-local-gkf2yaml/${test}.xml
+      )
+  endforeach(test)
+
 endif()

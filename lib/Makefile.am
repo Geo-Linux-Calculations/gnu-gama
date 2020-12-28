@@ -83,6 +83,8 @@ libgama_src = \
    gnu_gama/local/cluster.h \
    gnu_gama/local/exception.h \
    gnu_gama/local/float.h \
+   gnu_gama/local/gkf2yaml.cpp \
+   gnu_gama/local/gkf2yaml.h \
    gnu_gama/local/itstream.h \
    gnu_gama/local/language.cpp \
    gnu_gama/local/language.h \

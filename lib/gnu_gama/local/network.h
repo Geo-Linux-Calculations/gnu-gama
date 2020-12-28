@@ -265,6 +265,12 @@ namespace GNU_gama { namespace local
     void set_gons()      { gons_ = true;  Observation::gons = true;  }
     void set_degrees()   { gons_ = false; Observation::gons = false; }
 
+    // sign 0  conversion without sign
+    //      1  sign left-padded
+    //      2  sign right-padded
+    //      3  signed with leading spaces trimmed
+    std::string angular_fmt(Observation* obs, int sign=0, int prec=2);
+
     // ...  connected network  .............................................
 
     bool connected_network() const { return design_matrix_graph_is_connected; }

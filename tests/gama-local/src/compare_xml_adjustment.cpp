@@ -30,6 +30,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
                            double covmat_tol, double confidence_tol)
 {
   int result_gp = 0, rcoord = 0, robs = 0;
+  double pvv {};
 
   // needs to fix trailing white spaces and HTML tags
   //if (html->description != xml->description) result_gp = 1;
@@ -80,7 +81,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
     }
 
     {
-      double pvv = std::abs(html->project_equations.sum_of_squares
+      pvv = std::abs(html->project_equations.sum_of_squares
                             - xml->project_equations.sum_of_squares);
       double qvv = (html->project_equations.sum_of_squares
                     + xml->project_equations.sum_of_squares)/2;
@@ -558,7 +559,9 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
     std::cout << "         standardized resid."
               << std::scientific << std::setprecision(3) << std::setw(11)
               << sres << "     ";
-    if (std::abs(sres) < 1e-1)
+
+    // pvv < 1e-5 : studentized residuals may fail due to rounding errors
+    if (std::abs(sres) < 1e-1 || pvv < 1e-5)
       std::cout << "passed\n";
     else
       {

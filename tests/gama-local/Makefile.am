@@ -11,6 +11,7 @@ EXTRA_DIST = CMakeLists.txt \
              gama-local-updated-xml.sh_ \
              gama-local-externs.sh_ \
              gama-local-yaml2gkf.sh_ \
+             gama-local-gkf2yaml.sh_ \
              xmllint-gama-local-yaml2gkf.sh_ \
              xmllint-gama-local-xsd.sh_ \
              xmllint-gama-local-adjustment-xsd.sh_ \
@@ -37,7 +38,7 @@ TESTC = octave-gama-local.sh
 endif
 
 if GNU_GAMA_LOCAL_TEST_YAML_CPP
-TESTD = gama-local-yaml2gkf.sh
+TESTD = gama-local-yaml2gkf.sh gama-local-gkf2yaml.sh
 endif
 
 if GNU_GAMA_LOCAL_TEST_XMLLINT
@@ -85,6 +86,7 @@ BUG_FILES =   tst-tetrahedron-1 \
 
 YAML_FILES =  geodet-pc-123 geodet-pc-218 \
               jezerka-ang   jezerka-dir \
+              zoltan-test_2d_gon \
               zoltan-test_3d_dms \
               seq-dsuloha-d \
               mikhail-7.4 \
@@ -208,6 +210,12 @@ gama-local-yaml2gkf.sh : $(srcdir)/gama-local-yaml2gkf.sh_ \
 	@$(do_subst) < $(srcdir)/gama-local-yaml2gkf.sh_ \
 	             > gama-local-yaml2gkf.sh
 	@chmod +x gama-local-yaml2gkf.sh
+
+gama-local-gkf2yaml.sh : $(srcdir)/gama-local-gkf2yaml.sh_ \
+	               $(GAMA_OTHERS) gama-local-adjustment.sh
+	@$(do_subst) < $(srcdir)/gama-local-gkf2yaml.sh_ \
+	             > gama-local-gkf2yaml.sh
+	@chmod +x gama-local-gkf2yaml.sh
 endif
 
 

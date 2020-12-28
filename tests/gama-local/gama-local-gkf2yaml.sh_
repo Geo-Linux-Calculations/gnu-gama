@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Compare adjustment results from gkf2yaml and gkf/xml files
+
+set -e
+mkdir -p @GAMA_RESULTS@/gama-local-gkf2yaml
+
+for f in @INPUT_FILES@ @BUG_FILES@  @YAML_FILES@
+do
+    # compute the .yaml file from the given .gkf
+    @top_builddir@/bin/gama-local-gkf2yaml \
+        @GAMA_INPUT@/$f.gkf \
+        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml
+
+    # compute .gkf from the generated .yaml
+    @top_builddir@/bin/gama-local-yaml2gkf \
+        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml \
+        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf
+
+    @top_builddir@/bin/gama-local \
+        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf \
+        --xml @GAMA_RESULTS@/gama-local-gkf2yaml/$f.xml
+
+    # check computed .xml results with stored .xml in the tests suites
+    src/check_xml_xml "$f" \
+        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.xml \
+        @GAMA_INPUT@/$f.xml
+done

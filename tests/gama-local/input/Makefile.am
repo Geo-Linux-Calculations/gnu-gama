@@ -5,7 +5,7 @@ EXTRA_DIST = \
   tst-tetrahedron-3-deg.gkf tst-tetrahedron-3-deg.xml \
   tst-tetrahedron-3-gon.gkf tst-tetrahedron-3-gon.xml \
   zoltan-test_2d_dms.gkf    zoltan-test_2d_dms.xml \
-  zoltan-test_2d_gon.gkf    zoltan-test_2d_gon.xml \
+  zoltan-test_2d_gon.gkf    zoltan-test_2d_gon.xml zoltan-test_2d_gon.yaml \
   zoltan-test_3d_dms.gkf    zoltan-test_3d_dms.xml zoltan-test_3d_dms.yaml \
   zoltan-test_3d_gon.gkf    zoltan-test_3d_gon.xml \
   scale-cov-gon.gkf \

@@ -561,17 +561,18 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     double test=0, lower=0, upper=0;
 
     test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
-    if (dof)
+    if (dof > 0 && netinfo->m_0_aposteriori())
       //if (netinfo->m_0_aposteriori())
         {
           const double alfa_pul = (1 - netinfo->conf_pr())/2;
           lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,dof)/dof);
           upper = sqrt(GNU_gama::Chi_square(  alfa_pul,dof)/dof);
         }
-      /* else
+      else
         {
           out << "   <!-- no test for apriori standard deviation -->\n";
-        } */
+          test = 1;
+        }
 
     tagnl(out, "ratio",  test);
     tagnl(out, "lower",  lower);

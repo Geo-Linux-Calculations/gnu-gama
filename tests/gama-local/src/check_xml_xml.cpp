@@ -24,8 +24,14 @@
 
 using GNU_gama::LocalNetworkAdjustmentResults;
 
-int main(int /*argc*/, char* argv[])
+int main(int argc, char* argv[])
 {
+  if (argc != 4)
+    {
+      std::cout << "\ncheck_xml_xml  title 1st_file.xml  2nd_file.xml\n\n";
+      return 1;
+    }
+
   std::cout << "max.diff XML-XML for "
             << argv[1] << "\n";
 
@@ -33,7 +39,7 @@ int main(int /*argc*/, char* argv[])
   {
     std::ifstream inp_html(argv[2]);
     if (!inp_html) {
-      std::cout << "   ####  ERROR ON OPENING FILE " << argv[2] << "\n";
+      std::cout << "   ####  ERROR ON OPENING 1st FILE " << argv[2] << "\n";
       return 1;
     }
     html->read_xml(inp_html);
@@ -43,7 +49,7 @@ int main(int /*argc*/, char* argv[])
   {
     std::ifstream inp_xml(argv[3]);
     if (!inp_xml) {
-      std::cout << "   ####  ERROR ON OPENING FILE " << argv[3] << "\n";
+      std::cout << "   ####  ERROR ON OPENING 2nd FILE " << argv[3] << "\n";
       return 1;
     }
     xml->read_xml(inp_xml);

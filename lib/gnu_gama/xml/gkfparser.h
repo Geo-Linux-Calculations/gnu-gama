@@ -78,6 +78,8 @@ namespace GNU_gama { namespace local {
       /* check if covariance matrices are positive-definite */
       void   check_covariances(bool ch=true)   { check_cov_mat = ch;   }
 
+      GNU_gama::local::LocalNetwork* local_network() { return &lnet; }
+
     private:
 
       GNU_gama::local::LocalNetwork&    lnet;
@@ -220,13 +222,13 @@ namespace GNU_gama { namespace local {
       // implicit values of standard deviations are initialized in
       // GKFparser::process_point_obs(const char** atts)
 
-      double distance_stdev_;
-      double distance_stdev_km_;
-      double distance_stdev_exp_;
-      double direction_stdev_;
-      double angle_stdev_;
-      double zenith_stdev_;
-      double azimuth_stdev_;
+      double distance_stdev_    {0};
+      double distance_stdev_km_ {0};
+      double distance_stdev_exp_{1};
+      double direction_stdev_   {0};
+      double angle_stdev_       {0};
+      double zenith_stdev_      {0};
+      double azimuth_stdev_     {0};
     };  // class GKFparser
 }}       // namespace GNU_gama::local
 

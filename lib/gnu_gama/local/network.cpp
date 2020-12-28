@@ -42,6 +42,7 @@
 #include <gnu_gama/sparse/smatrix_graph.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/ellipsoids.h>
+#include <gnu_gama/gon2deg.h>
 
 using namespace std;
 using namespace GNU_gama::local;
@@ -1620,4 +1621,28 @@ void LocalNetwork::change_y_signs_for_inconsistent_system_()
           if (b)  obs->set_value( -obs->value() );
         }
     }
+}
+
+// sign 0  conversion without sign
+//      1  sign left-padded
+//      2  sign right-padded
+//      3  signed with leading spaces trimmed
+std::string LocalNetwork::angular_fmt(Observation* obs, int sign, int prec)
+{
+  if (!obs->angular()) return std::string();
+
+  double m = R2G*obs->value();
+  std::ostringstream ostr;
+
+  if (gons())
+    {
+      ostr << std::fixed << std::setprecision(4 + prec);
+      ostr << m;
+    }
+  else
+    {
+      ostr << GNU_gama::gon2deg(m, sign, prec);
+    }
+
+  return ostr.str();
 }

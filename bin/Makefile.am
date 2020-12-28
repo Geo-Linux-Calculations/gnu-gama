@@ -1,6 +1,7 @@
 GAMA_LOCAL = gama-local \
              gama-local-xml2txt \
-             gama-local-xml2sql
+             gama-local-xml2sql \
+             gama-local-gkf2yaml
 
 if GNU_GAMA_G3_ENABLED
    GAMA_G3 = gama-g3
@@ -23,6 +24,10 @@ gama_local_xml2txt_CPPFLAGS = -I $(top_srcdir)/lib
 gama_local_xml2sql_SOURCES = gama-local-xml2sql.cpp
 gama_local_xml2sql_LDADD   = $(top_builddir)/lib/libgama.a
 gama_local_xml2sql_CPPFLAGS = -I $(top_srcdir)/lib
+
+gama_local_gkf2yaml_SOURCES  = gama-local-gkf2yaml.cpp
+gama_local_gkf2yaml_LDADD    = $(top_builddir)/lib/libgama.a
+gama_local_gkf2yaml_CPPFLAGS = -I $(top_srcdir)/lib
 
 if GNU_GAMA_G3_ENABLED
    gama_g3_SOURCES  = gama-g3.cpp
