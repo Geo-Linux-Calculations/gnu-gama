@@ -66,10 +66,10 @@ int help()
        << "https://www.gnu.org/software/gama/\n\n";
 
   cout <<
-    "Usage: gama-local  input.xml  [options]\n"
+    "Usage: gama-local  [--input-xml] input.xml  [options]\n"
 
 #ifdef   GNU_GAMA_LOCAL_SQLITE_READER
-    "       gama-local  input.xml  --sqlitedb sqlite.db"
+    "       gama-local  [--input-xml] input.xml  --sqlitedb sqlite.db"
             "  --configuration name  [options]\n"
     "       gama-local  --sqlitedb sqlite.db  --configuration name  [options]\n"
     "       gama-local  --sqlitedb sqlite.db"
@@ -125,6 +125,7 @@ int main(int argc, char **argv)
 
     const char* c;
     const char* argv_1 = nullptr;           // xml input or sqlite db name
+    const char* argv_input_xml = nullptr;
     const char* argv_algo = nullptr;
     const char* argv_lang = nullptr;
     const char* argv_enc  = nullptr;
@@ -141,16 +142,57 @@ int main(int argc, char **argv)
     const char* argv_iterations = nullptr;
     const char* argv_updated_xml = nullptr;
 
+    // handle --help and --version as special cases
+    if (argc == 2 && strcmp(argv[1], "-") && strlen(argv[1]) > 2)
+      {
+        c = argv[1];
+        if(*c == '-') c++;
+        if(*c == '-') c++;
+
+        if (!strcmp(c, "help"))    return help();
+        if (!strcmp(c, "version")) return
+            GNU_gama::version("gama-local", "Ales Cepek et al.");
+      }
+
+  int indopt = 1;
+
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     const char* argv_confname = nullptr;
     const char* argv_readonly = nullptr;
     const char* argv_sqlitedb = nullptr;
+
+    if (argc >= 4)
+    {
+        // --sqlitedb
+        const char* db = argv[1];
+        if (*db == '-') db++;
+        if (*db == '-') db++;
+        if (!strcmp(db, "sqlitedb"))
+          {
+            argv_sqlitedb = argv[2];
+
+            // --configuration or --readonly-configuration
+            const char* conf = argv[3];
+            if (*conf == '-') conf++;
+            if (*conf == '-') conf++;
+            if (!strcmp(conf, "configuration")) argv_confname = conf;
+            if (!strcmp(conf, "readonly-configuration")) argv_readonly = conf;
+
+            if (argv_confname || argv_readonly) indopt = 5;
+          }
+     }
 #endif
 
 
-    for (int i=1; i<argc; i++)
+    for (int i=indopt; i<argc; i++)
       {
         c = argv[i];
+        if (argv_1 == nullptr && !strcmp(argv[i], "-"))
+          {
+            argv_1 = c;   // hyphen (-) can be used to read gkf input from std::cin
+            continue;
+          }
+
         if (*c != '-')    // **** one or two parameters (file names) ****
           {
             if (!argv_1) {
@@ -164,33 +206,25 @@ int main(int argc, char **argv)
 
         if(*c == '-') c++;
         if(*c == '-') c++;
-        string name = string(c);
-        c = argv[++i];
+        const char* name = c;        // option
+        c = argv[++i];               // value
 
-        if      (name == "help"      ) return help();
-        else if (name == "version"   )
-                return GNU_gama::version("gama-local", "Ales Cepek et al.");
-        else if ( i   ==  argc       ) return help();
-        else if (name == "algorithm" ) argv_algo = c;
-        else if (name == "language"  ) argv_lang = c;
-        else if (name == "encoding"  ) argv_enc  = c;
-        else if (name == "angular"   ) argv_angular = c;
-        else if (name == "ellipsoid" ) argv_ellipsoid = c;
-        else if (name == "latitude"  ) argv_latitude = c;
-        else if (name == "text"      ) argv_txtout = c;
-        else if (name == "html"      ) argv_htmlout = c;
-        else if (name == "xml"       ) argv_xmlout = c;
-        else if (name == "octave"    ) argv_octaveout = c;
-        else if (name == "svg"       ) argv_svgout = c;
-        else if (name == "obs"       ) argv_obsout = c;
-        else if (name == "cov-band"  ) argv_covband = c;
-        else if (name == "iterations") argv_iterations = c;
-        else if (name == "updated-xml") argv_updated_xml = c;
-#ifdef GNU_GAMA_LOCAL_SQLITE_READER
-        else if (name == "sqlitedb")               argv_sqlitedb = c;
-        else if (name == "configuration")          argv_confname = c;
-        else if (name == "readonly-configuration") argv_readonly = c;
-#endif
+        if      (!strcmp("input-xml",   name)) argv_input_xml = c;
+        else if (!strcmp("algorithm",   name)) argv_algo = c;
+        else if (!strcmp("language",    name)) argv_lang = c;
+        else if (!strcmp("encoding",    name)) argv_enc  = c;
+        else if (!strcmp("angular",     name)) argv_angular = c;
+        else if (!strcmp("ellipsoid",   name)) argv_ellipsoid = c;
+        else if (!strcmp("latitude",    name)) argv_latitude = c;
+        else if (!strcmp("text",        name)) argv_txtout = c;
+        else if (!strcmp("html",        name)) argv_htmlout = c;
+        else if (!strcmp("xml",         name)) argv_xmlout = c;
+        else if (!strcmp("octave",      name)) argv_octaveout = c;
+        else if (!strcmp("svg",         name)) argv_svgout = c;
+        else if (!strcmp("obs",         name)) argv_obsout = c;
+        else if (!strcmp("cov-band",    name)) argv_covband = c;
+        else if (!strcmp("iterations",  name)) argv_iterations = c;
+        else if (!strcmp("updated-xml", name)) argv_updated_xml = c;
         else
           return help();
       }
@@ -200,10 +234,12 @@ int main(int argc, char **argv)
 
     if (argv_xmlout) xmlerr.setXmlOutput(argv_xmlout);
 
-#ifdef GNU_GAMA_LOCAL_SQLITE_READER
-    if (argv_confname && argv_readonly) return help();
-    if (!argv_1 && !argv_sqlitedb) return help();
-#endif
+    if (argv_input_xml)
+      {
+        if (argv_1) return help(); // input already defined
+
+        argv_1 = argv_input_xml;
+      }
 
     if (!argv_lang)
       set_gama_language(en);
@@ -284,28 +320,35 @@ int main(int argc, char **argv)
     else
 #endif
       {
-        ifstream soubor(argv_1);
+        std::shared_ptr<std::istream>  inxml {};
+
+        if (argv_1 == std::string("-"))
+            inxml.reset(&std::cin, [](std::istream*){}); // is the deleter necessary?
+        else
+            inxml.reset( new std::ifstream(argv_1) );
+
         GKFparser gkf(*IS);
         try
           {
             char c;
-            int  n, konec = 0;
-            string radek;
+            int  n, finish = 0;
+            string  line;
             do
               {
-                radek = "";
-                n     = 0;
-                while (soubor.get(c))
+                line.clear();
+                n = 0;
+                while (inxml->get(c))
                   {
-                    radek += c;
+                    line += c;
                     n++;
                     if (c == '\n') break;
                   }
-                if (!soubor) konec = 1;
 
-                gkf.xml_parse(radek.c_str(), n, konec);
+                if (inxml->eof() || !inxml->good()) finish = 1;
+
+                gkf.xml_parse(line.c_str(), n, finish);
               }
-            while (!konec);
+            while (!finish);
           }
         catch (const GNU_gama::local::ParserException& v) {
           if (xmlerr.isValid())

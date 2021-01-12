@@ -7,15 +7,20 @@ mkdir -p @GAMA_RESULTS@/gama-local-yaml2gkf
 
 for f in @YAML_FILES@
 do
-    # compute .gkf from given .yaml file
-    @top_builddir@/bin/gama-local-yaml2gkf \
-        @GAMA_INPUT@/$f.yaml \
-        > @GAMA_RESULTS@/gama-local-yaml2gkf/$f.gkf
+    # # compute .gkf from given .yaml file (GNU Gama version 2.12)
+    # @top_builddir@/bin/gama-local-yaml2gkf \
+    #     @GAMA_INPUT@/$f.yaml \
+    #     > @GAMA_RESULTS@/gama-local-yaml2gkf/$f.gkf
+    #
+    # # compute .xml adjustement results form computed .gkf
+    # @top_builddir@/bin/gama-local \
+    #     @GAMA_RESULTS@/gama-local-yaml2gkf/$f.gkf \
+    #     --xml @GAMA_RESULTS@/gama-local-yaml2gkf/$f.xml
 
-    # compute .xml adjustement results form computed .gkf
-    @top_builddir@/bin/gama-local \
-        @GAMA_RESULTS@/gama-local-yaml2gkf/$f.gkf \
-        --xml @GAMA_RESULTS@/gama-local-yaml2gkf/$f.xml
+    # compute .xml in one step using pipeline (introduced in 2.13)
+    @top_builddir@/bin/gama-local-yaml2gkf @GAMA_INPUT@/$f.yaml | \
+        @top_builddir@/bin/gama-local --input-xml - \
+         --xml @GAMA_RESULTS@/gama-local-yaml2gkf/$f.xml
 
     # check computed .xml results with stored .xml in tests suites
     src/check_xml_xml "$f" \

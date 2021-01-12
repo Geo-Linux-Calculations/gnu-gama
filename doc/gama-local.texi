@@ -24,8 +24,8 @@ Adjustment of local geodetic network        version: @value{VERSION} / GNU g++
 ************************************
 http://www.gnu.org/software/gama/
 
-Usage: gama-local  input.xml  [options]
-       gama-local  input.xml  --sqlitedb sqlite.db  --configuration name  [options]
+Usage: gama-local  [--input-xml] input.xml  [options]
+       gama-local  [--input-xml] input.xml  --sqlitedb sqlite.db  --configuration name  [options]
        gama-local  --sqlitedb sqlite.db  --configuration name  [options]
        gama-local  --sqlitedb sqlite.db  --readonly-configuration name  [options]
 
@@ -57,6 +57,18 @@ compiler used to build the program (apart from GNU @code{g++}
 compiler, other possibilities are Clang, Intel C++ compiler and
 Visual C++, when build under Microsoft Windows).
 
+Program @code{gama-local} can read XML input from the standard input
+if you put "-" (hyphen) after the option @code{--input-xml}. This
+option is special because it is optional (you can specify XML input
+file name or "-" without it). Elective @code{--input-xml} enables
+backward compatibility with the usage of older versions.
+
+Adjustment results (@code{--text}, @code{--xml}) and others can be
+similarly redirected to standard output if instead of a file name is
+used "-" string. If no output is given, XML adjustment format is
+implicitly send to standard output.
+
+
 
 Option @code{--algorithm} enables to select numerical method used for
 solution of the adjustment. Implicitly is used Singular Value
@@ -86,11 +98,6 @@ of these options is used, then implicit value for @code{--latitude} is
 45 degrees (50 gons) and implicit ellipsoid is WGS84.
 Mathematical formulas for the corrections is given in the following
 section.
-
-Adjustment results (@code{--text}, @code{--xml}) and others can be
-redirected to standard output if instead of a file name is used "-"
-string. If no output is given, XML adjustment format is implicitly
-send to standard output.
 
 Option @code{--octave} is used to output simplified adjustment results
 for @uref{https://www.gnu.org/software/octave/, GNU Octave}, i.e. in

@@ -7,18 +7,26 @@ mkdir -p @GAMA_RESULTS@/gama-local-gkf2yaml
 
 for f in @INPUT_FILES@ @BUG_FILES@  @YAML_FILES@
 do
-    # compute the .yaml file from the given .gkf
-    @top_builddir@/bin/gama-local-gkf2yaml \
-        @GAMA_INPUT@/$f.gkf \
-        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml
+    # # compute the .yaml file from the given .gkf (GNU Gama version 2.12)
+    # @top_builddir@/bin/gama-local-gkf2yaml \
+    #     @GAMA_INPUT@/$f.gkf \
+    #     @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml
+    #
+    # # compute .gkf from the generated .yaml
+    # @top_builddir@/bin/gama-local-yaml2gkf \
+    #     @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml \
+    #     @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf
+    #
+    # @top_builddir@/bin/gama-local \
+    #     @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf \
+    #     --xml @GAMA_RESULTS@/gama-local-gkf2yaml/$f.xml
 
-    # compute .gkf from the generated .yaml
-    @top_builddir@/bin/gama-local-yaml2gkf \
-        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.yaml \
-        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf
+    # compute .xml in one step using pipeline (introduced in 2.13)
 
+    @top_builddir@/bin/gama-local-gkf2yaml @GAMA_INPUT@/$f.gkf | \
+    @top_builddir@/bin/gama-local-yaml2gkf | \
     @top_builddir@/bin/gama-local \
-        @GAMA_RESULTS@/gama-local-gkf2yaml/$f.gkf \
+        --input-xml - \
         --xml @GAMA_RESULTS@/gama-local-gkf2yaml/$f.xml
 
     # check computed .xml results with stored .xml in the tests suites

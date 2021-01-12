@@ -1,5 +1,23 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Changes in release 2.13 (2021-01-13)
+
+* Conversions between yaml and input xml (gkf) tested for all
+  available data files in the tests suite (subdirectory gama-local).
+
+* Command line programs gama-local, gama-local-yaml2gkf and
+  gama-local-gkf2yaml can now read input data from standard input.
+
+* New exlicit parameter --input-xml in gama-local (previously input
+  file was the first parameter)
+
+* Fixed test of ratio apriori/aposteriori values (localnetworkxml.cpp)
+
+* Fixed implicit model for distance stddev (gama-local adjustment model)
+
+* Fixed new attribute angular in documentation
+
+
 Changes in release 2.12 (2020-11-28)
 
 * Alternative support of input data based on YAML format. YAML support
