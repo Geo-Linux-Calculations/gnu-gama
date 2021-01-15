@@ -1,6 +1,6 @@
 GNU Gama NEWS - History of user-visible changes.
 
-Changes in release 2.13 (2021-01-13)
+Changes in release 2.13 (2021-01-15)
 
 * Conversions between yaml and input xml (gkf) tested for all
   available data files in the tests suite (subdirectory gama-local).

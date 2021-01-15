@@ -1,0 +1,9 @@
+*~
+*.aux
+*.cp
+*.cps
+*.info
+*.log
+*.pdf
+*.toc
+*.work.*
