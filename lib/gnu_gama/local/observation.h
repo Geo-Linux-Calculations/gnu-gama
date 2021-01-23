@@ -2,7 +2,7 @@
   GNU Gama -- adjustment of geodetic networks
   Copyright (C) 2000  Ales Cepek <cepek@fsv.cvut.cz>
   2011  Vaclav Petras <wenzeslaus@gmail.com>
-  2013, 2014, 2018, 2019  Ales Cepek <cepek@gnu.org>
+  2013, 2014, 2018, 2019, 2021  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library.
 
@@ -199,7 +199,7 @@ namespace GNU_gama { namespace local {
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           init(s, c, d);
         }
-      ~Distance() final;
+      ~Distance();
       Distance(const Distance&) = default;
       Distance& operator=(const Distance&) = default;
       Distance(Distance&&) = default;
@@ -217,7 +217,7 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
           norm_rad_val();
         }
-      ~Direction() final;
+      ~Direction();
       Direction(const Direction&) = default;
       Direction& operator=(const Direction&) = default;
       Direction(Direction&&) = default;
@@ -254,7 +254,7 @@ namespace GNU_gama { namespace local {
           init(s, b, d);
           norm_rad_val();
         }
-      ~Angle() final;
+      ~Angle();
       Angle(const Angle&) = default;
       Angle& operator=(const Angle&) = default;
       Angle(Angle&&) = default;
@@ -288,7 +288,7 @@ namespace GNU_gama { namespace local {
             throw GNU_gama::local::Exception(T_POBS_zero_or_negative_distance);
           init(s, c, dh);
         }
-      ~H_Diff() final;
+      ~H_Diff();
       H_Diff(const H_Diff&) = default;
       H_Diff& operator=(const H_Diff&) = default;
       H_Diff(H_Diff&&) = default;
@@ -315,7 +315,7 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dx);
       }
-      ~Xdiff() final;
+      ~Xdiff();
       Xdiff(const Xdiff&) = default;
       Xdiff& operator=(const Xdiff&) = default;
       Xdiff(Xdiff&&) = default;
@@ -331,7 +331,7 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dy);
       }
-      ~Ydiff() final;
+      ~Ydiff();
       Ydiff(const Ydiff&) = default;
       Ydiff& operator=(const Ydiff&) = default;
       Ydiff(Ydiff&&) = default;
@@ -347,7 +347,7 @@ namespace GNU_gama { namespace local {
       {
           init(from, to, dz);
       }
-      ~Zdiff() final;
+      ~Zdiff();
       Zdiff(const Zdiff&) = default;
       Zdiff& operator=(const Zdiff&) = default;
       Zdiff(Zdiff&&) = default;
@@ -367,7 +367,7 @@ namespace GNU_gama { namespace local {
           init(point, "", x);
       }
 
-      ~X() final;
+      ~X();
       X(const X&) = default;
       X& operator=(const X&) = default;
       X(X&&) = default;
@@ -384,7 +384,7 @@ namespace GNU_gama { namespace local {
           init(point, "", y);
       }
 
-      ~Y() final;
+      ~Y();
       Y(const Y&) = default;
       Y& operator=(const Y&) = default;
       Y(Y&&) = default;
@@ -401,7 +401,7 @@ namespace GNU_gama { namespace local {
           init(point, "", z);
       }
 
-      ~Z() final;
+      ~Z();
       Z(const Z&) = default;
       Z& operator=(const Z&) = default;
       Z(Z&&) = default;
@@ -423,7 +423,7 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
         }
 
-      ~S_Distance() final;
+      ~S_Distance();
       S_Distance(const S_Distance&) = default;
       S_Distance& operator=(const S_Distance&) = default;
       S_Distance(S_Distance&&) = default;
@@ -443,7 +443,7 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
         }
 
-      ~Z_Angle() final;
+      ~Z_Angle();
       Z_Angle(const Z_Angle&) = default;
       Z_Angle& operator=(const Z_Angle&) = default;
       Z_Angle(Z_Angle&&) = default;
@@ -463,7 +463,7 @@ namespace GNU_gama { namespace local {
           init(s, c, d);
           norm_rad_val();
         }
-      ~Azimuth() final;
+      ~Azimuth();
       Azimuth(const Azimuth&) = default;
       Azimuth& operator=(const Azimuth&) = default;
       Azimuth(Azimuth&&) = default;
