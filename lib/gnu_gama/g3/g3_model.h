@@ -52,10 +52,10 @@ namespace GNU_gama {
     using ObservationList = std::list<Observation*>;
     using PointBase       = GNU_gama::PointBase<g3::Point>;
     using ParameterList   = std::list<Parameter*>;
-    using Adj             = GNU_gama::Adj;             
+    using Adj             = GNU_gama::Adj;
 
 
-    PointBase           *points;
+    PointBase           *points {nullptr};
     GNU_gama::Ellipsoid  ellipsoid;
 
     Point* get_point(const Point::Name&);
@@ -139,7 +139,7 @@ namespace GNU_gama {
       enum rejection { rhs };
 
       rejection     criterion;
-      Observation*  observation;
+      Observation*  observation {nullptr};
       double        data[3];
     };
 
@@ -153,10 +153,10 @@ namespace GNU_gama {
     Model& operator=(const Model&);
 
     // active observations list (active observations used in the adjustment)
-    ObservationList*  active_obs;
+    ObservationList*  active_obs {nullptr};
 
     // parameter list
-    ParameterList*  par_list;
+    ParameterList*  par_list {nullptr};
     void update_index(Parameter&);
 
     // basic revision steps
@@ -169,15 +169,14 @@ namespace GNU_gama {
 
     // design matrix
     int dm_rows, dm_cols, dm_floats;
-    SparseMatrix <>*  A;
+    SparseMatrix <>*  A {nullptr};
     Vec          <>   rhs;
     int               rhs_ind;
-    BlockDiagonal<>*  B;
-    GNU_gama::AdjInputData*  adj_input_data;
+    GNU_gama::AdjInputData*  adj_input_data {nullptr};
 
 
     // adjustment
-    Adj*              adj;
+    Adj*              adj {nullptr};
 
     int    redundancy;
     enum { apriori, aposteriori } actual_sd;

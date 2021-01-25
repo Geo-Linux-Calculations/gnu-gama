@@ -1,3 +1,6 @@
+	* Explicit initialization of pointer members in g3::Model constructor
+	The bug reported by Greg Troxel: SparseMatrix <>*  A; in g3/g3_model.h
+
 	* removed 'final' specifier for local observations destructor in
 	lib/gnu_gama/local/observation.h
 

@@ -38,7 +38,7 @@ Model::Model()
   active_obs     = new ObservationList;
   par_list       = new ParameterList;
   adj            = new Adj;
-  adj_input_data = 0;
+  adj_input_data = nullptr;
 
   points->set_common_data(this);
   set(&ellipsoid, ellipsoid_wgs84);
