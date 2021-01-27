@@ -471,7 +471,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_resobs_mc_max=" m ";
 	T_GaMa_resobs_mc_max_critical=" mc";
 	T_GaMa_resobs_no_control=" u";
-	T_GaMa_resobs_normality_test="Test of normality of homogenised residuals";
+	T_GaMa_resobs_normality_test="Test of normality of homogenized residuals";
 	T_GaMa_resobs_weak_control=" w";
 	T_GaMa_s_distance=" slope ";
 	T_GaMa_solution_ended_with_error="GNU Gama - solution ended with error!";

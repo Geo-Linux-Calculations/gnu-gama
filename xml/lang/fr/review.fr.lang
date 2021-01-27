@@ -434,7 +434,7 @@
    fr=" c " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    fr="Test de normalité des résidus homogènes" />
 
 <e id="T_GaMa_resobs_condition_number"

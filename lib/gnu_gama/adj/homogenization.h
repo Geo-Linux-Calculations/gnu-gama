@@ -95,7 +95,7 @@ namespace GNU_gama {
       Index total_scaled_nonzeroes = 0;
 
 
-      /* homogenised right-hand side */
+      /* homogenized right-hand side */
 
       pr = data->rhs();
       for (Index n, row=1; row<=pr.dim(); row++)   // forward substitution

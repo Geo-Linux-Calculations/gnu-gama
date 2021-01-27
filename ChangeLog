@@ -1,3 +1,5 @@
+	* changed spelling homogenised to homogenized
+
 	* Explicit initialization of pointer members in g3::Model constructor
 	The bug reported by Greg Troxel: SparseMatrix <>*  A; in g3/g3_model.h
 

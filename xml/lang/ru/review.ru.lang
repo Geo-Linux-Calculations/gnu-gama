@@ -40,7 +40,7 @@
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   ru="Жестких" />   
+   ru="Жестких" />
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -187,7 +187,7 @@
    ru="содержит значение m0\'/m0" />
 
 <e id="T_GaMa_interval_doesnt_contain"
-   EN="does not contain value m0\'/m0" 
+   EN="does not contain value m0\'/m0"
    ru="не содержит значение m0\'/m0" />
 
 <e id="T_GaMa_m0_distances"
@@ -338,7 +338,7 @@
 <e id="T_GaMa_z_angle"
    EN=" zenit "
    ru=" зенит " />
-   
+
 <e id="T_GaMa_x"
    EN=" x     "
    ru=" x     " />
@@ -436,7 +436,7 @@
    ru=" к " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    ru="Тест нормальности вектора поправок" />
 
 <e id="T_GaMa_resobs_condition_number"
@@ -444,23 +444,23 @@
    ru="Условие номер           : " />
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
-   en="Reduced observations" 
+   en="Reduced observations"
    ru="Приведенные наблюдения" />
 
 <e id="T_GaMa_reduced_observed"
-   en="observed" 
+   en="observed"
    ru="измерен." />
 
-<e id="T_GaMa_reduced_reduced" 
-   en="reduced" 
+<e id="T_GaMa_reduced_reduced"
+   en="reduced"
    ru="привед." />
 
 <e id="T_GaMa_reduced_header1"
-   en="  diff dh\n" 
+   en="  diff dh\n"
    ru="  разн dh\n" />
 
 <e id="T_GaMa_reduced_value"
-   en="== value " 
+   en="== value "
    ru="== зн-ие " />
 
 
@@ -509,11 +509,3 @@
    ru="== зн-ие =====  ош  ==\n\n" />
 
 </entries>
-
-
-
-
-
-
-
-

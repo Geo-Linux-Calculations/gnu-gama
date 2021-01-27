@@ -39,7 +39,7 @@
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   fi="Kiinnitetty" />   
+   fi="Kiinnitetty" />
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -175,7 +175,7 @@
 
 <e id="T_GaMa_Ratio_empirical_to_apriori"
    EN="Ratio m0\' aposteriori / m0 apriori: "
-   fi="Suhdeluku m0\' aposteriori / m0 apriori: " /> 
+   fi="Suhdeluku m0\' aposteriori / m0 apriori: " />
 
 <e id="T_GaMa_interval"
    EN="interval"
@@ -186,7 +186,7 @@
    fi="sisältää arvon m0\'/m0" />
 
 <e id="T_GaMa_interval_doesnt_contain"
-   EN="does not contain value m0\'/m0" 
+   EN="does not contain value m0\'/m0"
    fi="ei sisällä arvoa m0\'/m0" />
 
 <e id="T_GaMa_m0_distances"
@@ -336,7 +336,7 @@
 <e id="T_GaMa_z_angle"
    EN=" zenit "
    fi=" zeniiti " />
-   
+
 <e id="T_GaMa_x"
    EN=" x     "
    fi=" x     " />
@@ -434,7 +434,7 @@
    fi=" k " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    fi="Homogenisoitujen residuaalien normaalisuustesti" />
 
 <e id="T_GaMa_resobs_condition_number"
@@ -486,11 +486,3 @@
    fi="=== arvo ==== termi ==\n\n" />
 
 </entries>
-
-
-
-
-
-
-
-

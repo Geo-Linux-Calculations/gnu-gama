@@ -1192,7 +1192,7 @@ Residuals and analysis of observations
 @c KS @heading Example
 @c KS
 @c KS @example
-@c KS Test of normality of homogenised residuals of observations
+@c KS Test of normality of homogenized residuals of observations
 @c KS ==========================================================
 @c KS
 @c KS Test Kolmogorov-Smirnov : 97.6 %

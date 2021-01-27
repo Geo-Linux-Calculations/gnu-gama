@@ -434,7 +434,7 @@
    zh="临界值" />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    zh="均值化残差的常态性测试" />
 
 <e id="T_GaMa_resobs_condition_number"

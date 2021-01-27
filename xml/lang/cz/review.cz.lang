@@ -39,7 +39,7 @@
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   cz="Pevné" />   
+   cz="Pevné" />
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -186,7 +186,7 @@
    cz="obsahuje hodnotu m0\'/m0" />
 
 <e id="T_GaMa_interval_doesnt_contain"
-   EN="does not contain value m0\'/m0" 
+   EN="does not contain value m0\'/m0"
    cz="neobsahuje hodnotu m0\'/m0" />
 
 <e id="T_GaMa_m0_distances"
@@ -337,7 +337,7 @@
 <e id="T_GaMa_z_angle"
    EN=" zenit "
    cz=" zenit " />
-   
+
 <e id="T_GaMa_x"
    EN=" x     "
    cz=" x     " />
@@ -435,7 +435,7 @@
    cz=" k " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    cz="Oveření normálního rozdělení homogenizovaných oprav" />
 
 <e id="T_GaMa_resobs_condition_number"
@@ -443,23 +443,23 @@
    cz="Číslo podmíněnosti      : " />
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
-   en="Reduced observations" 
+   en="Reduced observations"
    cz="Redukovaná pozorování" />
 
 <e id="T_GaMa_reduced_observed"
-   en="observed" 
+   en="observed"
    cz="měřená" />
 
-<e id="T_GaMa_reduced_reduced" 
-   en="reduced" 
+<e id="T_GaMa_reduced_reduced"
+   en="reduced"
    cz="redukovaná" />
 
 <e id="T_GaMa_reduced_header1"
-   en="  diff dh\n" 
+   en="  diff dh\n"
    cz=" rozd. dh\n" />
 
 <e id="T_GaMa_reduced_value"
-   en="== value " 
+   en="== value "
    cz=" hodnota " />
 
 
@@ -508,11 +508,3 @@
    cz=" hodnota ===== člen ==\n\n" />
 
 </entries>
-
-
-
-
-
-
-
-

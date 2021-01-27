@@ -252,7 +252,7 @@
 
 <e id="T_GaMa_z_angle"
    en=" zenit " />
-   
+
 <e id="T_GaMa_x"
    en=" x     " />
 
@@ -329,7 +329,7 @@
    en=" c " />
 
 <e id="T_GaMa_resobs_normality_test"
-   en="Test of normality of homogenised residuals" />
+   en="Test of normality of homogenized residuals" />
 
 <e id="T_GaMa_resobs_condition_number"
    en="Condition number        : " />
@@ -340,7 +340,7 @@
 <e id="T_GaMa_reduced_observed"
    en="observed" />
 
-<e id="T_GaMa_reduced_reduced" 
+<e id="T_GaMa_reduced_reduced"
    en="reduced" />
 
 <e id="T_GaMa_reduced_header1"
@@ -348,7 +348,7 @@
 
 <e id="T_GaMa_reduced_value"
    en="== value " />
-   
+
 <e id="T_GaMa_approx_Review_of_approximate_coordinates"
    en="Approximate coordinates" />
 
@@ -389,11 +389,3 @@
    en="  diff\n" />
 
 </entries>
-
-
-
-
-
-
-
-

@@ -39,7 +39,7 @@
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   hu="Rögzített" />   
+   hu="Rögzített" />
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
@@ -186,7 +186,7 @@
    hu="tartalmazza az m0\'/m0 értéket" />
 
 <e id="T_GaMa_interval_doesnt_contain"
-   EN="does not contain value m0\'/m0" 
+   EN="does not contain value m0\'/m0"
    hu="nem tartalmazza az m0\'/m0 értéket" />
 
 <e id="T_GaMa_m0_distances"
@@ -337,7 +337,7 @@
 <e id="T_GaMa_z_angle"
    EN=" zenit "
    hu=" zenit " />
-   
+
 <e id="T_GaMa_x"
    EN=" x     "
    hu=" x     " />
@@ -435,7 +435,7 @@
    hu=" k " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    hu="Homogenizált javítások normalitás vizsgálata" />
 
 <e id="T_GaMa_resobs_condition_number"
@@ -443,23 +443,23 @@
    hu="Feltételek száma        : " />
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
-   en="Reduced observations" 
+   en="Reduced observations"
    hu="Redukált mérések" />
 
 <e id="T_GaMa_reduced_observed"
-   en="observed" 
+   en="observed"
    hu="mért" />
 
-<e id="T_GaMa_reduced_reduced" 
-   en="reduced" 
+<e id="T_GaMa_reduced_reduced"
+   en="reduced"
    hu="redukált" />
 
 <e id="T_GaMa_reduced_header1"
-   en="  diff dh\n" 
+   en="  diff dh\n"
    hu="  mag.kül\n" />
 
 <e id="T_GaMa_reduced_value"
-   en="== value " 
+   en="== value "
    hu="== érték " />
 
 

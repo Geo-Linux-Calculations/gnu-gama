@@ -186,7 +186,7 @@
    du="bevat m0\'/m0 waarde " />
 
 <e id="T_GaMa_interval_doesnt_contain"
-   EN="does not contain value m0\'/m0" 
+   EN="does not contain value m0\'/m0"
    du="bevat de  m0\'/m0 waarde niet" />
 
 <e id="T_GaMa_m0_distances"
@@ -336,7 +336,7 @@
 <e id="T_GaMa_z_angle"
    EN=" zenit "
    du=" zenit " />
-   
+
 <e id="T_GaMa_x"
    EN=" x     "
    du=" x     " />
@@ -434,7 +434,7 @@
    du=" c " />
 
 <e id="T_GaMa_resobs_normality_test"
-   EN="Test of normality of homogenised residuals"
+   EN="Test of normality of homogenized residuals"
    du="Test van de homogene residus" />
 
 <e id="T_GaMa_resobs_condition_number"
@@ -486,11 +486,3 @@
    du="== waarde ===== cond ==\n\n" />
 
 </entries>
-
-
-
-
-
-
-
-
