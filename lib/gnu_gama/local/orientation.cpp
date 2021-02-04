@@ -161,6 +161,9 @@ void Orientation::orientation(ObservationList::const_iterator& mer,
 void Orientation::orientation(GNU_gama::local::StandPoint* sp,
                               double& z, int& dir_count)
 {
+  // empty cluster is perverse, but can be created in gama-q2 or elsewhere
+  if (sp->observation_list.empty()) return;
+
   ObservationList& obs = sp->observation_list;
   ObservationList::const_iterator mer = obs.cbegin();
   Orientation orp(PD_, obs);
