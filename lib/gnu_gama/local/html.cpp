@@ -1084,7 +1084,7 @@ void GamaLocalHTML::htmlUnknowns()
           << "<th colspan='2'>" << T_HTML_stddev_confi << "</th>"
           << "</tr>\n"
           << "<tr>"
-          << "<th colspan='3'>&nbsp;</th>"
+          << "<th></th><th></th><th></th>"
           << "<th>" << T_HTML_value << "</th>"
           << "<th>" << T_HTML_m     << "</th>"
           << "<th>" << T_HTML_value << "</th>"
@@ -1124,10 +1124,12 @@ void GamaLocalHTML::htmlUnknowns()
                 prev_id = point_id;
                 double mx = lnet->unknown_stdev(b.index_x());
                 double my = lnet->unknown_stdev(b.index_y());
-                out << "<td colspan='5'></td></tr>\n";
+
+                for (int i=1; i<=5; i++) out << "<td></td>";
+                out << "</tr>";
 
                 out << "<tr>"
-                    << tdRight(b.index_x(),0,2);
+                    << tdRight(b.index_x());
                 if (b.constrained_xy())
                   out << tdRight("X") << tdRight("*");
                 else
@@ -1141,7 +1143,7 @@ void GamaLocalHTML::htmlUnknowns()
                 out << "</tr>\n";
 
                 out << "<tr>"
-                    << tdRight(b.index_y(),0,2);
+                    << tdRight(b.index_y());
                 if (b.constrained_xy())
                   out << tdRight("Y") << tdRight("*");
                 else
@@ -1164,12 +1166,14 @@ void GamaLocalHTML::htmlUnknowns()
                       out << tdRight(point_id.str());
                     else
                       out << "<td></td>";
-                    out << "<td colspan='5'></td></tr>\n";
+
+                    for (int i=1; i<=5; i++) out << "<td></td>";
+                    out << "</tr>";
                   }
 
                 prev_id = point_id;
                 out << "<tr>"
-                    << tdRight(b.index_z(), 0,2);
+                    << tdRight(b.index_z());
                 if (b.constrained_z())
                   out << tdRight("Z") << tdRight("*");
                 else
@@ -1186,7 +1190,11 @@ void GamaLocalHTML::htmlUnknowns()
 
             if ((b.free_xy() && b.index_x()) ||
                 (b.free_z()  && b.index_z()) )
-              out << "<tr><td colspan='10'></td></tr>";
+            {
+              out << "<tr>";
+              for (int i=1; i<=8; i++) out << "<td></td>";
+              out << "</tr>";
+            }
           }
         out << "</table>\n";
 
