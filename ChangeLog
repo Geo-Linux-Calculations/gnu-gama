@@ -1,3 +1,5 @@
+2021-02-28   Ales Cepek <cepek@gnu.org>
+
 	* fixed html output format. In qgama widget QtTextEdit rendered
 	wrong tables with colspan attributes an all <td> tags had to be
 	written explicitly. Occured in table of adjusted coordinates.

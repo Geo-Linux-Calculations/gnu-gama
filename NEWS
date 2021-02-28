@@ -1,5 +1,17 @@
 GNU Gama NEWS - History of user-visible changes.
 
+Changes in release 2.14 (2021-02-28)
+
+* Maintainers release
+
+* fixed html output format.
+
+  The html format in GNU gama was correct, but in Qgama the table of
+  adjusted coordinates with colspan attributes the Qt widget
+  QtTextEdit rendered the table wrong and all <td> tags had to be
+  written explicitly.
+
+
 Changes in release 2.13 (2021-01-15)
 
 * Conversions between yaml and input xml (gkf) tested for all
