@@ -30,7 +30,7 @@ $ ./configure [--bindir=DIR --infodir=DIR]
 $ make install
 @end example
 
-@noindent if you want also to install the binaries. You can use configure 
+@noindent if you want also to install the binaries. You can use configure
 parameters if you need to change directories where user executables
 and info documentation should be installed.
 
@@ -75,6 +75,7 @@ Doxygen output will be in the @code{doxygen} directory.
 
 @menu
 * CMake::
+* pkgsrc::
 * Precompiled executables for Windows::
 @end menu
 
@@ -98,12 +99,24 @@ $ make
 where @code{build} is an arbitrary directory name for
 @emph{out-of-place build}.
 
+
+@node       pkgsrc
+@subsection pkgsrc
+@cindex     pkgsrc
+
+Gama is available for multiple operating systems, including NetBSD, via
+pkgsrc as geography/gama, a multi-OS multi-CPU portable packaging
+system.  See @uref{https://www.pkgsrc.org/} for more information.
+
+
+
+
+
 @node       Precompiled executables for Windows
 @subsection Precompiled executables for Windows
-@cindex     Windows, precompiled executables 
+@cindex     Windows, precompiled executables
 
 
 Executebles of Qt based GUI @code{gama-q2} and command line programs
 @code{gama-local} and @code{gama-g3} are available from
 @uref{https://sourceforge.net/projects/gnu-gama-q2}.
-
