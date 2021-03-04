@@ -5,7 +5,7 @@ if GNU_GAMA_G3_ENABLED
 endif
 
 if GNU_GAMA_LOCAL_EXTRA_TESTS
-   EXTRA_TESTS = extra-tests
+   EXTRA_TESTS = matvec statan acord2 extra-tests
 endif
 
-SUBDIRS = matvec statan acord2 gama-local $(GAMA_G3) $(EXTRA_TESTS)
+SUBDIRS = gama-local $(GAMA_G3) $(EXTRA_TESTS)
