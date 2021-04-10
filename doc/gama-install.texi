@@ -117,6 +117,6 @@ system.  See @uref{https://www.pkgsrc.org/} for more information.
 @cindex     Windows, precompiled executables
 
 
-Executebles of Qt based GUI @code{gama-q2} and command line programs
+Executebles of Qt based GUI @code{qgama} and command line programs
 @code{gama-local} and @code{gama-g3} are available from
-@uref{https://sourceforge.net/projects/gnu-gama-q2}.
+@uref{https://sourceforge.net/projects/qgama}.
