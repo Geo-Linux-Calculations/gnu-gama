@@ -108,10 +108,24 @@ namespace GNU_gama { namespace local {
           cluster = c;
         }
 
-      const PointID& from() const { return from_;    }
-      const PointID& to()   const { return to_;      }
-      double value()        const { return value_;   }
+      const PointID& from() const { return from_; }
+      const PointID& to()   const { return to_;   }
+      double value()        const { return value_ + reduction_; }
       double stdDev()       const ;
+
+      /** \brief Reductions handling.
+       *
+       * Reductions are defined only for zenith angles and slope distances.
+       * For all other observation types reductions are implicitly set to zero
+       * and cannot be changed.
+       *
+       * \sa reduction(), set_reduction()
+       */
+
+      double reduction() const { return reduction_; }
+
+      /** \brief
+      virtual void set_reduction(double) {};
 
       /** \brief Checks whether observation is active.
        *
@@ -120,7 +134,8 @@ namespace GNU_gama { namespace local {
        *
        * \sa set_active(), set_passive()
        */
-      bool active() const { return active_; }
+      bool active()  const { return  active_; }
+      bool passive() const { return !active_; }
 
       /** \brief Sets observation state to active. */
       void set_active() { active_ = true; }
@@ -137,7 +152,7 @@ namespace GNU_gama { namespace local {
       double  from_dh() const { return from_dh_; }
       double  to_dh  () const { return to_dh_;   }
 
-      void    set_value  (double v) { value_   = v; }
+      void    set_value  (double v) { value_   = v; reduction_ = 0; }
       void    set_from_dh(double h) { from_dh_ = h; }
       void    set_to_dh  (double h) { to_dh_   = h; }
 
@@ -182,12 +197,15 @@ namespace GNU_gama { namespace local {
 
       PointID from_;
       PointID to_;
-      double        value_{0};        // observed value
+      double        value_{0};        // observed raw value without reduction
       mutable bool  active_{false};   // set false for unused observation
       double        from_dh_{0};      // height of instrument
       double        to_dh_{0};        // height of reflector
       std::string   extern_{};
-    };
+
+  protected:
+      double        reduction_{0};    // reduction to zenith angles, slopes etc.
+  };
 
 
   class Distance : public Accept<Distance, Observation>
@@ -430,6 +448,8 @@ namespace GNU_gama { namespace local {
       S_Distance& operator=(S_Distance&&) = default;
 
       S_Distance* clone() const final { return new S_Distance(*this); }
+
+      virtual void set_reduction(double r) final { reduction_ = r; }
     };
 
 
@@ -452,6 +472,8 @@ namespace GNU_gama { namespace local {
       Z_Angle* clone() const final { return new Z_Angle(*this); }
 
       bool angular() const final { return true; }
+
+      virtual void set_reduction(double r) final { reduction_ = r; }
     };
 
 

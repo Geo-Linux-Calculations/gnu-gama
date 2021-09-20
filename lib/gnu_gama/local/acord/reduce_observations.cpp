@@ -1,7 +1,7 @@
 /*
   GNU Gama C++ library
   Copyright (C) 2002 Jan Pytel  <pytel@fsv.cvut.cz>
-                2010, 2018 Ales Cepek <cepek@gnu.org>
+                2010, 2018, 2021 Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
 
@@ -25,44 +25,50 @@
 using namespace std;
 using namespace GNU_gama::local;
 
-const double EarthRadius = 6378000;  // [m]
+namespace  {
 
-class average_value {
-public:
-    average_value()
-    {
-        reset();
+  // https://en.wikipedia.org/wiki/Earth
+
+  const double mean_radius       { 6371000 };  // meters
+  const double equatorial_radius { 6378137 };
+  const double polar_radius      { 6356752 };
+
+  const double EarthRadius = mean_radius;
+
+
+  class Average {
+  public:
+    Average() {
+      reset();
     }
 
-    void reset()
-    {
-        sum = number_of_values = 0;
+    void reset() {
+      sum_ = number_of_values_ = 0;
     }
 
-    double add(const double& val)
-    {
-        if (number_of_values++)
-            sum+=val;
-        else
-            sum =val;
+    double add(const double& val) {
+      if (number_of_values_++)
+        sum_+=val;
+      else
+        sum_ =val;
 
-        return sum / number_of_values;
+      return sum_ / number_of_values_;
     }
 
-    double average() const
-    {
-        return number_of_values ? sum / number_of_values : 0;
+    double average() const {
+      return number_of_values_ ? sum_ / number_of_values_ : 0;
     }
 
-    double count() const
-    {
-        return number_of_values;
+    double count() const {
+      return number_of_values_;
     }
 
-private:
-    double sum;
-    unsigned int number_of_values;
-};
+  private:
+    double sum_;
+    unsigned int number_of_values_;
+  };
+
+}
 
 
 ReducedObservations::ReducedObservations(PointData& b, ObservationData& m):
@@ -79,7 +85,7 @@ ReducedObservations::ReducedObservations(PointData& b, ObservationData& m):
       if ( (obs->from_dh() == 0) && (obs->to_dh() == 0 ) ) continue;
 
       if (dynamic_cast<S_Distance*>(obs) ||
-          dynamic_cast<Z_Angle*   >(obs) ) list_reduced_obs.push_back(obs);
+          dynamic_cast<Z_Angle*   >(obs) ) reduced_obs.push_back(obs);
     }
 }
 
@@ -101,18 +107,14 @@ void ReducedObservations::reduce(ReducedObs& r_obs)
 void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
 {
     S_Distance* obs = dynamic_cast<S_Distance*>(r_obs->ptr_obs);
-
     if ( !obs ) return;
 
     const double orig_value = r_obs->orig_value();
 
-    average_value ZA_from_to_cluster, ZA_to_from_cluster,
-                  ZA_from_to, ZA_to_from;
+    Average   ZA_from_to_cluster, ZA_to_from_cluster, ZA_from_to, ZA_to_from;
+    Reduction reduction_type = exact;
 
-    TypeOfReduction type_of_red = precise_;
-
-    for (ListReducedObs_c_iter ci  = list_reduced_obs.begin();
-                               ci != list_reduced_obs.end(); ci++)
+    for (auto ci  = reduced_obs.begin(); ci != reduced_obs.end(); ci++)
     {
         Z_Angle* zangle = dynamic_cast<Z_Angle*>(ci->ptr_obs);
 
@@ -151,7 +153,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
     if ( ( ZA_from_to_cluster.count() + ZA_to_from_cluster.count() +
            ZA_from_to.count() + ZA_to_from.count() ) == 0 )
     {
-        r_obs->type_of_reduction = nonexist_;
+        r_obs->reduction = not_available;
         return;
     }
 
@@ -160,27 +162,27 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
     const LocalPoint& from = PD[obs->from()];
     const LocalPoint& to   = PD[obs->to()];
 
-    double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
-    double gravity_angle    = 0; // correction from gravity
+    double Hm = 0; // 1/2 * (from.H + from_dh + to.H + to_dh)
+    double central_angle    = 0; // Earth curvature correction central angle
     double refraction_angle = 0;
 
 
     if ( from.test_z() && to.test_z() )
+      {
         Hm = 0.5 * ( from.z() + obs->from_dh() + to.z() + obs->to_dh() );
+      }
     else
-    {
-
-        type_of_red = approx_;
+      {
+        reduction_type = approximate;
 
         if ( from.test_z() )
-            Hm = from.z();
-        else
-            if ( to.test_z() )
-                Hm = to.z();
-    }
+          Hm = from.z();
+        else if ( to.test_z() )
+          Hm = to.z();
+      }
 
 
-    gravity_angle = orig_value / (EarthRadius + Hm);
+    central_angle = orig_value / (EarthRadius + Hm);
 
     double observed_za;
 
@@ -189,7 +191,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
         observed_za = ZA_from_to_cluster.average();
 
         if (ZA_to_from_cluster.count() )
-            refraction_angle = M_PI/2 + gravity_angle/2 - 0.5 *
+            refraction_angle = M_PI/2 + central_angle/2 - 0.5 *
                                      (ZA_from_to_cluster.average() +
                                       ZA_to_from_cluster.average() );
     }
@@ -198,161 +200,172 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
             observed_za = ZA_from_to.average();
         else
             if ( ZA_to_from_cluster.average() )
-                observed_za = M_PI + gravity_angle - ZA_to_from_cluster.average();
+                observed_za = M_PI + central_angle - ZA_to_from_cluster.average();
             else
-                observed_za = M_PI + gravity_angle - ZA_to_from.average();
+                observed_za = M_PI + central_angle - ZA_to_from.average();
 
 
     const double d2 = (orig_value * orig_value) + dh*dh - 2 * orig_value * dh *
-                       std::cos(observed_za + refraction_angle - gravity_angle);
+                       std::cos(observed_za + refraction_angle - central_angle);
 
     if ( fabs(d2) <= 0 )
         return;
 
-    const double d_from = gravity_angle * obs->from_dh();
+    const double d_from = central_angle * obs->from_dh();
 
-    obs->set_value( std::sqrt(d2) - d_from );
+    /* obs->set_value( std::sqrt(d2) - d_from ); */
+    obs->set_value( std::sqrt(d2) );
+    obs->set_reduction( -d_from );
 
-    r_obs->type_of_reduction = type_of_red;
+    r_obs->reduction = reduction_type;
 }
 
 
 void ReducedObservations::reduce_zangle(ReducedObs* r_obs)
 {
-    Z_Angle* obs = dynamic_cast<Z_Angle*>(r_obs->ptr_obs);
+  Z_Angle* obs = dynamic_cast<Z_Angle*>(r_obs->ptr_obs);
+  if ( !obs ) return;
 
-    if ( !obs ) return;
+  const double orig_value = r_obs->orig_value();
 
-    const double orig_value = r_obs->orig_value();
+  Average ZA_opposite_direction_same_cluster,
+          SD_same_cluster, SD_other_clusters;
 
-    average_value ZA_to_from_cluster,
-                  SD_cluster,
-                  SD;
+  Reduction type_of_red = exact;
 
-    TypeOfReduction type_of_red = precise_;
-
-    for (ListReducedObs_c_iter ci = list_reduced_obs.begin();
-         ci != list_reduced_obs.end(); ci++)
+  for (auto ci = reduced_obs.begin(); ci != reduced_obs.end(); ci++)
     {
+      if (ci->ptr_obs->passive()) continue;
+
+      if (Z_Angle* zangle = dynamic_cast<Z_Angle*>(ci->ptr_obs))
         {
-            Z_Angle* zangle = dynamic_cast<Z_Angle*>(ci->ptr_obs);
-
-            if ( zangle )
+          // Trying to find reciprocal observations in the same cluster.
+          // Concurrent observations made in opposite directions should
+          // decrease measurement uncertainty caused by curvature and
+          // refraction.
+          if ( ( zangle->from()    == obs->to()      ) &&
+               ( zangle->to()      == obs->from()    ) &&
+               ( zangle->from_dh() == obs->to_dh()   ) &&
+               ( zangle->to_dh()   == obs->from_dh() ) &&
+               ( zangle->ptr_cluster() == obs->ptr_cluster() ) )
+            ZA_opposite_direction_same_cluster.add( ci->orig_value() );
+        }
+      else if (S_Distance* sdist = dynamic_cast<S_Distance*>(ci->ptr_obs))
+        {
+          // Looking for corresponing slope distances from the same
+          // or any other clusters
+          if ( ( ( sdist->from()    == obs->from()    ) &&
+                 ( sdist->to()      == obs->to()      ) &&
+                 ( sdist->from_dh() == obs->from_dh() ) &&
+                 ( sdist->to_dh()   == obs->to_dh()   ) ) ||
+               ( ( sdist->from()    == obs->to()      ) &&
+                 ( sdist->to()      == obs->from()    ) &&
+                 ( sdist->from_dh() == obs->to_dh()   ) &&
+                 ( sdist->to_dh()   == obs->from_dh() ) ) )
             {
-                if ( !zangle->active() )
-                    continue;
-
-                if ( ( zangle->from()    == obs->to()      ) &&
-                     ( zangle->to()      == obs->from()    ) &&
-                     ( zangle->from_dh() == obs->to_dh()   ) &&
-                     ( zangle->to_dh()   == obs->from_dh() ) &&
-                     ( zangle->ptr_cluster() == obs->ptr_cluster() ) )
-                    ZA_to_from_cluster.add( ci->orig_value() );
-
-                continue;
+              if ( sdist->ptr_cluster() == obs->ptr_cluster() )
+                SD_same_cluster.add( ci->orig_value() );
+              else
+                SD_other_clusters.add( ci->orig_value() );
             }
         }
 
-            S_Distance* sdist = dynamic_cast<S_Distance*>(ci->ptr_obs);
-
-            if ( !sdist )
-                continue;
-
-            if ( !sdist->active() )
-                continue;
-
-        if ( ( ( sdist->from()    == obs->from()    ) &&
-               ( sdist->to()      == obs->to()      ) &&
-               ( sdist->from_dh() == obs->from_dh() ) &&
-               ( sdist->to_dh()   == obs->to_dh()   ) ) ||
-             ( ( sdist->from()    == obs->to()      ) &&
-               ( sdist->to()      == obs->from()    ) &&
-               ( sdist->from_dh() == obs->to_dh()   ) &&
-               ( sdist->to_dh()   == obs->from_dh() ) ) )
-        {
-            if ( sdist->ptr_cluster() == obs->ptr_cluster() )
-                SD_cluster.add( ci->orig_value() );
-            else
-                SD.add( ci->orig_value() );
-        }
     }
 
+  const double dh = obs->to_dh() - obs->from_dh();
 
-    if ( ( SD_cluster.count() + SD.count() ) == 0 )
+  const LocalPoint& from = PD[obs->from()];
+  const LocalPoint& to   = PD[obs->to()];
+  double sdist {};  // space distance
+  double hdist {};  // horizontal distance
+
+  if ( SD_same_cluster.count() > 0)
+    sdist = SD_same_cluster.average();
+  else if (SD_other_clusters.count() > 0)
+    sdist = SD_other_clusters.average();
+  else if (from.test_xyz() && to.test_xyz())
     {
-        r_obs->type_of_reduction = nonexist_;
-        return;
+      // to calculate zenith angle reduction we need some substitue for
+      // missing distance between the two points
+      double dx = from.x() - to.x();
+      double dy = from.y() - to.y();
+      double dz = from.z() - to.z();
+      sdist = std::sqrt(dx*dx + dy*dy + dz*dz);
+      r_obs->reduction = approximate;
     }
-
-    const double dh = obs->to_dh() - obs->from_dh();
-
-    const LocalPoint& from = PD[obs->from()];
-    const LocalPoint& to   = PD[obs->to()];
-
-    double Hm = 0; // 1/2 * (from.H + from_dh - to.H - to_dh)
-    double gravity_angle    = 0;  // correction from gravity
-    double refraction_angle = 0;
-
-
-    if ( from.test_z() && to.test_z() )
-        Hm = 0.5 * ( from.z() + obs->from_dh() + to.z() + obs->to_dh() );
-    else
+  else if (from.test_xy() && to.test_xy())
     {
-
-        type_of_red = approx_;
-
-        if ( from.test_z() )
-            Hm = from.z();
-        else
-            if ( to.test_z() )
-                Hm = to.z();
+      double dx = from.x() - to.x();
+      double dy = from.y() - to.y();
+      hdist = std::sqrt(dx*dx + dy*dy);
+      sdist = hdist/std::cos(obs->value() - M_PI/2);
+      r_obs->reduction = approximate;
+    }
+  else
+    {
+      r_obs->reduction = not_available;
+      return;
     }
 
-    gravity_angle = orig_value / (EarthRadius + Hm);
+  double H_middle            = 0;  // 1/2 * (from.H + from_dh + to.H + to_dh)
+  double central_angle       = 0;  // Earth curvature correction central angle
+  double vertical_refraction = 0;
 
-    if ( ZA_to_from_cluster.count() )
-        refraction_angle = M_PI/2 + gravity_angle/2 - 0.5 *
-                           (orig_value + ZA_to_from_cluster.average() );
-    double sdist;
 
-    if ( SD_cluster.count() )
-        sdist = SD_cluster.average();
-    else
-        sdist = SD.average();
+  if ( from.test_z() && to.test_z() )
+    {
+      H_middle = 0.5 * ( from.z() + obs->from_dh() + to.z() + obs->to_dh() );
+    }
+  else
+    {
+      type_of_red = approximate;
 
-    const double dist_to_vertic_dh = sdist - dh *
-                 std::cos ( orig_value + refraction_angle - gravity_angle );
+      if ( from.test_z() )
+        H_middle = from.z() + obs->from_dh();
+      else if ( to.test_z() )
+        H_middle = to.z() + obs->to_dh();
+    }
 
-    const double vertic_dh = dh * std::sin( orig_value + refraction_angle -
-                                            gravity_angle);
+  central_angle = sdist / (EarthRadius + H_middle);
 
-    if ( std::fabs(dist_to_vertic_dh) < 1e-10 )
-        return;
+  if ( ZA_opposite_direction_same_cluster.count() )
+    {
+      vertical_refraction = M_PI/2 + central_angle/2 - 0.5 *
+          (orig_value + ZA_opposite_direction_same_cluster.average() );
+    }
 
-    obs->set_value( r_obs->orig_value() + refraction_angle +
-                    std::atan2(vertic_dh,dist_to_vertic_dh) );
+  const double dist_to_vertic_dh = sdist - dh *
+      std::cos ( orig_value + vertical_refraction - central_angle );
 
-    r_obs->type_of_reduction = type_of_red;
+  const double vertic_dh = dh * std::sin( orig_value + vertical_refraction -
+                                          central_angle);
+
+  // if ( std::fabs(dist_to_vertic_dh) < 1e-10 ) return;
+
+  obs->set_value( r_obs->orig_value() );
+  double r = vertical_refraction + std::atan2(vertic_dh,dist_to_vertic_dh);
+  obs->set_reduction( r );
+
+  r_obs->reduction = type_of_red;
 }
 
 
 void ReducedObservations::execute()
 {
+  if ( !unreduced_observations() ) return;
 
-    if ( !number_of_not_reduced_observations() )
-        return;
+  reduced_obs.remove_if( [](const ReducedObs& red_obs) {
+      return red_obs.ptr_obs->passive();} );
 
-    list_reduced_obs.remove_if( RemoveNonActiveObs() );
-
-    for (ListReducedObs_iter i  = list_reduced_obs.begin();
-                             i != list_reduced_obs.end(); ++i)
-        if ( ! (i->type_of_reduction & (precise_ | nonexist_) ) )
+  for (auto i  = reduced_obs.begin(); i != reduced_obs.end(); ++i)
+    {
+      if ((i->reduction != exact) && (i->reduction != not_available))
         {
-            reduce(*i);
-            if ( i->type_of_reduction & nonexist_ )
-                i->ptr_obs->set_passive();
+          reduce(*i);
+          if ( i->reduction == not_available )
+            i->ptr_obs->set_passive();
         }
-
+    }
 }
 
 

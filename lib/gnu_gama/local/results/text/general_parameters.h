@@ -349,7 +349,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           T_GaMa_statan_with_apriori_standard_deviation);
   out << setprecision(2) << IS->m_0() << "\n"
       <<  T_GaMa_statan_with_confidence_level
-      << setprecision(0) << IS->conf_pr()*100 << " %\n\n";
+      << setprecision(0) << IS->conf_pr()*100 << " %\n";
   out.flush();
 
   const int nadb = IS->degrees_of_freedom();

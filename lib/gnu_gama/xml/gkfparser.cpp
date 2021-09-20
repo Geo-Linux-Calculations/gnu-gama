@@ -303,6 +303,8 @@ namespace GNU_gama { namespace local {
         break;
       case 'g':
         if (!strcmp(c, "gama-local"         )) return tag_gama_xml;
+        // undocumented extension to enable previous XML syntax
+        if (!strcmp(c, "gama-xml"           )) return tag_gama_xml;
         break;
       case 'h':
         if (!strcmp(c, "height-differences" )) return tag_height_differences;

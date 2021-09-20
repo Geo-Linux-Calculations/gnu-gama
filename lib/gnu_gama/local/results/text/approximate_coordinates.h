@@ -25,6 +25,7 @@
 #include <gnu_gama/local/results/text/underline.h>
 #include <cctype>
 #include <iomanip>
+#include <algorithm>
 
 namespace GNU_gama { namespace local {
 
@@ -51,10 +52,16 @@ void ApproximateCoordinates(Stats* acord, OutStream& out)
        << setw(aw) << acord->given_xy
        << setw(aw) << acord->given_z
        << "\n";
+   /* Suppose we have a point adjustment P with given z and unknown xy.
+    * When all unknown coordinates are computed, P has xyz known and
+    * the counter for known xyz is incremented; but counters for known_xy and
+    * known z are not incremented (we cannot count them twice) and resulted
+    * number of computed z would be negative, which looks strange.
+    * Thus we use std::max here. */
    out << T_GaMa_approx_computed_coordinates
-       << setw(aw) << acord->computed_xyz
-       << setw(aw) << acord->computed_xy
-       << setw(aw) << acord->computed_z
+       << setw(aw) << std::max(0, acord->computed_xyz)
+       << setw(aw) << std::max(0, acord->computed_xy)
+       << setw(aw) << std::max(0, acord->computed_z)
        << "\n";
    out << T_GaMa_approx_separator << "\n"
        << T_GaMa_approx_total
@@ -85,7 +92,7 @@ void ApproximateCoordinates(Stats* acord, OutStream& out)
        out << "\n";
      }
 
-   out << "\n";
+   //out << "\n";
    out.flush();
 }
 

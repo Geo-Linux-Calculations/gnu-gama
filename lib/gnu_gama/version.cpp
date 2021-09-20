@@ -49,7 +49,7 @@ namespace GNU_gama {
    *
    * Checked by tests/gama-local/scripts/check_version.cpp
    */
-  std::string GNU_gama_version() { return "2.14"; }
+  std::string GNU_gama_version() { return "2.15"; }
 
   std::string GNU_gama_compiler()
   {
@@ -93,7 +93,7 @@ namespace GNU_gama {
     ;
   }
 
-  std::string GNU_gama_year = "2020";
+  std::string GNU_gama_year = "2021";
 
 
   int version(const char* program, const char* copyright_holder)

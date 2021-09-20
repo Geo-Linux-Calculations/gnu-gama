@@ -185,6 +185,7 @@ extern const char* T_GaMa_missing_coordinates;
 extern const char* T_GaMa_network_description;
 extern const char* T_GaMa_network_not_connected;
 extern const char* T_GaMa_not_enough_constrained_points;
+extern const char* T_GaMa_padding_obs;
 extern const char* T_GaMa_point;
 extern const char* T_GaMa_reduced_Review_of_reduced_observations;
 extern const char* T_GaMa_reduced_Review_of_reduced_observations_to_ellipsoid;

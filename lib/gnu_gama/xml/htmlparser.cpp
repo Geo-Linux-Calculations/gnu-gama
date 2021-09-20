@@ -553,7 +553,7 @@ void HtmlParser::table_adjusted_observations()
       else if (data == "dir." ) obs.xml_tag = "direction";
       else if (data == "dist.") obs.xml_tag = "distance";
       else if (data == "slope") obs.xml_tag = "slope-distance";
-      else if (data == "zenit") obs.xml_tag = "zenith-angle";
+      else if (data == "zen.")  obs.xml_tag = "zenith-angle";
       else if (data == "h dif") obs.xml_tag = "height-diff";
       else if (data == "x dif") obs.xml_tag = "dx";
       else if (data == "y dif") obs.xml_tag = "dy";

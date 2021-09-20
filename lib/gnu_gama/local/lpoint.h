@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2000, 2014, 2016  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2000, 2014, 2016, 2021  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -69,10 +69,12 @@ public:
 
   void set_xy  (double x, double y) { bxy_ = true; x_ = x; y_ = y; }
   void set_z   (double z)           { bz_  = true; z_ = z; }
-  void unset_xy() { bxy_ = false; }
-  void unset_z () { bz_  = false; }
-  bool test_xy () const { return bxy_; }
-  bool test_z  () const { return bz_;  }
+  void unset_xyz() { bxy_ = bz_ = false; }
+  void unset_xy () { bxy_ = false; }
+  void unset_z  () { bz_  = false; }
+  bool test_xyz () const { return bxy_ && bz_; }
+  bool test_xy  () const { return bxy_; }
+  bool test_z   () const { return bz_;  }
 
   int& index_y() { return iy_; }         // indexes in project equations
   int& index_x() { return ix_; }

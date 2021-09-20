@@ -1,4 +1,33 @@
+2021-09-20   Ales Cepek <cepek@gnu.org>
+
+	New release 2.15 (maintenance release)
+
+	* observation reductions are separated from observed values in
+	GNU_gama::local::Observation objects (now is possible to
+	repeatedly calculate reductions in linearization adjustment cykle
+	if needed; observed raw data are not changed during the adjustment).
+
+	* Conditional debug build #add_definitions(-DDEBUG_REDUCED_OBS) to
+	display reductions of observations
+
+	* Cleaning up code in gnu_gama/local/acord/reduce_observations.h|.cpp
+
+	* A minor fix in gnu_gama/local/language.cpp. The english
+	abbreviation for zenith angle was '_zenit_' which looked more like
+	a typo than as an abbrevitaion and was changed to '_zen.__'.
+
+	* Added four methods to the class GNU_gama::local::Point,
+	reduction(), set_reduction(), unset_xyz() and test_xyz()
+
+	* Undocumented extension to enable previous XML syntax
+	'<gama-xml>' in lib/gnu_gama/xml/gkfparser.cpp
+
+	if (!strcmp(c, "gama-xml")) return tag_gama_xml;
+
+
 2021-02-28   Ales Cepek <cepek@gnu.org>
+
+	* new release 2.14
 
 	* fixed html output format. In qgama widget QtTextEdit rendered
 	wrong tables with colspan attributes an all <td> tags had to be

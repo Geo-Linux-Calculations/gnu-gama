@@ -5,7 +5,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
 
-AC_INIT([gama], [2.14], [bug-gama@gnu.org])
+AC_INIT([gama], [2.15], [bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -151,6 +151,11 @@ if test "x$GNU_GAMA_LOCAL_TEST_OCTAVE" != "xyes";
 then
    AC_MSG_WARN([octave not found, .m files will not be validated])
 fi
+
+
+dnl AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DDEBUG_ACORD2")
+dnl AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DA2G_DEBUG")
+dnl AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DDEBUG_REDUCED_OBS")
 
 
 dnl Checks for header files.

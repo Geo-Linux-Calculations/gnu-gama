@@ -238,6 +238,9 @@
 <e id="T_GaMa_tstlin_header1"
    en="====== value == [mm|cc] == [cc] == [mm] =\n\n" />
 
+<e id="T_GaMa_padding_obs"
+   en="       " />
+
 <e id="T_GaMa_distance"
    en=" dist. " />
 
@@ -251,7 +254,7 @@
    en=" slope " />
 
 <e id="T_GaMa_z_angle"
-   en=" zenit " />
+   en=" zen.  " />
 
 <e id="T_GaMa_x"
    en=" x     " />

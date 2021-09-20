@@ -40,6 +40,7 @@
 #include <gnu_gama/local/html.h>
 
 #include <gnu_gama/local/results/text/approximate_coordinates.h>
+#include <gnu_gama/local/results/text/reduced_observations.h>
 #include <gnu_gama/local/results/text/network_description.h>
 #include <gnu_gama/local/results/text/general_parameters.h>
 #include <gnu_gama/local/results/text/fixed_points.h>
@@ -474,7 +475,7 @@ int main(int argc, char **argv)
       {
         // if (!GaMaConsistent(IS->PD))
         //   {
-        //      cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n\n";
+        //      cout << T_GaMa_inconsistent_coordinates_and_angles << "\n\n";
         //   }
         IS->remove_inconsistency();
 
@@ -508,8 +509,6 @@ int main(int argc, char **argv)
 
         stats.execute();
         ApproximateCoordinates(&stats, cout);
-
-
       }
     catch(GNU_gama::local::Exception& e)
       {
@@ -548,11 +547,11 @@ int main(int argc, char **argv)
             OutlyingAbsoluteTerms(IS, cout);
             IS->remove_huge_abs_terms();
             cout << T_GaMa_Observatios_with_outlying_absolute_terms_removed
-                 << "\n\n\n";
+                 << "\n\n";
           }
 
         if (!IS->connected_network())
-          cout  << T_GaMa_network_not_connected << "\n\n\n";
+          cout  << T_GaMa_network_not_connected << "\n\n";
 
         bool network_can_be_adjusted {false};
         {
@@ -589,6 +588,9 @@ int main(int argc, char **argv)
 
             if (!TestLinearization(IS, cout)) cout << "\n";
 
+#ifdef DEBUG_REDUCED_OBS
+            ReducedObservations  (IS, cout);
+#endif
             NetworkDescription   (IS->description, cout);
             GeneralParameters    (IS, cout);
             FixedPoints          (IS, cout);
