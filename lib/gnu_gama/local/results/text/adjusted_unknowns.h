@@ -38,7 +38,7 @@ void AdjustedUnknowns(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
   const Vec& x = IS->solve();
   double kki = IS->conf_int_coef();
-  const int pocnez = IS->sum_unknowns();
+  const int pocnez = IS->unknowns_count();
 
   bool sour = false;
   {   // for ...

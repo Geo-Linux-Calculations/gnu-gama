@@ -229,7 +229,7 @@ void OutlyingAbsoluteTerms(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
   OutlyingAbsoluteTermsVisitor<OutStream> visitor(IS, out);
 
-  for (int i=1; i<=IS->sum_observations(); i++)
+  for (int i=1; i<=IS->observations_count(); i++)
     {
       Observation* pm = IS->ptr_obs(i);
       if (IS->test_abs_term(i))

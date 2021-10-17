@@ -274,7 +274,7 @@ void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
    const int    y_sign = IS->y_sign();
    const Vec&   v      = IS->residuals();
-   const int    pocmer = IS->sum_observations();
+   const int    pocmer = IS->observations_count();
    const double scale  = IS->gons() ? 1.0 : 0.324;
 
    out << T_GaMa_adjobs_Adjusted_observations << "\n"

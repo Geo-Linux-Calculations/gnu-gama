@@ -216,7 +216,7 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
   // from adjusted coordinates
   // ===============================================================
   {
-    const int M = IS->sum_observations();
+    const int M = IS->observations_count();
 
     Vec dif_m(M);   // difference in computation of adjusted observation
     Vec dif_p(M);   //               corresponds to positional shift

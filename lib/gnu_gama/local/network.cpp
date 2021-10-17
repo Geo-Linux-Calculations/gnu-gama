@@ -984,7 +984,7 @@ int LocalNetwork::null_space()
     {
       if (vs.error() != GNU_gama::Exception::BadRegularization) throw;
 
-      for (int i=1; i<=sum_unknowns(); i++)
+      for (int i=1; i<=unknowns_count(); i++)
         if (lindep(i))
           {
             const char    type = unknown_type(i);
@@ -1043,7 +1043,7 @@ void LocalNetwork::refine_approx()
 {
   const Vec& x = least_squares->unknowns();
 
-  for (int i=1; i<=sum_unknowns(); i++)
+  for (int i=1; i<=unknowns_count(); i++)
     if (unknown_type(i) == 'X')
       {
         const PointID& cb = unknown_pointid(i);
@@ -1159,11 +1159,11 @@ void LocalNetwork::vyrovnani_()
   do {
 
     project_equations();
-    if (sum_unknowns()     == 0)
+    if (unknowns_count()     == 0)
       throw GNU_gama::local::Exception(T_GaMa_No_unknowns_defined);
-    if (sum_observations() == 0)
+    if (observations_count() == 0)
       throw GNU_gama::local::Exception(T_GaMa_No_observations_available);
-    if (sum_points()      == 0)
+    if (points_count()      == 0)
       throw GNU_gama::local::Exception(T_GaMa_No_points_available);
 
     tst_vyrovnani_ = true;

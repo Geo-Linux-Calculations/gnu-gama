@@ -99,16 +99,16 @@ namespace GNU_gama { namespace local
     {
       return undefined_xy_z_;
     }
-    int sum_points()
+    int points_count()
     {
       revision_points(); return pocbod_;
     }
     void  revision_observations();
-    const ObservationList& sum_rejected_observations() const
+    const ObservationList& rejected_observations_count() const
     {
       return removed_obs;
     }
-    int sum_observations() const
+    int observations_count() const
     {
       return pocmer_;
     }
@@ -173,12 +173,12 @@ namespace GNU_gama { namespace local
       vyrovnani_();
       return r;
     }
-    int sum_unknowns()
+    int unknowns_count()
     {
       project_equations();
       return A.cols();
     }
-    int sum_observations()
+    int observations_count()
     {
       project_equations();
       return A.rows();

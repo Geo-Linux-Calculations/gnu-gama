@@ -475,7 +475,7 @@ void LocalNetworkXML::observations_summary(std::ostream& out) const
 
   ObservationSummaryCounter counter;
 
-  for (int i=1; i<=netinfo->sum_observations(); i++)
+  for (int i=1; i<=netinfo->observations_count(); i++)
       netinfo->ptr_obs(i)->accept(&counter);
 
   tagnl(out, "distances",  counter.dists);
@@ -515,8 +515,8 @@ void LocalNetworkXML::equations_summary(std::ostream& out) const
 {
   out << "\n<project-equations>\n";
 
-  const int obs = netinfo->sum_observations();
-  const int par = netinfo->sum_unknowns();
+  const int obs = netinfo->observations_count();
+  const int par = netinfo->unknowns_count();
   const int dof = netinfo->degrees_of_freedom();
   const int nul = netinfo->null_space();
 
@@ -601,7 +601,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
   out.precision(6);
 
   const GNU_gama::local::Vec& X = netinfo->solve();
-  std::vector<int> ind(netinfo->sum_unknowns() + 1);
+  std::vector<int> ind(netinfo->unknowns_count() + 1);
   int dim = 0;
 
 
@@ -771,7 +771,7 @@ void LocalNetworkXML::coordinates(std::ostream& out) const
       if (bz ) out << "<ind>" << p.index_z() << "</ind>\n";
     }
 
-  for (int i=1; i<=netinfo->sum_unknowns(); i++)
+  for (int i=1; i<=netinfo->unknowns_count(); i++)
     if (netinfo->unknown_type(i) == 'R')
       {
         out << "<ind>" << i << "</ind>\n";
@@ -793,7 +793,7 @@ void  LocalNetworkXML::orientation_shifts(std::ostream& out,
   //const double scale    = netinfo->gons() ? 1.0 : 0.324;
   const double y_sign     = netinfo->y_sign();
   //const double kki      = netinfo->conf_int_coef();
-  const int    unknowns = netinfo->sum_unknowns();
+  const int    unknowns = netinfo->unknowns_count();
 
   for (int i=1; i<=unknowns; i++)
     if (netinfo->unknown_type(i) == 'R')
@@ -842,7 +842,7 @@ void LocalNetworkXML::observations(std::ostream& out) const
 
    const double   y_sign = netinfo->y_sign();
    const GNU_gama::local::Vec& v = netinfo->residuals();
-   const int      pocmer = netinfo->sum_observations();
+   const int      pocmer = netinfo->observations_count();
    const double   scale  = netinfo->gons() ? 1.0 : 0.324;
    const double   kki    = netinfo->conf_int_coef();
 

@@ -1,5 +1,5 @@
 /* GNU Gama C++ library
-   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014, 2018, 2020
+   Copyright (C) 1999, 2002, 2003, 2010, 2011, 2012, 2014, 2018, 2020, 2021
                  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
@@ -535,7 +535,7 @@ int main(int argc, char **argv)
       }
 
 
-    if (IS->sum_points() == 0 || IS->sum_unknowns() == 0)
+    if (IS->points_count() == 0 || IS->unknowns_count() == 0)
       {
         throw GNU_gama::local::Exception(T_GaMa_No_network_points_defined);
       }

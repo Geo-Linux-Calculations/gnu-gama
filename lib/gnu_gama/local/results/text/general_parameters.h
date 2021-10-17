@@ -192,7 +192,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   }
 
   int pocosn = 0;
-  for (int i=1; i<=IS->sum_unknowns(); i++)
+  for (int i=1; i<=IS->unknowns_count(); i++)
     if (IS->unknown_type(i) == 'R')
       pocosn++;
 
@@ -211,7 +211,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   int pocsmer=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
       poczeni=0, pocsikm=0;
   {   // for ...
-    for (int i=1; i<=IS->sum_observations(); i++)
+    for (int i=1; i<=IS->observations_count(); i++)
       // *****************************************************
       if      (dynamic_cast<Distance*  >(IS->ptr_obs(i))) pocdel++;
       else if (dynamic_cast<Direction* >(IS->ptr_obs(i))) pocsmer++;
@@ -247,7 +247,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       out << set_width(T_GaMa_gpar1_observed_coords, w1) << ":"
           << setw(6) << pocsour << '\n';
     }
-  if (pocnivp && (pocnivp != IS->sum_observations()))
+  if (pocnivp && (pocnivp != IS->observations_count()))
     {
       out << set_width(T_GaMa_gpar1_leveling_diffs, w1) << ":"
           << setw(6) << pocnivp << '\n';
@@ -272,7 +272,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   if (pocsikm) types++;
   if (types != 1)
     out << set_width(T_GaMa_gpar1_obs_total, w1) << ":"
-        << setw(6) << IS->sum_observations() << "\n";
+        << setw(6) << IS->observations_count() << "\n";
   out << '\n';
   out.flush();
 
@@ -303,7 +303,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
         out << T_GaMa_index_type_point << "\n"
             << "-----------------------------\n\n";
 
-        for (int i=1; i<=IS->sum_unknowns(); i++)
+        for (int i=1; i<=IS->unknowns_count(); i++)
           if (IS->lindep(i))
             {
               out << setw(6) << i << "   " << IS->unknown_type(i)
@@ -316,9 +316,9 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   }
 
   out << set_width(T_GaMa_gpar1_equations, w1) << ":"
-      << setw(6) << IS->sum_observations()      << tab_sep
+      << setw(6) << IS->observations_count()      << tab_sep
       << set_width(T_GaMa_gpar2_number_of_unknowns, w2) << ":"
-      << setw(6) << IS->sum_unknowns()
+      << setw(6) << IS->unknowns_count()
       << '\n'
       << set_width(T_GaMa_gpar1_redundancy, w1) << ":"
       << setw(6) << IS->degrees_of_freedom() << tab_sep
@@ -378,7 +378,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           float m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
           float sqd=0, sqs=0, squ=0;   // sum of weight coefficients
           int   itd=0, its=0, itu=0;
-          for (int i=1; i<=IS->sum_observations(); i++)
+          for (int i=1; i<=IS->observations_count(); i++)
             {
               float v = IS->residuals()(i);
               float q = IS->wcoef_res(i);
@@ -428,7 +428,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       double max_stud = 0;
       int imax = 0;
       {   // for ...
-        for (int i=1; i<=IS->sum_observations(); i++)
+        for (int i=1; i<=IS->observations_count(); i++)
           //if (IS->obs_control(i) > 0.1)
           if (IS->wcoef_res(i) > 1e-4)     // *** test after getu03
             {

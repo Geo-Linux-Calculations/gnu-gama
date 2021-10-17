@@ -374,7 +374,7 @@ private:
     using namespace std;
     imax = 1;              // index of maximal studentized residual
     double maxno = 0;
-    for (int i=1; i<=lnet->sum_observations(); i++)
+    for (int i=1; i<=lnet->observations_count(); i++)
       {
         if (lnet->obs_control(i) < 0.1) continue;
 
@@ -654,13 +654,13 @@ void GamaLocalHTML::htmlInfo()
     out << "</table>\n";
   }
   int pocosn = 0;
-  for (int i=1; i<=lnet->sum_unknowns(); i++)
+  for (int i=1; i<=lnet->unknowns_count(); i++)
     if (lnet->unknown_type(i) == 'R')
       pocosn++;
 
   int pocsmer=0, pocuhl=0, pocdel=0, pocsour=0, pocnivp = 0,
     poczeni=0, pocsikm=0, pocvec=0, pocazim=0;
-  for (int i=1; i<=lnet->sum_observations(); i++)
+  for (int i=1; i<=lnet->observations_count(); i++)
     {
       if      (dynamic_cast<Distance*  >(lnet->ptr_obs(i))) pocdel++;
       else if (dynamic_cast<Direction* >(lnet->ptr_obs(i))) pocsmer++;
@@ -673,11 +673,11 @@ void GamaLocalHTML::htmlInfo()
       else if (dynamic_cast<S_Distance*>(lnet->ptr_obs(i))) pocsikm++;
       else if (dynamic_cast<Xdiff*     >(lnet->ptr_obs(i))) pocvec++;
       else if (dynamic_cast<Azimuth*   >(lnet->ptr_obs(i))) pocazim++;
-      //else if (dynamic_cast<Ydiff*     >(lnet->ptr_obs(i))) pocvec++;
-      ///else if (dynamic_cast<Zdiff*     >(lnet->ptr_obs(i))) pocvec++;
+      //else if (dynamic_cast<Ydiff*   >(lnet->ptr_obs(i))) pocvec++;
+      //else if (dynamic_cast<Zdiff*   >(lnet->ptr_obs(i))) pocvec++;
     }
 
-  if (lnet->sum_observations()) // > 0 && pocnivp != lnet->sum_observations())
+  if (lnet->observations_count()) // > 0 && pocnivp != lnet->sum_observations())
     {                           // always print observations summary / v. 2.02
     out << "<table id='observations_summary'>\n";
     if (pocsmer)
@@ -743,7 +743,7 @@ void GamaLocalHTML::htmlInfo()
     if (types != 1)
       {
         out << "<tr id='count_total'>" << tdLeft(T_GaMa_gpar1_obs_total,0,2)
-            << tdRight(lnet->sum_observations(),0,8) << "<td/><td/></tr>\n";
+            << tdRight(lnet->observations_count(),0,8) << "<td/><td/></tr>\n";
       }
     out << "</table>\n";
 
@@ -782,7 +782,7 @@ void GamaLocalHTML::htmlInfo()
         out << T_GaMa_index_type_point;
         out << "</caption>\n";
 
-        for (int i=1; i<=lnet->sum_unknowns(); i++)
+        for (int i=1; i<=lnet->unknowns_count(); i++)
           if (lnet->lindep(i))
             {
               out << "<tr>" << tdRight(i, 2, 2)
@@ -801,9 +801,9 @@ void GamaLocalHTML::htmlInfo()
           " id='connected_network'" :
           " id='disconnected_network'")
       << "><td>" << T_GaMa_gpar1_equations << "</td>"
-      << tdRight(lnet->sum_observations(), 2,8)
+      << tdRight(lnet->observations_count(), 2,8)
       << tdLeft(T_GaMa_gpar2_number_of_unknowns)
-      << tdRight(lnet->sum_unknowns(), 2,0) << "</tr>\n";
+      << tdRight(lnet->unknowns_count(), 2,0) << "</tr>\n";
   out << "<tr>" << tdLeft(T_GaMa_gpar1_redundancy)
       << tdRight(lnet->degrees_of_freedom(),2,8)
       << tdLeft(T_GaMa_gpar2_network_defect)
@@ -874,7 +874,7 @@ void GamaLocalHTML::htmlInfo()
           double m0d=0, m0s=0, m0u=0;   // m0' from dists. / dirs. / angles
           double sqd=0, sqs=0, squ=0;   // sum of weight coefficients
           int   itd=0, its=0, itu=0;
-          for (int i=1; i<=lnet->sum_observations(); i++)
+          for (int i=1; i<=lnet->observations_count(); i++)
             {
               double v = lnet->residuals()(i);
               double q = lnet->wcoef_res(i);
@@ -935,7 +935,7 @@ void GamaLocalHTML::htmlInfo()
       double stud_opr;
       double max_stud = 0;
       int imax = 0;
-      for (int i=1; i<=lnet->sum_observations(); i++)
+      for (int i=1; i<=lnet->observations_count(); i++)
         //if (lnet->obs_control(i) > 0.1)
         if (lnet->wcoef_res(i) > 1e-4)     // *** test after getu03
           {
@@ -1069,7 +1069,7 @@ void GamaLocalHTML::htmlUnknowns()
 
     const Vec& x = lnet->solve();
     double kki = lnet->conf_int_coef();
-    const int pocnez = lnet->sum_unknowns();
+    const int pocnez = lnet->unknowns_count();
 
     std::string coordinates_table_header;
     {
@@ -1336,7 +1336,7 @@ void GamaLocalHTML::htmlUnknowns()
 
   // error ellipses
   {
-    const int pocnez = lnet->sum_unknowns();
+    const int pocnez = lnet->unknowns_count();
     bool sour = false;
     for (int i=1; i<=pocnez; i++)
       if (lnet->unknown_type(i) == 'X')
@@ -1488,7 +1488,7 @@ void GamaLocalHTML::htmlObservations()
   out << "<table id='adjusted_observations'>\n";
 
   HtmlAdjustedObservationsVisitor visitor(out, lnet);
-  for (int i=1; i<=lnet->sum_observations(); i++)
+  for (int i=1; i<=lnet->observations_count(); i++)
     {
       visitor.adjustedObservation(i);
     }
@@ -1510,7 +1510,7 @@ void GamaLocalHTML::htmlResiduals()
 
   std::vector<int> index;
   HtmlAdjustedResidualsVisitor visitor(out, lnet, &index);
-  for (int i=1; i<=lnet->sum_observations(); i++)
+  for (int i=1; i<=lnet->observations_count(); i++)
     {
       visitor.adjustedObservation(i);
     }
@@ -1538,7 +1538,7 @@ void GamaLocalHTML::htmlRejected()
   if (!lnet->is_adjusted()) return;
 
   bool points = !lnet->removed_points.empty();
-  bool obs    =  lnet->sum_rejected_observations().size() > 0;
+  bool obs    =  lnet->rejected_observations_count().size() > 0;
   if (!points && !obs) return;
 
   str  = "<h2>" + std::string(T_HTML_rejected) + "</h2>\n";
@@ -1586,8 +1586,8 @@ void GamaLocalHTML::htmlRejected()
       str += "<table id='rejected_observations'>\n";
 
       for (ObservationList::const_iterator
-             i = lnet->sum_rejected_observations().begin(),
-             e = lnet->sum_rejected_observations().end();
+             i = lnet->rejected_observations_count().begin(),
+             e = lnet->rejected_observations_count().end();
              i !=e; ++i
            )
         {
@@ -1650,7 +1650,7 @@ void GamaLocalHTML::htmlTerms()
 
 
   const double max_dif = 0.0005;
-  const int M = lnet->sum_observations();
+  const int M = lnet->observations_count();
   Vec dif_m(M);   // difference in computation of adjusted observation
   Vec dif_p(M);   //               corresponds to positional shift
   const Vec& v = lnet->residuals();

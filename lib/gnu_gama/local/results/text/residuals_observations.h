@@ -103,7 +103,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   using namespace GNU_gama::local;
 
   const Vec&    v      = IS->residuals();
-  const int     pocmer = IS->sum_observations();
+  const int     pocmer = IS->observations_count();
   const double  scale  = IS->gons() ? 1.0 : 0.324;
 
   vector<int> odlehla;

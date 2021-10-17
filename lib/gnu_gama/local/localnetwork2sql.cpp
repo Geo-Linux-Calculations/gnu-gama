@@ -758,7 +758,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
         ObservationSummaryCounter counter;
 
-        for (int i=1; i<=netinfo->sum_observations(); i++)
+        for (int i=1; i<=netinfo->observations_count(); i++)
           netinfo->ptr_obs(i)->accept(&counter);
 
         ostr << "insert into gnu_gama_local_adj_observations_summary "
@@ -782,8 +782,8 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
              << "(conf_id, equations, unknowns, deg_freedom, defect, sum_squares, connected) "
              << "values ("
              << cnfg()                        << ", "
-             << netinfo->sum_observations()   << ", "
-             << netinfo->sum_unknowns()       << ", "
+             << netinfo->observations_count()   << ", "
+             << netinfo->unknowns_count()       << ", "
              << netinfo->degrees_of_freedom() << ", "
              << netinfo->null_space()         << ", "
              << netinfo->trans_VWV()          << ", "
@@ -892,7 +892,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
 
       { // orientation shifts
-        for (int i=1; i<=netinfo->sum_unknowns(); i++)
+        for (int i=1; i<=netinfo->unknowns_count(); i++)
           {
             if (netinfo->unknown_type(i) != 'R') continue;
 
@@ -908,7 +908,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
           }
       }
 
-      std::vector<int> ind(netinfo->sum_unknowns() + 1);
+      std::vector<int> ind(netinfo->unknowns_count() + 1);
       {
         int dim = 0;
         for (PointData::const_iterator
@@ -925,7 +925,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
             }
           }
 
-        for (int i=1; i<=netinfo->sum_unknowns(); i++)
+        for (int i=1; i<=netinfo->unknowns_count(); i++)
           if (netinfo->unknown_type(i) == 'R')
             {
               StandPoint* k = netinfo->unknown_standpoint(i);
@@ -935,7 +935,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
 
       { // covariance matrix
-        int dim  = netinfo->sum_unknowns();
+        int dim  = netinfo->unknowns_count();
         int band = netinfo->adj_covband();
         if (band < 0) band = dim-1;
 
@@ -954,7 +954,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
 
 
       { // original indexes
-        for (int i=1; i<= netinfo->sum_unknowns(); i++)
+        for (int i=1; i<= netinfo->unknowns_count(); i++)
           {
             ostr << "insert into gnu_gama_local_adj_original_indexes "
                  << "(conf_id, indx, adj_indx) "
@@ -967,7 +967,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
       { // observations
         WriteSQLVisitor writeVisitor(ostr, netinfo);
 
-        for (int indx=1; indx<=netinfo->sum_observations(); indx++)
+        for (int indx=1; indx<=netinfo->observations_count(); indx++)
           {
             Observation* pm = netinfo->ptr_obs(indx);
 

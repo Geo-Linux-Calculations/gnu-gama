@@ -76,8 +76,8 @@ void LocalNetworkOctave::write(std::ostream& out) const
           }
       }
 
-  out << "unknowns        = " << netinfo->sum_unknowns() << ";\n"
-      << "observations    = " << netinfo->sum_observations() << ";\n\n"
+  out << "unknowns        = " << netinfo->unknowns_count() << ";\n"
+      << "observations    = " << netinfo->observations_count() << ";\n\n"
       << "adjusted_xyz    = " << a_xyz << ";\n"
       << "adjusted_xy     = " << a_xy  << ";\n"
       << "adjusted_z      = " << a_z   << ";\n"
@@ -175,7 +175,7 @@ void LocalNetworkOctave::write(std::ostream& out) const
   out << "};\n\n";
 
 
-  std::vector<int> ind(netinfo->sum_unknowns() + 1, 0);
+  std::vector<int> ind(netinfo->unknowns_count() + 1, 0);
   int indcov = 0;  // used to index covariances of adjusted coordinates Cov = [...]
 
   out << "Indexes = [\n";

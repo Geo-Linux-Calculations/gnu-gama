@@ -53,7 +53,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 	   elp_k = 0;
        }
    }
-   const int pocnez = IS->sum_unknowns();
+   const int pocnez = IS->unknowns_count();
 
    bool sour = false;
    {   // for ...
