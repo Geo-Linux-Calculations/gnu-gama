@@ -45,7 +45,7 @@ void ReducedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 
    bool has_reduced_observations {false};
 
-   const int obscount = IS->sum_observations();
+   const int obscount = IS->observations_count();
    for (int i=1; i<=obscount; i++)
      if (IS->ptr_obs(i)->reduction())
        {
