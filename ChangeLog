@@ -1,3 +1,7 @@
+	* gama-local option '--updated-xml' was renamed to '--export'
+	and similarly was renamed the corresponging test
+	tests/gama-local/gama-local-export.sh
+
 2021-09-20   Ales Cepek <cepek@gnu.org>
 
 	New release 2.15 (maintenance release)

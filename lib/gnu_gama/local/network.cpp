@@ -1,7 +1,7 @@
 /* GNU Gama -- adjustment of geodetic networks
     Copyright (C) 1999, 2006, 2010  Ales Cepek <cepek@fsv.cvut.cz>
                   2011  Vaclav Petras <wenzeslaus@gmail.com>
-                  2012, 2013, 2014, 2015, 2018, 2019, 2020
+                  2012, 2013, 2014, 2015, 2018, 2019, 2020, 2021
                   Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
@@ -1310,7 +1310,7 @@ void LocalNetwork::vyrovnani_()
 }
 
 
-std::string LocalNetwork::updated_xml()
+std::string LocalNetwork::export_xml()
 {
   if (!is_adjusted()) std::string();
 
@@ -1415,6 +1415,7 @@ std::string LocalNetwork::updated_xml()
             xml += " to=\"" + info.str_to + "\"";
             double fdh = obs->from_dh();
             double tdh = obs->to_dh();
+            if (info.xml_name != "s-distance") fdh = tdh = 0;
             if (fdh) xml += " from_dh=\"" + std::to_string(fdh) + "\"";
             if (tdh) xml +=   " to_dh=\"" + std::to_string(tdh) + "\"";
           }

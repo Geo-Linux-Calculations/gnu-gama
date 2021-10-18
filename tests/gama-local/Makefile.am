@@ -8,7 +8,7 @@ EXTRA_DIST = CMakeLists.txt \
              gama-local-sqlite-reader.sh_ \
              gama-local-version.sh_ \
              gama-local-parameters.sh_ \
-             gama-local-updated-xml.sh_ \
+             gama-local-export.sh_ \
              gama-local-externs.sh_ \
              gama-local-yaml2gkf.sh_ \
              gama-local-gkf2yaml.sh_ \
@@ -26,7 +26,7 @@ TESTA = gama-local-version.sh \
         gama-local-equivalents.sh \
         gama-local-xml-results.sh \
         gama-local-parameters.sh \
-        gama-local-updated-xml.sh \
+        gama-local-export.sh \
         gama-local-externs.sh
 
 if GNU_GAMA_LOCAL_TEST_SQLITE_READER
@@ -160,10 +160,10 @@ gama-local-parameters.sh: $(srcdir)/gama-local-parameters.sh_ $(GAMA_OTHERS)
 	             > gama-local-parameters.sh
 	@chmod +x gama-local-parameters.sh
 
-gama-local-updated-xml.sh: $(srcdir)/gama-local-updated-xml.sh_ $(GAMA_OTHERS)
-	@$(do_subst) < $(srcdir)/gama-local-updated-xml.sh_ \
-	             > gama-local-updated-xml.sh
-	@chmod +x gama-local-updated-xml.sh
+gama-local-export.sh: $(srcdir)/gama-local-export.sh_ $(GAMA_OTHERS)
+	@$(do_subst) < $(srcdir)/gama-local-export.sh_ \
+	             > gama-local-export.sh
+	@chmod +x gama-local-export.sh
 
 gama-local-externs.sh: $(srcdir)/gama-local-externs.sh_ $(GAMA_OTHERS)
 	@$(do_subst) < $(srcdir)/gama-local-externs.sh_ \

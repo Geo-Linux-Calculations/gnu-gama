@@ -95,8 +95,7 @@ int help()
     "             n >=  0  covariances are computed only for bandwidth n\n"
     "--iterations maximum number of iterations allowed in the linearized\n"
     "             least squares algorithm (implicit value is 5)\n"
-//  "--updated-xml input data with free coordinates updated after adjustment\n"
-//  "             and rejected observations removed\n"
+    "--export     updated input data based on adjustment results\n"
     "--version\n"
     "--help\n\n";
 
@@ -141,7 +140,7 @@ int main(int argc, char **argv)
     const char* argv_obsout = nullptr;
     const char* argv_covband = nullptr;
     const char* argv_iterations = nullptr;
-    const char* argv_updated_xml = nullptr;
+    const char* argv_export_xml = nullptr;
 
     // handle --help and --version as special cases
     if (argc == 2 && strcmp(argv[1], "-") && strlen(argv[1]) > 2)
@@ -225,7 +224,7 @@ int main(int argc, char **argv)
         else if (!strcmp("obs",         name)) argv_obsout = c;
         else if (!strcmp("cov-band",    name)) argv_covband = c;
         else if (!strcmp("iterations",  name)) argv_iterations = c;
-        else if (!strcmp("updated-xml", name)) argv_updated_xml = c;
+        else if (!strcmp("export",      name)) argv_export_xml = c;
         else
           return help();
       }
@@ -670,17 +669,17 @@ int main(int argc, char **argv)
               }
           }
 
-        if (network_can_be_adjusted && argv_updated_xml)
+        if (network_can_be_adjusted && argv_export_xml)
           {
-            std::string xml = IS->updated_xml();
+            std::string xml = IS->export_xml();
 
-            if (!strcmp(argv_updated_xml, "-"))
+            if (!strcmp(argv_export_xml, "-"))
               {
                 std::cout << xml;
               }
             else
               {
-                ofstream file(argv_updated_xml);
+                ofstream file(argv_export_xml);
                 file << xml;
               }
           }

@@ -304,7 +304,7 @@ namespace GNU_gama { namespace local
     // ...  input data with free coordinates updated after adjustment
     //      and rejected observations removed ..............................
 
-    std::string updated_xml();
+    std::string export_xml();
 
     // #####################################################################
 
