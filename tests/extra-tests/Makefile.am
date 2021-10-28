@@ -1,3 +1,5 @@
+EXTRA_DIST = gama-local-extra-tests.sh_
+
 TESTS = gama-local-extra-tests.sh
 
 SUBDIRS = input

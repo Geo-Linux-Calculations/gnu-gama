@@ -1,6 +1,74 @@
 #include <gnu_gama/local/test_linearization_visitor.h>
 #include <cmath>
 
+bool GNU_gama::local::refine_obsdh_reductions(GNU_gama::local::LocalNetwork* IS)
+{
+  bool status = false;
+  const double angular_tol = 0.0001/1e3/200*M_PI;  // 1cc/1e3 in rad.
+  const double linear_tol  = 0.001 /1e3;           // 1mm/1e3
+
+  // GNU_gama::ObservationData<GNU_gama::local::Observation>::iterator
+  auto biter = IS->OD.begin();
+  auto eiter = IS->OD.end();
+  for (auto observation=biter; observation!=eiter; observation++)
+    {
+      using GNU_gama::local::S_Distance;
+      using GNU_gama::local::Z_Angle;
+
+      if (S_Distance* slope = dynamic_cast<S_Distance*>(*observation))
+        {
+          if (slope->from_dh() == 0 && slope->to_dh() == 0) continue;
+
+          auto from = IS->PD[slope->from()];
+          auto to   = IS->PD[slope->to()];
+          if (!from.test_xyz() || !to.test_xyz()) continue;
+
+          double dx = to.x() - from.x();
+          double dy = to.y() - from.y();
+          double dz = to.z() - from.z();
+
+          double S = std::sqrt(dx*dx + dy*dy + dz*dz);
+          dz += slope->to_dh() - slope->from_dh();
+          double s = std::sqrt(dx*dx + dy*dy + dz*dz);
+          double rs = S - s;
+
+          double r = slope->reduction();
+          double r_diff = std::abs(r - rs);
+          if (r_diff > linear_tol) {
+              slope->set_reduction(rs);
+              status = true;
+            }
+        }
+      else if (Z_Angle* zenit = dynamic_cast<Z_Angle*>(*observation))
+        {
+          if (zenit->from_dh() == 0 && zenit->to_dh() == 0) continue;
+
+          auto from = IS->PD[zenit->from()];
+          auto to   = IS->PD[zenit->to()];
+          if (!from.test_xyz() || !to.test_xyz()) continue;
+
+          double dx = to.x() - from.x();
+          double dy = to.y() - from.y();
+          double dz = to.z() - from.z();
+
+          double horizontal_dist = std::sqrt(dx*dx + dy*dy);
+          double Z = std::atan2(horizontal_dist, dz);
+          dz += zenit->to_dh() - zenit->from_dh();
+          double z = std::atan2(horizontal_dist, dz);
+          double rz = Z - z;
+
+          double r = zenit->reduction();
+          double r_diff = std::abs(r - rz);
+          if (r_diff > angular_tol) {
+              zenit->set_reduction(rz);
+              status = true;
+            }
+        }
+    }
+
+  return status;
+}
+
 void GNU_gama::local::TestLinearizationVisitor::visit(Distance* obs)
 {
   double ds, dd;

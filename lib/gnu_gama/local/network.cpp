@@ -36,6 +36,7 @@
 
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/local/local_linearization.h>
+#include <gnu_gama/local/test_linearization_visitor.h>
 #include <gnu_gama/local/itstream.h>
 #include <gnu_gama/local/skipcomm.h>
 #include <gnu_gama/statan.h>
@@ -332,6 +333,23 @@ void LocalNetwork::set_max_linearization_iterations(int value)
 {
   if (value < 0) value = 0;
   max_linearization_iterations_ = value;
+}
+
+
+bool LocalNetwork::refine_adjustment()
+{
+  clear_linearization_iterations();
+  while (next_linearization_iterations())
+    {
+      bool refine = refine_obsdh_reductions(this);
+      if (!refine) refine = TestLinearization(this);
+      if (!refine) break;
+
+      increment_linearization_iterations();
+      refine_approx_coordinates();
+    }
+
+  return linearization_iterations() > 0;
 }
 
 
@@ -1039,7 +1057,7 @@ void LocalNetwork::std_error_ellipse(const PointID& cb,
 // 1.7.09 added optional update of constrained coordinates; inspired
 // by adjustment of photographic observation by Jim Sutherland
 
-void LocalNetwork::refine_approx()
+void LocalNetwork::refine_approx_coordinates()
 {
   const Vec& x = least_squares->unknowns();
 

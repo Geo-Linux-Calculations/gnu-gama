@@ -193,12 +193,13 @@ GNU_gama::local::LocalNetwork* getNet(int alg, const char* file)
       lnet->solve();
       if (lnet->huge_abs_terms()) lnet->remove_huge_abs_terms();
 
-      int iteration = 0;
+      /*int iteration = 0;
       do
         {
-          if (++iteration > 1) lnet->refine_approx();
+          if (++iteration > 1) lnet->refine_approx_coordinates();
         }
-      while (GNU_gama::local::TestLinearization(lnet) && iteration < 5);
+      while (GNU_gama::local::TestLinearization(lnet) && iteration < 5);*/
+      lnet->refine_adjustment();
 
   return lnet;
 }

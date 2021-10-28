@@ -5,8 +5,6 @@ set(INPUT_FILES
     gama-local
     zoltan-test_2d_dms
     zoltan-test_2d_gon
-    zoltan-test_3d_dms
-    zoltan-test_3d_gon
     tetrahedron
     tst-tetrahedron-1
     tst-tetrahedron-2
@@ -119,7 +117,6 @@ set(EQUIVALENTS_TESTS
     # CMake is weird with 2D arrays, so we apply this hack
     # format: <test_name>;<input_a>;<input_b>
     zoltan_2d:zoltan-test_2d_dms:zoltan-test_2d_gon
-    zoltan_3d:zoltan-test_3d_dms:zoltan-test_3d_gon
     scale:scale-cov-gon:scale-cov-dms
     fixed:fixed-constrained:fixed-azimuth
     gama-local:gama-local:gama-local-deprecated

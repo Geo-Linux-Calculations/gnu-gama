@@ -9,9 +9,9 @@ a=zoltan-test_2d_dms; b=zoltan-test_2d_gon
 src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                       $b @GAMA_INPUT@/$b.gkf
 
-a=zoltan-test_3d_dms; b=zoltan-test_3d_gon
-src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
-                      $b @GAMA_INPUT@/$b.gkf
+# a=zoltan-test_3d_dms; b=zoltan-test_3d_gon
+# src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+#                       $b @GAMA_INPUT@/$b.gkf
 
 a=scale-cov-gon; b=scale-cov-dms
 src/check_equivalents $a @GAMA_INPUT@/$a.gkf \

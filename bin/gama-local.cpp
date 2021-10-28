@@ -461,7 +461,7 @@ int main(int argc, char **argv)
            << "-" << IS->algorithm()
            << " / " << GNU_gama::GNU_gama_compiler() << "\n"
            << underline(T_GaMa_Adjustment_of_geodetic_network, '*') << "\n"
-           << "http://www.gnu.org/software/gama/\n\n\n";
+           << "http://www.gnu.org/software/gama/\n\n";
     }
 
     if (IS->PD.empty())
@@ -568,15 +568,10 @@ int main(int argc, char **argv)
 
         if (network_can_be_adjusted)
           {
-            IS->clear_linearization_iterations();
-            while (IS->next_linearization_iterations() &&
-                   TestLinearization(IS))
-              {
-                IS->increment_linearization_iterations();
-                IS->refine_approx();
-              }
+            // update dh reductions and approximate coordinates if needed
+            bool refined = IS->refine_adjustment();
 
-            if (IS->linearization_iterations() > 0)
+            if (refined)
               {
                 cout << T_GaMa_Approximate_coordinates_replaced << "\n"
                      << underline(T_GaMa_Approximate_coordinates_replaced,'*')

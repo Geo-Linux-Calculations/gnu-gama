@@ -201,7 +201,7 @@ namespace GNU_gama { namespace local
     double cond();
     bool lindep(int i);
 
-    void refine_approx();
+    void refine_approx_coordinates();
 
     void   apriori_m_0(double m)  { m_0_apr_ = m; }
     void   tol_abs(double m)      { tol_abs_ = m; }
@@ -301,8 +301,7 @@ namespace GNU_gama { namespace local
     int  increment_linearization_iterations() { return ++iterations_; }
     bool next_linearization_iterations() const { return iterations_ < max_linearization_iterations_;}
 
-    // ...  input data with free coordinates updated after adjustment
-    //      and rejected observations removed ..............................
+    bool refine_adjustment();
 
     std::string export_xml();
 

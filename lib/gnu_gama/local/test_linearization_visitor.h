@@ -44,6 +44,9 @@
 namespace GNU_gama { namespace local {
 
 
+bool refine_obsdh_reductions(GNU_gama::local::LocalNetwork* IS);
+
+
 class TestLinearizationVisitor : public AllObservationsVisitor
 {
 private:

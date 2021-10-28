@@ -56,11 +56,12 @@ TESTS = $(TESTA) $(TESTB) $(TESTC) $(TESTD) $(TESTE) $(TESTF)
 
 SUBDIRS = src input
 
+# Removed in 2.16 zoltan-test_3d_dms
+#		  zoltan-test_3d_gon
+#
 INPUT_FILES = gama-local \
               zoltan-test_2d_dms \
               zoltan-test_2d_gon \
-              zoltan-test_3d_dms \
-              zoltan-test_3d_gon \
               fixed-azimuth \
               azimuth-angle \
               azimuth-azimuth \
@@ -84,10 +85,11 @@ BUG_FILES =   tst-tetrahedron-1 \
               bug-2019-08-13-traverse-knin_male \
               bug-2019-08-20-knin_test
 
+# Removed in 2.16 zoltan-test_3d_dms
+#
 YAML_FILES =  geodet-pc-123 geodet-pc-218 \
               jezerka-ang   jezerka-dir \
               zoltan-test_2d_gon \
-              zoltan-test_3d_dms \
               seq-dsuloha-d \
               mikhail-7.4 \
               mikhail-7.4-cov \
