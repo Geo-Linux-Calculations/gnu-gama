@@ -4,7 +4,7 @@
 bool GNU_gama::local::refine_obsdh_reductions(GNU_gama::local::LocalNetwork* IS)
 {
   bool status = false;
-  const double angular_tol = 0.0001/1e3/200*M_PI;  // 1cc/1e3 in rad.
+  const double angular_tol = 0.0001/10/200*M_PI;   // 0.1cc in rad.
   const double linear_tol  = 0.001 /1e3;           // 1mm/1e3
 
   // GNU_gama::ObservationData<GNU_gama::local::Observation>::iterator

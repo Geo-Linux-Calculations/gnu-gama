@@ -48,7 +48,6 @@
 using namespace std;
 using namespace GNU_gama::local;
 
-
 typedef std::list<GNU_gama::Cluster<Observation>*> ClusterList;
 typedef GNU_gama::Cluster<Observation>             Cluster_;  // 1.10
 
@@ -1353,7 +1352,7 @@ std::string LocalNetwork::export_xml()
 
   xml += " angles=";
   xml += PD.left_handed_angles() ? "\"left-handed\"" : "\"right-handed\"";
-  if (has_epoch()) xml += " epoch=\"" + std::to_string(epoch()) + "\"";
+  if (has_epoch()) xml += " epoch=\"" + to_xmlstr(epoch()) + "\"";
   xml += ">\n";
 
 
@@ -1361,26 +1360,30 @@ std::string LocalNetwork::export_xml()
     xml += "\n<description>" + description + "</description>\n";
 
   xml += "\n<parameters\n";
-  xml += "  sigma-apr=\"" + std::to_string(apriori_m_0()) + "\"\n";
-  xml += "  conf-pr=\""   + std::to_string(conf_pr())     + "\"\n";
-  xml += "  tol-abs=\""   + std::to_string(tol_abs())     + "\"\n";
+  xml += "  sigma-apr=\"" + to_xmlstr(apriori_m_0()) + "\"\n";
+  xml += "  conf-pr=\""   + to_xmlstr(conf_pr())     + "\"\n";
+  xml += "  tol-abs=\""   + to_xmlstr(tol_abs())     + "\"\n";
   xml += "  sigma-act=\"";
   xml +=         m_0_apriori() ? "apriori\"\n" : "aposteriori\"\n";
   xml += "  angles=\"" + std::string(gons() ? "400" : "360") + "\"\n";
   if (has_algorithm()) xml += "  algorithm=\"" + algorithm() + "\"\n";
   if (has_latitude())
-    xml += "  latitude=\"" + std::to_string(latitude()) + "\"\n";
+    xml += "  latitude=\"" + to_xmlstr(latitude()) + "\"\n";
   if (has_ellipsoid()) xml += "  ellipsoid=\"" + ellipsoid() + "\"\n";
-  xml += "  cov-band=\"" + std::to_string(adj_covband()) + "\"\n";
+  xml += "  cov-band=\"" + to_xmlstr(adj_covband()) + "\"\n";
   // iterations ... not implemented in XML input
   // language .....
   // encoding .....
   xml += "/>\n";
 
 
-  xml += "\n<points-observations";
+  xml += "\n<points-observations \n";
   // implicit parameters
-  xml += ">\n\n";
+  // xml += "   distance-stdev=  '5.0' \n";
+  // xml += "   direction-stdev= '10.0' \n";
+  // xml += "   angle-stdev=     '10.0' \n";
+  // xml += "   azimuth-stdev=   '10.0' \n";
+  xml += "   >\n\n";
 
 
   for (auto p=PD.begin(); p!=PD.end(); ++p)
@@ -1392,12 +1395,12 @@ std::string LocalNetwork::export_xml()
       xml += "<point id=\"" + id.str() + "\"";
 
       if (point.test_xy()) {
-        xml += " x=\"" + std::to_string(point.x()) + "\"";
-        xml += " y=\"" + std::to_string(point.y()) + "\"";
+        xml += " x=\"" + to_xmlstr(point.x(), 16) + "\"";
+        xml += " y=\"" + to_xmlstr(y_sign()*point.y(), 16) + "\"";
       }
 
       if (point.test_z()) {
-          xml += " z=\"" + std::to_string(point.z()) + "\"";
+          xml += " z=\"" + to_xmlstr(point.z()) + "\"";
       }
 
       std::string fix {}, adj {};
@@ -1421,7 +1424,13 @@ std::string LocalNetwork::export_xml()
   for (auto c=OD.clusters.begin(); c!=OD.clusters.end(); ++c) {
     if (auto cluster = dynamic_cast<StandPoint*>(*c))
       {
-        xml += "\n<obs from=\"" + cluster->station.str() + "\">\n";
+        auto cluster_from = cluster->station.str();
+        xml += "\n<obs";
+        if (!cluster_from.empty())
+          {
+            xml += " from=\"" + cluster->station.str() + "\"";
+          }
+        xml += ">\n";
 
         for (auto p  = cluster->observation_list.begin();
                   p != cluster->observation_list.end(); ++p) {
@@ -1429,13 +1438,18 @@ std::string LocalNetwork::export_xml()
           obs->accept(&info);
 
           xml += "<" +  info.xml_name;
+          if (!info.str_from.empty()) {
+              if (cluster_from != info.str_from) {
+                  xml += " from=\"" + info.str_from + "\"";
+                }
+            }
           if (!info.str_to.empty()) {
             xml += " to=\"" + info.str_to + "\"";
             double fdh = obs->from_dh();
             double tdh = obs->to_dh();
             if (info.xml_name != "s-distance") fdh = tdh = 0;
-            if (fdh) xml += " from_dh=\"" + std::to_string(fdh) + "\"";
-            if (tdh) xml +=   " to_dh=\"" + std::to_string(tdh) + "\"";
+            if (fdh) xml += " from_dh=\"" + to_xmlstr(fdh) + "\"";
+            if (tdh) xml +=   " to_dh=\"" + to_xmlstr(tdh) + "\"";
           }
           else if (!info.str_bs.empty()) {
             xml += " bs=\"" + info.str_bs + "\"";
@@ -1445,9 +1459,9 @@ std::string LocalNetwork::export_xml()
             double rdh = a->from_dh();
             double bdh = a->bs_dh();
             double fdh = a->fs_dh();
-            if (rdh) xml += " from_dh=\"" + std::to_string(rdh) + "\"";
-            if (bdh) xml +=   " bs_dh=\"" + std::to_string(bdh) + "\"";
-            if (fdh) xml +=   " fs_dh=\"" + std::to_string(fdh) + "\"";
+            if (rdh) xml += " from_dh=\"" + to_xmlstr(rdh) + "\"";
+            if (bdh) xml +=   " bs_dh=\"" + to_xmlstr(bdh) + "\"";
+            if (fdh) xml +=   " fs_dh=\"" + to_xmlstr(fdh) + "\"";
           }
           xml += " val=\"" + info.str_val + "\"";
           xml += " stdev=\"" + info.str_stdev + "\"";
@@ -1473,7 +1487,7 @@ std::string LocalNetwork::export_xml()
          double dist = 0;
          if (H_Diff* p = dynamic_cast<H_Diff*>(obs)) dist = p->dist();
          if (dist > 0)
-           xml += " dist=\"" +std::to_string(dist) + "\"";
+           xml += " dist=\"" +to_xmlstr(dist) + "\"";
          else
            xml += " stdev=\"" + info.str_stdev + "\"";
          xml += "/>\n";
@@ -1496,6 +1510,7 @@ std::string LocalNetwork::export_xml()
               xml += " x=\"" + info.str_val + "\"";
               ++p;
               (*p)->accept(&info);
+
               xml += " y=\"" + info.str_val + "\"";
               auto q = p;
               ++q;
@@ -1539,8 +1554,8 @@ std::string LocalNetwork::export_xml()
 
           // double fdh = (*p)->from_dh(); ... unrealistic
           // double tdh = (*p)->to_dh();
-          // if (fdh) xml += " from_dh=\"" + std::to_string(fdh) + "\"";
-          // if (tdh) xml +=   " to_dh=\"" + std::to_string(tdh) + "\"";
+          // if (fdh) xml += " from_dh=\"" + xml_string(fdh) + "\"";
+          // if (tdh) xml +=   " to_dh=\"" + xml_string(tdh) + "\"";
           xml += " />\n";
         }
 
@@ -1569,8 +1584,8 @@ void LocalNetwork::updated_xml_covmat(std::string& xml, const CovMat& C,
   int  band = C.bandWidth();
   if (!always && band == 0) return;
 
-  xml += "\n<cov-mat dim=\"" + std::to_string(dim) + "\"";
-  xml += " band=\"" + std::to_string(band) + "\">\n";
+  xml += "\n<cov-mat dim=\"" + to_string(dim) + "\"";
+  xml += " band=\"" + to_string(band) + "\">\n";
   for (int i=1; i<=dim; i++)
     {
       std::ostringstream out;

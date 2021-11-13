@@ -96,6 +96,7 @@ int help()
     "--iterations maximum number of iterations allowed in the linearized\n"
     "             least squares algorithm (implicit value is 5)\n"
     "--export     updated input data based on adjustment results\n"
+    "--verbose    [yes | no]\n"
     "--version\n"
     "--help\n\n";
 
@@ -141,6 +142,7 @@ int main(int argc, char **argv)
     const char* argv_covband = nullptr;
     const char* argv_iterations = nullptr;
     const char* argv_export_xml = nullptr;
+    bool verbose_output { false };
 
     // handle --help and --version as special cases
     if (argc == 2 && strcmp(argv[1], "-") && strlen(argv[1]) > 2)
@@ -225,6 +227,19 @@ int main(int argc, char **argv)
         else if (!strcmp("cov-band",    name)) argv_covband = c;
         else if (!strcmp("iterations",  name)) argv_iterations = c;
         else if (!strcmp("export",      name)) argv_export_xml = c;
+        else if (!strcmp("verbose",     name))
+          {
+            std::string argverb(c ? c : "");
+            if (argverb == "yes" || argverb == "no"  )
+              {
+                verbose_output = (argverb == "yes");
+              }
+            else
+              { // implicit argument, --verbose without a value
+                verbose_output = true;
+                --i;
+              }
+          }
         else
           return help();
       }
@@ -307,6 +322,7 @@ int main(int argc, char **argv)
       }
 
     LocalNetwork* IS = new LocalNetwork;
+    if (verbose_output) IS->set_verbose();
 
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     if (argv_sqlitedb)
@@ -582,9 +598,7 @@ int main(int argc, char **argv)
 
             if (!TestLinearization(IS, cout)) cout << "\n";
 
-#ifdef DEBUG_REDUCED_OBS
-            ReducedObservations  (IS, cout);
-#endif
+            if (IS->verbose()) ReducedObservations  (IS, cout);
             NetworkDescription   (IS->description, cout);
             GeneralParameters    (IS, cout);
             FixedPoints          (IS, cout);

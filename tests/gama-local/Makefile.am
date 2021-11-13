@@ -72,18 +72,25 @@ INPUT_FILES = gama-local \
               triangle-2 \
               stroner-levelling-a \
               stroner-levelling-b \
+              local_3d \
               extern-azimuth-distance \
               extern-seq-dsuloha-d
 
-BUG_FILES =   tst-tetrahedron-1 \
-              tst-tetrahedron-2 \
-              tst-tetrahedron-3-deg \
-              tst-tetrahedron-3-gon \
-              krasovsky-1926 \
-              extern-tst-tetrahedron-3-gon \
-              bug-2019-08-06-integer-coordinates \
-              bug-2019-08-13-traverse-knin_male \
-              bug-2019-08-20-knin_test
+
+BUG_FILES =   bug/tst-tetrahedron-1 \
+              bug/tst-tetrahedron-2 \
+              bug/tst-tetrahedron-3-deg \
+              bug/tst-tetrahedron-3-gon \
+              bug/krasovsky-1926 \
+              bug/extern-tst-tetrahedron-3-gon \
+              bug/2019-08-06-integer-coordinates \
+              bug/2019-08-13-traverse-knin_male \
+              bug/2019-08-20-knin_test
+
+
+CTU_FILES =   ctu/2020-barta-phase_0-1TK ctu/2020-barta-phase_0-2TK \
+              ctu/2020-barta-phase_1-1TK ctu/2020-barta-phase_1-2TK
+
 
 # Removed in 2.16 zoltan-test_3d_dms
 #
@@ -102,15 +109,18 @@ GAMA_INPUT   = $(srcdir)/input
 GAMA_RESULTS = results/$(PACKAGE_VERSION)
 GAMA_OTHERS  = Makefile $(GAMA_RESULTS)
 
-do_subst = sed -e 's,[@]top_builddir[@],$(top_builddir),g' \
-	               -e 's,[@]top_srcdir[@],$(top_srcdir),g' \
-	               -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
-	               -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
-	               -e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g' \
-	               -e 's,[@]GAMA_RESULTS[@],$(GAMA_RESULTS),g' \
-	               -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g' \
-	               -e 's,[@]BUG_FILES[@],$(BUG_FILES),g' \
-	               -e 's,[@]YAML_FILES[@],$(YAML_FILES),g'
+do_subst = sed \
+-e 's,[@]top_builddir[@],$(top_builddir),g' \
+-e 's,[@]top_srcdir[@],$(top_srcdir),g' \
+-e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
+-e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
+-e 's,[@]GAMA_INPUT[@],$(GAMA_INPUT),g' \
+-e 's,[@]GAMA_RESULTS[@],$(GAMA_RESULTS),g' \
+-e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g' \
+-e 's,[@]BUG_FILES[@],$(BUG_FILES),g' \
+-e 's,[@]CTU_FILES[@],$(CTU_FILES),g' \
+-e 's,[@]YAML_FILES[@],$(YAML_FILES),g' \
+-e 's,[@]GNU_GAMA_LOCAL_TEST_XMLLINT[@],$(GNU_GAMA_LOCAL_TEST_XMLLINT),g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check

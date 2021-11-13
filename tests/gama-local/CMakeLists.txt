@@ -6,31 +6,33 @@ set(INPUT_FILES
     zoltan-test_2d_dms
     zoltan-test_2d_gon
     tetrahedron
-    tst-tetrahedron-1
-    tst-tetrahedron-2
-    tst-tetrahedron-3-deg
-    tst-tetrahedron-3-gon
     fixed-azimuth
     azimuth-angle
     azimuth-azimuth
     azimuth-distance
     jezerka-ang
     jezerka-dir
-    krasovsky-1926
     triangle-1
     triangle-2
     stroner-levelling-a
     stroner-levelling-b
     extern-azimuth-distance
-    extern-tst-tetrahedron-3-gon
     extern-seq-dsuloha-d
-    bug-2019-08-06-integer-coordinates
-    bug-2019-08-13-traverse-knin_male
-    bug-2019-08-20-knin_test
+
+    bug/tst-tetrahedron-1
+    bug/tst-tetrahedron-2
+    bug/tst-tetrahedron-3-deg
+    bug/tst-tetrahedron-3-gon
+    bug/krasovsky-1926
+    bug/extern-tst-tetrahedron-3-gon
+    bug/2019-08-06-integer-coordinates
+    bug/2019-08-13-traverse-knin_male
+    bug/2019-08-20-knin_test
   )
 
 set(RESULT_DIR ${CMAKE_BINARY_DIR}/tests/gama-local/results/${PROJECT_VERSION})
 file(MAKE_DIRECTORY ${RESULT_DIR})
+file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-adjustment/bug)
 
 
 # ------------------------------------------------------------------------
@@ -85,6 +87,7 @@ endforeach(test)
 #
 # check_xml_xml
 #
+
 add_executable(check_xml_xml src/check_xml_xml.cpp
   src/compare_xml_adjustment.h src/compare_xml_adjustment.cpp
   $<TARGET_OBJECTS:libgama>)
@@ -121,7 +124,7 @@ set(EQUIVALENTS_TESTS
     fixed:fixed-constrained:fixed-azimuth
     gama-local:gama-local:gama-local-deprecated
     stroner:stroner-levelling-a:stroner-levelling-b
-    tetrahedron:tst-tetrahedron-3-gon:extern-tst-tetrahedron-3-gon
+    tetrahedron:bug/tst-tetrahedron-3-gon:bug/extern-tst-tetrahedron-3-gon
     azimuth:azimuth-distance:extern-azimuth-distance
 )
 
@@ -288,3 +291,33 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
   endforeach(test)
 
 endif()
+
+# check_export
+#
+
+file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-export)
+file(MAKE_DIRECTORY ${RESULT_DIR}/gama-local-export/bug)
+
+foreach(test ${INPUT_FILES})
+  add_test(NAME 1st_gama_local_export_${test}
+    COMMAND  ${GAMA_LOCAL} ${INPUT_DIR}/${test}.gkf
+      --xml    ${RESULT_DIR}/gama-local-export/${test}-1.xml
+      --export ${RESULT_DIR}/gama-local-export/${test}-1.gkf
+    )
+endforeach(test)
+
+foreach(test ${INPUT_FILES})
+  add_test(NAME 2nd_gama_local_export_${test}
+    COMMAND  ${GAMA_LOCAL}
+       ${RESULT_DIR}/gama-local-export/${test}-1.gkf
+       --xml ${RESULT_DIR}/gama-local-export/${test}-2.xml
+    )
+endforeach(test)
+
+foreach(test ${INPUT_FILES})
+  add_test(NAME gama_local_export_${test}
+    COMMAND check_xml_xml  xml_xml_${test}
+    ${RESULT_DIR}/gama-local-export/${test}-1.xml
+    ${RESULT_DIR}/gama-local-export/${test}-2.xml
+    )
+endforeach(test)

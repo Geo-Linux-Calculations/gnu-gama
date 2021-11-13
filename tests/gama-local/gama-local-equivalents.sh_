@@ -29,14 +29,14 @@ a=stroner-levelling-a; b=stroner-levelling-b
 src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                       $b @GAMA_INPUT@/$b.gkf
 
-a=tst-tetrahedron-3-gon; b=extern-tst-tetrahedron-3-gon
-src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
-                      $b @GAMA_INPUT@/$b.gkf
-
 a=azimuth-distance; b=extern-azimuth-distance
 src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                       $b @GAMA_INPUT@/$b.gkf
 
 a=jezerka-dir; b=jezerka-ang
+src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
+                      $b @GAMA_INPUT@/$b.gkf
+
+a=bug/tst-tetrahedron-3-gon; b=bug/extern-tst-tetrahedron-3-gon
 src/check_equivalents $a @GAMA_INPUT@/$a.gkf \
                       $b @GAMA_INPUT@/$b.gkf

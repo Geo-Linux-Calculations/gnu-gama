@@ -1,4 +1,3 @@
-#ifdef DEBUG_REDUCED_OBS
 /*
   GNU Gama -- adjustment of geodetic networks
   Copyright (C) 2021  Ales Cepek <cepek@gnu.org>
@@ -100,7 +99,7 @@ void ReducedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
            out << Utf8::leftPad(cs.str(), IS->maxw_id());
         else
            out << " ";
-        out << " ";
+        // out << " ";
         PointID cc = pm->to();
         out << Utf8::leftPad(cc.str(), IS->maxw_id()) << " ";
         out.setf(ios_base::fixed, ios_base::floatfield);
@@ -146,5 +145,4 @@ void ReducedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 }
 
 }}
-#endif
 #endif

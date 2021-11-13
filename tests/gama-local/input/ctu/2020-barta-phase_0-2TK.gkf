@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Ales Barta,
+Geodetic measurement of the displacement of metro tunnels
+on route B in Krizikova station,
+https://dspace.cvut.cz/handle/10467/88808
+
+Appendix A.2
+Free network configuration, phase 0, tunnel 2
+(Konfigurace volne site na 2TK v zakladni etape)
+</description>
+
+<parameters
+    sigma-apr="1.00"
+    conf-pr="0.95"
+    tol-abs="1000"
+    sigma-act="apriori"
+/>
+
+<points-observations
+    distance-stdev="1.0"
+    direction-stdev="3.0"
+    zenith-angle-stdev="3.0">
+
+<point id= "4901" x="2006.68098" y="10000.25953" z="200.05200" adj="XYZ" />
+<point id= "4902" x="2000.00000" y="10000.00000" z="200.00000" adj="XYZ" />
+<point id= "11" x="2019.37072" y="9998.22546" z="199.65400" adj="XYZ" />
+<point id= "12" x="2019.09008" y="9998.84642" z="202.34600" adj="XYZ" />
+<point id= "13" x="2019.03089" y="10000.70623" z="203.05200" adj="XYZ" />
+<point id= "14" x="2018.92238" y="10002.36744" z="202.29900" adj="XYZ"/>
+<point id= "15" x="2018.94091" y="10002.84143" z="199.39800" adj="XYZ" />
+<point id= "21" x="1992.07235" y="9997.13346" z="199.48900" adj="XYZ" />
+<point id= "22" x="1992.23348" y="9997.74368" z="202.11800" adj="XYZ" />
+<point id= "23" x="1992.11912" y="9999.71548" z="202.86300" adj="XYZ" />
+<point id= "24" x="1992.03607" y="10001.24955" z="202.08800" adj="XYZ" />
+<point id= "25" x="1991.88660" y="10001.82739" z="199.30400" adj="XYZ" />
+<point id= "101" x="2076.93198" y="9999.99935" z="199.95700" adj="XYZ" />
+<point id= "102" x="2076.71017" y="10001.28809" z="203.01100"   adj="XYZ" />
+<point id= "103" x="2076.52140" y="10004.07800" z="203.00200"   adj="XYZ" />
+<point id= "104" x="2076.62869" y="10004.95896" z="199.78800"   adj="XYZ" />
+<point id= "111" x="1968.66655" y="9996.25819" z="198.99000"    adj="XYZ" />
+<point id= "112" x="1968.74587" y="9997.36469" z="202.01000"    adj="XYZ" />
+<point id= "113" x="1968.70423" y="9999.87431" z="202.03400"    adj="XYZ" />
+<point id= "114" x="1968.38739" y="10000.95563" z="198.82100"   adj="XYZ" />
+
+
+<obs from="4901">
+<direction to= "11" val= "390.12392" />
+<direction to= "12" val= "393.02416" />
+<direction to= "13" val= "2.54351 " />
+<direction to= "14" val= "11.09794" />
+<direction to= "15" val= "13.45638" />
+<direction to= "21" val= "213.65332" />
+<direction to= "22" val= "211.20838" />
+<direction to= "23" val= "202.61020" />
+<direction to= "24" val= "195.93540" />
+<direction to= "25" val= "193.51067" />
+<direction to= "101" val= "0.00000" stdev="10.0" />
+<direction to= "102" val= "1.17157" />
+<direction to= "103" val= "3.71371" />
+<direction to= "104" val= "4.50829" />
+<direction to= "112" val= "205.08540" stdev="10.0" />
+<direction to= "113" val= "200.88251" stdev="10.0" />
+<direction to= "114" val= "199.07830" />
+
+<s-distance to="11" val= "12.85837" />
+<s-distance to="12" val= "12.69628" />
+<s-distance to="13" val= "12.71415" />
+<s-distance to="14" val= "12.62130" />
+<s-distance to="15" val= "12.54695" />
+<s-distance to="21" val= "14.95032" />
+<s-distance to="22" val= "14.80799" />
+<s-distance to="23" val= "14.83822" />
+<s-distance to="24" val= "14.81756" />
+<s-distance to="25" val= "14.89632" />
+<s-distance to="101" val= "70.25196" />
+<s-distance to="102" val= "70.09806" />
+<s-distance to="103" val= "70.00719" />
+<s-distance to="104" val= "70.10561" />
+<s-distance to="112" val= "38.09474" />
+<s-distance to="113" val= "38.02879" />
+<s-distance to="114" val= "38.31944" />
+<z-angle    to="11"  val="102.02714" />
+<z-angle    to="12"  val="88.49143" />
+<z-angle    to="13"  val="84.89225" />
+<z-angle    to="14"  val="88.66152" />
+
+<z-angle to="15" val= "103.37524" />
+<z-angle to="21" val= "102.44552" />
+<z-angle to="22" val= "91.13870" />
+<z-angle to="23" val= "87.91399" />
+<z-angle to="24" val= "91.27338" />
+<z-angle to="25" val= "103.2442" />
+<z-angle to="101" val= "100.09641" />
+<z-angle to="102" val= "97.32203" />
+<z-angle to="103" val= "97.32641" />
+<z-angle to="104" val= "100.24867" />
+<z-angle to="112" val= "96.74488" />
+<z-angle to="113" val= "96.69951" />
+<z-angle to="114" val= "102.06295" />
+</obs>
+
+<obs from="4902">
+<direction to= "11" val= "394.17723" />
+<direction to= "12" val= "396.15260" />
+<direction to= "13" val= "2.36282" />
+<direction to= "14" val= "7.93102" />
+<direction to= "15" val= "9.48842" />
+<direction to= "21" val= "222.04265" />
+<direction to= "22" val= "217.9616" />
+<direction to= "23" val= "202.29780" />
+<direction to= "24" val= "190.12262" />
+<direction to= "25" val= "185.93611" />
+<direction to= "101" val= "0.00000" stdev="10.0" />
+<direction to= "102" val= "1.06968" />
+<direction to= "103" val= "3.39087" />
+<direction to= "104" val= "4.11569" />
+<direction to= "111" val= "207.56419" />
+<direction to= "112" val= "205.35424" stdev="10.0" />
+<direction to= "113" val= "200.25789" stdev="10.0" />
+<direction to= "114" val= "198.07970" />
+
+<s-distance to="11" val= "19.43532" />
+<s-distance to="12" val= "19.24834" />
+<s-distance to="13" val= "19.26709" />
+<s-distance to="14" val= "19.18800" />
+<s-distance to="15" val= "19.14237" />
+<s-distance to="21" val= "8.46486" />
+<s-distance to="22" val= "8.3793" />
+<s-distance to="23" val= "8.40859" />
+<s-distance to="24" val= "8.34669" />
+<s-distance to="25" val= "8.36494" />
+<s-distance to="101" val= "76.91245" />
+<s-distance to="102" val= "76.75983" />
+<s-distance to="103" val= "76.66846" />
+<s-distance to="104" val= "76.76928" />
+<s-distance to="111" val= "31.5925" />
+<s-distance to="112" val= "31.44902" />
+<s-distance to="113" val= "31.38150" />
+<s-distance to="114" val= "31.6686" />
+
+<z-angle to= "11" val= "101.13460" />
+<z-angle to= "12" val= "92.22230" />
+
+<z-angle to="13" val= "89.87280" />
+<z-angle to="14" val= "92.35433" />
+<z-angle to="15" val= "102.00207" />
+<z-angle to="21" val= "103.84784" />
+<z-angle to="22" val= "83.73536" />
+<z-angle to="23" val= "77.88010" />
+<z-angle to="24" val= "83.90374" />
+<z-angle to="25" val= "105.30185" />
+<z-angle to="101" val= "100.03559" />
+<z-angle to="102" val= "97.50194" />
+<z-angle to="103" val= "97.50644" />
+<z-angle to="104" val= "100.17545" />
+<z-angle to="111" val= "102.03627" />
+<z-angle to="112" val= "95.92873" />
+<z-angle to="113" val= "95.87146" />
+<z-angle to="114" val= "102.36979" />
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

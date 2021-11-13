@@ -4,7 +4,7 @@
 <network axes-xy="sw" angles="left-handed">
 
 <description>
-Local 3D network
+Local 3D Network
 
 Department of Special Geodesy
 Faculty of Civil Engineering
@@ -23,11 +23,11 @@ Czech Technical University in Prague
       direction-stdev="4.0"
       zenith-angle-stdev="4.0" >
 
-<point id= "1" adj="XYZ" />
-<point id= "2" adj="XYZ" />
-<point id= "3" adj="XYZ" />
-<point id= "4" adj="XYZ" />
-<point id= "5" adj="XYZ" />
+<point id= "1" adj="xyz" />
+<point id= "2" adj="xyz" />
+<point id= "3" adj="xyz" />
+<point id= "4" adj="xyz" />
+<point id= "5" adj="xyz" />
 <point id= "141" x="-1.792" y="-2.047" z="0.113" adj="XYZ" />
 <point id= "142" x="10.264" y="-2.621" z="-0.086" adj="XYZ" />
 

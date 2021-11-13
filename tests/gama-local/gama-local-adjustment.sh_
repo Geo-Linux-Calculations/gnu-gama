@@ -3,15 +3,16 @@
 set -e
 
 RES=@GAMA_RESULTS@/gama-local-adjustment
-if [ ! -d $RES ]; then
-    mkdir -p $RES
-fi;
 
-for g in @INPUT_FILES@ @BUG_FILES@
+mkdir -p $RES $RES/bug $RES/ctu
+
+for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@
 do
+
 for a in svd gso cholesky envelope
 do
     echo  @PACKAGE_VERSION@ $g $a
+
     @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
 	--algorithm $a \
 	--text   $RES/$g-$a.txt \

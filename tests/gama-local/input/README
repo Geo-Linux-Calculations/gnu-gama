@@ -1,4 +1,4 @@
 *.gkf   network configuration input data files
-*.xml   corresponding adjustment results (implicitly for GSO algorithm)
+*.xml   corresponding adjustment results
 
-xml files may by missing for some gkf file
+xml file may be missing for some gkf files

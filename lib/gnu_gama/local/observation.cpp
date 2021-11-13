@@ -18,11 +18,13 @@
   along with GNU Gama.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <cctype>
 #include <gnu_gama/local/observation.h>
 #include <gnu_gama/local/cluster.h>
 #include <gnu_gama/local/network.h>
 #include <gnu_gama/gon2deg.h>
+
+#include <cctype>
+#include <sstream>
 
 
 namespace GNU_gama { namespace local
@@ -33,6 +35,15 @@ namespace GNU_gama { namespace local
   // GNU_gama::local
 
   bool Observation::gons = true;
+
+   std::string to_xmlstr(double val, int prec)
+   {
+     // std::to_string(double) depends on locales
+     // https://en.cppreference.com/w/cpp/string/basic_string/to_string
+     std::ostringstream ostr;
+     ostr << std::setprecision(prec) << std::defaultfloat << val;
+     return ostr.str();
+   }
 }}
 
 using namespace GNU_gama::local;
@@ -112,8 +123,8 @@ void DisplayObservationVisitor::visit(Distance* obs)
   xml_name  = "distance";
   str_from  = obs->from().str();
   str_to    = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Direction* obs)
@@ -124,10 +135,10 @@ void DisplayObservationVisitor::visit(Direction* obs)
   str_to   = obs->to().str();
   double m = R2G*(obs->value());
   if (lnet->gons())
-    str_val =  std::to_string(m);
+    str_val = to_xmlstr(m, 16);
   else
-    str_val =  GNU_gama::gon2deg(m, 0, 2);
-  str_stdev = std::to_string(obs->stdDev()*scale);
+    str_val = GNU_gama::gon2deg(m, 0, 4);
+  str_stdev = to_xmlstr(obs->stdDev()*scale);
 }
 
 void DisplayObservationVisitor::visit(Angle* obs)
@@ -139,10 +150,10 @@ void DisplayObservationVisitor::visit(Angle* obs)
   str_fs   = obs->fs().str();
   double m = R2G*(obs->value());
   if (lnet->gons())
-    str_val =  std::to_string(m);
+    str_val = to_xmlstr(m, 16);
   else
-    str_val =  GNU_gama::gon2deg(m, 0, 2);
-  str_stdev = std::to_string(obs->stdDev()*scale);
+    str_val = GNU_gama::gon2deg(m, 0, 4);
+  str_stdev = to_xmlstr(obs->stdDev()*scale);
 }
 
 void DisplayObservationVisitor::visit(H_Diff* obs)
@@ -151,8 +162,8 @@ void DisplayObservationVisitor::visit(H_Diff* obs)
   xml_name = "dh";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(S_Distance* obs)
@@ -161,8 +172,8 @@ void DisplayObservationVisitor::visit(S_Distance* obs)
   xml_name = "s-distance";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Z_Angle* obs)
@@ -173,10 +184,10 @@ void DisplayObservationVisitor::visit(Z_Angle* obs)
   str_to   = obs->to().str();
   double m = R2G*(obs->value());
   if (lnet->gons())
-    str_val =  std::to_string(m);
+    str_val =  to_xmlstr(m);
   else
-    str_val =  GNU_gama::gon2deg(m, 0, 2);
-  str_stdev = std::to_string(obs->stdDev()*scale);
+    str_val = GNU_gama::gon2deg(m, 0, 4);
+  str_stdev = to_xmlstr(obs->stdDev()*scale);
 }
 
 void DisplayObservationVisitor::visit(X* obs)
@@ -184,8 +195,8 @@ void DisplayObservationVisitor::visit(X* obs)
   clear();
   xml_name = "x";
   str_from = obs->from().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Y* obs)
@@ -193,8 +204,8 @@ void DisplayObservationVisitor::visit(Y* obs)
   clear();
   xml_name = "y";
   str_from = obs->from().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Z* obs)
@@ -202,8 +213,8 @@ void DisplayObservationVisitor::visit(Z* obs)
   clear();
   xml_name = "z";
   str_from = obs->from().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Xdiff* obs)
@@ -212,8 +223,8 @@ void DisplayObservationVisitor::visit(Xdiff* obs)
   xml_name = "dx";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Ydiff* obs)
@@ -222,8 +233,8 @@ void DisplayObservationVisitor::visit(Ydiff* obs)
   xml_name = "dy";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Zdiff* obs)
@@ -232,8 +243,8 @@ void DisplayObservationVisitor::visit(Zdiff* obs)
   xml_name = "dz";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = std::to_string(obs->value());
-  str_stdev = std::to_string(obs->stdDev());
+  str_val   = to_xmlstr(obs->value(), 16);
+  str_stdev = to_xmlstr(obs->stdDev());
 }
 
 void DisplayObservationVisitor::visit(Azimuth* obs)
@@ -244,10 +255,10 @@ void DisplayObservationVisitor::visit(Azimuth* obs)
   str_to   = obs->to().str();
   double m = R2G*(obs->value());
   if (lnet->gons())
-    str_val =  std::to_string(m);
+    str_val = to_xmlstr(m, 16);
   else
-    str_val =  GNU_gama::gon2deg(m, 0, 2);
-  str_stdev = std::to_string(obs->stdDev()*scale);
+    str_val = GNU_gama::gon2deg(m, 0, 4);
+  str_stdev = to_xmlstr(obs->stdDev()*scale);
 }
 
 void DisplayObservationVisitor::clear()

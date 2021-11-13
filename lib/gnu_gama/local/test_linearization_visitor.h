@@ -279,8 +279,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
 
           out << "\n"
                << T_GaMa_tstlin_Differences
-              << "\n"
-              << underline(T_GaMa_tstlin_Differences, '*')
+              // 2.16 << "\n"
+              // 2.16 << underline(T_GaMa_tstlin_Differences, '*')
               << "\n\n";
 
           out.width(IS->maxw_obs());
@@ -374,6 +374,8 @@ TestLinearization(GNU_gama::local::LocalNetwork* IS, OutStream& out,
 
             predcs = cs;  // previous standpoint ID
           }
+
+        out << "\n\n";
       }
   }
 

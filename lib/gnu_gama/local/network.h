@@ -305,6 +305,11 @@ namespace GNU_gama { namespace local
 
     std::string export_xml();
 
+    // ... verbose output ..................................................
+
+    void set_verbose(bool val=true) { verbose_ = val; }
+    bool verbose() const { return verbose_; };
+
     // #####################################################################
 
     bool   consistent() const;
@@ -402,6 +407,8 @@ namespace GNU_gama { namespace local
 
     void change_y_signs_for_inconsistent_system_();
     bool removed_inconsistency_ {false};
+
+    bool verbose_ { false };
 
 
   };     /* class LocalNetwork */

@@ -52,6 +52,7 @@ namespace GNU_gama { namespace local {
 
   using ObservationList = std::list<Observation*>;
 
+  std::string to_xmlstr(double val, int prec=8);
 
   /** \brief Local observation base class
    *

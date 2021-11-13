@@ -2,7 +2,7 @@
 
 set -e
 
-for g in @INPUT_FILES@
+for g in @INPUT_FILES@ @CTU_FILES@
 do
 if test -f @GAMA_INPUT@/$g.xml ; then
     src/check_xml_results $g @GAMA_INPUT@/$g.gkf @GAMA_INPUT@/$g.xml
