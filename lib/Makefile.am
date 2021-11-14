@@ -22,8 +22,6 @@ libgama_src = \
    gnu_gama/radian.h \
    gnu_gama/comb.cpp \
    gnu_gama/comb.h \
-   gnu_gama/size_to.h \
-   gnu_gama/size_to.cpp \
    gnu_gama/simplified.h \
    gnu_gama/simplified.cpp \
    gnu_gama/statan.cpp \

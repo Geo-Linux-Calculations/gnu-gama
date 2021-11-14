@@ -26,7 +26,6 @@
 #include <gnu_gama/adj/adj.h>
 #include <gnu_gama/adj/envelope.h>
 #include <matvec/covmat.h>
-#include <gnu_gama/size_to.h>
 #include <set>
 
 
@@ -126,7 +125,7 @@ namespace GNU_gama {
               Index nonz = 0;
               for (Index i=1; i<=block_dim; i++, row++)
                 {
-                  nonz += size_to<Index>(mata->end(row) - mata->begin(row));
+                  nonz += /*static_cast<Index>*/(mata->end(row) - mata->begin(row));
                 }
               total_scaled_nonzeroes += nonz;
             }
@@ -142,7 +141,7 @@ namespace GNU_gama {
                       indices.insert(*n++);
                     }
                 }
-              block_cols[block_index] = size_to<Index>(indices.size());
+              block_cols[block_index] = static_cast<Index>(indices.size());
               total_scaled_nonzeroes += block_dim*indices.size();
             }
         }

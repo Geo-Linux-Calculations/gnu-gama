@@ -21,7 +21,6 @@
 #include <gnu_gama/adj/adj.h>
 #include <gnu_gama/adj/adj_input_data.h>
 #include <gnu_gama/xml/dataparser.h>
-#include <gnu_gama/size_to.h>
 #include <vector>
 #include <cstddef>
 #include <algorithm>

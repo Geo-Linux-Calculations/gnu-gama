@@ -27,7 +27,6 @@
 #include <gnu_gama/local/gamadata.h>
 #include <gnu_gama/version.h>
 #include <gnu_gama/statan.h>
-#include <gnu_gama/size_to.h>
 #include <iostream>
 
 using namespace GNU_gama::local;
@@ -351,7 +350,7 @@ void LocalNetwork2sql::write(std::ostream& ostr, std::string conf)
     {
       const int N = 1000;  // varchar('N') in gnu_gama_local_descriptions table;
       int indx = 0;
-      while (indx*N < size_to<int>(localNetwork.description.length()))
+      while (indx*N < static_cast<int>(localNetwork.description.length()))
         {
           const std::string& s = localNetwork.description.substr(indx*N, N);
           std::string description;

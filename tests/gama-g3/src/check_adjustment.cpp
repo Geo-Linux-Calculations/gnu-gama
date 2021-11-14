@@ -6,14 +6,12 @@
 #include <list>
 #include <map>
 #include <gnu_gama/xml/dataparser.h>
-#include <gnu_gama/size_to.h>
 
 using std::cerr;
 using std::cout;
 using std::endl;
 using std::string;
 using std::abs;
-using GNU_gama::size_to;
 
 namespace
 {
@@ -86,7 +84,7 @@ int main(int argc, char* argv[])
 
       GNU_gama::DataParser parser(objects);
       try {
-        parser.xml_parse(text.c_str(), size_to<int>(text.length()), 0);
+        parser.xml_parse(text.c_str(), static_cast<int>(text.length()), 0);
         parser.xml_parse("", 0, 1);
       }
       catch(const GNU_gama::Exception::parser& p)

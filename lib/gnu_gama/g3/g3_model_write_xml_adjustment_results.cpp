@@ -308,7 +308,7 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::scientific,
                                                   std::ios_base::floatfield);
-  const int prec = size_to<int>(out.precision(7));
+  const int prec = static_cast<int>(out.precision(7));
   const int width = 14;
 
   out << "\n";
@@ -355,7 +355,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Distance* d, int index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const int prec  = size_to<int>(out.precision(5));
+  const int prec  = static_cast<int>(out.precision(5));
   //const int width = 13;
 
   double rd = adj->r()(index)/Linear().scale();
@@ -388,7 +388,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Vector* v, int index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const int prec  = size_to<int>(out.precision(5));
+  const int prec  = static_cast<int>(out.precision(5));
   const int width = 13;
 
   double rdx = adj->r()(index)/Linear().scale();
@@ -446,7 +446,7 @@ void Model::write_xml_adjusted(std::ostream& out, const Height* h, int index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const int prec  = size_to<int>(out.precision(5));
+  const int prec  = static_cast<int>(out.precision(5));
   const int width = 13;
 
   double rdh = adj->r()(index)/Linear().scale();
@@ -478,7 +478,7 @@ void Model::write_xml_adjusted(std::ostream& out, const HeightDiff* hd, int inde
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const int prec  = size_to<int>(out.precision(5));
+  const int prec  = static_cast<int>(out.precision(5));
   const int width = 13;
 
  double rdhd = adj->r()(index)/Linear().scale();
@@ -510,7 +510,7 @@ void Model::write_xml_adjusted(std::ostream& out, const XYZ* xyz, int index)
 
   const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
                                                   std::ios_base::floatfield);
-  const int prec  = size_to<int>(out.precision(5));
+  const int prec  = static_cast<int>(out.precision(5));
   const int width = 14;
 
   double rx = adj->r()(index)/Linear().scale();

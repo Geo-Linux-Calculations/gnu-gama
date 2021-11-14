@@ -33,8 +33,6 @@ set(SRC_GAMA
    lib/gnu_gama/radian.h
    lib/gnu_gama/comb.cpp
    lib/gnu_gama/comb.h
-   lib/gnu_gama/size_to.h
-   lib/gnu_gama/size_to.cpp
    lib/gnu_gama/simplified.h
    lib/gnu_gama/simplified.cpp
    lib/gnu_gama/statan.cpp

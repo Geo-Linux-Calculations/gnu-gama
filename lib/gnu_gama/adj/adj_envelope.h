@@ -125,7 +125,7 @@ namespace GNU_gama {
 
     indbuf.erase();
     qxxbuf.resize(indbuf.size());
-    for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
+    for (Index i=0; i<static_cast<Index>(qxxbuf.size()); i++)
       qxxbuf[i].reset();
 
     set_stage(stage_init);
@@ -240,7 +240,7 @@ namespace GNU_gama {
     if (nullity)
       {
         qxxbuf.resize(indbuf.size());
-        for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
+        for (Index i=0; i<static_cast<Index>(qxxbuf.size()); i++)
           qxxbuf[i].reset(parameters);
       }
 
@@ -385,7 +385,7 @@ namespace GNU_gama {
     if (qxxbuf[0].dim() != parameters)
       {
         qxxbuf.resize(indbuf.size());
-        for (Index i=0; i<size_to<Index>(qxxbuf.size()); i++)
+        for (Index i=0; i<static_cast<Index>(qxxbuf.size()); i++)
           qxxbuf[i].reset(parameters);
       }
 
