@@ -24,6 +24,7 @@
 #include <string>
 #include <stack>
 #include <sstream>
+#include <memory>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 #include <gnu_gama/intfloat.h>
 #include <gnu_gama/xml/htmlparser.h>
@@ -108,13 +109,15 @@ void LocalNetworkAdjustmentResults::read_xml(std::istream& xml)
 {
   string text;
 
-  Parser p(this);
+  /* Parser p(this);   ... changed in 2.16 */
+  std::unique_ptr<Parser> p = std::make_unique<Parser>(this);
+
   while (getline(xml, text))
     {
-      p.xml_parse(text.c_str(), text.length(), 0);
-      p.xml_parse("\n", 1, 0);
+      p->xml_parse(text.c_str(), static_cast<int>(text.length()), 0);
+      p->xml_parse("\n", 1, 0);
     }
-  p.xml_parse("", 0, 1);
+  p->xml_parse("", 0, 1);
 }
 
 
@@ -147,7 +150,7 @@ void LocalNetworkAdjustmentResults::read_html(std::istream& html)
               }
             text += line[i];
           }
-        parser.xml_parse(text.c_str(), text.length(), 0);
+        parser.xml_parse(text.c_str(), static_cast<int>(text.length()), 0);
      }
     parser.xml_parse("", 0, 1);
   }
@@ -444,6 +447,7 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       break;
     case 'y':
       if (!strcmp(c, "y"                         )) return t_y;
+      break;
     case 'z':
       if (!strcmp(c, "z"                         )) return t_z;
       if (!strcmp(c, "z-angles"                  )) return t_z_angles;

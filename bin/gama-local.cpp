@@ -109,12 +109,10 @@ int help()
 
   return 0;
 }
-
-GNU_gama::local::XMLerror xmlerr;
-
 }  // unnamed namespace
 
 
+GNU_gama::local::XMLerror xmlerr;
 
 int main(int argc, char **argv)
   try {
@@ -188,6 +186,8 @@ int main(int argc, char **argv)
 
     for (int i=indopt; i<argc; i++)
       {
+        if (argv[i] == nullptr) break;  // this should never happen
+
         c = argv[i];
         if (argv_1 == nullptr && !strcmp(argv[i], "-"))
           {
