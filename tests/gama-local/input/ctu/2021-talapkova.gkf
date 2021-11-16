@@ -1,0 +1,546 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Monika Talapkova,
+Measurement of geometric position of the rail,
+https://dspace.cvut.cz/handle/10467/95897
+</description>
+
+<parameters sigma-apr="1.00"
+            conf-pr="0.95"
+            tol-abs="1000"
+            sigma-act="apriori" />
+
+<points-observations distance-stdev="3.0" direction-stdev="25">
+
+<point id="1" x="977974.2511" y="784971.9817" adj="XY"/>
+<point id="2" x="977992.9287" y="785031.0715" adj="XY"/>
+<point id="3" x="978011.2698" y="785089.3702" adj="XY"/>
+<point id="5" x="977724.8271" y="784152.6445" adj="XY"/>
+<point id="7" x="977743.4764" y="784211.5312" adj="XY"/>
+<point id="9" x="977759.3371" y="784266.2293" adj="XY"/>
+<point id="13" x="977789.6163" y="784382.2485" adj="XY"/>
+<point id="15" x="977805.9992" y="784438.1192" adj="XY"/>
+<point id="17" x="977824.3325" y="784496.4617" adj="XY"/>
+<point id="21" x="977856.8764" y="784599.5398" adj="XY"/>
+<point id="23" x="977873.8684" y="784653.2710" adj="XY"/>
+<point id="26" x="977886.8435" y="784694.5207" adj="XY"/>
+<point id="29" x="977919.6906" y="784796.5203" adj="XY"/>
+<point id="30" x="977937.5542" y="784855.0582" adj="XY"/>
+
+<point id="1001" x="978082.2874" y="785325.3691" adj="XY"/>
+<point id="1002" x="978068.3448" y="785285.7708" adj="XY"/>
+<point id="1003" x="978054.0501" y="785235.8522" adj="XY"/>
+<point id="1004" x="978036.1808" y="785178.9767" adj="XY"/>
+<point id="1005" x="978012.9252" y="785126.1512" adj="XY"/>
+<point id="1006" x="977995.6456" y="785064.0051" adj="XY"/>
+<point id="1007" x="977974.9508" y="785004.0296" adj="XY"/>
+<point id="1008" x="977949.2203" y="784941.2198" adj="XY"/>
+<point id="1009" x="977930.5400" y="784881.6618" adj="XY"/>
+<point id="1010" x="977915.6450" y="784830.7779" adj="XY"/>
+<point id="1012" x="977898.0130" y="784775.0751" adj="XY"/>
+<point id="1013" x="977881.8596" y="784723.7929" adj="XY"/>
+<point id="1014" x="977874.4433" y="784678.2689" adj="XY"/>
+<point id="1015" x="977860.0301" y="784638.6807" adj="XY"/>
+<point id="1016" x="977846.3849" y="784577.3441" adj="XY"/>
+<point id="1017" x="977830.5983" y="784526.7365" adj="XY"/>
+<point id="1018" x="977818.0212" y="784478.1546" adj="XY"/>
+<point id="1019" x="977796.9612" y="784411.2746" adj="XY"/>
+<point id="1020" x="977783.0833" y="784350.8567" adj="XY"/>
+<point id="1021" x="977763.0269" y="784295.3441" adj="XY"/>
+<point id="1022" x="977748.1933" y="784236.2390" adj="XY"/>
+<point id="1023" x="977731.2750" y="784186.0841" adj="XY"/>
+<point id="1024" x="977712.2551" y="784128.0372" adj="XY"/>
+<point id="1025" x="977694.0307" y="784072.2591" adj="XY"/>
+<point id="1026" x="977677.4704" y="784011.2238" adj="XY"/>
+
+<point id="90" x="978111.8060" y="785369.4040" fix="XY"/>
+<point id="88" x="978096.9070" y="785345.1110" fix="XY"/>
+<point id="80" x="978092.9460" y="785338.0760" fix="XY"/>
+<point id="70" x="978076.0140" y="785303.6030" fix="XY"/>
+<point id="60" x="978062.7300" y="785270.9620" fix="XY"/>
+<point id="50" x="978048.6080" y="785208.1480" fix="XY"/>
+<point id="300" x="977688.1010" y="784039.7050" fix="XY"/>
+<point id="200" x="977669.2510" y="783980.2250" fix="XY"/>
+
+<point id="4010" x="978134.0860" y="785400.1940" fix="XY"/>
+<point id="40065" x="978060.1670" y="785263.4830" fix="XY"/>
+<point id="4004" x="978029.9250" y="785148.2790" fix="XY"/>
+<point id="3031" x="977955.3370" y="784912.7210" fix="XY"/>
+<point id="3028" x="977900.6340" y="784736.1650" fix="XY"/>
+<point id="3019" x="977841.1830" y="784549.7390" fix="XY"/>
+<point id="3011" x="977775.3240" y="784327.3020" fix="XY"/>
+<point id="3004" x="977707.6010" y="784100.2510" fix="XY"/>
+<point id="3001" x="977650.0890" y="783921.4620" fix="XY"/>
+
+<obs from="1001">
+<direction to="4010" val="83.08618"/>
+<direction to="40065" val="299.77719"/>
+<direction to="90" val="84.03696"/>
+<direction to="88" val="81.05323"/>
+<direction to="80" val="77.19498"/>
+<direction to="70" val="303.77262"/>
+<direction to="50" val="303.82076"/>
+<direction to="60" val="299.66634"/>
+
+<distance to="4010" val="91.0075"/>
+<distance to="40065" val="65.7237"/>
+<distance to="90" val="53.0153"/>
+<distance to="88" val="24.5683"/>
+<distance to="80" val="16.5874"/>
+<distance to="70" val="22.6542"/>
+<distance to="50" val="121.9665"/>
+<distance to="60" val="57.8172"/>
+
+
+</obs>
+
+<obs from="1002">
+<direction to="4004" val="162.72880" stdev="30.0"/>
+<direction to="40065" val="157.66850" stdev="30.0"/>
+<direction to="90" val="349.56017"/>
+<direction to="88" val="351.51406"/>
+<direction to="80" val="352.08259"/>
+<direction to="50" val="164.22029"/>
+<direction to="70" val="354.22086"/>
+<direction to="60" val="156.99364" stdev="30.0"/>
+
+<distance to="4004" val="142.7585"/>
+<distance to="40065" val="23.7434"/>
+<distance to="90" val="94.2512"/>
+<distance to="88" val="65.8564"/>
+<distance to="80" val="57.8048"/>
+<distance to="50" val="80.0944"/>
+<distance to="70" val="19.4145"/>
+<distance to="60" val="15.8394"/>
+
+</obs>
+
+<obs from="1003">
+<direction to="40065" val="55.00726"/>
+<direction to="4004" val="251.76315"/>
+<direction to="50" val="256.52285"/>
+<direction to="60" val="53.44120" stdev="30.0"/>
+<direction to="70" val="48.91871"/>
+<direction to="3" val="250.78546"/>
+<direction to="80" val="45.73025"/>
+<direction to="88" val="45.07971"/>
+<direction to="90" val="42.88902"/>
+
+<distance to="40065" val="28.3049"/>
+<distance to="4004" val="90.8382"/>
+<distance to="50" val="28.2390" stdev="3.5"/>
+<distance to="60" val="36.1706"/>
+<distance to="70" val="71.2240"/>
+<distance to="3" val="152.6009"/>
+<distance to="80" val="109.3765"/>
+<distance to="88" val="117.3656"/>
+<distance to="90" val="145.5051"/>
+
+</obs>
+
+
+<obs from="1004">
+<direction to="4004" val="50.92950"/>
+<direction to="88" val="241.40350" stdev="30.0"/>
+<direction to="2" val="45.60588"/>
+<direction to="3" val="46.45224" stdev="30.0"/>
+<direction to="80" val="241.90047"/>
+<direction to="70" val="244.01931"/>
+<direction to="50" val="238.07527"/>
+<direction to="60" val="245.83488" stdev="30.0"/>
+
+<distance to="4004" val="31.3344" stdev="3.5"/>
+<distance to="88" val="176.8931"/>
+<distance to="2" val="154.1000" stdev="3.5"/>
+<distance to="3" val="93.0063" stdev="3.5"/>
+<distance to="80" val="168.9239"/>
+
+<distance to="50" val="31.7043" stdev="3.5"/>
+<distance to="60" val="95.7417"/>
+
+
+</obs>
+
+
+<obs from="1005">
+<direction to="40065" val="301.94018"/>
+<direction to="4004" val="281.30347"/>
+<direction to="3" val="120.18674"/>
+<direction to="2" val="109.82369"/>
+<direction to="50" val="296.89804"/>
+<direction to="1" val="107.38056"/>
+
+<distance to="40065" val="145.2362" stdev="3.5"/>
+<distance to="4004" val="27.9058"/>
+<distance to="3" val="36.8218"/>
+<distance to="2" val="97.1593"/>
+<distance to="50" val="89.4233"/>
+<distance to="1" val="158.9459"/>
+
+</obs>
+
+<obs from="1006">
+<direction to="4004" val="101.96888"/>
+<direction to="3031" val="309.99993" stdev="30.0"/>
+<direction to="50" val="104.14830"/>
+<direction to="1" val="312.01342"/>
+<direction to="2" val="321.28466"/>
+<direction to="3" val="91.41472"/>
+
+<distance to="4004" val="90.9788"/>
+<distance to="3031" val="156.5649"/>
+<distance to="50" val="153.5637"/>
+<distance to="1" val="94.4767"/>
+<distance to="2" val="33.0409"/>
+<distance to="3" val="29.7956"/>
+
+
+</obs>
+
+<obs from="1007">
+<direction to="4004" val="271.83482"/>
+<direction to="1" val="93.60589"/>
+<direction to="3031" val="81.55813"/>
+<direction to="3" val="269.39838"/>
+<direction to="30" val="79.36356"/>
+<direction to="2" val="257.70040"/>
+
+<distance to="4004" val="154.3700"/>
+<distance to="1" val="32.0529"/>
+<distance to="3031" val="93.3964"/>
+<distance to="3" val="92.7514"/>
+<distance to="30" val="153.5938"/>
+<distance to="2" val="32.4712"/>
+
+
+</obs>
+
+<obs from="1008">
+<direction to="3" val="205.23623"/>
+<direction to="29" val="17.68649"/>
+<direction to="2" val="201.67848"/>
+<direction to="30" val="21.92662"/>
+<direction to="1" val="187.03302"/>
+<direction to="3031" val="43.97199"/>
+
+<distance to="3" val="160.6226"/>
+<distance to="29" val="147.6821"/>
+<distance to="2" val="99.9195"/>
+<distance to="30" val="86.9484"/>
+<distance to="1" val="39.6554"/>
+<distance to="3031" val="29.157"/>
+
+
+</obs>
+
+<obs from="1009">
+<direction to="2" val="203.01831"/>
+<direction to="30" val="44.60734"/>
+<direction to="1" val="199.51133"/>
+<direction to="29" val="20.13724"/>
+<direction to="3031" val="185.28781"/>
+<direction to="3028" val="15.29094"/>
+
+<distance to="2" val="161.9145"/>
+<distance to="30" val="27.5117"/>
+<distance to="1" val="100.3415 "/>
+<distance to="29" val="85.8298"/>
+<distance to="3031" val="39.7476"/>
+<distance to="3028" val="148.5419"/>
+
+</obs>
+
+<obs from="1010">
+<direction to="26" val="12.17818"/>
+<direction to="1" val="200.39569"/>
+<direction to="3028" val="15.41473"/>
+<direction to="3031" val="196.71347"/>
+<direction to="29" val="32.93674"/>
+<direction to="30" val="178.70777"/>
+
+<distance to="26" val="139.2684"/>
+<distance to="1" val="152.8836"/>
+<distance to="3028" val="95.7998"/>
+<distance to="3031" val="91.0518"/>
+<distance to="29" val="34.4979"/>
+<distance to="30" val="32.7070"/>
+
+
+</obs>
+
+<obs from="1012">
+<direction to="3031" val="206.43385"/>
+<direction to="3028" val="35.82472"/>
+<direction to="30" val="202.33091"/>
+<direction to="26" val="22.78970"/>
+<direction to="29" val="181.20961"/>
+<direction to="23" val="19.09668"/>
+
+<distance to="3031" val="149.1039"/>
+<distance to="3028" val="38.9996"/>
+<distance to="30" val="89.2254"/>
+<distance to="26" val="81.3263"/>
+<distance to="29" val="30.5001"/>
+<distance to="23" val="124.1737" stdev="3.5" />
+
+
+</obs>
+
+<obs from="1013">
+<direction to="21" val="75.98741"/>
+<direction to="30" val="263.07479"/>
+<direction to="23" val="81.42606"/>
+<direction to="29" val="258.07317"/>
+<direction to="26" val="99.37245"/>
+<direction to="3028" val="225.71590"/>
+
+<distance to="21" val="126.7395"/>
+<distance to="30" val="142.5950"/>
+<distance to="23" val="70.9743" stdev="3.5"/>
+<distance to="29" val="81.9837"/>
+<distance to="26" val="29.6979"/>
+<distance to="3028" val="22.4815"/>
+
+
+</obs>
+
+<obs from="1014">
+<direction to="29" val="221.39265"/>
+<direction to="3019" val="28.53689"/>
+<direction to="3028" val="217.62158"/>
+<direction to="3021" val="30.68968"/>
+<direction to="21" val="30.68968"/>
+<direction to="26" val="203.14806"/>
+<direction to="23" val="43.18046"/>
+
+<distance to="29" val="126.6169"/>
+<distance to="3019" val="132.7696"/>
+<distance to="3028" val="63.5427"/>
+<distance to="21" val="80.6661"/>
+<distance to="26" val="20.4480"/>
+<distance to="23" val="25.0036"/>
+
+
+</obs>
+
+<obs from="1015">
+<direction to="21" val="19.32362"/>
+<direction to="3028" val="199.31071"/>
+<direction to="3019" val="11.13508"/>
+<direction to="26" val="195.92276"/>
+<direction to="17" val="8.78005"/>
+<direction to="23" val="176.13392"/>
+
+<distance to="21" val="39.2694"/>
+<distance to="3028" val="105.6015"/>
+<distance to="3019" val="90.9216"/>
+<distance to="26" val="61.9499"/>
+<distance to="17" val="146.6311"/>
+<distance to="23" val="20.1097"/>
+
+
+</obs>
+
+<obs from="1016">
+<direction to="26" val="137.82453" stdev="30.0"/>
+<direction to="15" val="341.00922"/>
+<direction to="17" val="342.04611"/>
+<direction to="23" val="136.88066"/>
+<direction to="3019" val="347.11427"/>
+<direction to="21" val="130.86166"/>
+
+<distance to="26" val="123.9678"/>
+<distance to="15" val="144.9643"/>
+<distance to="17" val="83.8369"/>
+<distance to="23" val="80.7617" stdev="3.5"/>
+<distance to="3019" val="28.0965"/>
+<distance to="21" val="24.5511"/>
+
+
+</obs>
+
+<obs from="1017">
+<direction to="23" val="204.18817"/>
+<direction to="13" val="7.57227"/>
+<direction to="21" val="203.10599"/>
+<direction to="15" val="7.92481"/>
+<direction to="3019" val="197.72300"/>
+<direction to="17" val="12.17886"/>
+
+<distance to="23" val="133.7453" stdev="3.5"/>
+<distance to="13" val="150.1878"/>
+<distance to="21" val="77.4012"/>
+<distance to="15" val="91.9694"/>
+<distance to="3019" val="25.3153"/>
+<distance to="17" val="30.9204"/>
+
+
+</obs>
+
+
+<obs from="1018">
+<direction to="15" val="185.27596"/>
+<direction to="21" val="384.13349"/>
+<direction to="13" val="185.52599" stdev="30.0"/>
+<direction to="3019" val="383.94054"/>
+<direction to="3011" val="186.29860" stdev="30.0"/>
+<direction to="17" val="382.70162" stdev="30.0"/>
+
+<distance to="15" val="41.8002"/>
+<distance to="21" val="127.4543"/>
+<distance to="13" val="100.0198"/>
+<distance to="3019" val="75.2350"/>
+<distance to="3011" val="156.7849"/>
+<distance to="17" val="19.3663"/>
+
+
+</obs>
+
+<obs from="1019">
+<direction to="9" val="192.53811"/>
+<direction to="3019" val="389.01280"/>
+<direction to="3011" val="192.63029"/>
+<direction to="17" val="388.89627"/>
+<direction to="13" val="192.93631"/>
+<direction to="15" val="388.02182"/>
+
+<distance to="9" val="149.8462"/>
+<distance to="3019" val="145.3514"/>
+<distance to="3011" val="86.7210"/>
+<distance to="17" val="89.4794"/>
+<distance to="13" val="29.9391"/>
+<distance to="15" val="28.3296"/>
+
+
+</obs>
+
+<obs from="1020">
+<direction to="7" val="332.68898"/>
+<direction to="17" val="132.75212"/>
+<direction to="9" val="332.91808"/>
+<direction to="15" val="133.98379"/>
+<direction to="3011" val="330.04012"/>
+<direction to="13" val="137.25254"/>
+
+<distance to="7" val="144.8458" stdev="3.5"/>
+<distance to="17" val="151.3366"/>
+<distance to="9" val="87.8977"/>
+<distance to="15" val="90.2255"/>
+<distance to="3011" val="24.8051"/>
+<distance to="13" val="32.0684"/>
+
+
+</obs>
+
+<obs from="1021">
+<direction to="15" val="43.65124"/>
+<direction to="5" val="245.61612"/>
+<direction to="13" val="43.35418"/>
+<direction to="7" val="247.66827"/>
+<direction to="3011" val="38.89287"/>
+<direction to="9" val="254.25796"/>
+
+<distance to="15" val="149.1030"/>
+<distance to="5" val="147.7240"/>
+<distance to="13" val="90.8843"/>
+<distance to="7" val="86.0611"/>
+<distance to="3011" val="34.2368"/>
+<distance to="9" val="29.3515"/>
+
+
+</obs>
+
+<obs from="1022">
+<direction to="7" val="69.57790" stdev="30.0"/>
+<direction to="13" val="263.99251"/>
+<direction to="5" val="64.24436" stdev="30.0"/>
+<direction to="3011" val="263.16154"/>
+<direction to="3004" val="63.11931"/>
+<direction to="9" val="258.91939"/>
+
+<distance to="7" val="25.1515"/>
+<distance to="13" val="151.7754"/>
+<distance to="5" val="86.7969"/>
+<distance to="3011" val="95.0155"/>
+<distance to="3004" val="141.9257"/>
+<distance to="9" val="31.9973"/>
+
+
+</obs>
+
+<obs from="1023">
+<direction to="3011" val="33.64398"/>
+<direction to="300" val="234.62866"/>
+<direction to="9" val="31.43622"/>
+<direction to="3004" val="235.74766"/>
+<direction to="7" val="24.43519"/>
+<direction to="5" val="240.78253"/>
+
+<distance to="3011" val="147.9269"/>
+<distance to="300" val="152.6215"/>
+<distance to="9" val="84.9200"/>
+<distance to="3004" val="89.0452"/>
+<distance to="7" val="28.2277"/>
+<distance to="5" val="34.0532"/>
+
+
+</obs>
+
+<obs from="1024">
+<direction to="3004" val="372.67559"/>
+<direction to="9" val="162.34917"/>
+<direction to="300" val="366.26076"/>
+<direction to="7" val="160.48249"/>
+<direction to="200" val="365.23165"/>
+<direction to="5" val="153.15708"/>
+
+<distance to="3004" val="28.1818"/>
+<distance to="9" val="145.9971"/>
+<distance to="300" val="91.5825"/>
+<distance to="7" val="89.1474"/>
+<distance to="200" val="153.9456"/>
+<distance to="5" val="27.6426"/>
+
+
+</obs>
+
+<obs from="1025">
+<direction to="3001" val="73.65689"/>
+<direction to="7" val="269.99467" stdev="30.0"/>
+<direction to="200" val="74.96111"/>
+<direction to="5" val="268.39813"/>
+<direction to="300" val="80.22176" stdev="30.0"/>
+<direction to="3004" val="262.97238" stdev="30.0"/>
+
+<distance to="3001" val="157.0752"/>
+<distance to="7" val="147.7978"/>
+<distance to="200" val="95.3162"/>
+<distance to="5" val="86.0929"/>
+<distance to="300" val="33.0961"/>
+<distance to="3004" val="31.1054"/>
+
+</obs>
+
+<obs from="1026">
+<direction to="5" val="125.30485"/>
+<direction to="3004" val="125.10969"/>
+<direction to="3001" val="327.03403"/>
+<direction to="300" val="123.14253"/>
+<direction to="200" val="329.37421"/>
+
+<distance to="5" val="149.1516"/>
+<distance to="3004" val="93.9888"/>
+<distance to="3001" val="93.8486"/>
+<distance to="300" val="30.3991"/>
+<distance to="200" val="32.0710"/>
+
+
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

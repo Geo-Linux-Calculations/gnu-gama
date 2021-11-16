@@ -1,0 +1,420 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+
+<network axes-xy="sw" angles="left-handed">
+
+<description>
+Jaroslav Zeman,
+Creating a new point field of the Ponikla cave
+https://dspace.cvut.cz/handle/10467/84355
+</description>
+
+<parameters
+sigma-apr="1"
+conf-pr="0.95"
+tol-abs="1000"
+sigma-act="apriori"
+/>
+
+<points-observations
+direction-stdev="130"
+distance-stdev="3"
+zenith-angle-stdev="130"
+>
+
+<point id="5001" x="990186.627" y="661743.146" z="424.694" fix="XYZ"/>
+<point id="5002" x="990175.964" y="661756.767" fix="XY" adj="z"/>
+
+
+<point id="300" adj="xyz"/>
+<point id="301" adj="xyz"/>
+<point id="302" adj="xyz"/>
+<point id="320" adj="xyz"/>
+<point id="321" adj="xyz"/>
+<point id="322" adj="xyz"/>
+<point id="323" adj="xyz"/>
+<point id="324" adj="xyz"/>
+<point id="325" adj="xyz"/>
+<point id="326" adj="xyz"/>
+<point id="327" adj="xyz"/>
+<point id="328" adj="xyz"/>
+<point id="330" adj="xyz"/>
+
+<point id="303" adj="xyz"/>
+<point id="304" adj="xyz"/>
+<point id="305" adj="xyz"/>
+<point id="306" adj="xyz"/>
+<point id="307" adj="xyz"/>
+<point id="309" adj="xyz"/>
+<point id="310" adj="xyz"/>
+<point id="313" adj="xyz"/>
+<point id="314" adj="xyz"/>
+<point id="3061" adj="xyz"/>
+<point id="3062" adj="xyz"/>
+<point id="3063" adj="xyz"/>
+
+<point id="200" adj="xyz"/>
+<point id="203" adj="xyz"/>
+<point id="208" adj="xyz"/>
+<point id="514" adj="xyz"/>
+<point id="308" adj="xyz"/>
+<point id="311" adj="xyz"/>
+<point id="312" adj="xyz"/>
+<point id="120" adj="xyz"/>
+<point id="516" adj="xyz"/>
+<point id="515" adj="xyz"/>
+<point id="125" adj="xyz"/>
+<point id="3024" adj="xyz"/>
+<point id="132" adj="xyz"/>
+<point id="329" adj="xyz"/>
+<point id="100" adj="xyz"/>
+
+<obs from="300" >
+<direction to="5001"  val="0" />
+<direction to="301"   val="216.2909" stdev="200"/>
+
+<z-angle to="5001"   val="108.1979"/>
+<z-angle to="301"  val="108.2809" stdev="200"/>
+
+<distance to="5001" val="14.63467" />
+<distance to="301"  val="7.01937" stdev="5" />
+</obs>
+
+<obs from="301">
+<direction to="300" val="0" />
+<direction to="302" val="193.2514" />
+
+<z-angle to="300"  val="91.6902"/>
+<z-angle to="302"  val="133.1565"/>
+
+<distance to="300"  val="7.02593" />
+<distance to="302"  val="7.02179" />
+</obs>
+
+<obs from="302">
+<direction to="301"  val="0" />
+<direction to="320"  val="57.4458" />
+<direction to="120"  val="49.2812" stdev="200" />
+<direction to="516"  val="192.7809" stdev="200"/>
+<direction to="515"  val="206.4855" stdev="200"/>
+
+<z-angle to="301"  val="66.8230"/>
+<z-angle to="320"  val="97.8072"/>
+<z-angle to="120"  val="141.8142" stdev="200"/>
+<z-angle to="516"  val="152.5868" stdev="200"/>
+<z-angle to="515"  val="154.4850" stdev="200"/>
+
+<distance to="301"  val="7.01874" />
+<distance to="320"  val="7.78429" />
+<distance to="120"  val="1.57114" stdev="5"/>
+<distance to="516"  val="3.92350" stdev="5"/>
+<distance to="515"  val="3.56819" stdev="5"/>
+</obs>
+
+<obs from="320">
+<direction to="302" val="0" stdev="200" />
+<direction to="321" val="161.1322" />
+<direction to="125" val="156.0421"  stdev="200"/>
+
+<z-angle to="302"  val="102.2381" stdev="200"/>
+<z-angle to="321"  val="134.8650"/>
+<z-angle to="125"  val="134.5134" stdev="200"/>
+
+<distance to="302" val="7.78511" stdev="5" />
+<distance to="321" val="9.67436" />
+<distance to="125" val="2.07080" stdev="5"/>
+</obs>
+
+<obs from="321">
+<direction to="320"  val="0" />
+<direction to="322"  val="82.8257" stdev="200" />
+
+<z-angle to="320"  val="65.1251"/>
+<z-angle to="322"  val="145.0046" stdev="200"/>
+
+<distance to="320"  val="9.68025" />
+<distance to="322"  val="2.18009" stdev="5" />
+</obs>
+
+<obs from="322">
+<direction to="321"  val="0" stdev="200" />
+<direction to="323" val="273.4032" />
+
+<z-angle to="321"  val="54.9517" stdev="200"/>
+<z-angle to="323"  val="138.8983"/>
+
+<distance to="321" val="2.19550" stdev="5" />
+<distance to="323"  val="3.39457" />
+</obs>
+
+<obs from="323">
+<direction to="322" val="0" />
+<direction to="324" val="177.5121" />
+
+<z-angle to="322" val="61.1098"/>
+<z-angle to="324" val="91.8217"/>
+
+<distance to="322" val="3.39521" />
+<distance to="324" val="6.20895" />
+</obs>
+
+<obs from="324">
+<direction to="323"  val="0" />
+<direction to="325"  val="328.5250" />
+<direction to="3024"  val="208.9896" stdev="200"/>
+
+<z-angle to="323" val="108.1989"/>
+<z-angle to="325" val="99.0455"/>
+<z-angle to="3024" val="150.9508" stdev="200"/>
+
+<distance to="323"  val="6.20721" />
+<distance to="325"  val="7.13208" />
+<distance to="3024"  val="0.79544" stdev="5" />
+</obs>
+
+<obs from="325">
+<direction to="324"  val="0" />
+<direction to="326"  val="244.5515" />
+
+<z-angle to="324"  val="100.9650"/>
+<z-angle to="326"  val="97.2818"/>
+
+<distance to="324"  val="7.13253" />
+<distance to="326"  val="6.31482" />
+</obs>
+
+<obs from="326">
+<direction to="325"  val="0" />
+<direction to="327"  val="107.6493" />
+<direction to="132"  val="191.9474" stdev="200"/>
+
+<z-angle to="325"  val="102.7309"/>
+<z-angle to="327"  val="66.6836"/>
+<z-angle to="132"  val="108.5764" stdev="200"/>
+
+<distance to="325"  val="6.31554" />
+<distance to="327"  val="5.90513" />
+<distance to="132"  val="1.96777" stdev="5"/>
+</obs>
+
+<obs from="327">
+<direction to="326"  val="0" />
+<direction to="328"  val="153.3455" />
+<direction to="329"  val="241.8691" stdev="200"/>
+
+<z-angle to="326"  val="133.3277"/>
+<z-angle to="328"  val="68.9178"/>
+<z-angle to="329"  val="99.8264" stdev="200"/>
+
+<distance to="326"  val="5.90570" />
+<distance to="328"  val="8.39241" />
+<distance to="329"  val="4.52663" stdev="5"/>
+</obs>
+
+<obs from="328">
+<direction to="327"  val="0" />
+<direction to="330" val="183.5286" />
+
+<z-angle to="327"  val="131.0676"/>
+<z-angle to="330"  val="64.8282"/>
+
+<distance to="327"  val="8.39772" />
+<distance to="330"  val="6.04175" />
+</obs>
+
+<obs from="330">
+<direction to="328" val="0" />
+<direction to="5001" val="84.8997" />
+<direction to="5002"  val="6.0371" stdev="200" />
+
+<z-angle to="328"  val="135.1679"/>
+<z-angle to="5001" val="99.40058"/>
+<z-angle to="5002"  val="97.5075" stdev="200"/>
+
+<distance to="328"  val="6.04312" />
+<distance to="5001"  val="17.98867" />
+<distance to="5002"  val="2.66799" stdev="5" />
+</obs>
+
+<obs from="5001">
+<direction to="330"  val="0" />
+<direction to="300"  val="135.6832" />
+<direction to="100"  val="147.6413" stdev="200"/>
+
+<z-angle to="330"  val="100.6046"/>
+<z-angle to="300"  val="91.8093"/>
+<z-angle to="100"  val="91.5408" stdev="200"/>
+
+<distance to="330"  val="17.98838" />
+<distance to="300"  val="14.63467" />
+<distance to="100"  val="10.99025" stdev="5"/>
+</obs>
+
+<obs from="5001">
+<direction to="5002"  val="0" />
+<direction to="300"  val="126.3706" />
+<direction to="100"  val="138.3368" stdev="200" />
+
+<z-angle to="5002"  val="100.2865"/>
+<z-angle to="300"  val="91.8178"/>
+<z-angle to="100"  val="91.5632" stdev="200"/>
+
+<distance to="5002"  val="17.30744" />
+<distance to="300"  val="14.63182" />
+<distance to="100"  val="10.98989" stdev="5"/>
+</obs>
+
+<obs from="301">
+<direction to="300"  val="0" stdev="200"/>
+<direction to="303"  val="296.2942" />
+
+<z-angle to="300"  val="91.7366" stdev="200"/>
+<z-angle to="303"  val="125.0722"/>
+
+<distance to="300"  val="7.02237" stdev="5"/>
+<distance to="303"  val="4.94016" />
+</obs>
+
+<obs from="303">
+<direction to="301"  val="0" />
+<direction to="304"  val="144.8169" />
+<direction to="305"  val="307.3879" stdev="200" />
+<direction to="306"  val="300.1662" stdev="200" />
+<direction to="200"  val="375.4478" stdev="200"/>
+
+<z-angle to="301"  val="74.9488"/>
+<z-angle to="304"  val="71.7541"/>
+<z-angle to="305"  val="159.2785" stdev="200"/>
+<z-angle to="306"  val="156.3413" stdev="200"/>
+<z-angle to="200"  val="128.9630" stdev="200"/>
+
+<distance to="301"  val="4.93911" />
+<distance to="304"  val="7.13482" />
+<distance to="305"  val="3.05128" stdev="5"/>
+<distance to="306"  val="5.47935" stdev="5"/>
+<distance to="200"  val="1.60376" stdev="5"/>
+</obs>
+
+<obs from="304">
+<direction to="303"  val="0" />
+<direction to="307"  val="191.8248" />
+<direction to="203"  val="120.9429" stdev="200"/>
+<direction to="208"  val="165.7871" stdev="200"/>
+
+<z-angle to="303"  val="128.2583"/>
+<z-angle to="307"  val="98.1978"/>
+<z-angle to="203"  val="112.9199" stdev="200"/>
+<z-angle to="208"  val="99.0948" stdev="200"/>
+
+<distance to="303"  val="7.13363" />
+<distance to="307"  val="6.01999" />
+<distance to="203"  val="1.57312" stdev="5"/>
+<distance to="208"  val="1.10305" stdev="5" />
+</obs>
+
+<obs from="307">
+<direction to="304"  val="0" />
+<direction to="309"  val="362.8213" stdev="200"/>
+<direction to="308"  val="231.4563" />
+<direction to="514"  val="154.3451" stdev="200"/>
+
+<z-angle to="304"  val="101.8021"/>
+<z-angle to="309"  val="116.8917" stdev="200"/>
+<z-angle to="308"  val="96.4400"/>
+<z-angle to="514"  val="39.9515" stdev="200"/>
+
+<distance to="304"  val="6.01865" />
+<distance to="309"  val="3.49859" stdev="5"/>
+<distance to="308"  val="3.43722" />
+<distance to="514"  val="2.93900" stdev="5"/>
+</obs>
+
+<obs from="309">
+<direction to="307"  val="0" />
+<direction to="310"  val="207.2209" stdev="200"/>
+
+<z-angle to="307"  val="83.2088"/>
+<z-angle to="310"  val="145.7808" stdev="200"/>
+
+<distance to="307"  val="3.4916" />
+<distance to="310"  val="5.89368" stdev="5"/>
+</obs>
+
+<obs from="310">
+<direction to="309"  val="0" />
+<direction to="313"  val="211.6635" />
+<direction to="311"  val="70.3949" stdev="200"/>
+<direction to="312"  val="213.8754" stdev="200"/>
+
+<z-angle to="309"  val="54.2823"/>
+<z-angle to="313"  val="145.9200"/>
+<z-angle to="311"  val="83.0491" stdev="200"/>
+<z-angle to="312"  val="130.1028" stdev="200"/>
+
+<distance to="309"  val="5.89537" />
+<distance to="313"  val="7.95133" />
+<distance to="311"  val="3.43768" stdev="5"/>
+<distance to="312"  val="4.03153" stdev="5"/>
+</obs>
+
+<obs from="313">
+<direction to="310"  val="0" />
+<direction to="314"  val="286.5648" stdev="200"/>
+
+<z-angle to="310"  val="54.0901"/>
+<z-angle to="314"  val="160.3153" stdev="200"/>
+
+<distance to="310"  val="7.95128" />
+<distance to="314"  val="1.84300" stdev="5" />
+</obs>
+
+<obs from="306">
+<direction to="305"  val="0" stdev="5000" />
+<direction to="3061"  val="69.16" stdev="5000" />
+
+<z-angle to="305"  val="48.2667" stdev="5000"/>
+<z-angle to="3061"  val="132.23" stdev="10000"/>
+
+<distance to="305"  val="2.45831" stdev="50"  />
+<distance to="3061"  val="1.67099" stdev="50"  />
+</obs>
+
+<obs from="3061">
+<direction to="306"  val="0" stdev="5000"/>
+<direction to="3062"  val="313.0900" stdev="5000"/>
+
+<z-angle to="306"  val="65.8600" stdev="10000"/>
+<z-angle to="3062"  val="162.7800" stdev="5000"/>
+
+<distance to="306"  val="1.62379" stdev="50" />
+<distance to="3062"  val="2.25852" stdev="50" />
+</obs>
+
+<obs from="3062">
+<direction to="3061"  val="0" stdev="5000"/>
+<direction to="3063"  val="167.5867" stdev="5000"/>
+
+<z-angle to="3061"  val="36.4533" stdev="5000"/>
+<z-angle to="3063"  val="177.1400" stdev="5000"/>
+
+<distance to="3061"  val="2.22994" stdev="50" />
+<distance to="3063"  val="0.60081" stdev="50" />
+</obs>
+
+<obs from="3063">
+<direction to="3062"  val="0" stdev="5000"/>
+<direction to="314"  val="108.6400" stdev="5000"/>
+
+<z-angle to="3062"  val="22.8700" stdev="5000"/>
+<z-angle to="314"  val="51.9533" stdev="5000"/>
+
+<distance to="3062"  val="0.600705" stdev="50" />
+<distance to="314"  val="0.64956" stdev="50" />
+</obs>
+
+</points-observations>
+
+</network>
+
+</gama-local>
