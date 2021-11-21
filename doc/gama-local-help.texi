@@ -1,0 +1,34 @@
+
+Adjustment of local geodetic network        version: 2.16 / GNU C/C++ 11.2
+************************************
+https://www.gnu.org/software/gama/
+
+Usage: gama-local  [--input-xml] input.xml  [options]
+
+Options:
+
+--algorithm  gso | svd | cholesky | envelope
+--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh
+--encoding   utf-8 | iso-8859-2 | iso-8859-2-flat | cp-1250 | cp-1251
+--angular    400 | 360
+--latitude   <latitude>
+--ellipsoid  <ellipsoid name>
+--text       adjustment_results.txt
+--html       adjustment_results.html
+--xml        adjustment_results.xml
+--octave     adjustment_results.m
+--svg        network_configuration.svg
+--cov-band   covariance matrix of adjusted parameters in XML output
+             n  = -1  for full covariance matrix (implicit value)
+             n >=  0  covariances are computed only for bandwidth n
+--iterations maximum number of iterations allowed in the linearized
+             least squares algorithm (implicit value is 5)
+--export     updated input data based on adjustment results
+--verbose    [yes | no]
+--version
+--help
+
+Report bugs to: <bug-gama@@gnu.org>
+GNU gama home page: <https://www.gnu.org/software/gama/>
+General help using GNU software: <https://www.gnu.org/gethelp/>
+
