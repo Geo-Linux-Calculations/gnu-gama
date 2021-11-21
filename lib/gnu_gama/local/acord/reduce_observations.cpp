@@ -112,7 +112,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
     const double orig_value = r_obs->orig_value();
 
     Average   ZA_from_to_cluster, ZA_to_from_cluster, ZA_from_to, ZA_to_from;
-    Reduction reduction_type = exact;
+    Reduction reduction_dh_type = exact;
 
     for (auto ci  = reduced_obs.begin(); ci != reduced_obs.end(); ci++)
     {
@@ -155,7 +155,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
     {
         obs->set_value( r_obs->orig_value() );
         double r = 0;
-        obs->set_reduction( r );
+        obs->set_reduction_dh( r );
         r_obs->reduction = not_available;
         return;
     }
@@ -176,7 +176,7 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
       }
     else
       {
-        reduction_type = approximate;
+        reduction_dh_type = approximate;
 
         if ( from.test_z() )
           Hm = from.z();
@@ -214,9 +214,9 @@ void ReducedObservations::reduce_sdistance(ReducedObs* r_obs)
     const double d_from = central_angle * obs->from_dh();
 
     obs->set_value( orig_value );
-    obs->set_reduction( std::sqrt(d2) - d_from - orig_value);
+    obs->set_reduction_dh( std::sqrt(d2) - d_from - orig_value);
 
-    r_obs->reduction = reduction_type;
+    r_obs->reduction = reduction_dh_type;
 }
 
 
@@ -343,7 +343,7 @@ void ReducedObservations::reduce_zangle(ReducedObs* r_obs)
 
   obs->set_value( orig_value );
   double r = vertical_refraction + std::atan2(vertic_dh,dist_to_vertic_dh);
-  obs->set_reduction( r );
+  obs->set_reduction_dh( r );
   r_obs->reduction = type_of_red;
 }
 

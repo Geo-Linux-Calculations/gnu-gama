@@ -15,19 +15,19 @@ processed, any other output indicates some problem. The output might
 be for example example this
 
 @example
-Entering directory '/home/cepek//gama/tests/gama-local'
-PASS: gama-local-version
-PASS: gama-local-adjustment
-PASS: gama-local-algorithms
-PASS: gama-local-xml-xml
-PASS: gama-local-html
-PASS: gama-local-equivalents
-PASS: gama-local-xml-results
-PASS: gama-local-parameters
-PASS: gama-local-updated-xml
-PASS: gama-local-sqlite-reader
-PASS: xmllint-gama-local-xsd
-PASS: xmllint-gama-local-adjustment-xsd
+Entering directory 'gama/tests/gama-local'
+PASS: gama-local-version.sh
+PASS: gama-local-adjustment.sh
+PASS: gama-local-algorithms.sh
+PASS: gama-local-xml-xml.sh
+PASS: gama-local-html.sh
+PASS: gama-local-equivalents.sh
+PASS: gama-local-xml-results.sh
+PASS: gama-local-parameters.sh
+PASS: gama-local-export.sh
+PASS: gama-local-sqlite-reader.sh
+PASS: xmllint-gama-local-xsd.sh
+PASS: xmllint-gama-local-adjustment-xsd.sh
 ========================================================================
 Testsuite summary for gama @value{VERSION}
 ========================================================================
@@ -54,7 +54,7 @@ gama-local-html
 gama-local-equivalents
 gama-local-xml-results
 gama-local-parameters
-gama-local-updated-xml
+gama-local-export
 @end example
 
 Optional tests are
@@ -68,7 +68,11 @@ xmllint-gama-local-adjustment-xsd
 which are included only if sqlite3 database support libraries and/or
 @code{xmllint} program are installed.
 
-
+You can also request more extra test configuring the project as
+@example
+./configure --enable-extra-tests
+@end example
+but be prepared tha these extra test take some time to finish.
 
 @menu
 * Internal organisation::  Internal organisation

@@ -35,7 +35,7 @@ bool GNU_gama::local::refine_obsdh_reductions(GNU_gama::local::LocalNetwork* IS)
           double r = slope->reduction();
           double r_diff = std::abs(r - rs);
           if (r_diff > linear_tol) {
-              slope->set_reduction(rs);
+              slope->set_reduction_dh(rs);
               status = true;
             }
         }
@@ -60,7 +60,7 @@ bool GNU_gama::local::refine_obsdh_reductions(GNU_gama::local::LocalNetwork* IS)
           double r = zenit->reduction();
           double r_diff = std::abs(r - rz);
           if (r_diff > angular_tol) {
-              zenit->set_reduction(rz);
+              zenit->set_reduction_dh(rz);
               status = true;
             }
         }

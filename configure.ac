@@ -5,14 +5,13 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
 
-AC_INIT([gama], [2.16], [bug-gama@gnu.org])
+AC_INIT([gama],[2.16],[bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
 
 AM_INIT_AUTOMAKE
 AM_SILENT_RULES([yes])
-
 
 dnl You can comment out the following macro if you have the package
 dnl autoconf-archive installed
@@ -162,7 +161,7 @@ dnl Checks for header files.
 
 AC_HEADER_STDC
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
    Makefile
    lib/Makefile
    bin/Makefile
@@ -184,3 +183,4 @@ AC_OUTPUT([
    tests/extra-tests/Makefile
    tests/extra-tests/input/Makefile
 ])
+AC_OUTPUT

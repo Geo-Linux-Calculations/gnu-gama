@@ -24,7 +24,7 @@ clean-local-check:
 	-rm -rf $(GAMA_RESULTS) $(TESTS)
 
 $(GAMA_RESULTS):
-	mkdir -p $(GAMA_RESULTS)
+	$(MKDIR_P) $(GAMA_RESULTS)
 
 gama-local-extra-tests.sh : gama-local-extra-tests.sh_ \
 	      @top_srcdir@/tests/gama-local/gama-local-adjustment.sh

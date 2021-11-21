@@ -128,7 +128,7 @@ clean-local-check:
 	-rm -rf $(GAMA_RESULTS) $(TESTS)
 
 $(GAMA_RESULTS):
-	mkdir -p $(GAMA_RESULTS)
+	$(MKDIR_P) $(GAMA_RESULTS)
 
 gama-local-version.sh: $(srcdir)/gama-local-version.sh_ $(GAMA_OTHERS)
 	@$(do_subst) < $(srcdir)/gama-local-version.sh_ \

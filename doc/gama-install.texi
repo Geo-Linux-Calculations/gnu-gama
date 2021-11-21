@@ -116,6 +116,9 @@ system.  See @uref{https://www.pkgsrc.org/} for more information.
 @subsection Precompiled executables for Windows
 @cindex     Windows, precompiled executables
 
+Native builds of the command-line interface (CLI)
+@code{gama-local.exe} for Windows are distributed from
+@uref{https://sourceforge.net/projects/gnu-gama-local}.
 
 Executebles of Qt based GUI @code{qgama} and command line programs
 @code{gama-local} and @code{gama-g3} are available from

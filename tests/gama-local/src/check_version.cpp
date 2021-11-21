@@ -38,7 +38,7 @@ int main(int /*argc*/, char* argv[])
   {
      std::ifstream inpf(argv[1]);
 
-     const string pattern = "AC_INIT([gama], [";
+     const string pattern = "AC_INIT([gama],[";
      while (std::getline(inpf, version_configure_ac))
        {
          auto indx = version_configure_ac.find(pattern, 0);
