@@ -12,7 +12,7 @@ $ make check
 
 You should see the names of the test suite files as they are
 processed, any other output indicates some problem. The output might
-be for example example this
+be for example this
 
 @example
 Entering directory 'gama/tests/gama-local'
@@ -72,7 +72,7 @@ You can also request more extra test configuring the project as
 @example
 ./configure --enable-extra-tests
 @end example
-but be prepared tha these extra test take some time to finish.
+but be prepared that these extra test might take some time to finish.
 
 @menu
 * Internal organisation::  Internal organisation

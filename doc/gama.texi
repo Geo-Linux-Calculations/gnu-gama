@@ -1,6 +1,8 @@
 \input texinfo   @c -*-texinfo-*-
 @c ./gendocs.sh --email cepek@gnu.org gama "GNU Gama manual"
 
+@paragraphindent 0   @c added by AC
+
 @comment Part 1 : Header
 
 @c %**start of header

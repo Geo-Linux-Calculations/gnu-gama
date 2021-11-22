@@ -27,7 +27,7 @@ build all binaries. Run
 
 @example
 $ ./configure [--bindir=DIR --infodir=DIR]
-$ make install
+$ make install [--prefix=/your/prefered/install/directory]
 @end example
 
 @noindent if you want also to install the binaries. You can use configure
