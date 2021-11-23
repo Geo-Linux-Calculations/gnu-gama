@@ -12,18 +12,18 @@ index e232552..a4abab5 100644
 @@ -22,15 +22,20 @@
   *
   * ------------------------------------------------------------------------ */
- 
+
 -         const char* language[] = { "en", "ca", "cz", "du", "es",
 -                                    "fi", "fr", "hu", "ru", "ua" };
-+         const char* language[] = { "en", 
++         const char* language[] = { "en",
 +                                    "ca", "cz", "du", "es", "fi",
 +                                    "fr", "hu", "ru", "ua", "zh" };
- 
+
           const int N = sizeof(language)/sizeof(const char*);
- 
+
 -         const char* version = "1.11";
 +         const char* version = "1.12";
- 
+
  /* ---------------------------------------------------------------------------
   *
 + * 1.12  2011-07-10
@@ -34,17 +34,17 @@ index e232552..a4abab5 100644
   *
   *       - added Spanish (switch "es")
 
-2) add the new code to bin/gama-local.cpp
+2) add the new code to src/gama-local.cpp
 =========================================
 
-$ git diff bin/gama-local.cpp
-diff --git a/bin/gama-local.cpp b/bin/gama-local.cpp
+$ git diff src/gama-local.cpp
+diff --git a/src/gama-local.cpp b/src/gama-local.cpp
 index 3dc4db7..362b074 100644
---- a/bin/gama-local.cpp
-+++ b/bin/gama-local.cpp
+--- a/src/gama-local.cpp
++++ b/src/gama-local.cpp
 @@ -69,7 +69,7 @@ int help()
      "Options:\n\n"
-  
+
      "--algorithm  svd | gso | cholesky | envelope\n"
 -    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua \n"
 +    "--language   en | ca | cz | du | es | fi | fr | hu | ru | ua | zh \n"
@@ -85,4 +85,3 @@ lang_extra = \
       lang/zh/pobs.zh.lang \
       lang/zh/review.zh.lang \
       lang/zh/rmpoints.zh.lang
-

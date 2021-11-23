@@ -13,7 +13,7 @@ for a in svd gso cholesky envelope
 do
     echo  @PACKAGE_VERSION@ $g $a
 
-    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+    @top_builddir@/src/gama-local @GAMA_INPUT@/$g.gkf \
 	--algorithm $a \
 	--text   $RES/$g-$a.txt \
 	--html   $RES/$g-$a.html \
@@ -30,7 +30,7 @@ do
 for a in gso # svd cholesky envelope
 do
     echo  @PACKAGE_VERSION@ $g $a
-    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+    @top_builddir@/src/gama-local @GAMA_INPUT@/$g.gkf \
         --algorithm $a \
         --text    $RES/$g-$a-360.txt \
         --html    $RES/$g-$a-360.html \

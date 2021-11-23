@@ -2,8 +2,8 @@
 
 set -e
 
-GAMAL=@top_builddir@/bin/gama-local
-GAMAT=@top_builddir@/bin/gama-local-xml2txt
+GAMAL=@top_builddir@/src/gama-local
+GAMAT=@top_builddir@/src/gama-local-xml2txt
 RES=@GAMA_RESULTS@/gama-local-parameters
 
 if [ ! -d $RES ] ; then

@@ -67,7 +67,7 @@ int main()
           "    lib/expat/xmlparse/xmlparse.c \\\n"
           "    lib/expat/xmlparse/hashtable.c \\\n"
 
-          "    bin/gama-local.cpp";
+          "    src/gama-local.cpp";
 
     std::vector<std::string> sources, headers;
 

@@ -15,18 +15,18 @@ a=fixed-azimuth
 b=fixed-constrained
 
 # convert fixed-azimuth to sql
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 
 # create and populate the database
 rm -rf $DB
 src/sqlite_init_db $DB @GAMA_XML@/gama-local-schema.sql $TMP/$a.sql
 
 # adjust configuration fixed-azimuth from the database
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 
 # adjust equivalent configuration fixed-constrained from an input xml
-@top_builddir@/bin/gama-local @GAMA_INPUT@/$b.gkf > $TMP/$b.xml
+@top_builddir@/src/gama-local @GAMA_INPUT@/$b.gkf > $TMP/$b.xml
 
 # compare resulting coordinates
 src/check_xml_coordinates $TMP/$a.xml $TMP/$b.xml
@@ -36,13 +36,13 @@ a=tst-tetrahedron-2
 CONF=$a
 
 # convert to sql
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 
 # populate the database
 src/sqlite_init_db $DB $TMP/$a.sql
 
 # adjust configuration fixed-azimuth from the database
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 
 # compare resulting coordinates
@@ -51,35 +51,35 @@ src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 # -------------------------------------------------------------------------
 a=tst-tetrahedron-3-gon
 CONF=$a
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 src/sqlite_init_db $DB $TMP/$a.sql
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 
 # -------------------------------------------------------------------------
 a=gama-local
 CONF=$a
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 src/sqlite_init_db $DB $TMP/$a.sql
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 
 # -------------------------------------------------------------------------
 a=zoltan-test_2d_dms
 CONF=$a
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 src/sqlite_init_db $DB $TMP/$a.sql
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 
 # -------------------------------------------------------------------------
 a=zoltan-test_3d_gon
 CONF=$a
-@top_builddir@/bin/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 src/sqlite_init_db $DB $TMP/$a.sql
-@top_builddir@/bin/gama-local --sqlitedb $DB --readonly-configuration \
+@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
     $CONF > $TMP/$a.xml
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml

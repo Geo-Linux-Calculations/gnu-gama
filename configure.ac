@@ -5,7 +5,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
 
-AC_INIT([gama],[2.16.i],[bug-gama@gnu.org])
+AC_INIT([gama],[2.16.ii],[bug-gama@gnu.org])
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
@@ -164,7 +164,7 @@ AC_HEADER_STDC
 AC_CONFIG_FILES([
    Makefile
    lib/Makefile
-   bin/Makefile
+   src/Makefile
    scripts/Makefile
    doc/Makefile
    xml/Makefile

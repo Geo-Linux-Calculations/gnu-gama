@@ -9,7 +9,7 @@ fi
 
 for g in @INPUT_FILES@
 do
-    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+    @top_builddir@/src/gama-local @GAMA_INPUT@/$g.gkf \
         --xml $RES/adjustment-$g.xml
     xmllint --schema @GAMA_XML@/gama-local-adjustment.xsd \
       --noout $RES/adjustment-$g.xml

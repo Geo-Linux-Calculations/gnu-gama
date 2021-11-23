@@ -6,7 +6,7 @@ RES=@GAMA_RESULTS@/gama-local-export
 
 mkdir -p $RES $RES/bug $RES/ctu
 
-GAMA_LOCAL=@top_builddir@/bin/gama-local
+GAMA_LOCAL=@top_builddir@/src/gama-local
 GAMA_LOCAL_XSD=@GAMA_XML@/gama-local.xsd
 
 for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@

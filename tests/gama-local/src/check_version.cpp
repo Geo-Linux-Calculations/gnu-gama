@@ -58,11 +58,11 @@ int main(int /*argc*/, char* argv[])
 
   if (version_cpp != version_configure_ac)
     {
-      std::cout
-        << "\nPackage version "
-        << version_configure_ac << ", defined in configure.ac, "
-        << "\nis different from version "
-        << version_cpp << ", defined in lib/gnu_gama/version.cpp\n\n";
+      // std::cout
+      //   << "\nPackage version "
+      //   << version_configure_ac << ", defined in configure.ac, "
+      //   << "\nis different from version "
+      //   << version_cpp << ", defined in lib/gnu_gama/version.cpp\n\n";
 
       error++;
     }
@@ -87,11 +87,11 @@ int main(int /*argc*/, char* argv[])
 
       if (version_cmake != version_configure_ac)     /* CMakeLists.txt */
         {
-          std::cout
-            << "\nPackage version " << version_configure_ac
-            << ", defined in configure.ac, "
-            << "\nis different from version "
-            << version_cmake << ", defined in CMakeLists.txt\n\n";
+          // std::cout
+          //   << "\nPackage version " << version_configure_ac
+          //   << ", defined in configure.ac, "
+          //   << "\nis different from version "
+          //   << version_cmake << ", defined in CMakeLists.txt\n\n";
 
           error++;
         }

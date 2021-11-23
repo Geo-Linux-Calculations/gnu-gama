@@ -6,7 +6,7 @@ for g in @INPUT_FILES@
 do
 for a in envelope gso cholesky svd
 do
-    @top_builddir@/bin/gama-g3 --algorithm $a @G3_INPUT@/$g.xml \
+    @top_builddir@/src/gama-g3 --algorithm $a @G3_INPUT@/$g.xml \
        > @G3_RESULTS@/$g-$a.adj.xml
 
     src/check_adjustment @G3_INPUT@/$g-adj.xml @G3_RESULTS@/$g-$a.adj.xml
@@ -16,7 +16,7 @@ done
 
 for g in dopnul vyberova_udrzba
 do
-    @top_builddir@/bin/gama-g3 --algorithm envelope \
+    @top_builddir@/src/gama-g3 --algorithm envelope \
                              @G3_INPUT@/sjtsk05/$g.xml > \
                              @G3_RESULTS@/$g-envelope.adj.xml
 

@@ -12,7 +12,7 @@ fi;
 
 for f in railway-survey
 do
-    @top_builddir@/bin/gama-local @GAMA_INPUT@/$f.gkf \
+    @top_builddir@/src/gama-local @GAMA_INPUT@/$f.gkf \
         --algorithm envelope  --text $RES/$f.txt  --xml $RES/$f.xml
 
     @top_srcdir@/tests/gama-local/src/check_xml_xml \

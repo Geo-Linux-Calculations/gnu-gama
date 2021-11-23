@@ -288,16 +288,16 @@ include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 
 # Binaries
-add_executable(gama-local bin/gama-local.cpp $<TARGET_OBJECTS:libgama>)
-add_executable(gama-g3 bin/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
+add_executable(gama-local src/gama-local.cpp $<TARGET_OBJECTS:libgama>)
+add_executable(gama-g3 src/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
 
-add_executable(gama-local-gkf2yaml bin/gama-local-gkf2yaml.cpp
+add_executable(gama-local-gkf2yaml src/gama-local-gkf2yaml.cpp
                lib/gnu_gama/local/gkf2yaml.cpp $<TARGET_OBJECTS:libgama>)
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)
    add_library(libyaml OBJECT ${SRC_YAMLCPP})
-   add_executable(gama-local-yaml2gkf bin/gama-local-yaml2gkf.cpp
+   add_executable(gama-local-yaml2gkf src/gama-local-yaml2gkf.cpp
                   lib/gnu_gama/local/yaml2gkf.cpp $<TARGET_OBJECTS:libyaml>)
 endif()
 
@@ -306,7 +306,7 @@ set_property(TARGET gama-local gama-g3 PROPERTY
   MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
 
 # Installation
-install(TARGETS gama-local gama-g3 DESTINATION bin)
+install(TARGETS gama-local gama-g3 DESTINATION src)
 
 # Tests
 enable_testing()

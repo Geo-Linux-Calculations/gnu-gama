@@ -9,9 +9,9 @@ for g in @INPUT_FILES@  @YAML_FILES@  # @BUG_FILES@
 do
     # compute .xml in one step using pipeline (introduced in 2.13)
 
-    @top_builddir@/bin/gama-local-gkf2yaml @GAMA_INPUT@/$g.gkf | \
-    @top_builddir@/bin/gama-local-yaml2gkf | \
-    @top_builddir@/bin/gama-local \
+    @top_builddir@/src/gama-local-gkf2yaml @GAMA_INPUT@/$g.gkf | \
+    @top_builddir@/src/gama-local-yaml2gkf | \
+    @top_builddir@/src/gama-local \
         --input-xml - \
         --xml @GAMA_RESULTS@/gama-local-gkf2yaml/$g.xml
 

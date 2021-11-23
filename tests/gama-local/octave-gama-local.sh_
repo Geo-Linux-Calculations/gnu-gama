@@ -24,7 +24,7 @@ do
 for a in envelope # svd gso cholesky
 do
     echo  @PACKAGE_VERSION@ $g $a
-    @top_builddir@/bin/gama-local @GAMA_INPUT@/$g.gkf \
+    @top_builddir@/src/gama-local @GAMA_INPUT@/$g.gkf \
         --algorithm $a \
         --text /dev/null \
         --iterations 0 \

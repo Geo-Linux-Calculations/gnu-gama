@@ -5,7 +5,7 @@ mkdir -p @GAMA_RESULTS@/xmllint-gama-local-yaml2gkf
 
 for f in @YAML_FILES@
 do
-    @top_builddir@/bin/gama-local-yaml2gkf \
+    @top_builddir@/src/gama-local-yaml2gkf \
         @GAMA_INPUT@/$f.yaml \
         > @GAMA_RESULTS@/xmllint-gama-local-yaml2gkf/$f.gkf
 
