@@ -35,7 +35,7 @@ dubbed a GNU packaqe.
 
     [Top-level directories]
 
-       * [bin] the sources of all binaries of the package, namely
+       * [src] the sources of all binaries of the package, namely
                gama-local, build binaries are stored also there.
 
        * [lib] C++ library of classes and functions used to buils

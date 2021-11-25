@@ -1,15 +1,15 @@
 GNU Gama is developed and tested under GNU/Linux.  A static library
 @code{libgama.lib} and executables are build in folders @code{lib} and
-@code{bin}.  You can compile Gama easily yourself if you download the
+@code{src}.  You can compile Gama easily yourself if you download the
 sources from a FTP server.  The preferred way is to have @code{expat}
 XML parser installed on your system, if not, GNU Gama will be build
 with internally stored @code{expat} older source codes version 1.1.
 
 Change to the directory of Gama project and issue the
-following commands at the shell prompt
+following commands at the shell prompt (with some optional parameters)
 
 @example
-$ ./configure
+$ ./configure [--enable-extra-tests --bindir=DIR --infodir=DIR]
 $ make
 @end example
 
@@ -21,18 +21,24 @@ $ make check
 @end example
 
 @noindent If the script @code{configure} is not available (which is the
-case when you download source codes from a git server), you have to
+case when you download source codes from the
+@url{https://git.savannah.gnu.org/cgit/gama.git, git server}), you have to
 generate it using auxiliary script @code{autogen.sh}.  To compile and
 build all binaries. Run
 
 @example
-$ ./configure [--bindir=DIR --infodir=DIR]
+$ ./autogen.sh
+$ ./configure
+@end example
+
+and
+
+@example
 $ make install [--prefix=/your/prefered/install/directory]
 @end example
 
-@noindent if you want also to install the binaries. You can use configure
-parameters if you need to change directories where user executables
-and info documentation should be installed.
+@noindent if you also want to install executables
+and info documentation.
 
 Typically, if you want to download (@pxref{Download}) and compile sources,
 you will run following commands:

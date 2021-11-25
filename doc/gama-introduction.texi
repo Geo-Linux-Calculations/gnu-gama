@@ -48,7 +48,7 @@ on a C++ library of geodetic classes and functions and a small C++
 template matrix library @code{matvec}. For parsing XML documents GNU
 Gama calls the @code{expat} parser version 1.1, written by James
 Clark. The @code{expat} parser is not part of the GNU Gama project,
-and is simply used by GNU Gama.
+but it is used by the project.
 
 Adjustment in local Cartesian coordinate systems is fully supported
 by a command-line program @code{gama-local} that adjusts geodetic

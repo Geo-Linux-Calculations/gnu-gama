@@ -1,12 +1,12 @@
-2021-12-20---XXXXXX   Ales Cepek <cepek@gnu.org>
+2021-11-25   Ales Cepek <cepek@gnu.org>
 
 	* Top level directory 'bin' was renamed to 'src'. Originally 'lib'
 	contained only gama-local.cpp, gama-g3 was added later and some
 	more helper application like gama-local-yaml2gkf also. The
 	directory was named 'bin' because autools build system puts Gama
-	application binaries there during when 'make' is run. But the
-	final destination for Gama executables is defined by the command
-	'make install' where option --prefix can change the
+	application binaries there when 'make' is run. But the final
+	destination for Gama executables is defined by the command 'make
+	install' where option --prefix can change the implicit
 	destination. Thus the directory is more important because of the
 	source codes it contains than because of the compiled binaries
 	stored there.

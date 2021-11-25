@@ -1,8 +1,11 @@
 GNU Gama NEWS - History of user-visible changes.
 
-Changes in release 2.16 (2021-12-20-XXXXXXXXXX)
 
-  A maintenance release, no user-visible changes.
+Changes in release 2.16 (2021-11-25)
+
+  A maintenance release, the only user-visible changes are new
+  gama-local option --export (renamed from --updated-xml) and some
+  more tests ins gama-local sets suite.
 
 
 Changes in release 2.15 (2021-09-20)

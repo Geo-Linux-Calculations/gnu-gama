@@ -180,7 +180,7 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
   set(YAML_FILES geodet-pc-123 geodet-pc-218
                  jezerka-ang   jezerka-dir
                  zoltan-test_2d_gon
-                 zoltan-test_3d_dms
+                 zoltan-test_2d_dms
                  seq-dsuloha-d
                  mikhail-7.4
                  mikhail-7.4-cov
@@ -238,8 +238,6 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
      gama-local jezerka-ang mikhail-7.4 cube-1 minimal seq-dsuloha-d
      tst-tetrahedron-1 tst-tetrahedron-2
      tst-tetrahedron-3-gon tst-tetrahedron-3-deg
-     zoltan-test_3d_gon
-     zoltan-test_3d_dms
      fixed-azimuth
      azimuth-angle
      azimuth-azimuth
