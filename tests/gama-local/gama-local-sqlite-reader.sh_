@@ -8,6 +8,9 @@ TMP=@GAMA_RESULTS@/gama-local-sqlite-reader
 if [ ! -d $TMP ] ; then
     mkdir -p $TMP
 fi
+if [ ! -d $TMP/bug ] ; then
+    mkdir -p $TMP/bug
+fi
 
 DB=$TMP/demo.db
 CONF=fixed-azimuth
@@ -32,7 +35,7 @@ src/sqlite_init_db $DB @GAMA_XML@/gama-local-schema.sql $TMP/$a.sql
 src/check_xml_coordinates $TMP/$a.xml $TMP/$b.xml
 
 # -------------------------------------------------------------------------
-a=tst-tetrahedron-2
+a=bug/tst-tetrahedron-2
 CONF=$a
 
 # convert to sql
@@ -49,7 +52,7 @@ src/sqlite_init_db $DB $TMP/$a.sql
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 
 # -------------------------------------------------------------------------
-a=tst-tetrahedron-3-gon
+a=bug/tst-tetrahedron-3-gon
 CONF=$a
 @top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
 src/sqlite_init_db $DB $TMP/$a.sql
@@ -76,10 +79,13 @@ src/sqlite_init_db $DB $TMP/$a.sql
 src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
 
 # -------------------------------------------------------------------------
-a=zoltan-test_3d_gon
-CONF=$a
-@top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
-src/sqlite_init_db $DB $TMP/$a.sql
-@top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
-    $CONF > $TMP/$a.xml
-src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
+#
+# zoltan-test_3d_gon removed from test suite
+#
+# a=zoltan-test_3d_gon
+# CONF=$a
+# @top_builddir@/src/gama-local-xml2sql $CONF @GAMA_INPUT@/$a.gkf $TMP/$a.sql
+# src/sqlite_init_db $DB $TMP/$a.sql
+# @top_builddir@/src/gama-local --sqlitedb $DB --readonly-configuration \
+#     $CONF > $TMP/$a.xml
+# src/check_xml_coordinates $TMP/$a.xml @GAMA_INPUT@/$a.xml
