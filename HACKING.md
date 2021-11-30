@@ -1,6 +1,8 @@
 # GNU Gama
 
-## The primary build system
+## Build System issues
+
+### The primary build system
 
 The primary build system is and will remain autotools; therefore any
 changes to the project must be consistent with that.
@@ -30,7 +32,7 @@ provided only to enable those who cannot deal with that to build gama
 anyway.
 
 
-## Alternative build systems
+### Alternative build systems
 
 Alternative builds are Qt project format build of GUI for gama-qt
 (gama-local adjustment with sqlite3 support) and a secondary CMake
@@ -48,7 +50,7 @@ improve CMake build on the premise that they are consistent with the
 primary build system.
 
 
-## Contributions to gama and build systems
+### Contributions to gama and build systems
 
 All contributions to gama must work with autotools.  Specifically,
 after a patch, the process of autogen, configure, and make distcheck
