@@ -1447,7 +1447,10 @@ std::string LocalNetwork::export_xml()
             xml += " to=\"" + info.str_to + "\"";
             double fdh = obs->from_dh();
             double tdh = obs->to_dh();
-            if (info.xml_name != "s-distance") fdh = tdh = 0;
+            if (info.xml_name == "s-distance" || info.xml_name == "z-angle")
+              {
+                fdh = tdh = 0;
+              }
             if (fdh) xml += " from_dh=\"" + to_xmlstr(fdh) + "\"";
             if (tdh) xml +=   " to_dh=\"" + to_xmlstr(tdh) + "\"";
           }
