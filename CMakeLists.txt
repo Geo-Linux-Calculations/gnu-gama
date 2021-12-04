@@ -127,8 +127,6 @@ set(SRC_GAMA
    lib/gnu_gama/local/acord/acordweakchecks.h
    lib/gnu_gama/local/acord/acordzderived.cpp
    lib/gnu_gama/local/acord/acordzderived.h
-   lib/gnu_gama/local/acord/reduce_observations.cpp
-   lib/gnu_gama/local/acord/reduce_observations.h
    lib/gnu_gama/local/acord/reduce_to_ellipsoid.cpp
    lib/gnu_gama/local/acord/reduce_to_ellipsoid.h
    lib/gnu_gama/local/format.cpp

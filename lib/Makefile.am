@@ -114,8 +114,6 @@ libgama_src = \
    gnu_gama/local/acord/acordweakchecks.h \
    gnu_gama/local/acord/acordzderived.cpp \
    gnu_gama/local/acord/acordzderived.h \
-   gnu_gama/local/acord/reduce_observations.cpp \
-   gnu_gama/local/acord/reduce_observations.h \
    gnu_gama/local/acord/reduce_to_ellipsoid.cpp \
    gnu_gama/local/acord/reduce_to_ellipsoid.h \
    gnu_gama/local/format.cpp \

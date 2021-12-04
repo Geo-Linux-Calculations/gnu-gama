@@ -23,7 +23,7 @@
 #define gama_local_Acord_accord_header_h
 
 #include <gnu_gama/local/gamadata.h>
-#include <gnu_gama/local/acord/reduce_observations.h>
+// 2.16.2 #include <gnu_gama/local/acord/reduce_observations.h>
 #include <gnu_gama/local/acord/reduce_to_ellipsoid.h>
 #include <fstream>
 #include <algorithm>
@@ -39,7 +39,7 @@ namespace GNU_gama { namespace local {
 
       PointData&          PD;
       ObservationData&    OD;
-      ReducedObservations RO;
+      // 2.16.2 ReducedObservations RO;
 
       Acord(PointData& b, ObservationData& m);
       void execute();
@@ -57,4 +57,3 @@ namespace GNU_gama { namespace local {
 }}   // namespace GNU_gama::local
 
 #endif
-

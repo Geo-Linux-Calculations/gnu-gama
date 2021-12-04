@@ -30,7 +30,7 @@
 #include <gnu_gama/local/median/g2d_coordinates.h>
 #include <gnu_gama/local/acord/approx_heights.h>
 #include <gnu_gama/local/acord/approx_vectors.h>
-#include <gnu_gama/local/acord/reduce_observations.h>
+// 2.16.2 #include <gnu_gama/local/acord/reduce_observations.h>
 
 #include <iomanip>
 #include <cmath>
@@ -39,7 +39,7 @@ using namespace std;
 using namespace GNU_gama::local;
 
 Acord::Acord(PointData& b, ObservationData& m)
-    : PD(b), OD(m), RO(b,m)
+  : PD(b), OD(m) // 2.16.2 , RO(b,m)
 {
   missing_coordinates = false;
   observations = 0;
@@ -69,8 +69,8 @@ void Acord::execute()
     {
       int all;
 
-      // ReducedObservations RO(PD, OD);
-      RO.execute();
+      // 2.16.2 ReducedObservations RO(PD, OD);
+      // 2.16.2 RO.execute();
 
       for (int loop=1; loop<=2; loop++)
       do {
@@ -177,7 +177,7 @@ void Acord::execute()
           delete standpoint;
         }
 
-        RO.execute();
+        // 2.16.2 RO.execute();
 
         ObservationList local;
         for (ObservationData::iterator i=OD.begin(), e=OD.end(); i!=e; ++i)
