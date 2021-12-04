@@ -510,6 +510,7 @@ int main(int argc, char **argv)
 
         Acord2 acord2(IS->PD, IS->OD);
         acord2.execute();
+        refine_obsdh_reductions(IS);
 
         if (IS->correction_to_ellipsoid())
           {

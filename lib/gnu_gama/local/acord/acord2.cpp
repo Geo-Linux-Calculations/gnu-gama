@@ -177,8 +177,8 @@ std::pair<std::size_t, std::size_t> Acord2::execute()
   solved.first  = missing_xy_.size();
   solved.second = missing_z_.size();
 
-  ReducedObservations RO(PD_, OD_);
-  RO.execute();
+  // 2.16.2 ReducedObservations RO(PD_, OD_);
+  // 2.16.2 RO.execute();
 
   size_type after {}, before = missing_xy_.size() + missing_z_.size();
 
@@ -223,7 +223,7 @@ std::pair<std::size_t, std::size_t> Acord2::execute()
       while (after != 0 && after < before);
     }
 
-  RO.execute();
+  // 2.16 RO.execute();
 
   /* Iterate once more over all SPClusters  and compute missing orientations.
    *
