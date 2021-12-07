@@ -74,7 +74,7 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
       html->project_equations.equations          ==  xml->project_equations.equations           &&
       html->project_equations.unknowns           ==  xml->project_equations.unknowns            &&
       html->project_equations.degrees_of_freedom ==  xml->project_equations.degrees_of_freedom  &&
-      html->project_equations.defect             ==  xml->project_equations.defect; 
+      html->project_equations.defect             ==  xml->project_equations.defect;
     if (!test) {
       std::cout << "         project equations failed\n";
       result_gp = 1;
@@ -400,7 +400,10 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
     for (size_t i=0; i<html->orientations.size(); i++)
       {
-        double d = html->orientations[i].adj - xml->orientations[i].adj;
+        double h = html->orientations[i].adj/200*M_PI;
+        double x = xml ->orientations[i].adj/200*M_PI;
+        double d = std::asin(std::sin(h-x))/M_PI*200;
+
         if (std::abs(d) > std::abs(oridif)) oridif = d;
       }
 
