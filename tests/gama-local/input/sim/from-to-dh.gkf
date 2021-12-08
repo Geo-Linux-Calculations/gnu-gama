@@ -1,0 +1,76 @@
+<?xml version='1.0' ?>
+<gama-local xmlns='http://www.gnu.org/software/gama/gama-local'>
+<network axes-xy='en' angles='right-handed'>
+
+<description>
+# Octave simulated data
+
+Ax =   0; Ay =   0; Az = 100;
+Bx = 400; By =   0; Bz = 150;
+Cx =   0; Cy = 300; Cz = 200;
+Zx = 400; Zy = 300; Zz = 160;
+
+dZA = sqrt((Zx - Ax)^2 + (Zy - Ay)^2);
+dirZA = atan2((Zy - Ay),(Zx - Ax))/pi*200;
+
+zenithZA = atan2((Zz     - Az    ),dZA)/pi*200 + 100
+zenithZA = atan2((Zz+1.0 - Az    ),dZA)/pi*200 + 100
+zenithZA = atan2((Zz     - Az-1.5),dZA)/pi*200 + 100
+zenithZA = atan2((Zz+1.4 - Az-1.1),dZA)/pi*200 + 100
+
+sAZ = sqrt((Zx - Ax)^2 + (Zy - Ay)^2 + (Zz     - Az    )^2)
+sAZ = sqrt((Zx - Ax)^2 + (Zy - Ay)^2 + (Zz     - Az-2.1)^2)
+sAZ = sqrt((Zx - Ax)^2 + (Zy - Ay)^2 + (Zz+2.2 - Az    )^2)
+sAZ = sqrt((Zx - Ax)^2 + (Zy - Ay)^2 + (Zz+2.4 - Az-2.3)^2)
+</description>
+
+<parameters
+   sigma-apr = "   10 "
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "apriori"
+/>
+
+<points-observations>
+
+<point id='A' x='0'   y='0'   z='100' fix='xyz' />
+<point id='B' x='400' y='0'   z='150' fix='xyz'   />
+<point id='C' x='0'   y='300' z='200' fix='xyz' />
+<point id='Z' adj='xyz' />
+
+<height-differences>
+<dh from='A' to='Z' val='60' stdev='2.0' />
+</height-differences>
+
+<obs from='Z'>
+<direction to='C' val='0' stdev='6.0' />
+<direction to='A' val='40.96655293982669' stdev='6.0'  />
+<direction to='B' val='100' stdev='6.0'  />
+<distance  to='B' val='300' stdev='5.0' />
+<distance  to='A' val='500' stdev='5.0' />
+<distance  to='C' val='400' stdev='5.0' />
+</obs>
+
+<obs from="Z">
+<z-angle to='A' val='107.6030815695899' stdev='7'/>
+<z-angle to='A' val='107.7285682343896'
+         from_dh='1.0' stdev='7'/>
+<z-angle to='A' val='107.4147405036443'
+         to_dh='1.5' stdev='7'/>
+<z-angle to='A' val='107.6407338477092'
+         from_dh='1.4' to_dh='1.1' stdev='7'/>
+</obs>
+
+<obs from='A'>
+<s-distance to='Z' val='503.5871324805669' stdev='8' />
+<s-distance to='Z' val='503.3412460746685'
+            from_dh='2.1' stdev='8' />
+<s-distance to='Z' val='503.8539867858544'
+            to_dh='2.2' stdev='8' />
+<s-distance to='Z' val='503.5990567902208'
+            from_dh='2.3' to_dh='2.4' stdev='8' />
+</obs>
+
+</points-observations>
+</network>
+</gama-local>

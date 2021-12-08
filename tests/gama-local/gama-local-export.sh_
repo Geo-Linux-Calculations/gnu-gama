@@ -4,21 +4,23 @@ set -e   # exit on the first error
 
 RES=@GAMA_RESULTS@/gama-local-export
 
-mkdir -p $RES $RES/bug $RES/ctu
+mkdir -p $RES $RES/bug $RES/ctu $RES/sim
 
 GAMA_LOCAL=@top_builddir@/src/gama-local
 GAMA_LOCAL_XSD=@GAMA_XML@/gama-local.xsd
 
-for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@
+# @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@
+for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@   @FROMTODH_FILES@
 do
     $GAMA_LOCAL @GAMA_INPUT@/$g.gkf \
+	--text   $RES/$g-1.txt \
         --xml    $RES/$g-1.xml \
         --export $RES/$g-1.gkf
     $GAMA_LOCAL  $RES/$g-1.gkf \
         --xml    $RES/$g-2.xml
-    src/check_xml_xml "exported $g" \
-        $RES/$g-1.xml \
-        $RES/$g-2.xml
+    src/check_xml_xml "stored   $g" $RES/$g-1.xml @GAMA_INPUT@/$g.xml
+    src/check_xml_xml "exported $g" $RES/$g-1.xml $RES/$g-2.xml
+    echo
 
 if test "x@GNU_GAMA_LOCAL_TEST_XMLLINT@" = "xyes"; then
     xmllint --schema $GAMA_LOCAL_XSD \

@@ -64,4 +64,7 @@ EXTRA_DIST = \
   ctu/2020-barta-phase_1-1TK.gkf \
   ctu/2020-barta-phase_1-1TK.xml \
   ctu/2020-barta-phase_1-2TK.gkf \
-  ctu/2020-barta-phase_1-2TK.xml
+  ctu/2020-barta-phase_1-2TK.xml \
+  \
+  sim/from-to-dh.gkf \
+  sim/from-to-dh.xml

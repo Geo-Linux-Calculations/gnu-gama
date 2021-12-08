@@ -76,7 +76,6 @@ INPUT_FILES = gama-local \
               extern-azimuth-distance \
               extern-seq-dsuloha-d
 
-
 BUG_FILES =   bug/tst-tetrahedron-1 \
               bug/tst-tetrahedron-2 \
               bug/tst-tetrahedron-3-deg \
@@ -91,6 +90,7 @@ BUG_FILES =   bug/tst-tetrahedron-1 \
 CTU_FILES =   ctu/2020-barta-phase_0-1TK ctu/2020-barta-phase_0-2TK \
               ctu/2020-barta-phase_1-1TK ctu/2020-barta-phase_1-2TK
 
+FROMTODH_FILES = sim/from-to-dh
 
 # Removed in 2.16 zoltan-test_3d_dms
 #
@@ -119,6 +119,7 @@ do_subst = sed \
 -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g' \
 -e 's,[@]BUG_FILES[@],$(BUG_FILES),g' \
 -e 's,[@]CTU_FILES[@],$(CTU_FILES),g' \
+-e 's,[@]FROMTODH_FILES[@],$(FROMTODH_FILES),g' \
 -e 's,[@]YAML_FILES[@],$(YAML_FILES),g' \
 -e 's,[@]GNU_GAMA_LOCAL_TEST_XMLLINT[@],$(GNU_GAMA_LOCAL_TEST_XMLLINT),g'
 
