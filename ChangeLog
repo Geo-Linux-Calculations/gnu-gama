@@ -1,5 +1,7 @@
 2021-11-25   Ales Cepek <cepek@gnu.org>
 
+	New release 2.16 (maintenance release)
+
 	* Top level directory 'bin' was renamed to 'src'. Originally 'lib'
 	contained only gama-local.cpp, gama-g3 was added later and some
 	more helper application like gama-local-yaml2gkf also. The

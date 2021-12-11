@@ -27,6 +27,7 @@
  * \author Vaclav Petras (acyclic visitor pattern)
  */
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
@@ -694,9 +695,10 @@ void LocalNetwork::project_equations()
         if (const int N = (*cluster)->activeObs())
         {
           int W = (*cluster)->covariance_matrix.bandWidth();
+          W = std::min(N-1, W);         // 2.16.4 ... added to fix the bug in W
           count++;
           msize += 1+(N+N-W)*(W+1)/2;   // += number of band matrix elements
-        }
+        }                               // 2.16.4 ... why plus one?
 
       GNU_gama::BlockDiagonal<> *bd = new GNU_gama::BlockDiagonal<>(count, msize);
 
