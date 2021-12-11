@@ -124,9 +124,9 @@ namespace GNU_gama { namespace local
 
     // ...  unknowns  ......................................................
 
-    PointID     unknown_pointid   (int i) const { return seznez_[i-1].cb;  }
-    char        unknown_type      (int i) const { return seznez_[i-1].typ; }
-    StandPoint* unknown_standpoint(int i) const { return seznez_[i-1].osn; }
+    PointID     unknown_pointid   (int i) const { return unknowns_[i-1].pid;  }
+    char        unknown_type      (int i) const { return unknowns_[i-1].type; }
+    StandPoint* unknown_standpoint(int i) const { return unknowns_[i-1].ori; }
     double      unknown_stdev     (int i)
     {
       using namespace std;
@@ -359,13 +359,13 @@ namespace GNU_gama { namespace local
     enum Update { Points, Observations, Residuals, Adjustment };
     void update(Update);
 
-    struct neznama_ {
-      PointID cb;
-      char typ;
-      StandPoint* osn;       // zero or pointer for orientaion (typ='R')
+    struct Unknown {
+      PointID     pid;
+      char        type;      // 'X', 'Y', 'Z', 'R'
+      StandPoint* ori;       // zero or pointer for orientation (type='R')
     };
 
-    std::vector<neznama_> seznez_;  // list of unknowns
+    std::vector<Unknown> unknowns_;  // list of unknowns
 
     Mat A;
     Vec b;

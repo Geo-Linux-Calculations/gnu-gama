@@ -608,9 +608,9 @@ void LocalNetwork::project_equations()
       }
   }
 
-  seznez_.erase(seznez_.begin(), seznez_.end());
-  seznez_.resize(pocet_neznamych_);
-  neznama_ nez;
+  unknowns_.erase(unknowns_.begin(), unknowns_.end());
+  unknowns_.resize(pocet_neznamych_);
+  Unknown unknown;
 
   for (ClusterList::iterator
          clptr=clusters.begin(); clptr!=clusters.end(); ++clptr)
@@ -624,10 +624,10 @@ void LocalNetwork::project_equations()
           const LocalPoint& station = PD[standpoint->station];
           if (station.active_xy())
             {
-              nez.cb  = standpoint->station;
-              nez.osn = standpoint;
-              nez.typ = 'R';
-              seznez_[standpoint->index_orientation()-1] = nez;
+              unknown.pid  = standpoint->station;
+              unknown.ori  = standpoint;
+              unknown.type = 'R';
+              unknowns_[standpoint->index_orientation()-1] = unknown;
           }
         }
 
@@ -637,17 +637,17 @@ void LocalNetwork::project_equations()
 
       if (b.active_xy() && b.index_y())
         {
-          nez.cb = (*i).first;
-          nez.osn =  0;
-          nez.typ = 'X';  seznez_[b.index_x()-1] = nez;
-          nez.typ = 'Y';  seznez_[b.index_y()-1] = nez;
+          unknown.pid = (*i).first;
+          unknown.ori =  0;
+          unknown.type = 'X';  unknowns_[b.index_x()-1] = unknown;
+          unknown.type = 'Y';  unknowns_[b.index_y()-1] = unknown;
         }
 
       if (b.active_z() && b.index_z())
         {
-          nez.cb = (*i).first;
-          nez.osn =  0;
-          nez.typ = 'Z';  seznez_[b.index_z()-1] = nez;
+          unknown.pid = (*i).first;
+          unknown.ori =  0;
+          unknown.type = 'Z';  unknowns_[b.index_z()-1] = unknown;
         }
     }
 
@@ -1137,14 +1137,13 @@ void LocalNetwork::prepareProjectEquations()
 {
   int ind_0 = 0;
 
-  for (ClusterList::const_iterator
-         cluster=OD.clusters.begin(); cluster!=OD.clusters.end(); ++cluster)
-    if (const int N = (*cluster)->activeObs())
+  for (const auto cluster : OD.clusters)
+    if (const int N = cluster->activeObs())
         {
           Vec t(N);
-          CovMat C = (*cluster)->activeCov();
+          CovMat C = cluster->activeCov();
           C /= (m_0_apr_*m_0_apr_);        // covariances ==> cofactors
-          Adj::choldec(C);                     // cofactors   ==> weights
+          Adj::choldec(C);                 // cofactors   ==> weights
 
           for (int j=1; j<=A.cols(); j++)
             {
