@@ -1,3 +1,5 @@
+# Gnu Gama
+
 GNU package Gama is a C++ free software for geodesy released under GNU
 General Public Licence. Project Gama was started in 1998, in 2001 was
 dubbed a GNU packaqe.
@@ -33,7 +35,7 @@ dubbed a GNU packaqe.
          directory, it contains an explanation of the installation
          procedure.
 
-    [Top-level directories]
+## Top-level directories
 
        * [src] the sources of all binaries of the package, namely
                gama-local, build binaries are stored also there.
@@ -48,6 +50,8 @@ dubbed a GNU packaqe.
        * [scripts] helper tests and applications
 
        * [xml] xml schema definitions, examples and language files.
+
+## More information
 
 More information on GNU Gama can be found at
 
