@@ -117,3 +117,38 @@ operating system (within the POSIX family) unless absolutely
 necessary.  Instead, the system should use feature tests, following
 autoconf doctrine, so that the build system is likely to work on new
 systems.
+
+
+## Maintainer prerequisites
+
+### autotools
+
+In addition to the prerequisites in README, when building gama from
+the repository rather than a released tarball, one must additionally
+have autoconf, automake and libtool.
+
+\todo Check if this autoconf-archive statement is still true.
+
+To check the compiler support of c++11 features, configure.ac calls
+macro AX_CXX_COMPILE_STDCXX_11, you need either to install package
+autoconf-archive or download it from
+git://git.sv.gnu.org/autoconf-archive.git. See
+https://www.gnu.org/software/autoconf-archive/
+ax_cxx_compile_stdcxx_11.html
+
+
+## Source Organization
+
+   * [src] the sources of all binaries of the package, namely
+           gama-local, build binaries are stored also there.
+
+   * [lib] C++ library of classes and functions used to buils
+           gama-local and other helper applications.
+
+   * [doc] documentation.
+
+   * [tests] unit tests
+
+   * [scripts] helper tests and applications
+
+   * [xml] xml schema definitions, examples and language files.

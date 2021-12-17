@@ -1,58 +1,54 @@
 # Gnu Gama
 
-GNU package Gama is a C++ free software for geodesy released under GNU
-General Public Licence. Project Gama was started in 1998, in 2001 was
-dubbed a GNU packaqe.
+Gama is a Free Software package for geodesy and surveying, available
+under the under the GNU General Public License, version 3 or later.
+The Gama project was started in 1998, and in 2001 it became a GNU
+package.
 
-    [Version Number] of the package is defined in configure.ac
+## Description
 
-    [General Description] GNU Gama is a project dedicated to
-    adjustment of geodetic networks. It is intended for use with
-    traditional geodetic surveyings which are still used and needed in
-    special measurements (e.g., underground or high precision
-    engineering measurements) where the Global Positioning System
-    (GPS) cannot be used.
+GNU Gama is a project dedicated to adjustment of surveying and
+geodetic networks.  It is intended for use with traditional surveying
+instruments, which are still in widespread use despite the advent of
+Global Navigation Satellite Systems.  Traditional instruments are
+necessary for mm-level precision in local areas, and for underground
+or interior measurements.  Gama also has some support for adjustment
+of networks containing GNSS observations.
 
-    Adjustment in local Cartesian coordinate systems is fully
-    supported by a command-line program gama-local that adjusts
-    geodetic (free) networks of observed distances, directions,
-    angles, height differences, 3D vectors and observed coordinates
-    (coordinates with given variance-covariance matrix). Adjustment in
-    global coordinate systems is supported only partly as a gama-g3
-    program.
+Adjustment in local Cartesian coordinate systems is fully supported by
+a command-line program gama-local that adjusts geodetic (free)
+networks of observed distances, directions, angles, height
+differences, 3D vectors and observed coordinates (coordinates with
+given variance-covariance matrix). Adjustment in global coordinate
+systems is supported only partly as a gama-g3 program.
 
-    [Compiler] To build Gama, the compiler must support c++11
-        standard. Purposefully there are no constructs based on c++14
-        to enable builds with a wider range of available compilers. To
-        check the compiler support of c++11 features, configure.ac
-        calls macro AX_CXX_COMPILE_STDCXX_11, you need either to
-        install package autoconf-archive or download it from
-        git://git.sv.gnu.org/autoconf-archive.git. See
-        https://www.gnu.org/software/autoconf-archive/
-        ax_cxx_compile_stdcxx_11.html
+## Documentation
 
-    [The file INSTALL] is available from the top distribution
-         directory, it contains an explanation of the installation
-         procedure.
+As a GNU program, documenttion is available in texinfo format,
+resulting in a pdf manual and info pages.
 
-## Top-level directories
+## Building gama
 
-       * [src] the sources of all binaries of the package, namely
-               gama-local, build binaries are stored also there.
+Note that the version number of the package is defined in
+configure.ac.
 
-       * [lib] C++ library of classes and functions used to buils
-               gama-local and other helper applications.
+### Prerequisites
 
-       * [doc] documentation.
+Gama assumes a system complying with POSIX, and a compiler that
+spports C++11.  Gama intentionally avoids C++14 or later constructs
+for improved portability.
 
-       * [tests] unit tests
+### Build and Test
 
-       * [scripts] helper tests and applications
-
-       * [xml] xml schema definitions, examples and language files.
+Beyond that, the standard autotools instructions, available in
+INSTALL, apply.  Note that Gama's tests may be run via "make test".
 
 ## More information
 
 More information on GNU Gama can be found at
 
                  http://www.gnu.org/software/gama
+
+This includes links to the project page on savannah, where one can
+find mailinglists, a bug tracker, and source code repository.  GNU
+Gama does not have any repository mirrors.
