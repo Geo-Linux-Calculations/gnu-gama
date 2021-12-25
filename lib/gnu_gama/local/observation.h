@@ -115,6 +115,8 @@ namespace GNU_gama { namespace local {
       double value()        const { return value_ + reduction(); }
       double stdDev()       const ;
 
+      double raw_value()    const { return value_; }
+
       /** \brief Reductions handling.
        *
        * Reductions are currently defined only for zenith angles and slope
@@ -160,8 +162,8 @@ namespace GNU_gama { namespace local {
       double  to_dh  () const { return to_dh_;   }
 
       void    set_value  (double v) { value_   = v; reduction_dh_ = 0; }
-      void    set_from_dh(double h) { from_dh_ = h; }
-      void    set_to_dh  (double h) { to_dh_   = h; }
+      void    set_from_dh(double h) { from_dh_ = h; reduction_dh_ = 0; }
+      void    set_to_dh  (double h) { to_dh_   = h; reduction_dh_ = 0; }
 
       int     dimension() const { return 1; }
 
