@@ -303,7 +303,7 @@ namespace GNU_gama { namespace local
 
     bool refine_adjustment();
 
-    std::string export_xml();
+    std::string export_xml(std::string version=std::string());
 
     // ... verbose output ..................................................
 

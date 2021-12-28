@@ -2,9 +2,8 @@
 <gama-local xmlns='http://www.gnu.org/software/gama/gama-local'>
 <network axes-xy='en' angles='right-handed'>
 
+<!-- octave simulated data -->
 <description>
-# Octave simulated data
-
 Ax =   0; Ay =   0; Az = 100;
 Bx = 400; By =   0; Bz = 150;
 Cx =   0; Cy = 300; Cz = 200;

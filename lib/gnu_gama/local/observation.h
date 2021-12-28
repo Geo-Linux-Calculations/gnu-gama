@@ -53,7 +53,8 @@ namespace GNU_gama { namespace local {
   using ObservationList = std::list<Observation*>;
 
 
-  std::string to_xmlstr(double val,int=8); //2nd parameter ignored since 2.16.3
+  std::string to_xmlstr(double val,
+                        int prec=std::numeric_limits<double>::max_digits10);
 
   /** \brief Local observation base class
    *

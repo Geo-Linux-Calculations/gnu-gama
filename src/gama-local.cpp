@@ -681,7 +681,9 @@ int main(int argc, char **argv)
 
         if (network_can_be_adjusted && argv_export_xml)
           {
-            std::string xml = IS->export_xml();
+            std::string ver = "<!-- created by gama-local "
+                + GNU_gama::GNU_gama_version() + " -->\n";
+            std::string xml = IS->export_xml(ver);
 
             if (!strcmp(argv_export_xml, "-"))
               {

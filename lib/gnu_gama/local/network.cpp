@@ -1328,12 +1328,14 @@ void LocalNetwork::vyrovnani_()
 }
 
 
-std::string LocalNetwork::export_xml()
+std::string LocalNetwork::export_xml(std::string version)
 {
-  if (!is_adjusted()) std::string();
-
   std::string xml =
-    "<?xml version=\"1.0\" ?>\n"
+    "<?xml version=\"1.0\" ?>\n";
+
+  if (!version.empty()) xml += version;  // optional xml comment
+
+  xml +=
     "<gama-local xmlns=\"http://www.gnu.org/software/gama/gama-local\">\n"
     "<network axes-xy=";
 
@@ -1361,9 +1363,9 @@ std::string LocalNetwork::export_xml()
     xml += "\n<description>" + description + "</description>\n";
 
   xml += "\n<parameters\n";
-  xml += "  sigma-apr=\"" + to_xmlstr(apriori_m_0()) + "\"\n";
-  xml += "  conf-pr=\""   + to_xmlstr(conf_pr())     + "\"\n";
-  xml += "  tol-abs=\""   + to_xmlstr(tol_abs())     + "\"\n";
+  xml += "  sigma-apr=\"" + to_xmlstr(apriori_m_0(), 8) + "\"\n";
+  xml += "  conf-pr=\""   + to_xmlstr(conf_pr(), 8)     + "\"\n";
+  xml += "  tol-abs=\""   + to_xmlstr(tol_abs(), 8)     + "\"\n";
   xml += "  sigma-act=\"";
   xml +=         m_0_apriori() ? "apriori\"\n" : "aposteriori\"\n";
   xml += "  angles=\"" + std::string(gons() ? "400" : "360") + "\"\n";
@@ -1448,12 +1450,8 @@ std::string LocalNetwork::export_xml()
             xml += " to=\"" + info.str_to + "\"";
             double fdh = obs->from_dh();
             double tdh = obs->to_dh();
-            if (info.xml_name == "s-distance" || info.xml_name == "z-angle")
-              {
-                fdh = tdh = 0;
-              }
-            if (fdh) xml += " from_dh=\"" + to_xmlstr(fdh) + "\"";
-            if (tdh) xml +=   " to_dh=\"" + to_xmlstr(tdh) + "\"";
+            if (fdh) xml += " from_dh=\"" + to_xmlstr(fdh, 8) + "\"";
+            if (tdh) xml +=   " to_dh=\"" + to_xmlstr(tdh, 8) + "\"";
           }
           else if (!info.str_bs.empty()) {
             xml += " bs=\"" + info.str_bs + "\"";
@@ -1463,9 +1461,9 @@ std::string LocalNetwork::export_xml()
             double rdh = a->from_dh();
             double bdh = a->bs_dh();
             double fdh = a->fs_dh();
-            if (rdh) xml += " from_dh=\"" + to_xmlstr(rdh) + "\"";
-            if (bdh) xml +=   " bs_dh=\"" + to_xmlstr(bdh) + "\"";
-            if (fdh) xml +=   " fs_dh=\"" + to_xmlstr(fdh) + "\"";
+            if (rdh) xml += " from_dh=\"" + to_xmlstr(rdh, 8) + "\"";
+            if (bdh) xml +=   " bs_dh=\"" + to_xmlstr(bdh, 8) + "\"";
+            if (fdh) xml +=   " fs_dh=\"" + to_xmlstr(fdh, 8) + "\"";
           }
           xml += " val=\"" + info.str_val + "\"";
           xml += " stdev=\"" + info.str_stdev + "\"";
@@ -1558,8 +1556,8 @@ std::string LocalNetwork::export_xml()
 
           // double fdh = (*p)->from_dh(); ... unrealistic
           // double tdh = (*p)->to_dh();
-          // if (fdh) xml += " from_dh=\"" + xml_string(fdh) + "\"";
-          // if (tdh) xml +=   " to_dh=\"" + xml_string(tdh) + "\"";
+          // if (fdh) xml += " from_dh=\"" + xml_string(fdh, 8) + "\"";
+          // if (tdh) xml +=   " to_dh=\"" + xml_string(tdh, 8) + "\"";
           xml += " />\n";
         }
 
