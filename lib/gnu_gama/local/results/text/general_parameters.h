@@ -380,7 +380,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           int   itd=0, its=0, itu=0;
           for (int i=1; i<=IS->observations_count(); i++)
             {
-              float v = IS->residuals()(i);
+              float v = int( IS->residuals()(i) );
               float q = IS->wcoef_res(i);
               if (dynamic_cast<Distance*>(IS->ptr_obs(i)))
                 {

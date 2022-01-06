@@ -269,7 +269,7 @@ void Model::write_xml_adjusted_stdev(const char* prefix,
 {
   const char* tab   = "        ";
   const char* ntab  = "\n        ";
-  const int   prec  = out.precision(3);
+  const int   prec  = int( out.precision(3) );
   const int   width = 8;
 
   int    cluster_index = obs->cluster_index + obs_dim_index;

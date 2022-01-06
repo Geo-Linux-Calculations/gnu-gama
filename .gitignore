@@ -112,3 +112,4 @@ Release*
 Debug*
 Sandbox
 *.tar.gz
+*.diff

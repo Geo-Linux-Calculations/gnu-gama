@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.16.6)
+project (gnu-gama VERSION 2.16.7)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -11,6 +11,7 @@ add_definitions(-DGNU_gama_expat_1_1)
 #add_definitions(-DDEBUG_REDUCED_OBS)
 
 # Library
+#
 set(SRC_GAMA
    lib/gnu_gama/e3.cpp
    lib/gnu_gama/e3.h
@@ -283,29 +284,43 @@ set(SRC_YAMLCPP
 
 include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 
-add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
+add_library(libgama STATIC ${SRC_GAMA} ${SRC_EXPAT})
+
 
 # Binaries
-add_executable(gama-local src/gama-local.cpp $<TARGET_OBJECTS:libgama>)
-add_executable(gama-g3 src/gama-g3.cpp $<TARGET_OBJECTS:libgama>)
+#
+add_executable(gama-local src/gama-local.cpp)
+target_link_libraries(gama-local PUBLIC libgama)
+
+add_executable(gama-g3 src/gama-g3.cpp)
+target_link_libraries(gama-g3 PUBLIC libgama)
 
 add_executable(gama-local-gkf2yaml src/gama-local-gkf2yaml.cpp
-               lib/gnu_gama/local/gkf2yaml.cpp $<TARGET_OBJECTS:libgama>)
+               lib/gnu_gama/local/gkf2yaml.cpp)
+               target_link_libraries(gama-local-gkf2yaml PUBLIC libgama)
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)
-   add_library(libyaml OBJECT ${SRC_YAMLCPP})
+   add_library(libyaml STATIC ${SRC_YAMLCPP})
+
    add_executable(gama-local-yaml2gkf src/gama-local-yaml2gkf.cpp
-                  lib/gnu_gama/local/yaml2gkf.cpp $<TARGET_OBJECTS:libyaml>)
+                  lib/gnu_gama/local/yaml2gkf.cpp)
+   target_link_libraries(gama-local-yaml2gkf PUBLIC libgama libyaml)
+
+   install(TARGETS gama-local-yaml2gkf DESTINATION src)
 endif()
 
-# https://cmake.org/cmake/help/latest/prop_tgt/MSVC_RUNTIME_LIBRARY.html
-set_property(TARGET gama-local gama-g3 PROPERTY
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+# https://cmake.org/cmake/help/latest/prop_tgt/MSVC_RUNTIME_LIBRARY.html ... 2.16.6
+#set_property(TARGET gama-local gama-g3 PROPERTY
+#  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+
 
 # Installation
+#
 install(TARGETS gama-local gama-g3 DESTINATION src)
 
+
 # Tests
+#
 enable_testing()
 add_subdirectory(tests)

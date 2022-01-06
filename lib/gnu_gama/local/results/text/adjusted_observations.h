@@ -272,7 +272,7 @@ void AdjustedObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
    using namespace std;
    using namespace GNU_gama::local;
 
-   const int    y_sign = IS->y_sign();
+   const int    y_sign = int( IS->y_sign() );
    const Vec&   v      = IS->residuals();
    const int    pocmer = IS->observations_count();
    const double scale  = IS->gons() ? 1.0 : 0.324;

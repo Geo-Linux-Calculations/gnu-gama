@@ -81,7 +81,7 @@ namespace GNU_gama {
     SaveFlags(std::ostream& out) : std_stream(out)
     {
       flgs = std_stream.flags();
-      prec = std_stream.precision();
+      prec = int( std_stream.precision() );
     }
     ~SaveFlags()
     {

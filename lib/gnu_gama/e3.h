@@ -33,9 +33,9 @@ namespace GNU_gama {
     E_3() {}
     E_3(double a, double b, double c) : e1(a), e2(b), e3(c) {}
 
-    void   operator += (const E_3&);
-    void   operator -= (const E_3&);
-    void   operator *= (double);
+    E_3&   operator += (const E_3&);
+    E_3&   operator -= (const E_3&);
+    E_3&   operator *= (double);
 
     void   set(double, double, double);
     void   add(double, double, double);

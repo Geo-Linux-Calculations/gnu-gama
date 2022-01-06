@@ -166,7 +166,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
       WriteShortObservationName<OutStream> nameVisitor(out);
 
       PointID predcs = "";   // previous standpoint ID
-      int max_ii = pruchod==1 ? pocmer : odlehla.size();
+      int max_ii = pruchod==1 ? pocmer : int( odlehla.size() );
       for (int ii=1; ii<=max_ii; ii++)
         {
           int i = pruchod==1 ? ii : odlehla[ii-1];

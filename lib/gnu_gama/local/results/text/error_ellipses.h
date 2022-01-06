@@ -34,7 +34,7 @@ void ErrorEllipses(GNU_gama::local::LocalNetwork* IS, OutStream& out)
    using namespace std;
    using namespace GNU_gama::local;
 
-   const int y_sign = IS->y_sign();
+   const int y_sign = int( IS->y_sign() );
 
    const Vec& x = IS->solve();
    double elp_k = 0;

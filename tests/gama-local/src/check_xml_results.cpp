@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     double maxdiffxyz = 0;
 
     const GNU_gama::local::Vec& x = lnet->solve();
-    const int y_sign = lnet->y_sign();
+    const int y_sign = int( lnet->y_sign() );
 
     for (size_t i=0; i<adjres->adjusted_points.size(); i++)
       {
@@ -173,7 +173,7 @@ int main(int argc, char* argv[])
             double dy = F.y() - T.y();
             double D  = std::sqrt(dx*dx + dy*dy);
 
-            double p = obs->value()*R2G + r(i+1)/10000;
+            double p = obs->value()*R2G + r(int(i+1))/10000;
             while (p >= 400) p -= 400;
             while (p  <  0 ) p += 400;
             double q = A.adj;
@@ -185,7 +185,7 @@ int main(int argc, char* argv[])
          }
         else
           {
-            dfobs = obs->value() + r(i+1)/1000 - A.adj;
+            dfobs = obs->value() + r(int(i+1))/1000 - A.adj;
             dfstd = lnet->stdev_obs(i+1) - A.stdev;
           }
         if (std::abs(dfobs) > std::abs(maxdiffobs)) maxdiffobs = dfobs;

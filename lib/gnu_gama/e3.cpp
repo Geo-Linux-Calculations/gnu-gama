@@ -24,17 +24,17 @@
 
 using namespace GNU_gama;
 
-void E_3::operator += (const E_3& v)
+E_3& E_3::operator += (const E_3& v)
 {
-  e1 += v.e1;  e2 += v.e2; e3 += v.e3;
+  e1 += v.e1;  e2 += v.e2; e3 += v.e3;  return *this;
 }
-void E_3::operator -= (const E_3& v)
+E_3& E_3::operator -= (const E_3& v)
 {
-  e1 -= v.e1;  e2 -= v.e2; e3 -= v.e3;
+  e1 -= v.e1;  e2 -= v.e2; e3 -= v.e3;  return *this;
 }
-void E_3::operator *= (double d)
+E_3& E_3::operator *= (double d)
 {
-  e1 *= d;  e2 *= d;  e3 *= d;
+  e1 *= d;  e2 *= d;  e3 *= d;  return *this;
 }
 void E_3::set(double a, double b, double c)
 {
