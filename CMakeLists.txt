@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.16.7)
+project (gnu-gama VERSION 2.17)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -309,10 +309,6 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
 
    install(TARGETS gama-local-yaml2gkf DESTINATION src)
 endif()
-
-# https://cmake.org/cmake/help/latest/prop_tgt/MSVC_RUNTIME_LIBRARY.html ... 2.16.6
-#set_property(TARGET gama-local gama-g3 PROPERTY
-#  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
 
 
 # Installation

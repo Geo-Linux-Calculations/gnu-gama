@@ -1,8 +1,25 @@
-2022-01-01   Ales Cepek <cepek@gnu.org>
+2022-01-07   Ales Cepek <cepek@gnu.org>
 
 	New release 2.17
 
-	*
+	* library libgama changed from OBJECTS to static in CMakeLists.txt
+
+	* minor changes needed by qgama to implement xml input format export
+
+	* new function Observation::raw_value()
+
+	Observation function value() returns observed value with all
+	corrections added (if they are defined).  New function raw_value()
+	returns raw observed value without the corrections. This function
+	is needed in qgama GUI observation editor.
+
+	* HACKING: Describe release process (by Greg Troxel)
+
+	Describe the release process, including some checks.  This is
+	partially capturing existing practice, and is not meant to be a
+	significant change.
+	Reorder to put the long build tools discussion last, fix typos.
+
 
 2021-11-25   Ales Cepek <cepek@gnu.org>
 
