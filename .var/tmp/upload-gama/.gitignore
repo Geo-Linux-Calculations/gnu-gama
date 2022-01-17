@@ -1,0 +1,11 @@
+*~
+*.sig
+*.tar.gz
+gnulib
+gnupload
+announce-gen
+gama-old-releases
+qt-old-releases
+windows
+examples
+NEWS

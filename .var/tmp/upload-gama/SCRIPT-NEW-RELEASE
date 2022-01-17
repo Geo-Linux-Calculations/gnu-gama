@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+#  --gpg-key-id 1b77fc09  http://keys.gnupg.net/  -->  cepek@gnu.org
+#
+# 1) upload to FTP, see README-upload
+#
+# 2) ./announce-gen ...
+#
+# 3) email new release --> info-gama@gnu.org  info-gnu@gnu.org
+#
+./announce-gen --package-name gama \
+               --release-type stable \
+               --current-version 2.12 \
+               --previous-version 2.11 \
+               --gpg-key-id 1b77fc09 \
+               --url https://ftp.gnu.org/gnu/gama \
+               --news NEWS
