@@ -35,6 +35,7 @@ Adjustment of local geodetic network is a classical case of
 approximate values of unknown parameters (coordinates of points) and
 linearization of functions describing relations between observations and
 parameters we solve linear system of equations
+@c
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -71,15 +72,114 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-where @m{P} is weight matrix. This criterion unambiguously
-defines the shape of adjusted network.
+where @m{P} is weight matrix. This criterion unambiguously defines the
+shape of adjusted network.
 
 
 
-In the case of @emph{free network,} i.e. network with no fixed coordinates
-(or network without sufficient number of fixed coordinates), the system (1)
-is singular (matrix @m{A} has linearly dependent columns)
-and we have to define second regularization criterion
+Geodetic adjustment is traditionally computed as the solution of
+@emph{normal equations}
+@c
+@footnote{@code{gama-local} can solve the project equations (1)
+directly using algorithms @emph{Gram-Schmidt orthogonalisation} or
+@emph{Singular Value Decomposition}, which generally yield numerically
+more stable solution.}
+@c
+@c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@tex
+$$ \bf{ Nx = n, \quad   N=A'PA, \quad n=A'Pb.} \eqno (a) $$
+@end tex
+@c % ......................................................................
+@ifnottex
+
+@example
+(a)      Nx = n,  where  N=A'PA  and  n=A'Pb.
+@end example
+
+@end ifnottex
+@c % ----------------------------------------------------------------------
+@noindent
+
+
+
+In the case of @emph{free network,} i.e. network with no fixed
+coordinates (or network without sufficient number of fixed
+coordinates), the system (1) is singular, matrix @m{A} has linearly
+dependent columns, and there is infinite number of solutions @m{x}.
+
+To define a unique solution @m{x} we need to definine a set of
+constriant equations (@emph{inner constraints})
+@c
+@c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@tex
+$$ \bf{ Cx = c} \eqno (b) $$
+@end tex
+@c % ......................................................................
+@ifnottex
+
+@example
+(b)      Cx = c
+@end example
+
+@end ifnottex
+@c % ----------------------------------------------------------------------
+@noindent
+
+to minimize
+@c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@tex
+$$ {\bf r'Pr - 2k'(Cx -c)} = \min  \eqno (c) $$
+@end tex
+@c % ......................................................................
+@ifnottex
+
+@example
+(c)      r'Pr - 2k'(Cx - c) = min
+@end example
+
+@end ifnottex
+@c % ----------------------------------------------------------------------
+@noindent
+@c
+where @m{r} is the vector of residuals, @m{r = Ax - b}, @m{k} is a
+vector of so called @emph{Lagrange multipliers} and adjusted vector @m{x}
+is obtained from solution of
+@c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@tex
+$$
+ \pmatrix{
+    \bf A'PA & \bf C' \cr
+    \bf C    & \bf 0  \cr
+ }
+ \pmatrix{
+    \bf x \cr
+    \bf k \cr
+ } =
+ \pmatrix{
+    \bf A'Pb \cr
+    \bf c    \cr
+ }                  \eqno (d)
+$$
+@end tex
+@c % ......................................................................
+@ifnottex
+
+@example
+(d)      ( A'PA, C') (x) = (A'Pb)
+         ( C,    0 ) (k) = (  c )
+@end example
+
+@end ifnottex
+@c % ----------------------------------------------------------------------
+@noindent
+@c
+
+
+
+
+In @code{gama-local} a slightly different approach is used, we define
+a second regularization criterion as
+@c
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -96,9 +196,9 @@ $$
 @end ifnottex
 @c % ----------------------------------------------------------------------
 @noindent
-stating that at the same time we demand that the sum of squares
-corrections of selected parameters is minimal (corrections of unknown
-parameters with indexes from the set
+stating that at the same time with (2) we demand that the sum of
+squares corrections of selected parameters is minimal (corrections of
+unknown parameters with indexes from the set
 @c % +++++++++++++++++++++++
 @tex
 $\Omega$).
@@ -111,6 +211,7 @@ Geometrically this criterion is equivalent to adjustment of the network
 according to (2) with simultaneous transformation to the selected set of
 fiducial points.  This transformation does not change the shape of
 adjusted network.
+
 
 
 Often it is advantageous to work with a @emph{homogenized system,}
@@ -144,14 +245,14 @@ the case of homogenized system criterion
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
-         \bf \tilde v'v = \min.                 \eqno (5)
+         \bf \tilde v'\tilde v = \min.                 \eqno (5)
 $$
 @end tex
 @c % ......................................................................
 @ifnottex
 
 @example
-(5)      ~v'v = min.
+(5)      ~v'~v = min.
 @end example
 
 @end ifnottex
