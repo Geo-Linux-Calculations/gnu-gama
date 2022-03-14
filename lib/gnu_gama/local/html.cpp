@@ -1,4 +1,4 @@
-/* GNU Gama C++ librarys
+/* GNU Gama C++ library
    Copyright (C) 2012, 2013, 2014, 2016, 2018  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
@@ -29,12 +29,14 @@
 #include <gnu_gama/local/writevisitor.h>
 #include <gnu_gama/local/language.h>
 #include <gnu_gama/local/test_linearization_visitor.h>
+#include <gnu_gama/xml/str2xml.h>
 
 #include <sstream>
 #include <cmath>
 
 namespace {
 
+using GNU_gama::str2xml;
 using namespace GNU_gama::local;
 
 class HtmlStringStream {
@@ -54,7 +56,6 @@ private:
     std::string& str;
 };
 
-std::string str2html  (const std::string& str);
 std::string tdSpace   (int n=1);
 std::string int2str   (int n);
 std::string double2str(double d, char format, int precision);
@@ -89,12 +90,12 @@ std::string double2str(double d, char format, int precision)
 std::string tdLeft(std::string s, int l, int r)
 {
   return
-    "<td align='left'>" + tdSpace(l) + str2html(s) + tdSpace(r) + "</td>";
+    "<td align='left'>" + tdSpace(l) + str2xml(s) + tdSpace(r) + "</td>";
 }
 std::string tdRight(std::string s, int l, int r)
 {
   return
-    "<td align='right'>" + tdSpace(l) + str2html(s) + tdSpace(r) + "</td>";
+    "<td align='right'>" + tdSpace(l) + str2xml(s) + tdSpace(r) + "</td>";
 }
 // std::string tdLeft(int n, int l, int r)   ... unused function
 // {
@@ -111,20 +112,6 @@ std::string tdRight(int n, int l, int r)
 std::string tdRight(double d, char format, int precision, int l, int r)
 {
   return tdRight(double2str(d,format,precision),l,r);
-}
-std::string str2html(const std::string &str)
-{
-  std::string t;
-  for (std::string::const_iterator i=str.begin(), e=str.end(); i!=e; ++i)
-    {
-      char c = *i;
-      if      (c == '<') t += "&lt;";
-      else if (c == '>') t += "&gt;";
-      else if (c == '&') t += "&amp;";
-      else if (c =='\'') t += "&quot;";
-      else               t += c;
-    }
-  return t;
 }
 std::string tdSpace(int n)
 {
@@ -991,7 +978,7 @@ void GamaLocalHTML::htmlInfo()
           outv.precision(4);
           WriteVisitor<std::ostringstream> write_visitor(outv, true);
           ptr->accept(&write_visitor);
-          out << str2html(outv.str());
+          out << str2xml(outv.str());
 
           out << "</p>\n";
         }

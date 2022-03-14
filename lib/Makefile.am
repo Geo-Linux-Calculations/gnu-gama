@@ -73,6 +73,8 @@ libgama_src = \
    gnu_gama/xml/localnetwork_adjustment_results_data.h \
    gnu_gama/xml/gkfparser.cpp \
    gnu_gama/xml/gkfparser.h \
+   gnu_gama/xml/str2xml.cpp \
+   gnu_gama/xml/str2xml.h \
    gnu_gama/local/angobs.h \
    gnu_gama/local/bearing.cpp \
    gnu_gama/local/bearing.h \

@@ -88,6 +88,8 @@ set(SRC_GAMA
    lib/gnu_gama/xml/localnetwork_adjustment_results_data.h
    lib/gnu_gama/xml/gkfparser.cpp
    lib/gnu_gama/xml/gkfparser.h
+   lib/gnu_gama/xml/str2xml.cpp
+   lib/gnu_gama/xml/str2xml.h
 
    lib/gnu_gama/local/angobs.h
    lib/gnu_gama/local/bearing.cpp
