@@ -33,6 +33,7 @@
 #include <algorithm>
 #include <sstream>
 #include <gnu_gama/xml/localnetworkxml.h>
+#include <gnu_gama/xml/str2xml.h>
 #include <gnu_gama/statan.h>
 #include <gnu_gama/gon2deg.h>
 #include <gnu_gama/version.h>
@@ -312,7 +313,9 @@ void LocalNetworkXML::write(std::ostream& out) const
       << "<gama-local-adjustment "
       << "xmlns=\"" << XSD_GAMA_LOCAL_ADJUSTMENT << "\">\n";
 
-  out << "\n<description>" << netinfo->description << "</description>\n";
+  out << "\n<description>"
+      << GNU_gama::str2xml(netinfo->description)
+      << "</description>\n";
 
   {
     {

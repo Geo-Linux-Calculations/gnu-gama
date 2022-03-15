@@ -320,5 +320,7 @@ install(TARGETS gama-local gama-g3 DESTINATION src)
 
 # Tests
 #
-enable_testing()
-add_subdirectory(tests)
+if (NOT DEFINED DISABLE_GNU_GAMA_TESTING)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
