@@ -114,6 +114,9 @@ $$
 Internally @code{gama-local} works with gons but output can be
 transformed to degrees using the option @code{--angular 360}.
 
+Another angular unit commonly used in surveying is the milligon
+(mgon), 1 mgon = 1 gon/1000 (similarly as 1 mm = 1 m/1000) and 1 cc =
+10 mgon.
 
 
 @node     Prologue
