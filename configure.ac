@@ -10,7 +10,7 @@ AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([scripts/config.aux])
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE(subdir-objects)
 AM_SILENT_RULES([yes])
 
 dnl You can comment out the following macro if you have the package

@@ -83,3 +83,9 @@ Contributors:
 
     Jan Holešovský
         - consultations and testing of Octave format with MATLAB
+
+    Friedhelm Krumm, Geodätisches Institut Universität Stuttgar
+        - contributed mumerical examples for the adjustment of geodetic
+          networks (1D, 2D and 3D) published in his Geodetic Network
+          Adjustment Examples, Rev. 3.5, January 20, 2020.
+          https://www.gis.uni-stuttgart.de/

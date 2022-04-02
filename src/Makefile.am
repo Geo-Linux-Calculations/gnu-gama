@@ -1,7 +1,8 @@
 GAMA_LOCAL = gama-local \
              gama-local-xml2txt \
              gama-local-xml2sql \
-             gama-local-gkf2yaml
+             gama-local-gkf2yaml \
+             krumm2gama-local
 
 if GNU_GAMA_G3_ENABLED
    GAMA_G3 = gama-g3
@@ -40,3 +41,13 @@ if GNU_GAMA_LOCAL_TEST_YAML_CPP
    gama_local_yaml2gkf_LDADD   = $(top_builddir)/lib/libgama.a -lyaml-cpp
    gama_local_yaml2gkf_CPPFLAGS = -I $(top_srcdir)/lib
 endif
+
+krumm2gama_local_SOURCES  = \
+   $(top_srcdir)/lib/krumm/krumm2gama-local.cpp \
+   $(top_srcdir)/lib/krumm/common.cpp \
+   $(top_srcdir)/lib/krumm/input.cpp \
+   $(top_srcdir)/lib/krumm/k2gkf.cpp \
+   $(top_srcdir)/lib/krumm/output.cpp \
+   $(top_srcdir)/lib/krumm/string_matrix.cpp \
+   $(top_srcdir)/lib/gnu_gama/xml/str2xml.cpp
+krumm2gama_local_CPPFLAGS = -I $(top_srcdir)/lib/krumm -I $(top_srcdir)/lib

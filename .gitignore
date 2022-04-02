@@ -81,6 +81,7 @@ src/gama-local-xml2txt
 src/gama-local-xml2sql
 src/gama-local-yaml2gkf
 src/gama-local-gkf2yaml
+src/krumm2gama-local
 scripts/ellipsoids_xml
 scripts/gnu_gama_dep
 scripts/slovnikar
