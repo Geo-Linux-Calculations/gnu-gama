@@ -21,9 +21,9 @@
 #include <iostream>
 #include <vector>
 #include <unordered_set>
-#include "k2gkf.h"
-#include "input.h"
-#include "output.h"
+#include <krumm/k2gkf.h>
+#include <krumm/input.h>
+#include <krumm/output.h>
 
 using namespace std;
 

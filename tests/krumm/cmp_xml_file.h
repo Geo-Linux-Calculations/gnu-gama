@@ -17,25 +17,11 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <krumm/string_matrix.h>
+#ifndef CMP_XML_FILE_H
+#define CMP_XML_FILE_H
 
-StringMatrix::StringMatrix()
-{
-}
+#include <istream>
 
-int StringMatrix::rows() const
-{
-  int maxr = 0;
-  for (auto row=this->cbegin(); row!=this->cend(); row++)
-    maxr = std::max(maxr, row->first);
-  return  maxr;
-}
+int cmp_xml_file(std::istream& xml, std::istream& adj);
 
-int StringMatrix::cols() const
-{
-  int maxc = 0;
-  for (auto row=this->cbegin(); row!=this->cend(); row++)
-    for (auto col=row->second.cbegin(); col!=row->second.cend(); col++)
-    maxc = std::max(maxc, col->first);
-  return  maxc;
-}
+#endif

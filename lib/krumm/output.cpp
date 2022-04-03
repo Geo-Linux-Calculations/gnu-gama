@@ -17,8 +17,8 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "output.h"
-#include "common.h"
+#include <krumm/output.h>
+#include <krumm/common.h>
 #include <gnu_gama/xml/str2xml.h>
 
 Output::Output(std::ostream& out, Common& c) : out_(out), common(c)

@@ -17,25 +17,36 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <krumm/string_matrix.h>
+#include <fstream>
+#include <iostream>
+#include "cmp_xml_file.h"
 
-StringMatrix::StringMatrix()
+int help()
 {
+  std::cerr << R"help(
+Compare gama-local xml adjustment results with file containing information
+about adjusted coordinates as used in Geodetic Network Adjustment Examples
+by Friedhelm Krumm.
+
+Usage: cmp_xml_file  xml_adjustment_results  adjusted_coordinates_file
+
+Adjusted coordinates format:
+
+       [m]   [mm]   [cm]    [m]   [mm]   [cm]    [m]   [mm]   [cm]    [cm]
+Point X_adj X_corr stddev  Y_adj Y_corr stddev  Z_adj z_corr stddev  stdd3d
+
+)help";
+
+  return 1;
 }
 
-int StringMatrix::rows() const
+int main(int argc, char* argv[])
 {
-  int maxr = 0;
-  for (auto row=this->cbegin(); row!=this->cend(); row++)
-    maxr = std::max(maxr, row->first);
-  return  maxr;
-}
+  if (argc != 3) return help();
 
-int StringMatrix::cols() const
-{
-  int maxc = 0;
-  for (auto row=this->cbegin(); row!=this->cend(); row++)
-    for (auto col=row->second.cbegin(); col!=row->second.cend(); col++)
-    maxc = std::max(maxc, col->first);
-  return  maxc;
+  std::ifstream xml(argv[1]);
+  std::ifstream adj(argv[2]);
+  if (!xml || !adj) return help();
+
+  return cmp_xml_file(xml, adj);
 }

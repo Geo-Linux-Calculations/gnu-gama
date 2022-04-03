@@ -8,4 +8,4 @@ if GNU_GAMA_LOCAL_EXTRA_TESTS
    EXTRA_TESTS = matvec statan acord2 extra-tests
 endif
 
-SUBDIRS = gama-local $(GAMA_G3) $(EXTRA_TESTS)
+SUBDIRS = gama-local krumm $(GAMA_G3) $(EXTRA_TESTS)

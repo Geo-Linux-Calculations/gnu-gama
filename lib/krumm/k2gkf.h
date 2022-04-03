@@ -23,7 +23,7 @@
 #include <iostream>
 #include <map>
 #include <set>
-#include "common.h"
+#include <krumm/common.h>
 
 class K2gkf
 {

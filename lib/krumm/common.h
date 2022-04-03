@@ -19,8 +19,8 @@
 
 #ifndef K2GKF_COMMON_H
 #define K2GKF_COMMON_H
-//nclude "k2gkf.h"
-#include "string_matrix.h"
+
+#include <krumm/string_matrix.h>
 #include <string>
 #include <map>
 #include <set>

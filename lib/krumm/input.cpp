@@ -17,9 +17,9 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "input.h"
-#include "common.h"
-#include "k2gkf.h"
+#include <krumm/input.h>
+#include <krumm/common.h>
+#include <krumm/k2gkf.h>
 #include <sstream>
 #include <vector>
 #include <algorithm>

@@ -182,5 +182,6 @@ AC_CONFIG_FILES([
    tests/gama-g3/src/Makefile
    tests/extra-tests/Makefile
    tests/extra-tests/input/Makefile
+   tests/krumm/Makefile
 ])
 AC_OUTPUT

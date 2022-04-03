@@ -20,7 +20,7 @@
 #ifndef K2GKF_INPUT_H
 #define K2GKF_INPUT_H
 
-#include "common.h"
+#include <krumm/common.h>
 #include <istream>
 
 class Input {

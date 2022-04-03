@@ -20,8 +20,8 @@
 #ifndef K2GKF_OUTPUT_H
 #define K2GKF_OUTPUT_H
 
-#include "common.h"
-#include "k2gkf.h"
+#include <krumm/common.h>
+#include <krumm/k2gkf.h>
 #include <ostream>
 
 class Output {
