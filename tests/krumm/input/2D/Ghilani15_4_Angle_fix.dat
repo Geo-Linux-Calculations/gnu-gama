@@ -1,0 +1,45 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Beispiel 15.4, S. 271
+%
+[Project]
+Ghilani (2010), Ex. 15.4
+
+[Source]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 15.4, pp. 271
+
+%
+[Coordinates]
+%    x    y         H
+R   865.40 4527.15
+S  2432.55 2047.25
+T  2865.22   27.15
+U  6861.35 3727.59
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:6500,4750,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:2500                 % scale (for error ellipses)
+axlims:500,8000,-500,5000  % axlims for axis
+legpos:SouthEast
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xR yR xS yS xT yT
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.001 gon
+
+%
+%  Angles [gon] with standard deviation [gon]
+[Angles]
+R U S  55.6820987654321 0.001
+S R U 112.792283950617
+S U T 109.653395061728
+T S U  65.8706790123457

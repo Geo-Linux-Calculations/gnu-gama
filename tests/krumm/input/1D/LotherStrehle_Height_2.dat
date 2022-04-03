@@ -1,0 +1,63 @@
+%
+%  Lother G and Strehle J (2007): Grundlagen der Ausgleichungsrechnung nach der Methode der kleinsten Quadrate.
+%            Hochschule München, Fakultät für Geoinformation, Bachelorstudiengang Geoinformatik und Satellitenpositionierung
+%            S. 11-3 bis 11-16
+%
+[Project]
+Fix height network observed by levelling and trigonometric height
+differences
+
+[Source]
+Lother G and Strehle J (2007): Grundlagen der Ausgleichungsrechnung
+nach der Methode der kleinsten Quadrate. Hochschule München, Fakultät
+für Geoinformation, Bachelorstudiengang Geoinformatik und
+Satellitenpositionierung, pp. 11-3
+
+[Coordinates]
+%      x    y     H
+1    1000 1000 510.369
+2    1000 1500 508.762
+3    2500 1500 526.174
+4    2500 1000 515.982
+10   1500 1500 502.163
+11   2000 1500 501.562
+12   2000 1000 503.789
+13   1500 1000 501.984
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:2520,950,0.5      % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:10000              % scale (for error ellipses)
+axlims:900,2600,900,1600 % axlims for axis
+legpos:Southwest
+xticks:100
+yticks:100
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix 4
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.00212132034355964 m %  in order to make the weights as they are in Lother/Strehle
+
+%
+%  Levelled height differences [m], Levelling line length [m] and standard deviation [m] for a 1km levelling line length
+[LevelledHeightDifferences]
+13  1  8.3830 4020  0.0015
+ 2  1  1.6035 4620
+10  2  6.6025 3980
+13 10  0.1840 1640
+11  3 24.6060 3080
+ 4  3 10.1910 4120
+12  4 12.1915 2940
+11 12  2.2280 1460
+
+%
+%  Trigonometric height differences [m] and standard deviation, instrument height [m], target signal height [m]
+[TrigonometricHeightDifferences]
+11 10 0.5995 0.0033
+13 12 1.8050 0.0027

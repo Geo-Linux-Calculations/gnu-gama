@@ -1,0 +1,60 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Problem 21.10, S. 459
+%
+[Project]
+Fix Distance-Angle network
+
+[Quelle]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 21.10, pp. 459
+
+[Coordinates]
+%    x    y         H
+%  taken from book
+A 5600.544 4966.236
+B 6061.624 8043.173
+C 9787.823 8038.529
+D 9260.886 4843.911
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:10000,4800,10         % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:2000                  % scale (for error ellipses)
+axlims:5500,10500,4500,8500 % axlims for axis
+legpos:Best
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA xB yB
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  Angle observations [unit] with standard deviations [unit]
+%
+[Winkel,dms,s]
+A B C 45°12'34" 2.1
+A C D 38°10'54"
+B C D 44°55'43"
+B D A 53°31'23"
+C D A 44°21'59"
+C A B 36°20'26"
+D A B 43°06'11"
+D B C 54°22'00"
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+   A   B 3111.291 0.010
+   B   C 3726.220 0.012
+   C   D 3237.783 0.010
+   D   A 3662.372 0.012
+   A   C 5193.471 0.016
+   B   D 4524.471 0.014

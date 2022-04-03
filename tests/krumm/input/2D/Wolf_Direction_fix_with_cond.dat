@@ -1,0 +1,85 @@
+%
+%  H. Wolf (1979): Ausgleichungsrechnung II. Dümmlers, S. 273
+%
+[Project]
+Distance-direction network with one non-linear restriction
+
+[Source]
+Wolf W (1979): Aus#glei#chungs#rech#nung II. Dümmlers, pp. 273
+
+[Coordinates]
+%        x         y         H
+A  182581.47   923429.29
+B  184292.49   923313.53
+C  185487.68   921829.12
+D  184601.06   920342.31
+E  182710.83   920499.69
+F  180714.50   921400.70
+G  182275.71   921801.57
+H  183716.63   921800.04
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:181000,923250,5         % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:10000                 % scale (for error ellipses)
+axlims:180500,186000,920000,923500 % axlims for axis
+legpos:SouthWest
+xtick:500
+ytick:500
+ 
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix A B C D E F
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.0014 gon
+
+%
+%  Directions [gon] with standard deviations [gon]
+[Directions]
+A H   0.0000 0.0014
+A G  50.5620
+A F  86.1000
+
+B C   0.0000
+B H  66.2990
+B A 147.4570
+
+C D   0.0000
+C H  64.7230
+C B 122.6130
+
+D E   0.0000
+D H  59.9890
+D C 128.9420
+
+E F   0.0000
+E G  52.4770
+E H 114.9230
+E D 178.2980
+
+F A   0.0000
+F G  36.6390
+
+G H   0.0000
+G E  79.3980
+G F 183.9280
+
+H B   0.0000
+H C  75.8070
+H G 276.9240
+
+%
+%  Correlated Distances [m] with Variance-Covariance matrix
+[CorrelatedDistances]
+E G 1372.45 0.0009
+C H 1771.42 0.00072 0.0009
+
+%
+% Restrictions for coordinates
+[Restrictions]
+(xG-xH)^2+(yG-yH)^2-1440.6^2

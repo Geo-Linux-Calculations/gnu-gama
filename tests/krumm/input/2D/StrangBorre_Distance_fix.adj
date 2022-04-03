@@ -1,0 +1,7 @@
+# Fix network
+#
+# Strang G and K Borre (1997): Linear Algebra, Geodesy, and
+# GPS. Ex. 12.4, pp. 411
+#
+
+P 170.7029 -0.707 3.303  170.7234 1.336 2.335  4.045

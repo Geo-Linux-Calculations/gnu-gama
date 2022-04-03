@@ -1,0 +1,56 @@
+%
+%  Jäger, Müller, Saler, Schwäble (2005): Klassische und robuste Ausgleichungsverfahren. Wichmann, Heidelberg, S. 241-242
+%
+[Project]
+Fix Distance-Direction network
+
+[Source]
+Jäger R et al (2005): Klassische und robuste Ausgleichungsverfahren. Wichmann, Heidelberg, pp. 241
+
+[Coordinates]
+%     x        y      (Vertauscht wegen mathematischem System)
+A   410.78   380.13
+B  1183.46  1762.67
+C  2077.03   433.38
+D  1207.57   124.63
+N  1175.15   997.72
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:700,1700,0.25         % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:100000                 % scale (for error ellipses)
+axlims:200,2200,0,1800       % axlims for axis
+legpos:Southwest
+xticks:200
+yticks:200
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA xB yB xC yC xD yD
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.5e-3 gon % in order to become direction weights equal 1
+
+%
+%  Approximate orientation unknown [gon]
+[ApproximateOrientation]
+N  63.561
+
+%
+%  Directions [gon] with standard deviations [gon]
+[Directions]
+N A 193.1749 0.5e-3    % Original data in Geodetic system
+N B 337.1304 0.5e-3
+N C  72.0344 0.5e-3
+N D 134.0758 0.5e-3
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+N A  982.69 0.001 % corrected due to error in book (sigma_s adjusted wrt. ps=0.25)
+N B  765.00
+N C 1063.89

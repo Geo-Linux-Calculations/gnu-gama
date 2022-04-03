@@ -1,0 +1,112 @@
+%
+%  H. Wolf (1979): Ausgleichungsrechnung II. Dümmlers, S. 66
+%
+[Project]
+Free Distance-Direction-Angle network
+
+[Source]
+Wolf W (1979): Ausgleichungsrechnung II. Dümmlers, pp. 66
+
+[Coordinates]
+%        x         y         H
+1 184423.28 726419.33
+2 186444.18 726476.66
+3 183257.84 725490.35
+4 184292.00 723313.00
+5 185487.00 721829.00
+6 186708.72 722104.58
+7 184868.20 725139.70
+8 186579.30 725336.60
+9 185963.07 723322.02
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:183750,726750,5            % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:5000                         % scale (for error ellipses)
+axlims:183000,187000,721500,727000 % axlims for axis
+legpos:Southwest
+xticks:1000
+yticks:1000
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+free x1 y1 x2 y2 x3 y3 x4 y4 x5 y5
+     x6 y6 x7 y7 x8 y8 x9 y9
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+2.5 mgon % in order to become direction weights 1 (as they are in Wolf)
+
+%
+%  Directions [gon] with standard deviations [gon]
+[Directions]
+1 2   0.0000 0.0025
+1 7  80.5000
+1 3 158.9610
+
+2 8   0.0000
+2 7  62.7260
+2 1 105.7120
+
+3 1   0.0000
+3 7  56.4960
+3 9  85.8450
+3 4 114.5950
+
+4 7   0.0000
+4 8  34.4500
+4 9  80.2110
+4 5 137.4020
+4 3 352.3090
+
+5 9   0.0000
+5 6  66.2450
+5 4 337.2160
+
+6 5   0.0000
+6 9  79.1690
+6 8 111.5820
+
+7 2   0.0000
+7 8  37.4980
+7 9 110.2580
+7 4 164.2320
+7 3 258.4410
+7 1 323.4860
+
+8 6   0.0000
+8 9  21.4450
+8 4  56.4420
+
+9 8   0.0000
+9 6 146.1430
+9 5 200.7330
+9 4 280.7560
+9 3 324.1050
+9 7 346.5690
+
+%
+%  Approximate orientation unknown [gon]
+[ApproximateOrientation]
+1  98.
+2 192.
+3  57.
+4  19.
+5  19.
+6 285.
+7  55.
+8 197.
+9  18.
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+7 9 2121.90 0.03
+
+%
+%  Angles [gon] with standard deviation [gon]
+[Angles]
+8 7 2 99.7810 0.0035

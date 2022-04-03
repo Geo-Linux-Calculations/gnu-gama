@@ -1,0 +1,55 @@
+%
+%  H. Wolf (1979): Ausgleichungsrechnung II. Dümmlers, S. 103-106
+%
+[Project]
+Wolf H (1979), Ex. I3.2-18
+
+[Source]
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 103
+
+[Coordinates]
+%   x    y    z
+A  500  500  500 
+B 1000 1000  500
+C 1200 1700  500
+D  750 2000  500
+N  900 1200 1500
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:0,28,6.1,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+%ellpos:28,0,6.1,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:50000                 % scale (for error ellipses)
+axlims:300,1300,300,2100,500,1700  % axlims for axis
+legpos:Southwest
+xticks 200
+yticks 200
+zticks:200
+view: 124,18
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA zA xB yB zB xC yC zC xD yD zD
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.001 gon
+
+%
+%  Position Angles [gon] with standard deviation [gon]
+[PositionAngles]
+N B A 37.0111852 0.001
+N C B 42.6315679
+N D C 27.5470957
+N A D 80.4765648
+
+%
+%  Spatial distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] (sigma^2=sigma_c^2 + s[m]*sigma_s^2)
+[SpatialDistances]
+N A 1284.52 0.03
+N B 1024.70
+N C 1157.58
+N D 1289.38

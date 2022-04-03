@@ -1,0 +1,73 @@
+%
+%  Example 2a (pp 187) from Leick A (1995): GPS Satellite Surveying. Second Edition.
+%
+[Project]
+Leick A (1995), Ch. 5.3, Ex. 2a
+
+[Source]
+Leick A (1995): GPS Satellite Surveying. Second Edition, Ch. 5.3,  pp. 187
+
+%
+%  Reference ellipsoid (A, E1Q) or short cut name, and Reference meridian and scale factor
+[Ellipsoid,dms]
+6378137.000 0.00669438002 291°0'0" 0.9996
+
+%grs80a 291°0'0" 0.9996
+
+%
+%  Coordinates with units
+[Coordinates,Bdms,Ldms]
+%          B             L          H (ellipsoidal) H(orthometric)
+Six#Mile@1 44°51'42.44" 291°10'03.11"   %   3.030           25.87
+%Argyle@2   45°03'02.86" 291°18'15.25"  %   31.250           53.95
+%Otter@3    44°56'38.69" 291°22'42.61"   %   7.250           30.02
+%Sunkhaze@4 44°58'15.00" 291°27'52.31"  %   19.740           42.19
+%Chemo@5    44°48'20.70" 291°25'44.38"   %  16.140           39.23
+Trav-01@6  44°53'02.45" 291°12'44.01"   %  14.230           36.88
+%Vert-01@7  44°56'00.01" 291°15'00.01"   %  15.670           38.06
+%Trav-02@8  44°55'54.03" 291°16'48.50"   %  21.070           44.17
+Trav-09@9  44°53'22.16" 291°17'53.04"   %  47.860           70.68
+%Verl-02@10  44°54'00.00" 291°19'00.00"   %  17.150           39.14
+%Trav-10@11  44°51'19.69" 291°19'28.57"   %  -0.430           22.23
+%Trav-11@12  44°48'20.05" 291°23'34.69"   %  55.110           78.05
+%Trav-12@13  44°48'58.63" 291°21'39.42"   %  41.470           64.51
+%Trav-13@14  44°47'42.91" 291°17'46.33"   %   2.350           25.46
+Trav-14@15  44°49'35.50" 291°13'53.52"   %  50.540           73.24
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:14000,4965000,50         % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:4000                % scale (for error ellipses)
+legpos:SouthEast
+axlims:12000,25000,4962000,4972000
+xtick:1000
+ytick:1000
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix
+xSix#Mile ySix#Mile xTrav-14
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  Horizontal distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma=sigma_c + s[m]*sigma_s}
+[HorizontalDistances]
+Six#Mile Trav-01  4307.814 0.002 0.05 %  1-6
+Six#Mile Trav-09 10759.585 0.002 0.05 %  1-9
+Trav-01 Trav-09   6806.150            %  6-9
+Trav-14 Trav-09   8751.961            % 15-9
+Trav-14 Six#Mile  6399.312            % 15-1
+
+%
+%  Angle observations with standard deviation
+[Angles,dms,s]
+Six#Mile Trav-01 Trav-14  72°44'07.4" 3" %  1-6-15
+Trav-01 Six#Mile Trav-09 209°47'32.9"    %  1-6- 9
+Trav-09 Trav-14  Trav-01  47°57'39.6"    %  9-6-15
+Trav-14 Six#Mile Trav-09  89°05'47.1"    % 15-1- 9

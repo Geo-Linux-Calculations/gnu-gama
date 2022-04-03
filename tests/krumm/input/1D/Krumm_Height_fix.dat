@@ -1,0 +1,39 @@
+[Project]
+Fix height network
+
+[Coordinates]
+%     x   y     H
+1    481 660  93.459
+2    703 309 107.759
+3    395 299 103.459
+4    140 400 100.459
+5    957 511 110.956
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:900,650,1        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:5000              % scale (for error ellipses)
+axlims:100,1000,200,700 % axlims for axis
+legpos:SouthWest
+xticks:100
+yticks:100
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix 5
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.005 m
+
+%
+%  Levelled height differences [m], Levelling line length [m] and standard deviation [m] for a 1km levelling line length
+[LevelledHeightDifferences]
+1 2  14.301  900 0.005
+1 3   9.995  800
+1 4   7.006 1000
+1 5  17.500 1500
+3 2   4.299  500

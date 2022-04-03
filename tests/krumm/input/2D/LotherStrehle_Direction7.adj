@@ -1,0 +1,12 @@
+# G. Lother und J. Strehle (2007): Grundlagen der Ausgleichungsrechnung
+# nach der Methode der klein- sten Quadrate. Hochschule München,
+# Fakultät für Geoinformation, Bachelorstudiengang Geoinfor- matik und
+# Satellitenpositionierung, pp. 11-17
+#
+# Datum definition 7: Dynamic, with stochastic prior information for
+# observed points
+
+  10  1000.0065   0.655  0.828   999.9991  -0.089  0.821  1.165
+  20  1432.4828	  0.081	 0.942	1588.7819   0.594  0.984  1.362
+  30  1497.3934	 -0.857	 0.657	 999.9946  -0.539  0.773  1.014
+  40  1439.7682	  0.122	 0.846	 640.2583   0.033  0.892  1.229

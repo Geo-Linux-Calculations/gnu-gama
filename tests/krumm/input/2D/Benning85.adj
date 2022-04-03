@@ -1,0 +1,11 @@
+# Free Distance-Direction network with given approximate orientations
+#
+# Benning (2011): Statistik in Geodäsie, Geoinformation und Bauwesen,
+# Wichmann. Ex. 8-5, pp. 273
+
+# Adjusted coordinates, corrections and std.dev. (sigma)
+
+1     0.0018  0.180  0.354  1000.0031   0.312  0.214  0.413
+2  1000.0135  1.346  0.382   999.9986  -0.142  0.203  0.432
+3    -0.0076 -0.757  0.180    -0.0184  -1.838  0.194  0.265
+4   999.9923 -0.769  0.193     0.0167   1.668  0.197  0.276

@@ -1,0 +1,61 @@
+%
+%  W. Grossmann (1961): Grundzüge der Ausgleichungsrechnung. 2. Auflage, Springer 1961, pp. 156
+%
+%
+[Project]
+Fix direction network
+
+[Source]
+Grossmann W (1969): Grundzüge der Ausgleichungsrechnung. 3. Extended
+Edition, Springer 1969, pp. 170
+
+[Coordinates]
+%        x         y         H
+A  9498.26 78594.91
+B 10367.59 75913.25
+C  9300.43 75306.80
+D  7115.09 75723.68
+E  7206.65 78907.88
+F  6633.27 76701.57
+P  8401.88 76607.85
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:8500,75200,10          % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:10000                   % scale (for error ellipses)
+axlims:6500,10500,75000,79000 % axlims for axis
+legpos:SouthWest
+xticks:500
+yticks:500
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA xB yB xC yC xD yD xE yE xF yF
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.0025 gon
+
+%
+%  Directions [gon] with standard deviations [gon]
+[Directions]
+A B   0.0000 0.0025
+A P  52.0596 0.0025
+A E 128.6019 0.0025
+
+C B   0.0000 0.0025
+C D 244.8923 0.0025
+C P 294.4157 0.0025
+
+D E   0.0000 0.0025
+D P  59.8493 0.0025
+D C 110.1815 0.0025
+D F 369.0330 0.0025
+
+P A   0.0000 0.0025
+P B  89.5219 0.0025
+P C 129.4256 0.0025
+P E 337.3908 0.0025

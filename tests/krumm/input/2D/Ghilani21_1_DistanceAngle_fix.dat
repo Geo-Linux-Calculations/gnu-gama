@@ -1,0 +1,103 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Beispiel 21.1, S. 446
+%
+[Project]
+Fix horizontal network
+
+[Quelle]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 21.1, pp. 446
+
+[Coordinates]
+%    x    y         H
+%  copied from book
+%1    2477233.88 420353.62
+%2    2477497.99 419951.98
+%3    2477832.67 420210.17
+%4    2478023.86 420438.88
+%5    2477630.64 420567.44
+%6    2477665.36 420323.31
+%102  2476454.17 419743.39
+%103  2476728.88 419919.69
+%201  2476576.25 419589.24
+%202  2476948.76 419331.29
+%203  2477463.90 419819.56
+%2000 2476334.60 419710.09
+%2001 2476297.98 419266.82
+%
+%  taken from data file
+1    2477233.72 420353.59
+2    2477497.89 419951.98
+3    2477832.55 420210.21
+4    2477991.64 420400.58
+5    2477630.43 420567.45
+6    2477665.22 420323.32
+102  2476455.89 419741.38
+103  2476735.05 419912.42
+201  2476576.23 419589.23
+202  2476948.74 419331.29
+203  2477463.84 419819.58
+2000 2476334.60 419710.09
+2001 2476297.98 419266.82
+
+%
+% Graphics parameter
+[Graphics]
+axlims:2476250,2478250,419200,420800 % axlims for axis
+legpos:NorthWest
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x2000 y2000 x2001 y2001
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+2.2 cm
+
+%
+%  Angle observations [unit] and standard deviations [unit]
+[Angles,dms,s]
+   1    2    3 316°48'00.5"  6.3
+   3    2    1  51°07'11.0"  7.2
+   3    2    4 167°32'28.0" 14.5
+   3    2    5  98°09'36.5" 10.3
+   3    2    6  71°42'51.5" 15.1
+   3  203    2   8°59'56.0"  6.5
+   5    1    3 268°49'32.5"  9.8
+   5    2    3 318°20'54.5"  7.0
+   5    3    4 324°17'44.0"  8.1
+   5    6    3 338°36'38.5" 10.7
+ 102 2000  103 162°58'16.0" 28.9
+ 103  102    1 172°01'43.0" 11.8 % blunder !
+ 201 2001  202 263°54'18.7"  9.7
+ 202  201  203 101°49'55.0"  8.1
+ 203  202    3 176°49'10.0"  8.4
+2000  102 2001 109°10'54.0" 25.5
+2001 2000  201  36°04'26.2"  7.4
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+   1   2 480.71 0.022
+   1   3 615.74
+   3   1 615.74
+   3   2 422.70
+   3   4 298.10 % blunder !
+   3   5 410.44
+   3   6 201.98
+   5   1 450.67
+   5   2 629.58
+   5   3 410.46
+   5   4 397.89
+   5   6 246.61
+ 102 103 327.37
+ 103   1 665.79
+ 201 202 453.10
+ 202 203 709.78
+ 203   3 537.18
+2000 102 125.24
+2001 201 425.90

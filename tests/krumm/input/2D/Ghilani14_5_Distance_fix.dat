@@ -1,0 +1,47 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Ex. 14.5, pp. 251 & 19.3, pp. 404
+%
+[Project]
+Fix trilateration network
+
+[Source]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 14.5, pp. 251 & 19.3, pp. 404
+
+[Coordinates]
+%    x    y         H
+Badger    2410000.000 390000.000
+Bucky     2411820.000 386881.222
+Wisconsin 2415776.819 391043.461
+% Campus  2416898.227 387602.294  a bug in approximate coordinate
+Campus    2416892.670 387603.450
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:2410000,386500,20             % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:5000                           % scale (for error ellipses)
+axlims:2409000,2418000,386000,393000 % axlims for axis
+legpos:NorthWest
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xBucky yBucky xBadger yBadger
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.01 m
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+Badger Wisconsin 5870.302 0.01
+%Badger Wisconsin 5870.640 0.01   % supposed blunder eliminated
+Badger Campus    7297.588
+Wisconsin Campus 3616.434
+Wisconsin Bucky  5742.878
+Campus Bucky     5123.760

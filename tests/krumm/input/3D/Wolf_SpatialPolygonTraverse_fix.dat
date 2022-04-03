@@ -1,0 +1,61 @@
+%
+%  H. Wolf (1979): Ausgleichungsrechnung II. Dümmlers, S. 90
+%
+[Project]
+Fix spatial polygon traverse
+
+[Source]
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 90
+
+[Coordinates]
+%     x     y    z
+A  -2000  1000    0 % a=1000
+S1     0  1000 1000
+S2     0 -1000 1000
+B   2000 -1000    0
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:0,28,6.1,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+%ellpos:28,0,6.1,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:500000                 % scale (for error ellipses)
+axlims:-2500,2500,-1500,1500,-200,1400  % axlims for axis
+legpos:Southwest
+xticks 500
+yticks 500
+zticks:200
+view: -25,38
+
+%
+% Datum specification (if applicable, with standard deviation [m] or
+% variance-covariance matrix [m^2] (in case of a dynamic network)
+%
+[Datum]
+fix xA yA zA xB yB zB
+
+% Standard deviation of unit weight with unit (a priori standard
+% deviation) [Sigma0] 0.002 gon Vertical Angles [gon] with standard
+% deviation [gon], instrument height [m], target signal height [m]
+%
+[VerticalAngles]
+A S1 29.5167 0.002 % Sigma_gamma=2*Sigma_beta
+B S2 29.5167 0.002
+
+%
+%  Angles with standard deviation [gon]
+%
+[Angles]
+S1 S2 A 100.0000 0.001 % Sigma_beta
+S2 B S1 300.0000
+
+%
+% Spatial distances [m] with constant standard deviation (sigma_c) [m],
+% distance dependent standard deviation (sigma_s) [m] (sigma^2=sigma_c^2
+% + s[m]*sigma_s^2)
+%
+[SpatialDistances]
+A S1  2236.06798 0.03512
+S1 S2 2000.00000 0.03142
+B S2  2236.06798 0.03512
+A S2  3000.00000 0.04712

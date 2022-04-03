@@ -1,0 +1,82 @@
+%
+%  Charles D. Ghilani and Paul R. Wolf (2012): Elementary Surveying. An Introduction to Geomatics. 13th Edition
+%            Ch. 16.9.5, 422 & 450-456
+%
+[Project]
+Fix horizontal network
+
+[Quelle]
+Charles D. Ghilani and Paul R. Wolf (2012): Elementary Surveying. An
+Introduction to Geomatics. 13th Edition, Ch. 16.9.5, p 422 & 450-456
+
+[Coordinates]
+%    x        y
+A 415.273  929.868
+B 507.934  764.652
+C 618.952  815.353
+D 723.852  753.287
+E 826.128  856.438
+F 794.659 1021.655
+G 578.741 1103.826
+H 652.221  980.245
+J 600.595  899.272
+K 713.362  877.418
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:450,1150,1        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:5000                 % scale (for error ellipses)
+axlims:400,900,700,1200   % axlims for axis
+legpos:SouthEast
+xtick:100
+ytick:100
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  Angles [unit] with standard deviation [unit]
+[Winkel,dms,s]
+A G B 107°29'40"  8.9"
+B A C  94°44'24" 11.7"
+C B D 235°09'26" 13.7"
+D C E 104°08'40" 12.7"
+E D F 124°27'36" 11.2"
+F E G 121°37'08"  9.5"
+G F A 112°23'00"  8.3"
+G F H  38°25'46"  9.9"
+H G J 243°15'20" 14.6"
+J H C 135°08'30" 18.0"
+H J G 116°44'44" 14.6"
+H J K 296°44'38" 15.0"
+K H E 131°16'30" 14.3"
+E K F  68°40'36" 12.3"
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+A B  189.436 0.007
+B C  122.050
+C D  121.901
+D E  145.256
+E F  168.180
+F G  231.021
+G A  238.714
+G H  143.780
+H K  119.631
+K E  114.695
+H J   96.036
+J C   85.908
+
+%
+% Grid bearing observations [unit] and standard deviation [unit]
+[GridBearings,dms,s]
+A B 150°42'51" 0.001"

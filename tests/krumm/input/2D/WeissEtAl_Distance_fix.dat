@@ -1,0 +1,68 @@
+%
+%  Weiss et al (2010): Detection of erroneous values in the measurement of local geodetic networks. Acta Montanistica Slovaca Rocník 15 (2010), císlo 1, 62-70
+%
+[Project]
+Fix trilateration network
+
+[Source]
+Weiss et al (2010): Detection of erroneous values in the measurement of local geodetic networks. Acta Montanistica Slovaca Rocník 15 (2010), císlo 1, pp. 62-70
+
+[Coordinates]
+%     x        y         H
+1 4506.299 9001.123
+2 2798.622 9502.490
+3 3803.973 9894.233
+4 3299.980 9100.838
+5 3697.824 9400.545
+6 3080.370 9775.900
+7 4393.265 9842.503
+8 4904.569 9413.376
+9 4251.061 9546.226
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:3800,8900,2          % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:10000                 % scale (for error ellipses)
+axlims:2600,5000,8800,10000 % axlims for axis
+legpos:Southwest
+xticks:200
+yticks:200
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x1 y1 x2 y2 x3 y3 x8 y8
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1 m
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+4 6  709.927 1.30384048104053
+2 6  392.550 0.774596669241483
+2 4  642.409 1.14017542509914
+3 4  939.941 1.09544511501033
+3 9  566.555 0.894427190999916
+4 9 1050.204 1.04880884817015
+1 4 1210.478 0.894427190999916
+1 5  901.755 0.894427190999916
+5 8 1206.806 1.
+4 8 1634.747 1.14017542509914
+4 5  498.107 1.26491106406735
+2 5  904.962 1.18321595661992
+2 7 1630.454 1.04880884817015
+1 7  849.005 0.894427190999916
+1 9  601.906 1.09544511501033
+8 9  666.874 1.14017542509914
+7 8  667.595 0.774596669241483
+5 7  823.990 1.26491106406735
+5 6  722.631 1.14017542509914
+6 9 1193.036 0.836660026534076
+5 9  572.094 0.836660026534076
+3 5  504.968 1.30384048104053
+3 7  591.506 1.26491106406735
+7 9  328.667 0.948683298050514

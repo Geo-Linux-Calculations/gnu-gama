@@ -1,0 +1,56 @@
+%
+[Project]
+Traverse as a fix network with 1 non-linear restriction: x_C^2+y_C^2=8559.5^2
+
+[Coordinates]
+%    x    y         H
+B 8478.139 2483.826
+C 8231.2898089314 2347.83058429498 % approximate values
+D 7982.4553931562 2239.73283443029 % approximate values
+E 7709.336 2263.411
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:8100,2550,2         % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:2500                 % scale (for error ellipses)
+axlims:7600,8600,2150,2650 % axlims for axis
+legpos:NorthWest
+xtick:100
+ytick:100
+
+%
+%  Datum definition (if necessary with standard deviation [m] or variance-covariance matrix [m^2] in a dynamic network)
+[Datum]
+fix
+xB yB xE yE
+
+%
+%  Standard deviation of unit weight
+[Sigma0]
+1.6 cm
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+B C 281.832 0.016
+C D 271.300
+D E 274.100
+
+%
+%  Angle observations and standard deviations
+[Angles,dms,s]
+C B D 185°22'14" 10"
+D C E 208°26'19"
+B A C 172°53'34"
+E D F 205°13'51"
+
+%  Azimuth observations
+[Azimuth,dms]
+B A  68°15'20.7"
+E F 300°11'30.5"
+
+%
+% Restrictions for coordinates
+[Restrictions]
+xC^2+yC^2-8559.5^2

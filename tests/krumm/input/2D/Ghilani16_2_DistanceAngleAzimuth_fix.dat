@@ -1,0 +1,76 @@
+%
+% Charles D. Ghilani (2010): Adjustment Computations. Spatial Data
+% Analysis. 5th Edition Beispiel 16.2, S. 307ff und S. 528ff
+%
+[Project]
+Fix horizontal network
+
+[Quelle]
+Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th
+Edition. Ex. 16.2, pp. 307/528
+
+[Coordinates]
+%    x    y         H
+%  taken from data file
+Q 1000.00 1000.00
+R 1003.06 2640.01
+S 2323.07 2638.47
+T 2661.75 1096.07
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:1750,2875,1        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:20000                 % scale (for error ellipses)
+axlims:500,3000,500,3000   % axlims for axis
+legpos:South
+xtick:250
+ytick:250
+
+%
+%
+% Datum specification (if applicable, with standard deviation [m] or
+% variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xQ yQ
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  Angles [unit] with standard deviation [unit]
+[Winkel,dms,s]
+Q R S  38°48'50.7" 4.0
+Q S T  47°46'12.4" 4.0
+Q T R 273°24'56.5" 4.4
+R Q S 269°57'33.4" 4.7
+S R T 257°32'56.8" 4.7
+T S Q 279°04'31.2" 4.5
+R S T  42°52'51.0" 4.3
+R S Q  90°02'26.7" 4.5
+S Q R  51°08'45.0" 4.3
+S T Q  51°18'16.2" 4.0
+%T Q R  46°15'02.0" 4.0  % blunder !
+T R S  34°40'05.7" 4.0
+
+%
+%
+% Distances [m] with constant standard deviation (sigma_c) [m], distance
+% dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 +
+% s[m]*sigma_s^2}
+
+[Distances]
+Q R 1640.016 0.026
+R S 1320.001 0.024
+S T 1579.123 0.025
+T Q 1664.524 0.026
+Q S 2105.962 0.029
+R T 2266.035 0.030
+
+%
+% Grid bearing observations [unit] and standard deviation [unit]
+[GridBearings,dms,s]
+  Q R  0°6'24.5"  0.001
+# Q R  0.1186728  0.000031   # mgon 3.0864e-03

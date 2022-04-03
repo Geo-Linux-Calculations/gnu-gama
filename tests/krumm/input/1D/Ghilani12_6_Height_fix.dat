@@ -1,0 +1,45 @@
+%
+%  Ghilani Height Network, Ex. 12.6, S. 218-220
+%
+[Project]
+Fix height network
+
+[Source]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 12.6, pp. 218
+
+[Coordinates]
+%      x    y     H
+A 2200.00 5800.00 437.596
+B 3090.17 8664.89 448.105
+C 6113.26 6045.54 453.465
+D 3614.21 4385.79 444.942
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:5500,8250,0.5       % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:50000                % scale (for error ellipses)
+axlims:2000,6500,4200,8900 % axlims for axis
+legpos:SouthEast
+xtick 500
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix A
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1 m
+
+%
+%  Levellied height differences [m], Levelling line length [m] and standard deviation [m] for a 1km levelling line length
+[LevelledHeightDifferences]
+A B 10.509 1000 0.006
+B C  5.360 1000 0.004
+C D -8.523 1000 0.005
+D A -7.348 1000 0.003
+B D -3.167 1000 0.004
+A C 15.881 1000 0.012

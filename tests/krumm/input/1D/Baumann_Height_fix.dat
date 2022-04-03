@@ -1,0 +1,69 @@
+%
+%  Baumann Eberhard (1995): Chapter 13.4.2, pp. 32
+%
+[Project]
+Fix height network: Final solution (Baumann (1995))
+
+[Source]
+Baumann Eberhard (1995): Vermessungskunde, Lehr- und Übungsbuch für
+Ingenieure. Band 2: Punktbestimmung nach Höhe und Lage. Fünfte,
+bearbeitete und erweiterte Auflage. Bonn. Chapter 13.4.2, pp. 32
+
+[Coordinates]
+%      x       y       H
+1    63.83  100.00  199.295
+2   215.92  112.86  199.910
+3   280.99  248.30  207.640
+4   278.72  602.42  226.578
+5   348.33  403.42  218.380
+6   376.33  333.05  213.951
+7   358.92  278.57  212.900
+8   396.00  232.41  209.124
+9   300.66  137.83  203.771
+10  456.53  333.81  210.880
+11  482.26  274.03  211.380
+12  442.16  123.46  204.400
+13  511.77  214.25  199.890
+14  574.57  258.90  197.862
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:520,100,0.1        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:25000                 % scale (for error ellipses)
+axlims:0,600,0,650 % axlims for axis
+legpos:NorthWest
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix 4 6 8 9 14
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.001 m
+
+%
+%  Levelled height differences [m], levelling line length [m] and standard deviation [m] for a 1km levelling line length
+[LevelledHeightDifferences]
+1   2   0.6235 2500 0.001
+1   2   0.6240 3800
+2   3   7.7292 5000
+5   4   8.2021 3800
+6   5   4.4254 0900
+7   6   1.0502 0600
+8   7   3.7782 1600
+3   8   1.4813 1800
+9   8   5.3523 2400
+10  5   7.4945 1800
+10  7   2.0179 1000
+10  11  0.4950 1300
+8   11  2.2530 1000
+13  11 11.4908 1200
+12  8   4.7158 2400
+2   9   3.8582 1600
+9   12  0.6374 3000
+13  12  4.5218 1700
+14  13  2.0246 1200
+14  13  2.0251 1400

@@ -1,0 +1,52 @@
+%
+%  Mittermayer, E. (1971): Eine Verallgemeinerung der Methode der kleinsten Quadrate
+%                          zur Ausgleichung freeer Netze. ZfV 96 (1971), 401-410
+%
+[Project]
+Free height network
+
+[Source]
+Mittermayer E (1971): Eine Verallgemeinerung der Methode der kleinsten
+Quadrate zur Ausgleichung freier Netze. ZfV 96, pp. 401-410
+
+[Coordinates]
+%    x      y     H
+1 130.22 173.40  0.00
+2 272.81 218.35 86.81
+3 322.39 126.10 14.85
+4 202.09 157.62 25.71
+5 283.19  65.67 31.22
+6 380.71 120.34 42.63
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:120,75,0.5     % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:2500            % scale (for error ellipses)
+axlims:100,400,50,250 % axlims for axis
+legpos:SouthEast
+xticks:50
+yticks:50
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+free 1 2 3 4 5 6
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.001 m
+
+%
+%  Levelled height differences [m], Levelling line length [m] and standard deviation [m] for a 1km levelling line length
+[LevelledHeightDifferences]
+1 2  86.809 20400 0.001
+1 4  25.714 18700
+1 5  31.225 34800
+2 3 -71.952 15000
+2 4 -61.084 14200
+2 6 -44.178 25300
+3 4  10.847 12900
+3 5  16.350  9800
+5 6  11.409 19600

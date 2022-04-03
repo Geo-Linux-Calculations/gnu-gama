@@ -1,0 +1,13 @@
+# G. Lother und J. Strehle (2007): Grundlagen der Ausgleichungsrechnung
+# nach der Methode der klein- sten Quadrate. Hochschule München,
+# Fakultät für Geoinformation, Bachelorstudiengang Geoinfor- matik und
+# Satellitenpositionierung, pp. 11-17
+#
+# Datum definition 6: Dynamic, huge weights for observed points,
+# equivalent to case 5
+
+
+10  1000.0142  1.421  1.290  1000.0031  0.309  1.158  1.733
+20  1432.4820  0.000  0.000  1588.7760	0.000  0.000  0.000
+30  1497.4020  0.000  0.000  1000.0000	0.000  0.000  0.000
+40  1439.7670  0.000  0.000   640.2580	0.000  0.000  0.000

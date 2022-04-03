@@ -1,0 +1,59 @@
+%
+%  W. Niemeier (2008): Ausgleichungsrechnung. 2. Auflage. Walter de Gruyter, S. 156ff
+%
+[Project]
+Fix Distance-Direction network
+
+[Source]
+Niemeier W (2008): Ausgleichungsrechnung, 2. Auflage. Walter de Gruyter, pp. 156-162/278-281
+
+[Coordinates]
+%        x         y         H
+104  40686.792   26816.143
+106  41932.838   28872.552
+113  42242.231   27492.007
+280  40350.846   28835.979
+Z108 40759.400   27816.100
+Z110 41373.000   27904.000
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:41250,28900,0.5           % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:75000                    % scale (for error ellipses)
+axlims:40000,42500,26500,29000 % axlims for axis
+legpos:SouthEast
+xticks:500
+yticks:500
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x104 y104 x106 y106 x113 y113 x280 y280
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  Directions [gon] with standard deviations [gon]
+[Directions]
+Z108  280 370.6444 0.0005
+Z108  104 199.5131 0.0005
+Z108  113 108.5994 0.0005
+Z110  106  35.4146 0.0005
+Z110 Z108 292.9943 0.0005
+Z110  104 237.8763 0.0005
+Z110  113 130.2278 0.0005
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+Z108  280 1098.643 0.005
+Z108  104 1002.598 0.005
+Z108  113 1517.862 0.005
+Z110  106 1118.689 0.005
+Z110 Z108  619.905 0.005
+Z110  104 1286.215 0.005
+Z110  113  961.911 0.005

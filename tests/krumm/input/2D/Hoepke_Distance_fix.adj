@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- Project dimension = 0 -->
+
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "0.010"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+
+</points-observations>
+
+</network>
+</gama-local>

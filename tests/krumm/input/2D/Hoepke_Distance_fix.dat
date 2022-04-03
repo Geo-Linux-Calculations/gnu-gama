@@ -1,0 +1,71 @@
+%
+%  Walter Höpke (1980): Fehlerlehre und Ausgleichungsrechnung. de Gruyter
+%                                 Ex. 35.5, Trilateration network Sattenhausen, pp. 120-123
+%
+[Project]
+Fix trilateration network "Sattenhausen" with 5cm-blunder
+
+[Source]
+Höpke W (1980): Fehlerlehre und Ausgleichungsrechnung. de Gruyter, Ex. 35.5, pp. 120-123
+
+[Coordinates]
+%    x    y         H
+  20 3579041.416 5707194.412
+  75 3575403.277 5707682.612
+  86 3575322.061 5708700.952
+  87 3576581.778 5709938.106
+1006 3578284.289 5708758.641
+1011 3577052.332 5708103.204
+1059 3576852.894 5706633.642
+1087 3576213.699 5709199.889
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:3575500,5706750,0.5             % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:50000                            % scale (for error ellipses)
+axlims:3575000,3579500,5706500,5710500 % axlims for axis
+legpos:NorthEast
+xticks: 500
+yticks: 500
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x87 y87 x1059         % Geodetic Coordinate System in Höpke !
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.001 m
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m/km] {sigma^2=sigma_c^2 + (s[km]*sigma_s)^2}
+[Distances]
+  86 1006 2962.832 0.001
+  86   87 1765.657
+  86 1087 1021.768
+  86   75 1021.536
+  86 1011 1830.646
+  86   20 4012.921
+  86 1059 2572.516
+1087   87  824.863
+1087   20 3466.722
+1087 1059 2644.789
+1087   75 1720.130
+1087 1006 2117.134
+1087 1011 1380.633
+1006   75 3075.373
+1006   20 1737.824
+1006 1059 2562.134
+1006 1011 1395.459
+1006   87 2071.154
+1011   87 1894.263
+1011   75 1701.824
+1011 1059 1483.088
+1011   20 2186.853
+1059   20 2259.167
+1059   75 1789.449 % 1789.449=Observation with results in book, 1789.499=Observation according to list in book !!!
+1059   87 3315.630
+  20   87 3684.782
+  20   75 3670.735

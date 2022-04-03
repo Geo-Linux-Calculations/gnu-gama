@@ -1,0 +1,59 @@
+# Wilhelm Caspary: Fehlertolerante Auswertung von Messdaten: Daten- und Modellanalyse, robuste Schätzung.
+# 1. Auflage, 2013
+# ISBN: 978-3486727715
+# 3D-Netz mit GNSS S. 9ff
+[Project]
+Fix 3D-network observed by distances and zenith angles
+
+[Source]
+Caspary W (2013): Fehlertolerante Auswertung von Messdaten: Daten- und
+Modellanalyse, robuste Schätzung. 1. Auflage, ISBN: 978-3486727715,
+3D-Netz mit GNSS, pp. 9
+
+[Coordinates]
+%     x     y       z
+1  4000 -10000     1600
+2  3000  11000     1500
+3   700   -700      800
+4     0      0      700
+N  5000   2000     1800
+%
+% Graphics parameter
+[Graphics]
+ellpos:900,900,1200,100           % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:50000                       % scale (for error ellipses)
+axlims:-1000,6000,-11000,12000,0,4000 % axlims for axis
+legpos:Southwest
+xticks:2000
+yticks:2000
+zticks:1000
+view:-30,13
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x1 y1 z1 x2 y2 z2 x3 y3 z3 x4 y4 z4
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.0316227766016838 % sqrt(0.001)
+
+
+%
+%  Zenith Angles [gon] with standard deviation [gon]
+[ZenithAngles]
+4 N 87.1726 0.0003
+
+%
+%  Spatial distances [m] with constant standard deviation (sigma_c) [m]
+[SpatialDistances]
+1 N 12043.305 0.0375
+2 N  9224.404 0.0294
+3 N  5174.910 0.0185
+4 N  5496.402 0.0198
+
+%
+% dx, dy, dz [m] and standard deviations [m]
+[3DBasislinie]
+4 N 5000.02 1999.98 1099.94 0.016 0.016 0.062

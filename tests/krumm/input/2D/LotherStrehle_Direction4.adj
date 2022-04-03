@@ -1,0 +1,11 @@
+# G. Lother und J. Strehle (2007): Grundlagen der Ausgleichungsrechnung
+# nach der Methode der klein- sten Quadrate. Hochschule München,
+# Fakultät für Geoinformation, Bachelorstudiengang Geoinfor- matik und
+# Satellitenpositionierung, pp. 11-17
+#
+# Datum definition 4: Free - Partial trace minimization
+
+  10  1000.0114   1.145  0.533   999.9983  -0.174  0.330  0.627
+  20  1432.4824	  0.040	 0.277	1588.7857   0.972  0.448  0.527
+  30  1497.3902	 -1.185	 0.571	 999.9920  -0.798  0.522  0.773
+  40  1439.7661	 -0.093	 0.899	 640.2646   0.661  1.350  1.622

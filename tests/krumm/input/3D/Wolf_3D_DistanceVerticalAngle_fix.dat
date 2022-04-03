@@ -1,0 +1,52 @@
+%
+%  H. Wolf (1979): Ausgleichungsrechnung II. Dümmlers, S. 87
+%
+[Project]
+Fix 3D-network observed by distances and vertical angles
+
+[Source]
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 87
+
+[Coordinates]
+%   x   y   z
+1 1200  900  900
+2  900  600  900
+3  600  900  900
+4  900 1200  900
+P  900  900 1300
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:900,900,1200,100           % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:20000                       % scale (for error ellipses)
+axlims:550,1250,550,1250,850,1450 % axlims for axis
+legpos:Southwest
+view:-62,20
+zticks:100
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x1 y1 z1 x2 y2 z2 x3 y3 z3 x4 y4 z4
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.01
+
+%
+%  Vertical angle observations [gon] with standard deviation [gon]
+[VerticalAngles]
+1 P 59.0332716049383 0.0127323954473516 % following Wolf: 200gon/pi * sigma_s/5
+2 P 59.0333024691358
+3 P 59.0333333333333
+4 P 59.0333641975309
+
+%
+%  Spatial distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] (sigma^2=sigma_c^2 + s[m]*sigma_s^2)
+[SpatialDistances]
+1 P 499.99 0.01
+2 P 500.00
+3 P 500.01
+4 P 500.02

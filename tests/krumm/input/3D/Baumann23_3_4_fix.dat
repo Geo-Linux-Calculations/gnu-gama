@@ -1,0 +1,64 @@
+%
+%  Baumann Eberhard (1995): Chapter 23.3.4, pp. 224
+%
+
+[Project]
+Baumann (1995), Ch. 23_3_4
+
+[Source]
+Baumann Eberhard (1995): Vermessungskunde, Lehr- und Übungsbuch für Ingenieure. Band 2: Punktbestimmung nach Höhe und Lage. Fünfte, bearbeitete und erweiterte Auflage Bonn. Ch. 23.3.4, pp. 224
+
+[Coordinates]
+%     x        y       z
+1 1000.000 1201.171 108.680
+2 1371.217 1072.895 111.974
+3 1016.437  952.352 117.312
+N 1181.766 1071.674  94.258
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:0,28,6.1,20        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:5000                 % scale (for error ellipses)
+axlims:900,1400,900,1300,50,150  % axlims for axis
+legpos:Southwest
+xticks 100
+yticks 100
+zticks:50
+view: -11,24
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix x1 y1 z1 x2 y2 z2 x3 y3 z3
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+0.002 gon
+
+%
+%  Spatial distances [m] with constant standard deviation (sigma_c) [m], instrument height [m], target signal height [m]
+[SpatialDistances]
+N 1 223.6428 0.005 1.600 1.572
+N 2 190.2878 0.005 1.600 1.650
+N 3 205.1894 0.005 1.600 1.588
+
+%
+%  Zenith Angles [gon] with standard deviation [gon], instrument height [m], target signal height [m]
+[ZenithAngles]
+N 1 95.9015 0.0025 1.600 1.572
+N 3 92.8390 0.0025 1.600 1.588
+N 2 94.0450 0.0025 1.600 1.650
+
+%
+%  Directions with standard deviation [gon]
+[Direction]
+N 1   0.0000 0.0020
+N 2 160.1838
+N 3 320.7884
+
+%
+%  Approximate orientation unknown [gon]
+[ApproximateOrientation]
+N 339.4090

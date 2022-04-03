@@ -1,0 +1,54 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Beispiel 16.1, S. 300ff
+%
+[Project]
+Traverse as a fix network
+
+[Quelle]
+Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition. Ex. 16.1, pp. 300
+
+[Coordinates]
+%    x    y         H
+Q 1000.00  800.00
+R 1000.00 1000.00
+U 1173.20 1100.00
+S 1223.00 1186.50
+T 1400.00 1186.50
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:1000,1175,5       % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:1000               % scale (for error ellipses)
+axlims:950,1450,750,1250 % axlims for axis
+legpos:SouthEast
+xtick:50
+ytick:50
+
+%
+%  Datum definition (if necessary with standard deviation [m] or variance-covariance matrix [m^2] in a dynamic network)
+%
+[Datum]
+fix
+xQ yQ xR yR xS yS xT yT
+
+%
+%  Standard deviation of unit weight
+%
+[Sigma0]
+1
+
+%
+%  Distances [m] with constant standard deviation (sigma_c) [m], distance dependent standard deviation (sigma_s) [m] {sigma^2=sigma_c^2 + s[m]*sigma_s^2}
+[Distances]
+R U 200.00 0.05
+U S 100.00 0.08
+
+%
+%  Angle observations [unit] and standard deviations [unit]
+%
+[Angles,dms,s]
+R Q U 240°0'0" 30" % theta1=240°   +- 30"
+U R S 150°0'0" 30" % theta2=150°   +- 30"
+S U T 240°1'0" 30" % theta3=240°1' +- 30"

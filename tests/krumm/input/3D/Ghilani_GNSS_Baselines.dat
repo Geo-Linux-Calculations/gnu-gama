@@ -1,0 +1,59 @@
+%
+%  Charles D. Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition
+%            Ch. 17.6, p 337-352
+%
+[Project]
+Example from Section 17.8
+
+[Quelle]
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley & Sons, Inc., ISBN
+978-0-470-46491-5, Ch. 17.6, p 337-352
+
+[Coordinates]
+%      X             Y            Z
+A   402.35087 -4652995.30109 4349760.77753
+B  8086.03178 -4642712.84739 4360439.08326
+C 12046.5808  -4649394.0824  4353160.0645
+E -4919.3388  -4649361.2199  4352934.4548
+D -3081.5831  -4643107.3692  4359531.1234
+F  1518.8012  -4648399.1454  4354116.6914
+
+%
+% Graphics parameter
+[Graphics]
+ellpos:450,1150,1        % xebar,yebar,lmstab (Position of scale of error ellipses in figure and length/unit of scale [cm])
+scale:500000                 % scale (for error ellipses)
+axlims:-10000,15500,-4655000,-4640000,4345000,4365000   % axlims for axis
+legpos:SouthEast
+xtick:2500
+ytick:5000
+ztick:5000
+view:25,36
+
+%
+%  Datum specification (if applicable, with standard deviation [m] or variance-covariance matrix [m^2] (in case of a dynamic network)
+[Datum]
+fix xA yA zA xB yB zB
+
+%
+%  Standard deviation of unit weight with unit (a priori standard deviation)
+[Sigma0]
+1
+
+%
+%  GNSS Baseline observations [m] with variance-covariance matrix [m^2] (upper triangular rowwise), instrument height [m] and target height [m]
+[3DBaseline]
+A C  11644.2232  3601.2165  3399.2550 9.884e-4  -9.580e-6 9.520e-6 9.377e-4 -9.520e-6 9.827e-4
+A E  -5321.7164  3634.0754  3173.6652 2.158e-4  -2.100e-6 2.160e-6 1.919e-4 -2.100e-6 2.005e-4
+B C   3960.5442 -6681.2467 -7279.0148 2.305e-4  -2.230e-6 2.070e-6 2.546e-4 -2.230e-6 2.252e-4
+B D -11167.6076  -394.5204  -907.9593 2.700e-4  -2.750e-6 2.850e-6 2.721e-4 -2.720e-6 2.670e-4
+D C  15128.1647 -6286.7054 -6371.0583 1.461e-4  -1.430e-6 1.340e-6 1.614e-4 -1.440e-6 1.308e-4
+D E  -1837.7459 -6253.8534 -6596.6697 1.231e-4  -1.190e-6 1.220e-6 1.277e-4 -1.210e-6 1.283e-4
+F A  -1116.4523 -4596.1610 -4355.9062 7.475e-5  -7.900e-7 8.800e-7 6.593e-5 -8.100e-7 7.616e-5
+F C  10527.7852  -994.9377  -956.6246 2.567e-4  -2.250e-6 2.400e-6 2.163e-4 -2.270e-6 2.397e-4
+F E  -6438.1364  -962.0694 -1182.2305 9.442e-5  -9.200e-7 1.040e-6 9.959e-5 -8.900e-7 8.826e-5
+F D  -4600.3787  5291.7785  5414.4311 9.330e-5  -9.900e-7 9.000e-7 9.875e-5 -9.900e-7 1.204e-4
+F B   6567.2311  5686.2926  6322.3917 6.643e-5  -6.500e-7 6.900e-7 7.465e-5 -6.400e-7 6.048e-5
+B F  -6567.2310 -5686.3033 -6322.3807 5.512e-5  -6.300e-7 6.100e-7 7.472e-5 -6.300e-7 6.629e-5
+A F   1116.4577  4596.1553  4355.9141 6.619e-5  -8.000e-7 9.000e-7 8.108e-5 -8.200e-7 9.376e-5

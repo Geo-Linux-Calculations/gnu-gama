@@ -44,5 +44,5 @@ void K2gkf::run()
 
 std::string K2gkf::version()
 {
-  return "0.90";
+  return "1.00";
 }
