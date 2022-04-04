@@ -24,6 +24,8 @@
 #include <krumm/k2gkf.h>
 #include <ostream>
 
+namespace GNU_gama { namespace local {
+
 class Output {
 public:
   Output(std::ostream& output, Common& com);
@@ -50,5 +52,7 @@ private:
   std::ostream& out_;
   Common& common;
 };
+
+}}  // namespace GNU_gama::local
 
 #endif  // K2GKF_OUTPUT_H

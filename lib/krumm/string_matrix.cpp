@@ -19,6 +19,8 @@
 
 #include <krumm/string_matrix.h>
 
+using namespace GNU_gama::local;
+
 StringMatrix::StringMatrix()
 {
 }

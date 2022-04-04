@@ -23,6 +23,8 @@
 #include <map>
 #include <string>
 
+namespace GNU_gama { namespace local {
+
 class StringMatrix : public std::map<int, std::map<int, std::string>>
 {
 public:
@@ -31,5 +33,7 @@ public:
   int rows() const;
   int cols() const;
 };
+
+}} // namespace GNU_gama::local
 
 #endif // STRINGMATRIX_H

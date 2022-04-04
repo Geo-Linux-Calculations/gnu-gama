@@ -21,6 +21,8 @@
 #include <krumm/common.h>
 #include <gnu_gama/xml/str2xml.h>
 
+using namespace GNU_gama::local;
+
 Output::Output(std::ostream& out, Common& c) : out_(out), common(c)
 {
   output();

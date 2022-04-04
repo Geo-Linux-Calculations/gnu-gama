@@ -25,6 +25,8 @@
 #include <set>
 #include <krumm/common.h>
 
+namespace GNU_gama { namespace local {
+
 class K2gkf
 {
   void input();
@@ -47,5 +49,7 @@ private:
 
   int error_ {0};
 };
+
+}} // namespace GNU_gama::local
 
 #endif // K2GKF_H

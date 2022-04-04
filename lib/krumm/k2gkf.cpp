@@ -27,6 +27,8 @@
 #include <vector>
 #include <cctype> // toupper()
 
+using namespace GNU_gama::local;
+
 K2gkf::K2gkf(std::istream &inp, std::ostream &out)
   : inp_(inp), out_(out), examples_(false)
 {

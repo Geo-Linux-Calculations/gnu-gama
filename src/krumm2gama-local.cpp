@@ -26,6 +26,7 @@
 #include <krumm/output.h>
 
 using namespace std;
+using namespace GNU_gama::local;
 
 std::string help_notice = R"help_notice(
 Conversion from data format used in Geodetic Network Adjustment Examples

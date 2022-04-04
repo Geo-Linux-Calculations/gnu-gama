@@ -23,6 +23,8 @@
 #include <krumm/common.h>
 #include <istream>
 
+namespace GNU_gama { namespace local {
+
 class Input {
 public:
   Input(std::istream& input, Common& com);
@@ -54,5 +56,7 @@ private:
   std::istream& inp_;
   Common& common;
 };
+
+}} // namespace GNU_gama::local
 
 #endif  // K2GKF_INPUT_H

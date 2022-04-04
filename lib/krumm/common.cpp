@@ -21,6 +21,8 @@
 #include <sstream>
 #include <krumm/k2gkf.h>
 
+namespace GNU_gama { namespace local {
+
 void Common::set_error()
 {
   k2gkf->set_error();
@@ -85,3 +87,5 @@ std::string cm2mm(std::string g)
 {
   return std::to_string(std::stod(g) * 1e1);
 }
+
+}}  // namepsace  GNU_gama::local

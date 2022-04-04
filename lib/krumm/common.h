@@ -27,6 +27,8 @@
 #include <vector>
 #include <tuple>
 
+namespace GNU_gama { namespace local {
+
 class K2gkf;
 
 class Common {
@@ -151,5 +153,7 @@ std::string gon2cc(std::string);
 std::string mgon2cc(std::string);
 std::string m2mm(std::string);
 std::string cm2mm(std::string);
+
+}} // namespace GNU_gama::local
 
 #endif  // K2GKF_COMMON_H

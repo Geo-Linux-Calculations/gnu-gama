@@ -25,6 +25,8 @@
 #include <algorithm>
 #include <cmath>
 
+using namespace GNU_gama::local;
+
 Input::Input(std::istream& inp, Common& c) : inp_(inp), common(c)
 {
   input();
