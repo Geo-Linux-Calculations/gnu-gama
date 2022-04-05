@@ -107,7 +107,6 @@ EXTRA_DIST = krumm2gama-local.sh_ \
    input/3D/Wolf_SpatialPolygonTraverse_fix.dat \
    input/README.md
 
-
 bin_PROGRAMS = cmp_xml_file
 
 cmp_xml_file_SOURCES  = cmp_xml_file_main.cpp \

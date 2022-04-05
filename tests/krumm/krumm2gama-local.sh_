@@ -13,20 +13,18 @@ do
 #
 echo
 echo $i
-ls -lR @top_srcdir@/tests/krumm/ #input/$i.dat
-#exit 1
-#---@top_builddir@/src/krumm2gama-local -e \
-#---   @top_builddir@/tests/krumm/input/$i.dat @KRUMM_RESULTS@/$i.gkf
-#---
-#---# adjust converted data and save adjustment results in .xml
-#---#
-#---@top_builddir@/src/gama-local @KRUMM_RESULTS@/$i.gkf \
-#---   --text @KRUMM_RESULTS@/$i.txt \
-#---   --xml  @KRUMM_RESULTS@/$i.xml
-#---
-#---# compare ajusted coordinates with results published in the Examples (.adj)
-#---#
-#---@top_builddir@/tests/krumm/cmp_xml_file \
-#---   @KRUMM_RESULTS@/$i.xml @top_builddir@/tests/krumm/input/$i.adj
+@top_builddir@/src/krumm2gama-local -e \
+   @top_srcdir@/tests/krumm/input/$i.dat @KRUMM_RESULTS@/$i.gkf
+
+# adjust converted data and save adjustment results in .xml
+#
+@top_builddir@/src/gama-local @KRUMM_RESULTS@/$i.gkf \
+   --text @KRUMM_RESULTS@/$i.txt \
+   --xml  @KRUMM_RESULTS@/$i.xml
+
+# compare ajusted coordinates with results published in the Examples (.adj)
+#
+@top_builddir@/tests/krumm/cmp_xml_file \
+   @KRUMM_RESULTS@/$i.xml @top_srcdir@/tests/krumm/input/$i.adj
 done
 echo
