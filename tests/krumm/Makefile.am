@@ -1,4 +1,6 @@
-EXTRA_DIST = krumm2gama-local.sh_ \
+EXTRA_DIST = \
+   CMakeLists.txt \
+   krumm2gama-local.sh_ \
    input/1D/Baumann_Height_fix.adj \
    input/1D/Baumann_Height_fix.dat \
    input/1D/Ghilani12_6_Height_fix.adj \

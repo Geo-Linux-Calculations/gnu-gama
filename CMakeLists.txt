@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.17.1)
+project (gnu-gama VERSION 2.17.2)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -286,7 +286,7 @@ set(SRC_YAMLCPP
 
 include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 
-add_library(libgama STATIC ${SRC_GAMA} ${SRC_EXPAT})
+add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 
 
 # Binaries
@@ -300,6 +300,14 @@ target_link_libraries(gama-g3 PUBLIC libgama)
 add_executable(gama-local-gkf2yaml src/gama-local-gkf2yaml.cpp
                lib/gnu_gama/local/gkf2yaml.cpp)
                target_link_libraries(gama-local-gkf2yaml PUBLIC libgama)
+
+add_executable(krumm2gama-local src/krumm2gama-local.cpp
+               lib/krumm/common.h          lib/krumm/common.cpp
+               lib/krumm/input.h           lib/krumm/input.cpp
+               lib/krumm/k2gkf.h           lib/krumm/k2gkf.cpp
+               lib/krumm/output.h          lib/krumm/output.cpp
+               lib/krumm/string_matrix.h   lib/krumm/string_matrix.cpp
+               lib/gnu_gama/xml/str2xml.h  lib/gnu_gama/xml/str2xml.cpp)
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)
