@@ -35,6 +35,7 @@ public:
   K2gkf(std::istream &, std::ostream &);
 
   void run();
+  int  dimension() { return dimension_; }
   int  error()     { return error_; }
   void set_error() { error_++; }
   void set_examples(bool b) { examples_ = b; }
@@ -48,6 +49,7 @@ private:
   bool examples_;
 
   int error_ {0};
+  int dimension_{0};
 };
 
 }} // namespace GNU_gama::local

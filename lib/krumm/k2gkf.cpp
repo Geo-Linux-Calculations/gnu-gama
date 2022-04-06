@@ -41,6 +41,8 @@ void K2gkf::run()
 
   Input  input (inp_, common);
   Output output(out_, common);
+
+  dimension_ = common.dimension;
 }
 
 

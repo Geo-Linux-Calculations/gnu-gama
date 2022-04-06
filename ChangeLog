@@ -1,3 +1,10 @@
+
+	* Conversion program krumm2gama-local and the testing suite for
+	input data format used in the text book "Geodetic Network
+	Adjustment Examples" by Friedhelm Krumm, Geodätisches Institut
+	Universität Stuttgart, 2020.
+
+
 2022-01-07   Ales Cepek <cepek@gnu.org>
 
 	New release 2.17

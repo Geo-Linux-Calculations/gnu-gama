@@ -105,5 +105,6 @@ int main(int argc, char *argv[])
   k2gkf.set_examples(examples);
   k2gkf.run();
 
-  return k2gkf.error();
+  // undefined dimension is zero, which is a fatal error in input data
+  return k2gkf.dimension() ? k2gkf.error() : 1;
 }
