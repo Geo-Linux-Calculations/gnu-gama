@@ -5,10 +5,9 @@
 
 <description>
 Volna sit s merenymi delkami a uhly
------------------------------------
 
-Skorepa, Z. - Dusek, R.: Aplikace singularniho rozkladu matice..., 
-GaKO 41/83, 1995, c. 7 
+Skorepa, Z. - Dusek, R.: Aplikace singularniho rozkladu matice...,
+GaKO 41/83, 1995, c. 7
 </description>
 
 <parameters
@@ -30,14 +29,14 @@ GaKO 41/83, 1995, c. 7
 </obs>
 
 <obs from="2">
-   <distance to="3" val="1464.841" />         <!--  s3 --> 
+   <distance to="3" val="1464.841" />         <!--  s3 -->
    <angle    bs="4" fs="1" val="52.2111" />   <!--  w7 -->
    <angle    bs="3" fs="4" val="33.5127" />   <!--  w8 -->
    <angle    bs="3" fs="1" val="85.7233" />   <!--  w9 -->
 </obs>
 
 <obs from="3">
-   <distance to="4" val="883.684" />          <!--  s4 -->  
+   <distance to="4" val="883.684" />          <!--  s4 -->
    <angle    bs="1" fs="2" val="57.6310" />   <!-- w10 -->
    <angle    bs="4" fs="1" val="46.1976" />   <!-- w11 -->
    <angle    bs="4" fs="2" val="103.8266"/>   <!-- w12 -->
@@ -52,6 +51,3 @@ GaKO 41/83, 1995, c. 7
 
 </network>
 </gama-local>
-
-
-

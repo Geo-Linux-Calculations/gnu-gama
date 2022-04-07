@@ -5,7 +5,7 @@
 
 <description>
 Frantisek Charamza: GEODET/PC, User's Guide, Zdiby 1990
--------------------------------------------------------
+
 example: page 238, Appendix B
 
 variant: one fixed point and one azimuth, all other points adjusted
@@ -68,7 +68,7 @@ variant: one fixed point and one azimuth, all other points adjusted
 
 <obs from="407">
    <direction  to=  "1" val=  "0.0000" />
-   <azimuth    to="403" val= "334.40294" /> 
+   <azimuth    to="403" val= "334.40294" />
    <direction  to="409" val="193.3410" />
    <direction  to=  "2" val="239.4204" />
    <direction  to="422" val="323.5443" />
@@ -138,10 +138,3 @@ variant: one fixed point and one azimuth, all other points adjusted
 
 </network>
 </gama-local>
-
-
-
-
-
-
-

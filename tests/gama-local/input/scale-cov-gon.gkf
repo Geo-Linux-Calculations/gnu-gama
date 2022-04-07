@@ -5,16 +5,14 @@
 
 <description>
 Variant A (gons)
-----------------
 
 This is a dummy network to verify algorithm of scaling of covariance
 matrix when angular observations are given in DMS (degrees / minutes /
 seconds)
 
-----------------
 The test is derived from the example network from:
 
-   Frantisek Charamza: GEODET/PC, Users' Guide, Zdiby 1990, 
+   Frantisek Charamza: GEODET/PC, Users' Guide, Zdiby 1990,
    Program GETU03 for Adjustment of Local Trigonometric Networks
    Example: page. 218, Network ZDIBY / 15-F
 </description>
