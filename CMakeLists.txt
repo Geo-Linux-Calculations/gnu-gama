@@ -288,6 +288,12 @@ include_directories(lib lib/expat/xmlparse lib/expat/xmltok)
 
 add_library(libgama OBJECT ${SRC_GAMA} ${SRC_EXPAT})
 
+# Gama install directory
+#
+if (NOT DEFINED GAMA_INSTDIR)
+  set (GAMA_INSTDIR bin)
+endif()
+
 
 # Binaries
 #
@@ -317,13 +323,14 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
                   lib/gnu_gama/local/yaml2gkf.cpp)
    target_link_libraries(gama-local-yaml2gkf PUBLIC libgama libyaml)
 
-   install(TARGETS gama-local-yaml2gkf DESTINATION src)
+   install(TARGETS gama-local-yaml2gkf DESTINATION ${GAMA_INSTDIR})
 endif()
 
 
 # Installation
 #
-install(TARGETS gama-local gama-g3 DESTINATION src)
+install(TARGETS gama-local gama-g3 gama-local-gkf2yaml krumm2gama-local
+        DESTINATION ${GAMA_INSTDIR})
 
 
 # Tests
