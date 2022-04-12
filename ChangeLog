@@ -1,3 +1,6 @@
+2022-04-09   Ales Cepek <cepek@gnu.org>
+
+	New release 2.18
 
 	* Conversion program krumm2gama-local and the testing suite for
 	input data format used in the text book "Geodetic Network
