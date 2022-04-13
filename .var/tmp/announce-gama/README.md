@@ -9,6 +9,7 @@
 * copy or update file NEWS from the new release
 * copy new release tar ball
 * update gama-announce.sh (ie. update current and previous releases versions)
+* edit NEWS --> remove ### markdown tag from all Changes sections
 * run ./gama-announce.sh > announce-version.txt
 * edit announce-version.txt
 

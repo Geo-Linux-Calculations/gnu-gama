@@ -1,52 +1,54 @@
-# GNU Gama NEWS
+GNU Gama NEWS - History of user-visible changes.
 
-## History of user-visible changes.
+Changes in release 2.18 (2022-04-09)
 
-### Changes in release 2.18 (2022-04-09)
+  New conversion class K2gkf (lib/krumm) with accompanying program
+  krumm2gama-local and the testing suite for converting input data
+  format used in the text book "Geodetic Network Adjustment Examples" by
+  Friedhelm Krumm, Geodätisches Institut Universität Stuttgart, 2020.
 
-New conversion class K2gkf (lib/krumm) with accompanying program
-krumm2gama-local and the testing suite for converting input data
-format used in the text book "Geodetic Network Adjustment Examples" by
-Friedhelm Krumm, Geodätisches Institut Universität Stuttgart, 2020.
+  Not all input data in Krumm Format can be converted to GNU Gama,
+  i.e. to the adjustment program gama-local input XML:
 
-Not all input data in Krumm Format can be converted to GNU Gama,
-i.e. to the adjustment program gama-local input XML:
+    - scale factor is not implemented in gama-local adjustment
 
-* scale factor is not implemented in gama-local adjustment
+    - gama-local does not enable fixing only x coordinate (or y
+      coordinate) for 2D free network to remove singularity. This kind
+      of regularization has very little practical meaning. Technically
+      it would be possible to enable this feature in gama-local, but it
+      is questionable if the outcome would not enable more confusion
+      than possible outcome. Adustment should not be dependent on the
+      coordinate system used.
 
-* gama-local does not enable fixing only x coordinate (or y
-  coordinate) for 2D free network to remove singularity. This kind
-  of regularization has very little practical meaning. Technically
-  it would be possible to enable this feature in gama-local, but it
-  is questionable if the outcome would not enable more confusion
-  than possible outcome. Adustment should not be dependent on the
-  coordinate system used.
+    - gama-local does not deduce that an azimuth to the unknown point
+      P can be combined with some angle pointing to the P to create a
+      new feigned azimuth. This is an interesting feature which may
+      be implemented in some future version, namely in the gama-local
+      stage of computing approximate coordinates.
 
-* gama-local does not deduce that an azimuth to the unknown point
-  P can be combined with some angle pointing to the P to create a
-  new feigned azimuth. This is an interesting feature which may
-  be implemented in some future version, namely in the gama-local
-  stage of computing approximate coordinates.
+    - nonlinear conditions are not implemented in gama-local
 
-* nonlinear conditions are not implemented in gama-local
+    - BLH coordinates are not supported in gama-local
 
-* BLH coordinates are not supported in gama-local
 
-### Changes in release 2.17 (2022-01-07)
+Changes in release 2.17 (2022-01-07)
 
-A maintenance release, no user-visible changes.
+  A maintenance release, no user-visible changes.
 
-### Changes in release 2.16 (2021-11-25)
 
-A maintenance release, the only user-visible changes are new
-gama-local option --export (renamed from --updated-xml) and some
-more tests ins gama-local sets suite.
+Changes in release 2.16 (2021-11-25)
 
-### Changes in release 2.15 (2021-09-20)
+  A maintenance release, the only user-visible changes are new
+  gama-local option --export (renamed from --updated-xml) and some
+  more tests ins gama-local sets suite.
 
-A maintenance release, no user-visible changes.
 
-### Changes in release 2.14 (2021-02-28)
+Changes in release 2.15 (2021-09-20)
+
+  A maintenance release, no user-visible changes.
+
+
+Changes in release 2.14 (2021-02-28)
 
 * Maintainers release
 
@@ -57,7 +59,8 @@ A maintenance release, no user-visible changes.
   QtTextEdit rendered the table wrong and all <td> tags had to be
   written explicitly.
 
-### Changes in release 2.13 (2021-01-15)
+
+Changes in release 2.13 (2021-01-15)
 
 * Conversions between yaml and input xml (gkf) tested for all
   available data files in the tests suite (subdirectory gama-local).
@@ -74,7 +77,8 @@ A maintenance release, no user-visible changes.
 
 * Fixed new attribute angular in documentation
 
-### Changes in release 2.12 (2020-11-28)
+
+Changes in release 2.12 (2020-11-28)
 
 * Alternative support of input data based on YAML format. YAML support
   was added for gama-local as an alternative to the existing XML input
@@ -82,7 +86,8 @@ A maintenance release, no user-visible changes.
   program gama-local-yaml2gkf but it may be fully integrated in
   gama-local program later.
 
-### Release 2.11 October 2020
+
+Release 2.11 October 2020
 
 * Maintainers' release
 
@@ -90,7 +95,8 @@ A maintenance release, no user-visible changes.
   .xsd), several XML files were updated in tests/gama-g3 to use
   gnu-gama-data xsd definition.
 
-### Release 2.10 September 2020
+
+Release 2.10 September 2020
 
 * Adjustment results output in Octave format (.m file) with independent
   test of adjustment results (regularization of singular systems by
@@ -98,6 +104,7 @@ A maintenance release, no user-visible changes.
 
 * update-constrained-coordinates parameter removed from the input XML
   data format
+
 
 Release 2.09 June 2020
 
@@ -114,7 +121,8 @@ Release 2.09 June 2020
   where 'update-constrained-coordinates' parameter shall be removed
   from the input XML data format.
 
-### Release 2.08 December 2019
+
+Release 2.08 December 2019
 
 Maintainer's release
 
@@ -134,16 +142,17 @@ Maintainer's release
 * C++11 standard is explicitly set in configure.ac (for testing C++14
   is set on in the alternative builds in the main CMakeLists.txt)
 
-### Release 2.07 August 2019
+
+Release 2.07 August 2019
 
 * Fixed some bugs in AcordPolar and AcordTraverse classes.
   More algorithms in Acord2 class
 
-### Release 2.06 July 2019
+Release 2.06 July 2019
 
 * Fixed two bugs (html output format and segmentation fault)
 
-### Release 2.05 May 2019
+Release 2.05 May 2019
 
 * The program gama-local for adjustment of local surveying networks
   used a C++ class Acord for computing approximate coordinates of
@@ -163,13 +172,13 @@ Maintainer's release
   solution of the network. Acord2 is based on the master's thesis by
   Petra Millarová <petramillarova@gmail.com>
 
-### Release 2.04 March 2019
+Release 2.04 March 2019
 
 * experimental qmake project file gama-local.pro to be used where
 cmake is not available with Qt distribution on Windows. CMakeLists.txt
 project is prefered over gama-local.pro.
 
-### Release 2.03 February 2019
+Release 2.03 February 2019
 
 * The new attribute "extern" suggested by Kristian Evers (Danish
   Agency for Data Supply and Efficiency) was added both to the
@@ -179,7 +188,7 @@ project is prefered over gama-local.pro.
   gama-local and are only passively transfered to XML adjustement
   output.
 
-### Release 2.02 November 2018
+Release 2.02 November 2018
 
 * Improved Hungarian translation by Siki Zoltan:
    "I would like to inform you that we just have finished a guide to
@@ -189,24 +198,24 @@ project is prefered over gama-local.pro.
    Gama was used (and GeoEasy).
    During this work we have improved the Hungarian translation."
 
-### Release 2.01 September 2018
+Release 2.01 September 2018
 
 * Maintainer's release
 * Conditional build for gama-g3 enabled implicitly
 * XML schema definition for gama-g3 adjustment results with new
   xmllint testsuite
 
-### Release 2.00 May 2018
+Release 2.00 May 2018
 
 * Maintainer's release: for the list of internal changes see ChangeLog
 
-### Release 1.21 November 2017
+Release 1.21 November 2017
 
 * Maintainer's release : internal matrix/vectors memory management
   replaced with a new implementation using C++11 move constructor and
   move asignment syntax.
 
-### Release 1.20 November 2017
+Release 1.20 November 2017
 
 * New test suite for matvec classes and support for valgrind memory
   leak tests for tests/matvec and tests/gama-local.
@@ -215,14 +224,14 @@ project is prefered over gama-local.pro.
      the base matvec memory handling class (MemRep) will reimplemented
      with C++11 move constructor and move assignemnt operator.
 
-### Release 1.19 June 2017
+Release 1.19 June 2017
 
 * fixed a bug introduced in 1.16, reported by Pierre Bosser
         <pierre.bosser@ensta-bretagne.fr>. Implicit value of
         covariance band in XML adjustment output is -1 (full
         bandwidth).
 
-### Release 1.18 August 2016
+Release 1.18 August 2016
 
 * configure.ac : patch by Greg Troxel <gdt@lexort.com>
      CPPFLAGS was set with +=, which is a bash extension and fails on
@@ -237,12 +246,12 @@ project is prefered over gama-local.pro.
 * fixed a bug in sql export reported by Dominik Hladik
 * added @documentencoding UTF-8 into gama.texi
 
-### Release 1.17 November 2015
+Release 1.17 November 2015
 
 * new set of functions for handling inconsistent systems
 * fixed two bugs reported by Greg Troxel
 
-### Release 1.16 July 2015
+Release 1.16 July 2015
 
 * minor fixes in documentation
 * fixed a bug in SQL schema
@@ -250,7 +259,7 @@ project is prefered over gama-local.pro.
 * C++11 features enabled (-std=c++11 for g++ compiler)
 * fixed several minor bugs
 
-### Release 1.15 February 2014
+Release 1.15 February 2014
 
 * DTD replaced with XSD for gama-local.xsd and
   gama-local-adjustment.xsd. Attribute version describing XML version
@@ -260,7 +269,7 @@ project is prefered over gama-local.pro.
   introduced in revised XML formats which are incompatible with older
   versions.
 
-### Release 1.14 June 2013
+Release 1.14 June 2013
 
 * A posteriori standard deviation Chi-Square test is newly always
   performed (even when gama-local uses a priori reference standard
@@ -272,6 +281,8 @@ project is prefered over gama-local.pro.
 
 * Added a basic test suite for gama-local (make check).
 
-### Changes from 1.9.00 to 1.9.01
 
-* new complete build system compatible with GNU policies
+Changes from 1.9.00 to 1.9.01
+-----------------------------
+
+1. new complete build system compatible with GNU policies

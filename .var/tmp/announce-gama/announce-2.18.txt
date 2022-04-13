@@ -1,0 +1,81 @@
+
+Subject: gama-2.18 released [stable]
+
+About
+
+GNU Gama package is dedicated to adjustment of geodetic networks. It
+is intended for use with traditional geodetic surveyings which are
+still used and needed in special measurements (e.g., underground or
+high precision engineering measurements) where the Global Positioning
+System (GPS) cannot be used.
+
+Adjustment in local coordinate systems is fully supported by a
+command-line program gama-local that adjusts geodetic (free) networks
+of observed distances, directions, angles, height differences, 3D
+vectors and observed coordinates (coordinates with given
+variance-covariance matrix). Adjustment in global coordinate systems
+is supported only partly as a gama-g3 program.
+
+https://www.gnu.org/software/gama/
+
+
+Here are the compressed sources and a GPG detached signature[*]:
+  https://ftp.gnu.org/gnu/gama/gama-2.18.tar.gz
+  https://ftp.gnu.org/gnu/gama/gama-2.18.tar.gz.sig
+
+Use a mirror for higher download bandwidth:
+  https://ftpmirror.gnu.org/gama/gama-2.18.tar.gz
+  https://ftpmirror.gnu.org/gama/gama-2.18.tar.gz.sig
+
+Here are the SHA1 and SHA256 checksums:
+
+94cf28c7e0ef451a9f30b7900816548857e53c3c  gama-2.18.tar.gz
+XNi7SmeE4zk81kAHWtIWL7Z1jnTqeAe71y2WuMvgXQ0  gama-2.18.tar.gz
+
+The SHA256 checksum is base64 encoded, instead of the
+hexadecimal encoding that most checksum tools default to.
+
+[*] Use a .sig file to verify that the corresponding file (without the
+.sig suffix) is intact.  First, be sure to download both the .sig file
+and the corresponding tarball.  Then, run a command like this:
+
+  gpg --verify gama-2.18.tar.gz.sig
+
+If that command fails because you don't have the required public key,
+or that public key has expired, try the following commands to update
+or refresh it, and then rerun the 'gpg --verify' command.
+
+  gpg --recv-keys 1b77fc09
+
+
+NEWS
+
+Changes in release 2.18 (2022-04-09)
+
+New conversion class K2gkf (lib/krumm) with accompanying program
+krumm2gama-local and the testing suite for converting input data
+format used in the text book "Geodetic Network Adjustment Examples" by
+Friedhelm Krumm, Geodätisches Institut Universität Stuttgart, 2020.
+
+Not all input data in Krumm Format can be converted to GNU Gama,
+i.e. to the adjustment program gama-local input XML:
+
+* scale factor is not implemented in gama-local adjustment
+
+* gama-local does not enable fixing only x coordinate (or y
+  coordinate) for 2D free network to remove singularity. This kind
+  of regularization has very little practical meaning. Technically
+  it would be possible to enable this feature in gama-local, but it
+  is questionable if the outcome would not enable more confusion
+  than possible outcome. Adustment should not be dependent on the
+  coordinate system used.
+
+* gama-local does not deduce that an azimuth to the unknown point
+  P can be combined with some angle pointing to the P to create a
+  new feigned azimuth. This is an interesting feature which may
+  be implemented in some future version, namely in the gama-local
+  stage of computing approximate coordinates.
+
+* nonlinear conditions are not implemented in gama-local
+
+* BLH coordinates are not supported in gama-local
