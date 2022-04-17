@@ -231,9 +231,10 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               else if (no > kki) out << T_GaMa_resobs_mc_critical;
               else               out << "   ";
 
-
-              if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
-                  (f >=5 || (f >= 0.1 && no > kki)))
+              // 2.19
+              // if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
+              //     (f >=5 || (f >= 0.1 && no > kki)))
+              if (f >=5 || (f >= 0.1 && no > kki))
                 {
                   double em = v(i) / (IS->wcoef_res(i)*IS->weight_obs(i));
                   out.width(7);
@@ -319,18 +320,3 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
 }}
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

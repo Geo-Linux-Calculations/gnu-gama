@@ -1,5 +1,8 @@
 GNU Gama NEWS - History of user-visible changes.
 
+  New glossary of basic terms used in gama-local text output and in
+  documentation.
+
 Changes in release 2.18 (2022-04-09)
 
   New conversion class K2gkf (lib/krumm) with accompanying program
@@ -7,7 +10,7 @@ Changes in release 2.18 (2022-04-09)
   format used in the text book "Geodetic Network Adjustment Examples" by
   Friedhelm Krumm, Geodätisches Institut Universität Stuttgart, 2020.
 
-  Not all input data in Krumm Format can be converted to GNU Gama,
+  Not all input data in Krumm format can be converted to GNU Gama,
   i.e. to the adjustment program gama-local input XML:
 
     - scale factor is not implemented in gama-local adjustment

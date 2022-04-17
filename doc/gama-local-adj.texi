@@ -128,13 +128,13 @@ $$ \bf{ Cx = c} \eqno (b) $$
 to minimize
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
-$$ {\bf r'Pr - 2k'(Cx -c)} = \min  \eqno (c) $$
+$$ {\bf v'Pv - 2k'(Cx -c)} = \min  \eqno (c) $$
 @end tex
 @c % ......................................................................
 @ifnottex
 
 @example
-(c)      r'Pr - 2k'(Cx - c) = min
+(c)      v'Pv - 2k'(Cx - c) = min
 @end example
 
 @end ifnottex
@@ -288,6 +288,7 @@ $$
 * Weak network elements::       Identification of weak network elements
 * Estimation of errors::        Estimation of real errors
 * Linearization::               Test on linearization
+* Glossary::                    Glossary
 @end menu
 
 
@@ -932,10 +933,10 @@ Probability that standard ellipse covers real position of a point is
 relatively low. For this reason program @code{gama-local} computes extra
 @emph{confidence ellipse} for which the probability of covering real
 point position is equal to the given confidence probability.  Both
-ellipsy are located in the same center, they share the same bearing of
+ellipses are located in the same center, they share the same bearing of
 semimajor axes and they are similar.  For lengths of their semi-axis
 holds
-@c % \cite[str.191]{charamza:geodetpc}
+@c % \cite[p. 191]{charamza:geodetpc}
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -1002,7 +1003,7 @@ confidence ellipse
 
 @noindent
 The coefficient @gmat{g} is calculated from formula
-@c %%% \cite[str. 192]{charamza:geodetpc}
+@c %%% \cite[p. 192]{charamza:geodetpc}
 @c % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @tex
 $$
@@ -1738,6 +1739,22 @@ stopping criterion independent on the convergence and results obtained.
 Program @code{gama-local} computes iterated adjustment three times at maximum.
 If the bad linearization is detected even after three readjustments it
 signals that given network configuration is somehow suspicious.
+@c % ----------------------------------------------------------------------
+
+
+
+
+@node    Glossary
+@section Glossary
+
+@c @ifnottex
+@c Glossary is available only in pdf and dvi formats.
+@c @end ifnottex
+@c
+@c @iftex
+@include gama-local-adj-glossary.texi
+@c @end iftex
+
 
 
 @comment iftex

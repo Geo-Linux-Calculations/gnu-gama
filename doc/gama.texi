@@ -159,8 +159,8 @@ Haggman, Mauri Väisänen, John Dedrum, Jim Sutherland, Zoltan Faludi,
 Diego Berge, Boris Pihtin, Stéphane Kaloustian, Siki Zoltan, Anton
 Horpynich, Claudio Fontana, Bronislav Koska, Martin Beckett, Jiří
 Novák, Václav Petráš, Jokin Zurutuza, 项维 (Vim Xiang), Tomáš Kubín,
-Greg Troxel, Kristian Evers, Oleg Goussev, Petra Millarová and Jan
-Holešovský.
+Greg Troxel, Kristian Evers, Oleg Goussev, Petra Millarová, Jan
+Holešovský and Friedhelm Krumm.
 
 Jiří Veselý is the author of calculation of approximate coordinates by
 intersections and transformations (class Acord).
@@ -170,6 +170,16 @@ Václav Petráš is the author of @ref{SQL schema SQLite and gama-local}.
 Petra Millarová is the main author of class Acord2 and other helper
 classes for combinatorial solution of medians of approximate
 coordinates.
+
+Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+contributed mumerical examples for the adjustment of geodetic networks
+(1D, 2D and 3D) published in his Geodetic Network Adjustment Examples,
+Rev. 3.5, January 20, 2020.  https://www.gis.uni-stuttgart.de/
+@c
+In version 2.18 the format of input data used in his @emph{Examples}
+was implemented in GNU Gama and is used in command line conversion
+program @code{gama-local-krumm2xml} and also directly in @code{qgama}
+GUI.
 
 
 @c ----------------------------------------------------------------------

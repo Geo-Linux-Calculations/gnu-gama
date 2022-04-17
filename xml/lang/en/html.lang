@@ -50,9 +50,9 @@
 <e id="T_HTML_rejected"
    en="Rejected" />
 <e id="T_HTML_r"
-   en="r" />
+   en="v" />
 <e id="T_HTML_rstud"
-   en="|r'|" />
+   en="|v'|" />
 <e id="T_HTML_stddev_confi"
    en="std.dev&amp;nbsp;conf.i." />
 <e id="T_HTML_value"
