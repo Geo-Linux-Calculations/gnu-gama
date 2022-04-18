@@ -340,10 +340,12 @@ void Input::vectors(std::string line)
       }
     else if (scov.size() == 6)
       {
+        auto v = [](std::string s)->double { return std::stod(s)*1e6; };
         std::ostringstream ostr;
-        ostr << scov[0] << " " << scov[1] << " " << scov[2] << "\n"
-             << scov[3] << " " << scov[4] << "\n"
-             << scov[5] << "\n";
+        ostr.precision(16);
+        ostr << v(scov[0]) << " " << v(scov[1]) << " " << v(scov[2]) << "\n"
+             << v(scov[3]) << " " << v(scov[4]) << "\n"
+             << v(scov[5]) << "\n";
         covmat += ostr.str();
       }
     else
