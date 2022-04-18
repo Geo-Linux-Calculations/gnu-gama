@@ -24,6 +24,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <cctype>
 
 using namespace GNU_gama::local;
 
@@ -43,9 +44,9 @@ void Input::input()
       p = line.find('#');
       if (p != std::string::npos) line.erase(p);
 
-      int nonsp {0};
-      for (char c : line) if (!std::isspace(c)) nonsp++;
-      if (nonsp == 0) continue;
+      while (!line.empty() && std::isspace(line[0])) line.erase(0,1);
+      while (!line.empty() && std::isspace(line.back())) line.pop_back();
+      if (line.empty()) continue;
 
       if (line[0] == '[')
         {
