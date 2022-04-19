@@ -3,136 +3,196 @@
 
 Symbols  and names used in adjustment statistics.
 
+@c
+@c
+@ifnottex
+@multitable @columnfractions .15 .85
+@end ifnottex
+@c
 @iftex
-@multitable @columnfractions .16 .16 .68
-@headitem Text @tab Print @tab Description
+@multitable @columnfractions .13 .87
+@end iftex
+@c
+@headitem Symbol @tab Description
+@c
+@c
+@ifnottex
+@item @t{v, V}
+@end ifnottex
+@c
+@iftex
+@item @math{v, \bf V}
+@end iftex
+@tab residual, vector of residuals
+@c
+@c
+@ifnottex
+@item @t{p, P}
+@end ifnottex
+@c
+@iftex
+@item @math{p, \bf P}
+@end iftex
+@tab observation weight, matrix of weights
+@c
+@c
+@ifnottex
+@item @t{[pvv]}
+@end ifnottex
+@c
+@iftex
+@item @math{\tt [pvv]}
+@end iftex
+@tab sum of weighted residuals v'Pv.
+     @*The summation symbol [.] used to be popular in geodetic
+     literiture, namely in connection with description of normal
+     equations, during pre-computer era. It was introduced by Carl
+     Friedrich Gauss who also introduce symbol P for weights (Latin
+     pondus means weight). Letter V for adjustment reductions comes
+     from German Verbesserung. @*We use [pvv] symbol only in html and
+     text adjustment output. Sic transit gloria mundi.
+@c
+@c
+@ifnottex
+@item @t{Ax = b, P}
+@end ifnottex
+@c
+@iftex
+@item @math{\bf Ax = b, P}
+@end iftex
+@tab design matrix, right-hand side (rhs) and weight matrix P
+@c   Linear system to be solved by the method of least squares.
+@c
+@c
+@ifnottex
+@item @t{r}
+@end ifnottex
+@iftex
+@c
+@iftex
+@item @math{r}
+@end iftex
+@tab redundancy, typically number of columns minus rows of A
+@c
+@c
+@ifnottex
+@item @t{Nx = n}
+@end ifnottex
+@c
+@iftex
+@item @math{\bf Nx = n}
+@end iftex
+@tab normal equations,
+@c
+@c
+@ifnottex
+ N = A'PA,
+@end ifnottex
+@c
+@iftex
+ @math{\bf N=A'PA},
 @end iftex
 @c
 @c
 @ifnottex
-@multitable @columnfractions .16 .84
-@headitem Symbol @tab Description
+ @t{n = A'Pb}.
 @end ifnottex
 @c
-@c
-@item @t{v, V}
 @iftex
-@tab @math{v, \bf V}
+ @math{\bf n=A'Pb}.
 @end iftex
-@tab Residual, vector of residuals.
-@c
-@c
-@item @t{p, P}
+@*The method of least squares can be solved directly from
+@ifnottex
+ @t{Ax=b}.
+@end ifnottex
 @iftex
-@tab @math{p, \bf P}
+ @math{\bf Ax = b},
 @end iftex
-@tab Observation weight, matrix of weights.
+which is generally a more numerically stable solution
 @c
 @c
-@item @t{[pvv]}
-@iftex
-@tab @math{[pvv]}
-@end iftex
-@tab Sum of weighted residuals v'Pv.
-@c
-@c
-@item @t{Ax = b, P}
-@iftex
-@tab @math{\bf Ax = b, P}
-@end iftex
-@tab Design matrix, right-hand side (rhs) and weight matrix P.
-@c   Linear system to be solved by the method of least squares.
-@c
-@c
-@item @t{r}
-@iftex
-@tab @math{r}
-@end iftex
-@tab Redundancy, typically number rows minus columns of A.
-@c
-@c
-@item @t{Nx = n}
-@iftex
-@tab @math{\bf Nx = n}
-@end iftex
-@tab Normal equations
-@c
-@c
-@item N = A'PA
-@iftex
-@tab @math{\bf N=A'PA}
-@end iftex
-@tab
-@c
-@c
-@item @t{n = A'Pb}
-@iftex
-@tab @math{\bf n=A'Pb}
-@end iftex
-@tab
-@c The method of least squares can be solved directly from Ax=b,
-@c which is generally a more numerically stable solution.
-@c
-@c
+@ifnottex
 @item @t{Q = inv(N)}
+@end ifnottex
+@c
 @iftex
-@tab @math{\bf Q = N^{-1}}
+@item @math{\bf Q = N^{-1}}
 @end iftex
-@tab Cofactor matrix for adjusted unknowns (matrix of weight
-     coefficients, cofactors, of adjusted unknowns).
+@tab cofactor matrix for adjusted unknowns (matrix of weight
+     coefficients, cofactors, of adjusted unknowns)
 @c
 @c
+@ifnottex
 @item @t{Q_L = AQA'}
+@end ifnottex
+@c
 @iftex
-@tab @math{\bf Q_L = AQA'}
+@item @math{\bf Q_L = AQA'}
 @end iftex
-@tab Cofactor matrix for adjusted observations (matrix of weight
-     coefficients, cofactors, of adjusted observations).
+@tab cofactor matrix for adjusted observations
 @c
 @c
+@ifnottex
 @item @t{f[%]}
+@end ifnottex
 @iftex
-@tab @math{f[\%]}
+@item @math{\tt f[\%]}@c @math{f[\%]}
 @end iftex
-@tab Degree of an observation control in the network
-     from 0% (uncontrolled) to 100% (fully controled, e.g. measured
-     distance between two fixed points).
+@tab degree of control of an observation in the network, spans
+     from 0% (uncontrolled, e.g. observed direction and distance to an
+     isolated adjustment point) to 100% (fully controled,
+     e.g. measured distance between two fixed points)
 @c
 @c
+@ifnottex
 @item @t{m0}
+@end ifnottex
+@c
 @iftex
-@tab @math{m_0}
+@item @math{m_0}
 @end iftex
-@tab A priori reference standard deviation.
+@tab a priori reference standard deviation.
 @c
 @c
+@ifnottex
 @item @t{m0'}
+@end ifnottex
+@c
 @iftex
-@tab @math{m_0'}
+@item @math{m_0'}
 @end iftex
-@tab A posteriori estimate of reference standard deviation.
+@tab a posteriori estimate of reference standard deviation
 @c
 @c
+@ifnottex
 @item @t{m0''}
+@end ifnottex
+@c
 @iftex
-@tab @math{m_0''}
+@item @math{m_0''}
 @end iftex
-@tab Minimal a posteriori estimate of reference standard
-     deviation after removal of one observation
-     (removal of the observation leading to minimal value of @t{m0''}).
+@tab minimal a posteriori estimate of reference standard
+     deviation after removal one observation (removal of the
+     observation leading to minimal value of m0'')
 @c
 @c
+@ifnottex
 @item @t{g}
+@end ifnottex
+@c
 @iftex
-@tab @math{g}
+@item @math{\tt g}
 @end iftex
-@tab Position of approximate coordinates xy of the adjusted point with
-     respect to its confidence ellipse
-     (g < 1 approximate coordinates are located inside the ellipse;
-     g = 1 on the  ellipse; g > 1 outside the ellipse).
-     Zero value of g indicates that approximate and adjusted
-     coordinates are identical, this case typically happens when
-     adjustement is repeated due to linearization iterations.
+@tab position of approximate coordinates xy of the adjusted point with
+     respect to its confidence ellipse (g < 1 approximate coordinates
+     are located inside the ellipse; g = 1 on the ellipse; g > 1
+     outside the ellipse).  @*Zero value of g indicates that
+     approximate and adjusted coordinates are identical. This
+     situation typically happens when iterative adjustement is needed
+     due to poor initial linearization (initial approximate
+     coordinates are too far from the adjusted) and the iterative
+     process ends up with identical approximate and adjusted
+     coordinates.
 @c
 @c
 @end multitable
