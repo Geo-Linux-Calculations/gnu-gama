@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012, 2016  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2016, 2022  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -22,10 +22,32 @@
 #include <fstream>
 #include "compare_xml_adjustment.h"
 
+
+std::string help_notice = R"help_notice(
+
+Compare HTML and XML output files from gama-local
+
+     check_html  one_word_label  file.html  file.xml
+
+)help_notice";
+
+int help(int argc)
+{
+  if (argc != 4) {
+      std::cerr << help_notice;
+      return 1;
+    }
+
+  return 0;
+}
+
+
 using GNU_gama::LocalNetworkAdjustmentResults;
 
 int main(int argc, char* argv[])
 {
+  if (help(argc)) return 1;
+
   std::cout << "max.diff between XML and HTML rounding output for "
             << argv[1] << "\n";
 

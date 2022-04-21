@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012, 2014  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014, 2022  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -26,16 +26,31 @@
 #include "check_xyz.h"
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 
+std::string help_notice = R"help_notice(
+
+Compare gama-local input and XML ADJUSTMENT output files
+
+     check_xml_results  one_word_label  file.gkf  file.xml
+
+)help_notice";
+
+int help(int argc)
+{
+  if (argc != 4) {
+      std::cerr << help_notice;
+      return 1;
+    }
+
+  return 0;
+}
+
+
 using GNU_gama::local::LocalNetwork;
 using GNU_gama::LocalNetworkAdjustmentResults;
 
 int main(int argc, char* argv[])
 {
-  if (argc != 4)
-    {
-      std::cout << "   #### " << argv[0] << " wrong number of arguments\n";
-      return 1;
-    }
+  if (help(argc)) return 1;
 
   std::string conf = argv[1];
 
@@ -51,17 +66,24 @@ int main(int argc, char* argv[])
       }
 
     adjres->read_xml(inp_xml);
+    for (auto sob : adjres->obslist)
+      {
+        std::cout << sob.xml_tag << " "
+                  << sob.from << " " << sob.to << " "
+                  << sob.obs << std::endl;
+      }
   }
 
   int failed = 0;
   std::cout << "max.diff to available adjustment results for "
             << argv[1] << "\n";
 
+  double y_sign = lnet->y_sign();
+
   { // adjusted coordinates xyz
     double maxdiffxyz = 0;
 
     const GNU_gama::local::Vec& x = lnet->solve();
-    const int y_sign = int( lnet->y_sign() );
 
     for (size_t i=0; i<adjres->adjusted_points.size(); i++)
       {
@@ -185,7 +207,12 @@ int main(int argc, char* argv[])
          }
         else
           {
-            dfobs = obs->value() + r(int(i+1))/1000 - A.adj;
+            double val = obs->value() + r(int(i+1))/1000;
+            // for incosistent coordinate systems we internally work
+            // with -Y and Ydiff part of vectors must changed its sign
+            // on output, similarly as coordinates Y
+            if (dynamic_cast<GNU_gama::local::Ydiff*>(obs)) val *= y_sign;
+            dfobs = val - A.adj;
             dfstd = lnet->stdev_obs(i+1) - A.stdev;
           }
         if (std::abs(dfobs) > std::abs(maxdiffobs)) maxdiffobs = dfobs;

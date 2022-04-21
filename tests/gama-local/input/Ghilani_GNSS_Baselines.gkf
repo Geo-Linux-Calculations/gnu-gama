@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Example from Section 17.8
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ch. 17.6, p 337-352
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='402.35087' y='-4652995.30109' z='4349760.77753' fix='xyz' />
+<point id='B' x='8086.03178' y='-4642712.84739' z='4360439.08326' fix='xyz' />
+<point id='C' x='12046.5808' y='-4649394.0824' z='4353160.0645' adj='xyz' />
+<point id='D' x='-3081.5831' y='-4643107.3692' z='4359531.1234' adj='xyz' />
+<point id='E' x='-4919.3388' y='-4649361.2199' z='4352934.4548' adj='xyz' />
+<point id='F' x='1518.8012' y='-4648399.1454' z='4354116.6914' adj='xyz' />
+
+<vectors>
+<vec from="A" to="C" dx="11644.2232" dy="3601.2165" dz="3399.2550" />
+<cov-mat dim="3" band="2">
+988.4 -9.58 9.52
+937.6999999999999 -9.52
+982.6999999999999
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="A" to="E" dx="-5321.7164" dy="3634.0754" dz="3173.6652" />
+<cov-mat dim="3" band="2">
+215.8 -2.1 2.16
+191.9 -2.1
+200.5
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="B" to="C" dx="3960.5442" dy="-6681.2467" dz="-7279.0148" />
+<cov-mat dim="3" band="2">
+230.5 -2.23 2.07
+254.6 -2.23
+225.2
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="B" to="D" dx="-11167.6076" dy="-394.5204" dz="-907.9593" />
+<cov-mat dim="3" band="2">
+270 -2.75 2.85
+272.1 -2.72
+267
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="D" to="C" dx="15128.1647" dy="-6286.7054" dz="-6371.0583" />
+<cov-mat dim="3" band="2">
+146.1 -1.43 1.34
+161.4 -1.44
+130.8
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="D" to="E" dx="-1837.7459" dy="-6253.8534" dz="-6596.6697" />
+<cov-mat dim="3" band="2">
+123.1 -1.19 1.22
+127.7 -1.21
+128.3
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="F" to="A" dx="-1116.4523" dy="-4596.1610" dz="-4355.9062" />
+<cov-mat dim="3" band="2">
+74.75 -0.7899999999999999 0.88
+65.93000000000001 -0.8099999999999999
+76.16
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="F" to="C" dx="10527.7852" dy="-994.9377" dz="-956.6246" />
+<cov-mat dim="3" band="2">
+256.7 -2.25 2.4
+216.3 -2.27
+239.7
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="F" to="E" dx="-6438.1364" dy="-962.0694" dz="-1182.2305" />
+<cov-mat dim="3" band="2">
+94.41999999999999 -0.9199999999999999 1.04
+99.59 -0.8899999999999999
+88.26000000000001
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="F" to="D" dx="-4600.3787" dy="5291.7785" dz="5414.4311" />
+<cov-mat dim="3" band="2">
+93.30000000000001 -0.9900000000000001 0.8999999999999999
+98.75 -0.9900000000000001
+120.4
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="F" to="B" dx="6567.2311" dy="5686.2926" dz="6322.3917" />
+<cov-mat dim="3" band="2">
+66.42999999999999 -0.65 0.6899999999999999
+74.64999999999999 -0.64
+60.48
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="B" to="F" dx="-6567.2310" dy="-5686.3033" dz="-6322.3807" />
+<cov-mat dim="3" band="2">
+55.12 -0.63 0.61
+74.72 -0.63
+66.29000000000001
+</cov-mat>
+</vectors>
+
+<vectors>
+<vec from="A" to="F" dx="1116.4577" dy="4596.1553" dz="4355.9141" />
+<cov-mat dim="3" band="2">
+66.19 -0.7999999999999999 0.8999999999999999
+81.08 -0.82
+93.75999999999999
+</cov-mat>
+</vectors>
+
+</points-observations>
+
+</network>
+</gama-local>
