@@ -231,7 +231,7 @@ void ResidualsObservations(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               else if (no > kki) out << T_GaMa_resobs_mc_critical;
               else               out << "   ";
 
-              // 2.19
+              // bug 2.19
               // if ( (pm->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
               //     (f >=5 || (f >= 0.1 && no > kki)))
               if (f >=5 || (f >= 0.1 && no > kki))

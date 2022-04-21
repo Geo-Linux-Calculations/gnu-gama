@@ -1360,8 +1360,16 @@ std::string LocalNetwork::export_xml(std::string version)
 
 
   if (!description.empty())
-    xml += "\n<description>" + description + "</description>\n";
+    {
+      std::string descr;
+      for (char c : description)
+        {
+          if (c == '&') descr += "&amp;";
+          else descr += c;
+        }
 
+      xml += "\n<description>" + descr + "</description>\n";
+    }
   xml += "\n<parameters\n";
   xml += "  sigma-apr=\"" + to_xmlstr(apriori_m_0(), 8) + "\"\n";
   xml += "  conf-pr=\""   + to_xmlstr(conf_pr(), 8)     + "\"\n";

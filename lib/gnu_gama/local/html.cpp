@@ -1,5 +1,5 @@
 /* GNU Gama C++ library
-   Copyright (C) 2012, 2013, 2014, 2016, 2018  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2013, 2014, 2016, 2018, 2022  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -276,6 +276,16 @@ private:
     double val = obs->value();
     double adj = val + lnet->residuals()(index)/1000;
 
+    // testing only in HTML output of adjusted observations
+    if (lnet->y_sign() == -1.0)
+      {
+        if (dynamic_cast<Ydiff*>(obs))
+          {
+            val *= -1.0;
+            adj *= -1.0;
+          }
+      }
+
     out << tdRight(val, 'F', 5, 2,2)
         << tdRight(adj, 'F', 5, 2,2);
 
@@ -379,7 +389,7 @@ private:
 
   void observation(double scale)
   {
-        // double val = obs->value();                        ... unused
+    // double val = obs->value();                        ... unused
     // double adj = val + lnet->residuals()(index)/1000; ... unused
 
     double f  = lnet->obs_control(index);
@@ -415,8 +425,10 @@ private:
             out << "<td></td>";
           }
 
-        if ( (obs->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
-             (f >=5 || (f >= 0.1 && no > kki)))
+        // bug 2.19
+        // if ( (obs->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
+        //    (f >=5 || (f >= 0.1 && no > kki)))
+        if (f >=5 || (f >= 0.1 && no > kki))
           {
             double em = lnet->residuals()(index) /
               (lnet->wcoef_res(index)*lnet->weight_obs(index));
@@ -582,8 +594,10 @@ void GamaLocalHTML::htmlInfo()
                 }
               else
                 {
-                  std::string t;
-                  t += c;
+                  /* bug 2.19 std::string t;
+                  t += c; */
+                  std::string t {c};
+                  if (c == '&') t = "&amp;";
                   out << t;
                   br = 0;
                 }
@@ -976,7 +990,7 @@ void GamaLocalHTML::htmlInfo()
           std::ostringstream outv;
           outv.setf(std::ios_base::fixed, std::ios_base::floatfield);
           outv.precision(4);
-          WriteVisitor<std::ostringstream> write_visitor(outv, true);
+          WriteVisitor<std::ostringstream> write_visitor(outv, true, lnet->y_sign());
           ptr->accept(&write_visitor);
           out << str2xml(outv.str());
 
@@ -1581,7 +1595,7 @@ void GamaLocalHTML::htmlRejected()
           Observation* obs = const_cast<Observation*>(*i);
           std::ostringstream out;
           out.setf(std::ios_base::fixed, std::ios_base::floatfield);
-          WriteVisitor<std::ostringstream> write_visitor(out, true);
+          WriteVisitor<std::ostringstream> write_visitor(out, true, lnet->y_sign());
           obs->accept(&write_visitor);
 
           str += "<tr>" + tdLeft(out.str()) + "</tr>\n";

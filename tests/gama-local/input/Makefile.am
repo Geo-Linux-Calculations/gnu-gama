@@ -67,4 +67,6 @@ EXTRA_DIST = \
   ctu/2020-barta-phase_1-2TK.xml \
   \
   sim/from-to-dh.gkf \
-  sim/from-to-dh.xml
+  sim/from-to-dh.xml \
+  \
+  Ghilani_GNSS_Baselines.gkf Ghilani_GNSS_Baselines.xml

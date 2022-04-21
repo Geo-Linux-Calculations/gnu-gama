@@ -43,7 +43,9 @@ template <typename OutStream>
 class WriteVisitor : public AllObservationsVisitor
 {
 public:
-    WriteVisitor(OutStream& out, bool print_at) : out_(out), print_at_(print_at) {}
+    WriteVisitor(OutStream& out, bool print_at, double y_sign)
+      : out_(out), print_at_(print_at), y_sign_(y_sign)
+    {}
 
     void visit(Angle *obs) { write(*obs, out_, print_at_); }
     void visit(Direction *obs) { write(*obs, out_, print_at_); }
@@ -180,7 +182,8 @@ public:
       using namespace std;
       out << "<!-- from='" << obs.from() << "' to='" << obs.to() << "'"
           << " diff y = "
-          << std::setprecision(Format::coord_p()) << obs.value() << " --!>";
+          << std::setprecision(Format::coord_p())
+          << y_sign_*obs.value() << " --!>";
     }
 
 
@@ -238,7 +241,8 @@ public:
 
 private:
     OutStream& out_;
-    bool print_at_;
+    bool  print_at_;
+    double  y_sign_ {1};
 };
 
 }} // namespace GNU_gama local

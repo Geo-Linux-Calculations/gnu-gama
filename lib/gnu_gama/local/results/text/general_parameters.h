@@ -53,7 +53,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
   using namespace std;
   using namespace GNU_gama::local;
 
-  IS->null_space();   // triggers adjusment; needed for printing removed points
+  IS->null_space();   // triggers adjustment; needed for printing removed points
 
   {
     if (!IS->removed_points.empty())
@@ -479,7 +479,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               << setprecision(0) << (1 - IS->conf_pr())*100
               << T_GaMa_genpar_for_observation_ind
               << imax << "\n";
-          WriteVisitor<OutStream> write_visitor(out, true);
+          WriteVisitor<OutStream> write_visitor(out, true, IS->y_sign());
           ptr->accept(&write_visitor);
           out << "\n";
         }

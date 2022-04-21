@@ -234,7 +234,7 @@ void DisplayObservationVisitor::visit(Ydiff* obs)
   xml_name = "dy";
   str_from = obs->from().str();
   str_to   = obs->to().str();
-  str_val   = to_xmlstr(obs->raw_value());
+  str_val   = to_xmlstr(lnet->y_sign() * obs->raw_value());
   str_stdev = to_xmlstr(obs->stdDev());
 }
 

@@ -74,7 +74,9 @@ INPUT_FILES = gama-local \
               stroner-levelling-b \
               local_3d \
               extern-azimuth-distance \
-              extern-seq-dsuloha-d
+              extern-seq-dsuloha-d \
+              Ghilani_GNSS_Baselines
+
 
 BUG_FILES =   bug/tst-tetrahedron-1 \
               bug/tst-tetrahedron-2 \

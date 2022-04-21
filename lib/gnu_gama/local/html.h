@@ -84,6 +84,7 @@ public:
 
 private:
   LocalNetwork* lnet;
+  double y_sign_ {1};
 
   struct HtmlPart {
         HtmlPart() : active(true) {}
