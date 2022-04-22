@@ -28,6 +28,7 @@
 #include <utility>
 #include <gnu_gama/local/yaml2gkf.h>
 #include <gnu_gama/gon2deg.h>
+#include <gnu_gama/xml/str2xml.h>
 
 using namespace GNU_gama::local;
 
@@ -200,7 +201,8 @@ void Yaml2gkf::description()
           line.clear();
         }
 
-      line += word + " ";
+      // bug 2.18 line += word + " ";
+      line += str2xml(word) + " ";
     }
 
   if (std::isspace(line.back())) line.pop_back();

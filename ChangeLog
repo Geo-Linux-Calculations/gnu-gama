@@ -4,7 +4,7 @@
 	* Fixed tests/gama-local/tests/gama-local.sh to work with GNSS
 	vectors (bug in HTML output for inconsistent systems).
 
-	* Fixed a bug in testd/gama-local-xml-results.sh (program
+	* Fixed a bug in tests/gama-local-xml-results.sh (program
 	check_xml_results). For inconsistent coordinate systems Ydiff part
 	of the vector has its sign changed on output.
 

@@ -103,7 +103,6 @@ CMakeLists.txt.user*
 .vscode
 run.bat
 #
-results
 *.log
 *.trs
 *.sh
@@ -116,3 +115,4 @@ Sandbox
 *.tar.gz
 *.diff
 work
+.qtc_clangd

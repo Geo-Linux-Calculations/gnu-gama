@@ -187,7 +187,7 @@ void Output::points()
           else if (datum == "dyn")
             {
 
-              // NEEXISTUJE common.datum_dyn_cov_list += point(t, pt);
+              // DOES NOT EXIST common.datum_dyn_cov_list += point(t, pt);
               //common.point_map.erase(t);
             }
         }

@@ -425,7 +425,7 @@ private:
             out << "<td></td>";
           }
 
-        // bug 2.19
+        // bug 2.18
         // if ( (obs->ptr_cluster())->covariance_matrix.bandWidth() == 0 &&
         //    (f >=5 || (f >= 0.1 && no > kki)))
         if (f >=5 || (f >= 0.1 && no > kki))
@@ -594,11 +594,11 @@ void GamaLocalHTML::htmlInfo()
                 }
               else
                 {
-                  /* bug 2.19 std::string t;
-                  t += c; */
+                  /* bug 2.18 std::string t;
+                  t += c;
+                  out << t */
                   std::string t {c};
-                  if (c == '&') t = "&amp;";
-                  out << t;
+                  out << str2xml(t);
                   br = 0;
                 }
             }

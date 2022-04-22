@@ -229,7 +229,17 @@ matvec_src = \
    matvec/transvec.h \
    matvec/unsigned.h \
    matvec/vecbase.h \
-   matvec/vec.h
+   matvec/vec.h \
+   krumm/common.h \
+   krumm/common.cpp \
+   krumm/input.h \
+   krumm/input.cpp \
+   krumm/k2gkf.h \
+   krumm/k2gkf.cpp \
+   krumm/output.h \
+   krumm/output.cpp \
+   krumm/string_matrix.h \
+   krumm/string_matrix.cpp
 
 matvec_extra = \
    matvec/COPYING \

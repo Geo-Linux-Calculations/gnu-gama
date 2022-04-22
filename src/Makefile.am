@@ -42,17 +42,6 @@ if GNU_GAMA_LOCAL_TEST_YAML_CPP
    gama_local_yaml2gkf_CPPFLAGS = -I $(top_srcdir)/lib
 endif
 
-krumm2gama_local_SOURCES  = krumm2gama-local.cpp \
-   $(top_srcdir)/lib/krumm/common.h \
-   $(top_srcdir)/lib/krumm/common.cpp \
-   $(top_srcdir)/lib/krumm/input.h \
-   $(top_srcdir)/lib/krumm/input.cpp \
-   $(top_srcdir)/lib/krumm/k2gkf.h \
-   $(top_srcdir)/lib/krumm/k2gkf.cpp \
-   $(top_srcdir)/lib/krumm/output.h \
-   $(top_srcdir)/lib/krumm/output.cpp \
-   $(top_srcdir)/lib/krumm/string_matrix.h \
-   $(top_srcdir)/lib/krumm/string_matrix.cpp \
-   $(top_srcdir)/lib/gnu_gama/xml/str2xml.h \
-   $(top_srcdir)/lib/gnu_gama/xml/str2xml.cpp
+krumm2gama_local_SOURCES  = krumm2gama-local.cpp
 krumm2gama_local_CPPFLAGS = -I $(top_srcdir)/lib
+krumm2gama_local_LDADD    = $(top_builddir)/lib/libgama.a

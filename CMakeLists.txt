@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project (gnu-gama VERSION 2.18.4)
+project (gnu-gama VERSION 2.18.5)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -221,6 +221,12 @@ set(SRC_GAMA
    lib/matvec/svd.h        lib/matvec/symmat.h       lib/matvec/transmat.h
    lib/matvec/transvec.h   lib/matvec/unsigned.h     lib/matvec/vecbase.h
    lib/matvec/vec.h
+
+   lib/krumm/common.h         lib/krumm/common.cpp
+   lib/krumm/input.h          lib/krumm/input.cpp
+   lib/krumm/k2gkf.h          lib/krumm/k2gkf.cpp
+   lib/krumm/output.h         lib/krumm/output.cpp
+   lib/krumm/string_matrix.h  lib/krumm/string_matrix.cpp
 )
 
 set(SRC_EXPAT
@@ -305,15 +311,11 @@ target_link_libraries(gama-g3 PUBLIC libgama)
 
 add_executable(gama-local-gkf2yaml src/gama-local-gkf2yaml.cpp
                lib/gnu_gama/local/gkf2yaml.cpp)
-               target_link_libraries(gama-local-gkf2yaml PUBLIC libgama)
+target_link_libraries(gama-local-gkf2yaml PUBLIC libgama)
 
-add_executable(krumm2gama-local src/krumm2gama-local.cpp
-               lib/krumm/common.h          lib/krumm/common.cpp
-               lib/krumm/input.h           lib/krumm/input.cpp
-               lib/krumm/k2gkf.h           lib/krumm/k2gkf.cpp
-               lib/krumm/output.h          lib/krumm/output.cpp
-               lib/krumm/string_matrix.h   lib/krumm/string_matrix.cpp
-               lib/gnu_gama/xml/str2xml.h  lib/gnu_gama/xml/str2xml.cpp)
+add_executable(krumm2gama-local src/krumm2gama-local.cpp)
+target_link_libraries(krumm2gama-local PUBLIC libgama)
+
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/lib/yaml-cpp)
    include_directories(lib/yaml-cpp/include)

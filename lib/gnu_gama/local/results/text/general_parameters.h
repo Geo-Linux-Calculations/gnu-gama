@@ -423,7 +423,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
           out << '\n';
         }
 
-      Observation* ptr {nullptr};
+      Observation* obs {nullptr};
       double stud_opr;
       double max_stud = 0;
       int imax = 0;
@@ -436,7 +436,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               if (stud_opr > max_stud)
                 {
                   max_stud = stud_opr;
-                  ptr = IS->ptr_obs(i);
+                  obs = IS->ptr_obs(i);
                   imax = i;
                 }
             }
@@ -480,7 +480,7 @@ bool GeneralParameters(GNU_gama::local::LocalNetwork* IS, OutStream& out)
               << T_GaMa_genpar_for_observation_ind
               << imax << "\n";
           WriteVisitor<OutStream> write_visitor(out, true, IS->y_sign());
-          ptr->accept(&write_visitor);
+          obs->accept(&write_visitor);
           out << "\n";
         }
 
