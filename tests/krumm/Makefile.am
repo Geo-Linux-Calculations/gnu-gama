@@ -1,6 +1,7 @@
 EXTRA_DIST = \
    CMakeLists.txt \
    krumm2gama-local.sh_ \
+   krumm-xml-xml.sh_ \
    input/1D/Baumann_Height_fix.adj \
    input/1D/Baumann_Height_fix.dat \
    input/1D/Ghilani12_6_Height_fix.adj \
@@ -116,11 +117,12 @@ cmp_xml_file_SOURCES  = cmp_xml_file_main.cpp \
 cmp_xml_file_LDADD    = $(top_builddir)/lib/libgama.a
 cmp_xml_file_CPPFLAGS = -I $(top_srcdir)/lib
 
-TESTS = krumm2gama-local.sh
+TESTS = krumm2gama-local.sh krumm-xml-xml.sh
 
 KRUMM_INPUT   = $(srcdir)/input
 KRUMM_RESULTS = results/$(PACKAGE_VERSION)
 KRUMM_OTHERS  = Makefile $(KRUMM_RESULTS)
+GAMA_ARCHIVE  = $(top_builddir)/tests/gama-local/input/krumm
 
 INPUT_FILES = \
   1D/Baumann_Height_fix \
@@ -193,7 +195,8 @@ do_subst = sed \
 -e 's,[@]PACKAGE_VERSION[@],$(PACKAGE_VERSION),g' \
 -e 's,[@]INPUT_FILES[@],$(INPUT_FILES),g' \
 -e 's,[@]KRUMM_INPUT[@],$(KRUMM_INPUT),g' \
--e 's,[@]KRUMM_RESULTS[@],$(KRUMM_RESULTS),g'
+-e 's,[@]KRUMM_RESULTS[@],$(KRUMM_RESULTS),g' \
+-e 's,[@]GAMA_ARCHIVE[@],$(GAMA_ARCHIVE),g'
 
 clean-local: clean-local-check
 .PHONY: clean-local-check
@@ -210,3 +213,8 @@ krumm2gama-local.sh: $(srcdir)/krumm2gama-local.sh_ $(KRUMM_OTHERS)
 	@$(do_subst) < $(srcdir)/krumm2gama-local.sh_ \
 	             > krumm2gama-local.sh
 	@chmod +x krumm2gama-local.sh
+
+krumm-xml-xml.sh: $(srcdir)/krumm-xml-xml.sh_ $(KRUMM_OTHERS)
+	@$(do_subst) < $(srcdir)/krumm-xml-xml.sh_ \
+	             > krumm-xml-xml.sh
+	@chmod +x krumm-xml-xml.sh
