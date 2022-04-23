@@ -5,10 +5,10 @@ set -e
 RES=@GAMA_RESULTS@/gama-local-adjustment
 
 mkdir -p $RES $RES/bug $RES/ctu
+mkdir -p $RES/krumm $RES/krumm/1D $RES/krumm/2D $RES/krumm/3D
 
-for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@
+for g in @INPUT_FILES@ @BUG_FILES@ @CTU_FILES@ @KRUMM_FILES@
 do
-
 for a in svd gso cholesky envelope
 do
     echo  @PACKAGE_VERSION@ $g $a

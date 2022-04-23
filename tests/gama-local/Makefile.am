@@ -74,8 +74,7 @@ INPUT_FILES = gama-local \
               stroner-levelling-b \
               local_3d \
               extern-azimuth-distance \
-              extern-seq-dsuloha-d \
-              Ghilani_GNSS_Baselines
+              extern-seq-dsuloha-d
 
 
 BUG_FILES =   bug/tst-tetrahedron-1 \
@@ -106,6 +105,48 @@ YAML_FILES =  geodet-pc-123 geodet-pc-218 \
               cube-1 \
               minimal
 
+
+KRUMM_FILES = krumm/3D/Ghilani_GNSS_Baselines
+
+
+KRUMM_FILES_EXTRA = krumm/1D/Baumann_Height_fix \
+  krumm/1D/Krumm_Height_fix \
+  krumm/1D/Ghilani12_6_Height_fix \
+  krumm/1D/Niemeier_Height_fix1 \
+  krumm/1D/Krumm_Height_dyn \
+  krumm/1D/Niemeier_Height_free \
+  krumm/2D/Benning82_Distance_fix \
+  krumm/2D/Hoepke_Distance_free \
+  krumm/2D/Benning83_DistanceDirection_fix \
+  krumm/2D/LotherStrehle_Direction1 \
+  krumm/2D/Benning85 \
+  krumm/2D/LotherStrehle_Direction2 \
+  krumm/2D/Benning88_Distance_fix \
+  krumm/2D/LotherStrehle_Direction3 \
+  krumm/2D/Carosio_DistanceDirection_fix \
+  krumm/2D/LotherStrehle_Direction4 \
+  krumm/2D/Ghilani14_5_Distance_fix \
+  krumm/2D/LotherStrehle_Direction5 \
+  krumm/2D/Ghilani15_4_Angle_fix \
+  krumm/2D/LotherStrehle_Direction7 \
+  krumm/2D/Ghilani15_5_Angle_fix \
+  krumm/2D/Niemeier_DistanceDirection_fix \
+  krumm/2D/Ghilani16_1_Traverse \
+  krumm/2D/StrangBorre_Distance_fix \
+  krumm/2D/Ghilani16_2_DistanceAngleAzimuth_fix \
+  krumm/2D/StrangBorre_Distance_free \
+  krumm/2D/Ghilani21_10_DistanceAngle_fix \
+  krumm/2D/WeissEtAl_Distance_fix \
+  krumm/2D/Ghilani_Wolf_Distance_Angle \
+  krumm/2D/Wolf_DistanceDirectionAngle_free \
+  krumm/2D/Grossmann_Direction_fix \
+  krumm/3D/Baumann23_3_4_fix \
+  krumm/3D/Wolf_3D_Distance_fix \
+  krumm/3D/Caspary \
+  krumm/3D/Wolf_3D_DistanceVerticalAngle_fix \
+  krumm/3D/Wolf_SpatialPolygonTraverse_fix
+
+
 GAMA_SRC     = $(srcdir)/src
 GAMA_INPUT   = $(srcdir)/input
 GAMA_RESULTS = results/$(PACKAGE_VERSION)
@@ -121,6 +162,7 @@ do_subst = sed \
 -e 's,[@]GAMA_XML[@],$(top_srcdir)/xml,g' \
 -e 's,[@]BUG_FILES[@],$(BUG_FILES),g' \
 -e 's,[@]CTU_FILES[@],$(CTU_FILES),g' \
+-e 's,[@]KRUMM_FILES[@],$(KRUMM_FILES),g' \
 -e 's,[@]FROMTODH_FILES[@],$(FROMTODH_FILES),g' \
 -e 's,[@]YAML_FILES[@],$(YAML_FILES),g' \
 -e 's,[@]GNU_GAMA_LOCAL_TEST_XMLLINT[@],$(GNU_GAMA_LOCAL_TEST_XMLLINT),g'
