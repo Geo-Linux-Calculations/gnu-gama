@@ -35,4 +35,10 @@ namespace GNU_gama {
       }
     return t;
   }
+
+  std::string str2xml(char c)
+  {
+    std::string t {c};
+    return str2xml(t);
+  }
 }

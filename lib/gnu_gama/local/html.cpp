@@ -52,6 +52,11 @@ public:
     str.append(p); return *this;
   }
 
+  HtmlStringStream& operator<< (char c)
+  {
+    str.push_back(c); return *this;
+  }
+
 private:
     std::string& str;
 };
@@ -582,23 +587,21 @@ void GamaLocalHTML::htmlInfo()
       else
         {
           out << "<p id='description'>";
-          int N = lnet->description.length();
-          while (N > 0 && lnet->description[N-1] == '\n') N--;
-          int br=2;
-          for (int i=0; i<N; i++)
+          auto description = str2xml(lnet->description);
+          while (!description.empty() && description.back() == '\n')
             {
-              char c = lnet->description[i];
+              description.pop_back();
+            }
+          int br=2;
+          for (char c : description)
+            {
               if (c == '\n')
                 {
                   if (br++ < 2) out << "<br/>\n";
                 }
               else
                 {
-                  /* bug 2.18 std::string t;
-                  t += c;
-                  out << t */
-                  std::string t {c};
-                  out << str2xml(t);
+                  out << c;
                   br = 0;
                 }
             }

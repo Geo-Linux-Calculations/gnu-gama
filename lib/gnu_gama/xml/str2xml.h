@@ -25,5 +25,6 @@
 namespace GNU_gama
 {
   std::string str2xml  (const std::string& str);
+  std::string str2xml  (char c);
 }
 #endif
