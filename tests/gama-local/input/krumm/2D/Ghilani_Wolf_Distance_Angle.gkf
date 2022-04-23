@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix horizontal network
+
+Charles D. Ghilani and Paul R. Wolf (2012): Elementary Surveying. An
+Introduction to Geomatics. 13th Edition, Ch. 16.9.5, p 422 &amp; 450-456
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='415.273' y='929.868' fix='xy' />
+<point id='B' x='507.934' y='764.652' adj='xy' />
+<point id='C' x='618.952' y='815.353' adj='xy' />
+<point id='D' x='723.852' y='753.287' adj='xy' />
+<point id='E' x='826.128' y='856.438' adj='xy' />
+<point id='F' x='794.659' y='1021.655' adj='xy' />
+<point id='G' x='578.741' y='1103.826' adj='xy' />
+<point id='H' x='652.221' y='980.245' adj='xy' />
+<point id='J' x='600.595' y='899.272' adj='xy' />
+<point id='K' x='713.362' y='877.418' adj='xy' />
+
+<obs>
+<distance from="A" to="B" val="189.436" stdev="7.000000" />
+<distance from="B" to="C" val="122.050" stdev="7.000000" />
+<distance from="C" to="D" val="121.901" stdev="7.000000" />
+<distance from="D" to="E" val="145.256" stdev="7.000000" />
+<distance from="E" to="F" val="168.180" stdev="7.000000" />
+<distance from="F" to="G" val="231.021" stdev="7.000000" />
+<distance from="G" to="A" val="238.714" stdev="7.000000" />
+<distance from="G" to="H" val="143.780" stdev="7.000000" />
+<distance from="H" to="K" val="119.631" stdev="7.000000" />
+<distance from="K" to="E" val="114.695" stdev="7.000000" />
+<distance from="H" to="J" val="96.036" stdev="7.000000" />
+<distance from="J" to="C" val="85.908" stdev="7.000000" />
+</obs>
+
+<obs>
+<angle from="A" bs="G" fs="B" val="107-29-40" stdev="8.9" />
+<angle from="B" bs="A" fs="C" val="94-44-24" stdev="11.7" />
+<angle from="C" bs="B" fs="D" val="235-09-26" stdev="13.7" />
+<angle from="D" bs="C" fs="E" val="104-08-40" stdev="12.7" />
+<angle from="E" bs="D" fs="F" val="124-27-36" stdev="11.2" />
+<angle from="F" bs="E" fs="G" val="121-37-08" stdev="9.5" />
+<angle from="G" bs="F" fs="A" val="112-23-00" stdev="8.3" />
+<angle from="G" bs="F" fs="H" val="38-25-46" stdev="9.9" />
+<angle from="H" bs="G" fs="J" val="243-15-20" stdev="14.6" />
+<angle from="J" bs="H" fs="C" val="135-08-30" stdev="18.0" />
+<angle from="H" bs="J" fs="G" val="116-44-44" stdev="14.6" />
+<angle from="H" bs="J" fs="K" val="296-44-38" stdev="15.0" />
+<angle from="K" bs="H" fs="E" val="131-16-30" stdev="14.3" />
+<angle from="E" bs="K" fs="F" val="68-40-36" stdev="12.3" />
+</obs>
+
+<obs>
+<azimuth from="A" to="B" val="150-42-51" stdev="0.001" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

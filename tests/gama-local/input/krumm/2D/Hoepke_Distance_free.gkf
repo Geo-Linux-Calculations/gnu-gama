@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Free trilateration network "Sattenhausen" with 5cm-blunder
+
+Höpke W (1980): Fehlerlehre und Ausgleichungsrechnung. de Gruyter,
+Ex. 35.5, pp. 120-123
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1006' x='3578284.289' y='5708758.641' adj='XY' />
+<point id='1011' x='3577052.332' y='5708103.204' adj='XY' />
+<point id='1059' x='3576852.894' y='5706633.642' adj='XY' />
+<point id='1087' x='3576213.699' y='5709199.889' adj='XY' />
+<point id='20' x='3579041.416' y='5707194.412' adj='XY' />
+<point id='75' x='3575403.277' y='5707682.612' adj='XY' />
+<point id='86' x='3575322.061' y='5708700.952' adj='XY' />
+<point id='87' x='3576581.778' y='5709938.106' adj='XY' />
+
+<obs>
+<distance from="86" to="1006" val="2962.832" stdev="1.000000" />
+<distance from="86" to="87" val="1765.657" stdev="1.000000" />
+<distance from="86" to="1087" val="1021.768" stdev="1.000000" />
+<distance from="86" to="75" val="1021.536" stdev="1.000000" />
+<distance from="86" to="1011" val="1830.646" stdev="1.000000" />
+<distance from="86" to="20" val="4012.921" stdev="1.000000" />
+<distance from="86" to="1059" val="2572.516" stdev="1.000000" />
+<distance from="1087" to="87" val="824.863" stdev="1.000000" />
+<distance from="1087" to="20" val="3466.722" stdev="1.000000" />
+<distance from="1087" to="1059" val="2644.789" stdev="1.000000" />
+<distance from="1087" to="75" val="1720.130" stdev="1.000000" />
+<distance from="1087" to="1006" val="2117.134" stdev="1.000000" />
+<distance from="1087" to="1011" val="1380.633" stdev="1.000000" />
+<distance from="1006" to="75" val="3075.373" stdev="1.000000" />
+<distance from="1006" to="20" val="1737.824" stdev="1.000000" />
+<distance from="1006" to="1059" val="2562.134" stdev="1.000000" />
+<distance from="1006" to="1011" val="1395.459" stdev="1.000000" />
+<distance from="1006" to="87" val="2071.154" stdev="1.000000" />
+<distance from="1011" to="87" val="1894.263" stdev="1.000000" />
+<distance from="1011" to="75" val="1701.824" stdev="1.000000" />
+<distance from="1011" to="1059" val="1483.088" stdev="1.000000" />
+<distance from="1011" to="20" val="2186.853" stdev="1.000000" />
+<distance from="1059" to="20" val="2259.167" stdev="1.000000" />
+<distance from="1059" to="75" val="1789.449" stdev="1.000000" />
+<distance from="1059" to="87" val="3315.630" stdev="1.000000" />
+<distance from="20" to="87" val="3684.782" stdev="1.000000" />
+<distance from="20" to="75" val="3670.735" stdev="1.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

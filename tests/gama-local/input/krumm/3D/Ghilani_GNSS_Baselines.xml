@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Example from Section 17.8
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ch. 17.6, p 337-352
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>4</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>2</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>13</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>39</equations>
+   <unknowns>12</unknowns>
+   <degrees-of-freedom>27</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.3492967e+01</sum-of-squares>
+   <disconnected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+00</apriori>
+   <aposteriori>7.0692258e-01</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.707</ratio>
+   <lower>0.735</lower>
+   <upper>1.265</upper>
+   <failed/>
+
+   <confidence-scale>2.0518305e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>A</id> <x>402.350870</x> <y>-4652995.301090</y> <z>4349760.777530</z> </point>
+   <point> <id>B</id> <x>8086.031780</x> <y>-4642712.847390</y> <z>4360439.083260</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>C</id> <x>12046.580800</x> <y>-4649394.082400</y> <z>4353160.064500</z> </point>
+   <point> <id>D</id> <x>-3081.583100</x> <y>-4643107.369200</y> <z>4359531.123400</z> </point>
+   <point> <id>E</id> <x>-4919.338800</x> <y>-4649361.219900</y> <z>4352934.454800</z> </point>
+   <point> <id>F</id> <x>1518.801200</x> <y>-4648399.145400</y> <z>4354116.691400</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>C</id> <x>12046.5807596683589509</x> <y>-4649394.0825483668595552</y> <z>4353160.0644244449213147</z> </point>
+   <point> <id>D</id> <x>-3081.5831270807584588</x> <y>-4643107.3691362934187055</y> <z>4359531.1233366727828979</z> </point>
+   <point> <id>E</id> <x>-4919.3390799719236384</x> <y>-4649361.2198295621201396</y> <z>4352934.4547985605895519</z> </point>
+   <point> <id>F</id> <x>1518.8011888360042576</x> <y>-4648399.1453095022588968</y> <z>4354116.6914050942286849</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>12</dim> <band>11</band>
+<flt>3.6887573e+01</flt> <flt>-3.5249919e-01</flt> <flt>3.4587911e-01</flt>
+<flt>1.1553225e+01</flt> <flt>-1.1644931e-01</flt> <flt>1.1740817e-01</flt>
+<flt>5.7333396e+00</flt> <flt>-5.9337180e-02</flt> <flt>6.1259498e-02</flt>
+<flt>3.7779171e+00</flt> <flt>-4.1455109e-02</flt> <flt>4.2477658e-02</flt>
+<flt>3.7434207e+01</flt> <flt>-3.5403900e-01</flt> <flt>-1.1613287e-01</flt>
+<flt>1.1588231e+01</flt> <flt>-1.1655049e-01</flt> <flt>-5.9428640e-02</flt>
+<flt>5.8522262e+00</flt> <flt>-5.8967441e-02</flt> <flt>-4.1642890e-02</flt>
+<flt>4.4159903e+00</flt> <flt>-4.1667555e-02</flt> <flt>3.5610016e+01</flt>
+<flt>1.1782424e-01</flt> <flt>-1.1642970e-01</flt> <flt>1.2864647e+01</flt>
+<flt>6.1474743e-02</flt> <flt>-5.9055481e-02</flt> <flt>6.0821810e+00</flt>
+<flt>4.2520375e-02</flt> <flt>-4.1735408e-02</flt> <flt>4.0937823e+00</flt>
+<flt>2.4409532e+01</flt> <flt>-2.4953695e-01</flt> <flt>2.4495001e-01</flt>
+<flt>1.0684256e+01</flt> <flt>-1.1042996e-01</flt> <flt>1.1332372e-01</flt>
+<flt>4.8314523e+00</flt> <flt>-5.1734733e-02</flt> <flt>5.4689425e-02</flt>
+<flt>2.5582695e+01</flt> <flt>-2.4910724e-01</flt> <flt>-1.1063723e-01</flt>
+<flt>1.1006802e+01</flt> <flt>-1.0910253e-01</flt> <flt>-5.1739589e-02</flt>
+<flt>5.3516326e+00</flt> <flt>-5.2257716e-02</flt> <flt>2.6344466e+01</flt>
+<flt>1.1323249e-01</flt> <flt>-1.0910290e-01</flt> <flt>1.0862015e+01</flt>
+<flt>5.4309829e-02</flt> <flt>-5.2187993e-02</flt> <flt>4.9928237e+00</flt>
+<flt>2.7347472e+01</flt> <flt>-2.7032887e-01</flt> <flt>2.8825479e-01</flt>
+<flt>4.9085488e+00</flt> <flt>-5.2769561e-02</flt> <flt>5.4287556e-02</flt>
+<flt>2.7674383e+01</flt> <flt>-2.6829243e-01</flt> <flt>-5.2592731e-02</flt>
+<flt>5.2661317e+00</flt> <flt>-5.3686702e-02</flt> <flt>2.6718117e+01</flt>
+<flt>5.4354557e-02</flt> <flt>-5.3646225e-02</flt> <flt>5.2801676e+00</flt>
+<flt>7.1153457e+00</flt> <flt>-7.6679221e-02</flt> <flt>8.0465281e-02</flt>
+<flt>7.9324134e+00</flt> <flt>-7.7282236e-02</flt> <flt>7.8021575e+00</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>7</ind>
+<ind>8</ind>
+<ind>9</ind>
+<ind>4</ind>
+<ind>5</ind>
+<ind>6</ind>
+<ind>10</ind>
+<ind>11</ind>
+<ind>12</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<dx> <from>A</from> <to>C</to>
+   <obs>11644.2232000000003609</obs> <adj>11644.2298896683587373</adj> <stdev>6.0735140335556483</stdev>
+   <qrr>914.586</qrr> <f>72.672</f> <std-residual>0.313</std-residual>
+   </dx>
+<dy> <from>A</from> <to>C</to>
+   <obs>3601.2164999999999964</obs> <adj>3601.2185416328825340</adj> <stdev>6.1183777288821455</stdev>
+   <qrr>862.792</qrr> <f>71.736</f> <std-residual>0.098</std-residual>
+   </dy>
+<dz> <from>A</from> <to>C</to>
+   <obs>3399.2550000000001091</obs> <adj>3399.2868944456672580</adj> <stdev>5.9674336035331157</stdev>
+   <qrr>911.442</qrr> <f>73.072</f> <std-residual>1.494</std-residual>
+   </dz>
+<dx> <from>A</from> <to>E</to>
+   <obs>-5321.7164000000002488</obs> <adj>-5321.6899499719238520</adj> <stdev>5.2294810787524160</stdev>
+   <qrr>161.077</qrr> <f>49.643</f> <std-residual>2.948</std-residual>
+   </dx>
+<dy> <from>A</from> <to>E</to>
+   <obs>3634.0754000000001724</obs> <adj>3634.0812604383918369</adj> <stdev>5.2606709206216848</stdev>
+   <qrr>136.522</qrr> <f>46.281</f> <std-residual>0.710</std-residual>
+   </dy>
+<dz> <from>A</from> <to>E</to>
+   <obs>3173.6651999999999134</obs> <adj>3173.6772685611567795</adj> <stdev>5.1689907990672221</stdev>
+   <qrr>147.035</qrr> <f>48.361</f> <std-residual>1.408</std-residual>
+   </dz>
+<dx> <from>B</from> <to>C</to>
+   <obs>3960.5441999999998188</obs> <adj>3960.5489796683577879</adj> <stdev>6.0735140335556475</stdev>
+   <qrr>156.686</qrr> <f>43.411</f> <std-residual>0.540</std-residual>
+   </dx>
+<dy> <from>B</from> <to>C</to>
+   <obs>-6681.2466999999996915</obs> <adj>-6681.2351583675381335</adj> <stdev>6.1183340133198936</stdev>
+   <qrr>179.693</qrr> <f>45.758</f> <std-residual>1.218</std-residual>
+   </dy>
+<dz> <from>B</from> <to>C</to>
+   <obs>-7279.0147999999999229</obs> <adj>-7279.0188355544705701</adj> <stdev>5.9673681451260689</stdev>
+   <qrr>153.944</qrr> <f>43.749</f> <std-residual>0.460</std-residual>
+   </dz>
+<dx> <from>B</from> <to>D</to>
+   <obs>-11167.6075999999993655</obs> <adj>-11167.6149070807605312</adj> <stdev>4.9406004101565504</stdev>
+   <qrr>221.155</qrr> <f>57.467</f> <std-residual>0.695</std-residual>
+   </dx>
+<dy> <from>B</from> <to>D</to>
+   <obs>-394.5203999999999951</obs> <adj>-394.5217462933068191</adj> <stdev>5.0579419828813075</stdev>
+   <qrr>220.908</qrr> <f>56.625</f> <std-residual>0.128</std-residual>
+   </dy>
+<dz> <from>B</from> <to>D</to>
+   <obs>-907.9592999999999847</obs> <adj>-907.9599233267396130</adj> <stdev>5.1327608374994798</stdev>
+   <qrr>214.282</qrr> <f>55.565</f> <std-residual>0.060</std-residual>
+   </dz>
+<dx> <from>D</from> <to>C</to>
+   <obs>15128.1646999999993568</obs> <adj>15128.1638867491165001</adj> <stdev>6.1798588176015814</stdev>
+   <qrr>69.679</qrr> <f>27.676</f> <std-residual>0.138</std-residual>
+   </dx>
+<dy> <from>D</from> <to>C</to>
+   <obs>-6286.7053999999998268</obs> <adj>-6286.7134120742312007</adj> <stdev>6.3119189070797974</stdev>
+   <qrr>81.678</qrr> <f>29.719</f> <std-residual>1.254</std-residual>
+   </dy>
+<dz> <from>D</from> <to>C</to>
+   <obs>-6371.0582999999996900</obs> <adj>-6371.0589122277315255</adj> <stdev>6.0187543625598208</stdev>
+   <qrr>58.311</qrr> <f>25.556</f> <std-residual>0.113</std-residual>
+   </dz>
+<dx> <from>D</from> <to>E</to>
+   <obs>-1837.7458999999998923</obs> <adj>-1837.7559528911649522</adj> <stdev>5.5125758615212836</stdev>
+   <qrr>62.291</qrr> <f>29.716</f> <std-residual>1.802</std-residual>
+   </dx>
+<dy> <from>D</from> <to>E</to>
+   <obs>-6253.8533999999999651</obs> <adj>-6253.8506932687214430</adj> <stdev>5.5895751720222382</stdev>
+   <qrr>65.181</qrr> <f>30.030</f> <std-residual>0.474</std-residual>
+   </dy>
+<dz> <from>D</from> <to>E</to>
+   <obs>-6596.6697000000003754</obs> <adj>-6596.6685381122424587</adj> <stdev>5.5980668832195866</stdev>
+   <qrr>65.591</qrr> <f>30.088</f> <std-residual>0.203</std-residual>
+   </dz>
+<dx> <from>F</from> <to>A</to>
+   <obs>-1116.4522999999999229</obs> <adj>-1116.4503188360042714</adj> <stdev>2.6674605408705565</stdev>
+   <qrr>60.512</qrr> <f>56.356</f> <std-residual>0.360</std-residual>
+   </dx>
+<dy> <from>F</from> <to>A</to>
+   <obs>-4596.1610000000000582</obs> <adj>-4596.1557804983940514</adj> <stdev>2.8164857332746083</stdev>
+   <qrr>50.057</qrr> <f>50.932</f> <std-residual>1.044</std-residual>
+   </dy>
+<dz> <from>F</from> <to>A</to>
+   <obs>-4355.9062000000003536</obs> <adj>-4355.9138750944875937</adj> <stdev>2.7933171514225870</stdev>
+   <qrr>60.547</qrr> <f>54.722</f> <std-residual>1.395</std-residual>
+   </dz>
+<dx> <from>F</from> <to>C</to>
+   <obs>10527.7852000000002590</obs> <adj>10527.7795708323537838</adj> <stdev>6.0371420645911922</stdev>
+   <qrr>183.768</qrr> <f>46.698</f> <std-residual>0.587</std-residual>
+   </dx>
+<dy> <from>F</from> <to>C</to>
+   <obs>-994.9376999999999498</obs> <adj>-994.9372388655111763</adj> <stdev>6.0443944300526011</stdev>
+   <qrr>143.193</qrr> <f>41.863</f> <std-residual>0.055</std-residual>
+   </dy>
+<dz> <from>F</from> <to>C</to>
+   <obs>-956.6245999999999867</obs> <adj>-956.6269806488204495</adj> <stdev>5.9350591880294177</stdev>
+   <qrr>169.213</qrr> <f>45.773</f> <std-residual>0.259</std-residual>
+   </dz>
+<dx> <from>F</from> <to>E</to>
+   <obs>-6438.1364000000003216</obs> <adj>-6438.1402688079278960</adj> <stdev>4.9644456472787430</stdev>
+   <qrr>45.103</qrr> <f>27.729</f> <std-residual>0.815</std-residual>
+   </dx>
+<dy> <from>F</from> <to>E</to>
+   <obs>-962.0693999999999733</obs> <adj>-962.0745200600017597</adj> <stdev>5.0074365365239135</stdev>
+   <qrr>49.415</qrr> <f>29.020</f> <std-residual>1.030</std-residual>
+   </dy>
+<dz> <from>F</from> <to>E</to>
+   <obs>-1182.2304999999998927</obs> <adj>-1182.2366065333312690</adj> <stdev>4.8949170725815030</stdev>
+   <qrr>40.315</qrr> <f>26.296</f> <std-residual>1.360</std-residual>
+   </dz>
+<dx> <from>F</from> <to>D</to>
+   <obs>-4600.3787000000002081</obs> <adj>-4600.3843159167627164</adj> <stdev>4.6756789379147401</stdev>
+   <qrr>49.553</qrr> <f>31.525</f> <std-residual>1.129</std-residual>
+   </dx>
+<dy> <from>F</from> <to>D</to>
+   <obs>5291.7785000000003492</obs> <adj>5291.7761732087201381</adj> <stdev>4.7761913597912971</stdev>
+   <qrr>53.102</qrr> <f>32.011</f> <std-residual>0.452</std-residual>
+   </dy>
+<dz> <from>F</from> <to>D</to>
+   <obs>5414.4310999999997875</obs> <adj>5414.4319315789107350</adj> <stdev>4.9153246603629217</stdev>
+   <qrr>72.054</qrr> <f>36.632</f> <std-residual>0.139</std-residual>
+   </dz>
+<dx> <from>F</from> <to>B</to>
+   <obs>6567.2310999999999694</obs> <adj>6567.2305911639959959</adj> <stdev>2.6674605408705570</stdev>
+   <qrr>52.192</qrr> <f>53.704</f> <std-residual>0.100</std-residual>
+   </dx>
+<dy> <from>F</from> <to>B</to>
+   <obs>5686.2925999999997657</obs> <adj>5686.2979195020261614</adj> <stdev>2.8164285608507611</stdev>
+   <qrr>58.777</qrr> <f>53.888</f> <std-residual>0.982</std-residual>
+   </dy>
+<dz> <from>F</from> <to>B</to>
+   <obs>6322.3917000000001281</obs> <adj>6322.3918549056506890</adj> <stdev>2.7932320706660119</stdev>
+   <qrr>44.868</qrr> <f>49.192</f> <std-residual>0.033</std-residual>
+   </dz>
+<dx> <from>B</from> <to>F</to>
+   <obs>-6567.2309999999997672</obs> <adj>-6567.2305911639959959</adj> <stdev>2.6674605408705570</stdev>
+   <qrr>40.882</qrr> <f>49.176</f> <std-residual>0.090</std-residual>
+   </dx>
+<dy> <from>B</from> <to>F</to>
+   <obs>-5686.3032999999995809</obs> <adj>-5686.2979195020261614</adj> <stdev>2.8164435877360843</stdev>
+   <qrr>58.847</qrr> <f>53.910</f> <std-residual>0.992</std-residual>
+   </dy>
+<dz> <from>B</from> <to>F</to>
+   <obs>-6322.3806999999997061</obs> <adj>-6322.3918549056506890</adj> <stdev>2.7931937083478755</stdev>
+   <qrr>50.678</qrr> <f>51.471</f> <std-residual>2.217</std-residual>
+   </dz>
+<dx> <from>A</from> <to>F</to>
+   <obs>1116.4576999999999316</obs> <adj>1116.4503188360042714</adj> <stdev>2.6674605408705574</stdev>
+   <qrr>51.952</qrr> <f>53.620</f> <std-residual>1.449</std-residual>
+   </dx>
+<dy> <from>A</from> <to>F</to>
+   <obs>4596.1553000000003522</obs> <adj>4596.1557804983940514</adj> <stdev>2.8164774482981696</stdev>
+   <qrr>65.207</qrr> <f>55.754</f> <std-residual>0.084</std-residual>
+   </dy>
+<dz> <from>A</from> <to>F</to>
+   <obs>4355.9140999999999622</obs> <adj>4355.9138750944875937</adj> <stdev>2.7932489138074836</stdev>
+   <qrr>78.147</qrr> <f>59.194</f> <std-residual>0.036</std-residual>
+   </dz>
+
+</observations>
+
+</gama-local-adjustment>

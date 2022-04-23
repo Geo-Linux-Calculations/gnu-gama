@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Baumann (1995), Ch. 23_3_4
+
+Baumann Eberhard (1995): Vermessungskunde, Lehr- und Übungsbuch für Ingenieure. Band 2: Punktbestimmung nach Höhe und Lage. Fünfte, bearbeitete und erweiterte Auflage Bonn. Ch. 23.3.4, pp. 224
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "20.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='1000.000' y='1201.171' z='108.680' fix='xyz' />
+<point id='2' x='1371.217' y='1072.895' z='111.974' fix='xyz' />
+<point id='3' x='1016.437' y='952.352' z='117.312' fix='xyz' />
+<point id='N' x='1181.766' y='1071.674' z='94.258' adj='xyz' />
+
+<obs from="N">
+<direction to="1" val="0.0000" stdev="20.000000" />
+<direction to="2" val="160.1838" stdev="20.000000" />
+<direction to="3" val="320.7884" stdev="20.000000" />
+</obs>
+
+<obs>
+<s-distance from='N' to='1' val='223.6428' stdev='5.000000' from_dh='1.600' to_dh='1.572' />
+<s-distance from='N' to='2' val='190.2878' stdev='5.000000' from_dh='1.600' to_dh='1.650' />
+<s-distance from='N' to='3' val='205.1894' stdev='5.000000' from_dh='1.600' to_dh='1.588' />
+</obs>
+
+<obs>
+<z-angle from='N' to='1' val='95.9015' stdev='25.000000' from_dh='1.600' to_dh='1.572' />
+<z-angle from='N' to='3' val='92.8390' stdev='25.000000' from_dh='1.600' to_dh='1.588' />
+<z-angle from='N' to='2' val='94.0450' stdev='25.000000' from_dh='1.600' to_dh='1.650' />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

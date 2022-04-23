@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix trilateration network
+
+Benning (2011): Statistik in Geodäsie, Geoinformation und Bauwesen,
+Wichmann. Ex. 8-2, pp. 256
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>5</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>5</equations>
+   <unknowns>4</unknowns>
+   <degrees-of-freedom>1</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>4.7367641e+01</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>6.8824153e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.688</ratio>
+   <lower>0.031</lower>
+   <upper>2.241</upper>
+   <passed/>
+
+   <confidence-scale>1.2706205e+01</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>0.000000</x> <y>1000.000000</y> </point>
+   <point> <id>2</id> <x>1000.000000</x> <y>1000.000000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>3</id> <x>-0.009585</x> <y>-0.022601</y> </point>
+   <point> <id>4</id> <x>999.993016</x> <y>0.017399</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>3</id> <x>-0.0095845046784313</x> <y>-0.0226012124615001</y> </point>
+   <point> <id>4</id> <x>999.9930159989828553</x> <y>0.0173986619448904</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>4</dim> <band>3</band>
+<flt>8.1204262e+01</flt> <flt>2.7069030e+01</flt> <flt>6.0901554e+01</flt>
+<flt>-2.0300846e+01</flt> <flt>4.0601615e+01</flt> <flt>2.0300278e+01</flt>
+<flt>-6.7668687e+00</flt> <flt>8.1199707e+01</flt> <flt>-2.7065744e+01</flt>
+<flt>4.0600176e+01</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>4</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<distance> <from>1</from> <to>3</to>
+   <obs>1000.0199999999999818</obs> <adj>1000.0226012583918873</adj> <stdev>6.3718989025563699</stdev>
+   <qrr>0.143</qrr> <f>7.418</f> <std-residual>1.000</std-residual>
+   <err-obs>18.210</err-obs> <err-adj>15.608</err-adj>
+   </distance>
+<distance> <from>1</from> <to>4</to>
+   <obs>1414.2000000000000455</obs> <adj>1414.1963212459454553</adj> <stdev>5.8167352915700477</stdev>
+   <qrr>0.286</qrr> <f>15.484</f> <std-residual>1.000</std-residual>
+   <err-obs>-12.876</err-obs> <err-adj>-9.197</err-adj>
+   </distance>
+<distance> <from>2</from> <to>3</to>
+   <obs>1414.2400000000000091</obs> <adj>1414.2363211418937681</adj> <stdev>5.8166694834304522</stdev>
+   <qrr>0.286</qrr> <f>15.485</f> <std-residual>1.000</std-residual>
+   <err-obs>-12.876</err-obs> <err-adj>-9.197</err-adj>
+   </distance>
+<distance> <from>2</from> <to>4</to>
+   <obs>999.9800000000000182</obs> <adj>999.9826013624436882</adj> <stdev>6.3718564235421669</stdev>
+   <qrr>0.143</qrr> <f>7.418</f> <std-residual>1.000</std-residual>
+   <err-obs>18.209</err-obs> <err-adj>15.607</err-adj>
+   </distance>
+<distance> <from>3</from> <to>4</to>
+   <obs>1000.0000000000000000</obs> <adj>1000.0026013036541599</adj> <stdev>6.3718804245414056</stdev>
+   <qrr>0.143</qrr> <f>7.418</f> <std-residual>1.000</std-residual>
+   <err-obs>18.209</err-obs> <err-adj>15.608</err-adj>
+   </distance>
+
+</observations>
+
+</gama-local-adjustment>

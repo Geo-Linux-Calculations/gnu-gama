@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix height network: Final solution (Baumann (1995))
+
+Baumann Eberhard (1995): Vermessungskunde, Lehr- und Übungsbuch für
+Ingenieure. Band 2: Punktbestimmung nach Höhe und Lage. Fünfte,
+bearbeitete und erweiterte Auflage. Bonn. Chapter 13.4.2, pp. 32
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='63.83' y='100.00' z='199.295' adj='z' />
+<point id='10' x='456.53' y='333.81' z='210.880' adj='z' />
+<point id='11' x='482.26' y='274.03' z='211.380' adj='z' />
+<point id='12' x='442.16' y='123.46' z='204.400' adj='z' />
+<point id='13' x='511.77' y='214.25' z='199.890' adj='z' />
+<point id='14' x='574.57' y='258.90' z='197.862' fix='z' />
+<point id='2' x='215.92' y='112.86' z='199.910' adj='z' />
+<point id='3' x='280.99' y='248.30' z='207.640' adj='z' />
+<point id='4' x='278.72' y='602.42' z='226.578' fix='z' />
+<point id='5' x='348.33' y='403.42' z='218.380' adj='z' />
+<point id='6' x='376.33' y='333.05' z='213.951' fix='z' />
+<point id='7' x='358.92' y='278.57' z='212.900' adj='z' />
+<point id='8' x='396.00' y='232.41' z='209.124' fix='z' />
+<point id='9' x='300.66' y='137.83' z='203.771' fix='z' />
+
+<height-differences>
+<dh from='1' to='2' val='0.6235' stdev='1.581139' />
+<dh from='1' to='2' val='0.6240' stdev='1.949359' />
+<dh from='2' to='3' val='7.7292' stdev='2.236068' />
+<dh from='5' to='4' val='8.2021' stdev='1.949359' />
+<dh from='6' to='5' val='4.4254' stdev='0.948683' />
+<dh from='7' to='6' val='1.0502' stdev='0.774597' />
+<dh from='8' to='7' val='3.7782' stdev='1.264911' />
+<dh from='3' to='8' val='1.4813' stdev='1.341641' />
+<dh from='9' to='8' val='5.3523' stdev='1.549193' />
+<dh from='10' to='5' val='7.4945' stdev='1.341641' />
+<dh from='10' to='7' val='2.0179' stdev='1.000000' />
+<dh from='10' to='11' val='0.4950' stdev='1.140175' />
+<dh from='8' to='11' val='2.2530' stdev='1.000000' />
+<dh from='13' to='11' val='11.4908' stdev='1.095445' />
+<dh from='12' to='8' val='4.7158' stdev='1.549193' />
+<dh from='2' to='9' val='3.8582' stdev='1.264911' />
+<dh from='9' to='12' val='0.6374' stdev='1.732051' />
+<dh from='13' to='12' val='4.5218' stdev='1.303840' />
+<dh from='14' to='13' val='2.0246' stdev='1.095445' />
+<dh from='14' to='13' val='2.0251' stdev='1.183216' />
+</height-differences>
+
+</points-observations>
+
+</network>
+</gama-local>

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Dynamic height network
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1000.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='6' z='105.6400' adj='z' />
+<point id='7' z='115.7110' adj='z' />
+<point id='8' z='112.8850' adj='z' />
+
+<height-differences>
+<dh from='2' to='8' val='5.128' stdev='836.660027' />
+<dh from='3' to='6' val='2.183' stdev='707.106781' />
+<dh from='3' to='7' val='12.254' stdev='707.106781' />
+<dh from='6' to='7' val='10.071' stdev='894.427191' />
+<dh from='8' to='7' val='2.824' stdev='894.427191' />
+</height-differences>
+
+<coordinates>
+<point id='2' z='107.7541' adj='z' />
+<point id='3' z='103.4535' adj='z' />
+
+<cov-mat dim='2' band='1'>
+0.0025 -0.0015 
+0.0036 
+</cov-mat>
+</coordinates>
+
+</points-observations>
+
+</network>
+</gama-local>

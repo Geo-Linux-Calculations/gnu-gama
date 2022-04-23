@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix Distance-Direction network with blunder
+
+Carosio A (1983): Verfahren der multivariaten Statistik zur Beurteilung der Resultate und der Zuverlässigkeit geodätischer Messsysteme. Institut für Geodäsie und Photogrammetrie. ETH Zürich, Mitteilungen Nr. 35, pp. 65-71
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>1</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>3</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>3</distances>
+   <directions>10</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>13</equations>
+   <unknowns>6</unknowns>
+   <degrees-of-freedom>7</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.2959854e-03</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>1.3606645e-02</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.001</ratio>
+   <lower>0.491</lower>
+   <upper>1.512</upper>
+   <failed/>
+
+   <confidence-scale>2.3646242e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>A</id> <x>-1000.000000</x> <y>100.000000</y> </point>
+   <point> <id>C</id> <x>1000.000000</x> <y>100.000000</y> </point>
+   <point> <id>P</id> <x>100.000000</x> <y>0.000000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>B</id> <x>100.000000</x> <y>1000.000000</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>B</id> <x>99.9997205424412812</x> <y>1000.0097779097809507</y> </point>
+</adjusted>
+
+<orientation-shifts>
+   <orientation> <id>A</id> <approx>99.999829</approx> <adj>100.000003</adj> </orientation>
+   <orientation> <id>B</id> <approx>99.999980</approx> <adj>100.000002</adj> </orientation>
+   <orientation> <id>C</id> <approx>100.000169</approx> <adj>100.000001</adj> </orientation>
+   <orientation> <id>P</id> <approx>99.999997</approx> <adj>99.999999</adj> </orientation>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>6</dim> <band>5</band>
+<flt>1.6579493e-04</flt> <flt>-7.2823961e-07</flt> <flt>2.3387011e-05</flt>
+<flt>7.0405957e-05</flt> <flt>2.9447761e-05</flt> <flt>3.5182776e-05</flt>
+<flt>9.6646841e-05</flt> <flt>1.6649200e-05</flt> <flt>-5.3486712e-07</flt>
+<flt>-1.7219695e-05</flt> <flt>-1.5453725e-07</flt> <flt>2.3204624e-03</flt>
+<flt>9.8923476e-06</flt> <flt>1.1915065e-06</flt> <flt>4.9628778e-06</flt>
+<flt>1.5727387e-03</flt> <flt>1.2545092e-05</flt> <flt>1.4940608e-05</flt>
+<flt>2.3225123e-03</flt> <flt>6.2490090e-06</flt> <flt>1.5503058e-03</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>2</ind>
+<ind>3</ind>
+<ind>1</ind>
+<ind>4</ind>
+<ind>5</ind>
+<ind>6</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<direction> <from>A</from> <to>B</to>
+   <obs>56.3447599999999937</obs> <adj>56.3447594547032153</adj> <stdev>0.0481711780028942</stdev>
+   <qrr>12.466</qrr> <f>29.195</f> <std-residual>0.114</std-residual>
+   <err-obs>-0.011</err-obs> <err-adj>-0.005</err-adj>
+   </direction>
+<direction> <from>A</from> <to>P</to>
+   <obs>105.7715900000000033</obs> <adj>105.7715905452967746</adj> <stdev>0.0481711780028942</stdev>
+   <qrr>12.466</qrr> <f>29.195</f> <std-residual>0.114</std-residual>
+   <err-obs>0.011</err-obs> <err-adj>0.005</err-adj>
+   </direction>
+<direction> <from>B</from> <to>A</to>
+   <obs>256.3447600000000079</obs> <adj>256.3447583403760746</adj> <stdev>0.0394712566112050</stdev>
+   <qrr>16.585</qrr> <f>41.982</f> <std-residual>0.300</std-residual>
+   <err-obs>-0.025</err-obs> <err-adj>-0.008</err-adj>
+   </direction>
+<direction> <from>B</from> <to>P</to>
+   <obs>199.9999799999999652</obs> <adj>199.9999839648878890</adj> <stdev>0.0393737120391047</stdev>
+   <qrr>16.626</qrr> <f>42.126</f> <std-residual>0.715</std-residual>
+   <err-obs>0.060</err-obs> <err-adj>0.020</err-adj>
+   </direction>
+<direction> <from>B</from> <to>C</to>
+   <obs>150.0003399999999658</obs> <adj>150.0003376947360039</adj> <stdev>0.0394406997918095</stdev>
+   <qrr>16.598</qrr> <f>42.027</f> <std-residual>0.416</std-residual>
+   <err-obs>-0.035</err-obs> <err-adj>-0.012</err-adj>
+   </direction>
+<direction> <from>C</from> <to>P</to>
+   <obs>292.9553399999999783</obs> <adj>292.9553432827586334</adj> <stdev>0.0481924507579125</stdev>
+   <qrr>12.455</qrr> <f>29.163</f> <std-residual>0.684</std-residual>
+   <err-obs>0.066</err-obs> <err-adj>0.033</err-adj>
+   </direction>
+<direction> <from>C</from> <to>B</to>
+   <obs>350.0003400000000511</obs> <adj>350.0003367172413959</adj> <stdev>0.0481924507579125</stdev>
+   <qrr>12.455</qrr> <f>29.163</f> <std-residual>0.684</std-residual>
+   <err-obs>-0.066</err-obs> <err-adj>-0.033</err-adj>
+   </direction>
+<direction> <from>P</from> <to>B</to>
+   <obs>399.9999799999999368</obs> <adj>399.9999814128509570</adj> <stdev>0.0396573305022951</stdev>
+   <qrr>16.505</qrr> <f>41.709</f> <std-residual>0.256</std-residual>
+   <err-obs>0.021</err-obs> <err-adj>0.007</err-adj>
+   </direction>
+<direction> <from>P</from> <to>C</to>
+   <obs>92.9553400000000067</obs> <adj>92.9553417082162952</adj> <stdev>0.0393739229898143</stdev>
+   <qrr>16.626</qrr> <f>42.125</f> <std-residual>0.308</std-residual>
+   <err-obs>0.026</err-obs> <err-adj>0.009</err-adj>
+   </direction>
+<direction> <from>P</from> <to>A</to>
+   <obs>305.7715900000000033</obs> <adj>305.7715868789327374</adj> <stdev>0.0393739229898143</stdev>
+   <qrr>16.626</qrr> <f>42.125</f> <std-residual>0.563</std-residual>
+   <err-obs>-0.047</err-obs> <err-adj>-0.016</err-adj>
+   </direction>
+<distance> <from>B</from> <to>A</to>
+   <obs>1421.2729999999999109</obs> <adj>1421.2730158089550514</adj> <stdev>0.0117805368261928</stdev>
+   <qrr>0.250</qrr> <f>13.421</f> <std-residual>2.322</std-residual>
+   <err-obs>0.063</err-obs> <err-adj>0.047</err-adj>
+   </distance>
+<distance> <from>B</from> <to>P</to>
+   <obs>1000.0098000000000411</obs> <adj>1000.0097779097809507</adj> <stdev>0.0098309125066957</stdev>
+   <qrr>0.478</qrr> <f>27.749</f> <std-residual>2.348</std-residual>
+   <err-obs>-0.046</err-obs> <err-adj>-0.024</err-adj>
+   </distance>
+<distance> <from>B</from> <to>C</to>
+   <obs>1272.7992999999999029</obs> <adj>1272.7993177684322745</adj> <stdev>0.0114233376960506</stdev>
+   <qrr>0.295</qrr> <f>16.046</f> <std-residual>2.404</std-residual>
+   <err-obs>0.060</err-obs> <err-adj>0.042</err-adj>
+   </distance>
+
+</observations>
+
+</gama-local-adjustment>

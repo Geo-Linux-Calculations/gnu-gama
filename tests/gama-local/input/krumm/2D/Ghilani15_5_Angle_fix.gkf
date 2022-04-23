@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Ghilani (2010), Ex. 15.5
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 15.5, pp. 277
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='P' x='1303.599' y='1458.615' fix='xy' />
+<point id='Q' x='1636.436' y='1310.468' fix='xy' />
+<point id='R' x='1503.395' y='888.362' fix='xy' />
+<point id='S' x='1506.262' y='785.061' fix='xy' />
+<point id='U' x='1000.030' y='999.960' adj='xy' />
+
+<obs>
+<angle from="U" bs="P" fs="Q" val="33.8805555555556" stdev="15.432099" />
+<angle from="U" bs="Q" fs="R" val="42.7873456790123" stdev="18.518519" />
+<angle from="U" bs="R" fs="S" val="11.6657407407407" stdev="18.518519" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

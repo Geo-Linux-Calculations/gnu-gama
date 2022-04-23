@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix 3D-network observed by distances and zenith angles
+
+Caspary W (2013): Fehlertolerante Auswertung von Messdaten: Daten- und
+Modellanalyse, robuste Schätzung. 1. Auflage, ISBN: 978-3486727715,
+3D-Netz mit GNSS, pp. 9
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "0.0316227766016838"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='4000' y='-10000' z='1600' fix='xyz' />
+<point id='2' x='3000' y='11000' z='1500' fix='xyz' />
+<point id='3' x='700' y='-700' z='800' fix='xyz' />
+<point id='4' x='0' y='0' z='700' fix='xyz' />
+<point id='N' x='5000' y='2000' z='1800' adj='xyz' />
+
+<obs>
+<s-distance from='1' to='N' val='12043.305' stdev='37.500000' />
+<s-distance from='2' to='N' val='9224.404' stdev='29.400000' />
+<s-distance from='3' to='N' val='5174.910' stdev='18.500000' />
+<s-distance from='4' to='N' val='5496.402' stdev='19.800000' />
+</obs>
+
+<obs>
+<z-angle from='4' to='N' val='87.1726' stdev='3.000000' />
+</obs>
+
+<vectors>
+<vec from="4" to="N" dx="5000.02" dy="1999.98" dz="1099.94" />
+<cov-mat dim="3" band="2">
+256 0 0
+256 0
+3844
+</cov-mat>
+</vectors>
+
+</points-observations>
+
+</network>
+</gama-local>

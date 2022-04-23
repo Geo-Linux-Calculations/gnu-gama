@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Benning (2011), Ex. 8-3
+
+Benning (2011): Statistik in Geodäsie, Geoinformation und Bauwesen,
+Wichmann. Ex. 8-3, pp. 258
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='0' y='1000' fix='xy' />
+<point id='2' x='1000' y='1000' fix='xy' />
+<point id='3' x='0' y='0' adj='xy' />
+<point id='4' x='1000' y='0' adj='xy' />
+
+<obs from="1">
+<direction to="3" val="50.001" stdev="10.000000" />
+<direction to="4" val="0.000" stdev="10.000000" />
+</obs>
+
+<obs from="2">
+<direction to="3" val="49.998" stdev="10.000000" />
+<direction to="4" val="0.000" stdev="10.000000" />
+</obs>
+
+<obs from="3">
+<direction to="1" val="0.000" stdev="10.000000" />
+<direction to="2" val="49.999" stdev="10.000000" />
+<direction to="4" val="99.997" stdev="10.000000" />
+</obs>
+
+<obs>
+<distance from="1" to="3" val="1000.02" stdev="10.000000" />
+<distance from="1" to="4" val="1414.20" stdev="10.000000" />
+<distance from="2" to="3" val="1414.24" stdev="10.000000" />
+<distance from="2" to="4" val="999.98" stdev="10.000000" />
+<distance from="3" to="4" val="1000.00" stdev="10.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

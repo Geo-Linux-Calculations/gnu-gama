@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix Distance-Direction network
+
+Niemeier W (2008): Ausgleichungsrechnung, 2. Auflage. Walter de Gruyter, pp. 156-162/278-281
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='104' x='40686.792' y='26816.143' fix='xy' />
+<point id='106' x='41932.838' y='28872.552' fix='xy' />
+<point id='113' x='42242.231' y='27492.007' fix='xy' />
+<point id='280' x='40350.846' y='28835.979' fix='xy' />
+<point id='Z108' x='40759.400' y='27816.100' adj='xy' />
+<point id='Z110' x='41373.000' y='27904.000' adj='xy' />
+
+<obs from="Z108">
+<direction to="280" val="370.6444" stdev="5.000000" />
+<direction to="104" val="199.5131" stdev="5.000000" />
+<direction to="113" val="108.5994" stdev="5.000000" />
+</obs>
+
+<obs from="Z110">
+<direction to="106" val="35.4146" stdev="5.000000" />
+<direction to="Z108" val="292.9943" stdev="5.000000" />
+<direction to="104" val="237.8763" stdev="5.000000" />
+<direction to="113" val="130.2278" stdev="5.000000" />
+</obs>
+
+<obs>
+<distance from="Z108" to="280" val="1098.643" stdev="5.000000" />
+<distance from="Z108" to="104" val="1002.598" stdev="5.000000" />
+<distance from="Z108" to="113" val="1517.862" stdev="5.000000" />
+<distance from="Z110" to="106" val="1118.689" stdev="5.000000" />
+<distance from="Z110" to="Z108" val="619.905" stdev="5.000000" />
+<distance from="Z110" to="104" val="1286.215" stdev="5.000000" />
+<distance from="Z110" to="113" val="961.911" stdev="5.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

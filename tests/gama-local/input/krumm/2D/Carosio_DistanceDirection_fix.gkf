@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix Distance-Direction network with blunder
+
+Carosio A (1983): Verfahren der multivariaten Statistik zur Beurteilung der Resultate und der Zuverlässigkeit geodätischer Messsysteme. Institut für Geodäsie und Photogrammetrie. ETH Zürich, Mitteilungen Nr. 35, pp. 65-71
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='-1000.0000' y='100.0000' fix='xy' />
+<point id='B' x='100.0000' y='1000.0000' adj='xy' />
+<point id='C' x='1000.0000' y='100.0000' fix='xy' />
+<point id='P' x='100.0000' y='0.0000' fix='xy' />
+
+<obs from="A">
+<direction to="B" val="56.34476" stdev="50.000000" />
+<direction to="P" val="105.77159" stdev="50.000000" />
+</obs>
+
+<obs from="B">
+<direction to="A" val="256.34476" stdev="50.000000" />
+<direction to="P" val="199.99998" stdev="50.000000" />
+<direction to="C" val="150.00034" stdev="50.000000" />
+</obs>
+
+<obs from="C">
+<direction to="P" val="292.95534" stdev="50.000000" />
+<direction to="B" val="350.00034" stdev="50.000000" />
+</obs>
+
+<obs from="P">
+<direction to="B" val="399.99998" stdev="50.000000" />
+<direction to="C" val="92.95534" stdev="50.000000" />
+<direction to="A" val="305.77159" stdev="50.000000" />
+</obs>
+
+<obs>
+<distance from="B" to="A" val="1421.2730" stdev="10.000000" />
+<distance from="B" to="P" val="1000.0098" stdev="10.000000" />
+<distance from="B" to="C" val="1272.7993" stdev="10.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix direction network with approximate orientations
+
+G. Lother und J. Strehle (2007): Grundlagen der Ausgleichungsrechnung
+nach der Methode der kleinsten Quadrate. Hochschule München, Fakultät
+für Geoinformation, Bachelorstudiengang Geoinformatik und
+Satellitenpositionierung, pp. 11-17
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='10' x='1000.000' y='1000.000' adj='xy' />
+<point id='20' x='1432.482' y='1588.776' fix='xy' />
+<point id='30' x='1497.402' y='1000.000' fix='xy' />
+<point id='40' x='1439.767' y='640.258' fix='xy' />
+
+<obs from="10">
+<direction to="20" val="0.0000" stdev="10.000000" />
+<direction to="30" val="59.6694" stdev="10.000000" />
+<direction to="40" val="103.3195" stdev="10.000000" />
+</obs>
+
+<obs from="20">
+<direction to="10" val="0.0000" stdev="10.000000" />
+<direction to="30" val="352.6792" stdev="10.000000" />
+<direction to="40" val="359.1799" stdev="10.000000" />
+</obs>
+
+<obs from="30">
+<direction to="20" val="0.0000" stdev="10.000000" />
+<direction to="40" val="217.1002" stdev="10.000000" />
+<direction to="10" val="306.9908" stdev="10.000000" />
+</obs>
+
+<obs from="40">
+<direction to="10" val="0.0000" stdev="10.000000" />
+<direction to="20" val="55.8622" stdev="10.000000" />
+<direction to="30" val="66.4650" stdev="10.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

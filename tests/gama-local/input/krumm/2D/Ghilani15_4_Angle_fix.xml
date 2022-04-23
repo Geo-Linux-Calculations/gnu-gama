@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Ghilani (2010), Ex. 15.4
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 15.4, pp. 271
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>1</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>3</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>4</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>4</equations>
+   <unknowns>2</unknowns>
+   <degrees-of-freedom>2</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.4336147e+03</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>2.6773258e+01</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>2.677</ratio>
+   <lower>0.159</lower>
+   <upper>1.921</upper>
+   <failed/>
+
+   <confidence-scale>4.3026527e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>R</id> <x>865.400000</x> <y>4527.150000</y> </point>
+   <point> <id>S</id> <x>2432.550000</x> <y>2047.250000</y> </point>
+   <point> <id>T</id> <x>2865.220000</x> <y>27.150000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>U</id> <x>6860.725965</x> <y>3727.475054</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>U</id> <x>6860.7260313087363102</x> <y>3727.4750605990343502</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>2</dim> <band>1</band>
+<flt>1.4301188e+05</flt> <flt>-4.9786066e+04</flt> <flt>3.1717404e+04</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<angle> <from>R</from> <left>U</left> <right>S</right>
+   <obs>55.6820987654320945</obs><adj>55.6801048955688742</adj> <stdev>22.7484522155348969</stdev>
+   <qrr>0.278</qrr> <f>15.033</f> <std-residual>1.412</std-residual>
+   <err-obs>-71.707</err-obs> <err-adj>-51.768</err-adj>
+   </angle>
+<angle> <from>S</from> <left>R</left> <right>U</right>
+   <obs>112.7922839506169908</obs><adj>112.7908192319916765</adj> <stdev>15.1464080762464999</stdev>
+   <qrr>0.680</qrr> <f>43.427</f> <std-residual>0.663</std-residual>
+   <err-obs>-21.542</err-obs> <err-adj>-6.894</err-adj>
+   </angle>
+<angle> <from>S</from> <left>U</left> <right>T</right>
+   <obs>109.6533950617279913</obs><adj>109.6551383443865433</adj> <stdev>15.1464080762464999</stdev>
+   <qrr>0.680</qrr> <f>43.427</f> <std-residual>0.790</std-residual>
+   <err-obs>25.638</err-obs> <err-adj>8.206</err-adj>
+   </angle>
+<angle> <from>T</from> <left>S</left> <right>U</right>
+   <obs>65.8706790123457040</obs><adj>65.8729541375981427</adj> <stdev>21.3844632629495166</stdev>
+   <qrr>0.362</qrr> <f>20.128</f> <std-residual>1.412</std-residual>
+   <err-obs>62.842</err-obs> <err-adj>40.091</err-adj>
+   </angle>
+
+</observations>
+
+</gama-local-adjustment>

@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Free Distance-Direction-Angle network
+
+Wolf W (1979): Ausgleichungsrechnung II. Dümmlers, pp. 66
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "2500.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='184423.28' y='726419.33' adj='XY' />
+<point id='2' x='186444.18' y='726476.66' adj='XY' />
+<point id='3' x='183257.84' y='725490.35' adj='XY' />
+<point id='4' x='184292.00' y='723313.00' adj='XY' />
+<point id='5' x='185487.00' y='721829.00' adj='XY' />
+<point id='6' x='186708.72' y='722104.58' adj='XY' />
+<point id='7' x='184868.20' y='725139.70' adj='XY' />
+<point id='8' x='186579.30' y='725336.60' adj='XY' />
+<point id='9' x='185963.07' y='723322.02' adj='XY' />
+
+<obs from="1">
+<direction to="2" val="0.0000" stdev="25.000000" />
+<direction to="7" val="80.5000" stdev="25.000000" />
+<direction to="3" val="158.9610" stdev="25.000000" />
+</obs>
+
+<obs from="2">
+<direction to="8" val="0.0000" stdev="25.000000" />
+<direction to="7" val="62.7260" stdev="25.000000" />
+<direction to="1" val="105.7120" stdev="25.000000" />
+</obs>
+
+<obs from="3">
+<direction to="1" val="0.0000" stdev="25.000000" />
+<direction to="7" val="56.4960" stdev="25.000000" />
+<direction to="9" val="85.8450" stdev="25.000000" />
+<direction to="4" val="114.5950" stdev="25.000000" />
+</obs>
+
+<obs from="4">
+<direction to="7" val="0.0000" stdev="25.000000" />
+<direction to="8" val="34.4500" stdev="25.000000" />
+<direction to="9" val="80.2110" stdev="25.000000" />
+<direction to="5" val="137.4020" stdev="25.000000" />
+<direction to="3" val="352.3090" stdev="25.000000" />
+</obs>
+
+<obs from="5">
+<direction to="9" val="0.0000" stdev="25.000000" />
+<direction to="6" val="66.2450" stdev="25.000000" />
+<direction to="4" val="337.2160" stdev="25.000000" />
+</obs>
+
+<obs from="6">
+<direction to="5" val="0.0000" stdev="25.000000" />
+<direction to="9" val="79.1690" stdev="25.000000" />
+<direction to="8" val="111.5820" stdev="25.000000" />
+</obs>
+
+<obs from="7">
+<direction to="2" val="0.0000" stdev="25.000000" />
+<direction to="8" val="37.4980" stdev="25.000000" />
+<direction to="9" val="110.2580" stdev="25.000000" />
+<direction to="4" val="164.2320" stdev="25.000000" />
+<direction to="3" val="258.4410" stdev="25.000000" />
+<direction to="1" val="323.4860" stdev="25.000000" />
+</obs>
+
+<obs from="8">
+<direction to="6" val="0.0000" stdev="25.000000" />
+<direction to="9" val="21.4450" stdev="25.000000" />
+<direction to="4" val="56.4420" stdev="25.000000" />
+</obs>
+
+<obs from="9">
+<direction to="8" val="0.0000" stdev="25.000000" />
+<direction to="6" val="146.1430" stdev="25.000000" />
+<direction to="5" val="200.7330" stdev="25.000000" />
+<direction to="4" val="280.7560" stdev="25.000000" />
+<direction to="3" val="324.1050" stdev="25.000000" />
+<direction to="7" val="346.5690" stdev="25.000000" />
+</obs>
+
+<obs>
+<distance from="7" to="9" val="2121.90" stdev="30.000000" />
+</obs>
+
+<obs>
+<angle from="8" bs="7" fs="2" val="99.7810" stdev="35.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

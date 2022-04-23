@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix 3D-network observed by distances
+
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 87
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>1</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>4</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>4</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>4</equations>
+   <unknowns>3</unknowns>
+   <degrees-of-freedom>1</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.0000000e-04</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e-02</apriori>
+   <aposteriori>1.0000000e-02</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>1.000</ratio>
+   <lower>0.031</lower>
+   <upper>2.241</upper>
+   <passed/>
+
+   <confidence-scale>1.2706205e+01</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>1200.000000</x> <y>900.000000</y> <z>900.000000</z> </point>
+   <point> <id>2</id> <x>900.000000</x> <y>600.000000</y> <z>900.000000</z> </point>
+   <point> <id>3</id> <x>600.000000</x> <y>900.000000</y> <z>900.000000</z> </point>
+   <point> <id>4</id> <x>900.000000</x> <y>1200.000000</y> <z>900.000000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>P</id> <x>900.016667</x> <y>899.983333</y> <z>1300.006250</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>P</id> <x>900.0166669999983924</x> <y>899.9833333333316432</y> <z>1300.0062494129726929</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>3</dim> <band>2</band>
+<flt>1.3889167e+02</flt> <flt>1.1110889e-07</flt> <flt>-3.7037616e-03</flt>
+<flt>1.3889167e+02</flt> <flt>-3.7037616e-03</flt> <flt>3.9062061e+01</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<slope-distance> <from>1</from> <to>P</to>
+   <obs>499.9900000000000091</obs> <adj>499.9949998999999821</adj> <stdev>8.6603117697841796</stdev>
+   <qrr>249990.000</qrr> <f>13.397</f> <std-residual>1.000</std-residual>
+   <err-obs>20.000</err-obs> <err-adj>15.000</err-adj>
+   </slope-distance>
+<slope-distance> <from>2</from> <to>P</to>
+   <obs>500.0000000000000000</obs> <adj>499.9950001000000270</adj> <stdev>8.6603117697841796</stdev>
+   <qrr>249990.000</qrr> <f>13.397</f> <std-residual>1.000</std-residual>
+   <err-obs>-20.000</err-obs> <err-adj>-15.000</err-adj>
+   </slope-distance>
+<slope-distance> <from>3</from> <to>P</to>
+   <obs>500.0099999999999909</obs> <adj>500.0150000999959730</adj> <stdev>8.6601963020399939</stdev>
+   <qrr>250010.000</qrr> <f>13.398</f> <std-residual>1.000</std-residual>
+   <err-obs>20.000</err-obs> <err-adj>15.000</err-adj>
+   </slope-distance>
+<slope-distance> <from>4</from> <to>P</to>
+   <obs>500.0199999999999818</obs> <adj>500.0149999000039998</adj> <stdev>8.6601963020399921</stdev>
+   <qrr>250010.000</qrr> <f>13.398</f> <std-residual>1.000</std-residual>
+   <err-obs>-20.000</err-obs> <err-adj>-15.000</err-adj>
+   </slope-distance>
+
+</observations>
+
+</gama-local-adjustment>

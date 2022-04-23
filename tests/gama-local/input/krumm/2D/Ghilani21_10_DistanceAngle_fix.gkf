@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix Distance-Angle network
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 21.10, pp. 459
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='5600.544' y='4966.236' fix='xy' />
+<point id='B' x='6061.624' y='8043.173' fix='xy' />
+<point id='C' x='9787.823' y='8038.529' adj='xy' />
+<point id='D' x='9260.886' y='4843.911' adj='xy' />
+
+<obs>
+<distance from="A" to="B" val="3111.291" stdev="10.000000" />
+<distance from="B" to="C" val="3726.220" stdev="12.000000" />
+<distance from="C" to="D" val="3237.783" stdev="10.000000" />
+<distance from="D" to="A" val="3662.372" stdev="12.000000" />
+<distance from="A" to="C" val="5193.471" stdev="16.000000" />
+<distance from="B" to="D" val="4524.471" stdev="14.000000" />
+</obs>
+
+<obs>
+<angle from="A" bs="B" fs="C" val="45-12-34" stdev="2.1" />
+<angle from="A" bs="C" fs="D" val="38-10-54" stdev="2.1" />
+<angle from="B" bs="C" fs="D" val="44-55-43" stdev="2.1" />
+<angle from="B" bs="D" fs="A" val="53-31-23" stdev="2.1" />
+<angle from="C" bs="D" fs="A" val="44-21-59" stdev="2.1" />
+<angle from="C" bs="A" fs="B" val="36-20-26" stdev="2.1" />
+<angle from="D" bs="A" fs="B" val="43-06-11" stdev="2.1" />
+<angle from="D" bs="B" fs="C" val="54-22-00" stdev="2.1" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

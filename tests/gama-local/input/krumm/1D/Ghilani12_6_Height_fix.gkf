@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix height network
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 12.6, pp. 218
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1000.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='2200.00' y='5800.00' z='437.596' fix='z' />
+<point id='B' x='3090.17' y='8664.89' z='448.105' adj='z' />
+<point id='C' x='6113.26' y='6045.54' z='453.465' adj='z' />
+<point id='D' x='3614.21' y='4385.79' z='444.942' adj='z' />
+
+<height-differences>
+<dh from='A' to='B' val='10.509' stdev='6.000000' />
+<dh from='B' to='C' val='5.360' stdev='4.000000' />
+<dh from='C' to='D' val='-8.523' stdev='5.000000' />
+<dh from='D' to='A' val='-7.348' stdev='3.000000' />
+<dh from='B' to='D' val='-3.167' stdev='4.000000' />
+<dh from='A' to='C' val='15.881' stdev='12.000000' />
+</height-differences>
+
+</points-observations>
+
+</network>
+</gama-local>

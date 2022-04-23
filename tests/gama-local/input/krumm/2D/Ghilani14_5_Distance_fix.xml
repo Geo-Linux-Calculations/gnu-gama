@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix trilateration network
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 14.5, pp. 251 &amp; 19.3, pp. 404
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>2</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>5</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>5</equations>
+   <unknowns>4</unknowns>
+   <degrees-of-freedom>1</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.8470266e+04</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>1.3590536e+02</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>13.591</ratio>
+   <lower>0.031</lower>
+   <upper>2.241</upper>
+   <failed/>
+
+   <confidence-scale>1.2706205e+01</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>Badger</id> <x>2410000.000000</x> <y>390000.000000</y> </point>
+   <point> <id>Bucky</id> <x>2411820.000000</x> <y>386881.222000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>Campus</id> <x>2416892.695519</x> <y>387603.255127</y> </point>
+   <point> <id>Wisconsin</id> <x>2415776.904381</x> <y>391043.294493</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>Campus</id> <x>2416892.6955155823379755</x> <y>387603.2551281698397361</y> </point>
+   <point> <id>Wisconsin</id> <x>2415776.9043780658394098</x> <y>391043.2944927674834616</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>4</dim> <band>3</band>
+<flt>1.0770936e+04</flt> <flt>-8.5051827e+03</flt> <flt>-1.8428108e+03</flt>
+<flt>-3.5824116e+03</flt> <flt>7.3194399e+04</flt> <flt>2.5899928e+04</flt>
+<flt>5.0349283e+04</flt> <flt>2.2137984e+04</flt> <flt>2.1430111e+04</flt>
+<flt>4.8667980e+04</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>3</ind>
+<ind>4</ind>
+<ind>1</ind>
+<ind>2</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<distance> <from>Badger</from> <to>Wisconsin</to>
+   <obs>5870.3019999999996799</obs> <adj>5870.3566835377723692</adj> <stdev>124.4185559582067242</stdev>
+   <qrr>0.162</qrr> <f>8.452</f> <std-residual>1.000</std-residual>
+   <err-obs>337.766</err-obs> <err-adj>283.083</err-adj>
+   </distance>
+<distance> <from>Badger</from> <to>Campus</to>
+   <obs>7297.5879999999997381</obs> <adj>7297.5089894548536904</adj> <stdev>110.5784794878274226</stdev>
+   <qrr>0.338</qrr> <f>18.636</f> <std-residual>1.000</std-residual>
+   <err-obs>-233.770</err-obs> <err-adj>-154.759</err-adj>
+   </distance>
+<distance> <from>Wisconsin</from> <to>Campus</to>
+   <obs>3616.4340000000001965</obs> <adj>3616.4707509589766232</adj> <stdev>130.8420168919678872</stdev>
+   <qrr>0.073</qrr> <f>3.726</f> <std-residual>1.000</std-residual>
+   </distance>
+<distance> <from>Wisconsin</from> <to>Bucky</to>
+   <obs>5742.8779999999997017</obs> <adj>5742.8163554313059649</adj> <stdev>121.1206568697598414</stdev>
+   <qrr>0.206</qrr> <f>10.879</f> <std-residual>1.000</std-residual>
+   <err-obs>-299.625</err-obs> <err-adj>-237.981</err-adj>
+   </distance>
+<distance> <from>Campus</from> <to>Bucky</to>
+   <obs>5123.7600000000002183</obs> <adj>5123.8239267157559880</adj> <stdev>119.9318197256675802</stdev>
+   <qrr>0.221</qrr> <f>11.753</f> <std-residual>1.000</std-residual>
+   <err-obs>288.929</err-obs> <err-adj>225.002</err-adj>
+   </distance>
+
+</observations>
+
+</gama-local-adjustment>

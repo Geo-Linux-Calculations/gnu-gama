@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix horizontal network
+
+Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th
+Edition. Ex. 16.2, pp. 307/528
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='Q' x='1000.00' y='1000.00' fix='xy' />
+<point id='R' x='1003.06' y='2640.01' adj='xy' />
+<point id='S' x='2323.07' y='2638.47' adj='xy' />
+<point id='T' x='2661.75' y='1096.07' adj='xy' />
+
+<obs>
+<distance from="Q" to="R" val="1640.016" stdev="26.000000" />
+<distance from="R" to="S" val="1320.001" stdev="24.000000" />
+<distance from="S" to="T" val="1579.123" stdev="25.000000" />
+<distance from="T" to="Q" val="1664.524" stdev="26.000000" />
+<distance from="Q" to="S" val="2105.962" stdev="29.000000" />
+<distance from="R" to="T" val="2266.035" stdev="30.000000" />
+</obs>
+
+<obs>
+<angle from="Q" bs="R" fs="S" val="38-48-50.7" stdev="4.0" />
+<angle from="Q" bs="S" fs="T" val="47-46-12.4" stdev="4.0" />
+<angle from="Q" bs="T" fs="R" val="273-24-56.5" stdev="4.4" />
+<angle from="R" bs="Q" fs="S" val="269-57-33.4" stdev="4.7" />
+<angle from="S" bs="R" fs="T" val="257-32-56.8" stdev="4.7" />
+<angle from="T" bs="S" fs="Q" val="279-04-31.2" stdev="4.5" />
+<angle from="R" bs="S" fs="T" val="42-52-51.0" stdev="4.3" />
+<angle from="R" bs="S" fs="Q" val="90-02-26.7" stdev="4.5" />
+<angle from="S" bs="Q" fs="R" val="51-08-45.0" stdev="4.3" />
+<angle from="S" bs="T" fs="Q" val="51-18-16.2" stdev="4.0" />
+<angle from="T" bs="R" fs="S" val="34-40-05.7" stdev="4.0" />
+</obs>
+
+<obs>
+<azimuth from="Q" to="R" val="0-6-24.5" stdev="0.001" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

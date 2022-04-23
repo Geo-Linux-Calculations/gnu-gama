@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix spatial polygon traverse
+
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 90
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='A' x='-2000' y='1000' z='0' fix='xyz' />
+<point id='B' x='2000' y='-1000' z='0' fix='xyz' />
+<point id='S1' x='0' y='1000' z='1000' adj='xyz' />
+<point id='S2' x='0' y='-1000' z='1000' adj='xyz' />
+
+<obs>
+<angle from="S1" bs="S2" fs="A" val="100.0000" stdev="10.000000" />
+<angle from="S2" bs="B" fs="S1" val="300.0000" stdev="10.000000" />
+</obs>
+
+<obs>
+<s-distance from='A' to='S1' val='2236.06798' stdev='35.120000' />
+<s-distance from='S1' to='S2' val='2000.00000' stdev='31.420000' />
+<s-distance from='B' to='S2' val='2236.06798' stdev='35.120000' />
+<s-distance from='A' to='S2' val='3000.00000' stdev='47.120000' />
+</obs>
+
+<!-- vertical angles replaced by zenith angles -->
+<obs>
+<z-angle from="A" to="S1" val="70.483300" stdev="20.000000" />
+<z-angle from="B" to="S2" val="70.483300" stdev="20.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

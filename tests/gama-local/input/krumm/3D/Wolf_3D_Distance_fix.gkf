@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix 3D-network observed by distances
+
+Wolf H (1979): Ausgleichungsrechnung II. Dümmlers, pp. 87
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "0.01"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='1200' y='900' z='900' fix='xyz' />
+<point id='2' x='900' y='600' z='900' fix='xyz' />
+<point id='3' x='600' y='900' z='900' fix='xyz' />
+<point id='4' x='900' y='1200' z='900' fix='xyz' />
+<point id='P' x='900' y='900' z='1300' adj='xyz' />
+
+<obs>
+<s-distance from='1' to='P' val='499.99' stdev='10.000000' />
+<s-distance from='2' to='P' val='500.00' stdev='10.000000' />
+<s-distance from='3' to='P' val='500.01' stdev='10.000000' />
+<s-distance from='4' to='P' val='500.02' stdev='10.000000' />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

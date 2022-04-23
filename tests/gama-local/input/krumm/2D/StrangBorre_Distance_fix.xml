@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix trilateration network
+
+Strang G and K Borre (1997): Linear Algebra, Geodesy, and GPS. Ex. 10.1, pp. 345
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>1</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>3</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>3</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>3</equations>
+   <unknowns>2</unknowns>
+   <degrees-of-freedom>1</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.0909363e+03</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+01</apriori>
+   <aposteriori>3.3029324e+01</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>3.303</ratio>
+   <lower>0.031</lower>
+   <upper>2.241</upper>
+   <failed/>
+
+   <confidence-scale>1.2706205e+01</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>170.710000</x> <y>270.710000</y> </point>
+   <point> <id>2</id> <x>100.000000</x> <y>100.000000</y> </point>
+   <point> <id>3</id> <x>241.420000</x> <y>100.000000</y> </point>
+</fixed>
+
+<approximate>
+   <point> <id>P</id> <x>170.702929</x> <y>170.723356</y> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>P</id> <x>170.7029254441840180</x> <y>170.7233566122466470</y> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>2</dim> <band>1</band>
+<flt>1.0911424e+03</flt> <flt>3.8568914e-02</flt> <flt>5.4541664e+02</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<distance> <from>1</from> <to>P</to>
+   <obs>100.0100000000000051</obs> <adj>99.9866436380333852</adj> <stdev>23.3541566404010936</stdev>
+   <qrr>0.500</qrr> <f>29.293</f> <std-residual>1.000</std-residual>
+   <err-obs>-46.708</err-obs> <err-adj>-23.352</err-adj>
+   </distance>
+<distance> <from>2</from> <to>P</to>
+   <obs>100.0199999999999960</obs> <adj>100.0034841236486614</adj> <stdev>28.6035330867950037</stdev>
+   <qrr>0.250</qrr> <f>13.400</f> <std-residual>1.000</std-residual>
+   <err-obs>-66.054</err-obs> <err-adj>-49.538</err-adj>
+   </distance>
+<distance> <from>3</from> <to>P</to>
+   <obs>100.0300000000000011</obs> <adj>100.0134881115334480</adj> <stdev>28.6058353481959848</stdev>
+   <qrr>0.250</qrr> <f>13.393</f> <std-residual>1.000</std-residual>
+   <err-obs>-66.070</err-obs> <err-adj>-49.558</err-adj>
+   </distance>
+
+</observations>
+
+</gama-local-adjustment>

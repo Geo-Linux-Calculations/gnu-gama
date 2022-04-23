@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix height network
+
+Niemeier W (2008): Ausgleichungsrechnung, 2. Auflage. Walter de
+Gruyter, pp. 153-156/268-269
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='450.77' y='430.31' z='68.927' adj='z' />
+<point id='2' x='658.15' y='704.03' z='60.712' adj='z' />
+<point id='3' x='877.96' y='302.96' z='63.193' adj='z' />
+<point id='4' x='1170.25' y='754.00' z='56.286' adj='z' />
+<point id='5' x='1650.18' y='601.52' z='44.324' adj='z' />
+<point id='6' x='1436.40' y='230.00' z='67.228' fix='z' />
+
+<height-differences>
+<dh from='1' to='2' val='-8.206' stdev='0.788110' />
+<dh from='1' to='3' val='-5.734' stdev='1.097643' />
+<dh from='2' to='3' val='2.481' stdev='0.671156' />
+<dh from='2' to='4' val='-4.433' stdev='0.894427' />
+<dh from='3' to='4' val='-6.909' stdev='1.000000' />
+<dh from='3' to='5' val='-18.872' stdev='1.048285' />
+<dh from='3' to='6' val='4.035' stdev='0.663723' />
+<dh from='4' to='5' val='-11.962' stdev='0.848189' />
+<dh from='5' to='6' val='22.904' stdev='0.912871' />
+</height-differences>
+
+</points-observations>
+
+</network>
+</gama-local>

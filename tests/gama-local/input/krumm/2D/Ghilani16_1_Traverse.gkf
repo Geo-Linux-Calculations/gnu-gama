@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Traverse as a fix network
+
+Ghilani (2010): Adjustment Computations. Spatial Data Analysis. 5th Edition. Ex. 16.1, pp. 300
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='Q' x='1000.00' y='800.00' fix='xy' />
+<point id='R' x='1000.00' y='1000.00' fix='xy' />
+<point id='S' x='1223.00' y='1186.50' fix='xy' />
+<point id='T' x='1400.00' y='1186.50' fix='xy' />
+<point id='U' x='1173.20' y='1100.00' adj='xy' />
+
+<obs>
+<distance from="R" to="U" val="200.00" stdev="50.000000" />
+<distance from="U" to="S" val="100.00" stdev="80.000000" />
+</obs>
+
+<obs>
+<angle from="R" bs="Q" fs="U" val="240-0-0" stdev="30" />
+<angle from="U" bs="R" fs="S" val="150-0-0" stdev="30" />
+<angle from="S" bs="U" fs="T" val="240-1-0" stdev="30" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

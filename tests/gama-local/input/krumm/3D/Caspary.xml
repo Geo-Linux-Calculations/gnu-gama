@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix 3D-network observed by distances and zenith angles
+
+Caspary W (2013): Fehlertolerante Auswertung von Messdaten: Daten- und
+Modellanalyse, robuste Schätzung. 1. Auflage, ISBN: 978-3486727715,
+3D-Netz mit GNSS, pp. 9
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>1</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>4</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>0</h-diffs>
+   <z-angles>1</z-angles>
+   <s-dists>4</s-dists>
+   <vectors>1</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>8</equations>
+   <unknowns>3</unknowns>
+   <degrees-of-freedom>5</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.0967948e-02</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>3.1622777e-02</apriori>
+   <aposteriori>4.6835773e-02</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>1.481</ratio>
+   <lower>0.408</lower>
+   <upper>1.602</upper>
+   <passed/>
+
+   <confidence-scale>2.5705817e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>1</id> <x>4000.000000</x> <y>-10000.000000</y> <z>1600.000000</z> </point>
+   <point> <id>2</id> <x>3000.000000</x> <y>11000.000000</y> <z>1500.000000</z> </point>
+   <point> <id>3</id> <x>700.000000</x> <y>-700.000000</y> <z>800.000000</z> </point>
+   <point> <id>4</id> <x>0.000000</x> <y>0.000000</y> <z>700.000000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>N</id> <x>5000.000000</x> <y>2000.000000</y> <z>1800.000000</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>N</id> <x>5000.0148233705658640</x> <y>1999.9923351154473039</y> <z>1799.9868125314617373</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>3</dim> <band>2</band>
+<flt>2.9567365e+02</flt> <flt>7.9382102e+01</flt> <flt>-8.9797542e+01</flt>
+<flt>3.4429161e+02</flt> <flt>3.4734709e+01</flt> <flt>1.1902376e+03</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<slope-distance> <from>1</from> <to>N</to>
+   <obs>12043.3050000000002910</obs> <adj>12043.2487483472814347</adj> <stdev>18.1564604934719078</stdev>
+   <qrr>1255967.993</qrr> <f>67.309</f> <std-residual>1.072</std-residual>
+   <err-obs>-62.982</err-obs> <err-adj>-6.731</err-adj>
+   </slope-distance>
+<slope-distance> <from>2</from> <to>N</to>
+   <obs>9224.4040000000004511</obs> <adj>9224.4343647200639680</adj> <stdev>19.4274017144515874</stdev>
+   <qrr>692302.326</qrr> <f>55.384</f> <std-residual>0.779</std-residual>
+   <err-obs>37.911</err-obs> <err-adj>7.547</err-adj>
+   </slope-distance>
+<slope-distance> <from>3</from> <to>N</to>
+   <obs>5174.9099999999998545</obs> <adj>5174.9453828718314981</adj> <stdev>15.4156388356848293</stdev>
+   <qrr>233915.281</qrr> <f>43.738</f> <std-residual>1.562</std-residual>
+   <err-obs>51.770</err-obs> <err-adj>16.387</err-adj>
+   </slope-distance>
+<slope-distance> <from>4</from> <to>N</to>
+   <obs>5496.4020000000000437</obs> <adj>5496.3704898597916326</adj> <stdev>15.7363114678610394</stdev>
+   <qrr>279151.294</qrr> <f>46.339</f> <std-residual>1.273</std-residual>
+   <err-obs>-44.253</err-obs> <err-adj>-12.743</err-adj>
+   </slope-distance>
+<zenith-angle> <from>4</from> <to>N</to>
+   <obs>87.1726000000000028</obs><adj>87.1727312406539312</adj> <stdev>3.9959673334018566</stdev>
+   <qrr>1720.719</qrr> <f>10.066</f> <std-residual>0.676</std-residual>
+   <err-obs>6.864</err-obs> <err-adj>5.552</err-adj>
+   </zenith-angle>
+<dx> <from>4</from> <to>N</to>
+   <obs>5000.0200000000004366</obs> <adj>5000.0148233705658640</adj> <stdev>17.1951636030030990</stdev>
+   <qrr>121210.137</qrr> <f>27.438</f> <std-residual>0.317</std-residual>
+   </dx>
+<dy> <from>4</from> <to>N</to>
+   <obs>1999.9800000000000182</obs> <adj>1999.9923351154473039</adj> <stdev>18.5550967357756207</stdev>
+   <qrr>99046.483</qrr> <f>21.699</f> <std-residual>0.837</std-residual>
+   </dy>
+<dz> <from>4</from> <to>N</to>
+   <obs>1099.9400000000000546</obs> <adj>1099.9868125314617373</adj> <stdev>34.4998208754677336</stdev>
+   <qrr>3301401.876</qrr> <f>62.429</f> <std-residual>0.550</std-residual>
+   </dz>
+
+</observations>
+
+</gama-local-adjustment>

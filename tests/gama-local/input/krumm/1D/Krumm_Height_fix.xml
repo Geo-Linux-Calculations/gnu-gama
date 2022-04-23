@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix height network
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>4</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>1</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>5</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>5</equations>
+   <unknowns>4</unknowns>
+   <degrees-of-freedom>1</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>2.2272729e+01</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>5.0000000e+00</apriori>
+   <aposteriori>4.7193992e+00</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.944</ratio>
+   <lower>0.031</lower>
+   <upper>2.241</upper>
+   <passed/>
+
+   <confidence-scale>1.2706205e+01</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>5</id> <z>110.956000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>1</id> <z>93.459000</z> </point>
+   <point> <id>2</id> <z>107.759000</z> </point>
+   <point> <id>3</id> <z>103.459000</z> </point>
+   <point> <id>4</id> <z>100.459000</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>1</id> <z>93.4560000000000031</z> </point>
+   <point> <id>2</id> <z>107.7541363640417416</z> </point>
+   <point> <id>3</id> <z>103.4535454547625193</z> </point>
+   <point> <id>4</id> <z>100.4620000000000033</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>4</dim> <band>3</band>
+<flt>3.3409089e+01</flt> <flt>3.3409089e+01</flt> <flt>3.3409089e+01</flt>
+<flt>3.3409089e+01</flt> <flt>4.5254130e+01</flt> <flt>4.0698345e+01</flt>
+<flt>3.3409089e+01</flt> <flt>4.4747933e+01</flt> <flt>3.3409089e+01</flt>
+<flt>5.5681818e+01</flt> </cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+<ind>4</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<height-diff> <from>1</from> <to>2</to>
+   <obs>14.3010000000000002</obs> <adj>14.2981363640417332</adj> <stdev>3.4416625061719817</stdev>
+   <qrr>0.368</qrr> <f>23.129</f> <std-residual>1.000</std-residual>
+   <err-obs>-7.000</err-obs> <err-adj>-4.136</err-adj>
+   </height-diff>
+<height-diff> <from>1</from> <to>3</to>
+   <obs>9.9949999999999992</obs> <adj>9.9975454547625198</adj> <stdev>3.3673199119782726</stdev>
+   <qrr>0.291</qrr> <f>20.228</f> <std-residual>1.000</std-residual>
+   <err-obs>7.000</err-obs> <err-adj>4.455</err-adj>
+   </height-diff>
+<height-diff> <from>1</from> <to>4</to>
+   <obs>7.0060000000000002</obs> <adj>7.0060000000000002</adj> <stdev>4.7193991909793063</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </height-diff>
+<height-diff> <from>1</from> <to>5</to>
+   <obs>17.5000000000000000</obs> <adj>17.5000000000000000</adj> <stdev>5.7800596182761144</stdev>
+   <qrr>0.000</qrr> <f>0.000</f>
+   </height-diff>
+<height-diff> <from>3</from> <to>2</to>
+   <obs>4.2990000000000004</obs> <adj>4.3005909092792152</adj> <stdev>2.9334915407771640</stdev>
+   <qrr>0.114</qrr> <f>12.095</f> <std-residual>1.000</std-residual>
+   <err-obs>7.000</err-obs> <err-adj>5.409</err-adj>
+   </height-diff>
+
+</observations>
+
+</gama-local-adjustment>

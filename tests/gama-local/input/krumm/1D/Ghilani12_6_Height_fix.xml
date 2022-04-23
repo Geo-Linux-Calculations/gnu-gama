@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<gama-local-adjustment xmlns="http://www.gnu.org/software/gama/gama-local-adjustment">
+
+<description>
+Fix height network
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 12.6, pp. 218
+</description>
+
+<network-general-parameters
+   gama-local-version="2.18.5"
+   gama-local-algorithm="gso"
+   gama-local-compiler="GNU C/C++ 11.2"
+   axes-xy="en"
+   angles="left-handed"
+/>
+
+<network-processing-summary>
+
+<coordinates-summary>
+   <coordinates-summary-adjusted>    <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>3</count-z> </coordinates-summary-adjusted>
+   <coordinates-summary-constrained> <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>0</count-z> </coordinates-summary-constrained>
+   <coordinates-summary-fixed>       <count-xyz>0</count-xyz> <count-xy>0</count-xy> <count-z>1</count-z> </coordinates-summary-fixed>
+</coordinates-summary>
+
+<observations-summary>
+   <distances>0</distances>
+   <directions>0</directions>
+   <angles>0</angles>
+   <xyz-coords>0</xyz-coords>
+   <h-diffs>6</h-diffs>
+   <z-angles>0</z-angles>
+   <s-dists>0</s-dists>
+   <vectors>0</vectors>
+   <azimuths>0</azimuths>
+</observations-summary>
+
+<project-equations>
+   <equations>6</equations>
+   <unknowns>3</unknowns>
+   <degrees-of-freedom>3</degrees-of-freedom>
+   <defect>0</defect>
+   <sum-of-squares>1.2721228e+06</sum-of-squares>
+   <connected-network/>
+</project-equations>
+
+<standard-deviation>
+   <apriori>1.0000000e+03</apriori>
+   <aposteriori>6.5118426e+02</aposteriori>
+   <used>aposteriori</used>
+
+   <probability>0.950</probability>
+   <ratio>0.651</ratio>
+   <lower>0.268</lower>
+   <upper>1.765</upper>
+   <passed/>
+
+   <confidence-scale>3.1824491e+00</confidence-scale>
+</standard-deviation>
+
+</network-processing-summary>
+
+<coordinates>
+
+<fixed>
+   <point> <id>A</id> <z>437.596000</z> </point>
+</fixed>
+
+<approximate>
+   <point> <id>B</id> <z>448.105000</z> </point>
+   <point> <id>C</id> <z>453.465000</z> </point>
+   <point> <id>D</id> <z>444.942000</z> </point>
+</approximate>
+
+<!-- capital X,Y,Z denote constrained coordinates -->
+<adjusted>
+   <point> <id>B</id> <z>448.1087117287866022</z> </point>
+   <point> <id>C</id> <z>453.4684677834756030</z> </point>
+   <point> <id>D</id> <z>444.9436053313361299</z> </point>
+</adjusted>
+
+<orientation-shifts>
+</orientation-shifts>
+
+<!-- upper part of symmetric matrix band by rows -->
+<cov-mat>
+<dim>3</dim> <band>2</band>
+<flt>5.2685829e+00</flt> <flt>3.8345390e+00</flt> <flt>2.2595641e+00</flt>
+<flt>6.9499562e+00</flt> <flt>2.4233615e+00</flt> <flt>3.1000174e+00</flt>
+</cov-mat>
+
+<!-- original indexes from the adjustment -->
+<original-index>
+<ind>1</ind>
+<ind>2</ind>
+<ind>3</ind>
+</original-index>
+
+</coordinates>
+
+<observations>
+
+<height-diff> <from>A</from> <to>B</to>
+   <obs>10.5090000000000003</obs> <adj>10.5127117287866163</adj> <stdev>2.2953393856630138</stdev>
+   <qrr>0.000</qrr> <f>41.252</f> <std-residual>1.174</std-residual>
+   <err-obs>5.668</err-obs> <err-adj>1.956</err-adj>
+   </height-diff>
+<height-diff> <from>B</from> <to>C</to>
+   <obs>5.3600000000000003</obs> <adj>5.3597560546889929</adj> <stdev>2.1329465525870615</stdev>
+   <qrr>0.000</qrr> <f>18.113</f> <std-residual>0.163</std-residual>
+   <err-obs>-0.740</err-obs> <err-adj>-0.497</err-adj>
+   </height-diff>
+<height-diff> <from>C</from> <to>D</to>
+   <obs>-8.5229999999999997</obs> <adj>-8.5248624521394891</adj> <stdev>2.2810634802293901</stdev>
+   <qrr>0.000</qrr> <f>29.941</f> <std-residual>0.802</std-residual>
+   <err-obs>-3.658</err-obs> <err-adj>-1.795</err-adj>
+   </height-diff>
+<height-diff> <from>D</from> <to>A</to>
+   <obs>-7.3479999999999999</obs> <adj>-7.3476053313361200</adj> <stdev>1.7606866205847869</stdev>
+   <qrr>0.000</qrr> <f>9.873</f> <std-residual>0.466</std-residual>
+   <err-obs>2.103</err-obs> <err-adj>1.708</err-adj>
+   </height-diff>
+<height-diff> <from>B</from> <to>D</to>
+   <obs>-3.1669999999999998</obs> <adj>-3.1651063974504963</adj> <stdev>1.9620071677048931</stdev>
+   <qrr>0.000</qrr> <f>24.675</f> <std-residual>1.105</std-residual>
+   <err-obs>4.377</err-obs> <err-adj>2.483</err-adj>
+   </height-diff>
+<height-diff> <from>A</from> <to>C</to>
+   <obs>15.8810000000000002</obs> <adj>15.8724677834756100</adj> <stdev>2.6362769507922277</stdev>
+   <qrr>0.000</qrr> <f>66.263</f> <std-residual>1.160</std-residual>
+   <err-obs>-9.628</err-obs> <err-adj>-1.096</err-adj>
+   </height-diff>
+
+</observations>
+
+</gama-local-adjustment>

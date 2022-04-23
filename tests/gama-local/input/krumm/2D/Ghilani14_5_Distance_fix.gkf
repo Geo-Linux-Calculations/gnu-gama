@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix trilateration network
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ex. 14.5, pp. 251 &amp; 19.3, pp. 404
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='Badger' x='2410000.000' y='390000.000' fix='xy' />
+<point id='Bucky' x='2411820.000' y='386881.222' fix='xy' />
+<point id='Campus' x='2416892.670' y='387603.450' adj='xy' />
+<point id='Wisconsin' x='2415776.819' y='391043.461' adj='xy' />
+
+<obs>
+<distance from="Badger" to="Wisconsin" val="5870.302" stdev="10.000000" />
+<distance from="Badger" to="Campus" val="7297.588" stdev="10.000000" />
+<distance from="Wisconsin" to="Campus" val="3616.434" stdev="10.000000" />
+<distance from="Wisconsin" to="Bucky" val="5742.878" stdev="10.000000" />
+<distance from="Campus" to="Bucky" val="5123.760" stdev="10.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

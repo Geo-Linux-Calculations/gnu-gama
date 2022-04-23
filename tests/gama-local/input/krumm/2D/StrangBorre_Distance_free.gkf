@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Free trilateration network
+
+Strang G and K Borre (1997): Linear Algebra, Geodesy, and GPS. Ex. 12.4, pp. 411
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "10.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='170.71' y='270.71' adj='XY' />
+<point id='2' x='100.00' y='100.00' adj='XY' />
+<point id='3' x='241.42' y='100.00' adj='XY' />
+<point id='P' x='170.71' y='170.71' adj='XY' />
+
+<obs>
+<distance from="1" to="P" val="100.01" stdev="10.000000" />
+<distance from="2" to="P" val="100.02" stdev="10.000000" />
+<distance from="3" to="P" val="100.03" stdev="10.000000" />
+<distance from="1" to="2" val="184.785" stdev="10.000000" />
+<distance from="2" to="3" val="141.44" stdev="10.000000" />
+<distance from="1" to="3" val="184.805" stdev="10.000000" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

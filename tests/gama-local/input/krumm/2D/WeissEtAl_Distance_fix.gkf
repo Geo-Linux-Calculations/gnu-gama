@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix trilateration network
+
+Weiss et al (2010): Detection of erroneous values in the measurement of local geodetic networks. Acta Montanistica Slovaca Rocník 15 (2010), císlo 1, pp. 62-70
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "1000.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='4506.299' y='9001.123' fix='xy' />
+<point id='2' x='2798.622' y='9502.490' fix='xy' />
+<point id='3' x='3803.973' y='9894.233' fix='xy' />
+<point id='4' x='3299.980' y='9100.838' adj='xy' />
+<point id='5' x='3697.824' y='9400.545' adj='xy' />
+<point id='6' x='3080.370' y='9775.900' adj='xy' />
+<point id='7' x='4393.265' y='9842.503' adj='xy' />
+<point id='8' x='4904.569' y='9413.376' fix='xy' />
+<point id='9' x='4251.061' y='9546.226' adj='xy' />
+
+<obs>
+<distance from="4" to="6" val="709.927" stdev="1303.840481" />
+<distance from="2" to="6" val="392.550" stdev="774.596669" />
+<distance from="2" to="4" val="642.409" stdev="1140.175425" />
+<distance from="3" to="4" val="939.941" stdev="1095.445115" />
+<distance from="3" to="9" val="566.555" stdev="894.427191" />
+<distance from="4" to="9" val="1050.204" stdev="1048.808848" />
+<distance from="1" to="4" val="1210.478" stdev="894.427191" />
+<distance from="1" to="5" val="901.755" stdev="894.427191" />
+<distance from="5" to="8" val="1206.806" stdev="1000.000000" />
+<distance from="4" to="8" val="1634.747" stdev="1140.175425" />
+<distance from="4" to="5" val="498.107" stdev="1264.911064" />
+<distance from="2" to="5" val="904.962" stdev="1183.215957" />
+<distance from="2" to="7" val="1630.454" stdev="1048.808848" />
+<distance from="1" to="7" val="849.005" stdev="894.427191" />
+<distance from="1" to="9" val="601.906" stdev="1095.445115" />
+<distance from="8" to="9" val="666.874" stdev="1140.175425" />
+<distance from="7" to="8" val="667.595" stdev="774.596669" />
+<distance from="5" to="7" val="823.990" stdev="1264.911064" />
+<distance from="5" to="6" val="722.631" stdev="1140.175425" />
+<distance from="6" to="9" val="1193.036" stdev="836.660027" />
+<distance from="5" to="9" val="572.094" stdev="836.660027" />
+<distance from="3" to="5" val="504.968" stdev="1303.840481" />
+<distance from="3" to="7" val="591.506" stdev="1264.911064" />
+<distance from="7" to="9" val="328.667" stdev="948.683298" />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<!-- This example is based on published material Geodetic Network Adjustment
+     Examples by Friedhelm Krumm, Geodätisches Institut Universität Stuttgart,
+     Rev. 3.5, January 20, 2020
+-->
+
+<description>
+Fix height network
+</description>
+
+<!-- sigma-apr/sigma0 gon to cc -->
+<parameters
+   sigma-apr = "5.000000"
+   conf-pr   = " 0.95 "
+   tol-abs   = " 1000 "
+   sigma-act = "aposteriori"
+   algorithm = "gso"
+   cov-band  = "-1"
+/>
+
+<points-observations>
+
+<point id='1' x='481' y='660' z='93.459' adj='z' />
+<point id='2' x='703' y='309' z='107.759' adj='z' />
+<point id='3' x='395' y='299' z='103.459' adj='z' />
+<point id='4' x='140' y='400' z='100.459' adj='z' />
+<point id='5' x='957' y='511' z='110.956' fix='z' />
+
+<height-differences>
+<dh from='1' to='2' val='14.301' stdev='4.743416' />
+<dh from='1' to='3' val='9.995' stdev='4.472136' />
+<dh from='1' to='4' val='7.006' stdev='5.000000' />
+<dh from='1' to='5' val='17.500' stdev='6.123724' />
+<dh from='3' to='2' val='4.299' stdev='3.535534' />
+</height-differences>
+
+</points-observations>
+
+</network>
+</gama-local>
