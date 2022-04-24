@@ -40,6 +40,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <cctype>
 
 #include <gnu_gama/obsdata.h>
 #include <gnu_gama/local/matvec.h>

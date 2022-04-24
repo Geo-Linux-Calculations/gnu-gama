@@ -17,6 +17,7 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <cctype>
 #include <krumm/output.h>
 #include <krumm/common.h>
 #include <gnu_gama/xml/str2xml.h>
