@@ -5,7 +5,7 @@ set -e
 # compare with /tests/gama-local/xml-xml
 # depends on gama-local-adjustment
 
-GAMA_ARCHIVE=@top_builddir@/tests/gama-local/input/krumm/
+GAMA_ARCHIVE=@top_srcdir@/tests/gama-local/input/krumm/
 KRUMM_RESULTS=@top_builddir@/tests/krumm/results/@PACKAGE_VERSION@/
 
 a=gso

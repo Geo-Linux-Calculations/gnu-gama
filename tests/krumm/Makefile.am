@@ -122,7 +122,7 @@ TESTS = krumm2gama-local.sh krumm-xml-xml.sh
 KRUMM_INPUT   = $(srcdir)/input
 KRUMM_RESULTS = results/$(PACKAGE_VERSION)
 KRUMM_OTHERS  = Makefile $(KRUMM_RESULTS)
-GAMA_ARCHIVE  = $(top_builddir)/tests/gama-local/input/krumm
+GAMA_ARCHIVE  = $(top_srcdir)/tests/gama-local/input/krumm
 
 INPUT_FILES = \
   1D/Baumann_Height_fix \

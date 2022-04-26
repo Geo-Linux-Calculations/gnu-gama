@@ -3,6 +3,14 @@ GNU Gama NEWS - History of user-visible changes.
   New glossary of basic terms used in gama-local text output and in
   documentation.
 
+Changes in release 2.19 (2022-04-26)
+
+  - fixed a bug in HTML output of adjustment results for GNSS vectors
+    in incosistent coordinates systems.
+
+  - added new test to GNU Gama Test Suite.
+
+
 Changes in release 2.18 (2022-04-09)
 
   New conversion class K2gkf (lib/krumm) with accompanying program
