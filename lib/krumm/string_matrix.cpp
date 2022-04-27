@@ -17,6 +17,7 @@
    along with Krumm2gama-local. If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <algorithm>
 #include <krumm/string_matrix.h>
 
 using namespace GNU_gama::local;

@@ -18,6 +18,7 @@ gama-local-pro
 Makefile.am.user
 *.json
 out
+*.patch
 #
 aclocal.m4
 autom4te.cache/
