@@ -3,7 +3,7 @@ dnl Copyright 2019, 2022 Ales Cepek <cepek@gnu.org>
 
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.71])
 
 dnl GNU Gama version is also defined in CMakeLists.txt and
 dnl lib/gnu_gama.version.cpp
@@ -161,9 +161,17 @@ dnl AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DA2G_DEBUG")
 dnl AC_SUBST([CPPFLAGS], "${CPPFLAGS} -DDEBUG_REDUCED_OBS")
 
 
-dnl Checks for header files.
+## dnl Checks for header files.  ## commented out by AC
+##
+## m4_warn([obsolete],
+## [The preprocessor macro `STDC_HEADERS' is obsolete.
+##   Except in unusual embedded environments, you can safely include all
+##   ISO C90 headers unconditionally.])dnl
+# Autoupdate added the next two lines to ensure that your configure
+# script's behavior did not change.  They are probably safe to remove.
+## AC_CHECK_INCLUDES_DEFAULT
+## AC_PROG_EGREP
 
-AC_HEADER_STDC
 
 AC_CONFIG_FILES([
    Makefile

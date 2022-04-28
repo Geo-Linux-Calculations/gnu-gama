@@ -1,9 +1,12 @@
 
-Adjustment of local geodetic network        version: 2.16 / GNU C/C++ 11.2
+Adjustment of local geodetic network        version: 2.19 / GNU C/C++ 11.2
 ************************************
 https://www.gnu.org/software/gama/
 
 Usage: gama-local  [--input-xml] input.xml  [options]
+       gama-local  [--input-xml] input.xml  --sqlitedb sqlite.db  --configuration name  [options]
+       gama-local  --sqlitedb sqlite.db  --configuration name  [options]
+       gama-local  --sqlitedb sqlite.db  --readonly-configuration name  [options]
 
 Options:
 
