@@ -28,10 +28,10 @@
 
 ICGS::~ICGS()
 {
-  if (internal_data) delete A;
-  delete p_ak;
-  delete column;
-  delete row;
+  if (internal_data) delete[] A;
+  delete[] p_ak;
+  delete[] column;
+  delete[] row;
 }
 
 const double* ICGS::residuals_begin() const
@@ -88,11 +88,11 @@ void ICGS::reset(double* a, int m1, int n1, int m2, int n2)
   M12 = M1 + M2;
   N12 = N1 + N2;
 
-  if (internal_data && A) delete A;
+  if (internal_data && A) delete[] A;
   A = a;
   internal_data = false;
 
-  if (column) delete column;
+  if (column) delete[] column;
   column = new double* [ N12+1 ];  // +1 : 1-based indexing
   column[0] = nullptr;             // unused
   double* t = A;                   // first column
@@ -102,7 +102,7 @@ void ICGS::reset(double* a, int m1, int n1, int m2, int n2)
       t += M12;
     }
 
-  if (row) delete row;
+  if (row) delete[] row;
   row = new double* [ M12 + 1 ];
   row[0] = nullptr;
   t = A;
@@ -205,7 +205,7 @@ void ICGS::icgs1()
   icgs1_is_ready = false;
   error_icgs2_defect = 0;
 
-  if (p_ak) delete p_ak;
+  if (p_ak) delete[] p_ak;
   p_ak = new double[M12+1];
   double* const p_end_M1  = p_ak + M1;
   double* const p_end_M12 = p_ak + M12;
