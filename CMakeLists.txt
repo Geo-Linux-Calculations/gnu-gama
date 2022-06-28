@@ -53,13 +53,15 @@ set(SRC_GAMA
    lib/gnu_gama/adj/adj_envelope.h
    lib/gnu_gama/adj/adj.cpp
    lib/gnu_gama/adj/adj.h
+
    lib/gnu_gama/adj/adj_input_data.cpp
    lib/gnu_gama/adj/adj_input_data.h
    lib/gnu_gama/adj/adj_gso.h
    lib/gnu_gama/adj/adj_svd.h
    lib/gnu_gama/adj/envelope.h
    lib/gnu_gama/adj/homogenization.h
-
+   lib/gnu_gama/adj/icgs.cpp
+   lib/gnu_gama/adj/icgs.h
    lib/gnu_gama/sparse/intlist.h
    lib/gnu_gama/sparse/sbdiagonal.h
    lib/gnu_gama/sparse/smatrix_graph_connected.h
