@@ -21,7 +21,21 @@
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 
+#define GNU_GAMA_ICGS
+#define GNU_GAMA_MGSO_LEGACY_CODE
+
+#ifdef  GNU_GAMA_MGSO_LEGACY_CODE_removed
+#undef  GNU_GAMA_ICGS
+#endif
+
+#ifdef GNU_GAMA_MGSO_LEGACY_CODE
 #include <matvec/gso.h>
+#endif
+#ifdef GNU_GAMA_ICGS
+#include <gnu_gama/adj/icgs.h>
+#include <memory>
+#endif
+
 #include <gnu_gama/adj/adj_basefull.h>
 #include <cmath>
 
@@ -33,7 +47,12 @@ namespace GNU_gama {
   public:
 
     AdjGSO() = default;
-   ~AdjGSO() override = default;
+   ~AdjGSO()
+    {
+#ifdef GNU_GAMA_ICGS
+      delete[] icgs_data;
+#endif
+    }
 
     AdjGSO (const AdjGSO&) = delete;
     AdjGSO& operator=(const AdjGSO&) = delete;
@@ -56,17 +75,33 @@ namespace GNU_gama {
     Float q_bb(Index i, Index j) override;
     Float q_bx(Index i, Index j) override;
 
+
+#ifdef GNU_GAMA_ICGS_xxxxxxxxxxxxxxxxxxxxxxxxx
+    void min_x() override { icgs.min_x(); }
+    void min_x(Index n, Index x[]) override { icgs.min_x(n, x); }
+#endif
+#ifdef GNU_GAMA_MGSO_LEGACY_CODE
     void min_x() override { gso.min_x(); }
     void min_x(Index n, Index x[]) override { gso.min_x(n, x); }
-
+#endif
     void solve() override;
 
   private:
 
     Mat<Float, Index, Exc> A_;
-    GSO<Float, Index, Exc> gso;
 
-    void init_gso_();
+#ifdef GNU_GAMA_ICGS
+    ICGS icgs;
+    double* icgs_data {nullptr};
+#endif
+#ifdef GNU_GAMA_MGSO_LEGACY_CODE
+    GSO<Float, Index, Exc> gso;
+#endif
+
+#if defined(GNU_GAMA_MGSO_LEGACY_CODE) && defined(GNU_GAMA_ICGS)
+#define GNU_GAMA_MGSO_TESTING
+#endif
+    // void init_gso_();
   };
 
   // ...................................................................
@@ -80,6 +115,7 @@ namespace GNU_gama {
     const Index M = this->pA->rows();
     const Index N = this->pA->cols();
 
+ #ifdef GNU_GAMA_MGSO_LEGACY_CODE
     A_.reset(M+N, N+1);
 
     const Mat<Float, Index, Exc>& A1 = *this->pA;
@@ -103,9 +139,54 @@ namespace GNU_gama {
     for (Index i=1; i<=N; i++)
       this->x(i) = A_(M+i, N+1);
 
+    /*this->r.reset(M);
+    for (Index j=1; j<=M; j++)
+      this->r(j) = A_(j, N+1); xxxxxxxxxxxxxxxxxxxx removed */
+#endif
+
+#ifdef GNU_GAMA_ICGS
+    if (icgs_data) delete[] icgs_data;
+
+    icgs_data = new double[(M+N)*(N+1)];
+    double* p = icgs_data;
+
+    for (Index c=1; c<=N+1; c++)
+      for (Index r=1; r<=M+N; r++)
+        {
+          if (c <= N)
+            {
+              if (r<=M) {
+                  *p++ = A1(r,c);
+                }
+              else {
+                  *p++ = r-M==c ? 1 : 0;
+                }
+            }
+          else
+            {
+              if (r<=M) {
+                  *p++ = -b1(r);
+                }
+              else {
+                  *p++ = 0;
+                }
+            }
+        }
+    icgs.reset(icgs_data, M, N, N, 1);
+    icgs.icgs1();
+    icgs.icgs2();
+
+    p = icgs_data + N*(M+N) + M;
+    /*this->x.reset(N);
+    for (Index i=1; i<=N; i++)
+      this->x(i) = *p++; ??????????????????????????? */
+
+    p = icgs_data + N*(M+N);
     this->r.reset(M);
     for (Index j=1; j<=M; j++)
-      this->r(j) = A_(j, N+1);
+      this->r(j) = *p++;
+
+#endif
 
     this->is_solved = true;
   }
