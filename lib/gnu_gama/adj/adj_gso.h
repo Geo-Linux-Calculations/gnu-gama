@@ -21,9 +21,9 @@
 #ifndef GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 #define GNU_Gama_gnu_gama_gnugama_GaMa_OLS_gso_h
 
-#define GNU_GAMA_MGSO_LEGACY_CODE
+/* #define GNU_GAMA_GSO_LEGACY_CODE */
 
-#ifdef GNU_GAMA_MGSO_LEGACY_CODE
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
 #include <matvec/gso.h>
 #else
 #include <gnu_gama/adj/icgs.h>
@@ -41,7 +41,7 @@ namespace GNU_gama {
   public:
 
     AdjGSO() = default;
-#ifdef GNU_GAMA_MGSO_LEGACY_CODE
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
    ~AdjGSO() override = default;
 #else
     ~AdjGSO()
@@ -64,14 +64,20 @@ namespace GNU_gama {
       AdjBaseFull<Float, Index, Exc>::reset(A, b);
     }
 
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     Index defect() override { return gso.defect(); }
     bool  lindep(Index i) override { return gso.lindep(i); }
+#else
+    Index defect() override { return icgs.defect(); }
+    bool  lindep(Index i) override {
+      return icgs.lindep_columns.find(i) != icgs.lindep_columns.end();  }
+#endif
 
     Float q_xx(Index i, Index j) override;
     Float q_bb(Index i, Index j) override;
     Float q_bx(Index i, Index j) override;
 
-#ifdef GNU_GAMA_MGSO_LEGACY_CODE
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     void min_x() override { gso.min_x(); }
     void min_x(Index n, Index x[]) override { gso.min_x(n, x); }
 #else
@@ -85,7 +91,7 @@ namespace GNU_gama {
 
     Mat<Float, Index, Exc> A_;
 
-#ifdef GNU_GAMA_MGSO_LEGACY_CODE
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     GSO<Float, Index, Exc> gso;
 #else
     ICGS icgs;
@@ -106,11 +112,11 @@ namespace GNU_gama {
     const Index M = this->pA->rows();
     const Index N = this->pA->cols();
 
- #ifdef GNU_GAMA_MGSO_LEGACY_CODE
-    A_.reset(M+N, N+1);
-
     const Mat<Float, Index, Exc>& A1 = *this->pA;
     const Vec<Float, Index, Exc>& b1 = *this->pb;
+
+ #ifdef GNU_GAMA_GSO_LEGACY_CODE
+    A_.reset(M+N, N+1);
 
     for (Index i=1; i<=M; i++)
       {
@@ -190,10 +196,14 @@ namespace GNU_gama {
     const Index N = this->pA->cols();
     i += M;
     j += M;
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     Float s = 0;
     for (Index k=1; k<=N; k++)
       s += A_(i,k)*A_(j,k);              // cov x_i x_j
     return s;
+#else
+    return icgs.rowdot(i,j);
+#endif
   }
 
 
@@ -202,11 +212,15 @@ namespace GNU_gama {
   {
     if(!this->is_solved) solve();
 
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     const Index N = this->pA->cols();
     Float s = 0;
     for (Index k=1; k<=N; k++)
       s += A_(i,k)*A_(j,k);              // cov b_i b_j
     return s;
+#else
+    return icgs.rowdot(i,j);
+#endif
   }
 
 
@@ -218,10 +232,14 @@ namespace GNU_gama {
     const Index M = this->pA->rows();
     const Index N = this->pA->cols();
     j += M;
+#ifdef GNU_GAMA_GSO_LEGACY_CODE
     Float s = 0;
     for (Index k=1; k<=N; k++)
       s += A_(i,k)*A_(j,k);              // cov b_i x_j
     return s;
+#else
+    return icgs.rowdot(i,j);
+#endif
   }
 
 
