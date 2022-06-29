@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<!DOCTYPE gnu-gama-data SYSTEM "gnu-gama-data.dtd">
+<gnu-gama-data>
+  <text>Sablino base network</text>
+  <g3-model>
+    <constants>
+      <apriori-standard-deviation>10</apriori-standard-deviation>
+      <confidence-level>0.95</confidence-level>
+      <angular-units-degrees/>
+      <ellipsoid>
+        <a>6377397.155</a>
+        <inv-f>299.152812</inv-f>
+      </ellipsoid>
+    </constants>
+    <fixed>
+      <n/>
+      <e/>
+      <u/>
+    </fixed>
+    <point>
+      <id>PULKOVO</id>
+      <b>59-46-15.349</b>
+      <l>30-19-24.7785</l>
+      <h>0.0</h>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <free>
+      <n/>
+      <e/>
+      <u/>
+    </free>
+    <point>
+      <id>BUGRY</id>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <point>
+      <id>SABLINO</id>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <point>
+      <id>PUSTYNKA</id>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <point>
+      <id>POGI</id>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <point>
+      <id>KABOSI</id>
+      <geoid>16.</geoid>
+      <height>0</height>
+    </point>
+    <obs>
+      <xyz>
+        <id>KABOSI</id>
+        <x>2783472.0270</x>
+        <y>1625706.4189</y>
+        <z>5484382.6345</z>
+      </xyz>
+      <cov-mat>
+        <dim>3</dim>
+        <band>0</band>
+        <flt>1000</flt>
+        <flt>1000</flt>
+        <flt>1000</flt>
+      </cov-mat>
+    </obs>
+    <obs>
+      <xyz>
+        <id>PUSTYNKA</id>
+        <x>2768878.5738</x>
+        <y>1657407.3863</y>
+        <z>5482294.8488</z>
+      </xyz>
+      <cov-mat>
+        <dim>3</dim>
+        <band>0</band>
+        <flt>1000</flt>
+        <flt>1000</flt>
+        <flt>1000</flt>
+      </cov-mat>
+    </obs>
+    <obs>
+      <xyz>
+        <id>BUGRY</id>
+        <x>2777461.8934</x>
+        <y>1644411.0075</y>
+        <z>5481869.5544</z>
+      </xyz>
+      <cov-mat>
+        <dim>3</dim>
+        <band>0</band>
+        <flt>1000</flt>
+        <flt>1000</flt>
+        <flt>1000</flt>
+      </cov-mat>
+    </obs>
+    <obs>
+      <xyz>
+        <id>SABLINO</id>
+        <x>2779921.4844</x>
+        <y>1655930.2677</y>
+        <z>5477184.7153</z>
+      </xyz>
+      <cov-mat>
+        <dim>3</dim>
+        <band>0</band>
+        <flt>1000</flt>
+        <flt>1000</flt>
+        <flt>1000</flt>
+      </cov-mat>
+    </obs>
+    <obs>
+      <xyz>
+        <id>POGI</id>
+        <x>2791076.8896</x>
+        <y>1649724.8496</y>
+        <z>5473408.1259</z>
+      </xyz>
+      <cov-mat>
+        <dim>3</dim>
+        <band>0</band>
+        <flt>1000</flt>
+        <flt>1000</flt>
+        <flt>1000</flt>
+      </cov-mat>
+    </obs>
+    <obs>
+      <distance>
+        <from>SABLINO</from>
+        <to>BUGRY</to>
+        <val>12676.38206</val>
+        <stdev>1</stdev>
+        <from-dh>0.</from-dh>
+        <to-dh>0.</to-dh>
+      </distance>
+    </obs>
+    <obs>
+      <azimuth>
+        <from>BUGRY</from>
+        <to>SABLINO</to>
+        <val>136-54-49.95</val>
+        <stdev>10</stdev>
+        <from-dh>0.</from-dh>
+        <to-dh>0.</to-dh>
+      </azimuth>
+    </obs>
+    <obs>
+      <!--  1 		       0.43 -->
+      <angle>
+        <from>POGI</from>
+        <left>BUGRY</left>
+        <right>SABLINO</right>
+        <val> 47-51-06.90</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>BUGRY</from>
+        <left>SABLINO</left>
+        <right>POGI</right>
+        <val> 51-07-56.14</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>SABLINO</from>
+        <left>POGI</left>
+        <right>BUGRY</right>
+        <val> 81-00-58.99</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  2                        0.38 -->
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>SABLINO</left>
+        <right>BUGRY</right>
+        <val> 52-32-22.03</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>SABLINO</from>
+        <left>BUGRY</left>
+        <right>PUSTYNKA</right>
+        <val> 77-19-38.59</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>BUGRY</from>
+        <left>PUSTYNKA</left>
+        <right>SABLINO</right>
+        <val> 50-07-56.69</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  3                        0.64 -->
+      <angle>
+        <from>BUGRY</from>
+        <left>PUSTYNKA</left>
+        <right>POGI</right>
+        <val>101-15-52.87</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>POGI</from>
+        <left>BUGRY</left>
+        <right>PUSTYNKA</right>
+        <val> 37-28-34.55</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>POGI</left>
+        <right>BUGRY</right>
+        <val> 41-15-32.89</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  4                        0.15 -->
+      <angle>
+        <from>SABLINO</from>
+        <left>POGI</left>
+        <right>PUSTYNKA</right>
+        <val>158-20-37.79</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>SABLINO</left>
+        <right>POGI</right>
+        <val> 11-16-49.00</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>POGI</from>
+        <left>PUSTYNKA</left>
+        <right>SABLINO</right>
+        <val> 10-22-32.22</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  5                        0.45 -->
+      <angle>
+        <from>PULKOVO</from>
+        <left>PUSTYNKA</left>
+        <right>BUGRY</right>
+        <val> 15-04-13.28</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>BUGRY</from>
+        <left>PULKOVO</left>
+        <right>PUSTYNKA</right>
+        <val>145-24-32.46</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>BUGRY</left>
+        <right>PULKOVO</right>
+        <val> 19-31-15.27</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  6                        0.29 -->
+      <angle>
+        <from>KABOSI</from>
+        <left>PULKOVO</left>
+        <right>BUGRY</right>
+        <val> 83-48-23.51</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PULKOVO</from>
+        <left>BUGRY</left>
+        <right>KABOSI</right>
+        <val> 79-32-00.35</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>BUGRY</from>
+        <left>KABOSI</left>
+        <right>PULKOVO</right>
+        <val> 16-39-35.72</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  7                        0.50 -->
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>KABOSI</left>
+        <right>PULKOVO</right>
+        <val>  9-28-32.50</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>KABOSI</from>
+        <left>PULKOVO</left>
+        <right>PUSTYNKA</right>
+        <val> 75-55-12.24</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PULKOVO</from>
+        <left>PUSTYNKA</left>
+        <right>KABOSI</right>
+        <val> 94-36-13.72</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  8                        0.24 -->
+      <angle>
+        <from>BUGRY</from>
+        <left>KABOSI</left>
+        <right>PUSTYNKA</right>
+        <val>162-04-08.35</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>KABOSI</from>
+        <left>PUSTYNKA</left>
+        <right>BUGRY</right>
+        <val>  7-53-11.12</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>BUGRY</left>
+        <right>KABOSI</right>
+        <val> 10-02-42.68</val>
+        <stdev>10</stdev>
+      </angle>
+      <!--  9                        0.84 -->
+      <angle>
+        <from>POGI</from>
+        <left>KABOSI</left>
+        <right>BUGRY</right>
+        <val> 45-42-56.80</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>KABOSI</from>
+        <left>BUGRY</left>
+        <right>POGI</right>
+        <val> 37-37-04.52</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>BUGRY</from>
+        <left>POGI</left>
+        <right>KABOSI</right>
+        <val> 96-39-58.20</val>
+        <stdev>10</stdev>
+      </angle>
+      <!-- 10                        1.73 -->
+      <angle>
+        <from>PUSTYNKA</from>
+        <left>POGI</left>
+        <right>KABOSI</right>
+        <val> 51-18-15.29</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>POGI</from>
+        <left>KABOSI</left>
+        <right>PUSTYNKA</right>
+        <val> 83-11-31.30</val>
+        <stdev>10</stdev>
+      </angle>
+      <angle>
+        <from>KABOSI</from>
+        <left>PUSTYNKA</left>
+        <right>POGI</right>
+        <val> 45-30-15.42</val>
+        <stdev>10</stdev>
+      </angle>
+    </obs>
+  </g3-model>
+</gnu-gama-data>
