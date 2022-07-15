@@ -20,10 +20,12 @@
  * along with ICGS. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "icgs.h"
+#include <gnu_gama/adj/icgs.h>
 #include <cmath>
 #include <memory>
 #include <algorithm>
+
+using namespace GNU_gama;
 
 
 ICGS::~ICGS()
