@@ -1,5 +1,5 @@
 
-Adjustment of local geodetic network        version: 2.19 / GNU C/C++ 11.2
+Adjustment of local geodetic network        version: @value{VERSION}
 ************************************
 https://www.gnu.org/software/gama/
 
@@ -34,4 +34,3 @@ Options:
 Report bugs to: <bug-gama@@gnu.org>
 GNU gama home page: <https://www.gnu.org/software/gama/>
 General help using GNU software: <https://www.gnu.org/gethelp/>
-
