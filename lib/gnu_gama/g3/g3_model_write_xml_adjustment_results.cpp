@@ -327,24 +327,55 @@ void Model::write_xml_adjusted_cov_xyz(std::ostream& out,
   out.setf(format);
 }
 
-
-void Model::write_xml_adjusted(std::ostream& out, const Angle* /*a*/,
-                               int /*index*/)
+void Model::write_xml_adjusted(std::ostream& out, const Angle* a, int index)
 {
-  out << "\n<angle> ";
-  out << "        </angle>\n";
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
+                                                  std::ios_base::floatfield);
+  double rd = adj->r()(index)/Angular().scale();
+
+  out << "\n<angle> "
+      << "<from>"  << a->from << "</from> "
+      << "<left>"    << a->left   << "</left> "
+      << "<right>"    << a->right   << "</right> "
+      << "<from_dh>"  << a->from_dh << "</from_dh> "
+      << "<left_dh>"    << a->left_dh   << "</left_dh> "
+      << "<right_dh>"    << a->right_dh   << "</right_dh> "
+      << "<ind>"   << index   << "</ind>"
+      << "\n        <observed>" << setw(13) << a->obs()*RAD_TO_DEG
+      << " </observed>";
+  out << "\n";
+  out << "        <residual>" << setw(13) << rd*RAD_TO_DEG
+      << " </residual>";
+  out << "\n";
+  out << "        <adjusted>" << setw(13) << (a->obs()+rd)*RAD_TO_DEG
+      << " </adjusted>";
+  out << "\n";
+  out << "</angle>\n";
 }
 
-
-
-void Model::write_xml_adjusted(std::ostream& out, const Azimuth* /*a*/,
-                               int /*index*/)
+void Model::write_xml_adjusted(std::ostream& out, const Azimuth* a, int index)
 {
-  out << "\n<azimuth> ";
-  out << "        </azimuth>\n";
+  const std::ios_base::fmtflags format = out.setf(std::ios_base::fixed,
+                                                  std::ios_base::floatfield);
+  double rd = adj->r()(index)/Angular().scale();
+
+  out << "\n<azimuth> "
+      << "<from>"  << a->from << "</from> "
+      << "<to>"    << a->to   << "</to> "
+      << "<from_dh>"  << a->from_dh << "</from_dh> "
+      << "<to_dh>"    << a->to_dh   << "</to_dh> "
+      << "<ind>"   << index   << "</ind>"
+      << "\n        <observed>" << setw(13) << a->obs()*RAD_TO_DEG
+      << " </observed>";
+  out << "\n";
+  out << "        <residual>" << setw(13) << rd*RAD_TO_DEG
+      << " </residual>";
+  out << "\n";
+  out << "        <adjusted>" << setw(13) << (a->obs()+rd)*RAD_TO_DEG
+      << " </adjusted>";
+  out << "\n";
+  out << "</azimuth>\n";
 }
-
-
 
 void Model::write_xml_adjusted(std::ostream& out, const Distance* d, int index)
 {

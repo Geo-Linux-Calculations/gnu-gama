@@ -1,0 +1,644 @@
+<?xml version="1.0" ?>
+<gnu-gama-data xmlns="http://www.gnu.org/software/gama/gnu-gama-data">
+
+<g3-adjustment-results>
+
+<adjustment-statistics>
+
+<algorithm> envelope </algorithm>
+
+<ellipsoid> <caption>  </caption>
+            <id>               </id>
+            <a>       6377397.15500 </a>
+            <b>       6356078.96276 </b>
+            </ellipsoid>
+
+<parameters>   15 </parameters>
+<equations>    47 </equations>
+<defect>        0 </defect>
+<redundancy>   32 </redundancy>
+
+<sum-of-squares>        1.73950e+01 </sum-of-squares>
+<apriori-variance>      1.00000e+02 </apriori-variance>
+<aposteriori-variance>  5.43593e-01 </aposteriori-variance>
+<variance-factor-used>  aposteriori </variance-factor-used>
+<design-matrix-graph>     connected </design-matrix-graph>
+
+</adjustment-statistics>
+
+
+<!-- adjustment results    : dn / de / du  are in millimeters -->
+<!-- deflection of vertical: db / dl       are in arc seconds -->
+
+<adjustment-results>
+
+<point> <id> KABOSI </id>
+
+        <n-free/>   <dn>  -0.012 </dn> <ind>1</ind> 
+        <e-free/>   <de>   0.042 </de> <ind>2</ind> 
+        <u-free/>   <du>   0.000 </du> <ind>3</ind> 
+
+        <cnn> 5.3897657e+00 </cnn> <cne>  5.3032245e-02 </cne> 
+                                   <cnu> -1.7604302e-08 </cnu>
+        <cee> 5.1859843e+00 </cee> <ceu> -8.5604751e-08 </ceu>
+        <cuu> 5.4359332e+00 </cuu>
+
+        <x-given     >      2783472.02700 </x-given>
+        <x-correction>           -0.00001 </x-correction>
+        <x-adjusted  >      2783472.02699 </x-adjusted>
+
+        <y-given     >      1625706.41890 </y-given>
+        <y-correction>            0.00004 </y-correction>
+        <y-adjusted  >      1625706.41894 </y-adjusted>
+
+        <z-given     >      5484382.63450 </z-given>
+        <z-correction>           -0.00001 </z-correction>
+        <z-adjusted  >      5484382.63449 </z-adjusted>
+
+        <cxx> 5.3865739e+00 </cxx> <cxy>  7.1357439e-02 </cxy> 
+                                   <cxz>  3.8731096e-03 </cxz>
+        <cyy> 5.2009123e+00 </cyy> <cyz>  3.3226833e-02 </cyz>
+        <czz> 5.4241971e+00 </czz>
+
+        <b-given     >   59-43-20.6985870 </b-given>
+        <b-correction>         -0.0000004 </b-correction>
+        <b-adjusted  >   59-43-20.6985866 </b-adjusted>
+
+        <l-given     >   30-17-14.5142542 </l-given>
+        <l-correction>          0.0000027 </l-correction>
+        <l-adjusted  >   30-17-14.5142569 </l-adjusted>
+
+        <h-given     >            0.00009 </h-given>
+        <h-correction>            0.00000 </h-correction>
+        <h-adjusted  >            0.00009 </h-adjusted>
+
+        <height-given>            0.00000 </height-given>
+        <height-correction>       0.00000 </height-correction>
+        <height-adjusted  >       0.00000 </height-adjusted>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+<point> <id> PUSTYNKA </id>
+
+        <n-free/>   <dn>   0.370 </dn> <ind>4</ind> 
+        <e-free/>   <de>  -0.037 </de> <ind>5</ind> 
+        <u-free/>   <du>   0.000 </du> <ind>6</ind> 
+
+        <cnn> 5.3640829e+00 </cnn> <cne>  1.8110048e-02 </cne> 
+                                   <cnu> -4.5122424e-08 </cnu>
+        <cee> 5.3924360e+00 </cee> <ceu>  6.7957503e-08 </ceu>
+        <cuu> 5.4359332e+00 </cuu>
+
+        <x-given     >      2768878.57380 </x-given>
+        <x-correction>           -0.00026 </x-correction>
+        <x-adjusted  >      2768878.57354 </x-adjusted>
+
+        <y-given     >      1657407.38630 </y-given>
+        <y-correction>           -0.00020 </y-correction>
+        <y-adjusted  >      1657407.38610 </y-adjusted>
+
+        <z-given     >      5482294.84880 </z-given>
+        <z-correction>            0.00019 </z-correction>
+        <z-adjusted  >      5482294.84899 </z-adjusted>
+
+        <cxx> 5.3988180e+00 </cxx> <cxy> -1.1813609e-02 </cxy> 
+                                   <cxz>  2.2167882e-02 </cxz>
+        <cyy> 5.3760064e+00 </cyy> <cyz>  2.3922957e-02 </cyz>
+        <czz> 5.4176277e+00 </czz>
+
+        <b-given     >   59-41-06.9493660 </b-given>
+        <b-correction>          0.0000120 </b-correction>
+        <b-adjusted  >   59-41-06.9493780 </b-adjusted>
+
+        <l-given     >   30-54-14.6847077 </l-given>
+        <l-correction>         -0.0000024 </l-correction>
+        <l-adjusted  >   30-54-14.6847053 </l-adjusted>
+
+        <h-given     >            0.00000 </h-given>
+        <h-correction>            0.00000 </h-correction>
+        <h-adjusted  >            0.00000 </h-adjusted>
+
+        <height-given>            0.00000 </height-given>
+        <height-correction>       0.00000 </height-correction>
+        <height-adjusted  >       0.00000 </height-adjusted>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+<point> <id> BUGRY </id>
+
+        <n-free/>   <dn>   0.582 </dn> <ind>7</ind> 
+        <e-free/>   <de>   0.632 </de> <ind>8</ind> 
+        <u-free/>   <du>  -0.000 </du> <ind>9</ind> 
+
+        <cnn> 3.0406801e+00 </cnn> <cne>  4.3835095e-01 </cne> 
+                                   <cnu> -1.8882306e-03 </cnu>
+        <cee> 3.1490452e+00 </cee> <ceu>  1.9420271e-03 </ceu>
+        <cuu> 5.4359304e+00 </cuu>
+
+        <x-given     >      2777461.89340 </x-given>
+        <x-correction>           -0.00075 </x-correction>
+        <x-adjusted  >      2777461.89265 </x-adjusted>
+
+        <y-given     >      1644411.00750 </y-given>
+        <y-correction>            0.00029 </y-correction>
+        <y-adjusted  >      1644411.00779 </y-adjusted>
+
+        <z-given     >      5481869.55440 </z-given>
+        <z-correction>            0.00029 </z-correction>
+        <z-adjusted  >      5481869.55469 </z-adjusted>
+
+        <cxx> 3.8529819e+00 </cxx> <cxy>  3.9365732e-02 </cxy> 
+                                   <cxz>  7.8541767e-01 </cxz>
+        <cyy> 2.9489080e+00 </cyy> <cyz>  7.2414526e-01 </cyz>
+        <czz> 4.8237658e+00 </czz>
+
+        <b-given     >   59-40-39.7219372 </b-given>
+        <b-correction>          0.0000188 </b-correction>
+        <b-adjusted  >   59-40-39.7219560 </b-adjusted>
+
+        <l-given     >   30-37-40.3624105 </l-given>
+        <l-correction>          0.0000404 </l-correction>
+        <l-adjusted  >   30-37-40.3624509 </l-adjusted>
+
+        <h-given     >            0.00007 </h-given>
+        <h-correction>           -0.00000 </h-correction>
+        <h-adjusted  >            0.00007 </h-adjusted>
+
+        <height-given>            0.00000 </height-given>
+        <height-correction>      -0.00000 </height-correction>
+        <height-adjusted  >      -0.00000 </height-adjusted>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+<point> <id> SABLINO </id>
+
+        <n-free/>   <dn>  -0.614 </dn> <ind>10</ind> 
+        <e-free/>   <de>  -0.575 </de> <ind>11</ind> 
+        <u-free/>   <du>  -0.000 </du> <ind>12</ind> 
+
+        <cnn> 3.0602934e+00 </cnn> <cne>  4.5197656e-01 </cne> 
+                                   <cnu>  2.0584850e-03 </cnu>
+        <cee> 3.1558812e+00 </cee> <ceu> -1.7322842e-03 </ceu>
+        <cuu> 5.4359304e+00 </cuu>
+
+        <x-given     >      2779921.48440 </x-given>
+        <x-correction>            0.00075 </x-correction>
+        <x-adjusted  >      2779921.48515 </x-adjusted>
+
+        <y-given     >      1655930.26770 </y-given>
+        <y-correction>           -0.00022 </y-correction>
+        <y-adjusted  >      1655930.26748 </y-adjusted>
+
+        <z-given     >      5477184.71530 </z-given>
+        <z-correction>           -0.00031 </z-correction>
+        <z-adjusted  >      5477184.71499 </z-adjusted>
+
+        <cxx> 3.8767054e+00 </cxx> <cxy>  3.8686375e-02 </cxy> 
+                                   <cxz>  7.7373728e-01 </cxz>
+        <cyy> 2.9462009e+00 </cyy> <cyz>  7.2541878e-01 </cyz>
+        <czz> 4.8291987e+00 </czz>
+
+        <b-given     >   59-35-40.2011614 </b-given>
+        <b-correction>         -0.0000199 </b-correction>
+        <b-adjusted  >   59-35-40.2011415 </b-adjusted>
+
+        <l-given     >   30-46-52.3487501 </l-given>
+        <l-correction>         -0.0000366 </l-correction>
+        <l-adjusted  >   30-46-52.3487135 </l-adjusted>
+
+        <h-given     >            0.00007 </h-given>
+        <h-correction>           -0.00000 </h-correction>
+        <h-adjusted  >            0.00007 </h-adjusted>
+
+        <height-given>            0.00000 </height-given>
+        <height-correction>      -0.00000 </height-correction>
+        <height-adjusted  >      -0.00000 </height-adjusted>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+<point> <id> POGI </id>
+
+        <n-free/>   <dn>   0.107 </dn> <ind>13</ind> 
+        <e-free/>   <de>   0.355 </de> <ind>14</ind> 
+        <u-free/>   <du>   0.000 </du> <ind>15</ind> 
+
+        <cnn> 5.3918626e+00 </cnn> <cne>  1.7291915e-02 </cne> 
+                                   <cnu>  7.6965512e-08 </cnu>
+        <cee> 5.3898877e+00 </cee> <ceu> -4.7391662e-08 </ceu>
+        <cuu> 5.4359332e+00 </cuu>
+
+        <x-given     >      2791076.88960 </x-given>
+        <x-correction>           -0.00026 </x-correction>
+        <x-adjusted  >      2791076.88934 </x-adjusted>
+
+        <y-given     >      1649724.84960 </y-given>
+        <y-correction>            0.00026 </y-correction>
+        <y-adjusted  >      1649724.84986 </y-adjusted>
+
+        <z-given     >      5473408.12590 </z-given>
+        <z-correction>            0.00005 </z-correction>
+        <z-adjusted  >      5473408.12595 </z-adjusted>
+
+        <cxx> 5.4128071e+00 </cxx> <cxy> -1.3564453e-03 </cxy> 
+                                   <cxz>  1.2120133e-02 </cxz>
+        <cyy> 5.3802769e+00 </cyy> <cyz>  1.7350233e-02 </cyz>
+        <czz> 5.4245994e+00 </czz>
+
+        <b-given     >   59-31-39.2842277 </b-given>
+        <b-correction>          0.0000035 </b-correction>
+        <b-adjusted  >   59-31-39.2842311 </b-adjusted>
+
+        <l-given     >   30-35-09.9812461 </l-given>
+        <l-correction>          0.0000226 </l-correction>
+        <l-adjusted  >   30-35-09.9812687 </l-adjusted>
+
+        <h-given     >            0.00007 </h-given>
+        <h-correction>            0.00000 </h-correction>
+        <h-adjusted  >            0.00007 </h-adjusted>
+
+        <height-given>            0.00000 </height-given>
+        <height-correction>       0.00000 </height-correction>
+        <height-adjusted  >       0.00000 </height-adjusted>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+<point> <id> PULKOVO </id>
+
+        <n-fixed/>  
+        <e-fixed/>  
+        <u-fixed/>  
+
+        <x-given     >      2778415.25105 </x-given>
+        <y-given     >      1625107.07935 </y-given>
+        <z-given     >      5487105.40424 </z-given>
+
+        <b-given     >   59-46-15.3490000 </b-given>
+        <l-given     >   30-19-24.7785000 </l-given>
+        <h-given     >            0.00000 </h-given>
+
+        <height-given>            0.00000 </height-given>
+
+        <geoid>                  16.00000 </geoid>
+
+        </point>
+
+</adjustment-results>
+
+
+<adjusted-observations>
+
+<xyz> <id>KABOSI</id> <ind>1</ind>
+
+        <x-observed> 2783472.02700 </x-observed>
+        <x-residual>      -0.00001 </x-residual>
+        <x-adjusted> 2783472.02699 </x-adjusted>
+
+        <y-observed> 1625706.41890 </y-observed>
+        <y-residual>       0.00004 </y-residual>
+        <y-adjusted> 1625706.41894 </y-adjusted>
+
+        <z-observed> 5484382.63450 </z-observed>
+        <z-residual>      -0.00001 </z-residual>
+        <z-adjusted> 5484382.63449 </z-adjusted>
+
+        <x-stdev-obs>  31.623 </x-stdev-obs>
+        <x-stdev-adj>   2.321 </x-stdev-adj>
+
+        <y-stdev-obs>  31.623 </y-stdev-obs>
+        <y-stdev-adj>   2.281 </y-stdev-adj>
+
+        <z-stdev-obs>  31.623 </z-stdev-obs>
+        <z-stdev-adj>   2.329 </z-stdev-adj>
+
+        <cxx> 5.3865739e+00 </cxx> <cxy>  7.1357439e-02 </cxy> 
+                                   <cxz>  3.8731096e-03 </cxz>
+        <cyy> 5.2009123e+00 </cyy> <cyz>  3.3226833e-02 </cyz>
+        <czz> 5.4241971e+00 </czz>
+        </xyz>
+
+<xyz> <id>PUSTYNKA</id> <ind>4</ind>
+
+        <x-observed> 2768878.57380 </x-observed>
+        <x-residual>      -0.00026 </x-residual>
+        <x-adjusted> 2768878.57354 </x-adjusted>
+
+        <y-observed> 1657407.38630 </y-observed>
+        <y-residual>      -0.00020 </y-residual>
+        <y-adjusted> 1657407.38610 </y-adjusted>
+
+        <z-observed> 5482294.84880 </z-observed>
+        <z-residual>       0.00019 </z-residual>
+        <z-adjusted> 5482294.84899 </z-adjusted>
+
+        <x-stdev-obs>  31.623 </x-stdev-obs>
+        <x-stdev-adj>   2.324 </x-stdev-adj>
+
+        <y-stdev-obs>  31.623 </y-stdev-obs>
+        <y-stdev-adj>   2.319 </y-stdev-adj>
+
+        <z-stdev-obs>  31.623 </z-stdev-obs>
+        <z-stdev-adj>   2.328 </z-stdev-adj>
+
+        <cxx> 5.3988180e+00 </cxx> <cxy> -1.1813609e-02 </cxy> 
+                                   <cxz>  2.2167882e-02 </cxz>
+        <cyy> 5.3760064e+00 </cyy> <cyz>  2.3922957e-02 </cyz>
+        <czz> 5.4176277e+00 </czz>
+        </xyz>
+
+<xyz> <id>BUGRY</id> <ind>7</ind>
+
+        <x-observed> 2777461.89340 </x-observed>
+        <x-residual>      -0.00075 </x-residual>
+        <x-adjusted> 2777461.89265 </x-adjusted>
+
+        <y-observed> 1644411.00750 </y-observed>
+        <y-residual>       0.00029 </y-residual>
+        <y-adjusted> 1644411.00779 </y-adjusted>
+
+        <z-observed> 5481869.55440 </z-observed>
+        <z-residual>       0.00029 </z-residual>
+        <z-adjusted> 5481869.55469 </z-adjusted>
+
+        <x-stdev-obs>  31.623 </x-stdev-obs>
+        <x-stdev-adj>   1.963 </x-stdev-adj>
+
+        <y-stdev-obs>  31.623 </y-stdev-obs>
+        <y-stdev-adj>   1.717 </y-stdev-adj>
+
+        <z-stdev-obs>  31.623 </z-stdev-obs>
+        <z-stdev-adj>   2.196 </z-stdev-adj>
+
+        <cxx> 3.8529819e+00 </cxx> <cxy>  3.9365732e-02 </cxy> 
+                                   <cxz>  7.8541767e-01 </cxz>
+        <cyy> 2.9489080e+00 </cyy> <cyz>  7.2414526e-01 </cyz>
+        <czz> 4.8237658e+00 </czz>
+        </xyz>
+
+<xyz> <id>SABLINO</id> <ind>10</ind>
+
+        <x-observed> 2779921.48440 </x-observed>
+        <x-residual>       0.00075 </x-residual>
+        <x-adjusted> 2779921.48515 </x-adjusted>
+
+        <y-observed> 1655930.26770 </y-observed>
+        <y-residual>      -0.00022 </y-residual>
+        <y-adjusted> 1655930.26748 </y-adjusted>
+
+        <z-observed> 5477184.71530 </z-observed>
+        <z-residual>      -0.00031 </z-residual>
+        <z-adjusted> 5477184.71499 </z-adjusted>
+
+        <x-stdev-obs>  31.623 </x-stdev-obs>
+        <x-stdev-adj>   1.969 </x-stdev-adj>
+
+        <y-stdev-obs>  31.623 </y-stdev-obs>
+        <y-stdev-adj>   1.716 </y-stdev-adj>
+
+        <z-stdev-obs>  31.623 </z-stdev-obs>
+        <z-stdev-adj>   2.198 </z-stdev-adj>
+
+        <cxx> 3.8767054e+00 </cxx> <cxy>  3.8686375e-02 </cxy> 
+                                   <cxz>  7.7373728e-01 </cxz>
+        <cyy> 2.9462009e+00 </cyy> <cyz>  7.2541878e-01 </cyz>
+        <czz> 4.8291987e+00 </czz>
+        </xyz>
+
+<xyz> <id>POGI</id> <ind>13</ind>
+
+        <x-observed> 2791076.88960 </x-observed>
+        <x-residual>      -0.00026 </x-residual>
+        <x-adjusted> 2791076.88934 </x-adjusted>
+
+        <y-observed> 1649724.84960 </y-observed>
+        <y-residual>       0.00026 </y-residual>
+        <y-adjusted> 1649724.84986 </y-adjusted>
+
+        <z-observed> 5473408.12590 </z-observed>
+        <z-residual>       0.00005 </z-residual>
+        <z-adjusted> 5473408.12595 </z-adjusted>
+
+        <x-stdev-obs>  31.623 </x-stdev-obs>
+        <x-stdev-adj>   2.327 </x-stdev-adj>
+
+        <y-stdev-obs>  31.623 </y-stdev-obs>
+        <y-stdev-adj>   2.320 </y-stdev-adj>
+
+        <z-stdev-obs>  31.623 </z-stdev-obs>
+        <z-stdev-adj>   2.329 </z-stdev-adj>
+
+        <cxx> 5.4128071e+00 </cxx> <cxy> -1.3564453e-03 </cxy> 
+                                   <cxz>  1.2120133e-02 </cxz>
+        <cyy> 5.3802769e+00 </cyy> <cyz>  1.7350233e-02 </cyz>
+        <czz> 5.4245994e+00 </czz>
+        </xyz>
+
+<distance> <from>SABLINO</from> <to>BUGRY</to> <ind>16</ind>
+
+        <observed>  12676.38206 </observed>
+        <residual>      0.00000 </residual>
+        <adjusted>  12676.38206 </adjusted>
+
+        <stdev-obs>   1.000 </stdev-obs>
+        <stdev-adj>   0.074 </stdev-adj>
+        </distance>
+
+<azimuth> <from>BUGRY</from> <to>SABLINO</to> <from_dh>0.00000</from_dh> <to_dh>0.00000</to_dh> <ind>17</ind>
+        <observed>    136.91387 </observed>
+        <residual>      0.00006 </residual>
+        <adjusted>    136.91393 </adjusted>
+</azimuth>
+
+<angle> <from>POGI</from> <left>BUGRY</left> <right>SABLINO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>18</ind>
+        <observed>     47.85192 </observed>
+        <residual>     -0.00010 </residual>
+        <adjusted>     47.85181 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>SABLINO</left> <right>POGI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>19</ind>
+        <observed>     51.13226 </observed>
+        <residual>     -0.00012 </residual>
+        <adjusted>     51.13214 </adjusted>
+</angle>
+
+<angle> <from>SABLINO</from> <left>POGI</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>20</ind>
+        <observed>     81.01639 </observed>
+        <residual>     -0.00021 </residual>
+        <adjusted>     81.01618 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>SABLINO</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>21</ind>
+        <observed>     52.53945 </observed>
+        <residual>      0.00015 </residual>
+        <adjusted>     52.53961 </adjusted>
+</angle>
+
+<angle> <from>SABLINO</from> <left>BUGRY</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>22</ind>
+        <observed>     77.32739 </observed>
+        <residual>      0.00040 </residual>
+        <adjusted>     77.32779 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>PUSTYNKA</left> <right>SABLINO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>23</ind>
+        <observed>     50.13241 </observed>
+        <residual>      0.00030 </residual>
+        <adjusted>     50.13272 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>PUSTYNKA</left> <right>POGI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>24</ind>
+        <observed>    101.26469 </observed>
+        <residual>      0.00016 </residual>
+        <adjusted>    101.26485 </adjusted>
+</angle>
+
+<angle> <from>POGI</from> <left>BUGRY</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>25</ind>
+        <observed>     37.47626 </observed>
+        <residual>     -0.00041 </residual>
+        <adjusted>     37.47585 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>POGI</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>26</ind>
+        <observed>     41.25914 </observed>
+        <residual>      0.00034 </residual>
+        <adjusted>     41.25948 </adjusted>
+</angle>
+
+<angle> <from>SABLINO</from> <left>POGI</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>27</ind>
+        <observed>    158.34383 </observed>
+        <residual>      0.00013 </residual>
+        <adjusted>    158.34396 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>SABLINO</left> <right>POGI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>28</ind>
+        <observed>     11.28028 </observed>
+        <residual>     -0.00015 </residual>
+        <adjusted>     11.28013 </adjusted>
+</angle>
+
+<angle> <from>POGI</from> <left>PUSTYNKA</left> <right>SABLINO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>29</ind>
+        <observed>     10.37562 </observed>
+        <residual>      0.00034 </residual>
+        <adjusted>     10.37596 </adjusted>
+</angle>
+
+<angle> <from>PULKOVO</from> <left>PUSTYNKA</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>30</ind>
+        <observed>     15.07036 </observed>
+        <residual>     -0.00009 </residual>
+        <adjusted>     15.07027 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>PULKOVO</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>31</ind>
+        <observed>    145.40902 </observed>
+        <residual>     -0.00011 </residual>
+        <adjusted>    145.40891 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>BUGRY</left> <right>PULKOVO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>32</ind>
+        <observed>     19.52091 </observed>
+        <residual>      0.00004 </residual>
+        <adjusted>     19.52095 </adjusted>
+</angle>
+
+<angle> <from>KABOSI</from> <left>PULKOVO</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>33</ind>
+        <observed>     83.80653 </observed>
+        <residual>      0.00006 </residual>
+        <adjusted>     83.80659 </adjusted>
+</angle>
+
+<angle> <from>PULKOVO</from> <left>BUGRY</left> <right>KABOSI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>34</ind>
+        <observed>     79.53343 </observed>
+        <residual>      0.00019 </residual>
+        <adjusted>     79.53362 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>KABOSI</left> <right>PULKOVO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>35</ind>
+        <observed>     16.65992 </observed>
+        <residual>     -0.00005 </residual>
+        <adjusted>     16.65987 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>KABOSI</left> <right>PULKOVO</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>36</ind>
+        <observed>      9.47569 </observed>
+        <residual>      0.00028 </residual>
+        <adjusted>      9.47597 </adjusted>
+</angle>
+
+<angle> <from>KABOSI</from> <left>PULKOVO</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>37</ind>
+        <observed>     75.92007 </observed>
+        <residual>      0.00020 </residual>
+        <adjusted>     75.92027 </adjusted>
+</angle>
+
+<angle> <from>PULKOVO</from> <left>PUSTYNKA</left> <right>KABOSI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>38</ind>
+        <observed>     94.60381 </observed>
+        <residual>      0.00008 </residual>
+        <adjusted>     94.60389 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>KABOSI</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>39</ind>
+        <observed>    162.06899 </observed>
+        <residual>     -0.00021 </residual>
+        <adjusted>    162.06878 </adjusted>
+</angle>
+
+<angle> <from>KABOSI</from> <left>PUSTYNKA</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>40</ind>
+        <observed>      7.88642 </observed>
+        <residual>     -0.00011 </residual>
+        <adjusted>      7.88632 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>BUGRY</left> <right>KABOSI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>41</ind>
+        <observed>     10.04519 </observed>
+        <residual>     -0.00021 </residual>
+        <adjusted>     10.04498 </adjusted>
+</angle>
+
+<angle> <from>POGI</from> <left>KABOSI</left> <right>BUGRY</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>42</ind>
+        <observed>     45.71578 </observed>
+        <residual>      0.00005 </residual>
+        <adjusted>     45.71583 </adjusted>
+</angle>
+
+<angle> <from>KABOSI</from> <left>BUGRY</left> <right>POGI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>43</ind>
+        <observed>     37.61792 </observed>
+        <residual>      0.00011 </residual>
+        <adjusted>     37.61803 </adjusted>
+</angle>
+
+<angle> <from>BUGRY</from> <left>POGI</left> <right>KABOSI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>44</ind>
+        <observed>     96.66617 </observed>
+        <residual>      0.00020 </residual>
+        <adjusted>     96.66637 </adjusted>
+</angle>
+
+<angle> <from>PUSTYNKA</from> <left>POGI</left> <right>KABOSI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>45</ind>
+        <observed>     51.30425 </observed>
+        <residual>      0.00020 </residual>
+        <adjusted>     51.30445 </adjusted>
+</angle>
+
+<angle> <from>POGI</from> <left>KABOSI</left> <right>PUSTYNKA</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>46</ind>
+        <observed>     83.19203 </observed>
+        <residual>     -0.00035 </residual>
+        <adjusted>     83.19168 </adjusted>
+</angle>
+
+<angle> <from>KABOSI</from> <left>PUSTYNKA</left> <right>POGI</right> <from_dh>0.00000</from_dh> <left_dh>0.00000</left_dh> <right_dh>0.00000</right_dh> <ind>47</ind>
+        <observed>     45.50428 </observed>
+        <residual>      0.00007 </residual>
+        <adjusted>     45.50435 </adjusted>
+</angle>
+
+</adjusted-observations>
+</g3-adjustment-results>
+
+</gnu-gama-data>
