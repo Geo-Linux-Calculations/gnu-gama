@@ -48,6 +48,8 @@
 #include <utility>
 #include <set>
 
+namespace GNU_gama {
+
 class ICGS
 {
 public:
@@ -191,4 +193,5 @@ template <class Mat> void ICGS::getMat(Mat& T) const
       T(i,j) = *a++;
 }
 
+}
 #endif // ICGS_H

@@ -3,6 +3,20 @@ GNU Gama NEWS - History of user-visible changes.
   New glossary of basic terms used in gama-local text output and in
   documentation.
 
+Changes in release 2.20 (2022-06-30)
+
+  - The new algorithm ICGS (iterated classical Gram-Schmidt) in the
+    class AdjGSO replaced the former algorithm MGS (modified
+    Gram-Schmidt), which was implemented with column pivoting as a
+    template class GSO. The template class GSO is meant only as a tool
+    for testing purposes. Both initial scaling and pivoting with
+    euclidean norms are not suitable for practical computations.
+
+    The old legacy code with MGS used in the AdjGSO class is still
+    available with conditional compilation directive statements if the
+    name GNU_GAMA_GSO_LEGACY_CODE is defined.
+
+
 Changes in release 2.19 (2022-04-26)
 
   - fixed a bug in HTML output of adjustment results for GNSS vectors

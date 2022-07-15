@@ -126,15 +126,15 @@ bool Model::revision(Angle* angle)
 
   if ( from  == 0      ) return angle->set_active(false);
   if ( from->unused()  ) return angle->set_active(false);
-  if (!from->has_position() ) return angle->set_active(false);
+  if (!from->has_xyz() ) return angle->set_active(false);
 
   if ( left  == 0      ) return angle->set_active(false);
   if ( left->unused()  ) return angle->set_active(false);
-  if (!from->has_position() ) return angle->set_active(false);
+  if (!left->has_xyz() ) return angle->set_active(false);
 
   if ( right  == 0     ) return angle->set_active(false);
   if ( right->unused() ) return angle->set_active(false);
-  if (!from->has_position() ) return angle->set_active(false);
+  if (!right->has_xyz()) return angle->set_active(false);
 
   active_obs->push_back(angle);
 

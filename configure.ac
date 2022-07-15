@@ -3,12 +3,12 @@ dnl Copyright 2019, 2022 Ales Cepek <cepek@gnu.org>
 
 dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 
 dnl GNU Gama version is also defined in CMakeLists.txt and
 dnl lib/gnu_gama.version.cpp
 
-AC_INIT([gama],[2.19],[bug-gama@gnu.org])
+AC_INIT([gama],[2.20],[bug-gama@gnu.org])
 
 AC_CONFIG_SRCDIR([lib/gnu_gama/version.cpp])
 AC_CONFIG_HEADERS([config.h])

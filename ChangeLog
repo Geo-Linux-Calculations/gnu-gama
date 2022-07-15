@@ -1,3 +1,15 @@
+2022-06-30   Ales Cepek <cepek@gnu.org>
+
+	New release 2.20
+
+	* New algorithm ICGS in the class AdjGSO replaced the former
+	algorithm MGS.
+
+	* Deleted file .var/deprecated/gama-local-pro.cpp (a helper
+	program for generating gama-local.pro; the qmake based project is
+	not supported anymore)
+
+
 2022-04-26   Ales Cepek <cepek@gnu.org>
 
 	New release 2.19
