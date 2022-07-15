@@ -1,3 +1,24 @@
+/* GNU Gama -- adjustment of geodetic networks
+   Copyright (C) 1999, 2010  Ales Cepek <cepek@fsv.cvut.cz>
+                 2011  Vaclav Petras <wenzeslaus@gmail.com>
+                 2012, 2013, 2014, 2022  Ales Cepek <cepek@gnu.org>
+
+   This file is part of the GNU Gama C++ library.
+
+   This library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+
 #include <gnu_gama/local/test_linearization_visitor.h>
 #include <cmath>
 
@@ -88,8 +109,13 @@ void GNU_gama::local::TestLinearizationVisitor::visit(Angle* obs)
   computeFromTo(obs, sx, sy, cx, cy);
 
   const LocalPoint& cil2 = IS->PD[obs->fs() ];
-  double cy2 = cil2.y() + x(cil2.index_y())/1000;
-  double cx2 = cil2.x() + x(cil2.index_x())/1000;
+  double cy2 = cil2.y();
+  double cx2 = cil2.x();
+  if (cil2.free_xy())
+    {
+      cy2 += x(cil2.index_y())/1000;
+      cx2 += x(cil2.index_x())/1000;
+    }
   double ds2, dd2;
   GNU_gama::local::bearing_distance(sy, sx, cy2, cx2, ds2, dd2);
   mer = obs->value() + v(i)*CC2R - ds2 + ds;

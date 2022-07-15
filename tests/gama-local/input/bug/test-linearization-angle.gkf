@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<gama-local xmlns="http://www.gnu.org/software/gama/gama-local">
+<network axes-xy="en" angles="left-handed">
+
+<description>
+Random 2D network with angles
+</description>
+
+<parameters
+   sigma-act='aposteriori'
+   sigma-apr='4'
+   conf-pr='0.9'
+/>
+
+<points-observations angle-stdev='4'>
+
+<point id='1' x='2621.90'  y='2106.39' adj='xy' />
+<point id='2' x='1870.67'  y='2854.78' adj='xy' />
+<point id='3' x='2946.67'  y='2955.04' adj='xy' />
+<point id='4' x=' 516.40'  y='2180.70' adj='xy' />
+<point id='A' x='1073.81'  y='1112.29' fix='xy' />
+<point id='B' x='2110.18'  y=' 829.57' fix='xy' />
+<point id='C' x='1468.67'  y='1933.40' fix='xy' />
+<point id='D' x='3628.15'  y='2223.88' fix='xy' />
+
+<obs>
+<angle bs='A' from='B' fs='C'  val=' 49.5304' />
+<angle bs='C' from='B' fs='1'  val=' 57.7817' />
+<angle bs='B' from='1' fs='C'  val=' 66.2547' />
+<angle bs='C' from='1' fs='2'  val=' 59.3584' />
+<angle bs='4' from='A' fs='C'  val=' 59.1491' />
+<angle bs='4' from='C' fs='2'  val='110.0154' />
+<angle bs='2' from='4' fs='C'  val=' 45.5771' />
+<angle bs='2' from='1' fs='3'  val=' 73.3887' />
+<angle bs='1' from='D' fs='3'  val=' 59.6376' />
+</obs>
+
+</points-observations>
+
+</network>
+</gama-local>

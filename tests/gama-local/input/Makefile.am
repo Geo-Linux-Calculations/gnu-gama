@@ -56,6 +56,8 @@ EXTRA_DIST = \
   bug/extern-tst-tetrahedron-3-gon.xml \
   bug/krasovsky-1926.gkf \
   bug/krasovsky-1926.xml \
+  bug/test-linearization-angle.gkf \
+  bug/test-linearization-angle.xml \
   \
   ctu/2020-barta-phase_0-1TK.gkf \
   ctu/2020-barta-phase_0-1TK.xml \
@@ -106,4 +108,3 @@ EXTRA_DIST = \
   krumm/3D/Caspary.xml                 krumm/3D/Wolf_3D_DistanceVerticalAngle_fix.xml \
   krumm/3D/Ghilani_GNSS_Baselines.gkf  krumm/3D/Wolf_SpatialPolygonTraverse_fix.gkf \
   krumm/3D/Ghilani_GNSS_Baselines.xml  krumm/3D/Wolf_SpatialPolygonTraverse_fix.xml
- 

@@ -24,6 +24,7 @@
 #include <matvec/matvec.h>
 #include <matvec/choldec.h>
 #include <algorithm>
+#include <limits>
 
 /*
  * CovMat - Covariance Matrix (symmetric band matrix)
@@ -174,7 +175,6 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
     Index  N = dim();
     Index  W = bandWidth();
 
-    const  Float  Tol = this->Abs(*B*this->cholTol());
     Float *p;
     Index  row, k, l, n;
     Float  pivot, q;
@@ -183,9 +183,18 @@ namespace GNU_gama {   /** \brief Covariance Matrix (symmetric band matrix) */
       throw Exc(Exception::BadRank,
                 "CovMat::cholDec(Float  tol) - zero dim matrix");
 
+    q = 0;                             // maximum value on the diagonal
+    for (n=0, row=1; row<=N; row++)
+      {
+        q = max(B[n], q);
+        k = min(W, N-row);             // number of of-diagonal elements
+        n += k + 1;                    // next diagonal element
+      }
+    const Float Tol = N*std::numeric_limits<Float>::epsilon()*q;
+
     for (row=1; row<=N; row++)
       {
-        if((pivot = *B) < Tol)
+        if((pivot = *B) <= Tol)
           throw Exc(Exception::NonPositiveDefinite,
                     "CovMat::cholDec(Float  tol) - "
                     "Matrix is not positive definite");

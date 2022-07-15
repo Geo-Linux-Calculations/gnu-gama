@@ -85,7 +85,8 @@ BUG_FILES =   bug/tst-tetrahedron-1 \
               bug/extern-tst-tetrahedron-3-gon \
               bug/2019-08-06-integer-coordinates \
               bug/2019-08-13-traverse-knin_male \
-              bug/2019-08-20-knin_test
+              bug/2019-08-20-knin_test \
+              bug/test-linearization-angle
 
 
 CTU_FILES =   ctu/2020-barta-phase_0-1TK ctu/2020-barta-phase_0-2TK \
