@@ -310,8 +310,8 @@
    fi="Eroja tasoitetuissa havainnoissa residuaaleista ja tasoitetuista koordinaateista" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   fi="      havaittu     r        erotus" />
+   EN="      observed     v        difference"
+   fi="      havaittu     v        erotus" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

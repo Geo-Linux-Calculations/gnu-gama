@@ -310,8 +310,8 @@
    zh="观测值残差改正和平差后坐标的差值" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   zh="		 观测值	      r		     差值" />
+   EN="      observed     v        difference"
+   zh="		 观测值	      v		     差值" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

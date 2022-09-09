@@ -4,9 +4,9 @@
 <description></description>
 
 <network-general-parameters
-   gama-local-version="2.11"
+   gama-local-version="2.22"
    gama-local-algorithm="envelope"
-   gama-local-compiler="GNU C/C++ 8.3"
+   gama-local-compiler="GNU C/C++ 11.2"
    axes-xy="ne"
    angles="left-handed"
 />
@@ -46,10 +46,13 @@
    <used>aposteriori</used>
 
    <probability>0.950</probability>
-   <ratio>0.000</ratio>
-   <lower>0.000</lower>
-   <upper>0.000</upper>
-   <failed/>
+
+   <!-- degrees of freedom is zero -->
+   <!-- the standard deviation test is not applicable -->
+   <ratio>0</ratio>
+   <lower>0</lower>
+   <upper>0</upper>
+   <not-applicable/>
 
    <confidence-scale>0.0000000e+00</confidence-scale>
 </standard-deviation>

@@ -233,7 +233,7 @@
    en="Diffs in adj. observations from residuals and from adjusted coordinates" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   en="      observed     r        difference" />
+   en="      observed     v        difference" />
 
 <e id="T_GaMa_tstlin_header1"
    en="====== value == [mm|cc] == [cc] == [mm] =\n\n" />

@@ -1,7 +1,9 @@
 #ifndef GNU_gama_local_language_header_file_h
 #define GNU_gama_local_language_header_file_h
 
-namespace GNU_gama { namespace local {      /* slovnikar 1.15 */
+/* !!! DO NOT EDIT !!!  created by slovnikar 1.16 */
+
+namespace GNU_gama { namespace local {
 
 enum gama_language { en, ca, cz, du, es, fi, fr, hu, ru, ua, zh };
 void set_gama_language(gama_language);

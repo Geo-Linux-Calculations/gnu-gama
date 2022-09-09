@@ -1,154 +1,154 @@
-<?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <entries>
 
 <e id="T_GaMa_inconsistent_coordinates_and_angles"
    EN="Inconsistent coordinates and angles: \ninternally changing sign of all Y coordinates"
-   ru="Íåñîâìåñòèìûå êîîðäèíàòû è óãëû: \nâíóòðåííÿÿ çàìåíà çíàêà âñåõ Y êîîðäèíàò         " />
+   ru="ÐÐµÑÐ¾Ð²Ð¼ÐµÑÑ‚Ð¸Ð¼Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð¸ ÑƒÐ³Ð»Ñ‹: \nÐ²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð·Ð°Ð¼ÐµÐ½Ð° Ð·Ð½Ð°ÐºÐ° Ð²ÑÐµÑ… Y ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚         " />
 
 <e id="T_GaMa_point"
    EN="point"
-   ru="òî÷êà" />
+   ru="Ñ‚Ð¾Ñ‡ÐºÐ°" />
 
 <e id="T_GaMa_standpoint"
    EN="standpoint"
-   ru="ò÷ê ñòîÿíèÿ" />
+   ru="Ñ‚Ñ‡Ðº ÑÑ‚Ð¾ÑÐ½Ð¸Ñ" />
 
 <e id="T_GaMa_target"
    EN="target"
-   ru="ò÷ê âèç-èÿ" />
+   ru="Ñ‚Ñ‡Ðº Ð²Ð¸Ð·-Ð¸Ñ" />
 
 <e id="T_GaMa_network_description"
    EN="Network description"
-   ru="Îïèñàíèå ñåòè" />
+   ru="ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ ÑÐµÑ‚Ð¸" />
 
 <e id="T_GaMa_General_solution_parameters"
    EN="General parameters of the adjustment"
-   ru="Ãëàâíûå ïàðàìåòðû óðàâíèâàíèÿ" />
+   ru="Ð“Ð»Ð°Ð²Ð½Ñ‹Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ ÑƒÑ€Ð°Ð²Ð½Ð¸Ð²Ð°Ð½Ð¸Ñ" />
 
 <e id="T_GaMa_gpar1_coordinates"
    EN="Coordinates"
-   ru="Êîîðäèíàòû " />
+   ru="ÐšÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ " />
 
 <e id="T_GaMa_gpar1_adjusted_coordinates"
    EN="Adjusted"
-   ru="Óðàâíåííûõ" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ñ…" />
 
 <e id="T_GaMa_gpar1_constrained_coordinates"
    EN="Constrained  * "
-   ru="Îãðàíè÷åííûõ * " />
+   ru="ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ñ… * " />
 
 <e id="T_GaMa_gpar1_fixed_coordinates"
    EN="Fixed"
-   ru="Æåñòêèõ" />
+   ru="Ð–ÐµÑÑ‚ÐºÐ¸Ñ…" />
 
 <e id="T_GaMa_gpar1_total"
    EN="Total"
-   ru="Èòîãî" />
+   ru="Ð˜Ñ‚Ð¾Ð³Ð¾" />
 
 <e id="T_GaMa_gpar1_computed_points"
    EN="Total of adjusted points"
-   ru="Èòîãî óðàâíèâíåííûõ òî÷åê" />
+   ru="Ð˜Ñ‚Ð¾Ð³Ð¾ ÑƒÑ€Ð°Ð²Ð½Ð¸Ð²Ð½ÐµÐ½Ð½Ñ‹Ñ… Ñ‚Ð¾Ñ‡ÐµÐº" />
 
 <e id="T_GaMa_gpar2_constrained_points"
    EN="Constrained points"
-   ru="Îãðàíè÷åííûå òî÷êè" />
+   ru="ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ðµ Ñ‚Ð¾Ñ‡ÐºÐ¸" />
 
 <e id="T_GaMa_gpar1_fixed_points"
    EN="Number of fixed points"
-   ru="Êîëè÷åñòâî æåñòêèõ òî÷åê" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¶ÐµÑÑ‚ÐºÐ¸Ñ… Ñ‚Ð¾Ñ‡ÐµÐº" />
 
 <e id="T_GaMa_gpar1_computed_heights"
    EN="Number of computed heights"
-   ru="Êîëè÷åñòâî âû÷èñëåííûõ âûñîò" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ñ‹Ñ… Ð²Ñ‹ÑÐ¾Ñ‚" />
 
 <e id="T_GaMa_gpar2_constrained_heights"
    EN="Constrained heights"
-   ru="Îãðàíè÷åííûå âûñîòû" />
+   ru="ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ðµ Ð²Ñ‹ÑÐ¾Ñ‚Ñ‹" />
 
 <e id="T_GaMa_gpar1_fixed_heights"
    EN="Number of fixed heights"
-   ru="Êîëè÷åñòâî æåñòêèõ âûñîò" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¶ÐµÑÑ‚ÐºÐ¸Ñ… Ð²Ñ‹ÑÐ¾Ñ‚" />
 
 <e id="T_GaMa_gpar1_points_total"
    EN="Total of points"
-   ru="Èòîãî òî÷åê" />
+   ru="Ð˜Ñ‚Ð¾Ð³Ð¾ Ñ‚Ð¾Ñ‡ÐµÐº" />
 
 <e id="T_GaMa_gpar1_directions"
    EN="Number of directions"
-   ru="Êîëè÷åñòâî íàïðàâëåíèé" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_gpar2_bearings"
    EN="Number of bearings"
-   ru="Êîëè÷åñòâî íàáëþäåíèé" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_gpar1_angles"
    EN="Number of angles"
-   ru="Êîëè÷åñòâî óãëîâ" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑƒÐ³Ð»Ð¾Ð²" />
 
 <e id="T_GaMa_gpar1_distances"
    EN="Number of distances"
-   ru="Êîëè÷åñòâî ðàññòîÿíèé" />
+   ru="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_gpar1_observed_coords"
    EN="Coordinates"
-   ru="Êîîðäèíàòû" />
+   ru="ÐšÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹" />
 
 <e id="T_GaMa_gpar1_leveling_diffs"
    EN="Leveling differences"
-   ru="Ïðåâûøåíèå" />
+   ru="ÐŸÑ€ÐµÐ²Ñ‹ÑˆÐµÐ½Ð¸Ðµ" />
 
 <e id="T_GaMa_gpar1_z_angles"
    EN="Zenith angles"
-   ru="Çåíèòíûé óãîë" />
+   ru="Ð—ÐµÐ½Ð¸Ñ‚Ð½Ñ‹Ð¹ ÑƒÐ³Ð¾Ð»" />
 
 <e id="T_GaMa_gpar1_s_dists"
    EN="Slope distances"
-   ru="Èçìåðåííûå ðàññòîÿíèÿ" />
+   ru="Ð˜Ð·Ð¼ÐµÑ€ÐµÐ½Ð½Ñ‹Ðµ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ñ" />
 
 <e id="T_GaMa_gpar1_obs_total"
    EN="Total of observations"
-   ru="Èòîãî íàáëþäåíèé" />
+   ru="Ð˜Ñ‚Ð¾Ð³Ð¾ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_gpar1_equations"
    EN="Number of project equations"
-   ru="×èñëî óðàâíåíèé" />
+   ru="Ð§Ð¸ÑÐ»Ð¾ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_gpar2_number_of_unknowns"
    EN="Number of unknowns"
-   ru="×èñëî íåèçâåñòíûõ" />
+   ru="Ð§Ð¸ÑÐ»Ð¾ Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ñ…" />
 
 <e id="T_GaMa_gpar1_redundancy"
    EN="Degrees of freedom"
-   ru="Ñòåïåíü ñâîáîäû" />
+   ru="Ð¡Ñ‚ÐµÐ¿ÐµÐ½ÑŒ ÑÐ²Ð¾Ð±Ð¾Ð´Ñ‹" />
 
 <e id="T_GaMa_gpar2_network_defect"
    EN="Network defect"
-   ru="Äåôåêò ñåòè" />
+   ru="Ð”ÐµÑ„ÐµÐºÑ‚ ÑÐµÑ‚Ð¸" />
 
 <e id="T_GaMa_not_enough_constrained_points"
    EN="Not enough constrained points defined"
-   ru="Îïðåäåëåíî íåäîñòàòî÷íî îãðàíè÷åííûõ òî÷åê" />
+   ru="ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¾ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð½Ñ‹Ñ… Ñ‚Ð¾Ñ‡ÐµÐº" />
 
 <e id="T_GaMa_Free_network"
    EN="Free network"
-   ru="Ñâîáîäíàÿ ñåòü" />
+   ru="Ð¡Ð²Ð¾Ð±Ð¾Ð´Ð½Ð°Ñ ÑÐµÑ‚ÑŒ" />
 
 <e id="T_GaMa_Free_network_defect_is"
    EN="Free network defect is "
-   ru="Äåôåêò ñâîáîäíîé ñåòè - " />
+   ru="Ð”ÐµÑ„ÐµÐºÑ‚ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ð¾Ð¹ ÑÐµÑ‚Ð¸ - " />
 
 <e id="T_GaMa_Given_network_configuration_can_not_be_adjusted"
    EN="Given network configuration can not be adjusted"
-   ru="Ãåîäåçè÷åñêàÿ ñåòü â äàííîé êîíôèãóðàöèè íå ìîæåò áûòü óðàâíåííà" />
+   ru="Ð“ÐµÐ¾Ð´ÐµÐ·Ð¸Ñ‡ÐµÑÐºÐ°Ñ ÑÐµÑ‚ÑŒ Ð² Ð´Ð°Ð½Ð½Ð¾Ð¹ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ð°" />
 
 <e id="T_GaMa_detected_singular_variables"
    EN="The following unknowns have been detected as linearly dependent"
-   ru="Íèæåóïîìÿíóòûå íåèçâåñòíûå ÿâëÿþòñÿ ëèíåéíî çàâèñèìûìè" />
+   ru="ÐÐ¸Ð¶ÐµÑƒÐ¿Ð¾Ð¼ÑÐ½ÑƒÑ‚Ñ‹Ðµ Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ðµ ÑÐ²Ð»ÑÑŽÑ‚ÑÑ Ð»Ð¸Ð½ÐµÐ¹Ð½Ð¾ Ð·Ð°Ð²Ð¸ÑÐ¸Ð¼Ñ‹Ð¼Ð¸" />
 
 <e id="T_GaMa_index_type_point"
    EN="  index type point"
-   ru="  èíäåêñ òèï òî÷êà" />
+   ru="  Ð¸Ð½Ð´ÐµÐºÑ Ñ‚Ð¸Ð¿ Ñ‚Ð¾Ñ‡ÐºÐ°" />
 
 <e id="T_GaMa_m0_apriori"
    EN="m0  apriori    "
@@ -160,184 +160,184 @@
 
 <e id="T_GaMa_During_statistical_analysis_we_work"
    EN="During statistical analysis we work"
-   ru="Âî âðåìÿ ñòàòèñòè÷åñêîãî àíàëèçà ìû ðàáîòàåì" />
+   ru="Ð’Ð¾ Ð²Ñ€ÐµÐ¼Ñ ÑÑ‚Ð°Ñ‚Ð¸ÑÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ð°Ð½Ð°Ð»Ð¸Ð·Ð° Ð¼Ñ‹ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÐ¼" />
 
 <e id="T_GaMa_statan_with_empirical_standard_deviation"
    EN="- with aposteriori standard deviation "
-   ru="- ñ aposteriori ñòàíäàðòîì (ñðåäíèì êâàäðàòè÷åñêèì îòêëîíåíèåì) " />
+   ru="- Ñ aposteriori ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð¾Ð¼ (ÑÑ€ÐµÐ´Ð½Ð¸Ð¼ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¼ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸ÐµÐ¼) " />
 
 <e id="T_GaMa_statan_with_apriori_standard_deviation"
    EN="- with apriori standard deviation "
-   ru="- ñ apriori ñòàíäàðòîì (ñðåäíèì êâàäðàòè÷åñêèì îòêëîíåíèåì) " />
+   ru="- Ñ apriori ÑÑ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð¾Ð¼ (ÑÑ€ÐµÐ´Ð½Ð¸Ð¼ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¼ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸ÐµÐ¼) " />
 
 <e id="T_GaMa_statan_with_confidence_level"
    EN="- with confidence level "
-   ru="- ñ äîâåðèòåëüíûì èíòåðâàëîì " />
+   ru="- Ñ Ð´Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð¾Ð¼ " />
 
 <e id="T_GaMa_Ratio_empirical_to_apriori"
    EN="Ratio m0\' aposteriori / m0 apriori: "
-   ru="Îòíîøåíèå m0' aposteriori / m0 apriori: " />
+   ru="ÐžÑ‚Ð½Ð¾ÑˆÐµÐ½Ð¸Ðµ m0' aposteriori / m0 apriori: " />
 
 <e id="T_GaMa_interval"
    EN="interval"
-   ru="èíòåðâàë" />
+   ru="Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»" />
 
 <e id="T_GaMa_interval_contains"
    EN="contains value m0\'/m0"
-   ru="ñîäåðæèò çíà÷åíèå m0\'/m0" />
+   ru="ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ m0\'/m0" />
 
 <e id="T_GaMa_interval_doesnt_contain"
    EN="does not contain value m0\'/m0"
-   ru="íå ñîäåðæèò çíà÷åíèå m0\'/m0" />
+   ru="Ð½Ðµ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ m0\'/m0" />
 
 <e id="T_GaMa_m0_distances"
    EN="m0\'/m0 (distances): "
-   ru="m0\'/m0 (ðàññòîÿíèÿ): " />
+   ru="m0\'/m0 (Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ñ): " />
 
 <e id="T_GaMa_m0_directions"
    EN="m0\'/m0 (directions): "
-   ru="m0\'/m0 (íàïðàâëåíèÿ): " />
+   ru="m0\'/m0 (Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ): " />
 
 <e id="T_GaMa_m0_angles"
    EN="m0\'/m0 (angles): "
-   ru="m0\'/m0 (óãëû)  : " />
+   ru="m0\'/m0 (ÑƒÐ³Ð»Ñ‹)  : " />
 
 <e id="T_GaMa_m0_dirs_angs"
    EN="m0\'/m0 (directions/angles): "
-   ru="m0\'/m0 (íàïðàâëåíèÿ/óãëû) : " />
+   ru="m0\'/m0 (Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ/ÑƒÐ³Ð»Ñ‹) : " />
 
 <e id="T_GaMa_Maximal_decrease_of_m0"
    EN="Maximal decrease of m0\'\'/m0 on elimination of one observation: "
-   ru="Íàèáîëüøåå óìåíüøåíèå m0\'\'/m0 íà óñòðàíåíèå îäíîãî íàáëþäåíèÿ: " />
+   ru="ÐÐ°Ð¸Ð±Ð¾Ð»ÑŒÑˆÐµÐµ ÑƒÐ¼ÐµÐ½ÑŒÑˆÐµÐ½Ð¸Ðµ m0\'\'/m0 Ð½Ð° ÑƒÑÑ‚Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ: " />
 
 <e id="T_GaMa_Maximal_normalized_residual"
    EN="Maximal normalized residual "
-   ru="Ìàêñèìàëüíàÿ íîðìèðîâàííàÿ ïîïðàâêà " />
+   ru="ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ Ð½Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ° " />
 
 <e id="T_GaMa_genpar_Maximal_studentized_residual"
    EN="Maximal studentized residual "
-   ru="Ìàêñèìàëüíàÿ ñòüþäåíòèçèðîâàííàÿ ïîïðàâêà " />
+   ru="ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð°Ñ ÑÑ‚ÑŒÑŽÐ´ÐµÐ½Ñ‚Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ° " />
 
 <e id="T_GaMa_genpar_exceeds"
    EN=" exceeds"
-   ru=" ïðåâûøàåò" />
+   ru=" Ð¿Ñ€ÐµÐ²Ñ‹ÑˆÐ°ÐµÑ‚" />
 
 <e id="T_GaMa_genpar_doesnt_exceed"
    EN=" does not exceed"
-   ru=" íå ïðåâûøàåò" />
+   ru=" Ð½Ðµ Ð¿Ñ€ÐµÐ²Ñ‹ÑˆÐ°ÐµÑ‚" />
 
 <e id="T_GaMa_genpar_critical_value"
    EN=" critical value "
-   ru=" êðèòè÷åñêîå çíà÷åíèå " />
+   ru=" ÐºÑ€Ð¸Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ " />
 
 <e id="T_GaMa_genpar_on_significance_level"
    EN="on significance level "
-   ru="ïðè óðîâíå çíà÷èìîñòè " />
+   ru="Ð¿Ñ€Ð¸ ÑƒÑ€Ð¾Ð²Ð½Ðµ Ð·Ð½Ð°Ñ‡Ð¸Ð¼Ð¾ÑÑ‚Ð¸ " />
 
 <e id="T_GaMa_genpar_for_observation_ind"
    EN=" % for observation #"
-   ru=" % äëÿ íàáëþäåíèÿ #" />
+   ru=" % Ð´Ð»Ñ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ #" />
 
 <e id="T_GaMa_Review_of_fixed_points"
    EN="Fixed points"
-   ru="Æåñòêèå òî÷êè" />
+   ru="Ð–ÐµÑÑ‚ÐºÐ¸Ðµ Ñ‚Ð¾Ñ‡ÐºÐ¸" />
 
 <e id="T_GaMa_point"
    EN="point"
-   ru="òî÷êà" />
+   ru="Ñ‚Ð¾Ñ‡ÐºÐ°" />
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_coordidantes"
    EN="Adjusted coordinates"
-   ru="Óðàâíåííûå êîîðäèíàòû" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹" />
 
 <e id="T_GaMa_adjunk_mean_position_error_maximal"
    EN="Maximal mean position error is "
-   ru="Ìàêñèìàëüíîå çíà÷åíèå îøèáêè " />
+   ru="ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ " />
 
 <e id="T_GaMa_adjunk_mean_position_error_on_point"
    EN=" mm on point "
-   ru=" mm ó òî÷êè " />
+   ru=" mm Ñƒ Ñ‚Ð¾Ñ‡ÐºÐ¸ " />
 
 <e id="T_GaMa_adjunk_mean_position_error_average"
    EN="Average mean position error is "
-   ru="Ñð. çíà÷åíèå îøèáêè ïîëîæåíèÿ  " />
+   ru="Ð¡Ñ€. Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ  " />
 
 <e id="T_GaMa_adjunk_header1"
    EN="    approximate  correction  adjusted    std.dev conf.i.\n"
-   ru="    ïðèáëèæåííîå  ïîïðàâêè   óðàâíåííîå   ñ.ê.î  äîâ.èíò\n" />
+   ru="    Ð¿Ñ€Ð¸Ð±Ð»Ð¸Ð¶ÐµÐ½Ð½Ð¾Ðµ  Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ¸   ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ð¾Ðµ   Ñ.Ðº.Ð¾  Ð´Ð¾Ð².Ð¸Ð½Ñ‚\n" />
 
 <e id="T_GaMa_adjunk_header2"
    EN="====== value ====== [m] ====== value ========== [mm] ===\n\n"
-   ru="====== çí-èå ====== [m] ====== çí-èå ========== [mm] ===\n\n" />
+   ru="====== Ð·Ð½-Ð¸Ðµ ====== [m] ====== Ð·Ð½-Ð¸Ðµ ========== [mm] ===\n\n" />
 
 <e id="T_GaMa_adjunk_constrained"
    EN="constrained"
-   ru="îãðàíè÷-ûå " />
+   ru="Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡-Ñ‹Ðµ " />
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_bearings"
    EN="Adjusted orientation unknowns"
-   ru="Óðàâíåííîå êîîðäèíèðîâàíèå íåèçâåñòíûõ íàïðàâëåíèé" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ð¾Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ñ… Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_adjunk_header3"
    EN="   approximate  correction  adjusted   std.dev conf.i.\n"
-   ru="   ïðèáëèæåííîå  ïîïðàâêè   óðàâíåííîå  ñ.ê.î  äîâ.èíò\n" />
+   ru="   Ð¿Ñ€Ð¸Ð±Ð»Ð¸Ð¶ÐµÐ½Ð½Ð¾Ðµ  Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ¸   ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ð¾Ðµ  Ñ.Ðº.Ð¾  Ð´Ð¾Ð².Ð¸Ð½Ñ‚\n" />
 
 <e id="T_GaMa_adjunk_header4"
    EN="==== value [g] ==== [g] === value [g] ======= [cc] ===\n\n"
-   ru="==== çí-èå [g] ==== [g] === çí-èå [g] ======= [cc] ===\n\n" />
+   ru="==== Ð·Ð½-Ð¸Ðµ [g] ==== [g] === Ð·Ð½-Ð¸Ðµ [g] ======= [cc] ===\n\n" />
 
 <e id="T_GaMa_adjunk_Review_of_unknowns_heights"
    EN="Adjusted heights"
-   ru="Óðàâíåííûå âûñîòû" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ðµ Ð²Ñ‹ÑÐ¾Ñ‚Ñ‹" />
 
 <e id="T_GaMa_adjunk_header5"
    EN="     approximate  correction  adjusted    std.dev conf.i.\n"
-   ru="     ïðèáëèæåííîå  ïîïðàâêè   óðàâíåííîå   ñ.ê.î  äîâ.èíò\n" />
+   ru="     Ð¿Ñ€Ð¸Ð±Ð»Ð¸Ð¶ÐµÐ½Ð½Ð¾Ðµ  Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ¸   ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ð¾Ðµ   Ñ.Ðº.Ð¾  Ð´Ð¾Ð².Ð¸Ð½Ñ‚\n" />
 
 <e id="T_GaMa_adjunk_header6"
    EN="======= value ====== [m] ====== value ========== [mm] ===\n\n"
-   ru="======= çí-èå======= [m] ====== çí-èå ========== [mm] ===\n\n" />
+   ru="======= Ð·Ð½-Ð¸Ðµ======= [m] ====== Ð·Ð½-Ð¸Ðµ ========== [mm] ===\n\n" />
 
 <e id="T_GaMa_tstlin_header_value"
    EN="======= value "
-   ru="======= çí-èå " />
+   ru="======= Ð·Ð½-Ð¸Ðµ " />
 
 <e id="T_GaMa_tstlin_Test_of_linearization_error"
    EN="Test of linearization error"
-   ru="Òåñò íà ëèíåéíîñòü îøèáêè" />
+   ru="Ð¢ÐµÑÑ‚ Ð½Ð° Ð»Ð¸Ð½ÐµÐ¹Ð½Ð¾ÑÑ‚ÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¸" />
 
 <e id="T_GaMa_tstlin_Differences"
    EN="Diffs in adj. observations from residuals and from adjusted coordinates"
-   ru="Ðàçíèöà ìåæäó ïîïðàâêàìè óðàâíåííûõ íàáëþäåíèé è óðàâíåííûìè êîîðäèíàòàìè"
+   ru="Ð Ð°Ð·Ð½Ð¸Ñ†Ð° Ð¼ÐµÐ¶Ð´Ñƒ Ð¿Ð¾Ð¿Ñ€Ð°Ð²ÐºÐ°Ð¼Ð¸ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ñ… Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹ Ð¸ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ð¼Ð¸ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð°Ð¼Ð¸"
    />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   ru="      íàáë-ìîå     r         ðàçíèöà  " />
+   EN="      observed     v        difference"
+   ru="      Ð½Ð°Ð±Ð»-Ð¼Ð¾Ðµ     v         Ñ€Ð°Ð·Ð½Ð¸Ñ†Ð°  " />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"
-   ru="====== çí-èå == [mm|cc] == [cc] == [mm] =\n\n" />
+   ru="====== Ð·Ð½-Ð¸Ðµ == [mm|cc] == [cc] == [mm] =\n\n" />
 
 <e id="T_GaMa_distance"
    EN=" dist. "
-   ru=" ðàññò " />
+   ru=" Ñ€Ð°ÑÑÑ‚ " />
 
 <e id="T_GaMa_direction"
    EN=" dir.  "
-   ru=" íàïð  " />
+   ru=" Ð½Ð°Ð¿Ñ€  " />
 
 <e id="T_GaMa_angle"
    EN=" angle "
-   ru=" óãîë  " />
+   ru=" ÑƒÐ³Ð¾Ð»  " />
 
 <e id="T_GaMa_s_distance"
    EN=" slope "
-   ru=" íàêë. " />
+   ru=" Ð½Ð°ÐºÐ». " />
 
 <e id="T_GaMa_z_angle"
    EN=" zenit "
-   ru=" çåíèò " />
+   ru=" Ð·ÐµÐ½Ð¸Ñ‚ " />
 
 <e id="T_GaMa_x"
    EN=" x     "
@@ -353,63 +353,63 @@
 
 <e id="T_GaMa_levell"
    EN=" h dif "
-   ru=" h ðàçí " />
+   ru=" h Ñ€Ð°Ð·Ð½ " />
 
 <e id="T_GaMa_xdiff"
    EN=" x dif "
-   ru=" x ðàçí " />
+   ru=" x Ñ€Ð°Ð·Ð½ " />
 
 <e id="T_GaMa_ydiff"
    EN=" y dif "
-   ru=" y ðàçí " />
+   ru=" y Ñ€Ð°Ð·Ð½ " />
 
 <e id="T_GaMa_zdiff"
    EN=" z dif "
-   ru=" z ðàçí " />
+   ru=" z Ñ€Ð°Ð·Ð½ " />
 
 <e id="T_GaMa_errell_review_of_mean_errors_and_error_ellipses"
    EN="Mean errors and parameters of error ellipses"
-   ru="Çíà÷åíèÿ îøèáîê è ïàðàìåòðîâ ýëëèïñà îøèáîê" />
+   ru="Ð—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¾ÑˆÐ¸Ð±Ð¾Ðº Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ÑÐ»Ð»Ð¸Ð¿ÑÐ° Ð¾ÑˆÐ¸Ð±Ð¾Ðº" />
 
 <e id="T_GaMa_errell_header1"
    EN="    mp      mxy      mean error ellipse  conf.err. ellipse   g\n"
-   ru="    mp      mxy      çí-èÿ ïàð-â ýëëèïñà äîâåðèò-ûå çíà÷-èÿ  g\n" />
+   ru="    mp      mxy      Ð·Ð½-Ð¸Ñ Ð¿Ð°Ñ€-Ð² ÑÐ»Ð»Ð¸Ð¿ÑÐ° Ð´Ð¾Ð²ÐµÑ€Ð¸Ñ‚-Ñ‹Ðµ Ð·Ð½Ð°Ñ‡-Ð¸Ñ  g\n" />
 
 <e id="T_GaMa_errell_header2"
    EN="== [mm] == [mm] ==== a [mm] b  alpha[g] ==== a' [mm] b' ========"
-   ru="== [mm] == [mm] ==== a [mm] b  àëüôà[g] ==== a' [mm] b' ========" />
+   ru="== [mm] == [mm] ==== a [mm] b  Ð°Ð»ÑŒÑ„Ð°[g] ==== a' [mm] b' ========" />
 
 <e id="T_GaMa_adjobs_Adjusted_observations"
    EN="Adjusted observations"
-   ru="Óðàâíåííûå íàáëþäåíèÿ" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ðµ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GaMa_adjobs_observed"
    EN="observed"
-   ru="íàáëþäàåìîå" />
+   ru="Ð½Ð°Ð±Ð»ÑŽÐ´Ð°ÐµÐ¼Ð¾Ðµ" />
 
 <e id="T_GaMa_adjobs_adjusted"
    EN="adjusted"
-   ru="óðàâíåííîå" />
+   ru="ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ð¾Ðµ" />
 
 <e id="T_GaMa_adjobs_header1"
    EN=" std.dev conf.i.\n"
-   ru=" ñ.ê.î   äîâ.èíò\n" />
+   ru=" Ñ.Ðº.Ð¾   Ð´Ð¾Ð².Ð¸Ð½Ñ‚\n" />
 
 <e id="T_GaMa_adjobs_value"
    EN="== value "
-   ru="== çí-èå " />
+   ru="== Ð·Ð½-Ð¸Ðµ " />
 
 <e id="T_GaMa_resobs_Review_of_residuals_analysis_obs"
    EN="Residuals and analysis of observations"
-   ru="Ïîïðàâêè è àíàëèç íàáëþäåíèé" />
+   ru="ÐŸÐ¾Ð¿Ñ€Ð°Ð²ÐºÐ¸ Ð¸ Ð°Ð½Ð°Ð»Ð¸Ð· Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_resobs_Outlying_observations"
    EN="Outlying observations"
-   ru="Ðåçêî îòêëîíÿþùèåñÿ ðåçóëüòàòû íàáëþäåíèé" />
+   ru="Ð ÐµÐ·ÐºÐ¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÑÑŽÑ‰Ð¸ÐµÑÑ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñ‹ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_resobs_header1"
    EN="        f[%]        v    |v'|     e-obs.  e-adj.\n"
-   ru="        f[%]        v    |v'|       e-íàáë.  e-óð.\n" />
+   ru="        f[%]        v    |v'|       e-Ð½Ð°Ð±Ð».  e-ÑƒÑ€.\n" />
 
 <!-- removed in 1.7.09 :$ e id="T_GaMa_resobs_header2"
    EN="======== [mm|cc] =========== [mm|cc] ===\n\n"
@@ -417,76 +417,76 @@
 
 <e id="T_GaMa_resobs_no_control"
    EN=" u"
-   ru=" í" />
+   ru=" Ð½" />
 
 <e id="T_GaMa_resobs_weak_control"
    EN=" w"
-   ru=" ñ" />
+   ru=" Ñ" />
 
 <e id="T_GaMa_resobs_mc_max_critical"
    EN=" mc"
-   ru=" ìê" />
+   ru=" Ð¼Ðº" />
 
 <e id="T_GaMa_resobs_mc_max"
    EN=" m "
-   ru=" ì " />
+   ru=" Ð¼ " />
 
 <e id="T_GaMa_resobs_mc_critical"
    EN=" c "
-   ru=" ê " />
+   ru=" Ðº " />
 
 <e id="T_GaMa_resobs_normality_test"
    EN="Test of normality of homogenized residuals"
-   ru="Òåñò íîðìàëüíîñòè âåêòîðà ïîïðàâîê" />
+   ru="Ð¢ÐµÑÑ‚ Ð½Ð¾Ñ€Ð¼Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚Ð¸ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð° Ð¿Ð¾Ð¿Ñ€Ð°Ð²Ð¾Ðº" />
 
 <e id="T_GaMa_resobs_condition_number"
    EN="Condition number        : "
-   ru="Óñëîâèå íîìåð           : " />
+   ru="Ð£ÑÐ»Ð¾Ð²Ð¸Ðµ Ð½Ð¾Ð¼ÐµÑ€           : " />
 
 <e id="T_GaMa_reduced_Review_of_reduced_observations"
    en="Reduced observations"
-   ru="Ïðèâåäåííûå íàáëþäåíèÿ" />
+   ru="ÐŸÑ€Ð¸Ð²ÐµÐ´ÐµÐ½Ð½Ñ‹Ðµ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GaMa_reduced_observed"
    en="observed"
-   ru="èçìåðåí." />
+   ru="Ð¸Ð·Ð¼ÐµÑ€ÐµÐ½." />
 
 <e id="T_GaMa_reduced_reduced"
    en="reduced"
-   ru="ïðèâåä." />
+   ru="Ð¿Ñ€Ð¸Ð²ÐµÐ´." />
 
 <e id="T_GaMa_reduced_header1"
    en="  diff dh\n"
-   ru="  ðàçí dh\n" />
+   ru="  Ñ€Ð°Ð·Ð½ dh\n" />
 
 <e id="T_GaMa_reduced_value"
    en="== value "
-   ru="== çí-èå " />
+   ru="== Ð·Ð½-Ð¸Ðµ " />
 
 
 <e id="T_GaMa_approx_Review_of_approximate_coordinates"
    EN="Approximate coordinates"
-   ru="Óðàâíåííûå êîîðäèíàòû" />
+   ru="Ð£Ñ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹" />
 
 <e id="T_GaMa_approx_observations"
    EN="observations: "
-   ru="íàáëþäåíèé  : " />
+   ru="Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹  : " />
 
 <e id="T_GaMa_approx_header1"
    EN="coordinates   "
-   ru="êîîðäèíàòû    " />
+   ru="ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹    " />
 
 <e id="T_GaMa_approx_given_coordinates"
    EN="given       : "
-   ru="äàíî        : " />
+   ru="Ð´Ð°Ð½Ð¾        : " />
 
 <e id="T_GaMa_approx_computed_coordinates"
    EN="computed    : "
-   ru="ïîñ÷èòàííî  : " />
+   ru="Ð¿Ð¾ÑÑ‡Ð¸Ñ‚Ð°Ð½Ð½Ð¾  : " />
 
 <e id="T_GaMa_approx_total"
    EN="total       : "
-   ru="âñåãî       : " />
+   ru="Ð²ÑÐµÐ³Ð¾       : " />
 
 <e id="T_GaMa_approx_separator"
    EN="---------------------------------------------"
@@ -494,18 +494,18 @@
 
 <e id="T_GaMa_missing_coordinates"
    EN="Missing coordinates"
-   ru="Îòñóòñòâóþò êîîðäèíàòû" />
+   ru="ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‚ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹" />
 
 <e id="T_GaMa_abstrm_Review_of_outlying_abs_terms"
    EN="Outlying absolute terms in project equations"
-   ru="Ðåçêî îòêëîíÿþùèåñÿ àáñîëþòíûå îøèáêè â óðàâíåíèÿõ" />
+   ru="Ð ÐµÐ·ÐºÐ¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÑÑŽÑ‰Ð¸ÐµÑÑ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ Ð² ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸ÑÑ…" />
 
 <e id="T_GaMa_abstrm_header1"
    EN="           observed     absolute\n"
-   ru="           íàáëþäàåìûå  àáñîëþòíûå\n" />
+   ru="           Ð½Ð°Ð±Ð»ÑŽÐ´Ð°ÐµÐ¼Ñ‹Ðµ  Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ðµ\n" />
 
 <e id="T_GaMa_abstrm_header2"
    EN="== value ===== term ==\n\n"
-   ru="== çí-èå =====  îø  ==\n\n" />
+   ru="== Ð·Ð½-Ð¸Ðµ =====  Ð¾Ñˆ  ==\n\n" />
 
 </entries>

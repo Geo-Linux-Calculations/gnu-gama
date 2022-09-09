@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2012, 2018  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2018, 2022  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -250,8 +250,9 @@ void HtmlParser::table_standard_deviation_2()
 {
   if (table_col <= 0) return;
 
+  using Status = GNU_gama::LocalNetworkAdjustmentResults::Status;
   if (table_row == 2)
-    adjres->standard_deviation.passed = (trat=="test_m0_passed");
+    adjres->standard_deviation.status = (trat=="test_m0_passed" ? Status::passed : Status::failed);
 
   double D;
   toDouble(data, D);

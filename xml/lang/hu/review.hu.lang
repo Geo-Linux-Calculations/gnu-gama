@@ -311,8 +311,8 @@
    />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   hu="        mért       r           eltérés" />
+   EN="      observed     v        difference"
+   hu="        mért       v           eltérés" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

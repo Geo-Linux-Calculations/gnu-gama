@@ -310,8 +310,8 @@
    ca="Diferències entre les observacions ajustades, els residuals i les coordenades ajustades" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   ca="      observat     r        diferència" />
+   EN="      observed     v        difference"
+   ca="      observat     v        diferència" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

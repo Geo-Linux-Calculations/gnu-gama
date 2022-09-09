@@ -3,6 +3,57 @@ GNU Gama NEWS - History of user-visible changes.
   New glossary of basic terms used in gama-local text output and in
   documentation.
 
+Changes in release 2.22 (2022-09-02)
+
+  - Denny Fiedler reported inconsitent adjustment reports.
+    XML adjustment ouput differed from text and html formats
+    in description of Chi-square test of standard deviation.
+
+    New XML tag <not-applicable/> was added to the adjustment ouput
+    format for cases with zero degrees of freedom, where the standard
+    deviation test is not applicable (previously there were only
+    two tags <passed/> and <failed/>).
+
+  - New gama-local adjustment XML output definition
+    gama-local-adjustment.xsd version 1.02.
+
+    Old XML output files are formally complient with the new XSD
+    version 1.02, but three testing files were updated in the
+    directory tests/gama-local/input/
+       minimal.xml
+       triangle-1.xml
+       triangle-2.xml
+
+
+Changes in release 2.21 (2022-07-10)
+
+  - Fix Cholesky decomposition of CovMat class
+
+    In gama-local the cluster covariance matrix can be defined in three
+    ways: by implicit standard deviations, by explicit specification of
+    observations’ standard deviations or by direct definition of the cluster
+    covariance band matrix. When reading input, gama-local must check that
+    the resulting covariance matrix is positive definite.  If the input does
+    not have any of the above three covariance representations, the
+    covariance matrix variable contains only zeros.  Due to a bug, the
+    parser (using class CovMat) failed to detect the bad input data. The bug
+    was fixed and the scaling of tolerance for detecting semidefinite
+    matrices now uses the maximum of all diagonal elements, rather then only
+    the first diagonal element.
+
+  - Fix the bug in test linearization visitor for Angle
+
+    The visitor did not test if the right hand direction of the angle
+    pointed to a fixed point or to an adjustment point. If it was a fixed
+    point visitor added corrections from vector x with index 0, i.e. index
+    outside the vector.
+
+    Added file bug/test-linearization-angle.gkf and .xml to test all
+    possible combinations of angles with fixed and adjusment points.
+
+    The bug was reported by Greg Troxel on netbsd 9 amd64.
+
+
 Changes in release 2.20 (2022-06-30)
 
   - The new algorithm ICGS (iterated classical Gram-Schmidt) in the

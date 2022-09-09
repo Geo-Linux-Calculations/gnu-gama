@@ -1,5 +1,5 @@
 /* GNU Gama -- testing adjustment results from different algorithms
-   Copyright (C) 2012, 2014, 2018, 2020  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2012, 2014, 2018, 2020, 2022  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -146,8 +146,12 @@ int compare_xml_adjustment(GNU_gama::LocalNetworkAdjustmentResults* html,
 
     if (html->standard_deviation.using_aposteriori)
       {
-        if (html->standard_deviation.passed
-            != xml->standard_deviation.passed)
+        /*if (html->standard_deviation.passed
+          != xml->standard_deviation.passed)*/
+        using Status = GNU_gama::LocalNetworkAdjustmentResults::Status;
+        auto a = html->standard_deviation.status == Status::passed;
+        auto b = xml ->standard_deviation.status == Status::passed;
+        if(a != b)
           {
             std::cout << "         m0 in (lower, upper) test failed\n";
             result_gp = 1;

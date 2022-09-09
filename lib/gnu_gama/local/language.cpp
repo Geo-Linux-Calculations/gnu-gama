@@ -1,4 +1,4 @@
-/* slovnikar 1.15 */
+/* !!! DO NOT EDIT !!!  created by slovnikar 1.16 */
 
 #include <gnu_gama/local/language.h>
 
@@ -486,7 +486,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Test of linearization error";
 	T_GaMa_tstlin_header1="====== value == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= value ";
-	T_GaMa_tstlin_obs_r_diff="      observed     r        difference";
+	T_GaMa_tstlin_obs_r_diff="      observed     v        difference";
 	T_GaMa_version="version: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x dif ";
@@ -517,9 +517,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -753,7 +753,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Error al test de linearització";
 	T_GaMa_tstlin_header1="====== valor == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= valor ";
-	T_GaMa_tstlin_obs_r_diff="      observat     r        diferència";
+	T_GaMa_tstlin_obs_r_diff="      observat     v        diferència";
 	T_GaMa_version="versió: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" dif x ";
@@ -784,9 +784,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -1020,7 +1020,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Test chyby z linearizace";
 	T_GaMa_tstlin_header1="===== hodnota = [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="===== hodnota ";
-	T_GaMa_tstlin_obs_r_diff="       merena      v         diference";
+	T_GaMa_tstlin_obs_r_diff="       měřená      v         diference";
 	T_GaMa_version="verze: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x dif ";
@@ -1051,9 +1051,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -1287,7 +1287,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Test van de linearisatie fout";
 	T_GaMa_tstlin_header1="====== waarde == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= waarde ";
-	T_GaMa_tstlin_obs_r_diff="      observatie     r        verschil";
+	T_GaMa_tstlin_obs_r_diff="      observatie     v        verschil";
 	T_GaMa_version="versie: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x res ";
@@ -1318,9 +1318,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -1554,7 +1554,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Error durante el test de linearitzación";
 	T_GaMa_tstlin_header1="====== valor == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= valor ";
-	T_GaMa_tstlin_obs_r_diff="      observ.      r        diferencia";
+	T_GaMa_tstlin_obs_r_diff="      observ.      v        diferencia";
 	T_GaMa_version="versión: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" dif x ";
@@ -1585,9 +1585,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -1821,7 +1821,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Linearisointivirheen testi";
 	T_GaMa_tstlin_header1="====== arvo === [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= arvo  ";
-	T_GaMa_tstlin_obs_r_diff="      havaittu     r        erotus";
+	T_GaMa_tstlin_obs_r_diff="      havaittu     v        erotus";
 	T_GaMa_version="versio: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x ero ";
@@ -1852,9 +1852,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -2088,7 +2088,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Erreur de test de linéarisation";
 	T_GaMa_tstlin_header1="====== observée == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= valeur ";
-	T_GaMa_tstlin_obs_r_diff="      valeur      r        différence";
+	T_GaMa_tstlin_obs_r_diff="      valeur       v        différence";
 	T_GaMa_version="version: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" dif x ";
@@ -2119,9 +2119,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -2355,7 +2355,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Linearizálási hiba vizsgálata";
 	T_GaMa_tstlin_header1="====== érték == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= érték ";
-	T_GaMa_tstlin_obs_r_diff="        mért       r           eltérés";
+	T_GaMa_tstlin_obs_r_diff="        mért       v           eltérés";
 	T_GaMa_version="verzió: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x elt ";
@@ -2386,9 +2386,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -2622,7 +2622,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Тест на линейность ошибки";
 	T_GaMa_tstlin_header1="====== зн-ие == [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======= зн-ие ";
-	T_GaMa_tstlin_obs_r_diff="      набл-мое     r         разница  ";
+	T_GaMa_tstlin_obs_r_diff="      набл-мое     v         разница  ";
 	T_GaMa_version="версия :  ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x разн ";
@@ -2653,9 +2653,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -2889,7 +2889,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="Тест на лінійність помилки ";
 	T_GaMa_tstlin_header1="====== знач. == [мм|сс] == [сс] == [мм] =\n\n";
 	T_GaMa_tstlin_header_value="======= знач. ";
-	T_GaMa_tstlin_obs_r_diff="      спостер.     r         різниця  ";
+	T_GaMa_tstlin_obs_r_diff="      спостер.     v         різниця  ";
 	T_GaMa_version="версія :  ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x різн";
@@ -2920,9 +2920,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";
@@ -3156,7 +3156,7 @@ void set_gama_language(gama_language lang)
 	T_GaMa_tstlin_Test_of_linearization_error="线性化误差的测试";
 	T_GaMa_tstlin_header1="======  值  === [mm|cc] == [cc] == [mm] =\n\n";
 	T_GaMa_tstlin_header_value="======== 值 ";
-	T_GaMa_tstlin_obs_r_diff="   观测值       r       差值";
+	T_GaMa_tstlin_obs_r_diff="   观测值       v       差值";
 	T_GaMa_version="版本: ";
 	T_GaMa_x=" x     ";
 	T_GaMa_xdiff=" x 差 ";
@@ -3187,9 +3187,9 @@ void set_gama_language(gama_language lang)
 	T_HTML_observations="Observations";
 	T_HTML_observed="observed";
 	T_HTML_points="Points";
-	T_HTML_r="r";
+	T_HTML_r="v";
 	T_HTML_rejected="Rejected";
-	T_HTML_rstud="|r'|";
+	T_HTML_rstud="|v'|";
 	T_HTML_ss="[ss]";
 	T_HTML_stddev_confi="std.dev&nbsp;conf.i.";
 	T_HTML_value="value";

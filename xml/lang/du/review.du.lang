@@ -310,8 +310,8 @@
    du="Verschillen in ver. observaties van residus en vereffende coördinaten" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   du="      observatie     r        verschil" />
+   EN="      observed     v        difference"
+   du="      observatie     v        verschil" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

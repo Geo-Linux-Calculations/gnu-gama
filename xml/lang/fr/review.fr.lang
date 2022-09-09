@@ -310,8 +310,8 @@
    fr="Différences entre les observations ajustées issues des résidus et des coordonnées ajustées" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   fr="      valeur      r        différence" />
+   EN="      observed     v        difference"
+   fr="      valeur       v        différence" />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"

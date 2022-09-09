@@ -1,8 +1,8 @@
 /*
   GNU Gama C++ library
   Copyright (C) 2006, 2010  Ales Cepek <cepek@gnu.org>
-                2011  Vaclav Petras <wenzeslaus@gmail.com>
-                2012, 2013, 2014, 2018, 2019  Ales Cepek <cepek@gnu.org>
+    2011  Vaclav Petras <wenzeslaus@gmail.com>
+    2012, 2013, 2014, 2018, 2019, 2022  Ales Cepek <cepek@gnu.org>
 
   This file is part of the GNU Gama C++ library
 
@@ -531,7 +531,10 @@ void LocalNetworkXML::equations_summary(std::ostream& out) const
   out.setf(ios_base::scientific, ios_base::floatfield);
   out.precision(7);
   tagnl(out, "sum-of-squares", netinfo->trans_VWV());
-
+  if (netinfo->linearization_iterations())
+    {
+      tagnl(out, "linearization-iterations", netinfo->linearization_iterations());
+    }
   if (netinfo->connected_network())
     out << "   <connected-network/>\n";
   else
@@ -560,31 +563,31 @@ void LocalNetworkXML::std_dev_summary(std::ostream& out) const
     out.precision(3);
     tagnl(out, "probability", netinfo->conf_pr());
 
-    const int dof = netinfo->degrees_of_freedom();
-    double test=0, lower=0, upper=0;
+    if (const int dof = netinfo->degrees_of_freedom())
+      {
+        double test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
+        double alfa_pul = (1 - netinfo->conf_pr())/2;
+        double lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,dof)/dof);
+        double upper = sqrt(GNU_gama::Chi_square(  alfa_pul,dof)/dof);
 
-    test  = netinfo->m_0_aposteriori_value() / netinfo->apriori_m_0();
-    if (dof > 0 && netinfo->m_0_aposteriori())
-      //if (netinfo->m_0_aposteriori())
-        {
-          const double alfa_pul = (1 - netinfo->conf_pr())/2;
-          lower = sqrt(GNU_gama::Chi_square(1-alfa_pul,dof)/dof);
-          upper = sqrt(GNU_gama::Chi_square(  alfa_pul,dof)/dof);
-        }
-      else
-        {
-          out << "   <!-- no test for apriori standard deviation -->\n";
-          test = 1;
-        }
-
-    tagnl(out, "ratio",  test);
-    tagnl(out, "lower",  lower);
-    tagnl(out, "upper",  upper);
-    //if (lower < test && test < upper || netinfo->m_0_apriori())
-    if (lower < test && test < upper)
-      out << "   <passed/>\n\n";
+        tagnl(out, "ratio",  test);
+        tagnl(out, "lower",  lower);
+        tagnl(out, "upper",  upper);
+        if (lower < test && test < upper)
+          out << "   <passed/>\n\n";
+        else
+          out << "   <failed/>\n\n";
+      }
     else
-      out << "   <failed/>\n\n";
+      {
+        out << endl;
+        out << "   <!-- degrees of freedom is zero -->\n";
+        out << "   <!-- the standard deviation test is not applicable -->\n";
+        tagnl(out, "ratio", 0);
+        tagnl(out, "lower", 0);
+        tagnl(out, "upper", 0);
+        out << "   <not-applicable/>\n\n";
+      }
 
     out.setf(ios_base::scientific, ios_base::floatfield);
     out.precision(7);

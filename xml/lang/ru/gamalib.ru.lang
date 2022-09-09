@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <entries>
 
 <e id="T_IE_internal_error"
    EN="internal error"
-   ru="âíóòðåííÿÿ îøáèêà" />
+   ru="Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¾ÑˆÐ±Ð¸ÐºÐ°" />
 
 <e id="T_GaMa_from_equals_to"
    EN="station and target are identical"
-   ru="òî÷êà ñòîÿíèÿ è òî÷êà âèçèðîâàíèÿ îäíà è òà æå" />
+   ru="Ñ‚Ð¾Ñ‡ÐºÐ° ÑÑ‚Ð¾ÑÐ½Ð¸Ñ Ð¸ Ñ‚Ð¾Ñ‡ÐºÐ° Ð²Ð¸Ð·Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¾Ð´Ð½Ð° Ð¸ Ñ‚Ð° Ð¶Ðµ" />
 
-</entries>   
-
-
-
-
-
-
+</entries>

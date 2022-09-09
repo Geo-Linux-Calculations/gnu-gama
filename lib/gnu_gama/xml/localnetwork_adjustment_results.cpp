@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2006, 2012, 2014  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2006, 2012, 2014, 2022  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -74,6 +74,7 @@ void LocalNetworkAdjustmentResults::init()
   project_equations.defect = 0;
   project_equations.sum_of_squares = 0;
   project_equations.connected_network = true;
+  project_equations.linearization_iterations = 0;
 
   standard_deviation.apriori = 0;
   standard_deviation.aposteriori = 0;
@@ -82,7 +83,7 @@ void LocalNetworkAdjustmentResults::init()
   standard_deviation.ratio = 0;
   standard_deviation.lower = 0;
   standard_deviation.upper = 0;
-  standard_deviation.passed = false;
+  standard_deviation.status = Status::not_applicable;
   standard_deviation.confidence_scale = 0;
 
   fixed_points      .clear();
@@ -209,6 +210,9 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_defect_end                         ][t_sum_of_squares                 ] = &Parser::sum_of_squares;
   tagfun[s_sum_of_squares_end                 ][t_connected_network              ] = &Parser::connected_network;
   tagfun[s_sum_of_squares_end                 ][t_disconnected_network           ] = &Parser::disconnected_network;
+  tagfun[s_sum_of_squares_end                 ][t_linearization_iterations       ] = &Parser::linearization_iterations;
+  tagfun[s_linearization_iterations_end       ][t_connected_network              ] = &Parser::connected_network;
+  tagfun[s_linearization_iterations_end       ][t_disconnected_network           ] = &Parser::disconnected_network;
   tagfun[s_project_equations_end              ][t_standard_deviation             ] = &Parser::standard_deviation;
   tagfun[s_standard_deviation                 ][t_apriori                        ] = &Parser::apriori;
   tagfun[s_apriori_end                        ][t_aposteriori                    ] = &Parser::aposteriori;
@@ -219,6 +223,7 @@ void LocalNetworkAdjustmentResults::Parser::init()
   tagfun[s_lower_end                          ][t_upper                          ] = &Parser::upper;
   tagfun[s_upper_end                          ][t_passed                         ] = &Parser::passed;
   tagfun[s_upper_end                          ][t_failed                         ] = &Parser::failed;
+  tagfun[s_upper_end                          ][t_not_applicable                 ] = &Parser::not_applicable;
   tagfun[s_passed_end                         ][t_confidence_scale               ] = &Parser::confidence_scale;
   tagfun[s_network_processing_summary_end     ][t_coordinates                    ] = &Parser::coordinates;
   tagfun[s_coordinates                        ][t_fixed                          ] = &Parser::fixed;
@@ -396,10 +401,12 @@ int LocalNetworkAdjustmentResults::Parser::tag(const char* c)
       if (!strcmp(c, "left"                      )) return t_left;
       if (!strcmp(c, "lower"                     )) return t_lower;
       if (!strcmp(c, "lineNumber"                )) return t_line_number;
+      if (!strcmp(c, "linearization-iterations"  )) return t_linearization_iterations;
       break;
     case 'n':
       if (!strcmp(c, "network-general-parameters")) return t_network_general_parameters;
       if (!strcmp(c, "network-processing-summary")) return t_network_processing_summary;
+      if (!strcmp(c, "not-applicable"            )) return t_not_applicable;
       break;
     case 'o':
       if (!strcmp(c, "obs"                       )) return t_obs;
@@ -1041,6 +1048,21 @@ void LocalNetworkAdjustmentResults::Parser::sum_of_squares(bool start)
 }
 
 
+void LocalNetworkAdjustmentResults::Parser::linearization_iterations(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::linearization_iterations);
+      set_state(s_linearization_iterations);
+    }
+  else
+    {
+      adj->project_equations.linearization_iterations = get_int();
+      set_state(s_linearization_iterations_end);
+    }
+}
+
+
 void LocalNetworkAdjustmentResults::Parser::connected_network(bool start)
 {
   if (start)
@@ -1205,7 +1227,7 @@ void LocalNetworkAdjustmentResults::Parser::passed(bool start)
   else
     {
       check_and_clear_data();
-      adj->standard_deviation.passed = true;
+      adj->standard_deviation.status = Status::passed;
       set_state(s_passed_end);
     }
 }
@@ -1221,7 +1243,23 @@ void LocalNetworkAdjustmentResults::Parser::failed(bool start)
   else
     {
       check_and_clear_data();
-      adj->standard_deviation.passed = false;
+      adj->standard_deviation.status = Status::failed;
+      set_state(s_passed_end);
+    }
+}
+
+
+void LocalNetworkAdjustmentResults::Parser::not_applicable(bool start)
+{
+  if (start)
+    {
+      stack.push(&Parser::not_applicable);
+      set_state(s_not_applicable);
+    }
+  else
+    {
+      check_and_clear_data();
+      adj->standard_deviation.status = Status::not_applicable;
       set_state(s_passed_end);
     }
 }

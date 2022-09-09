@@ -6,9 +6,9 @@ Triangle - intersection from two direction sets
 </description>
 
 <network-general-parameters
-   gama-local-version="1.22"
+   gama-local-version="2.22"
    gama-local-algorithm="gso"
-   gama-local-compiler="g++ 6.3.0"
+   gama-local-compiler="GNU C/C++ 11.2"
    axes-xy="sw"
    angles="left-handed"
 />
@@ -38,7 +38,7 @@ Triangle - intersection from two direction sets
    <unknowns>4</unknowns>
    <degrees-of-freedom>0</degrees-of-freedom>
    <defect>0</defect>
-   <sum-of-squares>4.3790577e-47</sum-of-squares>
+   <sum-of-squares>6.7470067e-79</sum-of-squares>
    <connected-network/>
 </project-equations>
 
@@ -48,10 +48,13 @@ Triangle - intersection from two direction sets
    <used>aposteriori</used>
 
    <probability>0.950</probability>
-   <ratio>0.000</ratio>
-   <lower>0.000</lower>
-   <upper>0.000</upper>
-   <failed/>
+
+   <!-- degrees of freedom is zero -->
+   <!-- the standard deviation test is not applicable -->
+   <ratio>0</ratio>
+   <lower>0</lower>
+   <upper>0</upper>
+   <not-applicable/>
 
    <confidence-scale>0.0000000e+00</confidence-scale>
 </standard-deviation>
@@ -84,7 +87,7 @@ Triangle - intersection from two direction sets
 <dim>4</dim> <band>3</band>
 <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
 <flt>-0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
-<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt>
+<flt>0.0000000e+00</flt> <flt>0.0000000e+00</flt> <flt>-0.0000000e+00</flt>
 <flt>0.0000000e+00</flt> </cov-mat>
 
 <!-- original indexes from the adjustment -->

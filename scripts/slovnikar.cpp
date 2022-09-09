@@ -30,9 +30,13 @@
 
          const int N = sizeof(language)/sizeof(const char*);
 
-         const char* version = "1.15";
+         const char* version = "1.16";
 
 /* ---------------------------------------------------------------------------
+ *
+ * 1.16  2020-07-21
+ *
+ *       - added warning not to edit files language.[h|cpp]
  *
  * 1.15  2019-01-19
  *
@@ -367,7 +371,10 @@ int main()
     out << "#ifndef GNU_gama_local_language_header_file_h\n";
     out << "#define GNU_gama_local_language_header_file_h\n\n";
 
-    out << "namespace GNU_gama { namespace local {      /* slovnikar " << version << " */\n\n";
+    out << "/* !!! DO NOT EDIT !!!  created by slovnikar "
+        << version << " */\n\n";
+
+    out << "namespace GNU_gama { namespace local {\n\n";
 
     out << "enum gama_language {";
     for (int N=sizeof(language)/sizeof(const char*)-1, i=0; i<=N; i++)
@@ -439,7 +446,8 @@ int main()
   /* writing files language.cpp */
   {
     ofstream out("language.cpp");
-    out << "/* slovnikar " << version << " */\n\n"
+    out << "/* !!! DO NOT EDIT !!!  created by slovnikar "
+        << version << " */\n\n"
         << "#include <gnu_gama/local/language.h>\n\n"
         << "namespace GNU_gama { namespace local {\n\n"
         << "const char* T_language_cpp_internal_error = "

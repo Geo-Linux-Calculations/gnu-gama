@@ -1,66 +1,61 @@
-<?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <entries>
 
-<e id="T_GaMa_Adjustment_of_geodetic_network"   
+<e id="T_GaMa_Adjustment_of_geodetic_network"
    EN="Adjustment of local geodetic network"
-   ru="Óðàâíèâàíèå ëîêàëüíîé ãåîäåçè÷åñêîé ñåòè"  /> 
+   ru="Ð£Ñ€Ð°Ð²Ð½Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾Ð¹ Ð³ÐµÐ¾Ð´ÐµÐ·Ð¸Ñ‡ÐµÑÐºÐ¾Ð¹ ÑÐµÑ‚Ð¸"  />
 
 <e id="T_GaMa_version"
    EN="version: "
-   ru="âåðñèÿ :  " />
+   ru="Ð²ÐµÑ€ÑÐ¸Ñ :  " />
 
 <e id="T_GaMa_exception_1"
    EN="Error during creation of InfoSit object"
-   ru="Îøèáêà âî âðåìÿ ñîçäàíèÿ InfoSit îáúåêòà"  />
+   ru="ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð¾ Ð²Ñ€ÐµÐ¼Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ InfoSit Ð¾Ð±ÑŠÐµÐºÑ‚Ð°"  />
 
 <e id="T_GaMa_exception_2a"
    EN="GNU Gama - error on reading XML input configuration file!"
-   ru="GNU Gama - îøèáêà ïðè ÷òåíèè âõîäíîãî êîíôèãóðàöèîííîãî ôàéëà XML!" />
+   ru="GNU Gama - Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ñ‡Ñ‚ÐµÐ½Ð¸Ð¸ Ð²Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° XML!" />
 
 <e id="T_GaMa_exception_2b"
    EN="On line number "
-   ru="Íà ëèíèè íîìåð " />
+   ru="ÐÐ° Ð»Ð¸Ð½Ð¸Ð¸ Ð½Ð¾Ð¼ÐµÑ€ " />
 
 <e id="T_GaMa_No_points_available"
    EN="No points available"
-   ru="Íåò äîñòóïíûõ òî÷åê" />
+   ru="ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ñ‚Ð¾Ñ‡ÐµÐº" />
 
 <e id="T_GaMa_No_observations_available"
    EN="No observations available"
-   ru="Íåò äîñòóïíûõ íàáëþäåíèé" />
+   ru="ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹Ñ… Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ð¹" />
 
 <e id="T_GaMa_No_network_points_defined"
    EN="No network points defined"
-   ru="Íå îïðåäëåíû òî÷êè ñåòè" />
+   ru="ÐÐµ Ð¾Ð¿Ñ€ÐµÐ´Ð»ÐµÐ½Ñ‹ Ñ‚Ð¾Ñ‡ÐºÐ¸ ÑÐµÑ‚Ð¸" />
 
 <e id="T_GaMa_No_unknowns_defined"
    EN="No unknowns have been defined"
-   ru="Íå îïðåäåëåíû íåèçâåñòíûå" />
+   ru="ÐÐµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ñ‹ Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ðµ" />
 
 <e id="T_GaMa_Observatios_with_outlying_absolute_terms_removed"
    EN="Observations with outlying absolute terms removed"
-   ru="Íàáëþäåíèÿ ñ àáñîëþòíûìè îøèáêàìè, ïðåâûøàþùèìè ïðåäåëüíûå îøèáêè, èñêëþ÷åíû" />
+   ru="ÐÐ°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ Ñ Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ð¼Ð¸ Ð¾ÑˆÐ¸Ð±ÐºÐ°Ð¼Ð¸, Ð¿Ñ€ÐµÐ²Ñ‹ÑˆÐ°ÑŽÑ‰Ð¸Ð¼Ð¸ Ð¿Ñ€ÐµÐ´ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸, Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ñ‹" />
 
 <e id="T_GaMa_adjustment_iteration"
    EN=" - adjustment iteration"
-   ru=" - øàã óðàâíèâàíèÿ" />
+   ru=" - ÑˆÐ°Ð³ ÑƒÑ€Ð°Ð²Ð½Ð¸Ð²Ð°Ð½Ð¸Ñ" />
 
 <e id="T_GaMa_Approximate_coordinates_replaced"
    EN="Approximate coordinates of computed points replaced by adjusted"
-   ru="Ïðèáëèæåííûå êîîðäèíàòû âû÷èñëåííûõ òî÷åê çàìåíåíû íà óðàâíåííûå" />
+   ru="ÐŸÑ€Ð¸Ð±Ð»Ð¸Ð¶ÐµÐ½Ð½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð½Ñ‹Ñ… Ñ‚Ð¾Ñ‡ÐµÐº Ð·Ð°Ð¼ÐµÐ½ÐµÐ½Ñ‹ Ð½Ð° ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð½Ñ‹Ðµ" />
 
 <e id="T_GaMa_solution_ended_with_error"
    EN="GNU Gama - solution ended with error!"
-   ru="GNU Gama - ðåøåíèå çàêîí÷èëîñü îøèáêîé!" />
+   ru="GNU Gama - Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»Ð¾ÑÑŒ Ð¾ÑˆÐ¸Ð±ÐºÐ¾Ð¹!" />
 
 <e id="T_GaMa_internal_program_error"
    EN="GNU Gama - internal program error!"
-   ru="GNU Gama - âíóòðåííÿÿ îøèáêà!" />
-  
-</entries>   
+   ru="GNU Gama - Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¾ÑˆÐ¸Ð±ÐºÐ°!" />
 
-
-
-
-
+</entries>

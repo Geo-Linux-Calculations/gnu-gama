@@ -1,283 +1,277 @@
-<?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <entries>
 
 <e id="T_GKF_illegal_text"
    EN="illegal text"
-   ru="íåïðàâèëüíûé òåêñò" />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚ÐµÐºÑÑ‚" />
 
 <e id="T_GKF_must_start_with_gama_xml"
    EN="document must start with tag &lt;gama-local&gt;"
-   ru="äîêóìåíò äîëæåí íà÷èíàòüñÿ òýãîì &lt;gama-local&gt;" />
+   ru="Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð½Ð°Ñ‡Ð¸Ð½Ð°Ñ‚ÑŒÑÑ Ñ‚ÑÐ³Ð¾Ð¼ &lt;gama-local&gt;" />
 
 <e id="T_GKF_undefined_value_of_attribute"
    EN="illegal value of the attribute: "
-   ru="íåïðàâèëüíîå çíà÷åíèå àòðèáóòà: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ð°: " />
 
 <e id="T_GKF_illegal_value_of_gama_xml_version"
    EN="illegal value of attribue 'version' of tag &lt;gama-local&gt;: "
-   ru="íåïðàâèëüíîå çíà÷åíèå àòðèáóòà 'version' òýãà &lt;gama-local&gt;: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ð° 'version' Ñ‚ÑÐ³Ð° &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_gama_xml"
    EN="undefined attribute of tag &lt;gama-local&gt;: "
-   ru="íåîïðåäåëåííûé àòðèáóò òýãà &lt;gama-local&gt;: " />
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ Ñ‚ÑÐ³Ð° &lt;gama-local&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_vectors"
    EN="undefined attribute of tag &lt;vectors&gt;: "
-   ru="íåîïðåäåëåííûé àòðèáóò òýãà &lt;vectors&gt;: " />
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ Ñ‚ÑÐ³Ð° &lt;vectors&gt;: " />
 
 <e id ="T_GKF_missing_tag_network"
    EN="missing tag &lt;network&gt;"
-   ru="îòñóòñâóåò òýã &lt;network&gt;" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÐ²ÑƒÐµÑ‚ Ñ‚ÑÐ³ &lt;network&gt;" />
 
 <e id="T_GKF_e01a_illegal_tag"
    EN="illegal_tag &lt;"
-   ru="íåâåðíûé òýã &lt;" />
+   ru="Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚ÑÐ³ &lt;" />
 
 <e id="T_GKF_e01b_after_tag"
    EN="&gt; after tag"
-   ru="&gt; ïîñëå òýãà" />
+   ru="&gt; Ð¿Ð¾ÑÐ»Ðµ Ñ‚ÑÐ³Ð°" />
 
 <e id="T_GKF_error_on_reading_of_standard_deviation"
    EN="error on reading of standard deviation"
-   ru="îøèáêà ïðè ÷òåíèè ñðåäíåãî êâàäðàòè÷åñêîãî îòêëîíåíèÿ" />
+   ru="Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ñ‡Ñ‚ÐµÐ½Ð¸Ð¸ ÑÑ€ÐµÐ´Ð½ÐµÐ³Ð¾ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_error_on_reading_of_confidence_probability"
    EN="error on reading of confidence probability"
-   ru="îøèáêà ïðè ÷òåíèè äîâåðèòåëüíîé âåðîÿòíîñòè" />
+   ru="Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ñ‡Ñ‚ÐµÐ½Ð¸Ð¸ Ð´Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¹ Ð²ÐµÑ€Ð¾ÑÑ‚Ð½Ð¾ÑÑ‚Ð¸" />
 
 <e id="T_GKF_error_on_reading_of_absolute_terms_tolerance"
    EN="error on reading of tolerance for identification of outlying absolute terms"
-   ru="îøèáêà ïðè ÷òåíèè tol-abs äëÿ îïðåäåëåíèÿ ãðóáûõ  àáñîëþòíûõ îøèáîê" />
+   ru="Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ñ‡Ñ‚ÐµÐ½Ð¸Ð¸ tol-abs Ð´Ð»Ñ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ Ð³Ñ€ÑƒÐ±Ñ‹Ñ…  Ð°Ð±ÑÐ¾Ð»ÑŽÑ‚Ð½Ñ‹Ñ… Ð¾ÑˆÐ¸Ð±Ð¾Ðº" />
 
 <e id="T_GKF_wrong_type_of_standard_deviation"
-   EN="wrong type of standard deviation" 
-   ru="íåïðàâèëüíûé òèï ñðåäíåãî êâàäðàòè÷åñêîãî îòêëîíåíèÿ" />
+   EN="wrong type of standard deviation"
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚Ð¸Ð¿ ÑÑ€ÐµÐ´Ð½ÐµÐ³Ð¾ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_bad_network_configuration_unknown_parameter"
    EN="bad network configuration - unknown parameter: "
-   ru="ïëîõàÿ êîíôèãóðàöèÿ ñåòè-íåèçâåñòíûé ïàðàìåòð: " />
+   ru="Ð¿Ð»Ð¾Ñ…Ð°Ñ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ ÑÐµÑ‚Ð¸-Ð½ÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ñ‹Ð¹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€: " />
 
 <e id="T_GKF_bad_attribute_distance_dev"
    EN="bad attribute distance-stdev: "
-   ru="ïëîõîé àòðèáóò ðàññòîÿíèÿ-stdev: " />
+   ru="Ð¿Ð»Ð¾Ñ…Ð¾Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ñ-stdev: " />
 
 <e id="T_GKF_bad_attribute_direction_dev"
    EN="bad attribute direction-stdev: "
-   ru="ïëîõîé àòðèáóò íàïðàâëåíèÿ-stdev: " />
+   ru="Ð¿Ð»Ð¾Ñ…Ð¾Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ-stdev: " />
 
 <e id="T_GKF_bad_attribute_angle_dev"
    EN="bad attribute angle-stdev: "
-   ru="ïëîõîé àòðèáóò óãëà-stdev: " />
+   ru="Ð¿Ð»Ð¾Ñ…Ð¾Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ ÑƒÐ³Ð»Ð°-stdev: " />
 
 <e id="T_GKF_undefined_attribute_of_points_observations"
-   EN="undefined attribute of &lt;points-observations&gt;: " 
-   ru="íåîïðåäåëåííûé àòðèáóò &lt;points-observations&gt;: " />
+   EN="undefined attribute of &lt;points-observations&gt;: "
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;points-observations&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_points"
-   EN="undefined attribute of &lt;point&gt;: " 
-   ru="íåîïðåäåëåííûé àòðèáóò &lt;point&gt;: " />
+   EN="undefined attribute of &lt;point&gt;: "
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;point&gt;: " />
 
 <e id="T_GKF_missing_point_ID"
    EN="missing point ID"
-   ru="îòñóòñòâóåò ID òî÷êè" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ID Ñ‚Ð¾Ñ‡ÐºÐ¸" />
 
 <e id="T_GKF_missing_from_ID"
    EN="missing point ID (attribute from=\&quot;...\&quot;)"
-   ru="îòñóòñòâóåò ID òî÷êè (attribute from=\&quot;...\&quot;)" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ID Ñ‚Ð¾Ñ‡ÐºÐ¸ (attribute from=\&quot;...\&quot;)" />
 
 <e id="T_GKF_missing_to_ID"
    EN="missing point ID (attribute to=\&quot;...\&quot;)"
-   ru="îòñóòñòâóåò ID òî÷êè (attribute to=\&quot;...\&quot;)" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ID Ñ‚Ð¾Ñ‡ÐºÐ¸ (attribute to=\&quot;...\&quot;)" />
 
 <e id="T_GKF_multiple_definition_of_xy_in_tag_point"
    EN="multiple dexinition of coordinates xy in tag &lt;point&gt;"
-   ru="ìíîãîêðàòíîå îïðåäåëåíèå êîîðäèíàò xy â òýãå &lt;point&gt;" />
+   ru="Ð¼Ð½Ð¾Ð³Ð¾ÐºÑ€Ð°Ñ‚Ð½Ð¾Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚ xy Ð² Ñ‚ÑÐ³Ðµ &lt;point&gt;" />
 
 <e id="T_GKF_multiple_definition_of_z_in_tag_point"
    EN="multiple definition of coordinate z in tag &lt;point&gt;"
-   ru="ìíîãîêðàòíîå îïðåäåëåíèå êîîðäèíàòû z â òýãå &lt;point&gt;" /> 
+   ru="Ð¼Ð½Ð¾Ð³Ð¾ÐºÑ€Ð°Ñ‚Ð½Ð¾Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ z Ð² Ñ‚ÑÐ³Ðµ &lt;point&gt;" />
 
 <e id="T_GKF_point_must_define_xy_andor_z_inside_tag_coordinates"
    EN="tag &lt;point /&gt; must define coordinates xy and/or z inside tag &lt;coordinates&gt;"
-   ru="òýã &lt;point /&gt; äîëæåí îïðåäåëÿòü êîîðäèíàòû xy è/èëè z âíóòðè òýãà &lt;coordinates&gt;" />
+   ru="Ñ‚ÑÐ³ &lt;point /&gt; Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÑ‚ÑŒ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ xy Ð¸/Ð¸Ð»Ð¸ z Ð²Ð½ÑƒÑ‚Ñ€Ð¸ Ñ‚ÑÐ³Ð° &lt;coordinates&gt;" />
 
 <e id="T_GKF_coordinate_x_is_not_defined"
    EN="coordinate x is not defined"
-   ru="êîîðäèíàòà x íå îïðåäåëåíà" />
+   ru="ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð° x Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð°" />
 
 <e id="T_GKF_coordinate_y_is_not_defined"
    EN="coordinate y is not defined"
-   ru="êîîðäèíàòà y íå îïðåäåëåíà" />
+   ru="ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð° y Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð°" />
 
 <e id="T_GKF_bad_coordinate_x"
    EN="bad coordinate x: "
-   ru="íåïðàâèëüíàÿ êîîðäèíàòà x: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð° x: " />
 
 <e id="T_GKF_bad_coordinate_y"
    EN="bad coordinate y: "
-   ru="íåïðàâèëüíàÿ êîîðäèíàòà y: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð° y: " />
 
 <e id="T_GKF_bad_height"
    EN="bad height: "
-   ru="íåïðàâèëüíàÿ âûñîòà: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ð²Ñ‹ÑÐ¾Ñ‚Ð°: " />
 
 <e id="T_GKF_undefined_point_type"
    EN="undefined point type: "
-   ru="íå îïðåäåëåí òèï òî÷êè: " />
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ñ‚Ð¸Ð¿ Ñ‚Ð¾Ñ‡ÐºÐ¸: " />
 
 <e id="T_GKF_undefined_height_type"
    EN="undefined height type: "
-   ru="íå îïðåäåëåí òèï âûñîòû: " />
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ñ‚Ð¸Ð¿ Ð²Ñ‹ÑÐ¾Ñ‚Ñ‹: " />
 
 <e id="T_GKF_undefined_attribute_of_distance"
-   EN="undefined attribute of &lt;distance&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;distance&gt;: " />
+   EN="undefined attribute of &lt;distance&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;distance&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_slopedist"
-   EN="undefined attribute of &lt;s-distance&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóòà &lt;s-distance&gt;: " />
+   EN="undefined attribute of &lt;s-distance&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ð° &lt;s-distance&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_zangle"
-   EN="undefined attribute of &lt;z-angle&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;z-angle&gt;: " />
+   EN="undefined attribute of &lt;z-angle&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;z-angle&gt;: " />
 
 <e id="T_GKF_missing_standpoint_id"
    EN="missing standpoint ID"
-   ru="îòñóòñòâóåò ID òî÷êè ñòîÿíèÿ" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ID Ñ‚Ð¾Ñ‡ÐºÐ¸ ÑÑ‚Ð¾ÑÐ½Ð¸Ñ" />
 
 <e id="T_GKF_missing_forepoint_id"
    EN="missing forepoint ID"
-   ru="îòñóòñòâóåò ID òî÷êè íàâåäåíèÿ" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ID Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð°Ð²ÐµÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_missing_observed_value"
    EN="missing observed value"
-   ru="îòñóòñòâèå çíà÷åíèÿ íàáëþäåíèÿ" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_bad_distance"
    EN="bad distance: "
-   ru="íåïðàâèëüíîå ðàññòîÿíèå: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ðµ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ: " />
 
 <e id="T_GKF_bad_zangle"
    EN="bad zenith angle: "
-   ru="íåïðàâèëüíûé çåíèòíûé óãîë: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð·ÐµÐ½Ð¸Ñ‚Ð½Ñ‹Ð¹ ÑƒÐ³Ð¾Ð»: " />
 
 <e id="T_GKF_illegal_standard_deviation"
    EN="illegal standard deviation"
-   ru="íåïðàâèëüíîå ñðåäíåå êâàäðàòè÷åñêîå îòêëîíåíèå" />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ðµ ÑÑ€ÐµÐ´Ð½ÐµÐµ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ Ð¾Ñ‚ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ðµ" />
 
 <e id="T_GKF_undefined_attribute_of_angle"
-   EN="undefined attribute of &lt;angle&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;angle&gt;: " />
+   EN="undefined attribute of &lt;angle&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;angle&gt;: " />
 
 <e id="T_GKF_missing_left_forepoint_id"
    EN="missing left forepoint ID"
-   ru="îòñóòñòâèå ID ëåâîé òî÷êè íàâåäåíèÿ" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ ID Ð»ÐµÐ²Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð°Ð²ÐµÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_missing_right_forepoint_id"
    EN="missing right forepoint ID"
-   ru="îòñóòñòâèå ID ïðàâîé òî÷êè íàâåäåíèÿ" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ ID Ð¿Ñ€Ð°Ð²Ð¾Ð¹ Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð½Ð°Ð²ÐµÐ´ÐµÐ½Ð¸Ñ" />
 
 <e id="T_GKF_bad_angle"
    EN="bad angle: "
-   ru="íåïðàâèëüíûé óãîë: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ ÑƒÐ³Ð¾Ð»: " />
 
 <e id="T_GKF_undefined_attribute_of_obs"
-   EN="undefined attribute of &lt;obs&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;obs&gt;: " />
+   EN="undefined attribute of &lt;obs&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;obs&gt;: " />
 
 <e id="T_GKF_bad_instrument_reflector_height"
    EN="bad instrument/reflector height: "
-   ru="íåïðàâèëüíàÿ âûñîòà ïðèáîðà/îòðàæàòåëÿ: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ð²Ñ‹ÑÐ¾Ñ‚Ð° Ð¿Ñ€Ð¸Ð±Ð¾Ñ€Ð°/Ð¾Ñ‚Ñ€Ð°Ð¶Ð°Ñ‚ÐµÐ»Ñ: " />
 
 <e id="T_GKF_bad_orientation_angle"
    EN="bad orientation angle: "
-   ru="íåïðàâèëüíàÿ îðèåíòàöèÿ óãëà: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ð¾Ñ€Ð¸ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ ÑƒÐ³Ð»Ð°: " />
 
 <e id="T_GKF_undefined_attribute_of_direction"
-   EN="undefined attribute of &lt;direction&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;direction&gt;: " />
+   EN="undefined attribute of &lt;direction&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;direction&gt;: " />
 
 <e id="T_GKF_bad_direction"
    EN="bad direction: "
-   ru="íåïðàâèëüíîå íàïðàâëåíèå: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾Ðµ Ð½Ð°Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ: " />
 
 <e id="T_GKF_bad_height_diff"
    EN="bad height difference: "
-   ru="íåïðàâèëüíàÿ ðàçíîñòü âûñîò: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ñ€Ð°Ð·Ð½Ð¾ÑÑ‚ÑŒ Ð²Ñ‹ÑÐ¾Ñ‚: " />
 
 <e id="T_GKF_undefined_attribute_of_cov_mat"
-   EN="undefined attribute of &lt;cov-mat&gt;: " 
-   ru="íå îïðåäåëåí àòðèáóò &lt;cov-mat&gt;: " />
+   EN="undefined attribute of &lt;cov-mat&gt;: "
+   ru="Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;cov-mat&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_coordinates"
-   EN="undefined attribute of &lt;coordinates&gt;: " 
-   ru="íåîïðåäåëåí àòðèáóò &lt;coordinates&gt;: " />
+   EN="undefined attribute of &lt;coordinates&gt;: "
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;coordinates&gt;: " />
 
 <e id="T_GKF_undefined_attribute_of_height_differences"
-   EN="undefined attribute of &lt;height-differences&gt;: " 
-   ru="íåîïðåäåëåí àòðèáóò &lt;height-differences&gt;: " />
+   EN="undefined attribute of &lt;height-differences&gt;: "
+   ru="Ð½ÐµÐ¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚ &lt;height-differences&gt;: " />
 
 <e id="T_GKF_cov_mat_missing_dim"
    EN="missing dimension of covariance matrix"
-   ru="îòñóòñòâèå ðàçìåðíîñòè êîâàðèàöèîííîé ìàòðèöû" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚Ð¸ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" />
 
 <e id="T_GKF_cov_mat_missing_band_width"
    EN="missing band-width of covariance matrix"
-   ru="îòñóòñòâèå ðàçìàõà êîâàðèàöèîííîé ìàòðèöû" />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ñ€Ð°Ð·Ð¼Ð°Ñ…Ð° ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" />
 
 <e id="T_GKF_covariance_matrix_is_not_positive_definite"
    EN="variance-covariance matrix is not positive definite"
-   ru="ìàòðèöà âàðèàöèé-êîâàðèàöèé íå îïðåäåëåíà ïîëîæèòåëüíî" />
+   ru="Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¹-ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¹ Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð° Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾" />
 
 <e id="T_GKF_cov_mat_bad_dim"
    EN="bad dimension of covariance matrix: "
-   ru="íåïðàâèëüíàÿ ðàçìåðíîñòü êîâàðèàöèîííîé ìàòðèöû: " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹: " />
 
 <e id="T_GKF_cov_mat_bad_band_width"
    EN="missing band-width of covariance matrix: "
-   ru="îòñóòñòâèå ðàçìàõà êîâàðèàöèîííîé ìàòðèöû: " />
+   ru="Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ñ€Ð°Ð·Ð¼Ð°Ñ…Ð° ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹: " />
 
 <e id="T_GKF_cov_mat_bad_dim_too_many_elements"
    EN="bad dimension of covariance matrix - too many elements"
-   ru="íåïðàâèëüíàÿ ðàçìåðíîñòü êîâàðèàöèîííîé ìàòðèöû - ñëèøêîì ìíîãî ýëåìåíòîâ" />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ - ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð¼Ð½Ð¾Ð³Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²" />
 
 <e id="T_GKF_cov_mat_bad_dim_not_enough_elements"
    EN="bad dimension of covariance matrix - not enough elements"
-   ru="íåïðàâèëüíàÿ ðàçìåðíîñòü êîâàðèàöèîííîé ìàòðèöû - íåäîñòàòî÷íî ýëåìåíòîâ" />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ - Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²" />
 
 <e id="T_GKF_cov_mat_bad_element"
    EN="bad covariance matrix element: "
-   ru="íåïðàâèëüíûé ýëåìåíò ìàòðèöû : " />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ : " />
 
 <e id="T_GKF_no_observations_after_cov_mat"
    EN="observations can not come after covariance matrix"
-   ru="íàáëþäåíèÿ íå ìîãóò èäòè ïîñëå êîâàðèàöèîííîé ìàòðèöû" />
+   ru="Ð½Ð°Ð±Ð»ÑŽÐ´ÐµÐ½Ð¸Ñ Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð¸Ð´Ñ‚Ð¸ Ð¿Ð¾ÑÐ»Ðµ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" />
 
 <e id="T_GKF_coordinates_without_covariance_matrix"
    EN="coordinates without covariance matrix"
-   ru="êîîðäèíàòû áåç êîâàðèàöèîííîé ìàòðèöû" />
+   ru="ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð±ÐµÐ· ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" />
 
 <e id="T_GKF_cov_dim_differs_from_number_of_coordinates"
    EN="covariance matrix dimension differs from the number of coordinates"
-   ru="ðàçìåðíîñòü êîâàðèàöèîííîé ìàòðèöû íå ðàâíà ÷èñëó êîîðäèíàò" />
+   ru="Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ðµ Ñ€Ð°Ð²Ð½Ð° Ñ‡Ð¸ÑÐ»Ñƒ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚" />
 
 <e id="T_GKF_vectors_without_covariance_matrix"
    EN="vectors without covariance matrix"
-   ru="âåêòîðû áåç êîâàðèàöèîííîé ìàòðèöû" />
+   ru="Ð²ÐµÐºÑ‚Ð¾Ñ€Ñ‹ Ð±ÐµÐ· ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹" />
 
 <e id="T_GKF_cov_dim_differs_from_number_of_vectors"
    EN="covariance matrix dimension differs from the number of vectors"
-   ru="ðàçìåðíîñòü êîâàðèàöèîííîé ìàòðèöû íå ðàâíà ÷èñëó âåêòîðîâ" />
+   ru="Ñ€Ð°Ð·Ð¼ÐµÑ€Ð½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ð²Ð°Ñ€Ð¸Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð½Ðµ Ñ€Ð°Ð²Ð½Ð° Ñ‡Ð¸ÑÐ»Ñƒ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð¾Ð²" />
 
 <e id="T_GKF_bad_vector_data"
    EN="bad vector data"
-   ru="íåïðàâèëüíûé âåêòîð äàííûõ" />
+   ru="Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð²ÐµÐºÑ‚Ð¾Ñ€ Ð´Ð°Ð½Ð½Ñ‹Ñ…" />
 
-</entries>   
-
-
-
-
-
-
+</entries>

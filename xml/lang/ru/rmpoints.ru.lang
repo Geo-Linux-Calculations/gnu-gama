@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="cp-1251" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 
 <entries>
 
 <e id="T_LN_rm_removed_points"
    EN="Removed points and coordinates"
-   ru="Исключенные точки и координаты" />
+   ru="РСЃРєР»СЋС‡РµРЅРЅС‹Рµ С‚РѕС‡РєРё Рё РєРѕРѕСЂРґРёРЅР°С‚С‹" />
 
 <e id="T_LN_rm_missing_xyz"
    EN="missing coordiantes xyz"
-   ru="отсутсвуют координаты xyz" />
+   ru="РѕС‚СЃСѓС‚СЃРІСѓСЋС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ xyz" />
 
 <e id="T_LN_rm_missing_xy"
    EN="missing coordiantes xy"
-   ru="отсутсвуют координаты xy" />
+   ru="РѕС‚СЃСѓС‚СЃРІСѓСЋС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ xy" />
 
 <e id="T_LN_rm_missing_z"
    EN="missing coordiantes z"
-   ru="отсутсвуют координаты z" />
+   ru="РѕС‚СЃСѓС‚СЃРІСѓСЋС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ z" />
 
 <e id="T_LN_rm_singular_xy"
    EN="singular coordiantes xy"
-   ru="сингулярные координаты xy" />
+   ru="СЃРёРЅРіСѓР»СЏСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ xy" />
 
 <e id="T_LN_rm_huge_cov_xyz"
    EN="indeterminable coordinates xyz"
-   ru="неопределенные координаты xyz" />
+   ru="РЅРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ xyz" />
 
 <e id="T_LN_rm_huge_cov_xy"
    EN="indeterminable coordinates xy"
-   ru="неопределенные координаты xy" />
+   ru="РЅРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ xy" />
 
 <e id="T_LN_rm_huge_cov_z"
    EN="indeterminable coordinate z"
-   ru="неопределенные координаты z" />
+   ru="РЅРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ z" />
 
 </entries>

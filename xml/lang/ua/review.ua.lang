@@ -311,8 +311,8 @@
    ua="–≥зниц€ м≥ж поправками зр≥внених спостережень ≥ зр≥вненими координатами" />
 
 <e id="T_GaMa_tstlin_obs_r_diff"
-   EN="      observed     r        difference"
-   ua="      спостер.     r         р≥зниц€  " />
+   EN="      observed     v        difference"
+   ua="      спостер.     v         р≥зниц€  " />
 
 <e id="T_GaMa_tstlin_header1"
    EN="====== value == [mm|cc] == [cc] == [mm] =\n\n"
