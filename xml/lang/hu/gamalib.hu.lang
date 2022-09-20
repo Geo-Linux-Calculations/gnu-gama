@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?> 
 <entries>
 
 <e id="T_IE_internal_error"
    EN="internal error"
-   hu="belső hiba" />
+   hu="belsĹ hiba" />
 
 <e id="T_GaMa_from_equals_to"
    EN="station and target are identical"
-   hu="az álláspont és az irányzott pont megegyezik" />
+   hu="az ĂĄllĂĄspont ĂŠs az irĂĄnyzott pont megegyezik" />
 
 </entries>   
 

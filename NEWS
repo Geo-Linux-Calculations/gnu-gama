@@ -3,6 +3,16 @@ GNU Gama NEWS - History of user-visible changes.
   New glossary of basic terms used in gama-local text output and in
   documentation.
 
+Changes in release 2.23 (2022-09-12)
+
+  - Fixed the bug in gama-local reading sqlite3 database.  The bug was
+    introduced after version 2.10 when testing shell scripts were
+    updated to be generated from templates .sh_ files (testing
+    templates .sh_ use symbolic names like @INPUT_FILES@ or $RES etc).
+
+    More readeable output format in check_xml_coordinates.cpp test.
+
+
 Changes in release 2.22 (2022-09-02)
 
   - Denny Fiedler reported inconsitent adjustment reports.

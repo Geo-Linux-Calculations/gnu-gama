@@ -1,36 +1,40 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <entries>
 
 <e id="T_LN_rm_removed_points"
    EN="Removed points and coordinates"
-   hu="Eltávolított pontok és koordináták" />
+   hu="EltĂĄvolĂ­tott pontok ĂŠs koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_missing_xyz"
    EN="missing coordiantes xyz"
-   hu="hiányzó xyz koordináták" />
+   hu="hiĂĄnyzĂł xyz koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_missing_xy"
    EN="missing coordiantes xy"
-   hu="hiányzó xy koordináták" />
+   hu="hiĂĄnyzĂł xy koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_missing_z"
    EN="missing coordiantes z"
-   hu="hiányzó z koordináták" />
+   hu="hiĂĄnyzĂł z koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_singular_xy"
    EN="singular coordiantes xy"
-   hu="Egyedülálló xy koordináták" />
+   hu="egyedĂźlĂĄllĂł xy koordinĂĄtĂĄk" />
+   
+<e id="T_LN_rm_singular_z"
+   EN="singular coordiante z"
+   hu="egyedĂźlĂĄllĂł z koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_huge_cov_xyz"
    EN="indeterminable coordinates xyz"
-   hu="meghatározhatatlan xyz koordináták" />
+   hu="meghatĂĄrozhatatlan xyz koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_huge_cov_xy"
    EN="indeterminable coordinates xy"
-   hu="meghatározhatatlan xy koordináták" />
+   hu="meghatĂĄrozhatatlan xy koordinĂĄtĂĄk" />
 
 <e id="T_LN_rm_huge_cov_z"
    EN="indeterminable coordinate z"
-   hu="meghatározhatatlan z koordináták" />
+   hu="meghatĂĄrozhatatlan z koordinĂĄtĂĄk" />
 
 </entries>

@@ -175,8 +175,8 @@ int main(int argc, char **argv)
             const char* conf = argv[3];
             if (*conf == '-') conf++;
             if (*conf == '-') conf++;
-            if (!strcmp(conf, "configuration")) argv_confname = conf;
-            if (!strcmp(conf, "readonly-configuration")) argv_readonly = conf;
+            if (!strcmp(conf, "configuration")) argv_confname = argv[4];
+            if (!strcmp(conf, "readonly-configuration")) argv_readonly = argv[4];
 
             if (argv_confname || argv_readonly) indopt = 5;
           }
@@ -327,11 +327,23 @@ int main(int argc, char **argv)
 #ifdef GNU_GAMA_LOCAL_SQLITE_READER
     if (argv_sqlitedb)
       {
-        GNU_gama::local::sqlite_db::SqliteReader reader(argv_sqlitedb);
+        try
+          {
+            GNU_gama::local::sqlite_db:: SqliteReader reader(argv_sqlitedb);
 
-        const char* conf = argv_confname;
-        if (argv_readonly) conf = argv_readonly;
-        reader.retrieve(IS, conf);
+            const char* conf = argv_confname;
+            if (argv_readonly) conf = argv_readonly;
+            reader.retrieve(IS, conf);
+          }
+        catch(const GNU_gama::Exception::sqlitexc& exc)
+          {
+            std::cerr << exc.what() << "\n";
+            return 1;
+          }
+        catch(...)
+          {
+            throw;
+          }
       }
     else
 #endif

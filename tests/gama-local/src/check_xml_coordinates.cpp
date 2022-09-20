@@ -3,20 +3,6 @@
 #include <fstream>
 #include <gnu_gama/xml/localnetwork_adjustment_results.h>
 
-std::string strip(const char* s)
-{
-  std::string t;
-  while (*s)
-    {
-      if (*s == '.') break;
-      t += *s;
-      if (*s == '/') t.clear();
-      s++;
-    }
-
-  return t;
-}
-
 int main(int argc, char* argv[])
 {
   using namespace GNU_gama;
@@ -74,7 +60,7 @@ int main(int argc, char* argv[])
                 if (std::abs(dy) > std::abs(diff)) diff = dy;
               }
 
-            if (A[i].z && B[j].z)
+            if (A[i].hz && B[j].hz)
               {
                 double dz = A[i].z - B[j].z;
                 if (std::abs(dz) > std::abs(diff)) diff = dz;
@@ -84,9 +70,10 @@ int main(int argc, char* argv[])
           }
     }
 
+  std::cout << "\n" << argv[1] << "\n" << argv[2] << "\n";
   std::cout.precision(4);
   std::cout << "         max.diff xyz" << std::setw(11) <<  diff << " [m] "
-            << strip(argv[1]) << " " << strip(argv[2]) << "\n";
+            << "\n";
 
   if (std::abs(diff) >= 1e-4) return 1;
 }

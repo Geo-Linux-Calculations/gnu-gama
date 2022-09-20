@@ -384,7 +384,11 @@ void SqliteReader::retrieve(LocalNetwork*& locnet, const std::string& configurat
   exec(readerData->sqlite3Handle, query, sqlite_db_readConfigurationInfo, readerData);
 
   if (readerData->configurationId.empty())
-    throw GNU_gama::Exception::sqlitexc(T_gamalite_configuration_not_found);
+    {
+      std::string txt = T_gamalite_configuration_not_found;
+
+      throw GNU_gama::Exception::sqlitexc(txt + " : " + configuration);
+    }
 
   locnet = readerData->lnet; // now the pointer must be defined externally or in the callback
 

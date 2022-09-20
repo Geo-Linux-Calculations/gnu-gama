@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="iso-8859-2" standalone="yes" ?> 
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?> 
 <entries>
 
 <e id="T_POBS_computation_of_bearing_for_identical_points"
    EN="Computation of bearing for identical points"
-   hu="Irányszög számítás azonos pontok között" />
+   hu="IrĂĄnyszĂśg szĂĄmĂ­tĂĄs azonos pontok kĂśzĂśtt" />
 
 <e id="T_POBS_bad_data"
    EN="bad data"
-   hu="hibás adat" />
+   hu="hibĂĄs adat" />
 
 <e id="T_POBS_zero_or_negative_distance"
    EN="zero or negative distance"
-   hu="nulla vagy negatív távolság" />
+   hu="nulla vagy negatĂ­v tĂĄvolsĂĄg" />
 
 <e id="T_POBS_zero_or_negative_slope_distance"
    EN="zero or negative slope distance"
-   hu="nulla vagy negatív ferde távolság" />
+   hu="nulla vagy negatĂ­v ferde tĂĄvolsĂĄg" />
 
 <e id="T_POBS_zero_or_negative_zenith_angle"
    EN="zero or negative zenith angle"
-   hu="nulla vagy negatív zenitszög" />
+   hu="nulla vagy negatĂ­v zenitszĂśg" />
 
 </entries>
