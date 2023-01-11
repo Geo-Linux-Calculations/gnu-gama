@@ -6,16 +6,18 @@
 
 # GNU Gama
 
-Gama is a Free Software package for geodesy and surveying, available
-under the under the GNU General Public License, version 3 or later.
-The Gama project was started in 1998, and in 2001 it became a GNU
-package.
+|   |   |
+| - | - |
+| ![logo](https://www.gnu.org/software/gama/g-logo.png) | GNU Gama is a Free Software package for geodesy and surveying, available under the under the GNU General Public License, version 3 or later. The Gama project was started in 1998, and in 2001 it became a GNU package. |
 
-![Network](https://www.gnu.org/software/gama/gama-local.svg)
+|   |   |
+| - | - |
+| ![Network](https://www.gnu.org/software/gama/gama-local.svg) | ![in Krizikova station](https://www.gnu.org/software/gama/2020-barta.png) |
 
 ## Description
 
-GNU Gama is a project dedicated to adjustment of surveying and
+[GNU Gama](https://www.gnu.org/software/gama/manual/index.html)
+is a project dedicated to adjustment of surveying and
 geodetic networks.  It is intended for use with traditional surveying
 instruments, which are still in widespread use despite the advent of
 Global Navigation Satellite Systems.  Traditional instruments are
