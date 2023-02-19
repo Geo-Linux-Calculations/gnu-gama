@@ -1040,12 +1040,15 @@ int DataParser::g3_obs_azimuth(const char *name)
         {
           istringstream istr(sval);
           istr >> val;
+          g3->scale.push_back(1.0);
         }
+        else
+          g3->scale.push_back(3.0864); // ss --> cc
 
       Azimuth* azimuth = new Azimuth;
       azimuth->from = from;
       azimuth->to   = to;
-      azimuth->set(val);
+      azimuth->set(val * GON_TO_RAD);
       azimuth->from_dh = optional(g3->from_dh);
       azimuth->to_dh   = optional(g3->to_dh);
       g3->obs_cluster->observation_list.push_back(azimuth);
@@ -1334,8 +1337,8 @@ int DataParser::g3_obs_angle(const char *name)
      angle->right = right;
      angle->set(val*GON_TO_RAD);
      angle->from_dh  = optional(g3->from_dh);
-     angle->left_dh  = optional(g3->to_dh);
-     angle->right_dh = optional(g3->to_dh);
+     angle->left_dh  = optional(g3->left_dh);
+     angle->right_dh = optional(g3->right_dh);
      g3->obs_cluster->observation_list.push_back(angle);
 
      return  end_tag(name);
@@ -1343,3 +1346,4 @@ int DataParser::g3_obs_angle(const char *name)
 
   return error("### bad <angle>");
 }
+
