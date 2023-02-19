@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+
+<gnu-gama-data xmlns="http://www.gnu.org/software/gama/gnu-gama-data">
+
+<!--
+Based on example data files by Friedhelm Krumm, ```Geodetic Network
+Adjustment Examples```, Geodätisches Institut Universität Stuttgart,
+https://www.gis.uni-stuttgart.de, Rev. 3.5 January 20, 2020.
+-->
+
+<text>
+Example from Section 17.8
+
+Ghilani Charles D. (2010): Adjustment Computations. Spatial Data
+Analysis. Fifth Edition, John Wiley &amp; Sons, Inc., ISBN
+978-0-470-46491-5, Ch. 17.6, p 337-352
+</text>
+
+<g3-model>
+
+<constants>
+   <apriori-standard-deviation>1</apriori-standard-deviation>
+   <confidence-level>0.95</confidence-level>
+
+   <ellipsoid>
+      <id>wgs84</id>
+      <!-- a>6378137</a -->
+      <!-- b>6356752.31425</b -->
+      <!-- inv-f>298.257223563</inv-f -->
+   </ellipsoid>
+</constants>
+
+<fixed> <n/> <e/> <u/> </fixed>
+
+<point> <id>A</id>
+        <x> 402.35087</x> <y>-4652995.30109</y> <z>4349760.77753</z> </point>
+<point> <id>B</id>
+        <x>8086.03178</x> <y>-4642712.84739</y> <z>4360439.08326</z> </point>
+
+
+<free> <n/> <e/> <u/> </free>
+
+<!--
+<point> <id>C</id> </point>
+<point> <id>D</id> </point>
+<point> <id>E</id> </point>
+<point> <id>F</id> </point>
+-->
+
+<!--
+Approximate coordinates are explicitly given to get the same adjusted
+corrections as Friedhelm Krumm
+
+C  12046.5808  -0.04  0.608  -4649394.0826  -0.16  0.612  4353160.0644  -0.07  0.597  1.049
+D  -3081.5831  -0.03  0.494  -4643107.3692   0.05  0.506  4359531.1233  -0.07  0.514  0.874
+E  -4919.3391  -0.28  0.523  -4649361.2199   0.03  0.526  4352934.4548   0.00  0.517  0.905
+F   1518.8012  -0.01  0.267  -4648399.1453   0.07  0.282  4354116.6914   0.01  0.280  0.478
+-->
+
+<point> <id>C</id>
+        <x>12046.5808</x> <y>-4649394.0824</y> <z>4353160.0645</z> </point>
+<point> <id>D</id>
+	<x>-3081.5831</x> <y>-4643107.3692</y> <z>4359531.1234</z> </point>
+<point> <id>E</id>
+	<x>-4919.3388</x> <y>-4649361.2199</y> <z>4352934.4548</z> </point>
+<point> <id>F</id>
+	<x> 1518.8012</x> <y>-4648399.1454</y> <z>4354116.6914</z> </point>
+
+<obs>
+  <vector>
+    <from>A</from> <to>C</to>
+    <dx>11644.2232</dx> <dy>3601.2165</dy> <dz>3399.2550</dz>
+  </vector>
+
+  <cov-mat> <dim>3</dim> <band>2</band>
+
+  <flt>988.4 </flt> <flt>-9.58</flt> <flt>9.52</flt>
+  <flt>937.7 </flt> <flt>-9.52</flt>
+  <flt>982.7 </flt>
+
+  </cov-mat>
+</obs>
+
+
+<obs>
+  <vector> <from>A</from> <to>E</to>
+  <dx>-5321.7164</dx> <dy>3634.0754</dy> <dz>3173.6652</dz>
+  </vector>
+
+  <vector> <from>B</from> <to>C</to>
+  <dx>3960.5442</dx> <dy>-6681.2467</dy> <dz>-7279.0148</dz>
+  </vector>
+
+  <cov-mat> <dim>6</dim> <band>2</band>
+
+  <flt>215.8 </flt> <flt>-2.1 </flt> <flt>2.16</flt>
+  <flt>191.9 </flt> <flt>-2.1 </flt> <flt> 0  </flt>
+  <flt>200.5 </flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt>230.5 </flt> <flt>-2.23</flt> <flt>2.07</flt>
+  <flt>254.6 </flt> <flt>-2.23</flt>
+  <flt>225.2 </flt>
+
+  </cov-mat>
+</obs>
+
+
+<obs>
+  <vector> <from>B</from> <to>D</to>
+  <dx>-11167.6076</dx> <dy>-394.5204</dy> <dz>-907.9593</dz>
+  </vector>
+
+  <vector> <from>D</from> <to>C</to>
+  <dx>15128.1647</dx> <dy>-6286.7054</dy> <dz>-6371.0583</dz>
+  </vector>
+
+  <vector> <from>D</from> <to>E</to>
+  <dx>-1837.7459</dx> <dy>-6253.8534</dy> <dz>-6596.6697</dz>
+  </vector>
+
+  <cov-mat> <dim>9</dim> <band>2</band>
+
+  <flt>270   </flt> <flt>-2.75</flt> <flt>2.85</flt>
+  <flt>272.1 </flt> <flt>-2.72</flt> <flt> 0  </flt>
+  <flt>267   </flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt>146.1 </flt> <flt>-1.43</flt> <flt>1.34</flt>
+  <flt>161.4 </flt> <flt>-1.44</flt> <flt> 0  </flt>
+  <flt>130.8 </flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt>123.1 </flt> <flt>-1.19</flt> <flt>1.22</flt>
+  <flt>127.7 </flt> <flt>-1.21</flt>
+  <flt>128.3 </flt>
+
+  </cov-mat>
+</obs>
+
+
+<obs>
+
+  <vector> <from>F</from> <to>A</to>
+  <dx>-1116.4523</dx> <dy>-4596.1610</dy> <dz>-4355.9062</dz>
+  </vector>
+
+  <vector> <from>F</from> <to>C</to>
+  <dx>10527.7852</dx> <dy>-994.9377</dy> <dz>-956.6246</dz>
+  </vector>
+
+  <vector> <from>F</from> <to>E</to>
+  <dx>-6438.1364</dx> <dy>-962.0694</dy> <dz>-1182.2305</dz>
+  </vector>
+
+  <vector> <from>F</from> <to>D</to>
+  <dx>-4600.3787</dx> <dy>5291.7785</dy> <dz>5414.4311</dz>
+  </vector>
+
+  <vector> <from>F</from> <to>B</to>
+  <dx>6567.2311</dx> <dy>5686.2926</dy> <dz>6322.3917</dz>
+  </vector>
+
+  <vector> <from>B</from> <to>F</to>
+  <dx>-6567.2310</dx> <dy>-5686.3033</dy> <dz>-6322.3807</dz>
+  </vector>
+
+  <vector> <from>A</from> <to>F</to>
+  <dx>1116.4577</dx> <dy>4596.1553</dy> <dz>4355.9141</dz>
+  </vector>
+
+  <cov-mat> <dim>21</dim> <band>2</band>
+
+  <flt> 74.75</flt> <flt>-0.79</flt> <flt>0.88</flt>
+  <flt> 65.93</flt> <flt>-0.81</flt> <flt> 0  </flt>
+  <flt> 76.16</flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt>256.7 </flt> <flt>-2.25</flt> <flt>2.4 </flt>
+  <flt>216.3 </flt> <flt>-2.27</flt> <flt> 0  </flt>
+  <flt>239.7 </flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt> 94.42</flt> <flt>-0.92</flt> <flt>1.04</flt>
+  <flt> 99.59</flt> <flt>-0.89</flt> <flt> 0  </flt>
+  <flt> 88.26</flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt> 93.3 </flt> <flt>-0.99</flt> <flt>0.90</flt>
+  <flt> 98.75</flt> <flt>-0.99</flt> <flt> 0  </flt>
+  <flt>120.4 </flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt> 66.43</flt> <flt>-0.65</flt> <flt>0.69</flt>
+  <flt> 74.65</flt> <flt>-0.64</flt> <flt> 0  </flt>
+  <flt> 60.48</flt> <flt> 0   </flt> <flt> 0  </flt>
+
+  <flt> 55.12</flt> <flt>-0.63</flt> <flt>0.61</flt>
+  <flt> 74.72</flt> <flt>-0.63</flt> <flt> 0  </flt>
+  <flt> 66.29</flt> <flt>  0  </flt> <flt> 0  </flt>
+
+  <flt> 66.19</flt> <flt>-0.80</flt> <flt>0.90</flt>
+  <flt> 81.08</flt> <flt>-0.82</flt>
+  <flt> 93.76</flt>
+
+  </cov-mat>
+</obs>
+
+</g3-model>
+</gnu-gama-data>

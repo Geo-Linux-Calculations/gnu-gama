@@ -1,66 +1,29 @@
-2022-09-12   Ales Cepek <cepek@gnu.org>
+2023-02-16   Ales Cepek <cepek@gnu.org>
 
-	New release 2.23
+	Maintenance release gama-2.24
 
-  - Fixed the bug in gama-local reading sqlite3 database.  The bug was
-    introduced after version 2.10 when testing shell scripts were
-    updated to be generated from templates .sh_ files (testing
-    templates .sh_ use symbolic names like @INPUT_FILES@ or $RES etc).
+	* new testing data to gama-g3 test suite
 
-    More readeable output format in check_xml_coordinates.cpp test.
+	* Fixed a bug in gama-g3 adjustment xml output of vectors
 
-2022-09-02   Ales Cepek <cepek@gnu.org>
+	* Fixed the definition of reference standard deviation in the
+	gama-g3 input XML
 
-	New release 2.22
+	* xml/gnu-gama-data.xsd version 1.01 new tags
+	<reference-variance-apriory/> and
+	<reference-variance-aposteriori/>
 
-  - Denny Fiedler reported inconsitent adjustment reports.
-    XML adjustment ouput differed from text and html formats
-    in description of Chi-square test of standard deviation.
+	* Added a test on conversion of coordinates XYZ to ellipsoidal BLH
+	and back Add an implicit constructor to the Ellipsoid class
+	(implicit ellipsoid is SWG 84) and enable the next iteration in
+	xyz2blh(), which improves the transformation XYZ to BLS from 1e-7
+	to 1e-9 meters. Added a test on conversion from BLH to XYZ to the
+	CMake build
 
-    New XML tag <not-applicable/> was added to the adjustment ouput
-    format for cases with zero degrees of freedom, where the standard
-    deviation test is not applicable (previously there were only
-    two tags <passed/> and <failed/>).
+	* Added test on positive definite covariance matrix in input XML
+	and test on covariance matrix dimension and bandwidth in
+	DataParser_g3
 
-  - New gama-local adjustment XML output definition
-    gama-local-adjustment.xsd version 1.02.
-
-    Old XML output files are formally complient with the new XSD
-    version 1.02, but three testing files were updated in the
-    directory tests/gama-local/input/
-       minimal.xml
-       triangle-1.xml
-       triangle-2.xml
-
-2022-07-10   Ales Cepek <cepek@gnu.org>
-
-	New release 2.21
-
-  - Fix Cholesky decomposition of CovMat class
-
-    In gama-local the cluster covariance matrix can be defined in three
-    ways: by implicit standard deviations, by explicit specification of
-    observations’ standard deviations or by direct definition of the cluster
-    covariance band matrix. When reading input, gama-local must check that
-    the resulting covariance matrix is positive definite.  If the input does
-    not have any of the above three covariance representations, the
-    covariance matrix variable contains only zeros.  Due to a bug, the
-    parser (using class CovMat) failed to detect the bad input data. The bug
-    was fixed and the scaling of tolerance for detecting semidefinite
-    matrices now uses the maximum of all diagonal elements, rather then only
-    the first diagonal element.
-
-  - Fix the bug in test linearization visitor for Angle
-
-    The visitor did not test if the right hand direction of the angle
-    pointed to a fixed point or to an adjustment point. If it was a fixed
-    point visitor added corrections from vector x with index 0, i.e. index
-    outside the vector.
-
-    Added file bug/test-linearization-angle.gkf and .xml to test all
-    possible combinations of angles with fixed and adjusment points.
-
-    The bug was reported by Greg Troxel on netbsd 9 amd64.
 
 2022-06-30   Ales Cepek <cepek@gnu.org>
 

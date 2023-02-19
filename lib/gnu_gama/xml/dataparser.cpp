@@ -278,6 +278,9 @@ DataParser::data_tag DataParser::tag(const char* c)
     case 'r':
       if (!strcmp(c, "reason"                    )) return t_reason;
       if (!strcmp(c, "redundancy"                )) return t_redundancy;
+      if (!strcmp(c, "reference-variance-apriory")) return t_ref_apriori;
+      if (!strcmp(c, "reference-variance-aposteriori"))
+                                                    return t_ref_aposteriori;
       if (!strcmp(c, "rejected"                  )) return t_rejected;
       if (!strcmp(c, "rejected-observations"     )) return t_rejected_obs;
       if (!strcmp(c, "residual"                  )) return t_residual;

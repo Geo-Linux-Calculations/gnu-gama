@@ -123,6 +123,11 @@ namespace GNU_gama {
     void write_xml_adjustment_input_data(std::ostream&);
     void write_xml_adjustment_results   (std::ostream&);
 
+    bool ref_stdev_apriori() const     { return ref_stdev == apriori; }
+    bool ref_stdev_aposteriori() const { return ref_stdev == aposteriori; }
+    void set_ref_stdev_apriori()       { ref_stdev = apriori; }
+    void set_ref_stdev_aposteriori()   { ref_stdev = aposteriori; }
+
     bool angular_units_degrees() const { return !gons_; }
     bool angular_units_gons   () const { return  gons_; }
     void set_angular_units_degrees()   { gons_ = false; }
@@ -179,7 +184,7 @@ namespace GNU_gama {
     Adj*              adj {nullptr};
 
     int    redundancy;
-    enum { apriori, aposteriori } actual_sd;
+    enum { apriori, aposteriori } ref_stdev;
     double aposteriori_sd;
     double std_deviation;
     double std_variance;

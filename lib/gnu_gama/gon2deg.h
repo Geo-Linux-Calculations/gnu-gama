@@ -1,5 +1,5 @@
 /* GNU Gama -- adjustment of geodetic networks
-   Copyright (C) 2004, 2012, 2012  Ales Cepek <cepek@gnu.org>
+   Copyright (C) 2004, 2012, 2012, 2023  Ales Cepek <cepek@gnu.org>
 
    This file is part of the GNU Gama C++ library.
 
@@ -35,6 +35,10 @@ namespace GNU_gama {
   //      2  sign right-padded
   //      3  signed with leading spaces trimmed
   std::string gon2deg(double gon,  int sign, int prec);
+
+  // gon2deg_str is a more meaningful name for gon2deg
+  std::string gon2deg_str(double gon,int sign, int prec);
+  std::string rad2deg_str(double rad,int sign, int prec);
 
   bool        deg2gon(std::string, double &);
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema version="1.00"
+<xs:schema version="1.01"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://www.gnu.org/software/gama/gnu-gama-data"
   targetNamespace="http://www.gnu.org/software/gama/gnu-gama-data"
@@ -131,6 +131,14 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='reference-variance-apriory'>
+  <xs:complexType/>
+ </xs:element>
+
+ <xs:element name='reference-variance-aposteriori'>
+  <xs:complexType/>
+ </xs:element>
+
  <xs:element name='angular-units-gons'>
   <xs:complexType/>
  </xs:element>
@@ -211,6 +219,8 @@
     <xs:element ref='apriori-standard-deviation'/>
     <xs:element ref='confidence-level'/>
     <xs:element ref='tol-abs'/>
+    <xs:element ref='reference-variance-apriory'/>
+    <xs:element ref='reference-variance-aposteriori'/>
     <xs:element ref='angular-units-gons'/>
     <xs:element ref='angular-units-degrees'/>
     <xs:element ref='ellipsoid'/>

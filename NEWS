@@ -3,6 +3,13 @@ GNU Gama NEWS - History of user-visible changes.
   New glossary of basic terms used in gama-local text output and in
   documentation.
 
+Changes in release 2.24 (2023-02-16)
+
+  - new testing data to gama-g3 test suite
+
+  - xml/gnu-gama-data.xsd version 1.01, new tags
+    <reference-variance-apriory/> and <reference-variance-aposteriori/>
+
 Changes in release 2.23 (2022-09-12)
 
   - Fixed the bug in gama-local reading sqlite3 database.  The bug was

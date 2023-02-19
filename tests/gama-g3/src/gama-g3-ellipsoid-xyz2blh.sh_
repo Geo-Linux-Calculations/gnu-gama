@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+src/check_ellipsoid_xyz2blh > @G3_RESULTS@/check_ellipsoid_xyz2blh.txt

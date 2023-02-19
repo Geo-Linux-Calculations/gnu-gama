@@ -12,7 +12,7 @@
 #
 # In either case, the testsuite is invoked via ‘make check’.
 
-TESTSA = gama-g3-adjustment.sh
+TESTSA = gama-g3-adjustment.sh gama-g3-ellipsoid-xyz2blh.sh
 
 if GNU_GAMA_LOCAL_TEST_XMLLINT
 TESTXML = gama-g3-xmllint-xsd.sh
@@ -22,7 +22,8 @@ TESTS = $(TESTSA) $(TESTXML)
 
 SUBDIRS = input src
 
-INPUT_FILES = demo-g3-01 demo-g3-02 demo-g3-03
+INPUT_FILES = demo-g3-01 demo-g3-02 demo-g3-03 \
+              ghilani-gnss-v1 ghilani-gnss-v3 ghilani-gnss-v3
 
 G3_SRC     = $(srcdir)/src
 G3_INPUT   = $(srcdir)/input
@@ -53,3 +54,9 @@ gama-g3-xmllint-xsd.sh: $(G3_SRC)/gama-g3-xmllint-xsd.sh_ $(G3_OTHERS)
 	@$(do_subst)  < $(G3_SRC)/gama-g3-xmllint-xsd.sh_ \
 	        > gama-g3-xmllint-xsd.sh
 	@chmod +x gama-g3-xmllint-xsd.sh
+
+gama-g3-ellipsoid-xyz2blh.sh: $(G3_SRC)/gama-g3-ellipsoid-xyz2blh.sh_ \
+			      $(G3_OTHERS)
+	@$(do_subst)  < $(G3_SRC)/gama-g3-ellipsoid-xyz2blh.sh_ \
+	        > gama-g3-ellipsoid-xyz2blh.sh
+	@chmod +x gama-g3-ellipsoid-xyz2blh.sh

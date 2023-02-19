@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2004, 2010  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2004, 2010, 2023  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ Library.
 
@@ -29,6 +29,18 @@
 using namespace std;
 
 namespace GNU_gama {
+
+  std::string gon2deg_str(double gon,int sign, int prec)
+  {
+   return gon2deg(gon, sign, prec);
+  }
+
+
+  std::string rad2deg_str(double rad,int sign, int prec)
+  {
+   return gon2deg_str(rad/M_PI*200, sign, prec);
+  }
+
 
   string gon2deg(double gon, int sign, int prec)
   {

@@ -49,7 +49,7 @@ Model::Model()
   confidence_level = 0.95;
   tol_abs          = 1e3;
 
-  actual_sd = aposteriori;
+  ref_stdev = aposteriori;
 
   reset();
 }
@@ -268,7 +268,7 @@ void Model::update_adjustment()
       aposteriori_sd = sqrt(adj->rtr()/redundancy);
     }
 
-  if (actual_sd == apriori)
+  if (ref_stdev == apriori)
     std_deviation = apriori_sd;
   else
     std_deviation = aposteriori_sd;

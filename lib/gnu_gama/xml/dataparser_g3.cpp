@@ -93,6 +93,14 @@ void DataParser::init_g3()
        s_g3_const_tol_abs, 0, s_g3_const,
        nullptr, &DataParser::add_text, &DataParser::g3_const_tol_abs);
 
+  init(s_g3_const, t_ref_aposteriori,
+       s_g3_const_ref_aposteriori, 0, s_g3_const,
+       nullptr, nullptr, &DataParser::g3_const_ref_aposteriori);
+
+  init(s_g3_const, t_ref_apriori,
+       s_g3_const_ref_apriori, 0, s_g3_const,
+       nullptr, nullptr, &DataParser::g3_const_ref_apriori);
+
   init(s_g3_const, t_ang_degrees,
        s_g3_const_ang, 0, s_g3_const,
        nullptr, nullptr, &DataParser::g3_const_ang_degrees);
@@ -849,6 +857,13 @@ int DataParser::g3_obs_cov(const char *name)
 
   if (!(istr >> d >> b))  return error("### bad cov-mat");
 
+  if (d <=0 || b < 0 || b >=d)
+    {
+      std::ostringstream bad_covmat_dim;
+      bad_covmat_dim << "### bad cov-mat / dim " << d << " band " << b;
+      return error(bad_covmat_dim.str());
+    }
+
   DataParser_g3::Cov cov(d, b);
   cov.set_zero();
   for (int i=1; i<=d; i++)          // upper triangular matrix by rows
@@ -858,6 +873,16 @@ int DataParser::g3_obs_cov(const char *name)
       else        return error("### bad cov-mat / some data missing");
 
   if (!pure_data(istr)) return error("### bad cov-mat / redundant data");
+
+  try
+    {
+      DataParser_g3::Cov tmp = cov;
+      tmp.cholDec();
+    }
+  catch (GNU_gama::Exception::matvec exc)
+    {
+      return error("### bad cov-mat / matrix is not positive definite");
+    }
 
   text_buffer.clear();
   g3->cov_list.push_back(cov);
@@ -1015,15 +1040,12 @@ int DataParser::g3_obs_azimuth(const char *name)
         {
           istringstream istr(sval);
           istr >> val;
-          g3->scale.push_back(1.0);
         }
-        else
-          g3->scale.push_back(3.0864); // ss --> cc
 
       Azimuth* azimuth = new Azimuth;
       azimuth->from = from;
       azimuth->to   = to;
-      azimuth->set(val * GON_TO_RAD);
+      azimuth->set(val);
       azimuth->from_dh = optional(g3->from_dh);
       azimuth->to_dh   = optional(g3->to_dh);
       g3->obs_cluster->observation_list.push_back(azimuth);
@@ -1250,6 +1272,22 @@ int DataParser::g3_const_ellipsoid_inv_f(const char *name)
   return error("### bad <ellipsoid> <a> <inv-f>");
 }
 
+int DataParser::g3_const_ref_apriori(const char *name)
+{
+  text_buffer.clear();
+  g3->model->set_ref_stdev_apriori();
+
+  return end_tag(name);
+}
+
+int DataParser::g3_const_ref_aposteriori(const char *name)
+{
+  text_buffer.clear();
+  g3->model->set_ref_stdev_aposteriori();
+
+  return end_tag(name);
+}
+
 int DataParser::g3_const_ang_degrees(const char *name)
 {
   text_buffer.clear();
@@ -1296,8 +1334,8 @@ int DataParser::g3_obs_angle(const char *name)
      angle->right = right;
      angle->set(val*GON_TO_RAD);
      angle->from_dh  = optional(g3->from_dh);
-     angle->left_dh  = optional(g3->left_dh);
-     angle->right_dh = optional(g3->right_dh);
+     angle->left_dh  = optional(g3->to_dh);
+     angle->right_dh = optional(g3->to_dh);
      g3->obs_cluster->observation_list.push_back(angle);
 
      return  end_tag(name);
@@ -1305,4 +1343,3 @@ int DataParser::g3_obs_angle(const char *name)
 
   return error("### bad <angle>");
 }
-

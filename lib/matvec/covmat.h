@@ -32,9 +32,9 @@
  *
  * Bandwidth is defined as max{ |i-j| | a_ij != 0 }
  *
- * Upper triangular part of the matrix is stored by rows, ie
+ * Upper triangular part of the matrix is stored by rows, that is
  *
- *        d*(b+1) - b*(b+1)/2   of unzero elements,
+ *        d*(b+1) - b*(b+1)/2   of nonzero elements,
  *
  * where `d' is the matrix dimension and `b' the bandwidth
  *

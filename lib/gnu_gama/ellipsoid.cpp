@@ -1,6 +1,6 @@
 /*
     GNU Gama -- adjustment of geodetic networks
-    Copyright (C) 2002  Ales Cepek <cepek@gnu.org>
+    Copyright (C) 2002, 2023  Ales Cepek <cepek@gnu.org>
 
     This file is part of the GNU Gama C++ library.
 
@@ -27,6 +27,10 @@
 using namespace std;
 using namespace GNU_gama;
 
+Ellipsoid::Ellipsoid()
+{
+  set_af1(6378137, 298.257223563); // WGS 84
+}
 
 double Ellipsoid::M(double b) const
 {
@@ -136,7 +140,7 @@ void Ellipsoid::xyz2blh(double  x, double  y, double  z,
   b = atan2(z + e22*B*sin2_u*sin_u, x - e2*A*cos2_u*cos_u);
 
   /* next iteration is never needed in earth bound region; max error
-   * is 0.0018" for H=2a
+   * is 0.0018" for H=2a */
 
   sin_u  = Ime2*N(b)/B*sin(b);
   sin2_u = sin_u*sin_u;
@@ -144,7 +148,7 @@ void Ellipsoid::xyz2blh(double  x, double  y, double  z,
   cos_u  = sqrt(cos2_u);
   b = atan2(z + e22*B*sin2_u*sin_u, x - e2*A*cos2_u*cos_u);
 
-  */
+  /* ............................................................ */
 
   if (x > fabs(z))
     h = x/cos(b) - N(b);

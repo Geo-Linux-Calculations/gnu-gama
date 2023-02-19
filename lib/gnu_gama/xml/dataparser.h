@@ -85,6 +85,8 @@ namespace GNU_gama {
           s_g3_const_ellipsoid_a,
           s_g3_const_ellipsoid_b,
           s_g3_const_ellipsoid_inv_f,
+          s_g3_const_ref_aposteriori,
+          s_g3_const_ref_apriori,
           s_g3_const_ang,
 
           // ..................................................
@@ -563,6 +565,8 @@ namespace GNU_gama {
           t_point,
           t_reason,
           t_redundancy,
+          t_ref_apriori,
+          t_ref_aposteriori,
           t_rejected,
           t_rejected_obs,
           t_residual,
@@ -642,6 +646,8 @@ namespace GNU_gama {
       int g3_const_ellipsoid_id   (const char *name);
       int g3_const_ellipsoid_b    (const char *name);
       int g3_const_ellipsoid_inv_f(const char *name);
+      int g3_const_ref_apriori    (const char *name);
+      int g3_const_ref_aposteriori(const char *name);
       int g3_const_ang_degrees    (const char *name);
       int g3_const_ang_gons       (const char *name);
 
